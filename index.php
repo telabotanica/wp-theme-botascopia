@@ -1,7 +1,4 @@
 <?php get_header(); ?>
-
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
       <nav id="navigation">
 <?php
 wp_nav_menu(
@@ -12,6 +9,9 @@ wp_nav_menu(
 );
 ?>
 </nav>
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
     </main><!-- .site-main -->
   </div><!-- .content-area -->
 
