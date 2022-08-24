@@ -3,6 +3,7 @@
     Template Name: Formulaire en front création de fiche
 */
 	acf_form_head();
+get_header();
 
     $args = array(
         'post_id' => 'new_post', // On va créer une nouvelle publication
