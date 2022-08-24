@@ -2,7 +2,7 @@
 /**
  * Header
  */
-
+acf_form_head();
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
