@@ -5,8 +5,10 @@
 	acf_form_head();
 get_header();
 if (isset($_GET['p'])) {
-  $post = $_GET['p'];
-get_post_meta($post); ?>
+  $titre_du_post = $_GET['p'];
+$q = new WP_Query( array( ‘name’ => sanitize_title($titre_du_post) ) );
+if ( $q->have_posts() ) { 
+        $q->the_post(); ?>
 	
 <div >
 
@@ -30,8 +32,12 @@ get_post_meta($post); ?>
     );
 
     acf_form( $args ); // Afficher le formulaire
-} else {
+}else { 
  echo "Fiche non existante";
+  //Handle the case where there is no parameter
+}}
+	else { 
+ echo "Pas de nom donné";
   //Handle the case where there is no parameter
 }
 
