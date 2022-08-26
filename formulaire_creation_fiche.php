@@ -4,9 +4,22 @@
 */
 	acf_form_head();
 get_header();
+if (isset($_GET['p'])) {
+  $post = $_GET['p'];
+get_post_meta($post); ?>
+	
+<div >
+
+        <div>Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></div>
+
+        <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
+
+        <div>Famille : <?php the_field( 'famille' ); ?></div>
+</div>
+<?php	
 
     $args = array(
-        'post_id' => 'new_post', // On va créer une nouvelle publication
+        'post_id' => $post ,//'new_post', // On va créer une nouvelle publication
         'new_post' => array(
             'post_type' => 'article', // Enregistrer dans l'annuaire
             'post_status' => 'draft', // Enregistrer en brouillon
@@ -17,4 +30,9 @@ get_header();
     );
 
     acf_form( $args ); // Afficher le formulaire
+} else {
+ echo "Fiche non existante";
+  //Handle the case where there is no parameter
+}
+
 ?>
