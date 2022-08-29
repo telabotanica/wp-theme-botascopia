@@ -19,7 +19,7 @@ query_posts(array(
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
 <?php endwhile;
-if (is_null(the_field( 'nom_scientifique' ))  == false) {?>	
+if (is_null(the_field( 'nom_scientifique' ))  === false) {?>	
 
 	
 <div >
