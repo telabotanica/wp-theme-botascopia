@@ -19,12 +19,13 @@ query_posts(array(
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
 <?php endwhile;
+	var_dump(the_field( 'nom_scientifique' ));
 if (the_field( 'nom_scientifique' ) !== "") {?>	
 
 	
 <div >
 
-        <div><a href="<?php the_field('') ?>">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
+        <div><a href="<?php the_field('lien_eflore') ?>">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
 
         <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
 
