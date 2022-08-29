@@ -12,6 +12,8 @@ if ($content !== false) {
 	echo $content; ?>*/
 
 query_posts(array(
+	'post_type' => 'post',
+	'post_status' => 'draft',
 	'showposts' => 10
 ) );
 ?>
