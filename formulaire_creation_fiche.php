@@ -6,9 +6,10 @@
 get_header();
 if (isset($_GET['p'])) {
   $titre_du_post = $_GET['p'];
-$q = new WP_Query( array( ‘name’ => sanitize_title($titre_du_post) ) );
-if ( $q->have_posts() ) { 
-        $q->the_post(); ?>
+$page = get_page_by_title('Nom de ma page'); 
+$content = apply_filters('the_content', $page->post_content); 
+if isset($content) {
+	echo $content; ?>
 	
 <div >
 
