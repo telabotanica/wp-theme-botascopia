@@ -10,7 +10,7 @@ query_posts(array(
 	'post_type' => 'post',
 	'post_status' => 'draft',
 	'title' => $titre_du_post,
-	'showposts' => 10
+	'showposts' => 1
 ) );
 ?>
 <?php while (have_posts()) : the_post(); ?>
