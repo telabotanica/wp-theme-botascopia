@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php 
+require(‘./wp-blog-header.php’);
+get_header(); ?>
       <nav id="navigation">
 <?php
 wp_nav_menu(
