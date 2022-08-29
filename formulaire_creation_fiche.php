@@ -19,8 +19,7 @@ query_posts(array(
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
 <?php endwhile;
-	var_dump(the_field( 'nom_scientifique' ));
-if (the_field( 'nom_scientifique' ) !== "") {?>	
+if (the_field( 'nom_scientifique' ) !== false) {?>	
 
 	
 <div >
