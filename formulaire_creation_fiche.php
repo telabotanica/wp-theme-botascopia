@@ -6,9 +6,9 @@
 get_header();
 if (isset($_GET['p'])) {
   $titre_du_post = $_GET['p'];
-$page = get_page_by_title('Nom de ma page'); 
+$page = get_page_by_title($titre_du_post); 
 $content = apply_filters('the_content', $page->post_content); 
-if isset($content) {
+if ($content !== false) {
 	echo $content; ?>
 	
 <div >
