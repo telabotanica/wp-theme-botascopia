@@ -73,5 +73,6 @@ query_posts(array(
  echo "Pas de nom donné";
   //Handle the case where there is no parameter
 }
-
+acf_enqueue_uploader();
+get_footer();
 ?>
