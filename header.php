@@ -3,6 +3,7 @@
  * Header
  */
 acf_form_head();
+acf_enqueue_uploader();
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
