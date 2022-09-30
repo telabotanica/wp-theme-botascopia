@@ -6,7 +6,7 @@
 get_header();
 $form = 12;
 $formulaires = array(
-	"12" => "Description morphologique",
+	12 => "Description morphologique",
 	"127" => "Période de floraison et de fructification",
 	"130" => "Aire de répartition et statut", 
 	"136" => "Écologie", 
@@ -14,8 +14,8 @@ $formulaires = array(
 	"145" => "Propriétés",
 	"147" => "Ne pas confondre avec",
 	"150" => "Description vulgarisée",
-	"154" => "Références");
-print_r($_GET['f']);
+	154 => "Références");
+
 if (isset($_GET['f']) && in_array($_GET['f'], $formulaires)) {
 	$form = $_GET['f']; echo "test";
 }	
