@@ -6,7 +6,7 @@
 get_header();
 $form = 12;
 $formulaires = array(
-	12 => "Description morphologique",
+	"12" => "Description morphologique",
 	"127" => "Période de floraison et de fructification",
 	"130" => "Aire de répartition et statut", 
 	"136" => "Écologie", 
@@ -14,10 +14,10 @@ $formulaires = array(
 	"145" => "Propriétés",
 	"147" => "Ne pas confondre avec",
 	"150" => "Description vulgarisée",
-	154 => "Références");
+	"154" => "Références");
 
 if (isset($_GET['f']) && array_key_exists($_GET['f'], $formulaires)) {
-	$form = $_GET['f']; echo "test";
+	$form = $_GET['f'];
 }	
 
 if (isset($_GET['p'])) {
@@ -60,6 +60,9 @@ query_posts(array(
     );
 
     acf_form( $args ); // Afficher le formulaire
+    foreach ($formulaires as $id => $titre) {
+	echo "<button onclick=\"window.location.href = 'http://oser-beta.tela-botanica.org/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
+    }	    
 /*}else { 
  echo "Fiche non existante";
   //Handle the case where there is no parameter
