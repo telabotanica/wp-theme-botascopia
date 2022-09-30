@@ -4,6 +4,22 @@
 */
 	acf_form_head();
 get_header();
+$form = 12
+$formulaires = array(
+	"12" => "Description morphologique",
+	"127" => "Période de floraison et de fructification",
+	"130" => "Aire de répartition et statut", 
+	"136" => "Écologie", 
+	"143" => "Complément d’anecdote",
+	"145" => "Propriétés",
+	"147" => "Ne pas confondre avec",
+	"150" => "Description vulgarisée",
+	"154" => "Références");
+
+if (isset($_GET['f']) && in_array($_GET['f'], $formulaires) {
+	$form = $_GET['f'];
+}	
+
 if (isset($_GET['p'])) {
   $titre_du_post = $_GET['p'];
 query_posts(array(
@@ -38,7 +54,7 @@ query_posts(array(
             'post_type' => 'post', // Enregistrer dans les articles
             'post_status' => 'draft', // Enregistrer en brouillon
         ),
-        'field_groups' => array( 12 ), // L'ID du post du groupe de champs
+        'field_groups' => array( $form ), // L'ID du post du groupe de champs
         'submit_value' => 'Enregistrer la fiche', // Intitulé du bouton
         'updated_message' => "Votre demande a bien été prise en compte.",
     );
