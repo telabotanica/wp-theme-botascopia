@@ -15,8 +15,8 @@ $formulaires = array(
 	"147" => "Ne pas confondre avec",
 	"150" => "Description vulgarisée",
 	154 => "Références");
-var_dump($_GET['f']); var_dump($formulaires);
-if ( in_array($_GET['f'], $formulaires)) {
+
+if (isset($_GET['f']) && array_key_exists($_GET['f'], $formulaires)) {
 	$form = $_GET['f']; echo "test";
 }	
 
