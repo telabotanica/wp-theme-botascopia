@@ -15,9 +15,9 @@ $formulaires = array(
 	"147" => "Ne pas confondre avec",
 	"150" => "Description vulgarisée",
 	"154" => "Références");
-
+print_r($_GET['f']);
 if (isset($_GET['f']) && in_array($_GET['f'], $formulaires)) {
-	$form = $_GET['f'];
+	$form = $_GET['f']; echo "test";
 }	
 
 if (isset($_GET['p'])) {
