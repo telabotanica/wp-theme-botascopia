@@ -16,7 +16,7 @@ $formulaires = array(
 	"150" => "Description vulgarisée",
 	154 => "Références");
 
-if (isset($_GET['f']) && in_array($_GET['f'], $formulaires)) {
+if ( in_array($_GET['f'], $formulaires)) {
 	$form = $_GET['f']; echo "test";
 }	
 
