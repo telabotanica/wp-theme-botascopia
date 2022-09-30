@@ -55,11 +55,13 @@ query_posts(array(
             'post_status' => 'draft', // Enregistrer en brouillon
         ),
         'field_groups' => array( $form ), // L'ID du post du groupe de champs
-        'submit_value' => 'Enregistrer la fiche', // Intitulé du bouton
+        'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
         'updated_message' => "Votre demande a bien été prise en compte.",
+	'uploader' => 'wp',
     );
 
     acf_form( $args ); // Afficher le formulaire
+    echo "<br />"
     foreach ($formulaires as $id => $titre) {
 	echo "<button onclick=\"window.location.href = 'http://oser-beta.tela-botanica.org/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
     }	    
