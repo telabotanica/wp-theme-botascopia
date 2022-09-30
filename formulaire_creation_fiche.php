@@ -61,7 +61,7 @@ query_posts(array(
     );
 
     acf_form( $args ); // Afficher le formulaire
-    echo "<br />"
+    echo "<br />";
     foreach ($formulaires as $id => $titre) {
 	echo "<button onclick=\"window.location.href = 'http://oser-beta.tela-botanica.org/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
     }	    
