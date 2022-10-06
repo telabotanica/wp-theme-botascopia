@@ -34,7 +34,8 @@ if (isset($_GET['p'])) {
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
 	<?php endwhile;
-	$auteur_autorise = false;
+	$auteur_autorise = true;
+		/*false;
 	$current_user = strval (wp_get_current_user()->ID);
 	$post_author = get_post(the_id())->post_author;
 	if ($current_user !== 0) {
@@ -46,7 +47,7 @@ if (isset($_GET['p'])) {
 		} else if ($post_author == $current_user) {
 			$auteur_autorise = true;
 		}
-	}
+	}*/
 	if ($auteur_autorise == true) {
 ?>
 
