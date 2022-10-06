@@ -34,8 +34,10 @@ if (isset($_GET['p'])) {
 			<h2><?php the_title(); ?></h2>
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
-	<?php endwhile;?>
-//if (is_null(the_field( 'nom_scientifique' ))  === false) {  à rajouter je ne comprends pas le bug  	
+	<?php endwhile;
+	if (is_null(the_field( 'nom_scientifique' ))  === false) {
+		echo "rrrrrrr";
+	}
 	$auteur_autorise = false;
 	$current_user = strval (wp_get_current_user()->ID);
 	$post_author = get_post(the_id())->post_author;
