@@ -28,14 +28,26 @@ if (isset($_GET['p'])) {
 	   'title' => $titre_du_post,
 	   'showposts' => 1
     ));
-?>
-	<?php while (have_posts()) : the_post(); ?>
+	 while (have_posts()) : the_post(); ?>
 		<div class="text">
 			<h2><?php the_title(); ?></h2>
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
 	<?php endwhile;
-
+	$auteur_autorise = false;
+	$current_user = strval (wp_get_current_user()->ID);
+	$post_author = get_post(the_id())->post_author;
+	if ($current_user !== 0) {
+		// si l'auteur du post n'est pas l'admin des fiches
+		if ($post_author !== $current_user and $post_author == "3") {
+			$post_author = $current_user;
+			$auteur_autorise = true;
+		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
+		} else if ($post_author == $current_user) {
+			$auteur_autorise = true;
+		}
+	}
+	if ($auteur_autorise == true) {
 ?>
 
 	
@@ -67,7 +79,9 @@ if (isset($_GET['p'])) {
  echo "Fiche non existante";
   //Handle the case where there is no parameter
 }*/
-	
+	} else { 
+		echo "Utilisateur non autorisé";
+	} 
 } else {
     echo "Pas de nom donné";
 }
