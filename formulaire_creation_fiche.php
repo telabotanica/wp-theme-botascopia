@@ -35,12 +35,12 @@ if (isset($_GET['p'])) {
 		</div>
 	<?php endwhile;
 	$auteur_autorise = false;
-	$utilisateur = strval (get_current_user_id());var_dump($utilisateur);
-	$auteur_id = get_the_author_meta('ID');var_dump($auteur_id);
-	if ($utilisateur !== "0") {
+	$utilisateur = get_current_user_id();
+	$auteur_id = get_the_author_meta('ID');
+	if ($utilisateur !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($auteur_id !== $utilisateur and $auteur_id == "3") {
-			wp_update_post(array('ID' => get_the_ID(), 'post_author' => get_current_user_id()));
+			wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
 		} else if ($auteur_id === $utilisateur) {
