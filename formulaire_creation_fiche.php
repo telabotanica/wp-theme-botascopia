@@ -34,20 +34,19 @@ if (isset($_GET['p'])) {
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
 	<?php endwhile;
-	$auteur_autorise = true;
+	$auteur_autorise = false;
 	$utilisateur = strval (get_current_user_id());
 	$auteur_id = get_the_author_meta('ID');
-		/*false;
-	if ($current_user !== 0) {
+	if ($utilisateur !== "0") {
 		// si l'auteur du post n'est pas l'admin des fiches
-		if ($post_author !== $current_user and $post_author == "3") {
-			//$post_author = $current_user;
+		if ($auteur_id !== $utilisateur and $auteur_id == "3") {
+			//$auteur_id = $utilisateur;
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
-		} else if ($post_author == $current_user) {
+		} else if ($auteur_id === $utilisateur) {
 			$auteur_autorise = true;
 		}
-	}*/
+	}
 	if ($auteur_autorise == true) {
 ?>
 
