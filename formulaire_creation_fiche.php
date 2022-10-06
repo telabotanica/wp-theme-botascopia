@@ -40,7 +40,7 @@ if (isset($_GET['p'])) {
 	if ($utilisateur !== "0") {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($auteur_id !== $utilisateur and $auteur_id == "3") {
-			//$auteur_id = $utilisateur;
+			wp_update_post(array('post_author' => $utilisateur));
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
 		} else if ($auteur_id === $utilisateur) {
@@ -52,7 +52,7 @@ if (isset($_GET['p'])) {
 
 	
 		<div >
-        	<div><a href="<?php the_field('lien_eflore') ?>">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
+        	<div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
 	        <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
 	        <div>Famille : <?php the_field( 'famille' ); ?></div>
 		</div>
