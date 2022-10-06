@@ -40,7 +40,7 @@ if (isset($_GET['p'])) {
 	if ($current_user !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($post_author !== $current_user and $post_author == "3") {
-			$post_author = $current_user;
+			//$post_author = $current_user;
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
 		} else if ($post_author == $current_user) {
