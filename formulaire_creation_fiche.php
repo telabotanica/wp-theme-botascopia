@@ -34,22 +34,18 @@ if (isset($_GET['p'])) {
 			<h2><?php the_title(); ?></h2>
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
-	<?php endwhile;
-	if (is_null(the_field( 'nom_scientifique' ))  === false) {
-		echo "rrrrrrr";
-	}
-	$auteur_autorise = false;
+	<?php endwhile;?>
+//if (is_null(the_field( 'nom_scientifique' ))  === false) {  à rajouter je ne comprends pas le bug
+<?php	$auteur_autorise = false;
 	$current_user = strval (wp_get_current_user()->ID);
 	$post_author = get_post(the_id())->post_author;
-	if ($current_user !== 0) {
-		// si l'auteur du post n'est pas l'admin des fiches
-		if ($post_author !== $current_user and $post_author == "3") {
-			$post_author = $current_user;
-			$auteur_autorise = true;
-		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
-		} else if ($post_author == $current_user) {
-			$auteur_autorise = true;
-		}
+	// si l'auteur du post n'est pas le créateur des fiches
+	if ($post_author !== $current_user and $post_author == "3") {
+		$post_author = $current_user;
+		$auteur_autorise = true;
+	// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
+	} else if ($post_author == $current_user) {
+		$auteur_autorise = true;
 	}
 	if ($auteur_autorise == true) {
 ?>
