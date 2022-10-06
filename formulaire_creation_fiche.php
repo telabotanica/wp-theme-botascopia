@@ -37,7 +37,7 @@ if (isset($_GET['p'])) {
 	$auteur_autorise = true;
 		/*false;
 	$current_user = strval (wp_get_current_user()->ID);
-	$post_author = get_post(the_id())->post_author;
+	$post_author = get_post(get_the_ID())->post_author;
 	if ($current_user !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($post_author !== $current_user and $post_author == "3") {
@@ -60,7 +60,7 @@ if (isset($_GET['p'])) {
 <?php	
 
         $args = array(
-            'post_id' => the_id() ,
+            'post_id' => get_the_ID() ,
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
                 'post_status' => 'draft', // Enregistrer en brouillon
