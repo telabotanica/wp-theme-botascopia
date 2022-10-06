@@ -36,7 +36,7 @@ if (isset($_GET['p'])) {
 	<?php endwhile;
 	$auteur_autorise = true;
 	$current_user = strval (get_current_user_id());
-	$post_author = get_post(get_the_ID())->post_author;
+	$post_author = get_the_author();
 		/*false;
 	if ($current_user !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
