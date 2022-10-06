@@ -2,7 +2,7 @@
 /*
     Template Name: Formulaire en front création de fiche
 */
-	acf_form_head();
+acf_form_head();
 get_header();
 $form = 12;
 $formulaires = array(
@@ -21,24 +21,24 @@ if (isset($_GET['f']) && array_key_exists($_GET['f'], $formulaires)) {
 }	
 
 if (isset($_GET['p'])) {
-  $titre_du_post = $_GET['p'];
-query_posts(array(
-	'post_type' => 'post',
-	'post_status' => 'draft',
-	'title' => $titre_du_post,
-	'showposts' => 1
-) );
+    $titre_du_post = $_GET['p'];
+    query_posts(array(
+	   'post_type' => 'post',
+	   'post_status' => 'draft',
+	   'title' => $titre_du_post,
+	   'showposts' => 1
+    ));
 ?>
-<?php while (have_posts()) : the_post(); ?>
+	<?php while (have_posts()) : the_post(); ?>
 		<div class="text">
 			<h2><?php the_title(); ?></h2>
 			<p><?php echo get_the_excerpt(); ?></p>
 		</div>
-<?php endwhile;
+	<?php endwhile;?>
 //if (is_null(the_field( 'nom_scientifique' ))  === false) {  à rajouter je ne comprends pas le bug  ?>	
-	$auteur_autorise = false;
+<?php	$auteur_autorise = false;
 	$current_user = strval (wp_get_current_user()->ID);
-	$post_author = get_post($post_id)->post_author;
+	$post_author = get_post(the_id())->post_author;
 	// si l'auteur du post n'est pas le créateur des fiches
 	if ($post_author !== $current_user and $post_author == "3") {
 		$post_author = $current_user;
@@ -51,33 +51,30 @@ query_posts(array(
 ?>
 
 	
-<div >
-
-        <div><a href="<?php the_field('lien_eflore') ?>">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
-
-        <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
-
-        <div>Famille : <?php the_field( 'famille' ); ?></div>
-</div>
+		<div >
+        	<div><a href="<?php the_field('lien_eflore') ?>">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
+	        <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
+	        <div>Famille : <?php the_field( 'famille' ); ?></div>
+		</div>
 <?php	
 
-    $args = array(
-        'post_id' => the_id() ,
-        'new_post' => array(
-            'post_type' => 'post', // Enregistrer dans les articles
-            'post_status' => 'draft', // Enregistrer en brouillon
-        ),
-        'field_groups' => array( $form ), // L'ID du post du groupe de champs
-        'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
-        'updated_message' => "Votre demande a bien été prise en compte.",
-	'uploader' => 'wp',
-    );
+        $args = array(
+            'post_id' => the_id() ,
+            'new_post' => array(
+                'post_type' => 'post', // Enregistrer dans les articles
+                'post_status' => 'draft', // Enregistrer en brouillon
+            ),
+            'field_groups' => array( $form ), // L'ID du post du groupe de champs
+            'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
+            'updated_message' => "Votre demande a bien été prise en compte.",
+            'uploader' => 'wp',
+        );
 
-    acf_form( $args ); // Afficher le formulaire
-    echo "<br />";
-    foreach ($formulaires as $id => $titre) {
-	echo "<button onclick=\"window.location.href = 'http://oser-beta.tela-botanica.org/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
-    }	    
+        acf_form( $args ); // Afficher le formulaire
+        echo "<br />";
+        foreach ($formulaires as $id => $titre) {
+	       echo "<button onclick=\"window.location.href = 'http://oser-beta.tela-botanica.org/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
+        }	    
 /*}else { 
  echo "Fiche non existante";
   //Handle the case where there is no parameter
@@ -85,8 +82,8 @@ query_posts(array(
 	} else { 
 		echo "Utilisateur non autorisé";
 	} 
-else {
- echo "Pas de nom donné";
+} else {
+    echo "Pas de nom donné";
 }
 acf_enqueue_uploader();
 get_footer();
