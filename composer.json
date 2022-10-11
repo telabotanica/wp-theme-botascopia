@@ -1,0 +1,18 @@
+{
+    "name": "telabotanica/wp-theme-botascopia",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "Telabotanica\\WpThemeBotascopia\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tela Botanica"
+        }
+    ],
+    "require": {
+        "knplabs/knp-snappy": "^1.4",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x"
+    }
+}
