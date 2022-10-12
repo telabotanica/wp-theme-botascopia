@@ -1,5 +1,8 @@
 <?php
-  
+// ajout de la recherche sur les champs acf
+require get_template_directory() . '/inc/custom-search-acf-wordpress.php'; 
+
+
 function register_my_menu(){
   register_nav_menu( 'main-menu', 'Menu principal' );
 }
