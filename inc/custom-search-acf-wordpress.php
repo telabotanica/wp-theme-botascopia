@@ -69,7 +69,7 @@ function advanced_custom_search( $search, $wp_query ) {
         OR (".$table_prefix."posts.post_content LIKE '%$tag%')".
 
         // 9- Adds to $search DB data from custom post types
-        ." OR EXISTS (
+        " OR EXISTS (
           SELECT * FROM ".$table_prefix."postmeta
           WHERE post_id = ".$table_prefix."posts.ID
           AND (";
