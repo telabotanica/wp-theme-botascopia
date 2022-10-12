@@ -1,12 +1,12 @@
 <?php get_header(); ?>
       <nav id="navigation">
 <?php
-wp_nav_menu(
+/*wp_nav_menu(
   array(
     'theme_location' => 'main-menu',
     'menu_id' => 'primary-menu',
  )
-);
+);*/
 ?>
 </nav>
 <div id="primary" class="content-area">
@@ -29,16 +29,17 @@ wp_nav_menu(
                  * If you want to override this in a child theme, then include a file
                  * called content-___.php (where ___ is the Post Format name) and that will be used instead.
                  */
-                get_template_part( 'content', get_post_format() );
+                //get_template_part( 'content', get_post_format() );
+              the_content();
 
             // End the loop.
             endwhile;
 
             // Previous/next page navigation.
             the_posts_pagination( array(
-                'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-                'next_text'          => __( 'Next page', 'twentyfifteen' ),
-                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
+                'prev_text'          => __( 'Previous page' ),
+                'next_text'          => __( 'Next page' ),
+                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page' ) . ' </span>',
             ) );
 
         // If no content, include the "No posts found" template.
