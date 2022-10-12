@@ -30,7 +30,7 @@ function list_searcheable_acf(){
  * credits to Vincent Zurczak for the base query structure/spliting tags section and Sjouw for comment cleanup
 */
 
-function advanced_custom_search( $search, &$wp_query ) {
+function advanced_custom_search( $search, $wp_query ) {
   global $wpdb;
 
   if ( empty( $search )) {
@@ -66,10 +66,10 @@ function advanced_custom_search( $search, &$wp_query ) {
     $search .= "
       AND (
         (".$table_prefix."posts.post_title LIKE '%$tag%')
-        OR (".$table_prefix."posts.post_content LIKE '%$tag%')
+        OR (".$table_prefix."posts.post_content LIKE '%$tag%')".
 
         // 9- Adds to $search DB data from custom post types
-        OR EXISTS (
+        ." OR EXISTS (
           SELECT * FROM ".$table_prefix."postmeta
           WHERE post_id = ".$table_prefix."posts.ID
           AND (";
