@@ -21,7 +21,7 @@ acf_form_head();
   <?php
   // TODO: add skip links ?>
   <!-- <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'telabotanica' ); ?></a> -->
-  
+  <?
   global $header_small;
 
   $defaults = [
