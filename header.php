@@ -61,7 +61,7 @@ acf_form_head();
 
       // Utilisateur
 
-      if ( is_user_logged_in() ) :
+      if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
         $avatar_url = bp_core_fetch_avatar( [
           'item_id' => $current_user->ID,
@@ -75,13 +75,13 @@ acf_form_head();
             </span>
           </a>
         </li>
-      <?php else :
+      <?php } else {
         printf(
           '<li class="header-links-item header-links-item-login"><a href="%s"><span class="header-links-item-text">%s</span></a></li>',
           wp_login_url( get_permalink() ),
           __( 'Connexion', 'telabotanica' )
         );
-      endif;
+      }
 
 
     echo '</ul>';
