@@ -19,9 +19,8 @@ acf_form_head();
 
 <body <?php body_class(); ?>>
   <?php
-  // TODO: add skip links ?>
-  <!-- <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'telabotanica' ); ?></a> -->
-  <?
+ 
+ 
  
      // Utilisateur
 
