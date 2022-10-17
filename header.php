@@ -31,19 +31,13 @@ acf_form_head();
 
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
-        $avatar_url = bp_core_fetch_avatar( [
-          'item_id' => $current_user->ID,
-          'html' => false
-        ] ); ?>
-        <li class="header-links-item header-links-item-user">
-          <a href="<?php echo bp_loggedin_user_domain(); ?>">
+        print_r('<li class="header-links-item header-links-item-user">
+          
             <span class="header-links-item-text">
-              <span class="header-links-item-user-name"><?php echo $current_user->display_name; ?></span>
-              <span class="header-links-item-user-avatar" style="background-image: url(<?php echo $avatar_url ?>);"></span>
+              <span class="header-links-item-user-name">',$current_user->display_name,'</span>
             </span>
-          </a>
-        </li>
-      <?php } else {
+        </li>');
+    } else {
         printf(
           '<li class="header-links-item header-links-item-login"><a href="%s"><span class="header-links-item-text">%s</span></a></li>',
           wp_login_url( get_permalink() ),
