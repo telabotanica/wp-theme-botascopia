@@ -22,39 +22,7 @@ acf_form_head();
   // TODO: add skip links ?>
   <!-- <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'telabotanica' ); ?></a> -->
   <?
-  global $header_small;
-
-  $defaults = [
-    'image' => get_field('cover_image'),
-    'title' => get_the_title(),
-    'subtitle' => get_field('cover_subtitle'),
-    'content' => false,
-    'search' => false,
-    'modifiers' => []
-  ];
-
-  printf(
-    '<header class="%s" role="banner">',
-    implode(' ', $data->modifiers)
-  );
-
-    echo '<div class="header-fixed">';
-
-      // Logo
-
-      $logo_element = ( is_front_page() && is_home() ) ? 'h1' : 'div';
-
-      printf(
-        '<%s class="header-logo"><a href="%s" rel="home">%s</a></%s>',
-        $logo_element,
-        esc_url( home_url( '/' ) ),
-        sprintf(
-          '<img src="%s" alt="Tela Botanica" />',
-          get_template_directory_uri() . '/modules/header/logo.svg'
-        ),
-        $logo_element
-      );
-
+ 
 
       echo '<ul class="header-links">';
 
@@ -85,7 +53,6 @@ acf_form_head();
 
 
     echo '</ul>';
-  echo '</div>';
 
 
   printf(
