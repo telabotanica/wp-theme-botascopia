@@ -23,38 +23,14 @@ acf_form_head();
   <!-- <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'telabotanica' ); ?></a> -->
   <?
  
-
-      echo '<ul class="header-links">';
-
-
-      // Utilisateur
+     // Utilisateur
 
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
-        print_r('<li class="header-links-item header-links-item-user">
-          
-            <span class="header-links-item-text">
-              <span class="header-links-item-user-name">',$current_user->display_name,'</span>
-            </span>
-        </li>');
+        echo $current_user->display_name;
     } else {
-        printf(
-          '<li class="header-links-item header-links-item-login"><a href="%s"><span class="header-links-item-text">%s</span></a></li>',
-          wp_login_url( get_permalink() ),
-          __( 'Connexion', 'telabotanica' )
-        );
+        echo wp_login_url( get_permalink() );
       }
-
-
-    echo '</ul>';
-
-
-  printf(
-    '<div class="header-container"></div><div class="header-submenu-container"><button class="header-submenu-back">%s%s</button><div class="header-submenu-container-nav"></div></div>',
-    get_telabotanica_module('icon', ['icon' => 'arrow-left']),
-    __( 'Retour', 'telabotanica' )
-  );
-
-  echo '</header>'?>
+  ?>
 
     <div id="content" class="site-content">
