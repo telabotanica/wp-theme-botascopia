@@ -1,0 +1,3547 @@
+{
+    "key": "group_6304bd93e5401",
+    "title": "Description morphologique",
+    "fields": [
+        {
+            "key": "field_6304bda381ab9",
+            "label": "Photo de la plante entière",
+            "name": "photo_de_la_plante_entiere",
+            "type": "image",
+            "instructions": "Photo assez grande, de moins de 10 Mo. Sur la photo, la plante doit être entière autant que possible (ou un rameau), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "uploadedTo",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": 10,
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_6304bdd481aba",
+            "label": "Le saviez-vous ?",
+            "name": "le_saviez-vous_",
+            "type": "text",
+            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 200 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Le nom du genre vient du latin ranunculus qui signifie “petite grenouille” car une partie des espèces du genre affectionne les endroits humides. Le tronc lisse et gris évoque une patte d’éléphant.",
+            "prepend": "",
+            "append": "",
+            "maxlength": 200
+        },
+        {
+            "key": "field_6304bdf681abb",
+            "label": "Port de la plante",
+            "name": "port_de_la_plante",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "herbacée": "herbacée",
+                "arbrisseau": "arbrisseau",
+                "arbre": "arbre",
+                "liane": "liane"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_6304be7c75bd9",
+            "label": "Système sexuel",
+            "name": "systeme_sexuel",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "hermaphrodite": "hermaphrodite",
+                "monoïque (à préciser dans le champs \"signes particuliers\")": "monoïque (à préciser dans le champs \"signes particuliers\")",
+                "dioïque (à préciser dans le champs \"signes particuliers\")": "dioïque (à préciser dans le champs \"signes particuliers\")"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_6304c10075bda",
+            "label": "Mode de vie",
+            "name": "mode_de_vie",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304bdf681abb",
+                        "operator": "==",
+                        "value": "herbacée"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6304bdf681abb",
+                        "operator": "==",
+                        "value": "liane"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "terrestre": "terrestre",
+                "aquatique": "aquatique",
+                "épiphyte": "épiphyte",
+                "parasite": "parasite",
+                "hémiparasite": "hémiparasite"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_6304c15175bdc",
+            "label": "Type de développement",
+            "name": "type_de_developpement",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304bdf681abb",
+                        "operator": "==",
+                        "value": "herbacée"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "annuelle": "annuelle",
+                "bisannuelle": "bisannuelle",
+                "vivace": "vivace"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0
+        },
+        {
+            "key": "field_6304c1bd75bdd",
+            "label": "Forme biologique",
+            "name": "forme_biologique",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304bdf681abb",
+                        "operator": "==",
+                        "value": "herbacée"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6304bdf681abb",
+                        "operator": "==",
+                        "value": "liane"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "géophyte à tubercule": "géophyte à tubercule",
+                "géophyte à rhizome": "géophyte à rhizome",
+                "géophyte à bulbe": "géophyte à bulbe",
+                "hémicryptophyte": "hémicryptophyte",
+                "hémicryptophyte à rosette": "hémicryptophyte à rosette",
+                "hémicryptophyte cespiteux": "hémicryptophyte cespiteux",
+                "chaméphyte": "chaméphyte",
+                "hydrophyte": "hydrophyte"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 1,
+            "save_custom": 0,
+            "layout": "vertical",
+            "toggle": 0
+        },
+        {
+            "key": "field_6304c23d75be0",
+            "label": "Hauteur maximale",
+            "name": "hauteur_maximale",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "10 cm": "10 cm",
+                "20 cm": "20 cm",
+                "40 cm": "40 cm",
+                "60 cm": "60 cm",
+                "80 cm": "80 cm",
+                "100 cm": "100 cm",
+                "120 cm": "120 cm",
+                "140 cm": "140 cm",
+                "160 cm": "160 cm",
+                "180 cm": "180 cm",
+                "2 m": "2 m",
+                "3 m": "3 m",
+                "4 m": "4 m",
+                "5 m": "5 m",
+                "10 m": "10 m",
+                "20 m": "20 m",
+                "30 m": "30 m",
+                "40 m": "40 m",
+                "50 m": "50 m"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6304c46075be1",
+            "label": "Pilosité de la plante entière",
+            "name": "pilosite_de_la_plante_entiere",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "entièrement glabre": "entièrement glabre",
+                "entièrement recouverte de poils": "entièrement recouverte de poils",
+                "poilue sur certains organes (voir description des organes)": "poilue sur certains organes (voir description des organes)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_6304c4aa75be2",
+            "label": "Signe particulier",
+            "name": "signe_particulier",
+            "type": "text",
+            "instructions": "Caractère(s) morphologique(s) particulier(s) de la plante ou du groupe de plantes auquel elle appartient.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "“Les feuilles et les tiges sont entièrement couvertes d’un tomentum gris” ;  “La tige est ailée” ; “Les racines ont une odeur d’étable” ; “Les bords des feuilles sont coupants” ;  “La corolle est bilabiée (ou papilionacée”) ; “Certains individus portent seulement des fleurs femelles” ; “Certains individus portent seulement des fleurs mâles”, “Les individus portent des fleurs hermaphrodites et des fleurs mâles”",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6304e1ece18b0",
+            "label": "Tige",
+            "name": "tige",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6304c61a23918",
+                    "label": "Photo de tige",
+                    "name": "photo_tige",
+                    "type": "image",
+                    "instructions": "Photo assez grande, de moins de 10 Mo. Sélectionnez une photo où on voit bien la tige et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": "",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_6304c66b23919",
+                    "label": "Tige aérienne",
+                    "name": "tige_aerienne",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "visible": "visible",
+                        "visible une partie de l'année": "visible une partie de l'année",
+                        "non visible": "non visible"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304c6d52391a",
+                    "label": "Type de tige",
+                    "name": "type_de_tige",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "dressée": "dressée",
+                        "rampante": "rampante"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304c8e02391b",
+                    "label": "Ramification",
+                    "name": "ramification",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "ramifiée": "ramifiée",
+                        "non ramifiée": "non ramifiée"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304c9402391c",
+                    "label": "Section de la tige",
+                    "name": "section_de_la_tige",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "carrée": "carrée",
+                        "triangulaire": "triangulaire",
+                        "polygonale": "polygonale",
+                        "creuse": "creuse",
+                        "pleine": "pleine"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304c9762391d",
+                    "label": "Surface de la tige jeune",
+                    "name": "surface_de_la_tige_jeune",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "lisse": "lisse",
+                        "striée": "striée",
+                        "ailée": "ailée",
+                        "faiblement pubescente": "faiblement pubescente",
+                        "fortement pubsecente": "fortement pubsecente",
+                        "épineuse": "épineuse",
+                        "lenticellée": "lenticellée"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6304ca5e58ca8",
+                    "label": "Surface de l'écorce",
+                    "name": "surface_de_lecorce",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            },
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            },
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "lisse": "lisse",
+                        "cannelée": "cannelée",
+                        "crevassée": "crevassée",
+                        "striée verticalement": "striée verticalement",
+                        "striée horizontalement": "striée horizontalement",
+                        "plissée": "plissée",
+                        "formant des plaques": "formant des plaques",
+                        "liégeuse formant des écailles": "liégeuse formant des écailles",
+                        "liégeuse": "liégeuse",
+                        "formant des lanières": "formant des lanières",
+                        "formant des lenticelle": "formant des lenticelle"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6304cd8ee66c2",
+                    "label": "Couleur du tronc",
+                    "name": "couleur_du_tronc",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            },
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304c66b23919",
+                                "operator": "!=",
+                                "value": "non visible"
+                            },
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "grise": "grise",
+                        "gris-brun": "gris-brun",
+                        "brun-orangée": "brun-orangée",
+                        "brune": "brune",
+                        "orange": "orange",
+                        "blanche": "blanche",
+                        "beige": "beige",
+                        "rougeâtre": "rougeâtre",
+                        "marron": "marron",
+                        "marron-gris": "marron-gris"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_6304d897b94a1",
+            "label": "Feuille",
+            "name": "feuille",
+            "type": "group",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6304d8aeb94a2",
+                    "label": "Présence de feuilles",
+                    "name": "presence_de_feuilles",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "visibles": "visibles",
+                        "jamais visibles": "jamais visibles"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                }
+            ]
+        },
+        {
+            "key": "field_6304d9e2b94a5",
+            "label": "Feuilles visibles",
+            "name": "feuilles_visibles",
+            "type": "group",
+            "instructions": "À remplir uniquement si les feuilles sont visibles.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304d8aeb94a2",
+                        "operator": "==",
+                        "value": "visibles"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6304d939b94a3",
+                    "label": "Photo de feuilles",
+                    "name": "photo_de_feuilles",
+                    "type": "image",
+                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": "",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_6304d98fb94a4",
+                    "label": "Phyllotaxie",
+                    "name": "phyllotaxie",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "alterne spiralée": "alterne spiralée",
+                        "alterne distique": "alterne distique",
+                        "opposée décussée": "opposée décussée",
+                        "verticillée": "verticillée"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304da7252e04",
+                    "label": "Type de feuille",
+                    "name": "type_de_feuille",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "simples": "simples",
+                        "composées": "composées"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304dac552e05",
+                    "label": "Limbe des feuilles simples",
+                    "name": "limbe_des_feuilles_simples",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "simples"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "ovale": "ovale",
+                        "lancéolé": "lancéolé",
+                        "linéaire": "linéaire",
+                        "triangulaire": "triangulaire",
+                        "cordé": "cordé",
+                        "pennatiséqué": "pennatiséqué",
+                        "palmatiséqué": "palmatiséqué"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304db6293737",
+                    "label": "Limbe des folioles",
+                    "name": "limbe_des_folioles",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "ovale": "ovale",
+                        "lancéolé": "lancéolé",
+                        "linéaire": "linéaire",
+                        "triangulaire": "triangulaire",
+                        "cordé": "cordé",
+                        "pennatiséqué": "pennatiséqué",
+                        "palmatiséqué": "palmatiséqué"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304dbec93738",
+                    "label": "Marge foliaire",
+                    "name": "marge_foliaire",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "entière": "entière",
+                        "lobée": "lobée",
+                        "dentée": "dentée",
+                        "pubescente": "pubescente",
+                        "épineuse": "épineuse"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304dc3393739",
+                    "label": "Nervation",
+                    "name": "nervation",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "parallèle": "parallèle",
+                        "pennée": "pennée",
+                        "palmée": "palmée",
+                        "peltée": "peltée"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304dc629373a",
+                    "label": "Pétiole",
+                    "name": "petiole",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304dc9a9373b",
+                    "label": "Longueur du pétiole",
+                    "name": "longueur_du_petiole",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304dc629373a",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "plus court que le limbe": "plus court que le limbe",
+                        "de la même longueur que le limbe": "de la même longueur que le limbe",
+                        "plus grand que le limbe": "plus grand que le limbe"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304dcd49373c",
+                    "label": "Pétiole engainant",
+                    "name": "engainant",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304dc629373a",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "engainant": "engainant",
+                        "non engainant": "non engainant"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304dee810a78",
+                    "label": "Stipules",
+                    "name": "stipules",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présents": "présents",
+                        "pas visibles": "pas visibles"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304df1810a79",
+                    "label": "Forme et couleur des stipules",
+                    "name": "forme_et_couleur_des_stipules",
+                    "type": "text",
+                    "instructions": "Formulez une phrase comme dans les exemples.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304dee810a78",
+                                "operator": "==",
+                                "value": "présents"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Les stipules sont épineux ; Les stipules sont frangés ; Les stipules sont verts, très développés et pointus à l’extrémité",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": 100
+                },
+                {
+                    "key": "field_6304df4410a7a",
+                    "label": "Feuillage",
+                    "name": "feuillage",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "caduc": "caduc",
+                        "marescent": "marescent",
+                        "persistant": "persistant"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                }
+            ]
+        },
+        {
+            "key": "field_6304e4f591a4b",
+            "label": "Inflorescence",
+            "name": "inflorescence",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6304ea4b91a4c",
+                    "label": "Organisation des fleurs",
+                    "name": "organisation_des_fleurs",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "organisées en inflorescences": "organisées en inflorescences",
+                        "solitaires": "solitaires"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304ec28c13d6",
+                    "label": "Catégorie",
+                    "name": "categorie",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304ea4b91a4c",
+                                "operator": "==",
+                                "value": "organisées en inflorescences"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "une grappe": "une grappe",
+                        "un épi": "un épi",
+                        "une ombelle": "une ombelle",
+                        "un corymbe": "un corymbe",
+                        "un capitule": "un capitule",
+                        "un panicule": "un panicule",
+                        "une cyme bipare": "une cyme bipare",
+                        "une cyme unipare scorpioide": "une cyme unipare scorpioide",
+                        "une cyme multipare": "une cyme multipare",
+                        "autre": "autre"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304eccbc13d7",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "text",
+                    "instructions": "Si l'inflorescence ne correspond à aucune des proposition du champs précédent, décrivez-la ici sans faire de phrase.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304ec28c13d6",
+                                "operator": "==",
+                                "value": "autre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_631084afcce33",
+            "label": "Fleur bisexuée",
+            "name": "fleur_bisexuee",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304be7c75bd9",
+                        "operator": "==",
+                        "value": "hermaphrodite"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_63108532cce34",
+                    "label": "Photo de fleur bisexuée",
+                    "name": "photo_de_fleur_bisexuee",
+                    "type": "image",
+                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": "",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_63108562cce35",
+                    "label": "Symétrie",
+                    "name": "symetrie",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "actinomorphe": "actinomorphe",
+                        "zygomorphe": "zygomorphe"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_631085accce36",
+                    "label": "Hypanthium",
+                    "name": "hypanthium",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_631085d0cce37",
+                    "label": "Périanthe",
+                    "name": "perianthe",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63108612cce38",
+                    "label": "Différenciation du périanthe",
+                    "name": "differenciation_du_perianthe",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_631085d0cce37",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "tépales": "tépales",
+                        "sépales et pétales": "sépales et pétales"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310864dcce39",
+                    "label": "Calice",
+                    "name": "calice",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n>20": "n>20"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_631086bfcce3a",
+                    "label": "Soudure du calice",
+                    "name": "soudure_du_calice",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6310864dcce39",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310872ecce3c",
+                    "label": "Corolle",
+                    "name": "corolle",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n>20": "n>20"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_63108755cce3d",
+                    "label": "Soudure de la corolle",
+                    "name": "soudure_de_la_corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6310872ecce3c",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_631087cbcce3f",
+                    "label": "Soudure du calice et de la corolle",
+                    "name": "soudure_du_calice_et_de_la_corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "corolle soudée au calice": "corolle soudée au calice",
+                        "corolle non soudée au calice": "corolle non soudée au calice"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63108805cce40",
+                    "label": "Périgone",
+                    "name": "perigone",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "tépales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n>20": "n>20"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_63108833cce41",
+                    "label": "Soudure du périgone",
+                    "name": "soudure_du_perigone",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "tépales"
+                            },
+                            {
+                                "field": "field_63108805cce40",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310888731cea",
+                    "label": "Androcée",
+                    "name": "androcee",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n>20": "n>20"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_631088ab31ceb",
+                    "label": "Soudure de l'androcée",
+                    "name": "soudure_de_landrocee",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6310888731cea",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudée(s) sur plus de la moitié de la longueur": "soudée(s) sur plus de la moitié de la longueur",
+                        "soudée(s) sur moins de la moitié de la longueur": "soudée(s) sur moins de la moitié de la longueur",
+                        "libres": "libres",
+                        "partiellement soudée(s) entre eux": "partiellement soudée(s) entre eux"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_631088e831cec",
+                    "label": "Soudure androcée-corolle",
+                    "name": "soudure_androcee-corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "androcée soudée à la corolle": "androcée soudée à la corolle",
+                        "androcée non soudée à la corolle": "androcée non soudée à la corolle"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310893431ced",
+                    "label": "Soudure androcée-périgone",
+                    "name": "soudure_androcee-perigone",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "tépales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudées au périgone": "soudées au périgone",
+                        "non soudées au périgone": "non soudées au périgone"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310895931cee",
+                    "label": "Staminodes",
+                    "name": "staminodes",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présents": "présents",
+                        "absents": "absents"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310898731cef",
+                    "label": "Nombre de staminodes",
+                    "name": "nombre_de_staminodes",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6310895931cee",
+                                "operator": "==",
+                                "value": "présents"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 1,
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_6310a8a03ed57",
+                    "label": "Gynécée",
+                    "name": "gynecee",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n>20": "n>20"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_6310a8be3ed58",
+                    "label": "Soudure des carpelles",
+                    "name": "soudure_des_carpelles",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6310a8a03ed57",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudés sur toute la longueur": "soudés sur toute la longueur",
+                        "soudés au niveau de l'ovaire et du style": "soudés au niveau de l'ovaire et du style",
+                        "soudés uniquement au niveau de l'ovaire": "soudés uniquement au niveau de l'ovaire",
+                        "non soudés": "non soudés"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310a9e23ed59",
+                    "label": "Ovaire",
+                    "name": "ovaire",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "supère": "supère",
+                        "infère": "infère",
+                        "semi-infère": "semi-infère"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310aa163ed5a",
+                    "label": "Couleur principale",
+                    "name": "couleur_principale",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "jaune pâle": "jaune pâle",
+                        "jaune vif": "jaune vif",
+                        "rose pâle": "rose pâle",
+                        "rose vif": "rose vif",
+                        "rouge": "rouge",
+                        "violet": "violet",
+                        "blanc": "blanc",
+                        "vert": "vert",
+                        "marron": "marron",
+                        "noir": "noir",
+                        "mauve": "mauve",
+                        "bleu pâle": "bleu pâle",
+                        "bleu vif": "bleu vif",
+                        "orange": "orange"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 1,
+                    "save_other_choice": 1,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_6310aa6f3ed5b",
+                    "label": "Pubescence",
+                    "name": "pubescence",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "entièrement glabre": "entièrement glabre",
+                        "pubescente": "pubescente"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6310aa953ed5c",
+                    "label": "Localisation des poils",
+                    "name": "localisation_des_poils",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6310aa6f3ed5b",
+                                "operator": "==",
+                                "value": "pubescente"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "tous les organes floraux": "tous les organes floraux",
+                        "calice": "calice",
+                        "corolle": "corolle",
+                        "androcée": "androcée",
+                        "gynécée": "gynécée"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6310aac33ed5d",
+                    "label": "Autre caractère",
+                    "name": "autre_caractere",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "ex : Les nectaires sont bien visibles, il y a présence d’une couronne (paracorolle), il y a des écailles sur les pétales, il y a un éperon nectarifère sur un pétale, Il y a des fleurs stériles dans les inflorescences, l’ovaire enveloppé dans un utricule, il y a un gradient entre les sépales et les pétales",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_6304eeb9be187",
+            "label": "Fleur mâle",
+            "name": "fleur_male",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304be7c75bd9",
+                        "operator": "!=",
+                        "value": "hermaphrodite"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_6304ef9dbe188",
+                    "label": "Photo",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": ".jpg, .jpeg, .png",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_6304f001be189",
+                    "label": "Symétrie",
+                    "name": "symetrie",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "actinomorphe": "actinomorphe",
+                        "zygomorphe": "zygomorphe"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304f06dbe18a",
+                    "label": "Hypanthium",
+                    "name": "hypanthium",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f0d3be18b",
+                    "label": "Périanthe",
+                    "name": "perianthe",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f10bbe18c",
+                    "label": "Différenciation du périanthe",
+                    "name": "differenciation_du_perianthe",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f0d3be18b",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "tépales": "tépales",
+                        "sépales et pétales": "sépales et pétales"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f178be18d",
+                    "label": "Calice",
+                    "name": "calice",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304f4812d9ef",
+                    "label": "Soudure du calice",
+                    "name": "soudure_du_calice",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6304f178be18d",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f5bb2d9f2",
+                    "label": "Corolle",
+                    "name": "corolle",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304f698c677e",
+                    "label": "Soudure du calice et de la corolle",
+                    "name": "soudure_du_calice_et_de_la_corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudés au calice": "soudés au calice",
+                        "non soudés au calice": "non soudés au calice"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f734c677f",
+                    "label": "Périgone",
+                    "name": "perigone",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "tépales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304f7e7c6780",
+                    "label": "Soudure du périgone",
+                    "name": "soudure_du_perigone",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f734c677f",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f8b6829c8",
+                    "label": "Androcée",
+                    "name": "androcee",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304f8f3829c9",
+                    "label": "Soudure de l'androcée",
+                    "name": "soudure_de_landrocee",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f8b6829c8",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f99e829ca",
+                    "label": "Soudure androcée-corolle",
+                    "name": "soudure_androcee-corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudées à la corolle": "soudées à la corolle",
+                        "non soudées à la corolle": "non soudées à la corolle"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f9ce829cb",
+                    "label": "Soudure androcée-périgone",
+                    "name": "soudure_androcee-perigone",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "tépales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudées à la corolle": "soudées à la corolle",
+                        "non soudées à la corolle": "non soudées à la corolle"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304fa25829cc",
+                    "label": "Staminodes",
+                    "name": "staminodes",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présents": "présents",
+                        "absents": "absents"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304fb26829cd",
+                    "label": "Nombre de staminodes",
+                    "name": "nombre_de_staminodes",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304fa25829cc",
+                                "operator": "==",
+                                "value": "présents"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": 1,
+                    "max": 50,
+                    "step": ""
+                },
+                {
+                    "key": "field_6304fc15829ce",
+                    "label": "Couleur principale",
+                    "name": "couleur_principale",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "jaune pâle": "jaune pâle",
+                        "jaune vif": "jaune vif",
+                        "rose pâle": "rose pâle",
+                        "rose vif": "rose vif",
+                        "rouge": "rouge",
+                        "violet": "violet",
+                        "blanc": "blanc",
+                        "vert": "vert",
+                        "marron": "marron",
+                        "noir": "noir",
+                        "mauve": "mauve",
+                        "bleu pâle": "bleu pâle",
+                        "bleu vif": "bleu vif",
+                        "orange": "orange"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304fc93829cf",
+                    "label": "Pubescence",
+                    "name": "pubescence",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "entièrement glabre": "entièrement glabre",
+                        "pubescente": "pubescente"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304fcbc829d0",
+                    "label": "Localisation des poils",
+                    "name": "localisation_des_poils",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304fc93829cf",
+                                "operator": "==",
+                                "value": "pubescente"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "tous les organes floraux": "tous les organes floraux",
+                        "calice": "calice",
+                        "corolle": "corolle",
+                        "androcée": "androcée",
+                        "gynécée": "gynécée"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6304fdcd68d53",
+                    "label": "Autre caractère",
+                    "name": "autre_caractere",
+                    "type": "text",
+                    "instructions": "Si votre fleur mâle comporte d'autres caractères intéressants notez les ici",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f0d3be18b",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Ex. : nectaires bien visibles, présence d’une couronne (paracorolle), écailles sur les pétales, présence d’un éperon, présence de fleurs stériles dans les inflorescences, ovaire enveloppé dans un utricule, etc.",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_63063f13db1e3",
+            "label": "Fleur femelle",
+            "name": "fleur_femelle",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6304be7c75bd9",
+                        "operator": "!=",
+                        "value": "hermaphrodite"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_630640cbdb1e4",
+                    "label": "Photo",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "uploadedTo",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": ".jpeg, .jpg, .png",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_630642a5a99d9",
+                    "label": "Symétrie",
+                    "name": "symetrie",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "actinomorphe": "actinomorphe",
+                        "zygomorphe": "zygomorphe"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_63075a6becd6f",
+                    "label": "Hypanthium",
+                    "name": "hypanthium",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075a90ecd70",
+                    "label": "Périanthe",
+                    "name": "perianthe",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075ab5ecd71",
+                    "label": "Différenciation du périanthe",
+                    "name": "differenciation_du_perianthe",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075a90ecd70",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "tépales": "tépales",
+                        "sépales et pétales": "sépales et pétales"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075ae3ecd72",
+                    "label": "Calice",
+                    "name": "calice",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_63075b63ecd73",
+                    "label": "Soudure du calice",
+                    "name": "soudure_du_calice",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_63075ae3ecd72",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075bd9ecd75",
+                    "label": "Corolle",
+                    "name": "corolle",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_63075d5aecd76",
+                    "label": "Soudure de la corolle",
+                    "name": "soudure_de_la_corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_63075bd9ecd75",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075dcbecd78",
+                    "label": "Soudure du calice et de la corolle",
+                    "name": "soudure_du_calice_et_de_la_corolle",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudés au calice": "soudés au calice",
+                        "non soudés au calice": "non soudés au calice"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075e2cecd79",
+                    "label": "Périgone",
+                    "name": "perigone",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "tépales"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_63075eb5ecd7a",
+                    "label": "Soudure du périgone",
+                    "name": "soudure_du_perigone",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "tépales"
+                            },
+                            {
+                                "field": "field_63075e2cecd79",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63075fcfecd7b",
+                    "label": "Gynécée",
+                    "name": "gynecee",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                        "10": "10",
+                        "11": "11",
+                        "12": "12",
+                        "13": "13",
+                        "14": "14",
+                        "15": "15",
+                        "16": "16",
+                        "17": "17",
+                        "18": "18",
+                        "19": "19",
+                        "20": "20",
+                        "n > 20": "n > 20"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_63076023ecd7c",
+                    "label": "Soudure des carpelles",
+                    "name": "soudure_des_carpelles",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudés sur toute la longueur": "soudés sur toute la longueur",
+                        "soudés au niveau de l'ovaire et du style": "soudés au niveau de l'ovaire et du style",
+                        "soudés uniquement au niveau de l'ovaire": "soudés uniquement au niveau de l'ovaire",
+                        "non soudés": "non soudés"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_630761dbecd7d",
+                    "label": "Ovaire",
+                    "name": "ovaire",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "supère": "supère",
+                        "infère": "infère",
+                        "semi-infère": "semi-infère"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6307625aecd7e",
+                    "label": "Couleur principale",
+                    "name": "couleur_principale",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "jaune pâle": "jaune pâle",
+                        "jaune vif": "jaune vif",
+                        "rose pâle": "rose pâle",
+                        "rose vif": "rose vif",
+                        "rouge": "rouge",
+                        "violet": "violet",
+                        "blanc": "blanc",
+                        "vert": "vert",
+                        "marron": "marron",
+                        "noir": "noir",
+                        "mauve": "mauve",
+                        "bleu pâle": "bleu pâle",
+                        "bleu vif": "bleu vif",
+                        "orange": "orange"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_630762f1ecd7f",
+                    "label": "Pubescence",
+                    "name": "pubescence",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "entièrement glabre": "entièrement glabre",
+                        "pubescente": "pubescente"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6307632eecd80",
+                    "label": "Localisation des poils",
+                    "name": "localisation_des_poils",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_630762f1ecd7f",
+                                "operator": "==",
+                                "value": "pubescente"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "tous les organes floraux": "tous les organes floraux",
+                        "calice": "calice",
+                        "corolle": "corolle",
+                        "androcée": "androcée",
+                        "gynécée": "gynécée"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_630763f2ecd81",
+                    "label": "Autre caractère",
+                    "name": "autre_caractere",
+                    "type": "textarea",
+                    "instructions": "Si votre fleur femelle comporte d'autres caractères intéressants notez les ici",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Ex. : nectaires bien visibles, présence d’une couronne (paracorolle), écailles sur les pétales, présence d’un éperon, présence de fleurs stériles dans les inflorescences, ovaire enveloppé dans un utricule, etc.",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_63076535ecd82",
+            "label": "Fruit",
+            "name": "fruit",
+            "type": "group",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_63076618ecd83",
+                    "label": "Photo",
+                    "name": "photo",
+                    "type": "image",
+                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien le fruit et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": "jpeg, .jpg, .png",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_6307665aecd84",
+                    "label": "Type",
+                    "name": "type",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "un akène": "un akène",
+                        "une gousse": "une gousse",
+                        "un follicule": "un follicule",
+                        "une capsule": "une capsule",
+                        "une baie": "une baie",
+                        "une drupe": "une drupe",
+                        "un pseudo-fruit": "un pseudo-fruit",
+                        "un fruit composé": "un fruit composé",
+                        "une silique": "une silique",
+                        "une caryopse": "une caryopse",
+                        "une crypsèle": "une crypsèle"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
+                "param": "current_user",
+                "operator": "==",
+                "value": "logged_in"
+            },
+            {
+                "param": "post_status",
+                "operator": "==",
+                "value": "draft"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1665058774
+}

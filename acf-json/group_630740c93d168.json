@@ -1,0 +1,54 @@
+{
+    "key": "group_630740c93d168",
+    "title": "Description vulgarisée",
+    "fields": [
+        {
+            "key": "field_630740d3c1600",
+            "label": "Description vulgarisée",
+            "name": "description_vulgarisee",
+            "type": "text",
+            "instructions": "Écrivez ici une description vulgarisée de la plante, comprenant les informations principales pour la reconnaître en vous basant sur les descriptions de l'application Smart'Flore. Cette description s'adresse aux débutants en botanique.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
+                "param": "current_user",
+                "operator": "==",
+                "value": "logged_in"
+            },
+            {
+                "param": "post_status",
+                "operator": "==",
+                "value": "draft"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1663849818
+}

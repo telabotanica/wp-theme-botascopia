@@ -1,13 +1,133 @@
 /*
 Theme Name: Thème Botascopia
-Theme URI: http://oser-beta.tela-botanica.org
+Theme URI: http://localhost:8000/
 Description: Botascopia
 Version: 1.0
 */
-
-body {
-  background: #FFFFFF;
-  font-family: "Muli, sans-serif";
-  color: #4b5157;
+body.page-template-fiche_pdf {
+  background-color: #FFFFFF !important;
+  font-family: "Ubuntu", sans-serif;
+  color: #2B2E34;
   margin: 0 auto;
+  width: 21cm;
+  height: 59.4cm;
+  font-size: 0.32cm;
+}
+
+.page-template-fiche_pdf .page {
+  width: 100%;
+  height: 29.7cm;
+  border: 1px dashed #000000 ;
+}
+.page-template-fiche_pdf .container {
+  padding: 1cm;
+}
+
+.page-template-fiche_pdf header {
+  background: no-repeat url("../static/RECTO HAUT.svg");
+  height: 8.47cm;
+  width: 12.18cm;
+}
+
+.page-template-fiche_pdf h1 {
+  font-size: 0.8cm;
+  font-weight: normal;
+  color: #964E75;
+  margin: 0;
+}
+.page-template-fiche_pdf h1 em {
+  font-style: italic;
+}
+.page-template-fiche_pdf h2 {
+  font-size: 0.32cm;
+  font-weight: normal;
+  color: #8E9F31;
+  margin: 0.2cm 0;
+}
+
+.page-template-fiche_pdf p {
+  margin: 0;
+}
+.page-template-fiche_pdf h3 {
+  font-size: 0.42cm;
+  text-transform: uppercase;
+  margin-bottom: 0.2cm;
+}
+.page-template-fiche_pdf h4 {
+  font-size: 0.32cm;
+  text-transform: capitalize;
+  margin-bottom: 0.2cm;
+}
+
+.page-template-fiche_pdf h5 {
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.page-template-fiche_pdf .characteristic {
+  width: 9cm;
+  vertical-align: top;
+}
+
+.page-template-fiche_pdf .characteristic:nth-child(even) {
+  padding-left: 0.8cm;
+}
+
+.page-template-fiche_pdf .characteristic,
+.page-template-fiche_pdf .characteristic h4,
+.page-template-fiche_pdf .picture-ref {
+  display: inline-block;
+}
+.page-template-fiche_pdf .picture-ref {
+  color: #A7A7A7;
+  font-weight: bold;
+  background-color: #F8F5EF;
+  margin-left: 0.2cm;
+  padding: 0.06cm;
+  border-radius: 50%;
+  width: 0.32cm;
+  height: 0.32cm;
+  font-size: 0.32cm;
+  text-align: center;
+  line-height: 1;
+}
+
+.page-template-fiche_pdf ol li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.page-template-fiche_pdf .center {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.page-template-fiche_pdf h4.grand-hotel-font {
+  font-family: "GrandHotel", sans-serif;
+  font-size: 0.74cm;
+}
+
+.page-template-fiche_pdf .purple {
+  color: #964E75 !important;
+}
+
+.page-template-fiche_pdf .green {
+  color: #8E9F31 !important;
+}
+
+.page-template-fiche_pdf .inline {
+  display: inline-block;
+}
+
+.page-template-fiche_pdf .footer-section {
+  display: flex;
+}
+
+.page-template-fiche_pdf .footer-section .columns {
+  flex-direction: column;
+  width: 50%;
+}
+
+.page-template-fiche_pdf  .footer-section .logos li {
+  display: inline-block;
 }
