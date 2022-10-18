@@ -59,10 +59,15 @@
 	   'post_status' => 'draft',
 	   'post_author' => $current_user->ID,
 	   'showposts' => 10
-    ));
-	 while (have_posts()) : the_post(); ?>
-		<div><a href='http://<?php echo $_SERVER['HTTP_HOST'];?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
-	<?php endwhile;
+    	 ));
+	 $cpt_query = new WP_Query($args);
+	// Create cpt loop, with a have_posts() check!
+	if ($cpt_query->have_posts()) :
+	      echo "Vos fiches :"
+  		while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
+			<div><a href='http://<?php echo $_SERVER['HTTP_HOST'];?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
+		<?php endwhile;
+	endif; ?>
         echo "<button onclick=\"window.location.href = '".wp_logout_url( "http://".$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
     } else {
         echo "<button onclick=\"window.location.href = '".wp_login_url( "http://".$_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
