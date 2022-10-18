@@ -65,7 +65,7 @@
 	<?php endwhile;
         echo "<button onclick=\"window.location.href = '".wp_logout_url( "http://".$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
     } else {
-        echo "<button onclick=\"window.location.href = '".wp_login_url( $_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
+        echo "<button onclick=\"window.location.href = '".wp_login_url( "http://".$_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
       }
         ?>
               
