@@ -75,15 +75,12 @@ if (isset($_GET['p'])) {
         foreach ($formulaires as $id => $titre) {
 	       echo "<button onclick=\"window.location.href = 'http://oser-beta.tela-botanica.org/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
         }	    
-/*}else { 
- echo "Fiche non existante";
-  //Handle the case where there is no parameter
-}*/
+
 	} else { 
-		echo "Utilisateur non autorisé";
+		echo "Vous n'êtes pas l'auteur de cette fiche";
 	} 
 } else {
-    echo "Pas de nom donné";
+    echo "URL inexistante, vérifier celui de la fiche recherchée";
 }
 acf_enqueue_uploader();
 get_footer();
