@@ -19,17 +19,7 @@ acf_form_head();
 
 <body <?php body_class(); ?>>
   <?php
- 
- 
- 
-     // Utilisateur
-
-      if ( is_user_logged_in() ) {
-        $current_user = wp_get_current_user();
-        echo $current_user->display_name;
-    } else {
-        echo wp_login_url( get_permalink() );
-      }
-  ?>
+  // TODO: add skip links ?>
+  <!-- <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'telabotanica' ); ?></a> -->
 
     <div id="content" class="site-content">
