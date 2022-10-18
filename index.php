@@ -53,7 +53,6 @@
 
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
-        echo $current_user->ID;
         $args = array(
 	   'post_type' => 'post',
 	   'post_status' => 'draft',
@@ -63,7 +62,7 @@
 	 $cpt_query = new WP_Query($args);
 	// Create cpt loop, with a have_posts() check!
 	if ($cpt_query->have_posts()) :
-	      echo "Vos fiches :";
+	      echo $current_user->display_name.", votre.s formulaire.s :";
   		while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
 			<div><a href='http://<?php echo $_SERVER['HTTP_HOST'];?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
 		<?php endwhile;
