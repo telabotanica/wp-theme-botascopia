@@ -54,12 +54,12 @@
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
         echo $current_user->display_name;
-        query_posts(array(
+        $args = array(
 	   'post_type' => 'post',
 	   'post_status' => 'draft',
 	   'post_author' => $current_user->ID,
 	   'showposts' => 10
-    	 ));
+    	 );
 	 $cpt_query = new WP_Query($args);
 	// Create cpt loop, with a have_posts() check!
 	if ($cpt_query->have_posts()) :
