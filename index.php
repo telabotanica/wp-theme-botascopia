@@ -53,11 +53,11 @@
 
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
-        echo $current_user->display_name;
+        echo $current_user->ID;
         $args = array(
 	   'post_type' => 'post',
 	   'post_status' => 'draft',
-	   'post_author' => $current_user->ID,
+	   'author' => $current_user->ID,
 	   'showposts' => 10
     	 );
 	 $cpt_query = new WP_Query($args);
