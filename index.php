@@ -47,7 +47,20 @@
             get_template_part( 'content', 'none' );
 
         endif;
+              
+         
+     
+
+      if ( is_user_logged_in() ) {
+        $current_user = wp_get_current_user();
+        echo $current_user->display_name;
+        echo "<button onclick=\"window.location.href = '".wp_logout_url( get_permalink() )."';\">Se connecter</button>"; 
+    } else {
+        echo "<button onclick=\"window.location.href = '".wp_login_url( get_permalink() )."';\">Se connecter</button>"; 
+      }
         ?>
+              
+         
 
         </main><!-- .site-main -->
     </div><!-- .content-area -->
