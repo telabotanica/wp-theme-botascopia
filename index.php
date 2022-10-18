@@ -54,7 +54,16 @@
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
         echo $current_user->display_name;
-        echo "<button onclick=\"window.location.href = '".wp_logout_url( get_permalink() )."';\">Se connecter</button>"; 
+        query_posts(array(
+	   'post_type' => 'post',
+	   'post_status' => 'draft',
+	   'post_author' => $current_user->ID,
+	   'showposts' => 10
+    ));
+	 while (have_posts()) : the_post(); ?>
+		<div><a href='http://oser-beta.tela-botanica.org/formulaire/?p=".get_the_title()." target="_blank'"><?php the_field( 'nom_scientifique' ); ?></a></div>
+	<?php endwhile;
+        echo "<button onclick=\"window.location.href = '".wp_logout_url( get_permalink() )."';\">Se déconnecter</button>"; 
     } else {
         echo "<button onclick=\"window.location.href = '".wp_login_url( get_permalink() )."';\">Se connecter</button>"; 
       }
