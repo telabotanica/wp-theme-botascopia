@@ -63,9 +63,9 @@
 	 while (have_posts()) : the_post(); ?>
 		<div><a href='http://oser-beta.tela-botanica.org/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
 	<?php endwhile;
-        echo "<button onclick=\"window.location.href = '".wp_logout_url( get_permalink() )."';\">Se déconnecter</button>"; 
+        echo "<button onclick=\"window.location.href = '".wp_logout_url( $_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
     } else {
-        echo "<button onclick=\"window.location.href = '".wp_login_url( get_permalink() )."';\">Se connecter</button>"; 
+        echo "<button onclick=\"window.location.href = '".wp_login_url( $_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
       }
         ?>
               
