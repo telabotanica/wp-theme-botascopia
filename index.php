@@ -61,7 +61,7 @@
 	   'showposts' => 10
     ));
 	 while (have_posts()) : the_post(); ?>
-		<div><a href='http://<?php $_SERVER['HTTP_HOST']?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
+		<div><a href='http://<?php echo $_SERVER['HTTP_HOST'];?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
 	<?php endwhile;
         echo "<button onclick=\"window.location.href = '".wp_logout_url( $_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
     } else {
