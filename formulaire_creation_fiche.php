@@ -73,7 +73,7 @@ if (isset($_GET['p'])) {
         acf_form( $args ); // Afficher le formulaire
         echo "<br />";
         foreach ($formulaires as $id => $titre) {
-	       echo "<button onclick=\"window.location.href = 'http://'.$_SERVER['HTTP_HOST'].'/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
+	       echo "<button onclick=\"window.location.href = 'http://".$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
         }	    
 
 	} else { 
