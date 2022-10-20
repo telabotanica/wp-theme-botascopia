@@ -1,31 +1,70 @@
 /*
 Theme Name: Thème Botascopia
-Theme URI: http://localhost:8000/
+Theme URI: http://oser-beta.tela-botanica.org
 Description: Botascopia
 Version: 1.0
 */
-body.page-template-fiche_pdf {
-  background-color: #FFFFFF !important;
+
+* {
+}
+
+body {
+  background: #FFFFFF;
   font-family: "Ubuntu", sans-serif;
-  color: #2B2E34;
+  color: #4b5157;
   margin: 0 auto;
+}
+
+body.page-template-fiche_pdf {
+  color: #2B2E34;
   width: 21cm;
   height: 59.4cm;
   font-size: 0.32cm;
 }
 
 .page-template-fiche_pdf .page {
+  position: relative;
   width: 100%;
   height: 29.7cm;
-  border: 1px dashed #000000 ;
+  border: 1px dashed #000000;
+  overflow: hidden;
 }
+
 .page-template-fiche_pdf .container {
   padding: 1cm;
 }
 
-.page-template-fiche_pdf header {
-  background: no-repeat url("../static/RECTO HAUT.svg");
-  height: 8.47cm;
+.page-template-fiche_pdf .page-2 .container {
+  padding-top: 0;
+}
+
+.page-template-fiche_pdf .page-1 header {
+  background: top / cover no-repeat url("images/RECTO HAUT.svg");
+}
+
+.page-template-fiche_pdf .page-2 header {
+  background: top / cover no-repeat url("images/VERSO HAUT.svg");
+}
+
+.page-template-fiche_pdf .page-1 footer {
+  background: bottom / cover no-repeat url("images/RECTO BAS.svg");
+}
+
+.page-template-fiche_pdf .page-2 footer {
+  display: flex;
+  background: bottom / cover no-repeat url("images/VERSO BAS.svg");
+  flex-direction: column;
+}
+
+.page-template-fiche_pdf footer {
+  height: 7.6cm;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.page-template-fiche_pdf header .container {
+  height: 6.6cm;
   width: 12.18cm;
 }
 
@@ -62,15 +101,33 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf h5 {
   text-transform: uppercase;
   margin-bottom: 0;
+  margin-top: 0.2cm;
+}
+
+.page-template-fiche_pdf .round-picture {
+  position: absolute;
+  top:-2cm;
+  right: -2cm;
+}
+.page-template-fiche_pdf .round-picture img {
+  border-radius: 50%;
+  width: 9cm;
+  height: 9cm;
 }
 
 .page-template-fiche_pdf .characteristic {
-  width: 9cm;
+  width: 7.5cm;
   vertical-align: top;
+  padding-left: 1cm;
+}
+
+.page-template-fiche_pdf header .characteristic {
+  width: 12.18cm;
+  vertical-align: initial;
 }
 
 .page-template-fiche_pdf .characteristic:nth-child(even) {
-  padding-left: 0.8cm;
+  margin-left: 0.8cm;
 }
 
 .page-template-fiche_pdf .characteristic,
@@ -102,8 +159,13 @@ body.page-template-fiche_pdf {
   margin: 0 auto;
 }
 
-.page-template-fiche_pdf h4.grand-hotel-font {
-  font-family: "GrandHotel", sans-serif;
+.page-template-fiche_pdf .le-saviez-vous {
+  color: #ffffff;
+  padding-left: 5cm;
+}
+
+.page-template-fiche_pdf h4.grand-hotel {
+  font-family: 'grand-hotel', sans-serif;
   font-size: 0.74cm;
 }
 
@@ -128,6 +190,207 @@ body.page-template-fiche_pdf {
   width: 50%;
 }
 
-.page-template-fiche_pdf  .footer-section .logos li {
+.page-template-fiche_pdf .section-image {
+  width: 100%;
+  padding: 0.2cm 0;
+}
+
+.page-template-fiche_pdf .section-image img {
+  width: 100%;
+  height: 100%;
+}
+
+/****************/
+/*** calendar ***/
+/****************/
+.page-template-fiche_pdf .page-2 header {
+  width: 100%;
+  height: 7cm;
+  max-width: 100%;
+}
+
+.page-template-fiche_pdf .calendar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 2mm;
+  grid-template-rows: repeat(3, 1cm);
+  width: 19cm;
+  margin-top: 0.5cm;
+  margin-left: 0.5cm;
+  padding: 0 1cm;
+  justify-content: right;
+}
+
+.page-template-fiche_pdf .calendar div {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.42cm;
+  text-transform: uppercase;
+  padding: 0.4cm;
+}
+
+/****************************/
+/*** footer photos page 1 ***/
+/****************************/
+.page-template-fiche_pdf .characteristic-photos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.page-template-fiche_pdf .characteristic-photos li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: -5cm;
+  margin-right: 0.2cm;
+}
+
+.page-template-fiche_pdf .characteristic-photos img {
+  border-radius: 50%;
+}
+
+.page-template-fiche_pdf .characteristic-photos .picture-ref {
+  margin-left: -0.4cm;
+}
+
+/****************************/
+/*** footer logos page 2 ***/
+/****************************/
+.page-template-fiche_pdf .footer-section .logos {
+  width: 100%;
+  height: 1.5cm;
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 1cm;
+}
+
+.page-template-fiche_pdf .footer-section .logos li {
   display: inline-block;
+  padding-right: 2mm;
+}
+.page-template-fiche_pdf .footer-section .logos li img {
+  height: 1.5cm;
+}
+
+/*****************************/
+/*** credits photos page 2 ***/
+/*****************************/
+.page-template-fiche_pdf .footer-section .credits-photo {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4,0.4cm);
+  grid-template-columns:  50% 50%;
+  padding-left: 0;
+  margin-top: 0;
+}
+.page-template-fiche_pdf .footer-section .credits-photo li {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+/**************/
+/*** icons ***/
+/**************/
+.page-template-fiche_pdf .icon-title {
+  position: relative;
+}
+
+
+.page-template-fiche_pdf .icon {
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 50%;
+}
+
+.page-template-fiche_pdf .icon-title .icon {
+  position: absolute;
+  left: -1.2cm;
+  bottom: -15px;
+  width: 1cm;
+  height: 1.5cm;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 50% 70%;
+}
+
+.page-template-fiche_pdf .page-2 header h3.icon-title {
+  margin-left: 2cm;
+  margin-top: 0;
+  padding-top: 1cm;
+}
+
+.page-template-fiche_pdf .page-2 .characteristic {
+  margin-top: 1cm;
+}
+
+.description-icon {
+  background-image: url("images/Description.svg");
+}
+
+.tige-icon {
+  background-image: url("images/Tige.svg");
+}
+
+.feuilles-icon {
+  background-image: url("images/Feuilles.svg");
+}
+
+.inflorescence-icon {
+  background-image: url("images/Inflorescence.svg");
+}
+
+.fruits-icon {
+  background-image: url("images/Fruits.svg");
+}
+
+.fleur-bisexuee-icon {
+  background-image: url("images/Inflorescence.svg");
+}
+
+.fleur-male-icon {
+  background-image: url("images/Fleur Male.svg");
+}
+
+.fleur-femelle-icon {
+  background-image: url("images/Fleur Femelle.svg");
+}
+
+.periode-icon {
+  background-image: url("images/Periode.svg");
+}
+
+.ecologie-icon {
+  background-image: url("images/Ecologie.svg");
+}
+
+.groupe-163-icon {
+  background-image: url("images/Groupe 163.svg");
+}
+
+.location-icon {
+  background-image: url("images/Location.svg");
+}
+
+.ne-pas-confondre-icon {
+  background-image: url("images/Ne Pas Confondre.svg");
+}
+
+.floraison-icon {
+  background-image: url("images/Floraison.svg");
+}
+
+.floraison-vert-icon {
+  background-image: url("images/Floraison-vert.svg");
+}
+
+.fructification-icon {
+  background-image: url("images/Fructification.svg");
+}
+
+.fructification-mauve-icon {
+  background-image: url("images/Fructification-mauve.svg");
 }
