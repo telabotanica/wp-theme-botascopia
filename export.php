@@ -11,12 +11,13 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 use Knp\Snappy\Pdf;
 
 // category slug
-$category_name = 'fiches-botascopia';
+$category_name = 'bdtfxcache';
 
-if (empty($_GET['post_id'])) {
+if (empty($_GET['p'])) {
 
     $the_query = new WP_Query( [ 
         'category_name' => $category_name,
+        'post_status' => 'publish',
         /*'posts_per_page' => 5 */
     ] ); 
 
@@ -24,8 +25,8 @@ if (empty($_GET['post_id'])) {
     if ( $the_query->have_posts() ) {
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
-            $id = get_the_ID();
-            $string .= '<li><a href="export?post_id=' . $id .'" rel="bookmark">' . get_the_title() .'</a></li>';
+            $name = get_post_field( 'post_name', get_post() );
+            $string .= '<li><a href="export/?p=' . $name .'" rel="bookmark">' . get_the_title() .'</a></li>';
         }
     } else {
         $string .= '<li>Pas de fiche trouvée dans la categorie '.$category_name.'</li>';
@@ -39,14 +40,14 @@ if (empty($_GET['post_id'])) {
 
 } else {
 
-    $the_query = new WP_Query( [ 'p' => $_GET['post_id'] ] );
+    $the_query = new WP_Query( [ 'name' => $_GET['p'] ] );
     if ($the_query->have_posts()) {
         $the_query->the_post();
 
         $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.get_post_field( 'post_name' ).'.pdf"');
-        echo $snappy->getOutput( get_the_permalink() );
+        echo $snappy->getOutput( get_site_url().'/fiche/?p='.get_post_field( 'post_name', get_post() ) );
     }
 
 }
