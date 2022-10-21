@@ -348,9 +348,9 @@
                 <div class="container">
                     <div class="footer-section">
                         <ul class="logos">
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/Groupe 39.png" alt="Université Paris-Saclay"></li>
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/propositionlogobotascopiaVhorizontal-700x335.png" alt="Botascopia"></li>
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/Logo_Tela.png" alt="Tela Botanica"></li>
+                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Université Paris-Saclay"></li>
+                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Botascopia"></li>
+                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Tela Botanica"></li>
                         </ul>
                     </div>
                     <div class="footer-section">

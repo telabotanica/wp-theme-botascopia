@@ -110,20 +110,20 @@ body.page-template-fiche_pdf {
 /* * backgrounds * */
 /* *************** */
 .page-template-fiche_pdf .page-1 header {
-  background: top / cover no-repeat url("images/RECTO HAUT.svg");
+  background: top / cover no-repeat url("images/recto-haut.svg");
 }
 
 .page-template-fiche_pdf .page-2 header {
-  background: top / cover no-repeat url("images/VERSO HAUT.svg");
+  background: top / cover no-repeat url("images/verso-haut.svg");
 }
 
 .page-template-fiche_pdf .page-1 footer {
-  background: bottom / cover no-repeat url("images/RECTO BAS.svg");
+  background: bottom / cover no-repeat url("images/recto-bas.svg");
 }
 
 .page-template-fiche_pdf .page-2 footer {
   display: flex;
-  background: bottom / cover no-repeat url("images/VERSO BAS.svg");
+  background: bottom / cover no-repeat url("images/verso-bas.svg");
   flex-direction: column;
 }
 
@@ -350,69 +350,69 @@ body.page-template-fiche_pdf {
 }
 
 .description-icon {
-  background-image: url("images/Description.svg");
+  background-image: url("images/description.svg");
 }
 
 .tige-icon {
-  background-image: url("images/Tige.svg");
+  background-image: url("images/tige.svg");
 }
 
 .feuilles-icon {
-  background-image: url("images/Feuilles.svg");
+  background-image: url("images/feuilles.svg");
 }
 
 .inflorescence-icon {
-  background-image: url("images/Inflorescence.svg");
+  background-image: url("images/inflorescence.svg");
 }
 
 .fruits-icon {
-  background-image: url("images/Fruits.svg");
+  background-image: url("images/fruits.svg");
 }
 
 .fleur-bisexuee-icon {
-  background-image: url("images/Inflorescence.svg");
+  background-image: url("images/inflorescence.svg");
 }
 
 .fleur-male-icon {
-  background-image: url("images/Fleur Male.svg");
+  background-image: url("images/fleur-male.svg");
 }
 
 .fleur-femelle-icon {
-  background-image: url("images/Fleur Femelle.svg");
+  background-image: url("images/fleur-femelle.svg");
 }
 
 .periode-icon {
-  background-image: url("images/Periode.svg");
+  background-image: url("images/periode.svg");
 }
 
 .ecologie-icon {
-  background-image: url("images/Ecologie.svg");
+  background-image: url("images/ecologie.svg");
 }
 
 .groupe-163-icon {
-  background-image: url("images/Groupe 163.svg");
+  background-image: url("images/groupe-163.svg");
 }
 
 .location-icon {
-  background-image: url("images/Location.svg");
+  background-image: url("images/location.svg");
 }
 
 .ne-pas-confondre-icon {
-  background-image: url("images/Ne Pas Confondre.svg");
+  background-image: url("images/ne-pas-confondre.svg");
 }
 
 .floraison-icon {
-  background-image: url("images/Floraison.svg");
+  background-image: url("images/floraison.svg");
 }
 
 .floraison-vert-icon {
-  background-image: url("images/Floraison-vert.svg");
+  background-image: url("images/floraison-vert.svg");
 }
 
 .fructification-icon {
-  background-image: url("images/Fructification.svg");
+  background-image: url("images/fructification.svg");
 }
 
 .fructification-mauve-icon {
-  background-image: url("images/Fructification-mauve.svg");
+  background-image: url("images/fructification-mauve.svg");
 }
