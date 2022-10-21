@@ -1,18 +1,29 @@
 <?php
+// adding "bs_" (botascopia) prefix to avoid overriding native wp functions
+
 // ajout de la recherche sur les champs acf
-require get_template_directory() . '/inc/custom-search-acf-wordpress.php'; 
+require get_template_directory() . '/inc/custom-search-acf-wordpress.php';
 
-
-function register_my_menu(){
-  register_nav_menu( 'main-menu', 'Menu principal' );
+// add theme supports
+function bs_theme_supports() {
+  add_theme_support('title-tag');
+  add_theme_support('post-thumbnails');
+  add_theme_support('menus');
+  register_nav_menu('main-menu', 'Menu principal');
 }
-add_action( 'after_setup_theme', 'register_my_menu' );
+add_action('after_setup_theme', 'bs_theme_supports');
+
+// load css (and js, later if needed)
+function bs_load_scripts() {
+  wp_enqueue_style( 'style', get_stylesheet_uri());
+}
+add_action('wp_enqueue_scripts', 'bs_load_scripts' );
 
 // auto export acf fields after each saved change
-function acf_export_json( $path ) {
+function bs_acf_export_json( $path ) {
   $path = get_stylesheet_directory() . '/acf-json';
   return $path;
 }
-add_filter( 'acf/settings/save_json', 'acf_export_json' );
+add_filter('acf/settings/save_json', 'bs_acf_export_json');
 
-?>
+
