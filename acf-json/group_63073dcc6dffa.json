@@ -1,0 +1,181 @@
+{
+    "key": "group_63073dcc6dffa",
+    "title": "Écologie",
+    "fields": [
+        {
+            "key": "field_63073dd8541b4",
+            "label": "Amplitude altitudinale",
+            "name": "amplitude_altitudinale",
+            "type": "text",
+            "instructions": "Écrivez ici un intervalle d'altitude dans lequel on peut trouver cette plante.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "ex : entre 0 et 1000 m d'altitude, au delà de 3000 m d'altitude, au niveau de la mer",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_63073e0c541b5",
+            "label": "Affinités écologiques",
+            "name": "affinites_ecologiques",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "halophile": "halophile",
+                "xérophile": "xérophile",
+                "sciaphile": "sciaphile",
+                "héliophile": "héliophile",
+                "acidiphile": "acidiphile",
+                "basiphile": "basiphile",
+                "calcicole": "calcicole",
+                "neutrophile": "neutrophile"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_63073e5c541b6",
+            "label": "Habitat préférentiel",
+            "name": "habitat_preferentiel",
+            "type": "text",
+            "instructions": "Décrivez ici les habitats préférentiels de la plante, ne mentionnez pas ceux où on peut trouver la plante seulement occasionnellement pour vous concentrez sur les milieux habituels.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "ex : rochers, éboulis et dalles surtout calcaires ; landes mésohygrophiles acidophiles ; milieux pionniers ; friches nitrophiles ; bords de route, pâturages et prairies",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_63073ee9541b7",
+            "label": "Système de reproduction",
+            "name": "systeme_de_reproduction",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "allogame": "allogame",
+                "à régime mixte": "à régime mixte",
+                "autogame": "autogame"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_63073f07541b8",
+            "label": "Pollinisation",
+            "name": "pollinisation",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "par les insectes (entomophilie)": "par les insectes (entomophilie)",
+                "par le vent (anémophilie)": "par le vent (anémophilie)",
+                "mixte (ambophilie)": "mixte (ambophilie)"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_63073f3f541b9",
+            "label": "Dispersion",
+            "name": "dispersion",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "par les animaux (zoochorie)": "par les animaux (zoochorie)",
+                "par le vent (anémochorie)": "par le vent (anémochorie)",
+                "par l'eau (hydrochorie)": "par l'eau (hydrochorie)",
+                "par la gravité (barochorie)": "par la gravité (barochorie)",
+                "par la plante (autochorie)": "par la plante (autochorie)",
+                "par l'homme (anthropochorie)": "par l'homme (anthropochorie)"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
+                "param": "current_user",
+                "operator": "==",
+                "value": "logged_in"
+            },
+            {
+                "param": "post_status",
+                "operator": "==",
+                "value": "draft"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1666089214
+}

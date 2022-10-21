@@ -1,0 +1,175 @@
+{
+    "key": "group_630732d448398",
+    "title": "Aire de répartition et statut",
+    "fields": [
+        {
+            "key": "field_63073315d174c",
+            "label": "Cultivée en France",
+            "name": "cultivee_en_france",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "seulement à l'état cultivée": "seulement à l'état cultivée",
+                "à l'état sauvage": "à l'état sauvage"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_630734d7d174d",
+            "label": "Carte de Métropole",
+            "name": "carte_de_metropole",
+            "type": "image",
+            "instructions": "(1) recherchez l'espèce dans INPN (https:\/\/inpn.mnhn.fr\/accueil\/index) et aller à l'onglet 'Cartes' puis cliquez sur 'voir la carte de observations sur OpenOrbs'\r\n(1bis) allez directement sur OpenOrbs (https:\/\/openobs.mnhn.fr\/) et y cherchez votre espèce\r\n(2) vérifiez que les informations de la carte semblent recouper celles obtenues par ailleurs (flores, TelaBotanica, etc.)\r\n(4) sur l'interface OpenOrbs, centrez la carte sur l'ensemble de la France métropolitaine (Corse comprise)\r\n(5) cliquez sur 'Télécharger la Carte'\r\n(6) dans la fenêtre qui s'ouvre, sélectionnez comme 'format' PNG, comme 'qualité (DPI)' 600, comme 'couleur' mauve (personnaliser : #964E75), et à 'Afficher le contour des points' choisissez non. Puis appuyez sur 'télécharger la carte' (laisser le reste des options telles qu'elles sont). Choisissez un endroit de votre ordinateur où enregistrer la carte.\r\n(7) recadrer sur la seule France métropolitaine (Corse comprise) et charger l'image dans l'application BOTASCOPIA",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073315d174c",
+                        "operator": "==",
+                        "value": "à l'état sauvage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_6307354ad174e",
+            "label": "Répartition mondiale",
+            "name": "repartition_mondiale",
+            "type": "url",
+            "instructions": "(1) cherchez votre espèce sur le GBIF (https:\/\/www.gbif.org\/fr\/)\r\n(2) cliquez sur \"Espèce\"\r\n(3) cliquez sur la fiche de l'espèce (en général le premier lien)\r\n(4) copier le lien vers la page et coller le dans le champs",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_63073560d174f",
+            "label": "Indigénat",
+            "name": "indigenat",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073315d174c",
+                        "operator": "==",
+                        "value": "à l'état sauvage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "indigène": "indigène",
+                "archéophyte": "archéophyte",
+                "néophyte": "néophyte",
+                "subspontanée": "subspontanée",
+                "exotique": "exotique",
+                "adventice": "adventice",
+                "envahissante": "envahissante"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_630735aad1750",
+            "label": "Statut UICN",
+            "name": "statut_uicn",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Éteinte (EX)": "Éteinte (EX)",
+                "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                "En danger critique (CR)": "En danger critique (CR)",
+                "En danger (EN)": "En danger (EN)",
+                "Vulnérable (VU)": "Vulnérable (VU)",
+                "Quasi menacée (NT)": "Quasi menacée (NT)",
+                "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                "Non évaluée (NE)": "Non évaluée (NE)"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
+                "param": "current_user",
+                "operator": "==",
+                "value": "logged_in"
+            },
+            {
+                "param": "post_status",
+                "operator": "==",
+                "value": "draft"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1663849730
+}

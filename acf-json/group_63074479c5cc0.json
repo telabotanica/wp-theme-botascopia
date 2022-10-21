@@ -1,0 +1,120 @@
+{
+    "key": "group_63074479c5cc0",
+    "title": "Références",
+    "fields": [
+        {
+            "key": "field_6307447fc9c49",
+            "label": "Référence 1",
+            "name": "reference_1",
+            "type": "text",
+            "instructions": "Couplan, F. & Styner, E. Guide des plantes sauvages comestibles et toxiques. (Delachaux et Niestlé, 2009).\r\n\r\neFlore. Tela Botanica [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/www.tela-botanica.org\/eflore\/\r\n\r\nBelladone, 2022. Wikipédia [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/fr.wikipedia.org\/w\/index.php? title=Belladone&oldid=192385981",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Couplan, F. & Styner, E. Guide des plantes sauvages comestibles et toxiques. (Delachaux et Niestlé, 2009).  eFlore. Tela Botanica [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/www.tela-botanica.org\/eflore\/  Belladone, 2022. Wikipédia [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/fr.wikipedia.org\/w\/index.php? title=Belladone&oldid=192385981",
+            "prepend": "",
+            "append": "",
+            "maxlength": 180
+        },
+        {
+            "key": "field_630744bec9c4a",
+            "label": "Référence 2",
+            "name": "reference_2",
+            "type": "text",
+            "instructions": "Couplan, F. & Styner, E. Guide des plantes sauvages comestibles et toxiques. (Delachaux et Niestlé, 2009).\r\n\r\neFlore. Tela Botanica [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/www.tela-botanica.org\/eflore\/\r\n\r\nBelladone, 2022. Wikipédia [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/fr.wikipedia.org\/w\/index.php? title=Belladone&oldid=192385981",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": 180
+        },
+        {
+            "key": "field_630744c6c9c4b",
+            "label": "Référence 3",
+            "name": "reference_3",
+            "type": "text",
+            "instructions": "Couplan, F. & Styner, E. Guide des plantes sauvages comestibles et toxiques. (Delachaux et Niestlé, 2009).\r\n\r\neFlore. Tela Botanica [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/www.tela-botanica.org\/eflore\/\r\n\r\nBelladone, 2022. Wikipédia [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/fr.wikipedia.org\/w\/index.php? title=Belladone&oldid=192385981",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": 180
+        },
+        {
+            "key": "field_630744cdc9c4c",
+            "label": "Référence 4",
+            "name": "reference_4",
+            "type": "text",
+            "instructions": "Couplan, F. & Styner, E. Guide des plantes sauvages comestibles et toxiques. (Delachaux et Niestlé, 2009).\r\n\r\neFlore. Tela Botanica [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/www.tela-botanica.org\/eflore\/\r\n\r\nBelladone, 2022. Wikipédia [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/fr.wikipedia.org\/w\/index.php? title=Belladone&oldid=192385981",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_630744d6c9c4d",
+            "label": "Référence 5",
+            "name": "reference_5",
+            "type": "text",
+            "instructions": "Couplan, F. & Styner, E. Guide des plantes sauvages comestibles et toxiques. (Delachaux et Niestlé, 2009).\r\n\r\neFlore. Tela Botanica [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/www.tela-botanica.org\/eflore\/\r\n\r\nBelladone, 2022. Wikipédia [en ligne]. [Consulté le 11 mai 2022]. Disponible à l’adresse : https:\/\/fr.wikipedia.org\/w\/index.php? title=Belladone&oldid=192385981",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "category:bdtfx"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1662110584
+}

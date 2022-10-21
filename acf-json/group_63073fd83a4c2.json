@@ -1,0 +1,44 @@
+{
+    "key": "group_63073fd83a4c2",
+    "title": "Propriétés",
+    "fields": [
+        {
+            "key": "field_63073fddfcc5b",
+            "label": "Propriétés",
+            "name": "proprietes",
+            "type": "text",
+            "instructions": "S'il y en a, décrivez les propriétés de la plante telles que des substances naturelles particulières, toxicité, huiles essentielles, usages, mellifère, importance économique, représentations socio-culturels",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "category:bdtfx"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1662110372
+}
