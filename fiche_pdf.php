@@ -24,7 +24,7 @@
     $posts = query_posts([
         'title'        => $_GET['p'],
         'post_type'   => 'post',
-        'numberposts' => 1
+        'showposts' => 1
     ]);
     ?>
     <?php while (have_posts()) : the_post(); ?>
