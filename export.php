@@ -12,7 +12,7 @@ use Knp\Snappy\Pdf;
 
 // category slug
 $category_name = 'bdtfxcache';
-$securise.$_SERVER['HTTP_HOST']
+$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 
 if (empty($_GET['p'])) {
 
