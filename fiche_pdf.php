@@ -24,6 +24,7 @@
     $posts = query_posts([
         'title'        => $_GET['p'],
         'post_type'   => 'post',
+        'post_status' => array('publish', 'pending', 'draft'),
         'showposts' => 1
     ]);
     ?>
