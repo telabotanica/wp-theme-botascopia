@@ -63,7 +63,7 @@ if (isset($_GET['p'])) {
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
                 'post_status' => 'draft', // Enregistrer en brouillon
-	    	'post_author' => $utilisateur,
+	    	'post_author' => get_current_user_id(),
             ),
             'field_groups' => array( $form ), // L'ID du post du groupe de champs
             'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
