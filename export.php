@@ -41,7 +41,7 @@ if (empty($_GET['p'])) {
 
 } else {
 
-    $the_query = new WP_Query( [ 'name' => $_GET['p'], 'post_status' => array('publish', 'pending', 'draft') ] );
+    $the_query = new WP_Query( array ( 'name' => $_GET['p'], 'post_status' => array('publish', 'pending', 'draft') ) );
     if ($the_query->have_posts()) {
         $the_query->the_post();
        echo $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) ;
