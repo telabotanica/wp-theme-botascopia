@@ -40,11 +40,11 @@ if (empty($_GET['p'])) {
     echo $string;
 
 } else {
-
+    echo "test";
     $the_query = new WP_Query( [ 'name' => $_GET['p'] ] );
     if ($the_query->have_posts()) {
         $the_query->the_post();
-       
+       echo $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) ;
         $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.get_post_field( 'post_name' ).'.pdf"');
