@@ -40,7 +40,7 @@ if (isset($_GET['p'])) {
 	if ($utilisateur !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($auteur_id !== $utilisateur and $auteur_id == "3") {
-			echo "<button onclick=\"wp_update_post(array('ID' => ".get_the_ID().", 'post_author' => ".$utilisateur."))\">Devenir auteur</button>"; 
+			echo "<button onclick=\"wp_update_post(array('ID' => ".get_the_ID().", 'post_author' => ".$utilisateur."));\">Devenir auteur</button>"; 
 			//wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
@@ -64,7 +64,6 @@ if (isset($_GET['p'])) {
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
                 'post_status' => 'draft', // Enregistrer en brouillon
-	    	'post_author' => get_current_user_id(),
             ),
             'field_groups' => array( $form ), // L'ID du post du groupe de champs
             'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
