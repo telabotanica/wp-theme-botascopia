@@ -60,10 +60,10 @@ if (isset($_GET['p'])) {
 
         $args = array(
             'post_id' => get_the_ID() ,
-	    'post_author' => $utilisateur,
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
                 'post_status' => 'draft', // Enregistrer en brouillon
+	    	'post_author' => $utilisateur,
             ),
             'field_groups' => array( $form ), // L'ID du post du groupe de champs
             'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
