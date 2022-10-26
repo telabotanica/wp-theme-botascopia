@@ -22,7 +22,7 @@
 <?php if (isset($_GET['p'])): ?>
     <?php
     $posts = query_posts([
-        'name'        => $_GET['p'],
+        'title'        => $_GET['p'],
         'post_type'   => 'post',
         'numberposts' => 1
     ]);
