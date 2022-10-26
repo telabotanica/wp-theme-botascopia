@@ -50,7 +50,7 @@
               
          
      
-
+	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
         $args = array(
@@ -67,9 +67,9 @@
 			<div><a href='http://<?php echo $_SERVER['HTTP_HOST'];?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
 		<?php endwhile;
 	endif;
-        echo "<button onclick=\"window.location.href = '".wp_logout_url( "http://".$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
+        echo "<button onclick=\"window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
     } else {
-        echo "<button onclick=\"window.location.href = '".wp_login_url( "http://".$_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
+        echo "<button onclick=\"window.location.href = '".wp_login_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
       }
         ?>
               
