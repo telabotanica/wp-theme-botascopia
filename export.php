@@ -50,10 +50,10 @@ if (empty($_GET['p'])) {
     if (have_posts()) {
         the_post();
        echo $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) ;
-        $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
+       /* $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.get_post_field( 'post_name' ).'.pdf"');
-        echo $snappy->getOutput( $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) );
+        echo $snappy->getOutput( $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) );*/
     }
 
 }
