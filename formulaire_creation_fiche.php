@@ -40,8 +40,11 @@ if (isset($_GET['p'])) {
 	if ($utilisateur !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($auteur_id !== $utilisateur and $auteur_id == "3") {
-			echo "<button onclick=\"return confirm('Change this post to draft, sure?')\" href=\"".wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur))."\">Devenir auteur</button>"; 
-			//wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
+			if (isset($_GET['a']) & $_GET['a'] === 1 ) {
+				wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
+			} else {
+				echo "<button onclick=\"window.location.href = 'http://".$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1';\">Devenir auteur</button>"; 
+			}
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
 		} else if ($auteur_id === $utilisateur) {
