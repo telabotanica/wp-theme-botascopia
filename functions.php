@@ -26,4 +26,10 @@ function bs_acf_export_json( $path ) {
 }
 add_filter('acf/settings/save_json', 'bs_acf_export_json');
 
+function set_user_admin_bar_false_by_default($user_id) {
+    update_user_meta( $user_id, 'show_admin_bar_front', 'false' );
+    update_user_meta( $user_id, 'show_admin_bar_admin', 'false' );
+}
+add_action("user_register", "set_user_admin_bar_false_by_default", 10, 1);
+
 
