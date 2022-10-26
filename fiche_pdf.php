@@ -319,7 +319,7 @@
                         <h3 class="icon-title">
                             <div class="ecologie-icon icon"></div>écologie
                         </h3>
-                        <p>Altitude : <?php the_field('amplitude_altitudinale'); ?> ; <?php echo implode(', ', get_field('affinites_ecologiques')); ?> ; habitat : <?php the_field('habitat_preferentiel'); ?>. Plante <?php the_field('systeme_de_reproduction'); ?>, à pollinisation <?php the_field('pollinisation'); ?>, dispersion des graines et des fruits par <?php echo implode(', ', get_field('dispersion')); ?>.</p>
+                        <p>Altitude : <?php the_field('amplitude_altitudinale'); ?> ; <?php echo (!empty(get_field('feuille'))) ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; habitat : <?php the_field('habitat_preferentiel'); ?>. Plante <?php the_field('systeme_de_reproduction'); ?>, à pollinisation <?php the_field('pollinisation'); ?>, dispersion des graines et des fruits par <?php echo implode(', ', get_field('dispersion')); ?>.</p>
                     </div>
                     <?php $proprietes = get_field('proprietes')?: null; ?>
                     <?php if ($proprietes): ?>
