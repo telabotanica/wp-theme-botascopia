@@ -186,73 +186,77 @@
                         </p>
                     </div>
                 <?php else: ?>
-                    <?php $fleur_male =  get_field('fleur_male') ?: null;?>
-                    <div class="characteristic">
-                        <h4 class="icon-title">
-                            <div class="fleur-male-icon icon"></div>Fleur mâle
-                        </h4>
-                        <?php if(!empty($fleur_male['photo_de_fleur_male'])): ?>
-                            <?php
-                            $refs_photo[] = $fleur_male['photo_de_fleur_male']["id"];
-                            $index_photos++;
-                            ?>
-                            <div class="picture-ref"><?php echo $index_photos;?></div>
-                        <?php endif; ?>
-                        <p>
-                            Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?> ;
-                            <?php if('présent' !== $fleur_male['perianthe']): ?>
-                                Le périanthe est absent.
-                            <?php else: ?>
+                    <?php  if (!empty(get_field('fleur_male'))) { ?>
+                        <?php $fleur_male =  get_field('fleur_male') ?: null;?>
+                        <div class="characteristic">
+                            <h4 class="icon-title">
+                                <div class="fleur-male-icon icon"></div>Fleur mâle
+                            </h4>
+                            <?php if(!empty($fleur_male['photo_de_fleur_male'])): ?>
                                 <?php
-                                if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
-                                    $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
-                                } else {
-                                    $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_male['corolle']) . ' pétale(s) ' . $fleur_male['soudure_de_la_corolle'] . ' ; ' . ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                                }
+                                $refs_photo[] = $fleur_male['photo_de_fleur_male']["id"];
+                                $index_photos++;
                                 ?>
-                                périanthe composé de <?php echo $perianthe; ?>
-                                androcée composé de <?php echo implode(' ou ' , $fleur_male['androcee']); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
-                                <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
-                                La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
-                                La fleur est <?php echo $fleur_male['pubescence']. ('pubescente' === $fleur_male['pubescence'] ? ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']) : ''); ?>.
-                                <?php echo $fleur_male['autre_caractere']; ?>.
+                                <div class="picture-ref"><?php echo $index_photos;?></div>
                             <?php endif; ?>
-                        </p>
-                    </div>
-                    <?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
-                    <div class="characteristic">
-                        <h4 class="icon-title">
-                            <div class="fleur-femelle-icon icon"></div>Fleur femelle
-                        </h4>
-                        <?php if(!empty($fleur_femelle['photo_de_fleur_femelle'])): ?>
-                            <?php
-                            $refs_photo[] = $fleur_femelle['photo_de_fleur_femelle']["id"];
-                            $index_photos++;
-                            ?>
-                            <div class="picture-ref"><?php echo $index_photos;?></div>
-                        <?php endif; ?>
-                        <div class="picture-ref">5</div>
-                        <p>
-                            Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
-                            <?php if('présent' !== $fleur_femelle['perianthe']): ?>
-                                Le périanthe est absent.
-                            <?php else: ?>
+                            <p>
+                                Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?> ;
+                                <?php if('présent' !== $fleur_male['perianthe']): ?>
+                                    Le périanthe est absent.
+                                <?php else: ?>
+                                    <?php
+                                    if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
+                                        $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
+                                    } else {
+                                        $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_male['corolle']) . ' pétale(s) ' . $fleur_male['soudure_de_la_corolle'] . ' ; ' . ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                    }
+                                    ?>
+                                    périanthe composé de <?php echo $perianthe; ?>
+                                    androcée composé de <?php echo implode(' ou ' , $fleur_male['androcee']); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                    <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
+                                    La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
+                                    La fleur est <?php echo $fleur_male['pubescence']. ('pubescente' === $fleur_male['pubescence'] ? ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']) : ''); ?>.
+                                    <?php echo $fleur_male['autre_caractere']; ?>.
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    <?php  }
+                    if (!empty(get_field('fleur_femelle'))) { ?>
+                        <?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
+                        <div class="characteristic">
+                            <h4 class="icon-title">
+                                <div class="fleur-femelle-icon icon"></div>Fleur femelle
+                            </h4>
+                            <?php if(!empty($fleur_femelle['photo_de_fleur_femelle'])): ?>
                                 <?php
-                                if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
-                                    $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
-                                } else {
-                                    $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_femelle['corolle']) . ' pétale(s) ' . $fleur_femelle['soudure_de_la_corolle'] . ' ; ' . ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                                }
+                                $refs_photo[] = $fleur_femelle['photo_de_fleur_femelle']["id"];
+                                $index_photos++;
                                 ?>
-                                périanthe composé de <?php echo $perianthe; ?>
-                                gynécée composé de <?php echo implode(' ou ' , $fleur_femelle['gynecee']); ?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
-                                ovaire <?php echo $fleur_femelle['ovaire']; ?>.
-                                La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
-                                La fleur est <?php echo $fleur_femelle['pubescence']. ('pubescente' === $fleur_femelle['pubescence'] ? ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']) : ''); ?>.
-                                <?php echo $fleur_femelle['autre_caractere']; ?>.
+                                <div class="picture-ref"><?php echo $index_photos;?></div>
                             <?php endif; ?>
-                        </p>
-                    </div>
+                            <div class="picture-ref">5</div>
+                            <p>
+                                Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
+                                <?php if('présent' !== $fleur_femelle['perianthe']): ?>
+                                    Le périanthe est absent.
+                                <?php else: ?>
+                                    <?php
+                                    if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
+                                        $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
+                                    } else {
+                                        $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_femelle['corolle']) . ' pétale(s) ' . $fleur_femelle['soudure_de_la_corolle'] . ' ; ' . ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                    }
+                                    ?>
+                                    périanthe composé de <?php echo $perianthe; ?>
+                                    gynécée composé de <?php echo implode(' ou ' , $fleur_femelle['gynecee']); ?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
+                                    ovaire <?php echo $fleur_femelle['ovaire']; ?>.
+                                    La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
+                                    La fleur est <?php echo $fleur_femelle['pubescence']. ('pubescente' === $fleur_femelle['pubescence'] ? ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']) : ''); ?>.
+                                    <?php echo $fleur_femelle['autre_caractere']; ?>.
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    <?php } ?>
                 <?php endif; ?>
             </main>
 
@@ -260,7 +264,7 @@
                 <div class="footer-section">
                     <div class="center le-saviez-vous">
                         <h4 class="grand-hotel">Le saviez-vous ?</h4>
-                        <p><?php the_field('le_saviez-vous_');?></p>
+                        <p><?php (!empty(get_field('feuille'))) ? the_field('le_saviez-vous_') : "";?></p>
                     </div>
                 </div>
                 <?php if(0 < $index_photos): ?>
