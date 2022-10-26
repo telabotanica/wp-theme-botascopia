@@ -44,10 +44,10 @@ if (empty($_GET['p'])) {
     if ($the_query->have_posts()) {
         $the_query->the_post();
         echo get_site_url().'/fiche/?p='.get_post_field( 'post_name', get_post() ) ;
-        $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
+       /* $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="'.get_post_field( 'post_name' ).'.pdf"');
-        echo $snappy->getOutput( get_site_url().'/fiche/?p='.get_post_field( 'post_name', get_post() ) );
+        echo $snappy->getOutput( get_site_url().'/fiche/?p='.get_post_field( 'post_name', get_post() ) );*/
     }
 
 }
