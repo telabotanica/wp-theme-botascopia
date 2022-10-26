@@ -296,8 +296,8 @@
                         }
                         ?>
                         <div class="month"><?php echo substr($month,0,1); ?></div>
-                        <div class="floraison<?php echo $flor_ok ? '-vert' : ''; ?>-icon icon"></div>
-                        <div class="fructification<?php echo $fruct_ok ? '-mauve' : ''; ?>-icon icon"></div>
+                        <div class="floraison<?php echo isset($flor_ok) ? '-vert' : ''; ?>-icon icon"></div>
+                        <div class="fructification<?php echo isset($fruct_ok) ? '-mauve' : ''; ?>-icon icon"></div>
                     <?php endforeach; ?>
                 </div>
             </header>
