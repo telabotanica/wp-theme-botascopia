@@ -73,51 +73,53 @@
                 </div>
 
                 <div class="characteristic">
-                    <h4 class="icon-title">
-                        <div class="feuilles-icon icon"></div>Feuilles
-                    </h4>
+                    <?php  if (!empty(get_field('feuille'))) { ?>
+                        <h4 class="icon-title">
+                            <div class="feuilles-icon icon"></div>Feuilles
+                        </h4>
 
-                    <?php $presence_feuilles = get_field('feuille')['presence_de_feuilles']; ?>
-                    <?php if ('visibles' === $presence_feuilles): ?>
-                        <?php $feuille = get_field('feuilles_visibles'); ?>
-                        <?php if(!empty($feuille['photo_de_feuilles'])): ?>
-                            <?php
-                            $refs_photo[] = $feuille['photo_de_feuilles']["id"];
-                            $index_photos++;
-                            ?>
-                            <div class="picture-ref"><?php echo $index_photos;?></div>
-                        <?php endif; ?>
-                        <p>
-                            Les feuilles sont disposées de façon <?php echo implode(' et ', $feuille['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuille['type_de_feuille']);?>.<br>
-                            <?php
-                            $type_feuille_multiple = 1 < count($feuille['type_de_feuille']);
-                            $limbe = 'Le limbe %s est %s';
-                            $type_limbe = [];
+                        <?php $presence_feuilles = get_field('feuille')['presence_de_feuilles']; ?>
+                        <?php if ('visibles' === $presence_feuilles): ?>
+                            <?php $feuille = get_field('feuilles_visibles'); ?>
+                            <?php if(!empty($feuille['photo_de_feuilles'])): ?>
+                                <?php
+                                $refs_photo[] = $feuille['photo_de_feuilles']["id"];
+                                $index_photos++;
+                                ?>
+                                <div class="picture-ref"><?php echo $index_photos;?></div>
+                            <?php endif; ?>
+                            <p>
+                                Les feuilles sont disposées de façon <?php echo implode(' et ', $feuille['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuille['type_de_feuille']);?>.<br>
+                                <?php
+                                $type_feuille_multiple = 1 < count($feuille['type_de_feuille']);
+                                $limbe = 'Le limbe %s est %s';
+                                $type_limbe = [];
 
-                            foreach ($feuille['type_de_feuille'] as $type_feuille) {
-                                if ('simples' === $type_feuille) {
-                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuille['limbe_des_feuilles_simples']));
-                                } else {
-                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuille['limbe_des_folioles']));
+                                foreach ($feuille['type_de_feuille'] as $type_feuille) {
+                                    if ('simples' === $type_feuille) {
+                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuille['limbe_des_feuilles_simples']));
+                                    } else {
+                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuille['limbe_des_folioles']));
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
 
-                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuille['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuille['nervation']);?>.<br>
+                                <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuille['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuille['nervation']);?>.<br>
 
-                            <?php
-                            $presence_petiole = $feuille['petiole'];
-                            $petiole = 'présent' === $presence_petiole ? $feuille['longueur_du_petiole'] . ('engainant' === $feuille['engainant'] ? ', ' . $feuille['engainant'] :'') : $presence_petiole;
-                            ?>
+                                <?php
+                                $presence_petiole = $feuille['petiole'];
+                                $petiole = 'présent' === $presence_petiole ? $feuille['longueur_du_petiole'] . ('engainant' === $feuille['engainant'] ? ', ' . $feuille['engainant'] :'') : $presence_petiole;
+                                ?>
 
-                            Le pétiole est <?php echo $petiole; ?>.<br>
+                                Le pétiole est <?php echo $petiole; ?>.<br>
 
-                            <?php echo  'présent' === $feuille['stipules'] ? $feuille['forme_et_couleur_des_stipules'] : '';?>
-                            <?php echo  $feuille['feuillage'] ? 'Le feuillage est ' . $feuille['feuillage'] : '';?>.
-                        </p>
-                    <?php else: ?>
-                        <p><?php echo $presence_feuilles; ?></p>
-                    <?php endif; ?>
+                                <?php echo  'présent' === $feuille['stipules'] ? $feuille['forme_et_couleur_des_stipules'] : '';?>
+                                <?php echo  $feuille['feuillage'] ? 'Le feuillage est ' . $feuille['feuillage'] : '';?>.
+                            </p>
+                        <?php else: ?>
+                            <p><?php echo $presence_feuilles; ?></p>
+                        <?php endif; ?>
+                    <?php } ?>
                 </div>
 
                 <div class="characteristic">
