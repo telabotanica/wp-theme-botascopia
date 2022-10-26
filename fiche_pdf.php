@@ -53,21 +53,23 @@
                 <div class="characteristic">
                     <?php
                     $tige = get_field('tige');
-                    $type_tige = implode(', ', $tige['type_de_tige']);
-                    $section_tige = implode(' et ', $tige['section_de_la_tige']);
-                    $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
-                    ?>
-                    <h4 class="icon-title">
-                        <div class="tige-icon icon"></div>Tige
-                    </h4>
-                    <?php if(!empty($tige['photo_tige'])): ?>
-                        <?php
-                        $refs_photo[] = $tige['photo_tige']["id"];
-                        $index_photos++;
+                    if (!empty($tige)) {
+                        $type_tige = implode(', ', $tige['type_de_tige']);
+                        $section_tige = implode(' et ', $tige['section_de_la_tige']);
+                        $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
                         ?>
-                        <div class="picture-ref"><?php echo $index_photos;?></div>
-                    <?php endif; ?>
-                    <p>La tige aérienne est <?php echo $tige['tige_aerienne'];?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.<br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.</p>
+                        <h4 class="icon-title">
+                            <div class="tige-icon icon"></div>Tige
+                        </h4>
+                        <?php if(!empty($tige['photo_tige'])): ?>
+                            <?php
+                            $refs_photo[] = $tige['photo_tige']["id"];
+                            $index_photos++;
+                            ?>
+                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                        <?php endif; ?>
+                        <p>La tige aérienne est <?php echo $tige['tige_aerienne'];?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.<br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.</p>
+                    <?php } ?>
                 </div>
 
                 <div class="characteristic">
