@@ -40,7 +40,7 @@ if (isset($_GET['p'])) {
 	if ($utilisateur !== 0) {
 		// si l'auteur du post n'est pas l'admin des fiches
 		if ($auteur_id !== $utilisateur and $auteur_id == "3") {
-			wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
+			//wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
 		} else if ($auteur_id === $utilisateur) {
@@ -60,6 +60,7 @@ if (isset($_GET['p'])) {
 
         $args = array(
             'post_id' => get_the_ID() ,
+	    'post_author' => $utilisateur,
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
                 'post_status' => 'draft', // Enregistrer en brouillon
