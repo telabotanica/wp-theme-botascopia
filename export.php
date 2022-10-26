@@ -40,8 +40,8 @@ if (empty($_GET['p'])) {
     echo $string;
 
 } else {
-    echo "test";
-    $the_query = new WP_Query( [ 'name' => $_GET['p'] ] );
+
+    $the_query = new WP_Query( [ 'title' => $_GET['p'] ] );
     if ($the_query->have_posts()) {
         $the_query->the_post();
        echo $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) ;
