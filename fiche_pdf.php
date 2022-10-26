@@ -123,26 +123,30 @@
                 </div>
 
                 <div class="characteristic">
-                    <h4 class="icon-title">
-                        <div class="inflorescence-icon icon"></div>Inflorescence
-                    </h4>
-                    <?php $inflorescence = get_field('inflorescence');?>
-                    <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs']; ?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
+                    <?php  if (!empty(get_field('inflorescence'))) { ?>
+                        <h4 class="icon-title">
+                            <div class="inflorescence-icon icon"></div>Inflorescence
+                        </h4>
+                        <?php $inflorescence = get_field('inflorescence');?>
+                        <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs']; ?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
+                    <?php } ?>
                 </div>
 
                 <div class="characteristic">
-                    <h4 class="icon-title">
-                        <div class="fruits-icon icon"></div>Fruits
-                    </h4>
-                    <?php $fruit = get_field('fruit');?>
-                    <?php if(!empty($fruit['photo'])): ?>
-                        <?php
-                        $refs_photo[] = $fruit['photo']["id"];
-                        $index_photos++;
-                        ?>
-                        <div class="picture-ref"><?php echo $index_photos;?></div>
-                    <?php endif; ?>
-                    <p>Le fruit est <?php echo $fruit['type'];?>.</p>
+                    <?php  if (!empty(get_field('fruit'))) { ?>
+                        <h4 class="icon-title">
+                            <div class="fruits-icon icon"></div>Fruits
+                        </h4>
+                        <?php $fruit = get_field('fruit');?>
+                        <?php if(!empty($fruit['photo'])): ?>
+                            <?php
+                            $refs_photo[] = $fruit['photo']["id"];
+                            $index_photos++;
+                            ?>
+                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                        <?php endif; ?>
+                        <p>Le fruit est <?php echo $fruit['type'];?>.</p>
+                    <?php } ?>
                 </div>
 
                 <?php $fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;?>
