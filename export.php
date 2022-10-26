@@ -41,9 +41,14 @@ if (empty($_GET['p'])) {
 
 } else {
 
-    $the_query = new WP_Query( array ( 'name' => $_GET['p'], 'post_status' => array('publish', 'pending', 'draft') ) );
-    if ($the_query->have_posts()) {
-        $the_query->the_post();
+    $posts = query_posts([
+        'title'        => $_GET['p'],
+        'post_type'   => 'post',
+        'post_status' => array('publish', 'pending', 'draft'),
+        'showposts' => 1
+    ]);
+    if (have_posts()) {
+        the_post();
        echo $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.get_post_field( 'post_name', get_post() ) ;
         $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
         header('Content-Type: application/pdf');
