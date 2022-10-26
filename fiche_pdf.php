@@ -37,9 +37,9 @@
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
                     <div class="characteristic">
                         <h3 class="icon-title">
-                            <div class="description-icon icon"></div>déscription morphologique
+                            <div class="description-icon icon"></div>description morphologique
                         </h3>
-                        <p><?php the_field('description_vulgarisee');?></p>
+                        <p><?php !empty(get_field('description_vulgarisee')) ? the_field('description_vulgarisee') : "" ;?></p>
                     </div>
                 </div>
                 <?php
