@@ -4,6 +4,7 @@
 */
 acf_form_head();
 get_header();
+$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 $form = 12;
 $formulaires = array(
 	"12" => "Description morphologique",
@@ -43,7 +44,7 @@ if (isset($_GET['p'])) {
 			if (isset($_GET['a']) and $_GET['a'] == "1" ) {
 				wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
 			} else {
-				echo "<button onclick=\"window.location.href = 'http://".$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1';\">Devenir auteur</button>"; 
+				echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1';\">Devenir auteur</button>"; 
 			}
 			$auteur_autorise = true;
 		// s'il s'agit de l'utilisateur ayant modifié la fiche en premier
@@ -77,7 +78,7 @@ if (isset($_GET['p'])) {
         acf_form( $args ); // Afficher le formulaire
         echo "<br />";
         foreach ($formulaires as $id => $titre) {
-	       echo "<button onclick=\"window.location.href = 'http://".$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
+	       echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
         }	    
 
 	} else { 
