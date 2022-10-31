@@ -8,7 +8,9 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
     require __DIR__ . '/vendor/autoload.php';
 }
 
-use Knp\Snappy\Pdf;
+use Spiritix\Html2Pdf\Converter;
+use Spiritix\Html2Pdf\Input\UrlInput;
+use Spiritix\Html2Pdf\Output\DownloadOutput;
 
 // category slug
 $category_name = 'bdtfxcache';
@@ -49,11 +51,26 @@ if (empty($_GET['p'])) {
     ]);
     if (have_posts()) {
         the_post();
-        
-        $snappy = new Pdf(__DIR__ . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="'.$_GET['p'].'.pdf"');
-        echo $snappy->getOutput( $securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.$_GET['p'] );
+
+//        header('Content-Type: application/pdf');
+//        header('Content-Disposition: attachment; filename="'.$_GET['p'].'.pdf"');
+
+        $input = new UrlInput();
+        $input->setUrl($securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.$_GET['p']);
+
+        $converter = new Converter($input, new DownloadOutput());
+        $converter->setNodePath('/home/killian/.nvm/versions/node/v16.14.2/bin/node');
+
+        $converter->setOption('landscape', false);
+
+        $converter->setOptions([
+            'printBackground' => true,
+            'displayHeaderFooter' => true,
+            'format' => 'A4',
+        ]);
+
+        $output = $converter->convert();
+        $output->download($_GET['p'].'.pdf');
     }
 
 }
