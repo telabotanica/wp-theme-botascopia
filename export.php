@@ -59,9 +59,6 @@ if (empty($_GET['p'])) {
         $input->setUrl($securise.$_SERVER['HTTP_HOST'].'/fiche/?p='.$_GET['p']);
 
         $converter = new Converter($input, new DownloadOutput());
-        $converter->setNodePath('/home/killian/.nvm/versions/node/v16.14.2/bin/node');
-
-        $converter->setOption('landscape', false);
 
         $converter->setOptions([
             'printBackground' => true,
