@@ -46,7 +46,7 @@
                 $index_photos = 0;
                 $refs_photo[] = get_field('photo_de_la_plante_entiere');
                 ?>
-                <div class="round-picture"><?php echo wp_get_attachment_image($refs_photo[0],'medium'); ?></div>
+                <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>');">
             </header>
 
             <main class="container">
@@ -151,7 +151,7 @@
 
                 <?php $fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;?>
                 <?php if ($fleur_bisexuee): ?>
-                    <div class="characteristic">
+                    <div class="characteristic fleur-bisexuee">
                         <h4 class="icon-title">
                             <div class="fleur-bisexuee-icon icon"></div>Fleur bisexuée
                         </h4>
@@ -271,7 +271,7 @@
                     <div class="footer-section">
                         <ol class="characteristic-photos">
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
-                                <li><?php echo wp_get_attachment_image($refs_photo[$i]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+                                <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
                             <?php endfor; ?>
                         </ol>
                     </div>
@@ -313,59 +313,57 @@
                     <?php endforeach; ?>
                 </div>
             </header>
-            <div class="container">
-                <main>
+            <main class="container">
+                <div class="characteristic">
+                    <h3 class="icon-title">
+                        <div class="ecologie-icon icon"></div>écologie
+                    </h3>
+                    <p>Altitude : <?php the_field('amplitude_altitudinale'); ?> ; <?php echo (!empty(get_field('affinites_ecologiques'))) ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ;
+                        habitat : <?php the_field('habitat_preferentiel'); ?>. Plante <?php the_field('systeme_de_reproduction'); ?>, à pollinisation <?php the_field('pollinisation'); ?>,
+                        dispersion des graines et des fruits par <?php echo (!empty(get_field('dispersion'))) ? implode(', ', get_field('dispersion')) : ""; ?>.</p>
+                </div>
+                <?php $proprietes = get_field('proprietes')?: null; ?>
+                <?php if ($proprietes): ?>
                     <div class="characteristic">
                         <h3 class="icon-title">
-                            <div class="ecologie-icon icon"></div>écologie
+                            <div class="groupe-163-icon icon"></div>propriétés
                         </h3>
-                        <p>Altitude : <?php the_field('amplitude_altitudinale'); ?> ; <?php echo (!empty(get_field('affinites_ecologiques'))) ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; 
-                            habitat : <?php the_field('habitat_preferentiel'); ?>. Plante <?php the_field('systeme_de_reproduction'); ?>, à pollinisation <?php the_field('pollinisation'); ?>, 
-                            dispersion des graines et des fruits par <?php echo (!empty(get_field('dispersion'))) ? implode(', ', get_field('dispersion')) : ""; ?>.</p>
+                        <p><?php echo $proprietes; ?></p>
                     </div>
-                    <?php $proprietes = get_field('proprietes')?: null; ?>
-                    <?php if ($proprietes): ?>
-                        <div class="characteristic">
-                            <h3 class="icon-title">
-                                <div class="groupe-163-icon icon"></div>propriétés
-                            </h3>
-                            <p><?php echo $proprietes; ?></p>
-                        </div>
-                    <?php endif; ?>
+                <?php endif; ?>
 
+                <div class="characteristic">
+                    <h3 class="icon-title">
+                        <div class="location-icon icon"></div>aire de répartition
+                    </h3>
+                    <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
+                    <p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                    <?php if (get_field('carte_de_metropole')) :?>
+                        <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
+                    <?php endif; ?>
+                </div>
+
+                <?php $description = get_field('description')?: null; ?>
+                <?php if ($description): ?>
                     <div class="characteristic">
                         <h3 class="icon-title">
-                            <div class="location-icon icon"></div>aire de répartition
+                            <div class="ne-pas-confondre-icon icon"></div>ne pas confondre
                         </h3>
-                        <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
-                        <?php if (get_field('carte_de_metropole')) :?>
-                            <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id']); ?></div>
+                        <p><?php the_field('description'); ?>.</p>
+                        <?php $photo = get_field('photo')?: null; ?>
+                        <?php if (!empty($photo)): ?>
+                            <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
                         <?php endif; ?>
                     </div>
-
-                    <?php $description = get_field('description')?: null; ?>
-                    <?php if ($description): ?>
-                        <div class="characteristic">
-                            <h3 class="icon-title">
-                                <div class="ne-pas-confondre-icon icon"></div>ne pas confondre
-                            </h3>
-                            <p><?php the_field('description'); ?>.</p>
-                            <?php $photo = get_field('photo')?: null; ?>
-                            <?php if (!empty($photo)): ?>
-                                <div class="section-image"><?php echo wp_get_attachment_image($photo['id']); ?></div>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                </main>
-            </div>
+                <?php endif; ?>
+            </main>
             <footer>
                 <div class="container">
                     <div class="footer-section">
                         <ul class="logos">
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Université Paris-Saclay"></li>
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Botascopia"></li>
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Tela Botanica"></li>
+                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Logo Université Paris-Saclay"></li>
+                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Logo Botascopia"></li>
+                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Logo Tela Botanica"></li>
                         </ul>
                     </div>
                     <div class="footer-section">

@@ -16,6 +16,12 @@ body {
   margin: 0 auto;
 }
 
+header {
+  position: relative;
+  width: 21.246041667cm;
+  height: 8.5725cm;
+}
+
 /* ********************************** */
 /*     TEMPLATE "FICHE_PDF" STYLE     */
 /* ********************************** */
@@ -24,7 +30,7 @@ body.page-template-fiche_pdf {
   color: #2B2E34;
   width: 21cm;
   height: 59.4cm;
-  font-size: 0.32cm;
+  font-size: 0.37cm;
 }
 
 .page-template-fiche_pdf .page {
@@ -39,13 +45,13 @@ body.page-template-fiche_pdf {
   padding: 1cm;
 }
 
-.page-template-fiche_pdf .page-2 .container {
-  padding-top: 0;
-}
-
 .page-template-fiche_pdf header .container {
   height: 6.6cm;
   width: 12.18cm;
+}
+
+.page main.container {
+  padding-top: 0;
 }
 
 .page-template-fiche_pdf .purple {
@@ -75,7 +81,7 @@ body.page-template-fiche_pdf {
   font-style: italic;
 }
 .page-template-fiche_pdf h2 {
-  font-size: 0.32cm;
+  font-size: 0.37cm;
   font-weight: normal;
   color: #8E9F31;
   margin: 0.2cm 0;
@@ -90,7 +96,7 @@ body.page-template-fiche_pdf {
   margin-bottom: 0.2cm;
 }
 .page-template-fiche_pdf h4 {
-  font-size: 0.32cm;
+  font-size: 0.37cm;
   text-transform: capitalize;
   margin-bottom: 0.2cm;
 }
@@ -134,12 +140,10 @@ body.page-template-fiche_pdf {
   position: absolute;
   top:-2cm;
   right: -2cm;
-}
-
-.page-template-fiche_pdf .round-picture img {
   border-radius: 50%;
-  width: 9cm;
-  height: 9cm;
+  width: 8.8cm;
+  height: 8.8cm;
+  background-position-x: center;
 }
 
 /* ************************************ */
@@ -149,6 +153,10 @@ body.page-template-fiche_pdf {
   width: 7.5cm;
   vertical-align: top;
   padding-left: 1cm;
+}
+
+.page-template-fiche_pdf .characteristic .fleur-bisexuee {
+  width: 15cm;
 }
 
 .page-template-fiche_pdf header .characteristic {
@@ -170,18 +178,21 @@ body.page-template-fiche_pdf {
   font-weight: bold;
   background-color: #F8F5EF;
   margin-left: 0.2cm;
-  padding: 0.06cm;
   border-radius: 50%;
-  width: 0.32cm;
-  height: 0.32cm;
-  font-size: 0.32cm;
+  width: 0.37cm;
+  height: 0.37cm;
+  font-size: 0.37cm;
   text-align: center;
   line-height: 1;
 }
 
 .page-template-fiche_pdf .le-saviez-vous {
   color: #ffffff;
-  padding-left: 5cm;
+  padding-left: 2.5cm;
+}
+
+.page-template-fiche_pdf .le-saviez-vous p {
+  width: 10cm;
 }
 
 .page-template-fiche_pdf h4.grand-hotel {
