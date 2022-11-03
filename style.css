@@ -81,7 +81,7 @@ body.page-template-fiche_pdf {
   font-style: italic;
 }
 .page-template-fiche_pdf h2 {
-  font-size: 0.37cm;
+  font-size: 0.42cm;
   font-weight: normal;
   color: #8E9F31;
   margin: 0.2cm 0;
@@ -91,17 +91,18 @@ body.page-template-fiche_pdf {
   margin: 0;
 }
 .page-template-fiche_pdf h3 {
-  font-size: 0.42cm;
+  font-size: 0.53cm;
   text-transform: uppercase;
   margin-bottom: 0.2cm;
 }
 .page-template-fiche_pdf h4 {
-  font-size: 0.37cm;
+  font-size: 0.43cm;
   text-transform: capitalize;
   margin-bottom: 0.2cm;
 }
 
 .page-template-fiche_pdf h5 {
+  font-size: 0.29cm;
   text-transform: uppercase;
   margin-bottom: 0;
   margin-top: 0.2cm;
@@ -155,7 +156,7 @@ body.page-template-fiche_pdf {
   padding-left: 1cm;
 }
 
-.page-template-fiche_pdf .characteristic .fleur-bisexuee {
+.page-template-fiche_pdf .characteristic.fleur-bisexuee {
   width: 15cm;
 }
 
@@ -179,9 +180,9 @@ body.page-template-fiche_pdf {
   background-color: #F8F5EF;
   margin-left: 0.2cm;
   border-radius: 50%;
-  width: 0.37cm;
-  height: 0.37cm;
-  font-size: 0.37cm;
+  width: 0.43cm;
+  height: 0.43cm;
+  font-size: 0.43cm;
   text-align: center;
   line-height: 1;
 }
@@ -193,6 +194,8 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf .le-saviez-vous p {
   width: 10cm;
+  height: 2cm;
+  overflow: hidden;
 }
 
 .page-template-fiche_pdf h4.grand-hotel {
@@ -254,10 +257,6 @@ body.page-template-fiche_pdf {
   bottom: 0;
 }
 
-.page-template-fiche_pdf .footer-section {
-  display: flex;
-}
-
 .page-template-fiche_pdf .footer-section .columns {
   flex-direction: column;
   width: 50%;
@@ -270,15 +269,12 @@ body.page-template-fiche_pdf {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
 }
 
 .page-template-fiche_pdf .characteristic-photos li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: -5cm;
-  margin-right: 0.2cm;
 }
 
 .page-template-fiche_pdf .characteristic-photos img {
@@ -292,6 +288,11 @@ body.page-template-fiche_pdf {
 /* ************************ */
 /* * footer logos page 2 * */
 /* ************************ */
+
+.page-2 footer {
+  font-size: 0.29cm;
+}
+
 .page-template-fiche_pdf .footer-section .logos {
   width: 100%;
   height: 1.5cm;
