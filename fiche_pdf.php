@@ -366,7 +366,7 @@
                             <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Logo Tela Botanica"></li>
                         </ul>
                     </div>
-                    <div class="footer-section">
+                    <div class="footer-section info">
                         <div class="columns">
                             <div>
                                 <h5 class="inline">auteur(e-s) :</h5>

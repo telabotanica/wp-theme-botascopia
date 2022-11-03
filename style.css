@@ -249,8 +249,19 @@ body.page-template-fiche_pdf {
 /* ******************* */
 /* * footer sections * */
 /* ******************* */
-.page-template-fiche_pdf footer {
+.page-1 footer {
   height: 7.6cm;
+}
+
+.page-2 footer {
+  height: 5.5cm;
+}
+
+.page-2 footer .info {
+  display: flex;
+}
+
+.page-template-fiche_pdf footer {
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -297,7 +308,6 @@ body.page-template-fiche_pdf {
   height: 1.5cm;
   padding-left: 0;
   margin-bottom: 0;
-  margin-top: 1cm;
 }
 
 .page-template-fiche_pdf .footer-section .logos li {
