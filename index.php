@@ -62,15 +62,21 @@
 	 $cpt_query = new WP_Query($args);
 	// Create cpt loop, with a have_posts() check!
 	if ($cpt_query->have_posts()) :
-	      echo $current_user->display_name.", votre.s formulaire.s :";
-  		while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
-			<div><a href='http://<?php echo $_SERVER['HTTP_HOST'];?>/formulaire/?p=<?php the_title() ?>' target="_blank"><?php the_field( 'nom_scientifique' ); ?></a></div>
-		<?php endwhile;
-	endif;
-        echo "<button onclick=\"window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button>"; 
+		echo "<div>".$current_user->display_name.", votre.s formulaire.s :</div><br />";
+        	while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
+            		<div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+				<span style="float:right;" >
+					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Editer</button>
+					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+				</span>
+			</div>
+        	<?php endwhile;
+    	endif;
+        echo "<div style='clear:both;'><button onclick=\"window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button></div>";
     } else {
-        echo "<button onclick=\"window.location.href = '".wp_login_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se connecter</button>"; 
-      }
+       	echo "<div style='clear:both;'><button onclick=\"window.location.href = '".wp_login_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se connecter</button></div>";
+    }
         ?>
               
          
