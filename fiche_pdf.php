@@ -122,7 +122,7 @@
                                 Le pétiole est <?php echo $petiole; ?>.<br>
 
                                 <?php echo  'présent' === $feuille['stipules'] ? $feuille['forme_et_couleur_des_stipules'] : '';?>
-                                <?php echo  $feuille['feuillage'] ? 'Le feuillage est ' . $feuille['feuillage'] : '';?>.
+                                <?php echo  $feuille['feuillage'] ? 'Le feuillage est ' . $feuille['feuillage'].'.' : '';?>
                             </p>
                         <?php else: ?>
                             <p><?php echo $presence_feuilles; ?></p>
@@ -177,13 +177,20 @@
                             <?php else: ?>
                                 <?php
                                 if ('tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
-                                    $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ' . $fleur_bisexuee['soudure_du_perigone'] . ' ; ';
+                                    $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
+                                    $perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
                                 } else {
-                                    $perianthe = implode(' ou ', $fleur_bisexuee['calice']) . ' sépale(s) ' . $fleur_bisexuee['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_bisexuee['corolle']) . ' pétale(s) ' . $fleur_bisexuee['soudure_de_la_corolle'] . ' ; ' . ('corolle soudée au calice' === $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] ? $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                    $perianthe = implode(' ou ', $fleur_bisexuee['calice']) . ' sépale(s) ';
+                                    $perianthe .= !empty($fleur_bisexuee['soudure_du_calice']) ? $fleur_bisexuee['soudure_du_calice'] : "" ;
+                                    $perianthe .=    ' et ' . implode(' ou ', $fleur_bisexuee['corolle']) . ' pétale(s) ' ;
+                                    $perianthe .= !empty($fleur_bisexuee['soudure_de_la_corolle']) ? $fleur_bisexuee['soudure_de_la_corolle'] . ' ; ' : "" ;
+                                    $perianthe .= ('corolle soudée au calice' === $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] ? 
+                                                   $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                                 }
                                 ?>
                                 périanthe composé de <?php echo $perianthe; ?>
-                                androcée composé de <?php echo implode(' ou ' , $fleur_bisexuee['androcee']); ?> étamine(s) <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                androcée composé de <?php echo implode(' ou ' , $fleur_bisexuee['androcee']); ?> étamine(s) 
+                                <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
                                 <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                                 gynécée composé de <?php echo implode(' ou ' , $fleur_bisexuee['gynecee']); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
                                 ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
