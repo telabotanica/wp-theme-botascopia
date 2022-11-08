@@ -224,15 +224,19 @@
                                     if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
                                         $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
                                     } else {
-                                        $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_male['corolle']) . ' pétale(s) ' . $fleur_male['soudure_de_la_corolle'] . ' ; ' . ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                        $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_male['corolle']) . ' pétale(s) ' . $fleur_male['soudure_de_la_corolle'] . ' ; ' . 
+                                            ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                                     }
                                     ?>
                                     périanthe composé de <?php echo $perianthe; ?>
-                                    androcée composé de <?php echo implode(' ou ' , $fleur_male['androcee']); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                    androcée composé de <?php echo implode(' ou ' , $fleur_male['androcee']); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ; 
+                                <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : ''). 
+                                        ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                                     <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                                     La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
-                                    La fleur est <?php echo $fleur_male['pubescence']. ('pubescente' === $fleur_male['pubescence'] ? ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']) : ''); ?>.
-                                    <?php echo $fleur_male['autre_caractere']; ?>.
+                                    <?php if ('pubescente' === $fleur_male['pubescence']) {
+                                        echo "La fleur est ".$fleur_male['pubescence'].' sur: '.implode(', ' , $fleur_male['localisation_des_poils'])."."; }?>
+                                    <?php echo $fleur_male['autre_caractere']; ?>
                                 <?php endif; ?>
                             </p>
                         </div>
