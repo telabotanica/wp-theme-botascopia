@@ -296,9 +296,9 @@
                     <?php foreach ($months as $m => $month): ?>
                         <?php
                         $periodes_flor = get_field('periode_de_floraison') ?: null;
+                        $flor_ok = false;
                         if($periodes_flor) {
                             $index_flor = 0;
-                            $flor_ok = false;
                             while (isset($periodes_flor[$index_flor]) && !$flor_ok) {
                                 $flor_ok = $month === $periodes_flor[$index_flor];
                                 $index_flor++;
@@ -306,9 +306,9 @@
                         }
 
                         $periodes_fruct = get_field('periode_de_fructification') ?: null;
+                        $fruct_ok = false;
                         if($periodes_fruct) {
                             $index_fruct = 0;
-                            $fruct_ok = false;
                             while (isset($periodes_fruct[$index_fruct]) && !$fruct_ok) {
                                 $fruct_ok = $month === $periodes_fruct[$index_fruct];
                                 $index_fruct++;
