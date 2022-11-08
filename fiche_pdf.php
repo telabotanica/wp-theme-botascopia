@@ -196,8 +196,8 @@
                                 ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
                                 La couleur principale de la fleur est <?php echo $fleur_bisexuee['couleur_principale']; ?>.
                                 <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
-                                    echo "La fleur est ".$fleur_bisexuee['pubescence'].' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']); } ?>.
-                                <?php echo $fleur_bisexuee['autre_caractere']."."; ?>
+                                    echo "La fleur est ".$fleur_bisexuee['pubescence'].' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).". "; } ?>
+                                <?php echo $fleur_bisexuee['autre_caractere']; ?>
                             <?php endif; ?>
                         </p>
                     </div>
