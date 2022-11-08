@@ -195,8 +195,9 @@
                                 gynécée composé de <?php echo implode(' ou ' , $fleur_bisexuee['gynecee']); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
                                 ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
                                 La couleur principale de la fleur est <?php echo $fleur_bisexuee['couleur_principale']; ?>.
-                                La fleur est <?php echo $fleur_bisexuee['pubescence']. ('pubescente' === $fleur_bisexuee['pubescence'] ? ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']) : ''); ?>.
-                                <?php echo $fleur_bisexuee['autre_caractere']; ?>.
+                                <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
+                                    echo "La fleur est ".$fleur_bisexuee['pubescence'].' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']); } ?>.
+                                <?php echo $fleur_bisexuee['autre_caractere']."."; ?>
                             <?php endif; ?>
                         </p>
                     </div>
