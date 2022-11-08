@@ -299,7 +299,6 @@
                         $flor_ok = false;
                         if($periodes_flor) {
                             $index_flor = 0;
-                            $flor_ok = false;
                             while (isset($periodes_flor[$index_flor]) && !$flor_ok) {
                                 $flor_ok = $month === $periodes_flor[$index_flor];
                                 $index_flor++;
@@ -310,7 +309,6 @@
                         $fruct_ok = false;
                         if($periodes_fruct) {
                             $index_fruct = 0;
-                            $fruct_ok = false;
                             while (isset($periodes_fruct[$index_fruct]) && !$fruct_ok) {
                                 $fruct_ok = $month === $periodes_fruct[$index_fruct];
                                 $index_fruct++;
@@ -318,8 +316,8 @@
                         }
                         ?>
                         <div class="month"><?php echo substr($month,0,1); ?></div>
-                        <div class="floraison<?php echo isset($flor_ok) ? '-vert' : ''; ?>-icon icon"></div>
-                        <div class="fructification<?php echo isset($fruct_ok) ? '-mauve' : ''; ?>-icon icon"></div>
+                        <div class="floraison<?php echo $flor_ok ? '-vert' : ''; ?>-icon icon"></div>
+                        <div class="fructification<?php echo $fruct_ok ? '-mauve' : ''; ?>-icon icon"></div>
                     <?php endforeach; ?>
                 </div>
             </header>
