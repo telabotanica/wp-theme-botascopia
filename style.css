@@ -154,13 +154,13 @@ body.page-template-fiche_pdf {
 /* * species characteristics sections * */
 /* ************************************ */
 .page-template-fiche_pdf .characteristic {
-  width: 7.5cm;
+  width: 9cm;
   vertical-align: top;
   padding-left: 1cm;
 }
 
 .page-template-fiche_pdf .characteristic.fleur-bisexuee {
-  width: 15cm;
+  width: 18cm;
 }
 
 .page-template-fiche_pdf header .characteristic {
