@@ -32,4 +32,8 @@ function set_user_admin_bar_false_by_default($user_id) {
 }
 add_action("user_register", "set_user_admin_bar_false_by_default", 10, 1);
 
+add_filter( 'login_redirect', function( $url, $query, $user ) {
+    return home_url();
+}, 10, 3 );
+
 
