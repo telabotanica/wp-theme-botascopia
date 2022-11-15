@@ -4,6 +4,14 @@ Theme URI: http://oser-beta.tela-botanica.org
 Description: Botascopia
 Version: 1.0
 */
+@font-face {
+  font-family: 'grand_hotel';
+  src: url('fonts/Grand hotel.eot');
+  url('fonts/Grand hotel.woff2') format('woff2'),
+  url('fonts/Grand hotel.woff') format('woff'),
+  url('fonts/Grand hotel.ttf') format('truetype'),
+  url('fonts/Grand hotel.svg#svgwpf') format('svg');
+}
 
 * {
   box-sizing: border-box;
