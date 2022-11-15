@@ -6,11 +6,11 @@ Version: 1.0
 */
 @font-face {
   font-family: 'grand_hotel';
-  src: url('fonts/Grand hotel.eot');
-  url('fonts/Grand hotel.woff2') format('woff2'),
-  url('fonts/Grand hotel.woff') format('woff'),
-  url('fonts/Grand hotel.ttf') format('truetype'),
-  url('fonts/Grand hotel.svg#svgwpf') format('svg');
+  src: url('fonts/grand-hotel.eot');
+  url('fonts/grand-hotel.woff2') format('woff2'),
+  url('fonts/grand-hotel.woff') format('woff'),
+  url('fonts/grand-hotel.ttf') format('truetype'),
+  url('fonts/grand-hotel.svg#svgwpf') format('svg');
 }
 
 * {
