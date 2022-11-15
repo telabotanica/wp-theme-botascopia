@@ -412,7 +412,7 @@
 
                         <div class="columns">
                             <h5>référence(s) :</h5>
-                            <?php for($i = 1; $i <= 5; $i++): ?>
+                            <?php for($i = 1; $i <= 3; $i++): ?>
                                 <?php $ref = get_field('reference_'.strval($i)) ?: null;?>
                                 <?php if($ref):?>
                                     <p><?php echo $ref; ?></p>
