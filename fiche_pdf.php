@@ -63,7 +63,7 @@
                     $tige = get_field('tige');
                     if (!empty($tige)) {
                         $type_tige = implode(', ', $tige['type_de_tige']);
-                        $section_tige = implode(' et ', $tige['section_de_la_tige']);
+                        $section_tige = implode('-', $tige['section_de_la_tige']);
                         $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
                         ?>
                         <h4 class="icon-title">
