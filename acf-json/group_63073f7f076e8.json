@@ -6,6 +6,7 @@
             "key": "field_63073f8ad664f",
             "label": "Complément d'anecdote",
             "name": "complement_danecdote",
+            "aria-label": "",
             "type": "text",
             "instructions": "Ceci est champs libre non limité en place pour y ajouter les anecdotes sur la plante décrite que vous n'auriez pas pu ajouter dans le premier champ anecdote.",
             "required": 0,
@@ -50,5 +51,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1663849677
+    "modified": 1666604435
 }

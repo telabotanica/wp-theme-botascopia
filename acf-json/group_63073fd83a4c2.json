@@ -6,6 +6,7 @@
             "key": "field_63073fddfcc5b",
             "label": "Propriétés",
             "name": "proprietes",
+            "aria-label": "",
             "type": "text",
             "instructions": "S'il y en a, décrivez les propriétés de la plante telles que des substances naturelles particulières, toxicité, huiles essentielles, usages, mellifère, importance économique, représentations socio-culturels",
             "required": 0,
@@ -16,10 +17,10 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": 200,
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         }
     ],
     "location": [
@@ -40,5 +41,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1662110372
+    "modified": 1667916860
 }

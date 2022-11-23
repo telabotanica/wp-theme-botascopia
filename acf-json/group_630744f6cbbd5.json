@@ -6,6 +6,7 @@
             "key": "field_630744fb6196e",
             "label": "Logo Paris Saclay",
             "name": "logo_paris_saclay",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 1,
@@ -30,6 +31,7 @@
             "key": "field_630745126196f",
             "label": "Logo Tela Botanica",
             "name": "logo_tela_botanica",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 1,
@@ -54,6 +56,7 @@
             "key": "field_6307451d61970",
             "label": "Logo Botascopia",
             "name": "logo_botascopia",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 1,
@@ -93,5 +96,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1663860136
+    "modified": 1666604436
 }

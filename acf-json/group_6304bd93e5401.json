@@ -412,11 +412,11 @@
                         "rampante": "rampante",
                         "prostrée à la base puis dressée": "prostrée à la base puis dressée"
                     },
-                    "default_value": [],
-                    "return_format": "value",
                     "allow_custom": 0,
+                    "default_value": [],
                     "layout": "vertical",
                     "toggle": 0,
+                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -996,7 +996,10 @@
                         "parallèle": "parallèle",
                         "pennée": "pennée",
                         "palmée": "palmée",
-                        "peltée": "peltée"
+                        "peltée": "peltée",
+                        "non visible en apparence": "non visible en apparence",
+                        "uninervée en apparence": "uninervée en apparence",
+                        "trinervée en apparence": "trinervée en apparence"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1423,7 +1426,10 @@
                         "parallèle": "parallèle",
                         "pennée": "pennée",
                         "palmée": "palmée",
-                        "peltée": "peltée"
+                        "peltée": "peltée",
+                        "non visible en apparence": "non visible en apparence",
+                        "uninervée en apparence": "uninervée en apparence",
+                        "trinervée en apparence": "trinervée en apparence"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1850,7 +1856,10 @@
                         "parallèle": "parallèle",
                         "pennée": "pennée",
                         "palmée": "palmée",
-                        "peltée": "peltée"
+                        "peltée": "peltée",
+                        "non visible en apparence": "non visible en apparence",
+                        "uninervée en apparence": "uninervée en apparence",
+                        "trinervée en apparence": "trinervée en apparence"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2277,7 +2286,10 @@
                         "parallèle": "parallèle",
                         "pennée": "pennée",
                         "palmée": "palmée",
-                        "peltée": "peltée"
+                        "peltée": "peltée",
+                        "non visible en apparence": "non visible en apparence",
+                        "uninervée en apparence": "uninervée en apparence",
+                        "trinervée en apparence": "trinervée en apparence"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -5067,7 +5079,7 @@
             {
                 "param": "post_category",
                 "operator": "==",
-                "value": "category:uncategorized"
+                "value": "category:bdtfx"
             },
             {
                 "param": "current_user",
@@ -5090,5 +5102,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669134385
+    "modified": 1669113257
 }
+
