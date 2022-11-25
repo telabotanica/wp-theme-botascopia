@@ -55,10 +55,18 @@ body.page-template-fiche_pdf {
 
 #page-1 main {
   padding: 0 1cm;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.8cm;
 }
 
 #page-2 main {
   padding: 0 1cm;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.8cm;
 }
 
 .page-template-fiche_pdf header .container {
@@ -176,9 +184,9 @@ body.page-template-fiche_pdf {
   vertical-align: initial;
 }
 
-.page-template-fiche_pdf .characteristic:nth-child(even) {
+/*.page-template-fiche_pdf .characteristic:nth-child(even) {
   margin-left: 0.8cm;
-}
+}*/
 
 .page-template-fiche_pdf .characteristic,
 .page-template-fiche_pdf .characteristic h4,

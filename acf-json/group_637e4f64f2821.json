@@ -1,5 +1,5 @@
 {
-    "key": "group_6304bd93e5401",
+    "key": "group_637e4f64f2821",
     "title": "Description morphologique",
     "fields": [
         {
@@ -42,10 +42,10 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": 200,
             "placeholder": "Le nom du genre vient du latin ranunculus qui signifie “petite grenouille” car une partie des espèces du genre affectionne les endroits humides. Le tronc lisse et gris évoque une patte d’éléphant.",
             "prepend": "",
-            "append": "",
-            "maxlength": 200
+            "append": ""
         },
         {
             "key": "field_6304bdf681abb",
@@ -67,12 +67,12 @@
                 "arbre": "arbre",
                 "liane": "liane"
             },
+            "default_value": "",
+            "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
-            "default_value": "",
-            "layout": "vertical",
-            "return_format": "value",
-            "save_other_choice": 0
+            "save_other_choice": 0,
+            "layout": "vertical"
         },
         {
             "key": "field_6304be7c75bd9",
@@ -103,8 +103,8 @@
             "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
-            "layout": "vertical",
-            "save_other_choice": 0
+            "save_other_choice": 0,
+            "layout": "vertical"
         },
         {
             "key": "field_6304c10075bda",
@@ -142,12 +142,12 @@
                 "parasite": "parasite",
                 "hémiparasite": "hémiparasite"
             },
-            "allow_custom": 0,
             "default_value": [],
-            "layout": "vertical",
-            "toggle": 0,
             "return_format": "value",
-            "save_custom": 0
+            "allow_custom": 0,
+            "save_custom": 0,
+            "layout": "vertical",
+            "toggle": 0
         },
         {
             "key": "field_6304c15175bdc",
@@ -179,9 +179,9 @@
             "default_value": [],
             "return_format": "value",
             "allow_custom": 0,
+            "save_custom": 0,
             "layout": "vertical",
-            "toggle": 0,
-            "save_custom": 0
+            "toggle": 0
         },
         {
             "key": "field_6304c1bd75bdd",
@@ -265,10 +265,10 @@
                 "50 m": "50 m"
             },
             "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": ""
         },
@@ -295,8 +295,8 @@
             "return_format": "value",
             "allow_null": 1,
             "other_choice": 0,
-            "layout": "vertical",
-            "save_other_choice": 0
+            "save_other_choice": 0,
+            "layout": "vertical"
         },
         {
             "key": "field_6304c4aa75be2",
@@ -313,10 +313,10 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "placeholder": "“Les feuilles et les tiges sont entièrement couvertes d’un tomentum gris” ;  “La tige est ailée” ; “Les racines ont une odeur d’étable” ; “Les bords des feuilles sont coupants” ;  “La corolle est bilabiée (ou papilionacée”) ; “Certains individus portent seulement des fleurs femelles” ; “Certains individus portent seulement des fleurs mâles”, “Les individus portent des fleurs hermaphrodites et des fleurs mâles”",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_6304e1ece18b0",
@@ -378,12 +378,12 @@
                         "visible une partie de l'année": "visible une partie de l'année",
                         "non visible": "non visible"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304c6d52391a",
@@ -415,9 +415,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304c8e02391b",
@@ -445,12 +445,12 @@
                         "ramifiée": "ramifiée",
                         "non ramifiée": "non ramifiée"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304c9402391c",
@@ -482,12 +482,12 @@
                         "creuse": "creuse",
                         "pleine": "pleine"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304c9762391d",
@@ -581,10 +581,10 @@
                         "formant des lenticelle": "formant des lenticelle"
                     },
                     "default_value": [],
-                    "allow_null": 0,
-                    "multiple": 1,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
                 },
@@ -640,10 +640,10 @@
                         "marron-gris": "marron-gris"
                     },
                     "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
                 }
@@ -683,12 +683,12 @@
                         "visibles": "visibles",
                         "jamais visibles": "jamais visibles"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 }
             ]
         },
@@ -723,8 +723,8 @@
             "return_format": "value",
             "allow_null": 1,
             "other_choice": 0,
-            "layout": "vertical",
-            "save_other_choice": 0
+            "save_other_choice": 0,
+            "layout": "vertical"
         },
         {
             "key": "field_634e46c42f080",
@@ -756,8 +756,8 @@
             "return_format": "value",
             "allow_null": 1,
             "other_choice": 0,
-            "layout": "vertical",
-            "save_other_choice": 0
+            "save_other_choice": 0,
+            "layout": "vertical"
         },
         {
             "key": "field_6304d9e2b94a5",
@@ -840,12 +840,12 @@
                         "opposée décussée": "opposée décussée",
                         "verticillée": "verticillée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304da7252e04",
@@ -865,12 +865,12 @@
                         "simples": "simples",
                         "composées": "composées"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304dac552e05",
@@ -904,12 +904,12 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304db6293737",
@@ -943,12 +943,12 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304dbec93738",
@@ -971,12 +971,12 @@
                         "pubescente": "pubescente",
                         "épineuse": "épineuse"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304dc3393739",
@@ -1023,12 +1023,12 @@
                         "présent": "présent",
                         "absent": "absent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304dc9a9373b",
@@ -1057,12 +1057,12 @@
                         "de la même longueur que le limbe": "de la même longueur que le limbe",
                         "plus grand que le limbe": "plus grand que le limbe"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304dcd49373c",
@@ -1090,12 +1090,12 @@
                         "engainant": "engainant",
                         "non engainant": "non engainant"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304dee810a78",
@@ -1115,12 +1115,12 @@
                         "présents": "présents",
                         "pas visibles": "pas visibles"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304df1810a79",
@@ -1145,10 +1145,10 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": 100,
                     "placeholder": "Les stipules sont épineux ; Les stipules sont frangés ; Les stipules sont verts, très développés et pointus à l’extrémité",
                     "prepend": "",
-                    "append": "",
-                    "maxlength": 100
+                    "append": ""
                 },
                 {
                     "key": "field_6304df4410a7a",
@@ -1184,12 +1184,12 @@
                         "marescent": "marescent",
                         "persistant": "persistant"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 }
             ]
         },
@@ -1270,9 +1270,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e48ca9ffef",
@@ -1295,9 +1295,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e48ca9fff0",
@@ -1334,9 +1334,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e48ca9fff1",
@@ -1373,9 +1373,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e48ca9fff2",
@@ -1401,9 +1401,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e48ca9fff3",
@@ -1454,8 +1454,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e48ca9fff5",
@@ -1488,8 +1488,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e48ca9fff6",
@@ -1521,8 +1521,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e48ca9fff7",
@@ -1546,8 +1546,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e48ca9fff8",
@@ -1615,8 +1615,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 }
             ]
         },
@@ -1695,11 +1695,11 @@
                         "verticillée": "verticillée"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49d148012",
@@ -1720,11 +1720,11 @@
                         "composées": "composées"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49d148013",
@@ -1759,11 +1759,11 @@
                         "palmatiséqué": "palmatiséqué"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49d148014",
@@ -1798,11 +1798,11 @@
                         "palmatiséqué": "palmatiséqué"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49d148015",
@@ -1826,11 +1826,11 @@
                         "épineuse": "épineuse"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49d148016",
@@ -1878,11 +1878,11 @@
                         "absent": "absent"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49d148018",
@@ -1912,11 +1912,11 @@
                         "plus grand que le limbe": "plus grand que le limbe"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49d148019",
@@ -1945,11 +1945,11 @@
                         "non engainant": "non engainant"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49d14801a",
@@ -1970,11 +1970,11 @@
                         "pas visibles": "pas visibles"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49d14801b",
@@ -2039,11 +2039,11 @@
                         "persistant": "persistant"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 }
             ]
         },
@@ -2124,9 +2124,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49eb48020",
@@ -2149,9 +2149,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49eb48021",
@@ -2188,9 +2188,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49eb48022",
@@ -2227,9 +2227,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49eb48023",
@@ -2255,9 +2255,9 @@
                     "default_value": [],
                     "return_format": "value",
                     "allow_custom": 0,
+                    "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
+                    "toggle": 0
                 },
                 {
                     "key": "field_634e49eb48024",
@@ -2308,8 +2308,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49eb48026",
@@ -2342,8 +2342,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49eb48027",
@@ -2375,8 +2375,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49eb48028",
@@ -2400,8 +2400,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_634e49eb48029",
@@ -2469,8 +2469,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 }
             ]
         },
@@ -2508,12 +2508,12 @@
                         "organisées en inflorescences": "organisées en inflorescences",
                         "solitaires": "solitaires"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304ec28c13d6",
@@ -2553,8 +2553,8 @@
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304eccbc13d7",
@@ -2695,12 +2695,12 @@
                         "actinomorphe": "actinomorphe",
                         "zygomorphe": "zygomorphe"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_631085accce36",
@@ -2724,8 +2724,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_631085d0cce37",
@@ -2745,12 +2745,12 @@
                         "présent": "présent",
                         "absent": "absent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63108612cce38",
@@ -2778,12 +2778,12 @@
                         "tépales": "tépales",
                         "sépales et pétales": "sépales et pétales"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310864dcce39",
@@ -2831,10 +2831,10 @@
                         "n>20": "n>20"
                     },
                     "default_value": [],
-                    "allow_null": 0,
-                    "multiple": 1,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
                 },
@@ -2875,8 +2875,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310872ecce3c",
@@ -2968,8 +2968,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_631087cbcce3f",
@@ -3001,8 +3001,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63108805cce40",
@@ -3094,8 +3094,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310888731cea",
@@ -3174,8 +3174,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_631088e831cec",
@@ -3207,8 +3207,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310893431ced",
@@ -3240,8 +3240,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310895931cee",
@@ -3265,8 +3265,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310898731cef",
@@ -3291,12 +3291,12 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
                     "min": 1,
                     "max": "",
-                    "step": ""
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_6310a8a03ed57",
@@ -3375,8 +3375,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310a9e23ed59",
@@ -3397,12 +3397,12 @@
                         "infère": "infère",
                         "semi-infère": "semi-infère"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310aa163ed5a",
@@ -3434,12 +3434,12 @@
                         "bleu vif": "bleu vif",
                         "orange": "orange"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 1,
                     "save_other_choice": 1,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value"
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310aa6f3ed5b",
@@ -3463,8 +3463,8 @@
                     "return_format": "value",
                     "allow_null": 1,
                     "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6310aa953ed5c",
@@ -3495,12 +3495,12 @@
                         "androcée": "androcée",
                         "gynécée": "gynécée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6310aac33ed5d",
@@ -3601,12 +3601,12 @@
                         "actinomorphe": "actinomorphe",
                         "zygomorphe": "zygomorphe"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304f06dbe18a",
@@ -3626,12 +3626,12 @@
                         "présent": "présent",
                         "absent": "absent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f0d3be18b",
@@ -3651,12 +3651,12 @@
                         "présent": "présent",
                         "absent": "absent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f10bbe18c",
@@ -3684,12 +3684,12 @@
                         "tépales": "tépales",
                         "sépales et pétales": "sépales et pétales"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f178be18d",
@@ -3777,12 +3777,12 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f5bb2d9f2",
@@ -3863,12 +3863,12 @@
                         "soudés au calice": "soudés au calice",
                         "non soudés au calice": "non soudés au calice"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f734c677f",
@@ -3951,12 +3951,12 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f8b6829c8",
@@ -4031,12 +4031,12 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f99e829ca",
@@ -4064,12 +4064,12 @@
                         "soudées à la corolle": "soudées à la corolle",
                         "non soudées à la corolle": "non soudées à la corolle"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304f9ce829cb",
@@ -4097,12 +4097,12 @@
                         "soudées à la corolle": "soudées à la corolle",
                         "non soudées à la corolle": "non soudées à la corolle"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304fa25829cc",
@@ -4122,12 +4122,12 @@
                         "présents": "présents",
                         "absents": "absents"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304fb26829cd",
@@ -4152,12 +4152,12 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
                     "min": 1,
                     "max": 50,
-                    "step": ""
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_6304fc15829ce",
@@ -4189,12 +4189,12 @@
                         "bleu vif": "bleu vif",
                         "orange": "orange"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304fc93829cf",
@@ -4214,12 +4214,12 @@
                         "entièrement glabre": "entièrement glabre",
                         "pubescente": "pubescente"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_6304fcbc829d0",
@@ -4250,12 +4250,12 @@
                         "androcée": "androcée",
                         "gynécée": "gynécée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_6304fdcd68d53",
@@ -4280,10 +4280,10 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": "",
                     "placeholder": "Ex. : nectaires bien visibles, présence d’une couronne (paracorolle), écailles sur les pétales, présence d’un éperon, présence de fleurs stériles dans les inflorescences, ovaire enveloppé dans un utricule, etc.",
                     "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "append": ""
                 }
             ]
         },
@@ -4294,32 +4294,13 @@
             "aria-label": "",
             "type": "group",
             "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6304be7c75bd9",
-                        "operator": "!=",
-                        "value": "hermaphrodite"
-                    },
-                    {
-                        "field": "field_6304be7c75bd9",
-                        "operator": "!=",
-                        "value": "andromonoïque"
-                    },
-                    {
-                        "field": "field_6304be7c75bd9",
-                        "operator": "!=",
-                        "value": "androdioïque"
-                    }
-                ]
-            ],
+            "required": false,
+            "conditional_logic": false,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
             "sub_fields": [
                 {
                     "key": "field_630640cbdb1e4",
@@ -4364,12 +4345,12 @@
                         "actinomorphe": "actinomorphe",
                         "zygomorphe": "zygomorphe"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
                 },
                 {
                     "key": "field_63075a6becd6f",
@@ -4389,12 +4370,12 @@
                         "présent": "présent",
                         "absent": "absent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075a90ecd70",
@@ -4414,12 +4395,12 @@
                         "présent": "présent",
                         "absent": "absent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075ab5ecd71",
@@ -4447,12 +4428,12 @@
                         "tépales": "tépales",
                         "sépales et pétales": "sépales et pétales"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075ae3ecd72",
@@ -4540,12 +4521,12 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075bd9ecd75",
@@ -4633,12 +4614,12 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075dcbecd78",
@@ -4666,12 +4647,12 @@
                         "soudés au calice": "soudés au calice",
                         "non soudés au calice": "non soudés au calice"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075e2cecd79",
@@ -4759,12 +4740,12 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_63075fcfecd7b",
@@ -4831,38 +4812,34 @@
                         "soudés uniquement au niveau de l'ovaire": "soudés uniquement au niveau de l'ovaire",
                         "non soudés": "non soudés"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 0,
+                    "layout": "vertical"
                 },
                 {
                     "key": "field_630761dbecd7d",
-                    "label": "Ovaire",
-                    "name": "ovaire",
+                    "label": "",
+                    "name": "",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
+                    "required": false,
+                    "conditional_logic": false,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "supère": "supère",
-                        "infère": "infère",
-                        "semi-infère": "semi-infère"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "choices": [],
+                    "default_value": "",
+                    "other_choice": 0,
+                    "save_other_choice": 0,
+                    "allow_null": 0,
+                    "return_format": "value"
                 },
                 {
                     "key": "field_6307625aecd7e",
@@ -4982,7 +4959,8 @@
                     "rows": 3,
                     "new_lines": ""
                 }
-            ]
+            ],
+            "layout": "block"
         },
         {
             "key": "field_63076535ecd82",
@@ -5065,19 +5043,9 @@
     "location": [
         [
             {
-                "param": "post_category",
+                "param": "post_type",
                 "operator": "==",
-                "value": "category:uncategorized"
-            },
-            {
-                "param": "current_user",
-                "operator": "==",
-                "value": "logged_in"
-            },
-            {
-                "param": "post_status",
-                "operator": "==",
-                "value": "draft"
+                "value": "post"
             }
         ]
     ],
@@ -5090,5 +5058,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669222240
+    "modified": 1669222248
 }
