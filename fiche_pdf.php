@@ -52,7 +52,9 @@
                 </div>
                 <?php
                 $index_photos = 0;
-                $refs_photo[] = get_field('photo_de_la_plante_entiere');
+                if (!empty(get_field('photo_de_la_plante_entiere'))) {
+                    $refs_photo[] = get_field('photo_de_la_plante_entiere');
+                }
                 ?>
                 <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>'); background-size: cover;">
             </header>
@@ -338,14 +340,16 @@
                 </div>
             </header>
             <main class="container">
+                <?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
                         <div class="ecologie-icon icon"></div>écologie
                     </h3>
-                    <p>Altitude : <?php the_field('amplitude_altitudinale'); ?> ; <?php echo (!empty(get_field('affinites_ecologiques'))) ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ;
-                        habitat : <?php the_field('habitat_preferentiel'); ?>. Plante <?php the_field('systeme_de_reproduction'); ?>, à pollinisation <?php the_field('pollinisation'); ?>,
-                        dispersion des graines et des fruits par <?php echo (!empty(get_field('dispersion'))) ? implode(', ', get_field('dispersion')) : ""; ?>.</p>
+                    <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Altitude : <?php echo get_field('amplitude_altitudinale'); ?> ; <?php endif; ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?><?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
+                        <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?> <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> Plante <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
+                        <?php if (!empty(get_field('dispersion'))) :?> dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
                 </div>
+                <?php endif; ?>
                 <?php $proprietes = get_field('proprietes')?: null; ?>
                 <?php if ($proprietes): ?>
                     <div class="characteristic">
@@ -355,17 +359,20 @@
                         <p><?php echo $proprietes; ?></p>
                     </div>
                 <?php endif; ?>
-
+                <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
                         <div class="location-icon icon"></div>aire de répartition
                     </h3>
-                    <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                    <p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
-                    <?php if (get_field('carte_de_metropole')) :?>
+                    <?php if (!empty(get_field('cultivee_en_france'))) { ?>
+                        <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
+                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                    <?php } ?>
+                    <?php if (!empty(get_field('carte_de_metropole'))) :?>
                         <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
                     <?php endif; ?>
                 </div>
+                <?php endif; ?>
 
                 <?php $description = get_field('description')?: null; ?>
                 <?php if ($description): ?>

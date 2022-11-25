@@ -160,7 +160,7 @@
             {
                 "param": "post_category",
                 "operator": "==",
-                "value": "category:bdtfx"
+                "value": "category:uncategorized"
             },
             {
                 "param": "current_user",
@@ -183,5 +183,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666604436
+    "modified": 1669392506
 }
