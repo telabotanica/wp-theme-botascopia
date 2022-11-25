@@ -294,6 +294,8 @@
                         <ol class="characteristic-photos">
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
                                 <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+                                <?php if($i == 5) : {break;} ?>
+                                <?php endif; ?>
                             <?php endfor; ?>
                         </ol>
                     </div>

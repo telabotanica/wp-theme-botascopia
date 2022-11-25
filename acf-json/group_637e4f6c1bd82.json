@@ -3550,8 +3550,8 @@
             "sub_fields": [
                 {
                     "key": "field_6304ef9dbe188",
-                    "label": "Photo",
-                    "name": "photo",
+                    "label": "Photo de la fleur mâle",
+                    "name": "photo_de_fleur_male",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -4313,8 +4313,8 @@
             "sub_fields": [
                 {
                     "key": "field_630640cbdb1e4",
-                    "label": "Photo",
-                    "name": "photo",
+                    "label": "Photo de la fleur femelle",
+                    "name": "photo_de_fleur_femelle",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -5066,5 +5066,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669278780
+    "modified": 1669368617
 }
