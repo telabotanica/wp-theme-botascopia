@@ -52,6 +52,7 @@
                 </div>
                 <?php
                 $index_photos = 0;
+                $refs_photo[] = [];
                 if (!empty(get_field('photo_de_la_plante_entiere'))) {
                     $refs_photo[] = get_field('photo_de_la_plante_entiere');
                 }
