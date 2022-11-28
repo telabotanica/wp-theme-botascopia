@@ -101,6 +101,7 @@
                                 <div class="picture-ref"><?php echo $index_photos;?></div>
                             <?php endif; ?>
                             <p>
+                                <?php if ($feuille['phyllotaxie'] && $feuille['type_de_feuille']) {; ?>
                                 Les feuilles sont disposées de façon <?php echo implode(' et ', $feuille['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuille['type_de_feuille']);?>.<br>
                                 <?php
                                 $type_feuille_multiple = 1 < count($feuille['type_de_feuille']);
@@ -114,7 +115,9 @@
                                         $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuille['limbe_des_folioles']));
                                     }
                                 }
+                            }
                                 ?>
+                                <?php endif; ?>
 
                                 <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuille['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuille['nervation']);?>.<br>
 
