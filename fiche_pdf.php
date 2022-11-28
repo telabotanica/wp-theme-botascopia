@@ -63,9 +63,8 @@
             <main class="container">
                 <div class="characteristic">
                     <?php
-                    if (!empty(get_field('tige'))) {
-                        $tige = get_field('tige');
-                    //if (!empty($tige)) {
+                    $tige = get_field('tige');
+                    if (!empty($tige)) {
                         $type_tige = implode(', ', $tige['type_de_tige']);
                         $section_tige = implode('-', $tige['section_de_la_tige']);
                         $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
@@ -101,7 +100,6 @@
                                 <div class="picture-ref"><?php echo $index_photos;?></div>
                             <?php endif; ?>
                             <p>
-                                <?php if (!empty($feuille['phyllotaxie']) && !empty($feuille['type_de_feuille'])) {; ?>
                                 Les feuilles sont disposées de façon <?php echo implode(' et ', $feuille['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuille['type_de_feuille']);?>.<br>
                                 <?php
                                 $type_feuille_multiple = 1 < count($feuille['type_de_feuille']);
@@ -116,7 +114,6 @@
                                     }
                                 }
                                 ?>
-                                <?php }; ?>
 
                                 <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuille['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuille['nervation']);?>.<br>
 
