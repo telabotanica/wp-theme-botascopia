@@ -101,7 +101,7 @@
                                 <div class="picture-ref"><?php echo $index_photos;?></div>
                             <?php endif; ?>
                             <p>
-                                <?php if ($feuille['phyllotaxie'] && $feuille['type_de_feuille']) {; ?>
+                                <?php if (!empty($feuille['phyllotaxie']) && !empty($feuille['type_de_feuille'])) {; ?>
                                 Les feuilles sont disposées de façon <?php echo implode(' et ', $feuille['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuille['type_de_feuille']);?>.<br>
                                 <?php
                                 $type_feuille_multiple = 1 < count($feuille['type_de_feuille']);
