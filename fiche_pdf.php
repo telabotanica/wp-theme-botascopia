@@ -61,6 +61,9 @@
             </header>
 
             <main class="container">
+                <?php
+                    $tige = get_field('tige');
+                    if (!empty($tige)){ ?>
                 <div class="characteristic">
                     <?php
                     $tige = get_field('tige');
@@ -82,6 +85,7 @@
                         <p>La tige aérienne est <?php echo $tige['tige_aerienne'];?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.<br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.</p>
                     <?php } ?>
                 </div>
+                    <?php } ?>
 
                 <div class="characteristic">
                     <?php  if (!empty(get_field('feuille'))) { ?>
