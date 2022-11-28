@@ -160,7 +160,7 @@
             {
                 "param": "post_category",
                 "operator": "==",
-                "value": "category:uncategorized"
+                "value": "category:bdtfx"
             },
             {
                 "param": "current_user",
