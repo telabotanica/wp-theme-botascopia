@@ -115,9 +115,8 @@
                                         $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuille['limbe_des_folioles']));
                                     }
                                 }
-                            }
                                 ?>
-                                <?php endif; ?>
+                                <?php } endif; ?>
 
                                 <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuille['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuille['nervation']);?>.<br>
 
