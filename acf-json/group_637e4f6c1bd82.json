@@ -762,7 +762,7 @@
         {
             "key": "field_6304d9e2b94a5",
             "label": "Feuilles aériennes",
-            "name": "feuilles_visibles",
+            "name": "feuilles_aeriennes",
             "aria-label": "",
             "type": "group",
             "instructions": "Dans le cas où toutes les feuilles sont semblables, c'est ici que vous les décrivez. Si vous avez choisis \"gradient de forme\" alors décrivez ici les feuilles de la base seulement.",

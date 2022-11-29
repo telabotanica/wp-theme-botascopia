@@ -90,12 +90,17 @@
 
                 <div class="characteristic">
                     <?php  if (!empty(get_field('feuille'))) { ?>
+                            <?php echo var_dump(get_field('feuille')); ?>
                         <h4 class="icon-title">
                             <div class="feuilles-icon icon"></div>Feuilles
                         </h4>
 
                         <?php $presence_feuilles = get_field('feuille')['presence_de_feuilles']; ?>
                         <?php if ('visibles' === $presence_feuilles): ?>
+
+                            <?php $heteromorphisme_foliaire = get_field('feuille')['heteromorphisme_foliaire']; ?>
+                            <?php if ('feuilles toutes semblables' === $heteromorphisme_foliaire): ?>
+
                             <?php $feuille = get_field('feuilles_visibles'); ?>
                             <?php if(!empty($feuille['photo_de_feuilles'])): ?>
                                 <?php
@@ -132,6 +137,7 @@
                                 <?php echo  'présent' === $feuille['stipules'] ? $feuille['forme_et_couleur_des_stipules'] : '';?>
                                 <?php echo  $feuille['feuillage'] ? 'Le feuillage est ' . $feuille['feuillage'].'.' : '';?>
                             </p>
+
                         <?php else: ?>
                             <p><?php echo $presence_feuilles; ?></p>
                         <?php endif; ?>
