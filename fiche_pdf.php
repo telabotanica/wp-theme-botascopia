@@ -103,7 +103,7 @@
                                 <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
                                 <?php if(!empty($feuilles_aeriennes['photo_de_feuilles_aeriennes'])): ?>
                                     <?php
-                                    $refs_photo[] = $feuilles_aeriennes['photo_de_feuilles']["id"];
+                                    $refs_photo[] = $feuilles_aeriennes['photo_de_feuilles_aeriennes']["id"];
                                     $index_photos++;
                                     ?>
                                     <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -146,7 +146,7 @@
                                     <?php if(!empty($feuilles_aeriennes)): ?>
                                         <?php if(!empty($feuilles_aeriennes['photo_de_feuilles_aeriennes'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_aeriennes['photo_de_feuilles']["id"];
+                                            $refs_photo[] = $feuilles_aeriennes['photo_de_feuilles_aeriennes']["id"];
                                             $index_photos++;
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -185,7 +185,7 @@
                                     <?php if(!empty($feuilles_immergees)): ?>
                                         <?php if(!empty($feuilles_immergees['photo_de_feuilles_immergees'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_immergees['photo_de_feuilles']["id"];
+                                            $refs_photo[] = $feuilles_immergees['photo_de_feuilles_immergees']["id"];
                                             $index_photos++;
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -226,7 +226,7 @@
                                     <?php if(!empty($feuilles_des_rameaux_steriles)): ?>
                                         <?php if(!empty($feuilles_des_rameaux_steriles['photo_de_feuilles_des_rameaux_steriles'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_des_rameaux_steriles['photo_de_feuilles']["id"];
+                                            $refs_photo[] = $feuilles_des_rameaux_steriles['photo_de_feuilles_des_rameaux_steriles']["id"];
                                             $index_photos++;
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -265,7 +265,7 @@
                                     <?php if (!empty($feuilles_des_rameaux_fleuris)) : ?>
                                         <?php if(!empty($feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_des_rameaux_fleuris['photo_de_feuilles']["id"];
+                                            $refs_photo[] = $feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris']["id"];
                                             $index_photos++;
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
