@@ -99,7 +99,7 @@
                         <?php if ('visibles' === $presence_feuilles): ?>
 
                             <?php $heteromorphisme_foliaire = get_field('feuille')['heteromorphisme_foliaire']; ?>
-                            <?php if ('feuilles toutes semblables' === $heteromorphisme_foliaire): ?>
+                            <?php /*if ('feuilles toutes semblables' === $heteromorphisme_foliaire):*/ ?>
 
                             <?php $feuille = get_field('feuilles_visibles'); ?>
                             <?php if(!empty($feuille['photo_de_feuilles'])): ?>
