@@ -762,7 +762,7 @@
         {
             "key": "field_6304d9e2b94a5",
             "label": "Feuilles aériennes",
-            "name": "feuilles_visibles",
+            "name": "feuilles_aeriennes",
             "aria-label": "",
             "type": "group",
             "instructions": "Dans le cas où toutes les feuilles sont semblables, c'est ici que vous les décrivez. Si vous avez choisis \"gradient de forme\" alors décrivez ici les feuilles de la base seulement.",
@@ -797,8 +797,8 @@
             "sub_fields": [
                 {
                     "key": "field_6304d939b94a3",
-                    "label": "Photo de feuilles",
-                    "name": "photo_de_feuilles",
+                    "label": "Photo de feuilles aériennes",
+                    "name": "photo_de_feuilles_aeriennes",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -1199,7 +1199,7 @@
         {
             "key": "field_634e48ca9ffec",
             "label": "Feuilles immergées",
-            "name": "feuilles_visibles_copier",
+            "name": "feuilles_immergees",
             "aria-label": "",
             "type": "group",
             "instructions": "À remplir uniquement si les feuilles sont visibles.",
@@ -1227,8 +1227,8 @@
             "sub_fields": [
                 {
                     "key": "field_634e48ca9ffed",
-                    "label": "Photo de feuilles",
-                    "name": "photo_de_feuilles",
+                    "label": "Photo de feuilles immergées",
+                    "name": "photo_de_feuilles_immergees",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -1629,7 +1629,7 @@
         {
             "key": "field_634e49d04800f",
             "label": "Feuilles des rameaux stériles",
-            "name": "feuilles_visibles_copier2",
+            "name": "feuilles_des_rameaux_steriles",
             "aria-label": "",
             "type": "group",
             "instructions": "À remplir uniquement si les feuilles sont visibles.",
@@ -1657,8 +1657,8 @@
             "sub_fields": [
                 {
                     "key": "field_634e49d148010",
-                    "label": "Photo de feuilles",
-                    "name": "photo_de_feuilles",
+                    "label": "Photo de feuilles des rameaux stériles",
+                    "name": "photo_de_feuilles_des_rameaux_steriles",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -2059,7 +2059,7 @@
         {
             "key": "field_634e49ea4801d",
             "label": "Feuilles des rameaux fleuris",
-            "name": "feuilles_visibles_copier3",
+            "name": "feuilles_des_rameaux_fleuris",
             "aria-label": "",
             "type": "group",
             "instructions": "À remplir uniquement si les feuilles sont visibles.",
@@ -2087,8 +2087,8 @@
             "sub_fields": [
                 {
                     "key": "field_634e49eb4801e",
-                    "label": "Photo de feuilles",
-                    "name": "photo_de_feuilles",
+                    "label": "Photo de feuilles des rameaux fleuris",
+                    "name": "photo_de_feuilles_des_rameaux_fleuris",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
