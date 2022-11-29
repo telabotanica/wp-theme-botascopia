@@ -9,6 +9,9 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+    </style>
     <?php if (is_singular() && pings_open(get_queried_object())) : ?>
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <?php endif; ?>
@@ -52,7 +55,7 @@
                 </div>
                 <?php
                 $index_photos = 0;
-                $refs_photo[] = [];
+                $refs_photo = array();
                 if (!empty(get_field('photo_de_la_plante_entiere'))) {
                     $refs_photo[] = get_field('photo_de_la_plante_entiere');
                 }
@@ -296,9 +299,10 @@
                     <div class="footer-section">
                         <ol class="characteristic-photos">
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
-                                <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
-                                <?php if($i == 5) : {break;} ?>
+                                <?php if($i == 6) : {break;} ?>
                                 <?php endif; ?>
+                                <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+
                             <?php endfor; ?>
                         </ol>
                     </div>
