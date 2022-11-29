@@ -227,7 +227,7 @@
                                         <div class="picture-ref"><?php echo $index_photos;?></div>
                                     <?php endif; ?>
                                     <p>
-                                        Les feuilles sont disposées de façon <?php echo implode(' et ', get_field('phyllotaxie'));?> et elles sont <?php echo implode(' et ', get_field('type_de_feuille'));?>.<br>
+                                        Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_steriles['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles['type_de_feuille']);?>.<br>
                                         <?php
                                         $type_feuille_multiple = 1 < count($feuilles_des_rameaux_steriles['type_de_feuille']);
                                         $limbe = 'Le limbe %s est %s';
