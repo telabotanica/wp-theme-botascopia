@@ -169,25 +169,25 @@ body.page-template-fiche_pdf {
 /* ************************************ */
 /* * species characteristics sections * */
 /* ************************************ */
-.characteristic {
+.page-template-fiche_pdf .characteristic {
   width: 9cm;
   vertical-align: top;
   padding-left: 1cm;
 }
 
-.fleur-monosexe {
+.page-template-fiche_pdf .fleur-monosexe {
   width: 9cm;
   vertical-align: top;
   padding-left: 1cm;
 }
 
-.fleur-bisexuee {
+.page-template-fiche_pdf .fleur-bisexuee {
   width: 18cm;
   vertical-align: top;
   padding-left: 1cm;
 }
 
-.fleur-monosexe + .fleur-bisexuee {
+.page-template-fiche_pdf .fleur-monosexe + .fleur-bisexuee {
   width: 9cm;
   vertical-align: top;
   padding-left: 1cm;
@@ -204,6 +204,8 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf .characteristic,
 .page-template-fiche_pdf .characteristic h4,
+.page-template-fiche_pdf .fleur-monosexe h4,
+.page-template-fiche_pdf .fleur-bisexuee h4,
 .page-template-fiche_pdf .picture-ref {
   display: inline-block;
 }
