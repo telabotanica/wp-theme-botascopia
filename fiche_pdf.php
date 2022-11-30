@@ -137,8 +137,8 @@
 
                                     Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                    <?php echo  'présent' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
-                                    <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                    <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
+                                    <?php /*echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';*/?>
                                 </p>
 
                             <?php elseif ('deux formes distinctes de feuilles'=== $heteromorphisme_foliaire): ?>
@@ -467,10 +467,10 @@
                                 <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                                 gynécée composé de <?php echo implode(' ou ' , $fleur_bisexuee['gynecee']); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
                                 ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
-                                La couleur principale de la fleur est <?php echo $fleur_bisexuee['couleur_principale']; ?>.
+                                La couleur principale de la fleur est le <?php echo $fleur_bisexuee['couleur_principale']; ?>.
                                 <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
                                     echo "La fleur est ".$fleur_bisexuee['pubescence'].' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).". "; } ?>
-                                <?php echo $fleur_bisexuee['autre_caractere']; ?>
+                                <?php /*echo $fleur_bisexuee['autre_caractere']; */?>
                             <?php endif; ?>
                         </p>
                     </div>
