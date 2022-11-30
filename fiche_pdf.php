@@ -183,7 +183,7 @@
 
                                             Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                            <?php echo  'présent' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
+                                            <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
                                             <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                         </p>
                                     <?php endif; ?>
@@ -225,7 +225,7 @@
 
                                             Le pétiole est <?php /*echo $petiole; */?>.<br>
 
-                                            <?php /*echo  'présent' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';*/?>
+                                            <?php /*echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';*/?>
                                             <?php /*echo  $feuilles_immergees['feuillage'] ? 'Le feuillage est ' . $feuilles_immergees['feuillage'].'.' : '';*/?>
                                         </p>
                                     --><?php /*endif; */?>
@@ -269,7 +269,7 @@
 
                                             Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                            <?php echo  'présent' === $feuilles_des_rameaux_steriles['stipules'] ? $feuilles_des_rameaux_steriles['forme_et_couleur_des_stipules'] : '';?>
+                                            <?php echo  'présents' === $feuilles_des_rameaux_steriles['stipules'] ? $feuilles_des_rameaux_steriles['forme_et_couleur_des_stipules'] : '';?>
                                             <?php echo  $feuilles_des_rameaux_steriles['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_steriles['feuillage'].'.' : '';?>
                                         </p>
                                     <?php endif; ?>
@@ -311,7 +311,7 @@
 
                                             Le pétiole est <?php /*echo $petiole; */?>.<br>
 
-                                            <?php /*echo  'présent' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';*/?>
+                                            <?php /*echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';*/?>
                                             <?php /*echo  $feuilles_des_rameaux_fleuris['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris['feuillage'].'.' : '';*/?>
                                         </p>
                                     --><?php /*endif; */?>
