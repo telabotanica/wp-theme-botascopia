@@ -355,7 +355,7 @@
 
                 <?php $fleur_male =  get_field('fleur_male') ?: null;?>
                 <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
-                <div class="characteristic">
+                <div class="fleur-monosexe">
                     <h4 class="icon-title">
                         <div class="fleur-male-icon icon"></div>Fleur mâle
                     </h4>
@@ -396,7 +396,7 @@
 
                 <?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
                 <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
-                <div class="characteristic">
+                <div class="fleur-monosexe">
                     <h4 class="icon-title">
                         <div class="fleur-femelle-icon icon"></div>Fleur femelle
                     </h4>
