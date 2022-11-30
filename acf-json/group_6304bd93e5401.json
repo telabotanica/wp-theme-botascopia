@@ -33,7 +33,7 @@
             "name": "le_saviez-vous_",
             "aria-label": "",
             "type": "text",
-            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 200 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
+            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 180 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -45,7 +45,7 @@
             "placeholder": "Le nom du genre vient du latin ranunculus qui signifie “petite grenouille” car une partie des espèces du genre affectionne les endroits humides. Le tronc lisse et gris évoque une patte d’éléphant.",
             "prepend": "",
             "append": "",
-            "maxlength": 200
+            "maxlength": 180
         },
         {
             "key": "field_6304bdf681abb",
@@ -316,7 +316,7 @@
             "placeholder": "“Les feuilles et les tiges sont entièrement couvertes d’un tomentum gris” ;  “La tige est ailée” ; “Les racines ont une odeur d’étable” ; “Les bords des feuilles sont coupants” ;  “La corolle est bilabiée (ou papilionacée”) ; “Certains individus portent seulement des fleurs femelles” ; “Certains individus portent seulement des fleurs mâles”, “Les individus portent des fleurs hermaphrodites et des fleurs mâles”",
             "prepend": "",
             "append": "",
-            "maxlength": ""
+            "maxlength": 180
         },
         {
             "key": "field_6304e1ece18b0",
@@ -2591,7 +2591,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
+                    "maxlength": 180,
                     "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules",
                     "prepend": "",
                     "append": ""
@@ -3529,7 +3529,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
+                    "maxlength": 180,
                     "placeholder": "ex : Les nectaires sont bien visibles, il y a présence d’une couronne (paracorolle), il y a des écailles sur les pétales, il y a un éperon nectarifère sur un pétale, Il y a des fleurs stériles dans les inflorescences, l’ovaire enveloppé dans un utricule, il y a un gradient entre les sépales et les pétales",
                     "prepend": "",
                     "append": ""
@@ -3572,8 +3572,8 @@
             "sub_fields": [
                 {
                     "key": "field_6304ef9dbe188",
-                    "label": "Photo",
-                    "name": "photo",
+                    "label": "Photo de la fleur mâle",
+                    "name": "photo_de_fleur_male",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -4295,7 +4295,7 @@
                     "placeholder": "Ex. : nectaires bien visibles, présence d’une couronne (paracorolle), écailles sur les pétales, présence d’un éperon, présence de fleurs stériles dans les inflorescences, ovaire enveloppé dans un utricule, etc.",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": 180
                 }
             ]
         },
@@ -4335,8 +4335,8 @@
             "sub_fields": [
                 {
                     "key": "field_630640cbdb1e4",
-                    "label": "Photo",
-                    "name": "photo",
+                    "label": "Photo de la fleur femelle",
+                    "name": "photo_de_fleur_femelle",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
@@ -4979,7 +4979,7 @@
                     "label": "Autre caractère",
                     "name": "autre_caractere",
                     "aria-label": "",
-                    "type": "textarea",
+                    "type": "text",
                     "instructions": "Si votre fleur femelle comporte d'autres caractères intéressants notez les ici",
                     "required": 0,
                     "conditional_logic": 0,
@@ -4990,7 +4990,7 @@
                     },
                     "default_value": "",
                     "placeholder": "Ex. : nectaires bien visibles, présence d’une couronne (paracorolle), écailles sur les pétales, présence d’un éperon, présence de fleurs stériles dans les inflorescences, ovaire enveloppé dans un utricule, etc.",
-                    "maxlength": "",
+                    "maxlength": 180,
                     "rows": 3,
                     "new_lines": ""
                 }
@@ -5102,5 +5102,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669222240
+    "modified": 1669818757
 }
