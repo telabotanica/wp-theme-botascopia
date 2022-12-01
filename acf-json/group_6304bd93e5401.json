@@ -33,7 +33,7 @@
             "name": "le_saviez-vous_",
             "aria-label": "",
             "type": "text",
-            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 180 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
+            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 200 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -45,7 +45,7 @@
             "placeholder": "Le nom du genre vient du latin ranunculus qui signifie “petite grenouille” car une partie des espèces du genre affectionne les endroits humides. Le tronc lisse et gris évoque une patte d’éléphant.",
             "prepend": "",
             "append": "",
-            "maxlength": 180
+            "maxlength": 200
         },
         {
             "key": "field_6304bdf681abb",
