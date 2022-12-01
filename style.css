@@ -57,8 +57,7 @@ body.page-template-fiche_pdf {
   padding: 0 1cm;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  align-items: start;
+  align-items: baseline;
   gap: 0.8cm;
 }
 
@@ -66,8 +65,7 @@ body.page-template-fiche_pdf {
   padding: 0 1cm;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  align-items: start;
+  align-items: baseline;
   gap: 0.8cm;
 }
 
