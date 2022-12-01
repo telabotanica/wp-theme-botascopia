@@ -138,8 +138,13 @@
                                     Le pétiole est <?php echo $petiole; ?>.<br>
 
                                     <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
-                                    <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
-                                    <?php /*echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';*/?>
+                                    <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                    <?php echo var_dump($port_de_la_plante); ?>
+                                    <?php if (!empty($port_de_la_plante)): ?>
+                                        <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                            <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </p>
 
                             <?php elseif ('deux formes distinctes de feuilles'=== $heteromorphisme_foliaire): ?>
@@ -185,7 +190,14 @@
                                             Le pétiole est <?php echo $petiole; ?>.<br>
 
                                             <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
-                                            <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+
+                                            <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                            <?php if (!empty($port_de_la_plante)): ?>
+                                                <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                    <?php echo var_dump($feuilles_aeriennes['feuillage']); ?>
+                                                    <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                         </p>
                                     <?php endif; ?>
 

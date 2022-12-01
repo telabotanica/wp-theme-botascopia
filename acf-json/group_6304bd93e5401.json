@@ -1215,6 +1215,11 @@
                         "field": "field_634e46c42f080",
                         "operator": "==",
                         "value": "plante à feuilles immergées et aériennes"
+                    },
+                    {
+                        "field": "field_634e46c42f080",
+                        "operator": "!=",
+                        "value": "plante à rameaux stériles et à rameaux fleuris distincts"
                     }
                 ]
             ],
@@ -1640,6 +1645,11 @@
                         "field": "field_6304d8aeb94a2",
                         "operator": "==",
                         "value": "visibles"
+                    },
+                    {
+                        "field": "field_634e46c42f080",
+                        "operator": "!=",
+                        "value": "plante à feuilles immergées et aériennes"
                     },
                     {
                         "field": "field_634e46c42f080",
@@ -2070,6 +2080,11 @@
                         "field": "field_6304d8aeb94a2",
                         "operator": "==",
                         "value": "visibles"
+                    },
+                    {
+                        "field": "field_634e46c42f080",
+                        "operator": "!=",
+                        "value": "plante à feuilles immergées et aériennes"
                     },
                     {
                         "field": "field_634e46c42f080",
