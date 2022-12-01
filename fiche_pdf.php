@@ -237,14 +237,14 @@
 
                                             Le pétiole est <?php /*echo $petiole; */?>.<br>
 
-                                            <?php /*echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';*/?><!--
+                                            <?php /*echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';*/?>
 
                                             <?php /*$port_de_la_plante = get_field('port_de_la_plante'); */?>
                                             <?php /*if (!empty($port_de_la_plante)): */?>
                                                 <?php /*if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): */?>
                                                     <?php /*echo  $feuilles_immergees['feuillage'] ? 'Le feuillage est ' . $feuilles_immergees['feuillage'].'.' : '';*/?>
                                                 <?php /*endif; */?>
-                                            --><?php /*endif; */?>
+                                            <?php /*endif; */?>
                                         </p>
                                     --><?php /*endif; */?>
 
@@ -335,14 +335,14 @@
 
                                             Le pétiole est <?php /*echo $petiole; */?>.<br>
 
-                                            <?php /*echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';*/?><!--
+                                            <?php /*echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';*/?>
 
                                             <?php /*$port_de_la_plante = get_field('port_de_la_plante'); */?>
                                             <?php /*if (!empty($port_de_la_plante)): */?>
                                                 <?php /*if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): */?>
                                                     <?php /*echo  $feuilles_des_rameaux_fleuris['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris['feuillage'].'.' : '';*/?>
                                                 <?php /*endif; */?>
-                                            --><?php /*endif; */?>
+                                            <?php /*endif; */?>
                                         </p>
                                     --><?php /*endif; */?>
 
