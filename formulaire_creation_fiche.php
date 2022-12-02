@@ -90,7 +90,7 @@ if (isset($_GET['p'])) {
         );
 
 
-        acf_form( $args_brouillon ); // Afficher le formulaire
+        //acf_form( $args_brouillon ); // Afficher le formulaire
         acf_form( $args_relecture ); // Afficher le formulaire
         echo "<br />";
         foreach ($formulaires as $id => $titre) {
