@@ -86,7 +86,7 @@ if (isset($_GET['p'])) {
             'submit_value' => 'Mettre en relecture', // Intitulé du bouton
             'updated_message' => "Votre fiche est soumise à validation",
             'uploader' => 'wp',
-            'return' => '',
+            //'return' => '',
         );
 
 
