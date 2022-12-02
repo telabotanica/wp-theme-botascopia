@@ -63,7 +63,7 @@ if (isset($_GET['p'])) {
 		</div>
 <?php	
 
-        $args_brouillon = array(
+        /*$args_brouillon = array(
             'post_id' => get_the_ID() ,
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
@@ -74,9 +74,9 @@ if (isset($_GET['p'])) {
             'updated_message' => "Votre demande a bien été prise en compte.",
             'uploader' => 'wp',
             'return' => '',
-        );
+        );*/
 
-        /*$args = array(
+        $args = array(
             'post_id' => get_the_ID() ,
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
@@ -87,7 +87,7 @@ if (isset($_GET['p'])) {
             'updated_message' => "Votre fiche est soumise à validation",
             'uploader' => 'wp',
             'return' => '',
-        );*/
+        );
 
 
         //acf_form( $args_brouillon ); // Afficher le formulaire
