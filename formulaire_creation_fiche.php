@@ -56,9 +56,9 @@ if (isset($_GET['p'])) {
         if (isset($_GET['a']) and $_GET['a'] == "2" ) {
             wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'pending'));
 
-
-            // wp_redirect( home_url() );
-            echo esc_url( home_url() );
+            ?>
+            <meta http-equiv="refresh" content="0;url=">
+            <?php
         }
 ?>
 
@@ -86,18 +86,8 @@ if (isset($_GET['p'])) {
 
         //acf_form( $args_brouillon ); // Afficher le formulaire
         acf_form( $args ); // Afficher le formulaire
-        echo "<br />";
-
 
         echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=2';\">Mettre en relecture</button>";
-        /*if (isset($_GET['a']) and $_GET['a'] == "2" ) {
-            // wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'pending'));
-
-            header(home_url());
-            die();
-
-            echo href = '.$securise.$_SERVER['HTTP_HOST']./formulaire/';
-        }*/
 
         echo "<br />";
         foreach ($formulaires as $id => $titre) {
