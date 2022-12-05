@@ -53,6 +53,13 @@ if (isset($_GET['p'])) {
 		}
 	}
 	if ($auteur_autorise == true) {
+        if (isset($_GET['a']) and $_GET['a'] == "2" ) {
+            wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'pending'));
+
+
+            // wp_redirect( home_url() );
+            echo esc_url( home_url() );
+        }
 ?>
 
 	
@@ -63,7 +70,7 @@ if (isset($_GET['p'])) {
 		</div>
 <?php	
 
-        /*$args_brouillon = array(
+        $args = array(
             'post_id' => get_the_ID() ,
             'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
@@ -74,27 +81,27 @@ if (isset($_GET['p'])) {
             'updated_message' => "Votre demande a bien été prise en compte.",
             'uploader' => 'wp',
             'return' => '',
-        );*/
-
-        $args = array(
-            'post_id' => get_the_ID() ,
-            'new_post' => array(
-                'post_type' => 'post', // Enregistrer dans les articles
-                'post_status' => 'pending', // Mettre en relecture
-            ),
-            'field_groups' => array( $form ), // L'ID du post du groupe de champs
-            'submit_value' => 'Mettre en relecture', // Intitulé du bouton
-            'updated_message' => "Votre fiche est soumise à validation",
-            'uploader' => 'wp',
-            //'return' => '',
         );
 
 
         //acf_form( $args_brouillon ); // Afficher le formulaire
         acf_form( $args ); // Afficher le formulaire
         echo "<br />";
+
+
+        echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=2';\">Mettre en relecture</button>";
+        /*if (isset($_GET['a']) and $_GET['a'] == "2" ) {
+            // wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'pending'));
+
+            header(home_url());
+            die();
+
+            echo href = '.$securise.$_SERVER['HTTP_HOST']./formulaire/';
+        }*/
+
+        echo "<br />";
         foreach ($formulaires as $id => $titre) {
-	       echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";   
+	       echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
         }
 
 
