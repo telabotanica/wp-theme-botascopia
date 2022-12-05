@@ -61,8 +61,6 @@ if (isset($_GET['p'])) {
             <?php
         }
 ?>
-
-	
 		<div >
         	<div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
 	        <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
@@ -93,9 +91,6 @@ if (isset($_GET['p'])) {
         foreach ($formulaires as $id => $titre) {
 	       echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
         }
-
-
-
 
     } else {
 		echo "Vous n'êtes pas l'auteur de cette fiche";
