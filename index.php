@@ -53,12 +53,23 @@
 	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
-        $args = array(
-	   'post_type' => 'post',
-	   'post_status' => 'draft',
-	   'author' => $current_user->ID,
-	   'showposts' => 10
-    	 );
+
+        if ( $current_user->wp_user_level === '7') {
+            $args = array(
+                'post_type' => 'post',
+                'post_status' => 'pending',
+                #'author' => $current_user->ID,
+                'showposts' => 10
+            );
+        } else {
+            $args = array(
+                'post_type' => 'post',
+                'post_status' => 'draft',
+                'author' => $current_user->ID,
+                'showposts' => 10
+            );
+        }
+
 	 $cpt_query = new WP_Query($args);
 	// Create cpt loop, with a have_posts() check!
 	if ($cpt_query->have_posts()) :
