@@ -36,6 +36,7 @@ if (isset($_GET['p'])) {
 		</div>
 	<?php endwhile;
 	$auteur_autorise = false;
+    $current_user = wp_get_current_user();
 	$utilisateur = get_current_user_id();
 	$auteur_id = get_the_author_meta('ID');
 	if ($utilisateur !== 0) {
@@ -92,6 +93,45 @@ if (isset($_GET['p'])) {
 	       echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
         }
 
+    } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+        if (isset($_GET['a']) and $_GET['a'] == "3" ) {
+            wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
+
+            ?>
+            <meta http-equiv="refresh" content="0;url=">
+            <?php
+        }
+        ?>
+        <div >
+            <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
+            <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
+            <div>Famille : <?php the_field( 'famille' ); ?></div>
+        </div>
+        <?php
+
+        $args = array(
+            'post_id' => get_the_ID() ,
+            'new_post' => array(
+                'post_type' => 'post', // Enregistrer dans les articles
+                'post_status' => 'draft', // Enregistrer en brouillon
+            ),
+            'field_groups' => array( $form ), // L'ID du post du groupe de champs
+            'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
+            'updated_message' => "Votre demande a bien été prise en compte.",
+            'uploader' => 'wp',
+            'return' => '',
+        );
+
+
+        //acf_form( $args_brouillon ); // Afficher le formulaire
+        acf_form( $args ); // Afficher le formulaire
+
+        echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
+
+        echo "<br />";
+        foreach ($formulaires as $id => $titre) {
+            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
+        }
     } else {
 		echo "Vous n'êtes pas l'auteur de cette fiche";
 	} 

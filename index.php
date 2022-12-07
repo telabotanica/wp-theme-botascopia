@@ -54,7 +54,7 @@
       if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
 
-        if ( $current_user->wp_user_level === '7') {
+        if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
             $args = array(
                 'post_type' => 'post',
                 'post_status' => 'pending',
@@ -74,10 +74,15 @@
 	// Create cpt loop, with a have_posts() check!
 	if ($cpt_query->have_posts()) :
 		echo "<div>".$current_user->display_name.", votre.s formulaire.s :</div><br />";
+        echo "<div>".$current_user->roles[0].", votre.s formulaire.s :</div><br />";
         	while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
             		<div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
 				<span style="float:right;" >
-					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Editer</button>
+                    <?php if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor' ?>
+					    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                    <?php } else { ?>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Editer</button>
+                    <?php } ?>
 					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
 					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
 				</span>
