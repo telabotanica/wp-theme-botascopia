@@ -111,43 +111,60 @@ if (isset($_GET['p'])) {
         }
 
     } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
-        if (isset($_GET['a']) and $_GET['a'] == "3" ) {
-            wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
 
-            ?>
-            <meta http-equiv="refresh" content="0;home_url()">
-            <?php
-        }
-        ?>
-        <div >
-            <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
-            <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
-            <div>Famille : <?php the_field( 'famille' ); ?></div>
-        </div>
-        <?php
+        $validator_query = new WP_Query([
+            'post_type' => 'revision',
+            'post_parent' => get_the_ID(),
+            'post_status' => 'inherit'
+        ]);
 
-        $args = array(
-            'post_id' => get_the_ID() ,
-            /*'new_post' => array(
-                'post_type' => 'post', // Enregistrer dans les articles
-                'post_status' => 'pending', // Enregistrer en brouillon
-            ),*/
-            'field_groups' => array( $form ), // L'ID du post du groupe de champs
-            'submit_value' => 'Enregistrer les modifications', // Intitulé du bouton
-            'updated_message' => "Votre demande a bien été prise en compte.",
-            'uploader' => 'wp',
-            'return' => '',
-        );
+        if ( $validator_query->have_posts() ) {
+            $validator_query->the_post();
+            $validator = get_post_field('post_author', get_post());
+            
+            if ( $validator != $current_user->ID ) {
+                echo "Vous n'êtes pas le validateur de cette fiche";
+            } else {
+
+                if (isset($_GET['a']) and $_GET['a'] == "3" ) {
+                    wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
+
+                    ?>
+                    <meta http-equiv="refresh" content="0;home_url()"> <!-- TODO Gerer la redirection vers home -->
+                    <?php
+                }
+                ?>
+                <div >
+                    <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
+                    <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
+                    <div>Famille : <?php the_field( 'famille' ); ?></div>
+                </div>
+                <?php
+
+                $args = array(
+                    'post_id' => get_the_ID() ,
+                    /*'new_post' => array(
+                        'post_type' => 'post', // Enregistrer dans les articles
+                        'post_status' => 'pending', // Enregistrer en brouillon
+                    ),*/
+                    'field_groups' => array( $form ), // L'ID du post du groupe de champs
+                    'submit_value' => 'Enregistrer les modifications', // Intitulé du bouton
+                    'updated_message' => "Votre demande a bien été prise en compte.",
+                    'uploader' => 'wp',
+                    'return' => '',
+                );
 
 
-        //acf_form( $args_brouillon ); // Afficher le formulaire
-        acf_form( $args ); // Afficher le formulaire
+                //acf_form( $args_brouillon ); // Afficher le formulaire
+                acf_form( $args ); // Afficher le formulaire
 
-        echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
+                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
 
-        echo "<br />";
-        foreach ($formulaires as $id => $titre) {
-            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
+                echo "<br />";
+                foreach ($formulaires as $id => $titre) {
+                    echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
+                }
+            }
         }
     } else {
         echo "Vous n'êtes pas l'auteur de cette fiche";
