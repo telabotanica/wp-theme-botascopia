@@ -122,8 +122,11 @@ if (isset($_GET['p'])) {
             $validator_query->the_post();
             $validator = get_post_field('post_author', get_post());
             
-            if ( $validator != $current_user->ID ) {
+            if ( ($validator != $current_user->ID) && ($validator != get_the_author_meta('ID')) ) { // On se base sur la presence de revision pour attribuer les post aux validateurs.
+                                                                                                    // On ignore les revisons creees lors de la mise en relecture !
+
                 echo "Vous n'êtes pas le validateur de cette fiche";
+
             } else {
 
                 if (isset($_GET['a']) and $_GET['a'] == "3" ) {
