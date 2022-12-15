@@ -80,7 +80,8 @@
                     $validator_query = new WP_Query([
                                 'post_type' => 'revision',
                                 'post_parent' => get_the_ID(),
-                                'post_author' => $current_user->ID
+                                'post_status' => 'inherit',
+                                'author' => $current_user->ID
                             ]);
                     if ($validator_query->have_posts()) {
                     ?>
@@ -105,14 +106,16 @@
 
 
             if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
-                echo "<div>Fiches non attribuées :</div><br />";
+                echo "<br /><div>Fiches non attribuées :</div><br />";
                 while ($cpt_query->have_posts()) {
                     $cpt_query->the_post();
                     $pending_query = new WP_Query([
                                     'post_type' => 'revision',
                                     'post_parent' => get_the_ID(),
-                                    'post_author' => get_the_author()
+                                    'post_status' => 'inherit',
+                                    'author' => - get_the_author_meta('ID')
                                 ]);
+                    //echo var_dump($pending_query);
                     if ($pending_query->have_posts()) {
                         echo 'Pas de fiches en relecture';
                     } else {

@@ -121,13 +121,23 @@ if (isset($_GET['p'])) {
         if ( $validator_query->have_posts() ) {
             $validator_query->the_post();
             $validator = get_post_field('post_author', get_post());
+
+            wp_reset_postdata();
+            // echo var_dump($validator);
+            // echo var_dump($current_user->ID);
+            // echo var_dump(get_the_author_meta('ID'));
             
-            if ( ($validator != $current_user->ID) && ($validator != get_the_author_meta('ID')) ) { // On se base sur la presence de revision pour attribuer les post aux validateurs.
-                                                                                                    // On ignore les revisons creees lors de la mise en relecture !
+            if ( (intval($validator) != $current_user->ID) && (intval($validator) != get_the_author_meta('ID')) ) { // On se base sur la presence de revision pour attribuer les post aux validateurs.
+                                                                                                    // On ignore les revisons creees lors de la mise en relecture (qui ont le meme auteur que la fiche)
+
+                //wp_reset_postdata();
 
                 echo "Vous n'êtes pas le validateur de cette fiche";
 
             } else {
+
+                wp_reset_postdata();
+                wp_update_post(array('ID' => get_the_ID(), 'post_content' => ''));
 
                 if (isset($_GET['a']) and $_GET['a'] == "3" ) {
                     wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
