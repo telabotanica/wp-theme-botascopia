@@ -106,7 +106,8 @@
 
 
             if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
-                echo "<br /><div>Fiches non attribuées :</div><br />";
+                //echo "<div></div><br />";
+                echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Fiches non attribuées :</div><br />";
                 while ($cpt_query->have_posts()) {
                     $cpt_query->the_post();
                     $pending_query = new WP_Query([
@@ -117,7 +118,7 @@
                                 ]);
                     //echo var_dump($pending_query);
                     if ($pending_query->have_posts()) {
-                        echo 'Pas de fiches en relecture';
+                        echo "<div style=float:left;width:75%;margin-bottom:1em;>Pas de fiches en relecture</div>";
                     } else {
                     ?>
                         <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
