@@ -83,7 +83,7 @@
                                 'post_status' => 'inherit',
                                 'author' => $current_user->ID
                             ]);
-                    echo var_dump($validator_query);
+                    // echo var_dump($validator_query);
                     if ($validator_query->have_posts()) {
                     ?>
                     <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
