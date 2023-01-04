@@ -117,7 +117,7 @@
                                     'author' => - get_the_author_meta('ID')
                                 ]);
                     //echo var_dump($pending_query);
-                    if (!$pending_query->have_posts()) {
+                    if ($pending_query->have_posts()) {
                         echo "<div style=float:left;width:75%;margin-bottom:1em;>Pas de fiches en relecture</div>";
                     } else {
                     ?>
