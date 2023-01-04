@@ -118,9 +118,9 @@
                                     'author' => - get_the_author_meta('ID')
                                 ]);
                     //echo var_dump($pending_query);
-                    if ($pending_query->have_posts()) {
-                        echo "<div style=float:left;width:75%;margin-bottom:1em;>Pas de fiches en relecture</div>";
-                    } else {
+                    if (!$pending_query->have_posts()) {
+                        /*echo "<div style=float:left;width:75%;margin-bottom:1em;>Pas de fiches en relecture</div>";
+                    } else {*/
                     ?>
                         <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
                         <span style="float:right;" >
