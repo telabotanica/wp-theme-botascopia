@@ -77,14 +77,8 @@
             while ($cpt_query->have_posts()) {
                 $cpt_query->the_post();
                 if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
-                    $validator_query = new WP_Query([
-                                'post_type' => 'revision',
-                                'post_parent' => get_the_ID(),
-                                'post_status' => 'inherit',
-                                'author' => $current_user->ID
-                            ]);
-                    // echo var_dump($validator_query);
-                    if ($validator_query->have_posts()) {
+                    $editor = get_post_meta(get_the_ID(), 'Editor', true);
+                    if (intval($editor) === $current_user->ID) {
                     ?>
                     <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
 	    			<span style="float:right;" >
@@ -111,16 +105,9 @@
                 echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Fiches non attribuées :</div><br />";
                 while ($cpt_query->have_posts()) {
                     $cpt_query->the_post();
-                    $pending_query = new WP_Query([
-                                    'post_type' => 'revision',
-                                    'post_parent' => get_the_ID(),
-                                    'post_status' => 'inherit',
-                                    'author' => - get_the_author_meta('ID')
-                                ]);
-                    //echo var_dump($pending_query);
-                    if (!$pending_query->have_posts()) {
-                        /*echo "<div style=float:left;width:75%;margin-bottom:1em;>Pas de fiches en relecture</div>";
-                    } else {*/
+                    $editor = get_post_meta(get_the_ID(), 'Editor', true);
+                    echo var_dump($editor);
+                    if (intval($editor) === 0) {
                     ?>
                         <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
                         <span style="float:right;" >

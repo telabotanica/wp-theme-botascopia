@@ -71,8 +71,7 @@ if (isset($_GET['p'])) {
     }
     if ($auteur_autorise == true) {
         if (isset($_GET['a']) and $_GET['a'] == "2" ) {
-            wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'pending'));
-
+            do_action('set_pending', get_the_ID());
             ?>
             <meta http-equiv="refresh" content="0;url=">
             <?php
@@ -110,51 +109,39 @@ if (isset($_GET['p'])) {
             echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
         }
 
-    } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+    } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor' TODO remplacer par action/filter
 
-        $validator_query = new WP_Query([
-            'post_type' => 'revision',
-            'post_parent' => get_the_ID(),
-            'post_status' => 'inherit'
-        ]);
+        $editor = get_post_meta(get_the_ID(), 'Editor', true);
 
-        if ( $validator_query->have_posts() ) {
-            $validator_query->the_post();
-            $validator = get_post_field('post_author', get_post());
-
-            wp_reset_postdata();
-            // echo var_dump($validator);
-            // echo var_dump($current_user->ID);
-            // echo var_dump(get_the_author_meta('ID'));
-            
-            if ( (intval($validator) != $current_user->ID) && (intval($validator) != get_the_author_meta('ID')) ) { // On se base sur la presence de revision pour attribuer les post aux validateurs.
-                                                                                                    // On ignore les revisons creees lors de la mise en relecture (qui ont le meme auteur que la fiche)
-
-                //wp_reset_postdata();
-
+        if ((intval($editor) === 0)) {
+            if (isset($_GET['a']) and $_GET['a'] == "4" ) {
+                update_post_meta( get_the_ID(), 'Editor', $current_user->ID );
+                ?>
+                <meta http-equiv="refresh" content="0;url=">
+                <?php
+            } else {
+                echo "<button onclick=\"window.location.href = '" . $securise . $_SERVER['HTTP_HOST'] . "/formulaire/?p=" . $titre_du_post . "&a=4';\">Devenir validateur</button>";
+            }
+        } else if (intval($editor) != $utilisateur) {
                 echo "Vous n'êtes pas le validateur de cette fiche";
 
-            } else {
+        } else {
 
-                wp_reset_postdata();
-                wp_update_post(array('ID' => get_the_ID(), 'post_content' => ''));
-
-                if (isset($_GET['a']) and $_GET['a'] == "3" ) {
-                    wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
-
-                    ?>
-                    <meta http-equiv="refresh" content="0;home_url()"> <!-- TODO Gerer la redirection vers home -->
-                    <?php
-                }
+            if (isset($_GET['a']) and $_GET['a'] == "3" ) {
+                wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
                 ?>
-                <div >
-                    <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
-                    <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
-                    <div>Famille : <?php the_field( 'famille' ); ?></div>
-                </div>
+                <meta http-equiv="refresh" content="0;home_url()"> <!-- TODO Gerer la redirection vers home -->
                 <?php
+            }
+            ?>
+            <div >
+                <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
+                <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
+                <div>Famille : <?php the_field( 'famille' ); ?></div>
+            </div>
+            <?php
 
-                $args = array(
+            $args = array(
                     'post_id' => get_the_ID() ,
                     /*'new_post' => array(
                         'post_type' => 'post', // Enregistrer dans les articles
@@ -165,18 +152,17 @@ if (isset($_GET['p'])) {
                     'updated_message' => "Votre demande a bien été prise en compte.",
                     'uploader' => 'wp',
                     'return' => '',
-                );
+            );
 
 
-                //acf_form( $args_brouillon ); // Afficher le formulaire
-                acf_form( $args ); // Afficher le formulaire
+            //acf_form( $args_brouillon ); // Afficher le formulaire
+            acf_form( $args ); // Afficher le formulaire
 
-                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
+            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
 
-                echo "<br />";
-                foreach ($formulaires as $id => $titre) {
-                    echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
-                }
+            echo "<br />";
+            foreach ($formulaires as $id => $titre) {
+                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
             }
         }
     } else {
