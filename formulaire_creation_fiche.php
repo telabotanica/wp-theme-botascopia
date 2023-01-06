@@ -120,10 +120,10 @@ if (isset($_GET['p'])) {
                 <meta http-equiv="refresh" content="0;url=">
                 <?php
             } else {
-                echo "<button onclick=\"window.location.href = '" . $securise . $_SERVER['HTTP_HOST'] . "/formulaire/?p=" . $titre_du_post . "&a=4';\">Devenir validateur</button>";
+                echo "<button onclick=\"window.location.href = '" . $securise . $_SERVER['HTTP_HOST'] . "/formulaire/?p=" . $titre_du_post . "&a=4';\">Devenir vérificateur</button>";
             }
         } else if (intval($editor) != $utilisateur) {
-                echo "Vous n'êtes pas le validateur de cette fiche";
+                echo "Vous n'êtes pas le vérificateur de cette fiche";
 
         } else {
 

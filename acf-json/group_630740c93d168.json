@@ -8,7 +8,7 @@
             "name": "description_vulgarisee",
             "aria-label": "",
             "type": "text",
-            "instructions": "Écrivez ici une description vulgarisée de la plante, comprenant les informations principales pour la reconnaître en vous basant sur les descriptions de l'application Smart'Flore. Cette description s'adresse aux débutants en botanique.",
+            "instructions": "Écrivez ici une description vulgarisée de la plante, comprenant les informations principales pour la reconnaître. Vous pouvez vous baser sur les descriptions de l'application Smart'Flore. Cette description s'adresse aux débutants en botanique.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
