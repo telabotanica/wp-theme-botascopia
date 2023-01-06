@@ -36,4 +36,10 @@ add_filter( 'login_redirect', function( $url, $query, $user ) {
     return home_url();
 }, 10, 3 );
 
+add_action( 'set_pending', 'add_editor_meta' );
 
+function add_editor_meta( $post_id ) {
+    wp_update_post(array('ID' => $post_id, 'post_status' => 'pending'));
+
+    update_post_meta( $post_id, 'Editor', 0 );
+}
