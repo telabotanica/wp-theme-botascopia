@@ -51,28 +51,81 @@
          
      
 	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
-      if ( is_user_logged_in() ) {
+    if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
-        $args = array(
-	   'post_type' => 'post',
-	   'post_status' => 'draft',
-	   'author' => $current_user->ID,
-	   'showposts' => 10
-    	 );
-	 $cpt_query = new WP_Query($args);
-	// Create cpt loop, with a have_posts() check!
-	if ($cpt_query->have_posts()) :
-		echo "<div>".$current_user->display_name.", votre.s formulaire.s :</div><br />";
-        	while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
-            		<div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
-				<span style="float:right;" >
-					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Editer</button>
-					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
-					<button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
-				</span>
-			</div>
-        	<?php endwhile;
-    	endif;
+
+        if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+            $args = array(
+                'post_type' => 'post',
+                'post_status' => 'pending',
+                'showposts' => 100
+            );
+        } else {
+            $args = array(
+                'post_type' => 'post',
+                'post_status' => 'draft',
+                'author' => $current_user->ID,
+                'showposts' => 10
+            );
+        }
+
+	    $cpt_query = new WP_Query($args);
+	    // Create cpt loop, with a have_posts() check!
+	    if ($cpt_query->have_posts()) {
+            // echo "<div>".$current_user->display_name.", votre.s formulaire.s :</div><br />";
+            // echo "<div>".$current_user->roles[0].", votre.s formulaire.s :</div><br />";
+            if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+                echo "<div>Vos formulaires à valider :</div><br />";
+            } else {
+                echo "<div>Vos formulaires :</div><br />";
+            }
+            while ($cpt_query->have_posts()) {
+                $cpt_query->the_post();
+                if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+                    $editor = get_post_meta(get_the_ID(), 'Editor', true);
+                    if (intval($editor) === $current_user->ID) {
+                    ?>
+                    <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+	    			<span style="float:right;" >
+	                <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                    </span>
+                    </div>
+                    <?php } ?>
+                <?php } else { ?>
+                    <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+	    		    <span style="float:right;" >
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Editer</button>
+	    		        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+	    			    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+	    			</span>
+                    </div>
+                <?php } ?>
+            <?php }
+
+
+            if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+                //echo "<div></div><br />";
+                echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Les formulaires en attente de validateur</div><br />";
+                while ($cpt_query->have_posts()) {
+                    $cpt_query->the_post();
+                    $editor = get_post_meta(get_the_ID(), 'Editor', true);
+                    echo var_dump($editor);
+                    if (intval($editor) === 0) {
+                    ?>
+                        <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+                        <span style="float:right;" >
+	    				    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                        </span>
+                        </div>
+                    <?php }
+                }
+            }
+
+        }
         echo "<div style='clear:both;'><button onclick=\"window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se déconnecter</button></div>";
     } else {
        	echo "<div style='clear:both;'><button onclick=\"window.location.href = '".wp_login_url( $securise.$_SERVER['HTTP_HOST'] )."';\">Se connecter</button></div>";
