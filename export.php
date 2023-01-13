@@ -64,7 +64,7 @@ if (empty($_GET['p'])) {
             'printBackground' => true,
             'displayHeaderFooter' => true,
             'format' => 'A4',
-            'scale' => 4,
+            //'scale' => 1,
         ]);
 
         $output = $converter->convert();
