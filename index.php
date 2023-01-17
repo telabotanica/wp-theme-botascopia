@@ -105,22 +105,22 @@
             <?php }
 
 
+
             if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
                 //echo "<div></div><br />";
                 echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Les formulaires en attente de validateur</div><br />";
                 while ($cpt_query->have_posts()) {
                     $cpt_query->the_post();
                     $editor = get_post_meta(get_the_ID(), 'Editor', true);
-                    echo var_dump($editor);
                     if (intval($editor) === 0) {
                     ?>
-                        <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
-                        <span style="float:right;" >
-	    				    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
-                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
-                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
-                        </span>
-                        </div>
+                    <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+                    <span style="float:right;" >
+	                    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                    </span>
+                    </div><br />
                     <?php }
                 }
             }
