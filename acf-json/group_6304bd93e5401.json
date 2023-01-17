@@ -3865,6 +3865,46 @@
                     "placeholder": ""
                 },
                 {
+                    "key": "field_63bd4165d8db7",
+                    "label": "Soudure de la corolle",
+                    "name": "soudure_de_la_corolle",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6304f5bb2d9f2",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
+                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
+                        "libre": "libre",
+                        "partiellement soudés entre eux": "partiellement soudés entre eux"
+                    },
+                    "default_value": "",
+                    "return_format": "",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "",
+                    "save_other_choice": 0
+                },
+                {
                     "key": "field_6304f698c677e",
                     "label": "Soudure du calice et de la corolle",
                     "name": "soudure_du_calice_et_de_la_corolle",
@@ -4585,7 +4625,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_63075ab5ecd71",
+                                "field": "field_6304f10bbe18c",
                                 "operator": "==",
                                 "value": "sépales et pétales"
                             }
@@ -4619,9 +4659,9 @@
                         "20": "20",
                         "n > 20": "n > 20"
                     },
-                    "default_value": false,
+                    "default_value": [],
                     "return_format": "value",
-                    "multiple": 0,
+                    "multiple": 1,
                     "allow_null": 0,
                     "ui": 0,
                     "ajax": 0,
@@ -5117,5 +5157,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669818757
+    "modified": 1673358978
 }

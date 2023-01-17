@@ -105,7 +105,6 @@
             <?php }
 
 
-
             if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
                 //echo "<div></div><br />";
                 echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Les formulaires en attente de validateur</div><br />";

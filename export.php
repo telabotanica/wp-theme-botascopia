@@ -64,6 +64,8 @@ if (empty($_GET['p'])) {
             'printBackground' => true,
             'displayHeaderFooter' => true,
             'format' => 'A4',
+            'disable-pdf-compression' => true,
+            //'scale' => 4,
         ]);
 
         $output = $converter->convert();
