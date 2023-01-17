@@ -85,7 +85,7 @@
                     $editor = get_post_meta(get_the_ID(), 'Editor', true);
                     if (intval($editor) === $current_user->ID) {
                     ?>
-                    <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+                    <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
 	    			<span style="float:right;" >
 	                <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
                         <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
@@ -94,7 +94,7 @@
                     </div>
                     <?php } ?>
                 <?php } else { ?>
-                    <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
+                    <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
 	    		    <span style="float:right;" >
                         <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Editer</button>
 	    		        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
@@ -111,16 +111,15 @@
                 while ($cpt_query->have_posts()) {
                     $cpt_query->the_post();
                     $editor = get_post_meta(get_the_ID(), 'Editor', true);
-                    echo var_dump($editor);
                     if (intval($editor) === 0) {
                     ?>
-                        <div style="float:left;width:75%;"><?php the_field( 'nom_scientifique' ); ?>
-                        <span style="float:right;" >
-	    				    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
-                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
-                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
-                        </span>
-                        </div>
+                    <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
+                    <span style="float:right;" >
+	                    <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                    </span>
+                    </div>
                     <?php }
                 }
             }
