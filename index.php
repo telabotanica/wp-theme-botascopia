@@ -120,7 +120,8 @@
                         <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
                         <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
                     </span>
-                    </div><br />
+                    </div>
+                        <div><br /></div>
                     <?php }
                 }
             }
