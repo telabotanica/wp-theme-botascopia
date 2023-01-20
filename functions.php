@@ -39,7 +39,10 @@ add_filter( 'login_redirect', function( $url, $query, $user ) {
 add_action( 'set_pending', 'add_editor_meta' );
 
 function add_editor_meta( $post_id ) {
-    wp_update_post(array('ID' => $post_id, 'post_status' => 'pending'));
+    $date = date('Y-m-d H:i:s');
+    $date_gmt = gmdate('Y-m-d H:i:s');
+
+    wp_update_post(array('ID' => $post_id, 'post_date' => $date, 'post_date_gmt' => $date_gmt, 'post_status' => 'pending'));
 
     update_post_meta( $post_id, 'Editor', 0 );
 }
