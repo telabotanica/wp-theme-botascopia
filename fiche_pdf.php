@@ -421,7 +421,10 @@
                             <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                             La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
                             <?php if ('pubescente' === $fleur_male['pubescence']) {
-                                echo "La fleur est ".$fleur_male['pubescence'].' sur: '.implode(', ' , $fleur_male['localisation_des_poils'])."."; }?>
+                                echo "La fleur est ".$fleur_male['pubescence'];?>
+                                <?php if (!empty($fleur_male['localisation_des_poils'])) {
+                                    echo ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
+                                else { echo '.'; }}?>
                             <?php echo $fleur_male['autre_caractere']; ?>
                         <?php endif; ?>
                     </p>
@@ -459,8 +462,12 @@
                             gynécée composé de <?php echo implode(' ou ' , $fleur_femelle['gynecee']); ?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
                             ovaire <?php echo $fleur_femelle['ovaire']; ?>.
                             La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
-                            La fleur est <?php echo $fleur_femelle['pubescence']. ('pubescente' === $fleur_femelle['pubescence'] ? ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']) : ''); ?>.
-                            <?php echo $fleur_femelle['autre_caractere']; ?>.
+                            <?php if ('pubescente' === $fleur_femelle['pubescence']) {
+                                echo "La fleur est ".$fleur_femelle['pubescence'];?>
+                                <?php if (!empty($fleur_femelle['localisation_des_poils'])) {
+                                    echo ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
+                                else { echo '.'; }}?>
+                            <?php echo $fleur_femelle['autre_caractere']; ?>
                         <?php endif; ?>
                     </p>
                 </div>
@@ -505,7 +512,10 @@
                                 ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
                                 La couleur principale de la fleur est le <?php echo $fleur_bisexuee['couleur_principale']; ?>.
                                 <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
-                                    echo "La fleur est ".$fleur_bisexuee['pubescence'].' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).". "; } ?>
+                                    echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
+                                    <?php if (!empty($fleur_bisexuee['localisation_des_poils'])) {
+                                        echo ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
+                                    else { echo '.'; }}?>
                                 <?php /*echo $fleur_bisexuee['autre_caractere']; */?>
                             <?php endif; ?>
                         </p>
