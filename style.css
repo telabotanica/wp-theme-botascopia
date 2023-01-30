@@ -127,6 +127,10 @@ body.page-template-fiche_pdf {
   margin-top: 0.2cm;
 }
 
+.page-template-fiche_pdf ol {
+  padding-left: inherit;
+}
+
 .page-template-fiche_pdf ol li {
   list-style-type: none;
   display: inline-block;
