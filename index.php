@@ -60,6 +60,12 @@
                 'post_status' => 'pending',
                 'showposts' => 100
             );
+            /*} else if ( $current_user->wp_user_level === '10') { //$current_user->roles[0] === 'administrator'
+            $args = array(
+                'post_type' => 'post',
+                'post_status' => 'pending',
+                'showposts' => 100
+            );*/
         } else {
             $args = array(
                 'post_type' => 'post',
