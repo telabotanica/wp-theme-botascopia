@@ -60,12 +60,12 @@
                 'post_status' => 'pending',
                 'showposts' => 100
             );
-            /*} else if ( $current_user->wp_user_level === '10') { //$current_user->roles[0] === 'administrator'
+            } else if ( $current_user->wp_user_level === '10') { //$current_user->roles[0] === 'administrator'
             $args = array(
                 'post_type' => 'post',
-                'post_status' => 'pending',
-                'showposts' => 100
-            );*/
+                'post_status' => array('draft','pending'),
+                'showposts' => 1000
+            );
         } else {
             $args = array(
                 'post_type' => 'post',
@@ -82,6 +82,8 @@
             // echo "<div>".$current_user->roles[0].", votre.s formulaire.s :</div><br />";
             if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
                 echo "<div>Vos formulaires à valider :</div><br />";
+            } else if ( $current_user->wp_user_level === '10') { //$current_user->roles[0] === 'administrator'
+                echo "<div>Brouillons :</div><br />";
             } else {
                 echo "<div>Vos formulaires :</div><br />";
             }
@@ -99,6 +101,19 @@
                     </span>
                     </div>
                     <?php } ?>
+                <?php } else if ( $current_user->wp_user_level === '10') { //$current_user->roles[0] === 'administrator'
+                    $current_post = get_post(get_the_ID());
+                    if ($current_post->post_status === 'draft') {
+                        ?>
+                        <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
+                            <span style="float:right;" >
+	                        <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                            </span>
+                            <span style="float:right;"><?php echo "Modifié le: ".$current_post->post_date." "; ?></span>
+                        </div>
+                    <?php } ?>
                 <?php } else { ?>
                     <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
 	    		    <span style="float:right;" >
@@ -112,7 +127,6 @@
 
 
             if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
-                //echo "<div></div><br />";
                 echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Les formulaires en attente de validateur</div><br />";
                 while ($cpt_query->have_posts()) {
                     $cpt_query->the_post();
@@ -127,6 +141,43 @@
                     </span>
                     </div>
                     <?php }
+                }
+            } else if ( $current_user->wp_user_level === '10') { //$current_user->roles[0] === 'administrator'
+                echo "<div style=float:left;width:100%;margin-bottom:1em;margin-top:3em;>Les formulaires en cours de validation</div><br />";
+                while ($cpt_query->have_posts()) {
+                    $cpt_query->the_post();
+                    $editor = get_post_meta(get_the_ID(), 'Editor', true);
+                    $user_args = array( // TODO bon on attrape un user avec ça bien joue a nous, maintenant faudra faire plus propre
+                        'include' => array($editor),
+                    );
+                    $current_post = get_post(get_the_ID());
+                    if ($current_post->post_status === 'pending') {
+                        if (intval($editor) === 0) {
+                        ?>
+                        <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
+                            <span style="float:right;" >
+	                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                                <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                                <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                            </span>
+                            <span style="float:right;"><?php echo "Modifié le: ".$current_post->post_date." "; ?></span>
+                            <span style="float:right;"><?php echo "Pas de validateur attribué "; ?></span>
+                        </div>
+                    <?php } else {
+                            $user_query = get_users($user_args);
+                            echo var_dump($user_query);
+                            ?>
+                            <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
+                                <span style="float:right;" >
+	                            <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/formulaire/?p=<?php the_title(); ?>'">Corriger</button>
+                                <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/fiche/?p=<?php the_title(); ?>'">Prévisualiser</button>
+                                <button onclick="window.location.href = '<?php echo $securise.$_SERVER['HTTP_HOST']; ?>/export/?p=<?php the_title(); ?>'">Exporter</button>
+                            </span>
+                                <span style="float:right;"><?php echo "Modifié le: ".$current_post->post_date." "; ?></span>
+                                <span style="float:right;"><?php echo "Validateur: ".$user_query[0]->user_nicename." "; ?></span>
+                            </div>
+                        <?php }
+                    }
                 }
             }
 
