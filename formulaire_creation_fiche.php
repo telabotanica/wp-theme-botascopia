@@ -71,6 +71,8 @@ if (isset($_GET['p'])) {
     }
     if ($auteur_autorise == true) {
         if (isset($_GET['a']) and $_GET['a'] == "2" ) {
+            // apply_filters(acf/validate_value);
+            do_action(acf/validate_save_post);
             do_action('set_pending', get_the_ID());
             ?>
             <meta http-equiv="refresh" content="0;url=">
@@ -86,22 +88,41 @@ if (isset($_GET['p'])) {
 
         $args = array(
             'post_id' => get_the_ID() ,
-            'new_post' => array(
+            /*'new_post' => array(
                 'post_type' => 'post', // Enregistrer dans les articles
-                'post_status' => 'draft', // Enregistrer en brouillon
-            ),
+                'post_status' => 'pending', // Enregistrer en brouillon
+            ),*/
             'field_groups' => array( $form ), // L'ID du post du groupe de champs
-            'submit_value' => 'Enregistrer le brouillon', // Intitulé du bouton
+            'submit_value' => 'Enregistrer les modifications', // Intitulé du bouton
             'updated_message' => "Votre demande a bien été prise en compte.",
             'uploader' => 'wp',
-            'return' => '',
+            'id' => 'form_draft',
+            'html_after_fields' => '<input type="hidden" id="hiddenId" name="acf[current_step]" value="1"/>',
+            'return' => home_url(),
+            // 'return' => '',
         );
 
 
         //acf_form( $args_brouillon ); // Afficher le formulaire
         acf_form( $args ); // Afficher le formulaire
+        ?>
+        <input type="submit" id="pending_btn" class="acf-button2 button button-primary button-large" name="pending_btn" value="Mettre en relecture" onclick="click_ignore();">
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                jQuery("#pending_btn").detach().appendTo('.acf-form-submit');
+            });
+        </script>
 
-        echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=2';\">Mettre en relecture</button>";
+        <script type="text/javascript">
+            function click_ignore(e) {
+                document.getElementById('hiddenId').value = 2;
+                return false;
+            }
+        </script>
+
+        <?php
+
+        //echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=2';\">Mettre en relecture</button>";
 
 
         echo "<br />";
@@ -128,7 +149,14 @@ if (isset($_GET['p'])) {
         } else {
 
             if (isset($_GET['a']) and $_GET['a'] == "3" ) {
-                wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
+                // wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
+                // do_action(acf/validate_save_post);
+                // filter
+                $argus = apply_filters( 'acf/validate_form', $form );
+
+                // return
+                echo var_dump($argus);
+                // do_action('set_publish', get_the_ID());
                 ?>
                 <meta http-equiv="refresh" content="0;home_url()"> <!-- TODO Gerer la redirection vers home -->
                 <?php
@@ -151,14 +179,33 @@ if (isset($_GET['p'])) {
                     'submit_value' => 'Enregistrer les modifications', // Intitulé du bouton
                     'updated_message' => "Votre demande a bien été prise en compte.",
                     'uploader' => 'wp',
-                    'return' => '',
+                    'id' => 'form_draft',
+                    'html_after_fields' => '<input type="hidden" id="hiddenId" name="acf[current_step]" value="2"/>',
+                    'return' => home_url(),
+                    // 'return' => '',
             );
 
 
             //acf_form( $args_brouillon ); // Afficher le formulaire
             acf_form( $args ); // Afficher le formulaire
+            ?>
+            <input type="submit" id="publish_btn" class="acf-button2 button button-primary button-large" name="publish_btn" value="Valider la fiche" onclick="click_ignore();">
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                    jQuery("#publish_btn").detach().appendTo('.acf-form-submit');
+                });
+            </script>
 
-            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
+            <script type="text/javascript">
+                function click_ignore(e) {
+                    document.getElementById('hiddenId').value = 3;
+                    return false;
+                }
+            </script>
+
+            <?php
+
+            // echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
 
             echo "<br />";
             foreach ($formulaires as $id => $titre) {
