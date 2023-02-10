@@ -70,14 +70,6 @@ if (isset($_GET['p'])) {
         }
     }
     if ($auteur_autorise == true) {
-        if (isset($_GET['a']) and $_GET['a'] == "2" ) {
-            // apply_filters(acf/validate_value);
-            do_action(acf/validate_save_post);
-            do_action('set_pending', get_the_ID());
-            ?>
-            <meta http-equiv="refresh" content="0;url=">
-            <?php
-        }
         ?>
         <div >
             <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
@@ -121,10 +113,6 @@ if (isset($_GET['p'])) {
         </script>
 
         <?php
-
-        //echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=2';\">Mettre en relecture</button>";
-
-
         echo "<br />";
         foreach ($formulaires as $id => $titre) {
             echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
@@ -147,20 +135,6 @@ if (isset($_GET['p'])) {
                 echo "Vous n'êtes pas le vérificateur de cette fiche";
 
         } else {
-
-            if (isset($_GET['a']) and $_GET['a'] == "3" ) {
-                // wp_update_post(array('ID' => get_the_ID(), 'post_status' => 'publish'));
-                // do_action(acf/validate_save_post);
-                // filter
-                $argus = apply_filters( 'acf/validate_form', $form );
-
-                // return
-                echo var_dump($argus);
-                // do_action('set_publish', get_the_ID());
-                ?>
-                <meta http-equiv="refresh" content="0;home_url()"> <!-- TODO Gerer la redirection vers home -->
-                <?php
-            }
             ?>
             <div >
                 <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
@@ -204,9 +178,6 @@ if (isset($_GET['p'])) {
             </script>
 
             <?php
-
-            // echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3';\">Valider la fiche</button>";
-
             echo "<br />";
             foreach ($formulaires as $id => $titre) {
                 echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
