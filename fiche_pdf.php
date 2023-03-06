@@ -36,7 +36,7 @@
 
             <header>
                 <div class="container">
-                    <h1><em><?php the_field('nom_scientifique');?></em></h1>
+                    <h1><?php the_field('nom_scientifique');?></h1>
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
                     <div class="characteristic">
                         <h3 class="icon-title">
