@@ -55,6 +55,7 @@
                 </div>
                 <?php
                 $index_photos = 0;
+                $fruit_photo=null;
                 $refs_photo = array();
                 if (!empty(get_field('photo_de_la_plante_entiere'))) {
                     $refs_photo[] = get_field('photo_de_la_plante_entiere');
@@ -373,10 +374,27 @@
                         <?php $fruit = get_field('fruit');?>
                         <?php if(!empty($fruit['photo'])): ?>
                             <?php
-                            $refs_photo[] = $fruit['photo']["id"];
-                            $index_photos++;
+                            // $refs_photo[] = $fruit['photo']["id"];
+                            // $index_photos++;
+                            $index_fruit_photo = $index_photos+1;
+                            $fruit_photo = $fruit['photo'];
+                            if (!empty(get_field('fleur_male')) && (!empty(get_field('fleur_male')['photo_de_fleur_male']))) {
+                                if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
+                                    $index_fruit_photo++;
+                                }
+                            }
+                            if (!empty(get_field('fleur_femelle')) && (!empty(get_field('fleur_femelle')['photo_de_fleur_femelle']))) {
+                                if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "gynomonoïque") || (get_field('systeme_sexuel') == "gynodioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
+                                    $index_fruit_photo++;
+                                }
+                            }
+                            if (!empty(get_field('fleur_bisexuee')) && (!empty(get_field('fleur_bisexuee')['photo_de_fleur_bisexuee']))) {
+                                if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "gynomonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "gynodioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
+                                    $index_fruit_photo++;
+                                }
+                            }
                             ?>
-                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                            <div class="picture-ref"><?php echo $index_fruit_photo;?></div>
                         <?php endif; ?>
                         <p>Le fruit est <?php echo $fruit['type'];?>.</p>
                     <?php } ?>
@@ -516,6 +534,12 @@
                     </div>
                 </div>
                 <?php if(0 < $index_photos): ?>
+                    <?php if(!empty($fruit_photo)): ?>
+                        <?php
+                        $refs_photo[] = $fruit_photo["id"];
+                        $index_photos++;
+                        ?>
+                    <?php endif; ?>
                     <div class="footer-section">
                         <ol class="characteristic-photos">
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
