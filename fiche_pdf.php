@@ -73,7 +73,9 @@
                         $section_tige = implode('-', $tige['section_de_la_tige']);
                         $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
                         if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) {
-                            $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
+                            if (!empty($tige['surface_de_lecorce'])) {
+                                $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
+                            }
                         }
                         ?>
                         <h4 class="icon-title">
@@ -91,8 +93,8 @@
                                 <?php if ($section_tige != 'pleine'):;?>, à section <?php echo $section_tige;?>
                                 <?php endif; ?>.<br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.</p>
                             <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.<br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
-                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
-                                    <br>L'écorce est <?php echo $surface_ecorce;?> et <?php the_field('couleur_du_tronc'); ?>.</p>
+                            <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))): ?>
+                                    <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php the_field('couleur_du_tronc');} ?>.</p>
                                 <?php endif; ?>
                             <?php endif; ?>
                             <?php endif; ?>
