@@ -95,6 +95,7 @@
                                     <br>L'écorce est <?php echo $surface_ecorce;?> et <?php the_field('couleur_du_tronc'); ?>.</p>
                                 <?php endif; ?>
                             <?php endif; ?>
+                            <?php endif; ?>
                     <?php } ?>
                 </div>
 
