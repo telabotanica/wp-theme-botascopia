@@ -432,7 +432,7 @@
                         <div class="picture-ref"><?php echo $index_photos;?></div>
                     <?php endif; ?>
                     <p>
-                        Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?> ;
+                        Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>.
                         <?php if('présent' !== $fleur_male['perianthe']): { ?>
                             Le périanthe est absent.
                         <?php } else: { ?>
@@ -444,7 +444,7 @@
                                     ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
-                            périanthe composé de <?php echo $perianthe;
+                            Le périanthe est composé de <?php echo $perianthe;
                         } ?>
                         <?php endif; ?>
                         <?php if(!empty($fleur_male['androcee'])): { ?>
@@ -480,7 +480,7 @@
                         <div class="picture-ref"><?php echo $index_photos;?></div>
                     <?php endif; ?>
                     <p>
-                        Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
+                        Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?>.
                         <?php if('présent' !== $fleur_femelle['perianthe']): { ?>
                             Le périanthe est absent.
                         <?php } else: { ?>
@@ -492,7 +492,7 @@
                                     ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
-                            périanthe composé de <?php echo $perianthe;
+                            Le périanthe est composé de <?php echo $perianthe;
                         } ?>
                         <?php endif; ?>
                         <?php if(!empty($fleur_femelle['gynecee'])): { ?>
@@ -525,7 +525,7 @@
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
                         <p>
-                            Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?> ;
+                            Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?>.
                             <?php if('présent' !== $fleur_bisexuee['perianthe']): { ?>
                                 Le périanthe est absent.
                             <?php } else: { ?>
@@ -542,7 +542,7 @@
                                         $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                                 }
                                 ?>
-                                périanthe composé de <?php echo $perianthe;
+                                Le périanthe est composé de <?php echo $perianthe;
                             } ?>
                             <?php endif; ?>
                             <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
@@ -562,7 +562,7 @@
                                     <?php if (!empty($fleur_bisexuee['localisation_des_poils'])) {
                                         echo ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
                                     else { echo '.'; }}?>
-                                <?php /*echo $fleur_bisexuee['autre_caractere']; */?>
+                                <?php echo $fleur_bisexuee['autre_caractere'];?>
                         </p>
                     </div>
                 <?php endif ?>
