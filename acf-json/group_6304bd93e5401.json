@@ -4001,6 +4001,11 @@
                     "conditional_logic": [
                         [
                             {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "tépales"
+                            },
+                            {
                                 "field": "field_6304f734c677f",
                                 "operator": "!=",
                                 "value": "1"

@@ -39,7 +39,44 @@ add_filter( 'login_redirect', function( $url, $query, $user ) {
 add_action( 'set_pending', 'add_editor_meta' );
 
 function add_editor_meta( $post_id ) {
-    wp_update_post(array('ID' => $post_id, 'post_status' => 'pending'));
+    $date = date('Y-m-d H:i:s');
+    $date_gmt = gmdate('Y-m-d H:i:s');
+
+    wp_update_post(array('ID' => $post_id, 'post_date' => $date, 'post_date_gmt' => $date_gmt, 'post_status' => 'pending'));
 
     update_post_meta( $post_id, 'Editor', 0 );
 }
+
+add_action( 'set_publish', 'publish_post' );
+
+function publish_post( $post_id ) {
+    wp_update_post(array('ID' => $post_id, 'post_status' => 'publish'));
+}
+
+function my_acf_save_post($post_id) {
+
+    $submitedStatus = $_POST['acf']['current_step'];
+    if ($submitedStatus == 1){
+        $value = 'draft';
+    } else if ($submitedStatus == 2){
+        $value = 'pending';
+    } else if ($submitedStatus == 3){
+        $value = 'publish';
+    }
+
+// Update current post
+    $my_post = array(
+        'ID' => $post_id,
+        'post_status' => $value,
+    );
+    remove_action('acf/save_post', 'my_acf_save_post', 20);
+
+// Update the post into the database
+    wp_update_post($my_post);
+
+// Add the action back
+    add_action('acf/save_post', 'my_acf_save_post', 20);
+}
+
+// run after ACF saves the $_POST['acf'] data
+add_action('acf/save_post', 'my_acf_save_post', 20);
