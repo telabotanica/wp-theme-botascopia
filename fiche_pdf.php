@@ -134,9 +134,9 @@
 
                                     foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
                                         if ('simples' === $type_feuille) {
-                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
                                         } else {
-                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuilles_aeriennes['limbe_des_folioles']));
+                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
                                         }
                                     }
                                     ?>
@@ -186,9 +186,9 @@
 
                                             foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
                                                 if ('simples' === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuilles_aeriennes['limbe_des_folioles']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
                                                 }
                                             }
                                             ?>
@@ -234,9 +234,9 @@
 
                                             foreach ($feuilles_immergees['type_de_feuille'] as $type_feuille) {
                                                 if ('simples' === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuilles_immergees['limbe_des_feuilles_simples']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_immergees['limbe_des_feuilles_simples']));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuilles_immergees['limbe_des_folioles']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_immergees['limbe_des_folioles']));
                                                 }
                                             }
                                             */?>
@@ -284,9 +284,9 @@
 
                                             foreach ($feuilles_des_rameaux_steriles['type_de_feuille'] as $type_feuille) {
                                                 if ('simples' === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples']));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuilles_des_rameaux_steriles['limbe_des_folioles']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles']));
                                                 }
                                             }
                                             ?>
@@ -332,9 +332,9 @@
 
                                             foreach ($feuilles_des_rameaux_fleuris['type_de_feuille'] as $type_feuille) {
                                                 if ('simples' === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode(' et ', $feuilles_des_rameaux_fleuris['limbe_des_feuilles_simples']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_feuilles_simples']));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode(' et ', $feuilles_des_rameaux_fleuris['limbe_des_folioles']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_folioles']));
                                                 }
                                             }
                                             */?>
