@@ -72,9 +72,12 @@
                         $type_tige = implode(', ', $tige['type_de_tige']);
                         $section_tige = implode('-', $tige['section_de_la_tige']);
                         $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
-                        if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) {
-                            if (!empty($tige['surface_de_lecorce'])) {
-                                $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
+                        $port_de_la_plante = get_field('port_de_la_plante');
+                        if (!empty($port_de_la_plante)) {
+                            if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) {
+                                if (!empty($tige['surface_de_lecorce'])) {
+                                    $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
+                                }
                             }
                         }
                         ?>
