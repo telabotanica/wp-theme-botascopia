@@ -92,11 +92,8 @@
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
                         <p>La tige aérienne est <?php echo $tige['tige_aerienne'];?>
-                            <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>
-                                <?php //if ($section_tige != 'pleine'):;?>
-                                    , à section <?php echo $section_tige;?>
-                                <?php //endif; ?>
-                                .<br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
+                            <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
+                                <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
                                 <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))): ?>
                                     <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
                                 <?php endif; ?>
