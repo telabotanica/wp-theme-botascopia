@@ -377,12 +377,12 @@
                             <div class="inflorescence-icon icon"></div>Inflorescence
                         </h4>
                         <?php $inflorescence = get_field('inflorescence');?>
-                        <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs'];
-                        if($inflorescence['organisation_des_fleurs'] === 'organisées en inflorescences') {
+                        <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs'];?>.
+                        <?php if($inflorescence['organisation_des_fleurs'] === 'organisées en inflorescences') {
                             if($inflorescence['categorie'] != 'autre') {
-                                ?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
+                                ?> L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
                             <?php } else {
-                                ?>. L’inflorescence est <?php echo $inflorescence['description']; ?>.</p>
+                                ?> L’inflorescence est <?php echo $inflorescence['description']; ?>.</p>
                             <?php } ?>
                         <?php } ?>
                     <?php } ?>
