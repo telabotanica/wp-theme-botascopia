@@ -438,9 +438,9 @@
                     <?php endif; ?>
                     <p>
                         <?php if('présent' !== $fleur_male['perianthe']): { ?>
-                            Le périanthe est absent.
+                            Périanthe absent ;
                         <?php } else: { ?>
-                            Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>.
+                            Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>;
                             <?php
                             if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
@@ -449,7 +449,7 @@
                                     ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
-                            Le périanthe est composé de <?php echo $perianthe;
+                            périanthe composé de <?php echo $perianthe;
                         } ?>
                         <?php endif; ?>
                         <?php if(!empty($fleur_male['androcee'])): { ?>
@@ -486,9 +486,9 @@
                     <?php endif; ?>
                     <p>
                         <?php if('présent' !== $fleur_femelle['perianthe']): { ?>
-                            Le périanthe est absent.
+                            Périanthe absent ;
                         <?php } else: { ?>
-                            Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?>.
+                            Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
                             <?php
                             if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
@@ -497,7 +497,7 @@
                                     ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
-                            Le périanthe est composé de <?php echo $perianthe;
+                            périanthe composé de <?php echo $perianthe;
                         } ?>
                         <?php endif; ?>
                         <?php if(!empty($fleur_femelle['gynecee'])): { ?>
@@ -531,9 +531,9 @@
                         <?php endif; ?>
                         <p>
                             <?php if('présent' !== $fleur_bisexuee['perianthe']): { ?>
-                                Le périanthe est absent.
+                                Périanthe absent ;
                             <?php } else: { ?>
-                                Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?>.
+                                Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?> ;
                                 <?php
                                 if ('tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
                                     $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
@@ -547,7 +547,7 @@
                                         $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                                 }
                                 ?>
-                                Le périanthe est composé de <?php echo $perianthe;
+                                périanthe composé de <?php echo $perianthe;
                             } ?>
                             <?php endif; ?>
                             <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
