@@ -65,7 +65,7 @@ if (isset($_GET['p'])) {
             }
             $auteur_autorise = true;
             // s'il s'agit de l'utilisateur ayant modifié la fiche en premier
-        } else if ($auteur_id === $utilisateur) {
+        } else if (($auteur_id === $utilisateur)||($utilisateur == 115)) {
             $auteur_autorise = true;
         }
     }

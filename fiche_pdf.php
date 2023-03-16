@@ -103,7 +103,9 @@
                 </div>
 
                 <div class="characteristic">
-                    <?php  if (!empty(get_field('feuille'))) { ?>
+                    <?php
+                    $feuille = get_field('feuille');
+                    if (!empty($feuille)) { ?>
                         <?php $presence_feuilles = get_field('feuille')['presence_de_feuilles']; ?>
                         <?php if ('jamais visibles' === $presence_feuilles): ?>
                             <h4 class="icon-title">
@@ -376,10 +378,12 @@
                         </h4>
                         <?php $inflorescence = get_field('inflorescence');?>
                         <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs'];
-                        if($inflorescence['categorie'] != 'autre') {
-                            ?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
-                        <?php } else {
-                            ?>. L’inflorescence est <?php echo $inflorescence['description']; ?>.</p>
+                        if($inflorescence['organisation_des_fleurs'] === 'organisées en inflorescences') {
+                            if($inflorescence['categorie'] != 'autre') {
+                                ?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
+                            <?php } else {
+                                ?>. L’inflorescence est <?php echo $inflorescence['description']; ?>.</p>
+                            <?php } ?>
                         <?php } ?>
                     <?php } ?>
                 </div>
