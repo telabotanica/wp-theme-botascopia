@@ -1,8 +1,14 @@
 <?php
 // adding "bs_" (botascopia) prefix to avoid overriding native wp functions
 
+// Chargement des dépendances installées avec Composer
+require get_template_directory() . '/vendor/autoload.php';
+
 // ajout de la recherche sur les champs acf
 require get_template_directory() . '/inc/custom-search-acf-wordpress.php';
+
+// Chargement du styleguide
+require get_template_directory() . '/inc/styleguide.php';
 
 // add theme supports
 function bs_theme_supports() {
@@ -16,6 +22,8 @@ add_action('after_setup_theme', 'bs_theme_supports');
 // load css (and js, later if needed)
 function bs_load_scripts() {
   wp_enqueue_style( 'style', get_stylesheet_uri());
+  wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/scripts/main.js', [ 'jquery', 'wp-util' ], null,
+					 true );
 }
 add_action('wp_enqueue_scripts', 'bs_load_scripts' );
 
