@@ -437,10 +437,10 @@
                         <div class="picture-ref"><?php echo $index_photos;?></div>
                     <?php endif; ?>
                     <p>
-                        Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>.
                         <?php if('présent' !== $fleur_male['perianthe']): { ?>
                             Le périanthe est absent.
                         <?php } else: { ?>
+                            Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>.
                             <?php
                             if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
@@ -485,10 +485,10 @@
                         <div class="picture-ref"><?php echo $index_photos;?></div>
                     <?php endif; ?>
                     <p>
-                        Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?>.
                         <?php if('présent' !== $fleur_femelle['perianthe']): { ?>
                             Le périanthe est absent.
                         <?php } else: { ?>
+                            Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?>.
                             <?php
                             if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
@@ -530,10 +530,10 @@
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
                         <p>
-                            Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?>.
                             <?php if('présent' !== $fleur_bisexuee['perianthe']): { ?>
                                 Le périanthe est absent.
                             <?php } else: { ?>
+                                Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?>.
                                 <?php
                                 if ('tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
                                     $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
