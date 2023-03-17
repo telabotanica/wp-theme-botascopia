@@ -666,6 +666,7 @@
                     <?php } ?>
                     <?php if (!empty(get_field('carte_de_metropole'))) :?>
                         <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
+                        <div class="credits-photo">OpenObs - 02/2023</div>
                     <?php endif; ?>
                 </div>
                 <?php endif; ?>
