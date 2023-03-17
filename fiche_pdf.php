@@ -643,7 +643,7 @@
                     </h3>
                     <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Altitude : <?php echo get_field('amplitude_altitudinale'); ?> ; <?php endif; ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> Plante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
                         <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
-                        <?php if (!empty(get_field('dispersion'))) :?> dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
+                        <?php if (!empty(get_field('dispersion'))) :?> Dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
                 </div>
                 <?php endif; ?>
                 <?php $proprietes = get_field('proprietes')?: null; ?>
