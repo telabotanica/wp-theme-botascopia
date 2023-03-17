@@ -246,8 +246,10 @@ body.page-template-fiche_pdf {
 }
 
 .page-template-fiche_pdf .section-image img {
-  width: 226px;
-  height: 226px;
+  width: 75%;
+  height: 75%;
+  /*width: 226px;
+  height: 226px;*/
 }
 
 /* ************ */
