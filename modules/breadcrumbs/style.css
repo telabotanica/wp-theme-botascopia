@@ -1,0 +1,56 @@
+.breadcrumbs {
+  border-bottom: 0.1rem solid var(--gris-dd);
+  color: var(--marron);
+  line-height: 1rem;
+  padding: 1.8rem 0 1.7rem;
+  margin-bottom: 2rem; }
+  .breadcrumbs-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .breadcrumbs.no-border {
+    border: 0; }
+  .layout-central-col .breadcrumbs {
+    padding-top: 0; }
+  .layout-content-col.full-width .breadcrumbs {
+    margin-bottom: 0; }
+  .breadcrumbs-item {
+    display: inline;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.4rem;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+    line-height: 1.8rem;
+    text-transform: uppercase;
+    margin-right: 1rem; }
+    .breadcrumbs-item > a {
+      border-bottom: 0.1rem solid var(--vert-fonce);
+      color: var(--vert-fonce);
+      display: inline-block;
+      text-decoration: none;
+      transition: border 0.2s ease; }
+      .breadcrumbs-item > a:hover {
+        border-bottom-color: transparent; }
+    .breadcrumbs-item:last-child {
+      margin-right: 0; }
+      .breadcrumbs-item:last-child > a {
+        border: 0;
+        color: var(--marron);
+        cursor: default;
+        pointer-events: none; }
+    .breadcrumbs-item div {
+      display: inline-block; }
+  .breadcrumbs-item + .breadcrumbs-item::before {
+    content: ">";
+    margin-right: 1rem;
+    position: relative;
+    speak: none; }
+  .breadcrumbs-button {
+    float: right; }
+    .breadcrumbs-button .icon {
+      height: 1.8rem;
+      width: 1.8rem; }
+

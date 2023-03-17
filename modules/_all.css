@@ -1,2 +1,7 @@
+@import "breadcrumbs/style.css";
 @import "button/style.css";
+@import "categories/style.css";
+@import "categories-labels/style.css";
+@import "cover/style.css";
 @import "icon/style.css";
+@import "title/style.css";

@@ -1,0 +1,121 @@
+.cover {
+    align-items: center;
+    background: center center no-repeat;
+    background-size: cover;
+    color: var(--blanc);
+    display: flex;
+    position: relative;
+}
+
+.cover::before {
+    background-color: rgba(var(--bleu-nuit), 0.4);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.cover-title, .cover-subtitle, .cover-content {
+    position: relative;
+}
+
+.cover-search-box ~ .cover-title, .cover-search-box ~ .cover-subtitle, .cover-search-box ~ .cover-content {
+    margin-right: 46rem;
+}
+
+.cover-title {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cover-subtitle {
+    font-weight: normal;
+    margin-top: 0.5rem;
+}
+
+.cover-subtitle a {
+    border-bottom: 0.1rem solid var(--blanc);
+    color: var(--blanc);
+    text-decoration: none;
+    transition: border 0.2s ease;
+}
+
+.cover-subtitle a:hover, .cover-subtitle a:focus {
+    border-bottom-color: transparent;
+}
+
+.cover-content {
+    margin-top: 2rem;
+}
+
+.cover-search-box {
+    float: right;
+    margin-top: 1rem;
+    position: relative;
+    width: 44rem;
+}
+
+@media (max-width: 767.9px) {
+    .cover {
+        min-height: 16rem;
+        text-align: center;
+    }
+
+    .cover.tall {
+        min-height: 23rem;
+    }
+
+    .cover-title {
+        font-size: 2.2rem;
+    }
+
+    .cover-subtitle {
+        font-size: 1.6rem;
+    }
+
+    .cover-credits {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .cover {
+        min-height: 27.5rem;
+    }
+
+    .cover.tall {
+        min-height: 37rem;
+        min-height: 27vw;
+    }
+
+    .cover-title {
+        font-size: 3.2rem;
+    }
+
+    .cover-subtitle {
+        font-size: 1.8rem;
+    }
+
+    .cover-credits {
+        bottom: 0;
+        color: rgba(var(--gris-f0), 0.75);
+        font-size: 1.2rem;
+        padding: 1rem;
+        position: absolute;
+        right: 0;
+    }
+
+    .cover-credits a {
+        color: var(--gris-f0);
+        text-decoration: none;
+    }
+
+    .cover-credits a:hover {
+        border-bottom: 0.1rem solid;
+    }
+}
+

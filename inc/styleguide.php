@@ -21,8 +21,13 @@
   */
 
 $botascopia_modules = [
+	'breadcrumbs',
 	'button',
-	'icon'
+	'categories',
+	'categories-labels',
+	'cover',
+	'icon',
+	'title'
 ];
 array_walk($botascopia_modules, function ($module) {
   if (!locate_template('modules/' . $module . '/' . $module . '.php', true, true)) {
