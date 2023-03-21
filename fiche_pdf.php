@@ -747,7 +747,7 @@
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf(element, {
-        html2canvas: { scale: 4 },
+        html2canvas: { scale: 2 },
         image: { type: 'png', quality: 1 }
     });
 </script>
