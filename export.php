@@ -65,7 +65,7 @@ if (empty($_GET['p'])) {
             'displayHeaderFooter' => true,
             'format' => 'A4',
             'disable-pdf-compression' => true,
-            'scale' => 1.1,
+            'scale' => 1.2,
             'dpi' => 300,
         ]);
 
