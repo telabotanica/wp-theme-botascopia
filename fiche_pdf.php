@@ -745,7 +745,7 @@
     filename: `bouh.pdf`,
     image: { type: 'png', quality: 1 },
     html2canvas: {
-    dpi: 300,
+    //dpi: 300,
     scale:1,
     letterRendering: true,
     useCORS: true
