@@ -742,7 +742,6 @@
 <script>
     var element = document.body;
     var opt = {
-        margin:       0.1,
         filename:     'my_file_name',
         image:        { type: 'png', quality: 1 },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
