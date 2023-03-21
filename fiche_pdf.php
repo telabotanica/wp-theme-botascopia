@@ -743,11 +743,11 @@
     var element = document.body;
     var opt = {
         filename:     'my_file_name',
-        image:        { type: 'png', quality: 1 },
+        image:        { type: {'svg', 'png'}, quality: 1 },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf(element, {
-        html2canvas: { scale: 2 },
+        html2canvas: { scale: 4 },
         image: { type: 'png', quality: 1 }
     });
 </script>
