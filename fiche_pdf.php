@@ -746,10 +746,12 @@
     image: { type: 'png', quality: 1 },
     html2canvas: {
     dpi: 300,
-    scale:2,
+    scale:4,
     letterRendering: true,
     useCORS: true
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
+
+    html2pdf(document.body, opt);
 </script>
