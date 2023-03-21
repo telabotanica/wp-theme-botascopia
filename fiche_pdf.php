@@ -740,14 +740,30 @@
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    // var element = document.body;
+    // var opt = {
+    //     filename:     'my_file_name',
+    //     image:        { type: {'svg', 'png'}, quality: 1 },
+    //     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    // };
+
     var element = document.body;
     var opt = {
-        filename:     'my_file_name',
-        image:        { type: {'svg', 'png'}, quality: 1 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        filename: `my_file.pdf`,
+        image: {
+            type: 'png',
+            quality: 1
+        },
+        html2canvas: {
+            scale: 1.1,
+            width: 1100,
+            dpi: 192,
+        },
+        jsPDF: {
+            unit: 'pt',
+            orientation: 'p'
+        }
     };
-    html2pdf(element, {
-        html2canvas: { scale: 2 },
-        image: { type: 'png', quality: 1 }
-    });
+
+    html2pdf(element, opt);
 </script>
