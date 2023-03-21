@@ -66,6 +66,7 @@ if (empty($_GET['p'])) {
             'format' => 'A4',
             'disable-pdf-compression' => true,
             'scale' => 1.1,
+            'dpi' => 300,
         ]);
 
         $output = $converter->convert();
