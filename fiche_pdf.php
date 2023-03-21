@@ -753,5 +753,5 @@
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf(opt);
+    html2pdf(document.body, opt);
 </script>
