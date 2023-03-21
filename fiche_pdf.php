@@ -746,7 +746,7 @@
     image: { type: 'png', quality: 1 },
     html2canvas: {
     dpi: 300,
-    scale:2,
+    scale:1.2,
     letterRendering: true,
     useCORS: true
     },
