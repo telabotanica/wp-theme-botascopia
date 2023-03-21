@@ -756,7 +756,6 @@
         },
         html2canvas: {
             scale: 1.1,
-            width: 1100,
             dpi: 192,
         },
         jsPDF: {
