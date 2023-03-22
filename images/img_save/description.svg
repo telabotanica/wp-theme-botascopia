@@ -1,0 +1,11 @@
+<svg id="Description" xmlns="http://www.w3.org/2000/svg" width="38.422" height="43.447" viewBox="0 0 38.422 43.447">
+  <g id="Groupe_55" data-name="Groupe 55" transform="translate(-1884.337 -1582.48)">
+    <path id="Tracé_31" data-name="Tracé 31" d="M1903.751,1657.707s-2.528.281-4.578-2.837c-.59-1.123-.337-2.3-.955-3.651.337-.2,7.892.534,6.263,6.01a6.166,6.166,0,0,0-4.3-4.971C1903.723,1654.589,1903.751,1657.707,1903.751,1657.707Z" transform="translate(0 -51.19)" fill="#8e9f31"/>
+    <path id="Tracé_32" data-name="Tracé 32" d="M1943.421,1600.338s.843-3.679,6.122-5.87c.036.876.674,4.157.674,4.157a7.322,7.322,0,0,1-4.185,7.526c.772-2.592-.506-3.875-.506-3.875a10.882,10.882,0,0,1,2.191-5.28,6.9,6.9,0,0,0-2.921,4.381A4.332,4.332,0,0,0,1943.421,1600.338Z" transform="translate(-40.793 0)" fill="#8e9f31"/>
+  </g>
+  <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(0 24.001) rotate(-59)" fill="none" stroke="#964e75" stroke-width="3">
+    <circle cx="14" cy="14" r="14" stroke="none"/>
+    <circle cx="14" cy="14" r="12.5" fill="none"/>
+  </g>
+  <rect id="Rectangle_42" data-name="Rectangle 42" width="14.674" height="4.138" transform="matrix(0.454, 0.891, -0.891, 0.454, 25.964, 28.494)" fill="#964e75"/>
+</svg>
