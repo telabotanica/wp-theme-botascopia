@@ -740,6 +740,15 @@
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    var svgElements = document.body.querySelectorAll('svg');
+    svgElements.forEach(function(item) {
+        item.setAttribute("width", item.getBoundingClientRect().width);
+        item.setAttribute("height", item.getBoundingClientRect().height);
+        item.style.width = null;
+        item.style.height= null;
+    });
+
+    
     var opt = {
     //margin: [15, 0, 15, 0],
     filename: `bouh.pdf`,
