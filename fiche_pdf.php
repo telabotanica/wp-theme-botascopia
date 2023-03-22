@@ -600,7 +600,7 @@
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
                                 <?php if($i == 3) : {break;} ?>
                                 <?php endif; ?>
-                                <?php $testing_img_src = wp_get_attachment_image_src($refs_photo[$i], [148, 148]);
+                                <?php /*$testing_img_src = wp_get_attachment_image_src($refs_photo[$i], [148, 148]);
 
                                 $img = wp_get_image_editor( $testing_img_src[0] );
 
@@ -608,8 +608,8 @@
                                 $img->resize( 500, NULL, false );
                                 $img->set_quality( 100 );
                                 $img->stream();
-                                } ?>
-                                <li><div class="picture-ref"><?php echo $i; ?></div></li>
+                                } */?>
+                                <li><img src="wp_get_attachment_image_src($refs_photo[$i], [148, 148])" <div class="picture-ref"><?php echo $i; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
