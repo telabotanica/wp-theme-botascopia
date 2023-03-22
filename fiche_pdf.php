@@ -588,14 +588,14 @@
                         ?>
                     <?php endif; ?>
                     <div class="footer-section">
-                        <ol class="characteristic-photos">
-                            <?php for ($i = 1;$i <= $index_photos; $i++): ?>
-                                <?php if($i == 3) : {break;} ?>
-                                <?php endif; ?>
-                                <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+                        <!--<ol class="characteristic-photos">
+                            <?php /*for ($i = 1;$i <= $index_photos; $i++): */?>
+                                <?php /*if($i == 3) : {break;} */?>
+                                <?php /*endif; */?>
+                                <li><?php /*echo wp_get_attachment_image($refs_photo[$i], [148, 148]); */?><div class="picture-ref"><?php /*echo $i; */?></div></li>
 
-                            <?php endfor; ?>
-                        </ol>
+                            <?php /*endfor; */?>
+                        </ol>-->
                         <ol class="characteristic-photos">
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
                                 <?php if($i == 3) : {break;} ?>
