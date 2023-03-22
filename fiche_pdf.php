@@ -609,7 +609,7 @@
                                 $img->set_quality( 100 );
                                 $img->stream();
                                 } ?>
-                                <li><img src= <?php echo $img->__toString(); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+                                <li><img src= <?php echo $img; ?><div class="picture-ref"><?php echo $i; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
