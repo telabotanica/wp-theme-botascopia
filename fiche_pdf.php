@@ -743,15 +743,12 @@
     var opt = {
     //margin: [15, 0, 15, 0],
     filename: `bouh.pdf`,
-    image: {
-        { type: 'png', quality: 1 },
-        { type: 'png', quality: 1 },
-    },
+    image: { type: ['png', 'svg'], quality: 1 },
     html2canvas: {
-        dpi: 300,
-        scale:4,
-        letterRendering: true,
-        useCORS: true
+    dpi: 300,
+    scale:4,
+    letterRendering: true,
+    useCORS: true
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
