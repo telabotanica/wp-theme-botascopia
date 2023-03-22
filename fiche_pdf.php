@@ -588,19 +588,11 @@
                         ?>
                     <?php endif; ?>
                     <div class="footer-section">
-                        <!--<ol class="characteristic-photos">
-                            <?php /*for ($i = 1;$i <= $index_photos; $i++): */?>
-                                <?php /*if($i == 3) : {break;} */?>
-                                <?php /*endif; */?>
-                                <li><?php /*echo wp_get_attachment_image($refs_photo[$i], [148, 148]); */?><div class="picture-ref"><?php /*echo $i; */?></div></li>
-
-                            <?php /*endfor; */?>
-                        </ol>-->
                         <ol class="characteristic-photos">
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
-                                <?php if($i == 3) : {break;} ?>
+                                <?php if($i == 6) : {break;} ?>
                                 <?php endif; ?>
-                                <li><?php echo '<img src="'.wp_get_attachment_image_src($refs_photo[$i], [148, 148])[0].'">'; ?></div></li>
+                                <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
