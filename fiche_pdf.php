@@ -685,6 +685,7 @@
                             $index_photos++;
                             ?>
                             <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
+                            <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
