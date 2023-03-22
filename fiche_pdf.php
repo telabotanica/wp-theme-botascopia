@@ -680,6 +680,10 @@
                         <p><?php the_field('description'); ?>.</p>
                         <?php $photo = get_field('photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
+                            <?php
+                            $refs_photo[] = $photo['id'];
+                            $index_photos++;
+                            ?>
                             <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
                         <?php endif; ?>
                     </div>
