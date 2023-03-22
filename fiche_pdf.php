@@ -609,7 +609,7 @@
                                 $img->set_quality( 100 );
                                 $img->stream();
                                 } */?>
-                                <li><img src="wp_get_attachment_image_src($refs_photo[$i], [148, 148])" <div class="picture-ref"><?php echo $i; ?></div></li>
+                                <li><img src="wp_get_attachment_image_src($refs_photo[$i])" <div class="picture-ref"><?php echo $i; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
