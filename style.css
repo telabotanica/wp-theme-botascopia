@@ -353,6 +353,10 @@ body.page-template-fiche_pdf {
   height: 1.5cm;
 }
 
+.page-template-fiche_pdf .footer-section .logos li img.logo-saclay {
+  height: 1.2cm;
+}
+
 /* ************************* */
 /* * credits photos page 2 * */
 /* ************************* */
