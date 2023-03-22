@@ -593,6 +593,7 @@
                                 <?php if($i == 6) : {break;} ?>
                                 <?php endif; ?>
                                 <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+                                <li><?php echo image_resize($refs_photo[$i], 148, 148, true, null, null, 100); ?><div class="picture-ref"><?php echo $i; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
