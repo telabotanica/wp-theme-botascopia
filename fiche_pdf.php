@@ -600,7 +600,7 @@
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
                                 <?php if($i == 3) : {break;} ?>
                                 <?php endif; ?>
-                                <li><?php echo wp_get_attachment_image_src($refs_photo[$i], 'full'); ?></div></li>
+                                <li><?php echo wp_get_attachment_image_src($refs_photo[$i], [148, 148])[0]; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
