@@ -58,7 +58,8 @@ body.page-template-fiche_pdf {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.8cm;
+  row-gap: 0.8cm;
+  column-gap: 0.4cm;
 }
 
 #page-2 main {
