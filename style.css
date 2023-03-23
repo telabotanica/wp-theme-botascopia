@@ -14,7 +14,7 @@ Version: 1.0
 }
 
 * {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 body {
