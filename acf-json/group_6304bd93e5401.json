@@ -2570,11 +2570,14 @@
                         "une ombelle": "une ombelle",
                         "un corymbe": "un corymbe",
                         "un capitule": "un capitule",
-                        "un panicule": "un panicule",
+                        "une panicule": "une panicule",
+                        "une cyme": "une cyme",
                         "une cyme bipare": "une cyme bipare",
                         "une cyme unipare scorpioide": "une cyme unipare scorpioide",
+                        "une cyme unipare hélicoïde": "une cyme unipare hélicoïde",
                         "une cyme multipare": "une cyme multipare",
-                        "autre": "autre"
+                        "un chaton": "un chaton",
+                        "autre": "autre, par exemple : un épi d'épillets, une panicule de corymbes"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4001,6 +4004,11 @@
                     "conditional_logic": [
                         [
                             {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "tépales"
+                            },
+                            {
                                 "field": "field_6304f734c677f",
                                 "operator": "!=",
                                 "value": "1"
@@ -5118,8 +5126,11 @@
                         "un pseudo-fruit": "un pseudo-fruit",
                         "un fruit composé": "un fruit composé",
                         "une silique": "une silique",
-                        "une caryopse": "une caryopse",
-                        "une crypsèle": "une crypsèle"
+                        "un caryopse": "un caryopse",
+                        "un méricarpe": "un méricarpe",
+                        "une cypsèle": "une cypsèle",
+                        "une samare": "une samare",
+                        "un cynorhodon": "un cynorhodon"
                     },
                     "allow_null": 0,
                     "other_choice": 0,
