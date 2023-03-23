@@ -54,6 +54,7 @@ body.page-template-fiche_pdf {
 }
 
 #page-1 main {
+  margin-top: -1cm;
   padding: 0 1cm;
   display: flex;
   flex-wrap: wrap;
