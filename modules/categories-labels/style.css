@@ -3,9 +3,9 @@
 }
 
 .categories-labels a {
-    background-color: rgba(var(--taupe), 0.2);
+    background-color: rgba(145,138,111, 0.2);
     border-radius: 1.1rem;
-    color: #72654f;
+    color: var(--marron);
     display: inline-block;
     padding: 0 1rem;
     text-decoration: none;
@@ -13,6 +13,6 @@
 }
 
 .categories-labels a:hover, .categories-labels a:focus {
-    background-color: rgba(var(--taupe), 0.4);
+    background-color: rgba(145,138,111, 0.4);
     color: var(--gris-33);
 }

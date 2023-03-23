@@ -1,0 +1,68 @@
+.pagination {
+    border-top: 0.1rem solid var(--gris-dd);
+    font-family: ubuntu;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    line-height: 3rem;
+    margin-top: 6rem;
+    padding: 2rem 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pagination .page-numbers {
+    border-radius: 0.2rem;
+    color: var(--vert-fonce);
+    display: inline-block;
+    padding: 0 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pagination .page-numbers:hover, .pagination .page-numbers:focus {
+    background-color: var(--gris-f0);
+}
+
+.pagination .page-numbers + .pagination .page-numbers {
+    margin-left: 0.5rem;
+}
+
+.pagination .page-numbers.current {
+    background-color: var(--vert-bouton);
+    color: var(--blanc);
+    pointer-events: none;
+}
+
+.pagination .page-numbers.dots {
+    color: var(--gris-60);
+    pointer-events: none;
+}
+
+.pagination .page-numbers.prev, .pagination .page-numbers.next {
+    background-color: transparent;
+}
+
+.pagination .page-numbers.prev {
+    left: 0;
+    padding-left: 0;
+    position: absolute;
+}
+
+.pagination .page-numbers.prev::before {
+    content: "<";
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.pagination .page-numbers.next {
+    padding-right: 0;
+    position: absolute;
+    right: 0;
+}
+
+.pagination .page-numbers.next::after {
+    content: ">";
+    display: inline-block;
+    margin-left: 0.5rem;
+}

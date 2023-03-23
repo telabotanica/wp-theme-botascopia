@@ -18,7 +18,7 @@
 }
 
 .categories-item {
-    border-bottom: 0.1rem solid rgba(var(--gris-dd), 0.5);
+    border-bottom: 0.1rem solid var(--gris-dd);
 }
 
 .categories-item.is-active .categories-item-link {

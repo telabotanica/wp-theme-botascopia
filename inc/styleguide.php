@@ -26,8 +26,12 @@ $botascopia_modules = [
 	'categories',
 	'categories-labels',
 	'cover',
+	'header',
 	'icon',
-	'title'
+	'notice',
+	'pagination',
+	'title',
+	'toc'
 ];
 array_walk($botascopia_modules, function ($module) {
   if (!locate_template('modules/' . $module . '/' . $module . '.php', true, true)) {
@@ -66,7 +70,7 @@ $botascopia_components = [
 //  'map',
 //  'tools',
 //  'text',
-//  'title',
+  'title',
 ];
 array_walk($botascopia_components, function ($component) {
  if (!locate_template('components/' . $component . '/' . $component . '.php', true, true)) {

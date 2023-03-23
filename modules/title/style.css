@@ -1,11 +1,45 @@
+@import url(../../base/mixins.css);
+
 .title {
     color: var(--vert-fonce);
-    font-family: "Ubuntu", sans-serif;
-    font-weight: normal;
+    font-family: ubuntu;
     letter-spacing: 0.1rem;
     line-height: 1.8;
     margin: 0;
     text-transform: uppercase;
+}
+
+@include small {
+    .title {
+        font-size: 1.2rem;
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .title.with-margin-top {
+        margin-top: 1rem;
+    }
+
+    .title.with-separator {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+}
+
+@include large-and-medium {
+    .title {
+        font-size: 1.4rem;
+        padding: 1.5rem 0;
+    }
+
+    .title.with-margin-top {
+        margin-top: 1.5rem;
+    }
+
+    .title.with-separator {
+        margin-top: 4rem;
+        padding-top: 3.5rem;
+    }
 }
 
 .title-suffix {
@@ -23,11 +57,11 @@
 }
 
 .title.with-separator {
-    border-top: 0.1rem solid rgba(var(--gris-dd), 0.5);
+    border-top: 0.1rem solid var(--gris-dd);
 }
 
 .title.with-border-bottom {
-    border-bottom: 0.1rem solid rgba(var(--gris-dd), 0.5);
+    border-bottom: 0.1rem solid var(--gris-dd);
 }
 
 .layout-column .title {
@@ -37,37 +71,3 @@
 .layout-column .title-suffix {
     color: var(--vert-fonce);
 }
-
-@media (max-width: 767.9px) {
-    .title {
-        font-size: 1.2rem;
-        padding: 1rem 0;
-        text-align: center;
-    }
-
-    .title.with-margin-top {
-        margin-top: 1rem;
-    }
-
-    .title.with-separator {
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .title {
-        font-size: 1.4rem;
-        padding: 1.5rem 0;
-    }
-
-    .title.with-margin-top {
-        margin-top: 1.5rem;
-    }
-
-    .title.with-separator {
-        margin-top: 4rem;
-        padding-top: 3.5rem;
-    }
-}
-

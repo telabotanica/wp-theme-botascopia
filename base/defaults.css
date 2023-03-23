@@ -19,5 +19,31 @@ img::selection {
 }
 
 body {
-    -webkit-tap-highlight-color: rgba(178, 203, 67, 0.4);
+    color: var(--gris-33);
+    font-family: muli;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    line-height: 2.4rem;
+    max-width: 70rem;
+}
+
+body.post-type-page {
+    max-width: 62rem;
+}
+
+p {
+    margin: 0 0 2rem;
+}
+
+a {
+    /*border-bottom: 0.1rem solid;*/
+    color: var(--turquoise-fonce);
+    font-weight: normal;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+b,
+strong {
+    font-weight: bold;
 }

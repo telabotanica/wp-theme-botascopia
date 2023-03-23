@@ -12,11 +12,14 @@
         }
     ],
     "require": {
-        "spiritix/php-chrome-html2pdf": "1.6.1"
+        "proteusthemes/wai-aria-walker-nav-menu": "^1.2",
+        "spiritix/php-chrome-html2pdf": "1.6.1",
+        "pug-php/pug": "^3.5"
     },
     "config": {
         "allow-plugins": {
-            "eloquent/composer-npm-bridge": true
+            "eloquent/composer-npm-bridge": true,
+            "nodejs-php-fallback/nodejs-php-fallback": true
         }
     }
 }

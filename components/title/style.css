@@ -1,0 +1,120 @@
+@import url(../../modules/header/_variables.css);
+
+.component-title {
+    color: var(--gris-23);
+    font-family: ubuntu;
+    position: relative;
+}
+
+@include small {
+    .component-title {
+        margin: 2rem 0 1rem;
+    }
+
+    .component.component-title {
+        margin-top: 2rem;
+    }
+
+    .component-title + .component-text,
+    .component-title + .component-intro {
+        margin-top: 1rem;
+    }
+
+    .component-title.level-2 {
+        margin-top: 4rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    h4 {
+        font-size: 1.6rem;
+    }
+}
+
+@include large-and-medium {
+    .component-title {
+        margin: 4rem 0 2rem;
+    }
+
+
+    .component.component-title {
+        margin-top: 4rem;
+    }
+
+    .component-title + .component-text,
+    .component-title + .component-intro {
+        margin-top: 2rem;
+    }
+
+    .component-title.level-2 {
+        margin-top: 6rem;
+    }
+
+    h2 {
+        font-size: 2.6rem;
+    }
+
+    h3 {
+        font-size: 2.4rem;
+    }
+
+    h4 {
+        font-size: 2rem;
+    }
+}
+.component-title + .component-title {
+    margin-top: 0;
+}
+
+.component-title-anchor {
+    display: block;
+    height: 0;
+    margin-top: calc(-1 * (calc(var(--header-height-fixed) + var(--title-anchor-offset))));
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+}
+
+body.admin-bar .component-title-anchor {
+    margin-top: calc(-1 * (calc(var(--header-height-fixed) + var(--title-anchor-offset) + var(--header-admin-bar-height))));
+}
+
+.component-title h2,
+.component-title h3,
+.component-title h4 {
+    line-height: 1.25;
+}
+
+.component-title h2 {
+    font-weight: bold;
+    margin: 0;
+    position: relative;
+}
+
+.component-title h2::before {
+    background-color: var(--vert-clair-vif);
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    left: -5rem;
+    width: 0.4rem;
+}
+
+.component-title h3 {
+    margin: 0;
+}
+
+.component-title h4 {
+    margin: 0;
+}
+
+.component-title:first-child {
+    margin-top: 0;
+}

@@ -39,7 +39,6 @@
     endif;
     wp_reset_postdata();
   endif;
-  
   printf(
     '<div class="%s" style="background-image: url(%s);">',
     implode(' ', $data->modifiers),

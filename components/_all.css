@@ -1,4 +1,5 @@
 @import "buttons/style.css";
+@import "title/style.css";
 
 .component + .component {
   margin-top: 3rem;

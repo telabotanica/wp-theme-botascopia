@@ -16,14 +16,22 @@ function bs_theme_supports() {
   add_theme_support('post-thumbnails');
   add_theme_support('menus');
   register_nav_menu('main-menu', 'Menu principal');
+  set_post_thumbnail_size( 220, 160, array( 'center', 'center') );
+  add_image_size( 'medium_square', 250, 250, array( 'center', 'center') );
+  add_image_size( 'home-latest-post', 600, 365, array( 'center', 'center') );
+  add_image_size( 'home-post-thumbnail', 65, 50, array( 'center', 'center') );
+  add_image_size( 'cover-background', 1920, 500, array( 'center', 'center') );
 }
 add_action('after_setup_theme', 'bs_theme_supports');
 
 // load css (and js, later if needed)
 function bs_load_scripts() {
-  wp_enqueue_style( 'style', get_stylesheet_uri());
-  wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/scripts/main.js', [ 'jquery', 'wp-util' ], null,
-					 true );
+	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
+	
+	// Theme script.
+	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
+	
+//  wp_enqueue_style( 'style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'bs_load_scripts' );
 

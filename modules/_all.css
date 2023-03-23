@@ -3,5 +3,9 @@
 @import "categories/style.css";
 @import "categories-labels/style.css";
 @import "cover/style.css";
+@import "header/style.css";
 @import "icon/style.css";
 @import "title/style.css";
+@import "toc/style.css";
+@import "notice/style.css";
+@import "pagination/style.css";
