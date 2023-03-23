@@ -676,8 +676,8 @@
                     <div class="characteristic">
                         <h3 class="icon-title">
                             <div class="ne-pas-confondre-icon icon"></div>ne pas confondre
+                            <div class="picture-ref"><?php echo $index_photos+1;?></div>
                         </h3>
-                        <div class="picture-ref"><?php echo $index_photos;?></div>
                         <p><?php the_field('description'); ?>.</p>
                         <?php $photo = get_field('photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
