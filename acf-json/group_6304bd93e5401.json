@@ -5047,7 +5047,9 @@
                     "placeholder": "Ex. : nectaires bien visibles, présence d’une couronne (paracorolle), écailles sur les pétales, présence d’un éperon, présence de fleurs stériles dans les inflorescences, ovaire enveloppé dans un utricule, etc.",
                     "maxlength": 180,
                     "rows": 3,
-                    "new_lines": ""
+                    "new_lines": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -5137,6 +5139,18 @@
                 "value": "category:bdtfx"
             },
             {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
                 "param": "current_user",
                 "operator": "==",
                 "value": "logged_in"
@@ -5157,5 +5171,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1673358978
+    "modified": 1675069428
 }
