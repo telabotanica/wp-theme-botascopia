@@ -677,6 +677,7 @@
                         <h3 class="icon-title">
                             <div class="ne-pas-confondre-icon icon"></div>ne pas confondre
                         </h3>
+                        <div class="picture-ref"><?php echo $index_photos;?></div>
                         <p><?php the_field('description'); ?>.</p>
                         <?php $photo = get_field('photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
@@ -684,7 +685,7 @@
                             $refs_photo[] = $photo['id'];
                             $index_photos++;
                             ?>
-                            <div class="section-image" style="display: flex; flex-direction: row; align-items: flex-start"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?><div class="picture-ref"><?php echo $index_photos;?></div></div>
+                            <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
