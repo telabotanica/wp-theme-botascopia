@@ -31,6 +31,18 @@
                 "value": "category:bdtfx"
             },
             {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
                 "param": "current_user",
                 "operator": "==",
                 "value": "logged_in"
@@ -51,5 +63,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1666604435
+    "modified": 1675069396
 }
