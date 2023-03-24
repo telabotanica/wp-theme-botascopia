@@ -43,8 +43,8 @@
                             <div class="description-icon icon"></div>description morphologique
                         </h3>
                         <p><?php if (!empty(get_field('port_de_la_plante'))) { echo ucfirst(get_field('port_de_la_plante')).", "; 
-                             if (!empty(get_field('systeme_sexuel')) && get_field('systeme_sexuel') !== "hermaphrodite" ) { echo get_field('systeme_sexuel').", " ;} 
-                             if (!empty(get_field('mode_de_vie')) && get_field('mode_de_vie') !== "terrestre" ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
+                             if (!empty(get_field('systeme_sexuel')) && get_field('systeme_sexuel') !== "hermaphrodite" ) { echo get_field('systeme_sexuel').", " ;}
+                             if (!empty(get_field('mode_de_vie')) && get_field('mode_de_vie') !== array("terrestre") ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
                              if (!empty(get_field('type_de_developpement'))) { echo implode(', ', get_field('type_de_developpement')).", " ;} 
                              if (!empty(get_field('forme_biologique'))) { echo implode(', ', get_field('forme_biologique')).", " ;} ?>
                             qui peut atteindre jusqu'à <?php the_field('hauteur_maximale'); ?> de haut. 
@@ -91,8 +91,9 @@
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
-                        <p>La tige aérienne est <?php if ($tige['tige_aerienne'] !== 'visible') {?>, <?php echo $tige['tige_aerienne']; }?>
-                            <?php if ($tige['tige_aerienne'] != 'non visible'):;?><?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
+                        <p>La tige aérienne est <?php if ($tige['tige_aerienne'] !== 'visible') { echo $tige['tige_aerienne'];?>, <?php }?>
+                            <?php if ($tige['tige_aerienne'] != 'non visible'):;?><?php echo $type_tige;?>, <?php echo $tige['ramification'];?>
+                            <?php if ($section_tige !== 'pleine') {?>, à section <?php echo $section_tige;}?>.
                                 <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
                                 <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))): ?>
                                     <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
@@ -460,7 +461,7 @@
                             La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
                             <?php if ('pubescente' === $fleur_male['pubescence']) {
                                 echo "La fleur est ".$fleur_male['pubescence'];?>
-                                <?php if (!empty($fleur_male['localisation_des_poils'])) {
+                                <?php if (!empty($fleur_male['localisation_des_poils']) && ($fleur_male['localisation_des_poils'] != array("tous les organes floraux"))) {
                                     echo ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
                                 else { echo '.'; }}?>
                             <?php echo $fleur_male['autre_caractere'];
@@ -506,7 +507,7 @@
                             La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
                             <?php if ('pubescente' === $fleur_femelle['pubescence']) {
                                 echo "La fleur est ".$fleur_femelle['pubescence'];?>
-                                <?php if (!empty($fleur_femelle['localisation_des_poils'])) {
+                                <?php if (!empty($fleur_femelle['localisation_des_poils']) && ($fleur_femelle['localisation_des_poils'] != array("tous les organes floraux"))) {
                                     echo ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
                                 else { echo '.'; }}?>
                             <?php echo $fleur_femelle['autre_caractere'];
@@ -564,7 +565,7 @@
                                 La couleur principale de la fleur est le <?php echo $fleur_bisexuee['couleur_principale']; ?>.
                                 <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
                                     echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
-                                    <?php if (!empty($fleur_bisexuee['localisation_des_poils'])) {
+                                    <?php if (!empty($fleur_bisexuee['localisation_des_poils']) && ($fleur_bisexuee['localisation_des_poils'] != array("tous les organes floraux"))) {
                                         echo ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
                                     else { echo '.'; }}?>
                                 <?php echo $fleur_bisexuee['autre_caractere'];?>
