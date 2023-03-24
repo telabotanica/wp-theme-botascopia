@@ -44,7 +44,7 @@
                         </h3>
                         <p><?php if (!empty(get_field('port_de_la_plante'))) { echo ucfirst(get_field('port_de_la_plante')).", "; 
                              if (!empty(get_field('systeme_sexuel')) && get_field('systeme_sexuel') !== "hermaphrodite" ) { echo get_field('systeme_sexuel').", " ;} 
-                             if (!empty(get_field('mode_de_vie')) and get_field('mode_de_vie') !== "terrestre" ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
+                             if (!empty(get_field('mode_de_vie')) && get_field('mode_de_vie') !== "terrestre" ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
                              if (!empty(get_field('type_de_developpement'))) { echo implode(', ', get_field('type_de_developpement')).", " ;} 
                              if (!empty(get_field('forme_biologique'))) { echo implode(', ', get_field('forme_biologique')).", " ;} ?>
                             qui peut atteindre jusqu'à <?php the_field('hauteur_maximale'); ?> de haut. 
