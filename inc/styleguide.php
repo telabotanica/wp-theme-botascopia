@@ -30,6 +30,7 @@ $botascopia_modules = [
 	'icon',
 	'notice',
 	'pagination',
+	'search-box',
 	'title',
 	'toc'
 ];

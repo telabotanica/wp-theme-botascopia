@@ -103,7 +103,7 @@ function botascopia_module_header($data) {
             ?>
               <div class="header-login">
                   <a href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>"
-                     title="editer compte">
+                     title="editer compte" class="header-login-link">
                     <div class="header-links-item-text">
                         <div class="header-login-display-name">
 							<?php echo $current_user->display_name ?>

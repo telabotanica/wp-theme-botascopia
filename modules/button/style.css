@@ -12,6 +12,19 @@
     transition: background 0.2s ease;
     padding: 5px 15px;
     margin: 10px;
+    height: 40px;
+}
+
+.button:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.button-text{
+    vertical-align: middle;
+    display: inline-block;
 }
 
 /******************** GREEN BUTTONS **********************/
