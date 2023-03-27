@@ -36,16 +36,43 @@
   if (!empty($data->title)) {
     $attributes .= sprintf('title="%s"', $data->title);
   }
+	
+  if ( !empty($data->icon_before)) {
+	$iconTypeBefore = getType($data->icon_before);
+	if ($iconTypeBefore == 'array' && key_exists('color', $data->icon_before)) {
+		$iconBefore = $data->icon_before['icon'];
+		$colorBefore = $data->icon_before['color'];
+	} elseif ($iconTypeBefore == 'array') {
+		$iconBefore = $data->icon_before['icon'];
+		$colorBefore = '';
+	} else {
+		$iconBefore = $data->icon_before;
+		$colorBefore = '';
+	}
+  }
+
+  if ( !empty($data->icon_after)) {
+	$iconTypeAfter = getType($data->icon_after);
+	if ($iconTypeAfter == 'array' && key_exists('color', $data->icon_after)) {
+		$iconAfter = $data->icon_after['icon'];
+		$colorAfter = $data->icon_after['color'];
+	} elseif ($iconTypeAfter == 'array') {
+		$iconAfter = $data->icon_after['icon'];
+		$colorAfter = '';
+	} else {
+		$iconAfter = $data->icon_after;
+		$colorAfter = '';
+	}
+  }
 
   printf(
     '<%s %s class="%s">%s<span class="button-text">%s</span>%s</%s>',
     $data->tag,
     $attributes,
-//    implode($data->modifiers, ' '),
     implode(' ',$data->modifiers),
-    $data->icon_before ? get_botascopia_module('icon', ['icon' => $data->icon_before]) : '',
+    $data->icon_before ? get_botascopia_module('icon', ['icon' => $iconBefore, 'color' => $colorBefore]) : '',
     $data->text,
-    $data->icon_after ? get_botascopia_module('icon', ['icon' => $data->icon_after]) : '',
+    $data->icon_after ? get_botascopia_module('icon', ['icon' => $iconAfter, 'color' => $colorAfter]) : '',
     $data->tag
   );
 }

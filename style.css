@@ -18,17 +18,6 @@ Version: 1.0
   url('fonts/grand-hotel.svg#svgwpf') format('svg');
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background: #FFFFFF;
-  font-family: 'Ubuntu', sans-serif;
-  color: #4b5157;
-  margin: 0 auto;
-}
-
 header {
   position: relative;
   width: 21.246041667cm;

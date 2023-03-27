@@ -26,3 +26,4 @@ acf_form_head();
   <!-- <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'telabotanica' ); ?></a> -->
 
     <div id="content" class="site-content">
+        <?php the_botascopia_module('header'); ?>

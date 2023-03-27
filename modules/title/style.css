@@ -1,12 +1,11 @@
 @import url(../../base/mixins.css);
 
 .title {
-    color: var(--vert-fonce);
-    font-family: ubuntu;
+    /*color: var(--vert-fonce);*/
     letter-spacing: 0.1rem;
     line-height: 1.8;
     margin: 0;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 @include small {

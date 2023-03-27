@@ -27,14 +27,18 @@
 }
 
 .cover-title {
+    color: var(--blanc);
     font-family: "Ubuntu", sans-serif;
     font-weight: bold;
+    font-size: 32px;
     margin: 0;
 }
 
 .cover-subtitle {
+    font-family: "Muli", sans-serif;
     font-weight: normal;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    font-size: 18px;
 }
 
 .cover-subtitle a {
@@ -57,6 +61,10 @@
     margin-top: 1rem;
     position: relative;
     width: 44rem;
+}
+
+.layout-wrapper{
+    margin-left: 20%;
 }
 
 @media (max-width: 767.9px) {
@@ -103,14 +111,14 @@
     .cover-credits {
         bottom: 0;
         color: var(--gris-f0);
-        font-size: 1.2rem;
+        font-size: 12px;
         padding: 1rem;
         position: absolute;
         right: 0;
     }
 
     .cover-credits a {
-        color: rgba(240, 240, 240, 0.75);
+        color: rgba(255, 255, 255, 0.75);
         text-decoration: none;
     }
 

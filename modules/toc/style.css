@@ -9,6 +9,13 @@
     width: 30rem;
 }
 
+.toc-title {
+    font-weight: normal;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: var(--noir-d34);
+}
+
 @include small {
     .toc {
         margin-left: -1rem;
@@ -48,7 +55,7 @@ body.admin-bar .toc {
 }
 
 .toc-item.is-active > .toc-item-link {
-    color: var(--gris-23);
+    color: var(--noir-d34);
 }
 
 .toc-item.is-active > .toc-item-link::before {
@@ -56,10 +63,11 @@ body.admin-bar .toc {
 }
 
 .toc-item-link {
-    color: var(--gris-60);
-    font-size: 1.6rem;
-    font-weight: bold;
     text-decoration: none;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: var(--noir-d34);
 }
 
 .toc-item-link:hover::before, .toc-item-link:focus::before {
@@ -115,14 +123,15 @@ body.admin-bar .toc {
 }
 
 .toc-subitem-link {
-    color: var(--marron-gris);
     display: inline-block;
-    font-size: 1.5rem;
     font-weight: normal;
     line-height: 1.8rem;
     padding-left: 3rem;
     text-decoration: none;
     transition: all 0.2s ease;
+    font-family: Ubuntu, sans-serif;
+    font-size: 15px;
+    color: var(--noir-d34);
 }
 
 .toc-subitem-link > .icon {
