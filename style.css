@@ -4,9 +4,9 @@ Theme URI: http://oser-beta.tela-botanica.org
 Description: Botascopia
 Version: 1.0
 */
-@import "modules/_all.css";
-@import "components/_all.css";
 @import "base/_all.css";
+@import "components/_all.css";
+@import "modules/_all.css";
 /*@import "blocks/_all.css";*/
 
 @font-face {

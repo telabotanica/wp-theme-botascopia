@@ -1,0 +1,76 @@
+.card-collection{
+    width: 645px;
+    height: 152px;
+    background-color: var(--beige2);
+    border-radius: 10px;
+    margin: 10px 0;
+    position: relative;
+    display: flex;
+}
+
+.card-collection-image{
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-collection-body{
+    text-align: left;
+    padding: 10px 15px 10px 15px;
+    font-size: 14px;
+    /*overflow: hidden;*/
+}
+
+.card-collection-body > a{
+    display: block;
+    height: 142px;
+    color: var(--noir-d34);
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+.card-collection-title{
+    font-family: "Ubuntu", sans-serif;
+    margin: 0;
+    font-weight: bold;
+    height: 40px;
+    padding-right: 27px;
+}
+
+.card-collection-subtitle{
+    margin: 0;
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.card-collection-description{
+    font-family: "Muli", sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    height: 70px;
+    width: 100%;
+}
+
+.card-collection-icon{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    background-color: var(--vert-clair);
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-collection-icon > .icon{
+    height: 20px;
+    width: 20px;
+    margin: 0;
+}

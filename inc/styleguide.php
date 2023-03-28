@@ -23,6 +23,8 @@
 $botascopia_modules = [
 	'breadcrumbs',
 	'button',
+	'card-fiche',
+	'card-collection',
 	'categories',
 	'categories-labels',
 	'cover',
