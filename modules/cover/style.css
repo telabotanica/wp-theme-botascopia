@@ -5,6 +5,9 @@
     color: var(--blanc);
     display: flex;
     position: relative;
+    /* Pour override le container -> pas la meilleur solution mais ça marche */
+    width: calc(100vw - 12px);
+    left: calc(-20vw + 6px);
 }
 
 .cover::before {

@@ -75,7 +75,8 @@ strong {
     font-weight: bold;
 }
 
-#primary{
-    width: 60%;
+/* Définie le container principal */
+#main{
+    width: 60vw;
     margin: 0 auto;
 }

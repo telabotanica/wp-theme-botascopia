@@ -60,11 +60,14 @@ function botascopia_module_toc($data) {
 
   echo '<div class="toc">';
 
-  the_botascopia_module('title', [
-    'title' => __('Sommaire', 'botascopia'),
-    'level' => 2,
-    'modifiers' => ['toc-title', 'with-border-bottom']
-  ]);
+  if (isset($data->title)){
+	  the_botascopia_module('title', [
+		  'title' => __($data->title, 'botascopia'),
+		  'level' => 2,
+		  'modifiers' => ['toc-title', 'with-border-bottom']
+	  ]);
+  }
+  
 
   echo '<ul class="toc-items">';
 
@@ -77,9 +80,9 @@ function botascopia_module_toc($data) {
 
         if ( isset($item->text) ) {
           printf(
-            '<a href="%s" class="toc-item-link">%s%s</a>',
+            '<a href="%s" class="toc-item-link">%s</a>',
             esc_url( $item->href ),
-            get_botascopia_module('icon', ['icon' => 'tela-leaf']),
+//            get_botascopia_module('icon', ['icon' => 'feuilles']),
             $item->text
           );
         }
@@ -87,19 +90,16 @@ function botascopia_module_toc($data) {
         if ( isset($item->items) ) :
 
           echo '<ul class="toc-subitems">';
-
+		
           foreach ($item->items as $subitem) :
             $subitem = (object) $subitem;
-
             // Tableau d'objets Taxonomies
             if (gettype($subitem) === 'object' && get_class($subitem) === 'WP_Term') :
-
               $subitem->text = $subitem->name;
               $subitem->href = '#' . $subitem->slug;
 
             // Tableau simple
             elseif (gettype($subitem) === 'array') :
-
               $subitem = (object) $subitem;
 
             endif;
@@ -108,7 +108,7 @@ function botascopia_module_toc($data) {
               printf(
                 '<a href="%s" class="toc-subitem-link">%s%s</a>',
                 esc_url( $subitem->href ),
-                get_botascopia_module('icon', ['icon' => 'tela-leaf']),
+                get_botascopia_module('icon', ['icon' => 'feuilles']),
                 $subitem->text
               );
             echo '</li>';
