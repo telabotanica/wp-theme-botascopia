@@ -6,6 +6,7 @@
 		'name' => 'nom de la collection',
 		'nbFiches' => 'x',
 		'description' => 'Lorem ipsum dolor sit amet. Ut voluptatem dolor non omnis quia est eveniet illum. Ea alias ullam eos ut voluptatem dolor non lorem ipsum dolor sit amet bla bla bla bli',
+		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
 		'modifiers' => []
 	];
 	
@@ -45,7 +46,7 @@
 	
 	echo sprintf('
 		<div class="card-collection-icon">%s</div>',
-				 get_botascopia_module('icon', ['icon' => 'star-outline', 'color' => 'blanc'])
+				 get_botascopia_module('icon', $data->icon)
 	);
 
 	echo '</div>';

@@ -5,6 +5,7 @@
 		'image' => get_field('card_image'),
 		'name' => 'nom de la plante',
 		'species' => 'espèce de la plante',
+		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
 		'modifiers' => []
 	];
 	
@@ -42,7 +43,7 @@
 	// TODO Remplacer par module filtre ?
 	echo sprintf('
 		<div class="card-fiche-icon">%s</div>',
-				 get_botascopia_module('icon', ['icon' => 'star-outline', 'color' => 'blanc'])
+				 get_botascopia_module('icon', $data->icon)
 	);
 	
 //	echo '</div>';
