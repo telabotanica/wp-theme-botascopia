@@ -15,12 +15,21 @@ function bs_theme_supports() {
   add_theme_support('title-tag');
   add_theme_support('post-thumbnails');
   add_theme_support('menus');
-  register_nav_menu('main-menu', 'Menu principal');
+//  register_nav_menu('main-menu', 'Menu principal');
   set_post_thumbnail_size( 220, 160, array( 'center', 'center') );
   add_image_size( 'medium_square', 250, 250, array( 'center', 'center') );
   add_image_size( 'home-latest-post', 600, 365, array( 'center', 'center') );
   add_image_size( 'home-post-thumbnail', 65, 50, array( 'center', 'center') );
   add_image_size( 'cover-background', 1920, 500, array( 'center', 'center') );
+	
+	// This theme uses wp_nav_menu() in two locations.
+	register_nav_menus(
+		[
+			'principal' => __('Menu principal', 'botascopia'),
+			'secondary' => __('Menu secondaire', 'botascopia'),
+			'footer-bar' => __('Pied de page - bandeau', 'botascopia'),
+			'footer-columns' => __('Pied de page - en colonnes', 'botascopia'),
+		]);
 }
 add_action('after_setup_theme', 'bs_theme_supports');
 
@@ -96,3 +105,4 @@ function my_acf_save_post($post_id) {
 
 // run after ACF saves the $_POST['acf'] data
 add_action('acf/save_post', 'my_acf_save_post', 20);
+

@@ -28,6 +28,7 @@ $botascopia_modules = [
 	'categories',
 	'categories-labels',
 	'cover',
+	'footer',
 	'header',
 	'icon',
 	'notice',

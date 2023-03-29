@@ -83,22 +83,15 @@ body.bp-user .header-logo > a {
     padding: 0 1rem;
 }
 
-.header-nav-items > .menu-item > a.is-open, .header-nav-items > .menu-item > a:hover, .header-nav-items > .menu-item > a:focus,
-.header .sub-menu > .menu-item > a.is-open,
-.header .sub-menu > .menu-item > a:hover,
-.header .sub-menu > .menu-item > a:focus, .header-nav-usecases-items > .menu-item > a.is-open, .header-nav-usecases-items > .menu-item > a:hover, .header-nav-usecases-items > .menu-item > a:focus, .header-nav-items > .menu-item > a.is-open, .header-nav-items > .menu-item > a:hover, .header-nav-items > .menu-item > a:focus, .header-submenu-container .sub-menu > .menu-item > a.is-open, .header-submenu-container .sub-menu > .menu-item > a:hover, .header-submenu-container .sub-menu > .menu-item > a:focus {
-    background-color: var(--beige);
-    color: var(--noir);
-}
-
 .header-nav-items > .menu-item.current-menu-item > a,
 .header .sub-menu > .menu-item.current-menu-item > a, .header-nav-usecases-items > .menu-item.current-menu-item > a, .header-nav-items > .menu-item.current-menu-item > a, .header-submenu-container .sub-menu > .menu-item.current-menu-item > a {
     color: var(--noir);
 }
 
-.header-nav-items > .menu-item > a {
-    color: var(--gris-60);
+.header-nav-usecases-items > .menu-item > a {
+    color: var(--noir-d34);
     text-transform: uppercase;
+    font-size: 18px;
 }
 
 .header .sub-menu {
@@ -147,60 +140,18 @@ body.bp-user .header-logo > a {
     font-family: "muli", sans-serif;
 }
 
-.header .sub-menu a:hover, .header .sub-menu a:focus {
-    background-color: var(--beige);
-    color: var(--noir);
-}
-
 .header .sub-menu a:focus {
     outline: 0.2rem solid var(--vert-clair);
 }
 
-.header-nav-usecases-items a {
-    color: var(--gris-33);
+.header-nav-usecases-items li {
     display: flex;
-    font-family: ubuntu;
     text-decoration: none;
+    margin-right: 20px;
 }
 
-.header-nav-usecases-items .menu-item.identifier a {
-    background-image: url("../../modules/header/icons/identifier.svg");
-}
-
-.header-nav-usecases-items .menu-item.identifier.current_page_item a,
-.header-nav-usecases-items .menu-item.identifier a:hover,
-.header-nav-usecases-items .menu-item.identifier a:focus {
-    color: var(--vert-fonce);
-}
-
-.header-nav-usecases-items .menu-item.apprendre a {
-    background-image: url("../../modules/header/icons/apprendre.svg");
-}
-
-.header-nav-usecases-items .menu-item.apprendre.current_page_item a,
-.header-nav-usecases-items .menu-item.apprendre a:hover,
-.header-nav-usecases-items .menu-item.apprendre a:focus {
-    color: var(--violet);
-}
-
-.header-nav-usecases-items .menu-item.sortir a {
-    background-image: url("../../modules/header/icons/sortir.svg");
-}
-
-.header-nav-usecases-items .menu-item.sortir.current_page_item a,
-.header-nav-usecases-items .menu-item.sortir a:hover,
-.header-nav-usecases-items .menu-item.sortir a:focus {
-    color: var(--orange);
-}
-
-.header-nav-usecases-items .menu-item.participer a {
-    background-image: url("../../modules/header/icons/participer.svg");
-}
-
-.header-nav-usecases-items .menu-item.participer.current_page_item a,
-.header-nav-usecases-items .menu-item.participer a:hover,
-.header-nav-usecases-items .menu-item.participer a:focus {
-    color: var(--turquoise-fonce);
+.header-nav-usecases-items{
+    display: flex;
 }
 
 .header-links-item-user-avatar {
@@ -222,8 +173,6 @@ body.bp-user .header-logo > a {
     flex-direction: column-reverse;
     font-family: "Muli", sans-serif;
     text-transform: uppercase;
-    /*font-size: 1.3rem;*/
-    /*margin: 2rem 2.5rem 0;*/
     position: absolute;
     left: 20%;
 }
@@ -232,19 +181,19 @@ body.bp-user .header-logo > a {
     padding:0;
     margin:0;
 }
-.header-links li {
+.header-nav-usecases-items li {
     margin-left:2px;
     float:left;
     height: 80px;
     align-items: center;
     display: flex;
 }
-.header-links li:hover{
+.header-nav-usecases-items li:hover{
     background-color: rgba(178, 203, 67, 0.1);
     border-bottom: solid 5px var(--vert-clair);
     transition: ease;
 }
-.header-links ul li a {
+.header-nav-usecases-items ul li a {
     display:block;
     float:left;
     color: var(--noir-d34);

@@ -37,7 +37,7 @@
 		<p class="card-collection-subtitle">%s fiches dans la collection</p>
 		<p class="card-collection-description">%s</p>',
 				 $data->name,
-				 $data->subtitle,
+				 $data->nbFiches,
 				 $data->description
 	);
 	

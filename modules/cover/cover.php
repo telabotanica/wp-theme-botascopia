@@ -14,37 +14,20 @@
 
   // Définir une image au hasard si aucune n'est présente
   if ( empty( $data->image['url'] ) ) :
-    $cover_image_query = new WP_Query( [
-      'post_status' => 'any',
-      'post_type'   => 'attachment',
-//      'tax_query' => [
-//        [
-//          'taxonomy' => 'media_category',
-//          'field'    => 'slug',
-//          'terms'    => 'imgbandeau',
-//        ],
-//      ],
-      'orderby' => 'rand',
-      'posts_per_page' => 1
-    ] );
-    if ( $cover_image_query->have_posts() ) :
-      while ( $cover_image_query->have_posts() ) :
-        $cover_image_query->the_post();
-        $data->image = [
-          'ID' => get_the_ID(),
-          'url' => wp_get_attachment_image_url( get_the_ID(), 'cover-background' ),
-          'title' => get_the_title()
-        ];
-      endwhile;
-    endif;
-    wp_reset_postdata();
+	
+	  printf(
+		  '<div class="%s" style="background: transparent linear-gradient(90deg, #000000BA , #00000095 , #00000069 , #00000000 ) no-repeat padding-box;">',
+		  implode(' ', $data->modifiers)
+	  );
+  else:
+	  printf(
+		  '<div class="%s" style="background-image: url(%s);">',
+		  implode(' ', $data->modifiers),
+		  $data->image['url']
+	  );
+  
+  
   endif;
-  printf(
-    '<div class="%s" style="background-image: url(%s);">',
-    implode(' ', $data->modifiers),
-//    $data->image["sizes"]["cover-background"]
-	$data->image['url']
-  );
     echo '<div class="layout-wrapper">';
 
 //      if ($data->search) :

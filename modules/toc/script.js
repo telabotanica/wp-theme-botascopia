@@ -1,3 +1,4 @@
+/*
 var _ = _ || {};
 _.defer = require('lodash.defer');
 _.each = require('lodash.foreach');
@@ -114,3 +115,4 @@ Tela.modules.toc = (function(sel){
 document.addEventListener('DOMContentLoaded', function() {
   Tela.modules.toc('.toc');
 });
+*/

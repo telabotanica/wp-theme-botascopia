@@ -74,27 +74,27 @@ function botascopia_module_header($data) {
       endif;
       
   // Menu principal
+//	if ( has_nav_menu('principal')):
+//	wp_nav_menu([
+//					'theme_location' => 'principal',
+//					'depth' => 1,
+//					'menu_class'      => 'header-links',
+//				]);
+//endif;
+  if ( has_nav_menu('principal') && $header_small !== true ) :
+	  printf(
+		  '<nav class="header-nav-usecases" role="navigation" aria-label="%s">',
+		  esc_attr__( 'Menu principal', 'telabotanica' )
+	  );
+  
+      wp_nav_menu( [
+        'theme_location'  => 'principal',
+        'menu_class'      => 'header-nav-usecases-items',
+        'depth'            => 1,
+      ] );
+    echo '</nav>';
 
-	wp_nav_menu([
-					'theme_location' => 'principal',
-					'depth' => 1,
-					'menu_class'      => 'header-links',
-				]);
-
-//  if ( has_nav_menu('principal') && $header_small !== true ) :
-//
-//    printf(
-//      '<nav class="header-nav-usecases" role="navigation" aria-label="%s">',
-//      esc_attr__( 'Menu principal', 'botascopia' )
-//    );
-//      wp_nav_menu( [
-//        'theme_location'  => 'principal',
-//        'menu_class'      => 'header-nav-usecases-items',
-//        'depth'            => 2,
-//      ] );
-//    echo '</nav>';
-//
-//  endif;
+  endif;
 	
 	// Utilisateur
 		  if ( is_user_logged_in() ) :

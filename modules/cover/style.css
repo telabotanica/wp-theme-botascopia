@@ -6,7 +6,7 @@
     display: flex;
     position: relative;
     /* Pour override le container -> pas la meilleur solution mais ça marche */
-    width: calc(100vw - 12px);
+    width: calc(100vw - 15px);
     left: calc(-20vw + 6px);
 }
 
