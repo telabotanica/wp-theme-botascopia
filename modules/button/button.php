@@ -75,4 +75,5 @@
     $data->icon_after ? get_botascopia_module('icon', ['icon' => $iconAfter, 'color' => $colorAfter]) : '',
     $data->tag
   );
+  
 }

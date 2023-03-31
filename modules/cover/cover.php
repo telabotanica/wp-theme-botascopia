@@ -30,13 +30,13 @@
   endif;
     echo '<div class="layout-wrapper">';
 
-//      if ($data->search) :
-//        $data->search['autocomplete'] = false;
-//        printf(
-//          '<div class="cover-search-box">%s</div>',
-//          get_botascopia_module('search-box', $data->search)
-//        );
-//      endif;
+      if ($data->search) :
+        $data->search['autocomplete'] = false;
+        printf(
+          '<div class="cover-search-box">%s</div>',
+          get_botascopia_module('search-box', $data->search)
+        );
+      endif;
 
       printf(
         '<h1 class="cover-title">%s</h1>',
@@ -59,7 +59,7 @@
 
     echo '</div>';
 
-//    botascopia_image_credits( $data->image, 'cover' );
+    botascopia_image_credits( $data->image, 'cover' );
 
   echo '</div>';
 

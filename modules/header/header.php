@@ -54,24 +54,24 @@ function botascopia_module_header($data) {
 //      );
 
       // Menu secondaire
-
-      if ( has_nav_menu('secondary') ) :
-
-        printf(
-          '<nav class="header-nav" role="navigation" aria-label="%s">',
-          esc_attr__( 'Menu secondaire', 'botascopia' )
-        );
-          wp_nav_menu( [
-            'container'      => false,
-            'theme_location' => 'secondary',
-            'menu_class'     => 'header-nav-items',
-            'depth'          => 2,
-            'walker'         => new HeaderNavWalker(),
-            'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>'
-           ] );
-        echo '</nav>';
-
-      endif;
+//
+//      if ( has_nav_menu('secondary') ) :
+//
+//        printf(
+//          '<nav class="header-nav" role="navigation" aria-label="%s">',
+//          esc_attr__( 'Menu secondaire', 'botascopia' )
+//        );
+//          wp_nav_menu( [
+//            'container'      => false,
+//            'theme_location' => 'secondary',
+//            'menu_class'     => 'header-nav-items',
+//            'depth'          => 2,
+//            'walker'         => new HeaderNavWalker(),
+//            'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>'
+//           ] );
+//        echo '</nav>';
+//
+//      endif;
       
   // Menu principal
 //	if ( has_nav_menu('principal')):
@@ -117,7 +117,7 @@ function botascopia_module_header($data) {
                       </div>
                   </a>
                   
-			  <a href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>">
+                  <a href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>"></a>
               </div>
 		  <?php else :
           echo '<div class="header-login">';

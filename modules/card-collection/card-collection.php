@@ -32,7 +32,6 @@
 	$data->href)
 	;
 	
-	// TODO calculer le nombre de fiches dans la collection
 	echo sprintf('
 		<p class="card-collection-title">%s</p>
 		<p class="card-collection-subtitle">%s fiches dans la collection</p>
@@ -43,9 +42,13 @@
 	);
 	
 	echo '</a></div>';
+	$current_user = wp_get_current_user();
 	
 	echo sprintf('
-		<div class="card-collection-icon">%s</div>',
+		<div id="collection-%s" class="card-collection-icon" data-user-id="%s" data-category-id="%s">%s</div>',
+				 $data->category,
+				 $current_user->ID,
+				 $data->category,
 				 get_botascopia_module('icon', $data->icon)
 	);
 

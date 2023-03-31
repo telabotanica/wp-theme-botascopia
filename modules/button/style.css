@@ -38,7 +38,7 @@
 }
 
 .green-button.outline {
-    background-color: var(--blanc);
+    background-color: transparent;
     border: 1px solid var(--vert-bouton);
     color: var(--vert-clair);
 }

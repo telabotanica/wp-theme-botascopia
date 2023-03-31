@@ -2,7 +2,7 @@
   border-bottom: 0.1rem solid var(--gris-dd);
   color: var(--marron);
   line-height: 1rem;
-  padding: 1.8rem 0 1.7rem;
+  padding: 20px 0 20px;
   margin-bottom: 2rem; }
   .breadcrumbs-items {
     list-style: none;
@@ -27,7 +27,7 @@
     text-transform: uppercase;
     margin-right: 1rem; }
     .breadcrumbs-item > a {
-      border-bottom: 0.1rem solid var(--vert-fonce);
+      /*border-bottom: 0.1rem solid var(--vert-fonce);*/
       color: var(--vert-fonce);
       display: inline-block;
       text-decoration: none;

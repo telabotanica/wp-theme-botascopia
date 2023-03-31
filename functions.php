@@ -10,6 +10,9 @@ require get_template_directory() . '/inc/custom-search-acf-wordpress.php';
 // Chargement du styleguide
 require get_template_directory() . '/inc/styleguide.php';
 
+// Chargement du fichier utile
+require get_template_directory() . '/inc/utile.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
@@ -39,6 +42,7 @@ function bs_load_scripts() {
 	
 	// Theme script.
 	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
+	wp_localize_script( 'bs-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	
 //  wp_enqueue_style( 'style', get_stylesheet_uri());
 }
@@ -106,3 +110,27 @@ function my_acf_save_post($post_id) {
 // run after ACF saves the $_POST['acf'] data
 add_action('acf/save_post', 'my_acf_save_post', 20);
 
+// Save collection to favorite
+function add_fav_collection_meta() {
+	$user_id = $_POST['user_id'];
+	$category = $_POST['category'];
+	$favorites = [];
+	
+	// On récupère les favoris éxistants
+	$existingFavorites = get_user_meta($user_id, 'favorite_collection');
+	
+	foreach ($existingFavorites[0] as $key => $value) {
+		$favorites[] = $value;
+	}
+	
+	// si category déjà dans favoris on l'enlève
+	if (($key = array_search($category, $favorites)) !== false) {
+		unset($favorites[$key]);
+	} else {
+		$favorites[] = $category;
+	}
+	
+	// update user meta with array
+	update_user_meta($user_id, 'favorite_collection', $favorites);
+}
+add_action( 'wp_ajax_set_fav_coll', 'add_fav_collection_meta' );

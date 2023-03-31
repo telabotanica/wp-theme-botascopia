@@ -2,7 +2,7 @@
 	
 	$defaults = [
 		'href' => '#',
-		'image' => get_field('card_image'),
+		'image' => get_template_directory_uri() . '/images/logo-botascopia@2x.png',
 		'name' => 'nom de la plante',
 		'species' => 'espèce de la plante',
 		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
@@ -13,16 +13,15 @@
 	$data->modifiers = botascopia_styleguide_modifiers_array('card', $data->modifiers);
 	
 	// Définir une image au hasard si aucune n'est présente
-	if (empty($data->image['url'])) :
-		$data->image = [
-		'url' => get_template_directory_uri() . '/images/logo-botascopia@2x.png'
-		];
+	if (empty($data->image)) :
+		$data->image =
+		get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	endif;
 	
 	echo '<div class="card-fiche ' . implode(' ', $data->modifiers) . '">';
 	echo sprintf(
 		'<img src="%s" class="card-fiche-image" alt="image-plante" title="%s"/>',
-		$data->image['url'],
+		$data->image,
 		$data->name
 	);
 	echo '<div class="card-fiche-body">';
@@ -40,7 +39,8 @@
 	
 	echo '</a></div>';
 	
-	// TODO Remplacer par module filtre ?
+	$current_user = wp_get_current_user();
+	
 	echo sprintf('
 		<div class="card-fiche-icon">%s</div>',
 				 get_botascopia_module('icon', $data->icon)

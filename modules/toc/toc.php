@@ -6,6 +6,7 @@ function botascopia_module_toc($data) {
   // Fonction permettant d'afficher le sommaire de la page en cours,
   // en se basant sur l'arborescence des pages dans Wordpress et les
   // composants `title` utilisés
+	/*
   if ( !function_exists( 'botascopia_module_toc_current_page' ) ) :
     function botascopia_module_toc_current_page() {
       $children = get_children([
@@ -56,7 +57,7 @@ function botascopia_module_toc($data) {
       }
     }
   endif;
-
+*/
 
   echo '<div class="toc">';
 
@@ -124,7 +125,7 @@ function botascopia_module_toc($data) {
 
   else :
 
-    botascopia_module_toc_current_page();
+//    botascopia_module_toc_current_page();
 
   endif;
 

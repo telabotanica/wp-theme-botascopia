@@ -3,15 +3,17 @@
     height: 300px;
     background-color: var(--beige2);
     border-radius: 10px;
-    margin: 10px 0;
+    margin: 10px 20px 10px 0;
     position: relative;
     padding-bottom: 10px;
 }
 
 .card-fiche-image{
-    max-width: 100%;
+    width: 100%;
     height: 200px;
     overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .card-fiche-body{

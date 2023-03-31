@@ -3,7 +3,7 @@
     height: 152px;
     background-color: var(--beige2);
     border-radius: 10px;
-    margin: 10px 0;
+    margin: 20px 0;
     position: relative;
     display: flex;
 }

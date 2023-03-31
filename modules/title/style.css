@@ -56,11 +56,11 @@
 }
 
 .title.with-separator {
-    border-top: 0.1rem solid var(--gris-dd);
+    border-top: 1px solid var(--gris-dd);
 }
 
 .title.with-border-bottom {
-    border-bottom: 0.1rem solid var(--gris-dd);
+    border-bottom: 1px solid var(--gris-dd);
 }
 
 .layout-column .title {

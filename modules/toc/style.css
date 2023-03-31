@@ -3,10 +3,9 @@
 
 .toc {
     font-family: ubuntu;
-    margin-bottom: 4rem;
     position: sticky;
-    top: var(--header-height-fixed);
-    width: 30rem;
+    /*top: var(--header-height-fixed);*/
+    width: 25rem;
 }
 
 .toc-title {
@@ -14,6 +13,7 @@
     text-transform: capitalize;
     font-size: 14px;
     color: var(--noir-d34);
+    padding: 20px 0 15px 0;
 }
 
 @include small {
@@ -36,12 +36,12 @@
     padding: 0;
 }
 
-.toc-item> .toc-item-link::before, .toc-item > .toc-item-link:hover::before, .toc-item > .toc-item-link:focus::before {
+.toc-item-link::before, .toc-item-link:hover::before, .toc-item-link:focus::before {
     content: "▶";
     display: block;
     font-size: 1rem;
     line-height: 2rem;
-    margin-left: -2rem;
+    margin-left: -10px;
     position: absolute;
     color: var(--vert-clair);
 }
@@ -70,6 +70,7 @@
     /*font-weight: bold;*/
     font-size: 15px;
     color: var(--noir-d34);
+    margin-left: 10px;
 }
 
 .toc-item-link:hover::before, .toc-item-link:focus::before {
