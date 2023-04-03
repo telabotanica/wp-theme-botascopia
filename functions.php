@@ -116,7 +116,7 @@ function add_fav_collection_meta() {
 	$category = $_POST['category'];
 	$favorites = [];
 	
-	// On récupère les favoris éxistants
+	// On récupère les favoris existants
 	$existingFavorites = get_user_meta($user_id, 'favorite_collection');
 	
 	foreach ($existingFavorites[0] as $key => $value) {
@@ -134,3 +134,41 @@ function add_fav_collection_meta() {
 	update_user_meta($user_id, 'favorite_collection', $favorites);
 }
 add_action( 'wp_ajax_set_fav_coll', 'add_fav_collection_meta' );
+
+// Save fiche to favorite
+function add_fav_fiche_meta() {
+	$user_id = $_POST['user_id'];
+	$fiche = $_POST['fiche'];
+	$favorites = [];
+	
+	// On récupère les favoris existants
+	$existingFavorites = get_user_meta($user_id, 'favorite_fiche');
+	
+	foreach ($existingFavorites[0] as $key => $value) {
+		$favorites[] = $value;
+	}
+	
+	// si category déjà dans favoris on l'enlève
+	if (($key = array_search($fiche, $favorites)) !== false) {
+		unset($favorites[$key]);
+	} else {
+		$favorites[] = $fiche;
+	}
+	
+	// update user meta with array
+	update_user_meta($user_id, 'favorite_fiche', $favorites);
+}
+add_action( 'wp_ajax_set_fav_fiche', 'add_fav_fiche_meta' );
+
+
+// Template for single collection (subcategory of 'collections' category
+add_filter( 'category_template', 'cxc_custom_category_templates' );
+
+function cxc_custom_category_templates( $template ) {
+	$category = get_category( get_queried_object_id() );
+	if ( $category->category_parent > 0 ) {
+		$sub_category_template = locate_template( 'category-collections-single.php' ); // specify template name which you create for child category
+		$template = !empty($sub_category_template) ? $sub_category_template : $template;
+	}
+	return $template;
+}

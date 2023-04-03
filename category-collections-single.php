@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Collection-single
+    Template Name: category-collection-single
 */
 ?>
 <?php
@@ -12,6 +12,15 @@ get_header();
     </div>
     <main id="main" class="site-main " role="main">
 		<?php
+		$collection = get_queried_object();
+		$collectionFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
+		$ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
+		if (is_user_logged_in()):
+			$current_user = wp_get_current_user();
+            $userId = $current_user->ID;
+        else:
+            $userId = '';
+        endif;
 		
 		the_botascopia_module('cover', [
 			'subtitle' => '',
@@ -22,13 +31,17 @@ get_header();
             <div class="left-div">
                 <div class="single-collection-title">
                     <?php the_botascopia_module('title',[
-						'title' => __('Nom de la collection', 'botascopia'),
+						'title' => __($collection->name, 'botascopia'),
 						'level' => 1,
 					]);
                     ?>
                 </div>
-                
-                <div class="single-collection-buttons">
+                <?php
+                ?>
+                <div class="single-collection-buttons" id="collection-<?php echo $collection->term_id ?>"
+                     data-user-id="<?php echo $userId ?>"
+                     data-category-id="<?php echo $collection->term_id ?>">
+                    
                     <?php the_botascopia_module('button',[
 						'tag' => 'a',
 						'href' => '#',
@@ -37,18 +50,29 @@ get_header();
 						'modifiers' => 'green-button',
                     ]);?>
 
-					<?php if (is_user_logged_in()) :
-                        //TODO changer le bouton favoris si dans favoris ou pas
-                     endif;
-                    ?>
-					<?php the_botascopia_module('button',[
+					<?php if (is_user_logged_in() && ($key = array_search($collection->term_id,
+                                                                          $collectionFavorites[0]))
+                        !==
+                        false) :
+                        //changer le bouton favoris si collection dans favoris ou pas
+                        $icone = ['icon' => 'star', 'color'=>'blanc'];
+                        $modifiers = 'green-button';
+                    else:
+						$icone = ['icon' => 'star-outline', 'color'=>'vert-clair'];
+						$modifiers = 'green-button outline';
+					endif;
+     
+					the_botascopia_module('button',[
 						'tag' => 'a',
 						'href' => '#',
 						'title' => 'Favoris',
 						'text' => 'Favoris',
-						'modifiers' => 'green-button outline',
-						'icon_after' => ['icon' => 'star-outline', 'color'=>'vert-clair'],
-					]);?>
+						'modifiers' => $modifiers,
+						'icon_after' => $icone,
+						'extra_attributes' => ['id' => 'fav-'. $collection->term_id]
+					]);
+                    
+                    ?>
                 </div>
                 <div class="single-collection-export-format">
                     Formats : PDF (60Mo)
@@ -62,9 +86,9 @@ get_header();
                 </div>
                 
                 <div class="single-collection-details">
-                    <div class="single-collection-detail">Composée de x fiches</div>
+                    <div class="single-collection-detail">Composée de <?php echo $collection->count ?> fiches</div>
                     <div class="single-collection-detail">Publié le x septembre 2022</div>
-                    <div class="single-collection-detail">Par Martin Dupond</div>
+                    <div class="single-collection-detail">Par xxx</div>
                 </div>
                 
         </div>
@@ -77,25 +101,23 @@ get_header();
                 <?php the_botascopia_module('search-box');?>
             </div>
             
-            <div>
+            <div class="single-collection-title-right">
                 <?php the_botascopia_module('title',[
-					'title' => __('Nom de la collection', 'botascopia'),
+					'title' => __($collection->name, 'botascopia'),
                     'level' => 3
                 ]);?>
             </div>
             
             <div>
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                <?php echo $collection->description ?>
             </div>
             
             <div class="display-fiches-cards-items">
-<!--                TODO Boucle avec chaque card d'espèce-->
                 <?php
                     $cat_args = array(
                         'hide_empty' => 0,
                         'order' => 'ASC',
-//                        'category_parent' => get_cat_ID( 'collection' ),
-						'category_name' => 'Bota2',
+						'cat' => $collection->term_id,
                     );
 				query_posts( $cat_args );
 
@@ -105,12 +127,24 @@ get_header();
 						$name = get_post_meta( get_the_ID(), 'nom_scientifique', true );
                         $species = get_post_meta( get_the_ID(), 'famille', true );
                         $image = get_the_post_thumbnail_url();
-      
+                        $id = get_the_ID();
+                        
+				if (is_user_logged_in() && ($key = array_search($id,
+																$ficheFavorites[0]))
+					!==
+					false) :
+					$icone = ['icon' => 'star', 'color' => 'blanc'];
+                else:
+					$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
+                endif;
+                
 						the_botascopia_module('card-fiche', [
                             'href' => get_permalink(),
 							'image' => $image,
 							'name' => $name,
 							'species' => $species,
+							'icon' => $icone,
+							'extra_attributes' => ['id' => 'fiche-'.$id, 'data-user-id'=> $userId, 'data-fiche-id'=>$id]
 						]);
                     
 					endwhile;

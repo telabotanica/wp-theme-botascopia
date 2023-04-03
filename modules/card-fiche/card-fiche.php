@@ -6,11 +6,18 @@
 		'name' => 'nom de la plante',
 		'species' => 'espèce de la plante',
 		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
-		'modifiers' => []
+		'modifiers' => [],
+		'extra_attributes' => []
 	];
 	
 	$data = botascopia_styleguide_data($defaults, $data);
 	$data->modifiers = botascopia_styleguide_modifiers_array('card', $data->modifiers);
+	
+	$attributes = '';
+	
+	foreach ($data->extra_attributes as $name => $value) {
+		$attributes .= sprintf('%s="%s" ', $name, $value);
+	}
 	
 	// Définir une image au hasard si aucune n'est présente
 	if (empty($data->image)) :
@@ -42,7 +49,8 @@
 	$current_user = wp_get_current_user();
 	
 	echo sprintf('
-		<div class="card-fiche-icon">%s</div>',
+		<div class="card-fiche-icon" %s>%s</div>',
+				 $attributes,
 				 get_botascopia_module('icon', $data->icon)
 	);
 	

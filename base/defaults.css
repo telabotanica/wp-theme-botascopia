@@ -139,7 +139,14 @@ strong {
 /****************** Page single collection **************************/
 .single-collection-title{
     margin: 20px 0 80px 0;
+    text-transform: capitalize;
 }
+
+.single-collection-title-right{
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
 .single-collection-buttons{
     display: flex;
     justify-content: space-between;

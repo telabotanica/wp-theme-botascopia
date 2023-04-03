@@ -148,7 +148,8 @@ get_header();
 								$parentName = get_category($category->category_parent)->name;
 								$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
 								
-								if ($parentName == 'collection' && (($key = array_search($category->term_id, $existingFavorites[0])) !== false)) {
+								if ($parentName == 'collections' && (($key = array_search($category->term_id,
+                                                                                          $existingFavorites[0])) !== false)) {
 									
 									// On change l'icone si la collection est dans les favoris
 									if (($key = array_search($category->term_id, $existingFavorites[0])) !== false) {

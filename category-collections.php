@@ -15,6 +15,7 @@ get_header();
 		<?php
 		the_botascopia_module('cover', [
 			'subtitle' => 'Consultez des collections et téléchargez des fiches',
+            'title' => 'Les collections'
 //			'search' => [
 //				'index' => 'collections',
 //				'placeholder' => __('Rechercher une collection...', 'botascopia'),
@@ -59,7 +60,7 @@ get_header();
 							foreach ($categories as $category) {
 								if ($category->category_parent) {
 									$parentName = get_category($category->category_parent)->name;
-									if ($parentName == 'collection') {
+									if ($parentName == 'collections') {
 										
 										// On change l'icone si la collection est dans les favoris
 										if (is_user_logged_in()) :
