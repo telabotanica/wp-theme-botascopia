@@ -263,7 +263,7 @@ function getPostImage($id){
 	if ($getImage){
 		$image['url'] = $getImage[0];
 	} else {
-		$image = [];
+		$image['url'] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
 	
 	return $image;

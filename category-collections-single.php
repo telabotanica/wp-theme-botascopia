@@ -28,6 +28,12 @@ get_header();
 			
 			$nbFiches = getNbFiches($collection->term_id)[0];
 			$completed = getNbFiches($collection->term_id)[1];
+			$image = getPostImage($post_id);
+			the_botascopia_module('cover', [
+				'subtitle' => '',
+				'title' => '',
+				'image' => $image
+			]);
 		} else {
 			// Aucun post trouvé avec ce titre
 		}
@@ -39,10 +45,6 @@ get_header();
             $userId = '';
         endif;
 		
-		the_botascopia_module('cover', [
-			'subtitle' => '',
-			'title' => ''
-		]);
 		?>
         <div class="collection-main">
             <div class="left-div">
@@ -103,7 +105,6 @@ get_header();
                 </a>
                 
                 <div class="single-collection-details">
-<!--                    <div class="single-collection-detail">Composée de --><?php //echo $collection->count ?><!-- fiches</div> -->
                     <div class="single-collection-detail">Composée de <?php echo $nbFiches?> fiches</div>
                     <div class="single-collection-detail">Publié le <?php echo $post_date ?></div>
                     <div class="single-collection-detail">Par <?php echo $post_author ?></div>
@@ -146,8 +147,7 @@ get_header();
                         $image = get_the_post_thumbnail_url();
                         $id = get_the_ID();
                         
-				if (is_user_logged_in() && ($key = array_search($id,
-																$ficheFavorites[0]))
+				if (is_user_logged_in() && ($key = array_search($id,$ficheFavorites[0]))
 					!==
 					false) :
 					$icone = ['icon' => 'star', 'color' => 'blanc'];

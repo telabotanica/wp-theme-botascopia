@@ -59,7 +59,7 @@
 
     echo '</div>';
 
-    botascopia_image_credits( $data->image, 'cover' );
+//    botascopia_image_credits( $data->image, 'cover' );
 
   echo '</div>';
 
