@@ -28,6 +28,12 @@ req.keys().forEach(req);
 //Enregistre les collections favorites
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Bouton retour renvoyant à la page précédente
+    document.querySelector('.return-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.history.back();
+    });
+
     setFavoris('.card-collection-icon','category');
     setFavoris('.single-collection-buttons', 'category');
     setFavoris('.card-fiche-icon', 'fiche');
@@ -51,7 +57,6 @@ function setFavoris(selector, type){
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         // Si succès, on change l'icone
-
                         switch (selector){
                             case '.card-collection-icon':
                                 var categoryHtml = document.querySelector('#'+id);

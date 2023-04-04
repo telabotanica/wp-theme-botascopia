@@ -54,7 +54,7 @@ get_header();
                     echo '<div class="toc-button">';
                         the_botascopia_module('button', [
                         'tag' => 'a',
-                        'href' => '#',
+                        'href' => '/creer-une-collection',
                         'title' => 'Créer une collection',
                         'text' => 'Créer une collection',
                         'modifiers' => 'green-button',
@@ -158,8 +158,12 @@ get_header();
 										$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
 									}
 									
+									// Récupérer le lien de la catégorie parente et de la sous-catégorie
+									$parentLink = get_term_link($category->category_parent);
+									$subcatLink = get_term_link($category);
+									
 									the_botascopia_module('card-collection', [
-										'href' => $category->slug,
+										'href' => $subcatLink,
 										'name' => $category->name,
 										'nbFiches' => $category->count,
 										'description' => $category->description,

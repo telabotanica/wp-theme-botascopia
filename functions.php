@@ -172,3 +172,49 @@ function cxc_custom_category_templates( $template ) {
 	}
 	return $template;
 }
+
+// Permet de lier le nom d'une collection (post) avec une catégorie du même nom
+function create_category_from_post_name($post_id) {
+	$post = get_post($post_id);
+	$category_name = $post->post_title;
+	$parent_term = term_exists('collections', 'category');
+	$parent_term_id = $parent_term['term_id'];
+	$category = wp_insert_term($category_name, 'category', array('parent' => $parent_term_id));
+	if (!is_wp_error($category)) {
+		wp_set_object_terms($post_id, $category_name, 'category', true);
+		$category_link = get_term_link($category['term_id']);
+		wp_redirect($category_link);
+		exit;
+	}
+}
+add_action('wp_insert_post', 'create_category_from_post_name');
+
+// Permet de créer une nouvelle collection (Post)
+function create_new_post() {
+	// Vérification si le nom existe déjà
+	if (isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'post', false )){
+		wp_redirect( home_url( '/creer-une-collection/?error=existing_title' ) );
+		exit();
+	} else {
+		if (isset($_POST['post-title']) && isset($_POST['post-description'])) {
+			$title = sanitize_text_field($_POST['post-title']);
+			$description = wp_kses_post($_POST['post-description']);
+			$my_post = array(
+				'post_title' => $title,
+				'post_description' => $description,
+//			'post_status' => 'publish',
+				'post_category' => array( get_cat_ID( $title ) ),
+			);
+			$post_id = wp_insert_post( $my_post );
+			create_category_from_post_name($post_id);
+			
+			if ($post_id) {
+				wp_redirect( get_permalink( $post_id ) );
+				exit;
+			} else {
+				echo 'Erreur lors de la création de la collection';
+			}
+		}
+	}
+}
+add_action('init', 'create_new_post');

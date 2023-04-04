@@ -163,9 +163,10 @@ strong {
     margin: -10px 0 50px 10px;
 }
 
-.single-collection-return{
+.return-button{
     display: flex;
     align-items: center;
+    color: var(--noir-d34);
 }
 .single-collection-details{
     width: 250px;

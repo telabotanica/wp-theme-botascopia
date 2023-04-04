@@ -15,6 +15,35 @@ get_header();
 		$collection = get_queried_object();
 		$collectionFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
 		$ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
+		$post = get_page_by_title( $collection->name, OBJECT, 'post' );
+		
+		if ( $post ) {
+			// Post trouvé, vous pouvez accéder à ses informations
+			$post_id = $post->ID;
+			$post_author = get_the_author_meta('display_name', $post->post_author);
+   
+			$date = $post->post_date;
+			setlocale(LC_TIME, 'fr_FR.utf8');
+			$post_date = strftime('%e %B %Y', strtotime($date));
+   
+		} else {
+			// Aucun post trouvé avec ce titre
+		}
+
+//		$args = array(
+//			'post_type' => 'post',
+////			'post_status' => 'publish',
+//			'posts_per_page' => -1, // affiche tous les posts
+//			'category_name' => $collection->name,
+//			'order' => 'ASC'
+//		);
+//
+//		$posts = get_posts($args);
+//		foreach ($posts as $post) {
+//			$post_date = get_the_date('d-MM-Y', $post->ID);
+//			$post_author = get_the_author_meta('display_name', $post->post_author);
+//		}
+        
 		if (is_user_logged_in()):
 			$current_user = wp_get_current_user();
             $userId = $current_user->ID;
@@ -78,17 +107,17 @@ get_header();
                     Formats : PDF (60Mo)
                 </div>
                 
-                <div class="single-collection-return">
+                <a class="return-button" href="#">
                     <?php the_botascopia_module('icon',[
                             'icon'=> 'arrow-left'
                     ]); ?>
                     <span>RETOUR</span>
-                </div>
+                </a>
                 
                 <div class="single-collection-details">
                     <div class="single-collection-detail">Composée de <?php echo $collection->count ?> fiches</div>
-                    <div class="single-collection-detail">Publié le x septembre 2022</div>
-                    <div class="single-collection-detail">Par xxx</div>
+                    <div class="single-collection-detail">Publié le <?php echo $post_date ?></div>
+                    <div class="single-collection-detail">Par <?php echo $post_author ?></div>
                 </div>
                 
         </div>
