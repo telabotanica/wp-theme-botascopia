@@ -257,3 +257,24 @@ function getNbFiches($collectionId){
 	wp_reset_query();
 	return [$nbFiches, $completed];
 }
+
+function getPostImage($id){
+	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
+	if ($getImage){
+		$image['url'] = $getImage[0];
+	} else {
+		$image = [];
+	}
+	
+	return $image;
+}
+
+function changeFavIcon($categoryId, $favoritesArray){
+	if (($key = array_search($categoryId, $favoritesArray)) !== false) {
+		$icone = ['icon' => 'star', 'color' => 'blanc'];
+	} else {
+		$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
+	}
+	
+	return $icone;
+}

@@ -65,17 +65,16 @@ get_header();
 										// On change l'icone si la collection est dans les favoris
 										if (is_user_logged_in()) :
 											$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
-											if (($key = array_search($category->term_id, $existingFavorites[0])) !== false) {
-												$icone = ['icon' => 'star', 'color' => 'blanc'];
-											} else {
-												$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
-											}
+											$icone = changeFavIcon($category->term_id, $existingFavorites[0]);
 										else:
 											$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
 										endif;
 										
 										$nbFiches = getNbFiches($category->term_id)[0];
 										$completed = getNbFiches($category->term_id)[1];
+										$post = get_page_by_title( $category->name, OBJECT, 'post' );
+										
+										$image = getPostImage($post->ID);
 										
 										the_botascopia_module('card-collection', [
 											'href' => $category->slug,
@@ -83,7 +82,8 @@ get_header();
 											'nbFiches' => $nbFiches,
 											'description' => $category->description,
 											'category' => $category->term_id,
-											'icon' => $icone
+											'icon' => $icone,
+											'image' => $image
 										]);
 									}
 									

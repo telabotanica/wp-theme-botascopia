@@ -8,31 +8,31 @@ get_header();
 ?>
 
 <div id="primary" class="content-area">
-	<div class="bg-fill">
-	
-	</div>
+<!--	<div class="bg-fill">-->
+<!--	-->
+<!--	</div>-->
 	<main id="main" class="site-main " role="main">
 		<div class="collection-main">
-			<div class="left-div">
-				
-				<a class="return-button" href="#">
-					<?php the_botascopia_module('icon',[
-						'icon'=> 'arrow-left'
-					]); ?>
-					<span>RETOUR</span>
-				</a>
-                <div id="error-message">
-					<?php
-					if ( isset( $_GET['error'] ) ) {
-						$error = $_GET['error'];
-						if ( $error == 'existing_title' ) {
-							echo 'Une collection avec le même titre existe déjà.';
-						}
-					}
-					?>
-                </div>
-                
-			</div>
+<!--			<div class="left-div">-->
+<!--				-->
+<!--				<a class="return-button" href="#">-->
+<!--					--><?php //the_botascopia_module('icon',[
+//						'icon'=> 'arrow-left'
+//					]); ?>
+<!--					<span>RETOUR</span>-->
+<!--				</a>-->
+<!--                <div id="error-message">-->
+<!--					--><?php
+//					if ( isset( $_GET['error'] ) ) {
+//						$error = $_GET['error'];
+//						if ( $error == 'existing_title' ) {
+//							echo 'Une collection avec le même titre existe déjà.';
+//						}
+//					}
+//					?>
+<!--                </div>-->
+<!--                -->
+<!--			</div>-->
 			<div class="right-div">
 				<?php
 				the_botascopia_module('breadcrumbs');
