@@ -25,24 +25,12 @@ get_header();
 			$date = $post->post_date;
 			setlocale(LC_TIME, 'fr_FR.utf8');
 			$post_date = strftime('%e %B %Y', strtotime($date));
-   
+			
+			$nbFiches = getNbFiches($collection->term_id)[0];
+			$completed = getNbFiches($collection->term_id)[1];
 		} else {
 			// Aucun post trouvé avec ce titre
 		}
-
-//		$args = array(
-//			'post_type' => 'post',
-////			'post_status' => 'publish',
-//			'posts_per_page' => -1, // affiche tous les posts
-//			'category_name' => $collection->name,
-//			'order' => 'ASC'
-//		);
-//
-//		$posts = get_posts($args);
-//		foreach ($posts as $post) {
-//			$post_date = get_the_date('d-MM-Y', $post->ID);
-//			$post_author = get_the_author_meta('display_name', $post->post_author);
-//		}
         
 		if (is_user_logged_in()):
 			$current_user = wp_get_current_user();
@@ -115,7 +103,8 @@ get_header();
                 </a>
                 
                 <div class="single-collection-details">
-                    <div class="single-collection-detail">Composée de <?php echo $collection->count ?> fiches</div>
+<!--                    <div class="single-collection-detail">Composée de --><?php //echo $collection->count ?><!-- fiches</div> -->
+                    <div class="single-collection-detail">Composée de <?php echo $nbFiches?> fiches</div>
                     <div class="single-collection-detail">Publié le <?php echo $post_date ?></div>
                     <div class="single-collection-detail">Par <?php echo $post_author ?></div>
                 </div>
@@ -147,10 +136,9 @@ get_header();
                         'hide_empty' => 0,
                         'order' => 'ASC',
 						'cat' => $collection->term_id,
+						'post_status' => array('publish', 'draft', 'pending')
                     );
 				query_posts( $cat_args );
-
-				// Boucle pour afficher les articles
 				if ( have_posts() ) :
 					while ( have_posts() ) : the_post();
 						$name = get_post_meta( get_the_ID(), 'nom_scientifique', true );
@@ -167,6 +155,8 @@ get_header();
 					$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
                 endif;
                 
+                $ficheName = get_the_title();
+                if ($ficheName != $collection->name):
 						the_botascopia_module('card-fiche', [
                             'href' => get_permalink(),
 							'image' => $image,
@@ -175,7 +165,7 @@ get_header();
 							'icon' => $icone,
 							'extra_attributes' => ['id' => 'fiche-'.$id, 'data-user-id'=> $userId, 'data-fiche-id'=>$id]
 						]);
-                    
+                  endif;
 					endwhile;
 				else :
 					echo 'Aucun article trouvé.';

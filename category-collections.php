@@ -74,10 +74,13 @@ get_header();
 											$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
 										endif;
 										
+										$nbFiches = getNbFiches($category->term_id)[0];
+										$completed = getNbFiches($category->term_id)[1];
+										
 										the_botascopia_module('card-collection', [
 											'href' => $category->slug,
 											'name' => $category->name,
-											'nbFiches' => $category->count,
+											'nbFiches' => $nbFiches,
 											'description' => $category->description,
 											'category' => $category->term_id,
 											'icon' => $icone

@@ -41,6 +41,8 @@ get_header();
 				<div class="entry-content">
 					<h1>Créer une nouvelle collection</h1>
 					<form id="new-post-form" method="post">
+                        <input type="hidden" name="meta-type" value="collection">
+                        <input type="hidden" name="action" value="create_new_collection">
 						<label for="post-title">Nom de la collection</label>
 						<input type="text" name="post-title" id="post-title" required>
 						<br>
@@ -48,11 +50,9 @@ get_header();
 						<textarea name="post-description" id="post-description" rows="10" required></textarea>
 						<br>
 						<input type="submit" value="Créer la collection">
-						<?php wp_nonce_field( 'new-post' ); ?>
+						<?php wp_nonce_field( 'new-post-collection' ); ?>
 					</form>
 				</div>
-				
-			
 			</div>
 	</main>
 </div>

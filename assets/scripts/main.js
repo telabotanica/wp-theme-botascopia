@@ -29,10 +29,12 @@ req.keys().forEach(req);
 document.addEventListener('DOMContentLoaded', function() {
 
     // Bouton retour renvoyant à la page précédente
-    document.querySelector('.return-button').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.history.back();
-    });
+    if (document.querySelector('.return-button')){
+        document.querySelector('.return-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.history.back();
+        });
+    }
 
     setFavoris('.card-collection-icon','category');
     setFavoris('.single-collection-buttons', 'category');

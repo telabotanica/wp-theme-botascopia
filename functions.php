@@ -175,22 +175,25 @@ function cxc_custom_category_templates( $template ) {
 
 // Permet de lier le nom d'une collection (post) avec une catégorie du même nom
 function create_category_from_post_name($post_id) {
-	$post = get_post($post_id);
-	$category_name = $post->post_title;
-	$parent_term = term_exists('collections', 'category');
-	$parent_term_id = $parent_term['term_id'];
-	$category = wp_insert_term($category_name, 'category', array('parent' => $parent_term_id));
-	if (!is_wp_error($category)) {
-		wp_set_object_terms($post_id, $category_name, 'category', true);
-		$category_link = get_term_link($category['term_id']);
-		wp_redirect($category_link);
-		exit;
+	if (isset($_POST['meta-type']) && $_POST['meta-type'] === 'collection') {
+		$post = get_post($post_id);
+		$category_name = $post->post_title;
+		$parent_term = term_exists('collections', 'category');
+		$parent_term_id = $parent_term['term_id'];
+		$category = wp_insert_term($category_name, 'category', array('parent' => $parent_term_id));
+		if ( !is_wp_error($category)) {
+			wp_set_object_terms($post_id, $category_name, 'category', true);
+			$category_link = get_term_link($category['term_id']);
+			wp_redirect($category_link);
+			exit;
+		}
 	}
 }
 add_action('wp_insert_post', 'create_category_from_post_name');
 
 // Permet de créer une nouvelle collection (Post)
-function create_new_post() {
+function create_new_post_collection() {
+	
 	// Vérification si le nom existe déjà
 	if (isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'post', false )){
 		wp_redirect( home_url( '/creer-une-collection/?error=existing_title' ) );
@@ -201,12 +204,15 @@ function create_new_post() {
 			$description = wp_kses_post($_POST['post-description']);
 			$my_post = array(
 				'post_title' => $title,
-				'post_description' => $description,
+				'post_content' => $description,
 //			'post_status' => 'publish',
 				'post_category' => array( get_cat_ID( $title ) ),
 			);
+			
 			$post_id = wp_insert_post( $my_post );
-			create_category_from_post_name($post_id);
+			if (isset($_POST['meta-type']) && 'collection' === $_POST['meta-type']){
+				create_category_from_post_name($post_id);
+			}
 			
 			if ($post_id) {
 				wp_redirect( get_permalink( $post_id ) );
@@ -217,4 +223,37 @@ function create_new_post() {
 		}
 	}
 }
-add_action('init', 'create_new_post');
+add_action('init', 'create_new_post_collection');
+
+function getNbFiches($collectionId){
+	$cat_args = array(
+		'hide_empty' => 0,
+		'order' => 'ASC',
+		'cat' => $collectionId,
+		'post_status' => array('publish', 'draft', 'pending')
+	);
+	
+	query_posts($cat_args);
+	$nbFiches = 0;
+	$completed = true;
+	
+	if ( have_posts() ) :
+		while ( have_posts() ) : the_post();
+			$name = get_post_meta( get_the_ID(), 'nom_scientifique', true );
+			$species = get_post_meta( get_the_ID(), 'famille', true );
+			$image = get_the_post_thumbnail_url();
+			$id = get_the_ID();
+			$ficheName = get_the_title();
+			$collectionName = get_the_category_by_ID($collectionId);
+			if ($ficheName != $collectionName) {
+				$status = get_post_status($id);
+				$nbFiches++;
+				if ($status != 'publish') {
+					$completed = false;
+				}
+			}
+		endwhile;
+	endif;
+	wp_reset_query();
+	return [$nbFiches, $completed];
+}
