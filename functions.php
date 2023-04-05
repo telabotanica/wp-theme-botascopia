@@ -163,7 +163,6 @@ add_action( 'wp_ajax_set_fav_fiche', 'add_fav_fiche_meta' );
 
 // Template for single collection (subcategory of 'collections' category
 add_filter( 'category_template', 'cxc_custom_category_templates' );
-
 function cxc_custom_category_templates( $template ) {
 	$category = get_category( get_queried_object_id() );
 	if ( $category->category_parent > 0 ) {
@@ -225,6 +224,7 @@ function create_new_post_collection() {
 }
 add_action('init', 'create_new_post_collection');
 
+/*
 function getNbFiches($collectionId){
 	$cat_args = array(
 		'hide_empty' => 0,
@@ -257,7 +257,7 @@ function getNbFiches($collectionId){
 	wp_reset_query();
 	return [$nbFiches, $completed];
 }
-
+*/
 function getPostImage($id){
 	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
 	if ($getImage){
@@ -277,4 +277,211 @@ function changeFavIcon($categoryId, $favoritesArray){
 	}
 	
 	return $icone;
+}
+
+// Ajout d'un type de post 'collection'
+function custom_post_type() {
+	
+	$labels = array(
+		'name' => 'collection',
+		'singular_name' => 'collection',
+		'add_new' => 'Ajouter une nouvelle collection',
+		'add_new_item' => 'une nouvelle collection',
+		'edit_item' => 'Modifier la collection',
+		'new_item' => 'Nouvelle collection',
+		'view_item' => 'Voir la collection',
+		'search_items' => 'Rechercher des collections',
+		'not_found' => 'Aucune collection trouvé',
+		'not_found_in_trash' => 'Aucune collection trouvé dans la corbeille',
+		'parent_item_colon' => 'collection',
+		'menu_name' => 'Les collections'
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'has_archive' => true,
+		'publicly_queryable' => true,
+		'query_var' => true,
+		'rewrite' => array('slug' => 'collection'),
+		'capability_type' => 'post',
+		'hierarchical' => false,
+		'supports' => array(
+			'title',
+			'editor',
+			'author',
+			'thumbnail',
+			'excerpt',
+			'comments',
+			'custom-fields'
+		),
+	);
+	
+	register_post_type( 'collection', $args );
+}
+
+add_action( 'init', 'custom_post_type' );
+
+// Template de page pour les post de type 'collection'
+add_filter( 'template_include', 'collection_template_include' );
+function collection_template_include( $template ) {
+
+	if ( get_post_type() == 'collection' ) {
+		$new_template = locate_template( array( 'archive-collection.php' ) );
+		if ( '' != $new_template ) {
+			return $new_template ;
+		}
+	}
+
+	return $template;
+}
+
+// AJout de catégories pour le post type collection
+function custom_taxonomy() {
+	$args = array(
+		'hierarchical'      => true, // Si les catégories doivent être hiérarchiques ou non
+		'labels'            => array(
+			'name'              => 'Les collections',
+			'singular_name'     => 'Collection',
+			'search_items'      => 'Rechercher des collections',
+			'all_items'         => 'Toutes les collections',
+			'parent_item'       => 'Collection parente',
+			'parent_item_colon' => 'Collection parente :',
+			'edit_item'         => 'Modifier la collection',
+			'update_item'       => 'Mettre à jour la collection',
+			'add_new_item'      => 'Ajouter une nouvelle collection',
+			'new_item_name'     => 'Nom de la nouvelle collection',
+			'menu_name'         => 'catégories',
+		),
+		'show_ui'           => true, // Si l'interface utilisateur de la taxonomie doit être affichée ou non
+		'show_admin_column' => true, // Si une colonne doit être affichée dans l'interface d'administration pour cette taxonomie
+		'query_var'         => true, // Si la taxonomie doit être utilisée dans les requêtes URL
+		'rewrite'           => array( 'slug' => 'collection' ), // Le slug à utiliser pour les URLs
+	);
+	register_taxonomy( 'category-collection', 'collection', $args );
+}
+add_action( 'init', 'custom_taxonomy' );
+
+/*
+// Ajout des catégories 'normals' aux posts 'collection'
+function add_categories_to_collection() {
+	register_taxonomy_for_object_type( 'category', 'collection' );
+}
+add_action( 'init', 'add_categories_to_collection' );
+
+// Ajout des catégories collection aux posts normaux
+function add_collection_categories_to_posts() {
+	register_taxonomy_for_object_type( 'category-collection', 'post' );
+}
+add_action( 'init', 'add_collection_categories_to_posts' );
+*/
+
+// Fonction pour le plugin Posts 2 Posts
+function my_connection_types() {
+	p2p_register_connection_type(
+		array(
+			'name' => 'collection_to_post',
+			'from' => 'collection',
+			'to' => 'post',
+		));
+}
+add_action( 'p2p_init', 'my_connection_types' );
+
+// Pour définir le fichier single-collection.php en tant que template des collections
+add_filter(
+	'template_include',
+	function($template) {
+		global $wp_query;
+		if (1 == $wp_query->found_posts) {
+			global $wp_query;
+			$type = $wp_query->get('post_type') ?: false;
+			$template_type = $type ? 'single-' . $type. '.php' : 'single.php';
+			if ( locate_template($template_type) ) {
+				return locate_template($template_type);
+			} elseif ( $type && locate_template('single.php') ) {
+				return locate_template('single.php');
+			}
+		}
+		return $template;
+	}
+);
+
+function getFiches($id)
+{
+	$nbFiches = 0;
+	$completed = true;
+	
+	$connected_posts = new WP_Query(
+		array(
+			'connected_type' => 'collection_to_post',
+			'connected_items' => $id,
+			'nopaging' => true,
+			'post_status' => array('publish', 'draft', 'pending'),
+		));
+	if ($connected_posts->have_posts()) :
+		while ($connected_posts->have_posts()) : $connected_posts->the_post();
+			$ficheId = get_the_ID();
+			$status = get_post_status($ficheId);
+			$nbFiches++;
+			if ($status != 'publish') {
+				$completed = false;
+			}
+			// Afficher ici les informations sur chaque article de type "post" connecté
+		endwhile;
+	endif;
+	wp_reset_postdata();
+	
+	return [$nbFiches, $completed];
+}
+
+// Récupère les informations des collections
+function getCollectionPosts($status){
+	// Posts de type collection
+	$args = array(
+		'post_type' => 'collection',
+		'post_status' => $status,
+		'posts_per_page' => -1,
+		'order' => 'ASC'
+	);
+	$collection_query = new WP_Query( $args );
+	$posts = [];
+	
+	if ( $collection_query->have_posts() ) {
+		while ( $collection_query->have_posts() ) {
+			$collection_query->the_post();
+			
+			$collectionName = get_the_title();
+			$collection_id = get_the_ID();
+			$description = get_the_content();
+			$image = getPostImage($collection_id);
+			$collectionStatus = get_post_status($collection_id);
+			$author = get_the_author_meta('ID');
+			
+			if (is_user_logged_in()) :
+				$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
+				$icone = changeFavIcon($collection_id, $existingFavorites[0]);
+			else:
+				$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
+			endif;
+
+			$fiches = getFiches($collection_id);
+			$post = [
+				'href' => get_the_guid($collection_id),
+				'name' => $collectionName,
+				'nbFiches' => $fiches[0],
+				'description' => $description,
+				'id' => $collection_id,
+				'icon' => $icone,
+				'image' => $image,
+				'status' => $collectionStatus,
+				'completed' => $fiches[1],
+				'author' => $author
+			];
+			
+			$posts[] = $post;
+		}
+	}
+	
+	wp_reset_postdata();
+	return $posts;
 }

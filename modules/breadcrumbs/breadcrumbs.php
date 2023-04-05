@@ -9,11 +9,10 @@
 
     // Article seul
     if ( is_single() ) :
-
       $category = get_the_category();
       $data->items = ['home'];
 
-      if ( count($category) > 0 ) {
+      if ( count($category) > 0  && get_post_type() != 'collection') {
         $category = $category[0];
 
         // Catégorie parente
@@ -25,6 +24,10 @@
         // Catégorie de l'article
         $data->items[] = [ 'href' => get_category_link( $category ), 'text' => $category->name ];
       }
+	  
+	  if (get_post_type() === 'collection' ){
+		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
+	  }
 
       // Article courant
       $data->items[] = [ 'text' => get_the_title() ];
@@ -49,18 +52,22 @@
 
     // Archive
     elseif ( is_archive() ) :
-
+		
       $category = get_category( get_query_var('cat') );
       $data->items = ['home'];
 
-      // Catégorie parente
-      if ( $category->parent ) {
-        $category_parent = get_category( $category->parent );
-        $data->items[] = [ 'href' => get_category_link( $category_parent ), 'text' => $category_parent->name ];
-      }
-
-      // Catégorie courante
-      $data->items[] = [ 'text' => $category->name ];
+	  if (get_post_type() !== 'collection'){
+		  // Catégorie parente
+		  if ( $category->parent && get_post_type() != 'collection') {
+			  $category_parent = get_category( $category->parent );
+			  $data->items[] = [ 'href' => get_category_link( $category_parent ), 'text' => $category_parent->name ];
+		  }
+		
+		  // Catégorie courante
+		  $data->items[] = [ 'text' => $category->name ];
+	  } else {
+		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
+	  }
 
     endif;
 

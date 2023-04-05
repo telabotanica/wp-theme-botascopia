@@ -7,7 +7,9 @@ gestion de dépendances [Composer](https://getcomposer.org).
 
 Installer [Node](https://nodejs.org)
 
-Installer le plugin wordpress `Advanced Custom Fields`
+Installer le plugin wordpress `Advanced Custom Fields`.
+
+Installer le plugin wordpress `Posts 2 Posts`
 
 Installer les dépendences du projet
 

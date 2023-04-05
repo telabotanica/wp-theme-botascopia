@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Catégory Collections
+    Template Name: Collections
 */
 ?>
 <?php
@@ -16,12 +16,6 @@ get_header();
 		the_botascopia_module('cover', [
 			'subtitle' => 'Consultez des collections et téléchargez des fiches',
             'title' => 'Les collections'
-//			'search' => [
-//				'index' => 'collections',
-//				'placeholder' => __('Rechercher une collection...', 'botascopia'),
-//				'instantsearch' => false,
-//				'pageurl' => 'collections'
-//			]
 		]);
 		?>
         <div class="collection-main">
@@ -40,17 +34,58 @@ get_header();
 					?>
 
                     <div class="display-collection-cards">
-                        <div>
-							<?php
-							the_botascopia_module('title', [
-								'title' => __('Les collections', 'botascopia'),
-								'level' => 2,
-							]);
-							?>
-                        </div>
 
                         <div id="collections-container" class="display-collection-cards-items">
+                            <?php
+                            // Posts de type collection
+							$args = array(
+								'post_type' => 'collection',
+								'post_status' => array('publish', 'draft', 'pending'),
+                                'order' => 'ASC'
+							);
+							$collection_query = new WP_Query( $args );
+
+							if ( $collection_query->have_posts() ) {
+								while ( $collection_query->have_posts() ) {
+									$collection_query->the_post();
+         
+									$collectionName = get_the_title();
+									$collection_id = get_the_ID();
+                                    $description = get_the_content();
+									$image = getPostImage($collection_id);
+         
+									if (is_user_logged_in()) :
+										$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
+										$icone = changeFavIcon($collection_id, $existingFavorites[0]);
+									else:
+										$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
+									endif;
+                                    
+                                    $nbFiches = 0;
+                                    
+                                    // Récupération des fiches liées à chaque collection
+                                    $nbFiches = getFiches($collection_id)[0];
+                                    
+                                    // Affichage des collections
+									the_botascopia_module('card-collection', [
+										'href' => get_the_guid($collection_id),
+										'name' => $collectionName,
+										'nbFiches' => $nbFiches,
+										'description' => $description,
+										'category' => $collection_id,
+										'icon' => $icone,
+										'image' => $image
+									]);
+								}
+							} else {
+								// Si aucun post trouvé
+								echo 'Aucune collection trouvé';
+							}
+							wp_reset_postdata();
+                            ?>
+                            
 							<?php
+                            /*
 							$cat_args = array(
 								'hide_empty' => 0,
 								'orderby' => 'name',
@@ -88,6 +123,7 @@ get_header();
 									
 								}
 							}
+                            */
 							?>
                         </div>
                     </div>

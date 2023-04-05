@@ -14,6 +14,9 @@ get_header();
     <main id="main" class="site-main " role="main">
 		<?php
 		$current_user = wp_get_current_user();
+		$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
+		$posts = getCollectionPosts(['publish', 'draft', 'pending']);
+  
 		the_botascopia_module('cover', [
 			'subtitle' => $current_user->roles[0],
 			'title' => $current_user->display_name
@@ -55,7 +58,7 @@ get_header();
                     echo '<div class="toc-button">';
                         the_botascopia_module('button', [
                         'tag' => 'a',
-                        'href' => '/creer-une-collection',
+                        'href' => '#',
                         'title' => 'Créer une collection',
                         'text' => 'Créer une collection',
                         'modifiers' => 'green-button',
@@ -142,45 +145,20 @@ get_header();
 
                     <div class="display-collection-cards-items">
 						<?php
-						$cat_args = array(
-							'hide_empty' => 0,
-							'order' => 'ASC',
-						);
-						$categories = get_categories($cat_args);
-						foreach ($categories as $category) {
-							if ($category->category_parent) {
-								$parentName = get_category($category->category_parent)->name;
-								$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
-								
-								if ($parentName == 'collections' && (($key = array_search($category->term_id,$existingFavorites[0])) !== false)) {
-									
-									// On change l'icone si la collection est dans les favoris
-                                    $icone = changeFavIcon($category->term_id, $existingFavorites[0]);
-									
-									// Récupérer le lien de la catégorie parente et de la sous-catégorie
-									$parentLink = get_term_link($category->category_parent);
-									$subcatLink = get_term_link($category);
-									
-									$nbFiches = getNbFiches($category->term_id)[0];
-									$completed = getNbFiches($category->term_id)[1];
-									
-									$post = get_page_by_title( $category->name, OBJECT, 'post' );
-									
-									$image = getPostImage($post->ID);
-         
-									the_botascopia_module('card-collection', [
-										'href' => $subcatLink,
-										'name' => $category->name,
-										'nbFiches' => $nbFiches,
-										'description' => $category->description,
-										'category' => $category->term_id,
-										'icon' => $icone,
-                                        'image' => $image
-									]);
-								}
-								
+                        foreach ($posts as $post){
+                            if (($key = array_search($post['id'],$existingFavorites[0])) !== false){
+                            
+								the_botascopia_module('card-collection', [
+									'href' => $post['href'],
+									'name' => $post['name'],
+									'nbFiches' => $post['nbFiches'],
+									'description' => $post['description'],
+									'category' => $post['id'],
+									'icon' => $post['icon'],
+									'image' => $post['image']
+								]);
 							}
-						}
+                        }
 						?>
                     </div>
 				
@@ -199,68 +177,19 @@ get_header();
 
                     <div class="display-collection-cards-items">
 						<?php
-						$cat_args = array(
-							'hide_empty' => 0,
-							'order' => 'ASC',
-						);
-						$categories = get_categories($cat_args);
-                        foreach ($categories as $category) {
-                            if ($category->category_parent) {
-								$parentName = get_category($category->category_parent)->name;
-								$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
-                                
-                                if ($parentName == 'collections') {
-									$parentLink = get_term_link($category->category_parent);
-									$subcatLink = get_term_link($category);
-         
-									// On change l'icone si la collection est dans les favoris
-									$icone = changeFavIcon($category->term_id, $existingFavorites[0]);
-                                    
-                                    // On vérifie le statut des fiches et on les compte
-									$fiche_args = array(
-										'hide_empty' => 0,
-										'order' => 'ASC',
-										'cat' => $category->term_id,
-										'post_status' => array('publish', 'draft', 'pending')
-									);
-									query_posts($fiche_args);
-                                    
-                                    $nbFiches = 0;
-                                    $completed = true;
-									if ( have_posts() ) :
-										while ( have_posts() ) : the_post();
-                                    $postId = get_the_ID();
-                                    $postName = $post_title = get_the_title($postId);;
-                                            if ($postName != $category->name ){
-												$status = get_post_status($postId);
-												$nbFiches++;
-												if ($status != 'publish'){
-													$completed = false;
-												}
-                                            }
-                                    endwhile;
-                                    endif;
-									// Réinitialiser la requête
-									wp_reset_query();
-	
-									$post = get_page_by_title( $category->name, OBJECT, 'post' );
-									
-                                    if ($post && (!$completed || $nbFiches == 0
-                                        || $post->post_status != 'publish') && $post->post_author == $current_user->ID){
-                                        
-										$image = getPostImage($post->ID);
-          
-										the_botascopia_module('card-collection', [
-											'href' => $subcatLink,
-											'name' => $category->name,
-											'nbFiches' => $nbFiches,
-											'description' => $category->description,
-											'category' => $category->term_id,
-											'icon' => $icone,
-                                            'image'=> $image
-										]);
-                                    }
-								}
+      
+						foreach ($posts as $post){
+							if ((!$post['completed'] || $post['status'] != 'publish') && $post['author'] == $current_user->ID){
+        
+								the_botascopia_module('card-collection', [
+									'href' => $post['href'],
+									'name' => $post['name'],
+									'nbFiches' => $post['nbFiches'],
+									'description' => $post['description'],
+									'category' => $post['id'],
+									'icon' => $post['icon'],
+									'image' => $post['image']
+								]);
 							}
 						}
       
@@ -280,70 +209,23 @@ get_header();
 
                 <div class="display-collection-cards-items">
 					<?php
-					$cat_args = array(
-						'hide_empty' => 0,
-						'order' => 'ASC',
-					);
-					$categories = get_categories($cat_args);
-					foreach ($categories as $category) {
-						if ($category->category_parent) {
-							$parentName = get_category($category->category_parent)->name;
-							$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
-				
-							if ($parentName == 'collections') {
-								$parentLink = get_term_link($category->category_parent);
-								$subcatLink = get_term_link($category);
 					
-								// On change l'icone si la collection est dans les favoris
-								$icone = changeFavIcon($category->term_id, $existingFavorites[0]);
-					
-								// On vérifie le statut des fiches et on les compte
-								$fiche_args = array(
-									'hide_empty' => 0,
-									'order' => 'ASC',
-									'cat' => $category->term_id,
-									'post_status' => array('publish', 'draft', 'pending')
-								);
-								query_posts($fiche_args);
-					
-								$nbFiches = 0;
-								$completed = true;
-								if ( have_posts() ) :
-									while ( have_posts() ) : the_post();
-										$postId = get_the_ID();
-										$postName = $post_title = get_the_title($postId);;
-										if ($postName != $category->name ){
-											$status = get_post_status($postId);
-											$nbFiches++;
-											if ($status != 'publish'){
-												$completed = false;
-											}
-										}
-									endwhile;
-								endif;
-								// Réinitialiser la requête
-								wp_reset_query();
-					
-								$post = get_page_by_title( $category->name, OBJECT, 'post' );
-        
-								if ($post && $completed && $nbFiches != 0 && $post->post_status =='publish' &&
-                                    $post->post_author == $current_user->ID){
-                                    $image = getPostImage($post->ID);
-         
-									the_botascopia_module('card-collection', [
-										'href' => $subcatLink,
-										'name' => $category->name,
-										'nbFiches' => $nbFiches,
-										'description' => $category->description,
-										'category' => $category->term_id,
-										'icon' => $icone,
-                                        'image' => $image
-									]);
-								}
-							}
+					foreach ($posts as $post){
+						if ($post['completed'] && $post['status'] == 'publish' && $post['nbFiches'] != 0 &&
+                            $post['author'] == $current_user->ID){
+                            
+							the_botascopia_module('card-collection', [
+								'href' => $post['href'],
+								'name' => $post['name'],
+								'nbFiches' => $post['nbFiches'],
+								'description' => $post['description'],
+								'category' => $post['id'],
+								'icon' => $post['icon'],
+								'image' => $post['image']
+							]);
 						}
 					}
-		
+     
 					?>
                 </div>
             </div>
