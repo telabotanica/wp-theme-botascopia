@@ -26,11 +26,26 @@ get_header();
 		$nbFiches = getFiches($post_id)[0];
 		$completed = getFiches($post_id)[1];
 		$image = getPostImage($post_id);
+  
 		the_botascopia_module('cover', [
 			'subtitle' => '',
 			'title' => '',
 			'image' => $image
 		]);
+        
+        if (( !$completed || $post->post_status != 'publish')) {
+            $classes = 'main-status-bandeau main-status-incomplete';
+            $mainStatusText = 'Collection non complète';
+        } else {
+            $classes = 'main-status-bandeau main-status-complete';
+            $mainStatusText = 'Collection complète';
+        }
+        
+        echo ('
+            <div class="'.$classes.'">
+                '.$mainStatusText .'
+            </div>
+        ');
 		
 		if (is_user_logged_in()):
 			$current_user = wp_get_current_user();
@@ -42,9 +57,11 @@ get_header();
 		?>
         <div class="collection-main">
             <div class="left-div">
+<!--                TODO: Rajouter bandeau pour le status de la collection. Idem pour les fiches (Que pour Compléter
+une collection)-->
                 <div class="single-collection-title">
 					<?php the_botascopia_module('title', [
-						'title' => __($post->name, 'botascopia'),
+						'title' => __($post->post_title, 'botascopia'),
 						'level' => 1,
 					]);
 					?>
@@ -119,7 +136,7 @@ get_header();
 
                 <div class="single-collection-title-right">
 					<?php the_botascopia_module('title', [
-						'title' => __($post->name, 'botascopia'),
+						'title' => __('Description', 'botascopia'),
 						'level' => 3
 					]); ?>
                 </div>
@@ -161,6 +178,7 @@ get_header();
 							$image = get_the_post_thumbnail_url();
 							$id = get_the_ID();
 							$ficheName = get_the_title();
+                            $status = get_post_status();
 							
 							if (is_user_logged_in() && ($key = array_search($id, $ficheFavorites[0]))
 								!==
@@ -169,7 +187,28 @@ get_header();
 							else:
 								$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
 							endif;
+                            
+                            switch ($status):
+                                case 'draft':
+                                    $fichesClasses = 'card-status-bandeau main-status-incomplete';
+                                    $ficheStatusText = 'à completer';
+                                    break;
+                                case 'pending':
+                                    $fichesClasses = 'card-status-bandeau main-status-complete';
+                                    $ficheStatusText = 'en cours...';
+                                    break;
+                                case 'publish':
+                                    $fichesClasses = 'card-status-bandeau main-status-complete';
+                                    $ficheStatusText = 'complet';
+                                    break;
+                            endswitch;
 							
+                            echo ('
+                                <div class="fiche-status">
+                                    <div class="'.$fichesClasses.'">
+                                        '.$ficheStatusText .'
+                                    </div>
+                                ');
 							the_botascopia_module('card-fiche', [
 								'href' => get_permalink(),
 								'image' => $image,
@@ -178,7 +217,7 @@ get_header();
 								'icon' => $icone,
 								'extra_attributes' => ['id' => 'fiche-'.$id, 'data-user-id' => $userId, 'data-fiche-id' => $id]
 							]);
-						
+                            echo '</div>';
 						endwhile;
 					endif;
 					wp_reset_postdata();

@@ -189,3 +189,44 @@ strong {
     /*justify-content: space-evenly;*/
     flex-wrap: wrap;
 }
+
+/****************** Bandeau complète/en cours /pas complète **************************/
+
+.main-status-bandeau{
+    position: relative;
+    display: flex;
+    height: 60px;
+    margin-top: -60px;
+    width: 282px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
+    color: var(--blanc);
+}
+
+.main-status-incomplete{
+    background-color: var(--violet);
+}
+
+.main-status-complete{
+    background-color: var(--vert-clair);
+}
+.fiche-status{
+    width: 200px;
+    margin: 10px 20px 10px 0;
+    padding: 0;
+}
+.card-status-bandeau{
+    position: relative;
+    display: flex;
+    height: 40px;
+    margin: 0 auto -50px auto;
+    width: 134px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 0 0 10px 10px;
+    color: var(--blanc);
+    z-index: 2;
+}
