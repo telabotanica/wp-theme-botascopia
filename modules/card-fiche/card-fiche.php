@@ -6,6 +6,8 @@
 		'name' => 'nom de la plante',
 		'species' => 'espèce de la plante',
 		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
+		'popup' => '',
+		'id' => '',
 		'modifiers' => [],
 		'extra_attributes' => []
 	];
@@ -25,16 +27,18 @@
 		get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	endif;
 	
-	echo '<div class="card-fiche ' . implode(' ', $data->modifiers) . '">';
+	echo '<div class="card-fiche ' . implode(' ', $data->modifiers) . '" >';
 	echo sprintf(
 		'<img src="%s" class="card-fiche-image" alt="image-plante" title="%s"/>',
 		$data->image,
-		$data->name
+		$data->name,
 	);
 	echo '<div class="card-fiche-body">';
 	
-	echo sprintf('<a href="%s">',
-	$data->href)
+	echo sprintf('<a href="%s" class="%s" '.$attributes.'>',
+	$data->href,
+	$data->popup
+	)
 	;
 	
 	echo sprintf('
@@ -49,8 +53,9 @@
 	$current_user = wp_get_current_user();
 	
 	echo sprintf('
-		<div class="card-fiche-icon" %s>%s</div>',
+		<div class="card-fiche-icon" %s id="%s">%s</div>',
 				 $attributes,
+				 $data->id,
 				 get_botascopia_module('icon', $data->icon)
 	);
 	
