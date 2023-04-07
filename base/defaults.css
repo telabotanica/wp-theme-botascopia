@@ -132,6 +132,11 @@ strong {
     align-items: center;
 }
 
+/* TODO: A supprimer une fois les pages créer une collection et créer une fiche implémentées */
+#mes-collections  .toc-button:nth-child(1), #mes-collections  .toc-button:nth-child(2){
+    display: none;
+}
+
 .display-collection-cards{
     margin: 30px 0 0 20px;
 }
@@ -153,11 +158,17 @@ strong {
     align-items: center;
 }
 
+.single-collection-buttons > a:nth-child(1){
+    display: none; /* TODO: A supprimer une fois la fonction export implémenter */
+    width: 200px;
+}
+
 .single-collection-buttons > a:nth-child(2){
     width: 200px;
 }
 
 .single-collection-export-format{
+    display: none; /* TODO: A supprimer une fois la fonction export implémenter */
     font-size: 11px;
     color: var(--vert-clair);
     margin: -10px 0 50px 10px;
@@ -167,6 +178,7 @@ strong {
     display: flex;
     align-items: center;
     color: var(--noir-d34);
+    margin-top: 20px;
 }
 .single-collection-details{
     width: 250px;
@@ -229,4 +241,63 @@ strong {
     border-radius: 0 0 10px 10px;
     color: var(--blanc);
     z-index: 2;
+}
+
+/****************** popup réservation de fiche **************************/
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 850px;
+    height: 290px;
+    background-color: var(--blanc);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.popup > div{
+    position: relative;
+    height: 100%;
+}
+
+#content.blur-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(31px);
+    z-index: 500;
+}
+
+.popup::before {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+}
+
+.blur-background {
+    overflow: hidden;
+}
+
+.blur-background > * {
+    pointer-events: none;
+}
+.popup-display-buttons > a{
+    margin: 0;
+}
+.popup-display-buttons > a:first-child{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+}
+
+.popup-display-buttons> a:last-child{
+    position: absolute;
+    bottom: 20px;
+    right: 0;
 }

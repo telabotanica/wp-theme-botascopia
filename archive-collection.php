@@ -54,7 +54,7 @@ get_header();
                                     $description = get_the_content();
 									$image = getPostImage($collection_id);
          
-									if (is_user_logged_in()) :
+									if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection')) :
 										$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
 										$icone = changeFavIcon($collection_id, $existingFavorites[0]);
 									else:

@@ -387,6 +387,14 @@ function my_connection_types() {
 }
 add_action( 'p2p_init', 'my_connection_types' );
 
+add_filter( 'p2p_connected_query_args', 'add_private_collections', 10, 3 );
+function add_private_collections( $args, $ctype, $post ) {
+	if ( $ctype->name == 'collection_to_post' ) {
+		$args['post_status'] = array('publish', 'draft', 'pending', 'private');
+	}
+	return $args;
+}
+
 // Pour définir le fichier single-collection.php en tant que template des collections
 add_filter(
 	'template_include',
@@ -457,7 +465,7 @@ function getCollectionPosts($status){
 			$collectionStatus = get_post_status($collection_id);
 			$author = get_the_author_meta('ID');
 			
-			if (is_user_logged_in()) :
+			if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection')) :
 				$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
 				$icone = changeFavIcon($collection_id, $existingFavorites[0]);
 			else:
@@ -485,3 +493,13 @@ function getCollectionPosts($status){
 	wp_reset_postdata();
 	return $posts;
 }
+
+//add_action( 'set_publish', 'publish_post' );
+
+function reserver_fiche() {
+	$userId = $_POST['user_id'];
+	$ficheId = $_POST['fiche'];
+	wp_update_post(array('ID' => $ficheId, 'post_author' => $userId));
+	wp_die();
+}
+add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );

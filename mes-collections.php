@@ -18,20 +18,23 @@ get_header();
 			$userId = $current_user->ID;
 			$role = $current_user->roles[0];
 			$displayName = $current_user->display_name;
-			$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
+			if (get_user_meta(wp_get_current_user()->ID, 'favorite_collection')):
+				$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
+			endif;
+			
 		else:
 			$userId = 0;
 			$role = '';
 			$displayName = '';
 		endif;
-		$posts = getCollectionPosts(['publish', 'draft', 'pending']);
+		$posts = getCollectionPosts('any');
 		
 		the_botascopia_module('cover', [
 			'subtitle' => $role,
 			'title' => $displayName
 		]);
 		?>
-		<div class="collection-main">
+		<div class="collection-main" id="mes-collections">
 			<div class="left-div">
 				<div class="first-toc">
 					<?php
@@ -162,7 +165,8 @@ get_header();
 				<div class="display-collection-cards-items">
 					<?php
 					foreach ($posts as $post) {
-						if (($key = array_search($post['id'], $existingFavorites[0])) !== false) {
+						if (get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search
+							($post['id'], $existingFavorites[0])) !== false) {
 							
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
