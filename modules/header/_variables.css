@@ -1,0 +1,6 @@
+:root{
+    --header-height: 17rem;
+    /*--header-height-fixed: 5.5rem;*/
+    --header-height-fixed: 80px;
+    --header-admin-bar-height: 3.2rem;
+}

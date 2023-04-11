@@ -1,0 +1,15 @@
+@import "breadcrumbs/style.css";
+@import "button/style.css";
+@import "categories/style.css";
+@import "categories-labels/style.css";
+@import "cover/style.css";
+@import "header/style.css";
+@import "icon/style.css";
+@import "title/style.css";
+@import "toc/style.css";
+@import "notice/style.css";
+@import "pagination/style.css";
+@import "search-box/style.css";
+@import "card-fiche/style.css";
+@import "card-collection/style.css";
+@import "footer/style.css";

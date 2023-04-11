@@ -1,0 +1,82 @@
+.button {
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
+    padding: 5px 15px;
+    margin: 10px;
+    height: 40px;
+}
+
+.button:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.button-text{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/******************** GREEN BUTTONS **********************/
+.green-button {
+    background-color: var(--vert-bouton);
+    color: var(--blanc);
+}
+
+.green-button:hover, .green-button:focus {
+    background-color: var(--vert-bouton2);
+}
+
+.green-button.outline {
+    background-color: transparent;
+    border: 1px solid var(--vert-bouton);
+    color: var(--vert-clair);
+}
+
+.green-button.outline:hover, .green-button.outline:focus {
+    background-color: #EBEFDB;
+}
+
+/******************* PURPLE BUTTONS ************************/
+.purple-button {
+    background-color: var(--violet);
+    color: var(--blanc);
+}
+
+.purple-button:hover, .purple-button:focus {
+    background-color: #B57F9C;
+}
+
+.purple-button.outline {
+    background-color: var(--blanc);
+    border: 1px solid var(--violet);
+    color: var(--violet);
+}
+
+.purple-button.outline:hover, .purple-button.outline:focus {
+    background-color: #EAD6E1;
+}
+
+@include small {
+  padding: 1rem 1.5rem;
+}
+
+@include large-and-medium {
+  padding: 1.25rem 2rem;
+}
+
+@include large-and-medium.block {
+   display: block;
+ }
+
+

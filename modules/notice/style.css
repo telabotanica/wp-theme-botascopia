@@ -1,0 +1,79 @@
+.notice {
+    border: 0.1rem solid;
+    border-radius: 0.4rem;
+    line-height: 2rem;
+    padding: 1rem 1.5rem;
+    position: relative;
+    text-align: center;
+}
+
+.notice-confirm {
+    background-color: var(--vert-tres-clair);
+    border-color: var(--vert-tres-clair);
+    color: var(--vert-fonce);
+    fill: var(--vert-fonce);
+}
+
+.notice-confirm a {
+    color: var(--vert-fonce);
+    fill: var(--vert-fonce);
+}
+
+.notice-confirm a:hover {
+    color: var(--vert-fonce);
+    fill: var(--vert-fonce);
+}
+
+.notice-info {
+    background-color: var(--turquoise-clair);
+    border-color: var(--turquoise-clair);
+    color: var(--turquoise-fonce);
+    fill: var(--turquoise-fonce);
+}
+
+.notice-info a {
+    color: var(--turquoise-fonce);
+    fill: var(--turquoise-fonce);
+}
+
+.notice-info a:hover {
+    color: var(--turquoise-fonce);
+    fill: var(--turquoise-fonce);
+}
+
+.notice-warning {
+    background-color: var(--jaune-clair);
+    border-color: var(--jaune-clair);
+    color: var(--marron);
+    fill: var(--marron);
+}
+
+.notice-alert {
+    background-color: var(--orange-clair);
+    border-color: var(--orange-clair);
+    color: var(--orange);
+    fill: var(--orange);
+}
+
+.notice.is-closable {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.notice-close {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    height: 4.25rem;
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.notice-close:hover {
+    fill: var(--gris-23);
+}

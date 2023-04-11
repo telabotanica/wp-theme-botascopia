@@ -1,0 +1,245 @@
+.aa-dropdown-menu {
+    background-color: var(--blanc);
+    border-bottom-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+    border-top: 0;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25), 0 0 0.1rem rgba(0, 0, 0, 0.35);
+    color: var(--gris-23);
+    font-size: 1.2rem;
+    z-index: 999999;
+}
+
+@media only screen and (max-width: 768px) {
+    .aa-dropdown-menu {
+        max-width: inherit;
+        min-width: inherit;
+        width: 70%;
+    }
+}
+
+.aa-dropdown-menu .aa-input,
+.aa-dropdown-menu .aa-hint {
+    width: 100%;
+}
+
+.aa-dropdown-menu .aa-hint {
+    color: var(--gris-60);
+}
+
+.aa-dropdown-menu .clear {
+    clear: both;
+}
+
+.search-box form{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+.search-box-wrapper {
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid var(--noir);
+}
+
+.search-box.tiny {
+    height: 3.2rem;
+}
+
+.search-box.tiny .search-box-wrapper {
+    height: 3.2rem;
+}
+
+.search-box.tiny .search-box-input {
+    background-color: var(--gris-f4);
+    padding: 0;
+    transition: width 0.3s ease;
+    width: 0;
+}
+
+.search-box.tiny .search-box-button {
+    align-items: center;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 3.4rem;
+}
+
+.search-box.tiny .search-box-button .icon {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+.search-box.tiny.is-open .search-box-input {
+    padding: 0 0.8rem;
+    width: 16rem;
+}
+
+.search-box.large .search-box-wrapper {
+    background-color: transparent;
+}
+
+.search-box.large .search-box-input {
+    background-color: var(--blanc);
+}
+
+.search-box.large .search-box-button {
+    align-items: center;
+    display: flex;
+}
+
+.search-box.large .aa-dropdown-menu {
+    border: 0;
+    transform: translateX(-4.5rem);
+}
+
+.search-box.large .ais-search-box--powered-by {
+    bottom: -2.5rem;
+    color: rgba(240, 240, 240, 0.75);
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0;
+}
+
+.search-box.large .ais-search-box--powered-by a {
+    color: var(--gris-f0);
+    text-decoration: none;
+}
+
+.search-box.large .ais-search-box--powered-by a:hover {
+    border-bottom: 0.1rem solid;
+}
+
+.search-box-input,
+.search-box .algolia-autocomplete {
+    flex-grow: 1;
+}
+
+.search-box-input, .search-box-button {
+    background-color: var(--blanc);
+    border: 0;
+    border-radius: 0;
+}
+
+.search-box-input {
+    border-radius: 0;
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+    color: var(--gris-23);
+    font-family: "Muli", sans-serif;
+    height: 100%;
+    padding: 0.8rem 0 1.2rem;
+    padding-left: 2rem;
+    width: 100%;
+}
+
+.search-box-button {
+    /*background-color: var(--vert-clair);*/
+    border-bottom-right-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    /*color: var(--blanc);*/
+    cursor: pointer;
+    /*fill: var(--blanc);*/
+    padding: 0 2rem;
+}
+
+.search-box-button svg{
+    /*height: 50px;*/
+}
+
+.search-box-suggestions {
+    color: rgba(240, 240, 240, 0.75);
+    line-height: 1.4;
+}
+
+.search-box-suggestions a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.search-box-suggestions a:hover, .search-box-suggestions a:focus {
+    color: var(--blanc);
+    text-decoration: none;
+}
+
+/*
+  @include small {
+    &.large {
+      .search-box-wrapper {
+        height: 3.6rem;
+      }
+
+      .search-box-input {
+        border-bottom-left-radius: 0.2rem;
+        border-top-left-radius: 0.2rem;
+        font-size: 1.2rem;
+        overflow: hidden;
+        padding-left: 1rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .search-box-button {
+        font-size: 2rem;
+        padding: 0 1rem;
+      }
+    }
+
+    &-suggestions {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+    }
+  }
+
+  @include large-and-medium {
+    &.tiny {
+      .search-box-input {
+        font-size: 1.2rem;
+      }
+    }
+
+    &.large {
+      .search-box-wrapper {
+        height: 5.6rem;
+      }
+
+      .search-box-input {
+        font-size: 1.8rem;
+      }
+
+      .search-box-button {
+        color: var(--blanc);
+        font-size: 2.7rem;
+      }
+
+      .aa-dropdown-menu {
+        width: 62.5rem;
+      }
+    }
+
+    &-suggestions {
+      margin-top: 2rem;
+    }
+  }
+
+}
+
+// instantsearch
+.ais-infinite-hits {
+  &--showmore {
+    text-align: center;
+
+    button {
+      @extend .button;
+    }
+
+    // Hide instantsearch infiniteHits button when disabled
+    button[disabled] {
+      display: none;
+    }
+  }
+}
+*/

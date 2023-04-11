@@ -1,0 +1,18 @@
+.categories-labels {
+    line-height: 2.2rem;
+}
+
+.categories-labels a {
+    background-color: rgba(145,138,111, 0.2);
+    border-radius: 1.1rem;
+    color: var(--marron);
+    display: inline-block;
+    padding: 0 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.categories-labels a:hover, .categories-labels a:focus {
+    background-color: rgba(145,138,111, 0.4);
+    color: var(--gris-33);
+}

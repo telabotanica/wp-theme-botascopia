@@ -4,6 +4,11 @@ Theme URI: http://oser-beta.tela-botanica.org
 Description: Botascopia
 Version: 1.0
 */
+@import "base/_all.css";
+@import "components/_all.css";
+@import "modules/_all.css";
+/*@import "blocks/_all.css";*/
+
 @font-face {
   font-family: 'grand-hotel';
   src: url('fonts/grand-hotel.eot');
@@ -11,17 +16,6 @@ Version: 1.0
   url('fonts/grand-hotel.woff') format('woff'),
   url('fonts/grand-hotel.ttf') format('truetype'),
   url('fonts/grand-hotel.svg#svgwpf') format('svg');
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background: #FFFFFF;
-  font-family: 'Ubuntu', sans-serif;
-  color: #4b5157;
-  margin: 0 auto;
 }
 
 header {
