@@ -3,12 +3,12 @@
     "title": "Description morphologique",
     "fields": [
         {
-            "key": "field_6304bda381ab9",
-            "label": "Photo de la plante entière",
-            "name": "photo_de_la_plante_entiere",
+            "key": "field_643027826f24d",
+            "label": "Illustration de la plante entière",
+            "name": "",
             "aria-label": "",
-            "type": "image",
-            "instructions": "Photo assez grande, de moins de 10 Mo. Sur la photo, la plante doit être entière autant que possible (ou un rameau), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur dans \"Légende\" !<\/B>",
+            "type": "group",
+            "instructions": "",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,16 +16,107 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "id",
-            "library": "uploadedTo",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": 10,
-            "mime_types": "",
-            "preview_size": "medium"
+            "layout": "",
+            "sub_fields": [
+                {
+                    "key": "field_6304bda381ab9",
+                    "label": "Photo de la plante entière",
+                    "name": "photo_de_la_plante_entiere",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSur la photo, la plante doit être entière autant que possible (ou un rameau), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur dans \"Légende\" !<\/B>",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "uploadedTo",
+                    "min_width": 600,
+                    "min_height": 600,
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": 10,
+                    "mime_types": "",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_643026639db39",
+                    "label": "Auteur de la photo",
+                    "name": "auteur_de_la_photo",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Entrer ici le prénom et Nom de l'auteur, en oubliant pas les majuscules et sans poins ni virgule à la fin\r\nex : Maris Portas",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "Maris Portas",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_643028a453acb",
+                    "label": "Licence de la photo",
+                    "name": "licence_de_la_photo",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "CC-by-SA": "CC-by-SA",
+                        "domaine publique": "domaine publique"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_643028d253acc",
+                    "label": "Source de la photo",
+                    "name": "source_de_la_photo",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Tela Botanica": "Tela Botanica",
+                        "Wikimédia": "Wikimédia",
+                        "Société Botanique de France": "Société Botanique de France",
+                        "Pixabay": "Pixabay"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 1,
+                    "save_other_choice": 0,
+                    "layout": "vertical"
+                }
+            ]
         },
         {
             "key": "field_6304bdd481aba",
@@ -33,7 +124,7 @@
             "name": "le_saviez-vous_",
             "aria-label": "",
             "type": "text",
-            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 200 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
+            "instructions": "Écrivez ici seulement une anecdote principale sur la plante car la taille du champ est limité à 180 caractères. Vous aurez plus tard un champ plus grand pour en mettre d'autres.\r\nex : toxique, jeu, aspect historique, origine du nom...",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -45,7 +136,7 @@
             "placeholder": "Le nom du genre vient du latin ranunculus qui signifie “petite grenouille” car une partie des espèces du genre affectionne les endroits humides. Le tronc lisse et gris évoque une patte d’éléphant.",
             "prepend": "",
             "append": "",
-            "maxlength": 200
+            "maxlength": 180
         },
         {
             "key": "field_6304bdf681abb",
@@ -335,12 +426,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_6304c61a23918",
-                    "label": "Photo de tige",
-                    "name": "photo_tige",
+                    "key": "field_64302a1423559",
+                    "label": "Illustration de la tige",
+                    "name": "illustration_de_la_tige",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo assez grande, de moins de 10 Mo. Sélectionnez une photo où on voit bien la tige et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -348,16 +439,106 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_6304c61a23918",
+                            "label": "Photo de tige",
+                            "name": "photo_tige",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la tige et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_64302ab82355a",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64302ad92355b",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_64302b092355c",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France Pixabay": "Société Botanique de France Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
+                        }
+                    ]
                 },
                 {
                     "key": "field_6304c66b23919",
@@ -494,7 +675,7 @@
                     "label": "Surface de la tige jeune",
                     "name": "surface_de_la_tige_jeune",
                     "aria-label": "",
-                    "type": "select",
+                    "type": "checkbox",
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": [
@@ -522,11 +703,10 @@
                     },
                     "default_value": [],
                     "return_format": "value",
-                    "multiple": 1,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
                 },
                 {
                     "key": "field_6304ca5e58ca8",
@@ -578,13 +758,14 @@
                         "liégeuse formant des écailles": "liégeuse formant des écailles",
                         "liégeuse": "liégeuse",
                         "formant des lanières": "formant des lanières",
-                        "formant des lenticelle": "formant des lenticelle"
+                        "formant des lenticelle": "formant des lenticelle",
+                        "formant des écailles": "formant des écailles"
                     },
                     "default_value": [],
-                    "allow_null": 0,
-                    "multiple": 1,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
                 },
@@ -689,6 +870,26 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_642ec4792882c",
+                    "label": "Précisions en cas d'absence de feuille visible",
+                    "name": "precisions_en_cas_dabsence_de_feuille_visible",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si les feuilles ne sont pas visibles, vous pouvez ajouter des précisions sous forme de phrase avec une majsucule au début et un point à la fin.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : feuilles réduites à des écailes, feuilles caduques très tôt, présence de cladodes (rameaux applatis et ressemblant à des feuilles",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -796,12 +997,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_6304d939b94a3",
-                    "label": "Photo de feuilles aériennes",
-                    "name": "photo_de_feuilles_aeriennes",
+                    "key": "field_64302c09300f6",
+                    "label": "Illustration de la feuille aérienne",
+                    "name": "illustration_de_la_feuille_aerienne",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -809,16 +1010,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_6304d939b94a3",
+                            "label": "Photo de feuilles aériennes",
+                            "name": "photo_de_feuilles_aeriennes",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_64302c70300f7",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64302c81300f8",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_64302cb2300f9",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
+                        }
+                    ]
                 },
                 {
                     "key": "field_6304d98fb94a4",
@@ -902,13 +1194,15 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -941,13 +1235,15 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -969,13 +1265,14 @@
                         "lobée": "lobée",
                         "dentée": "dentée",
                         "pubescente": "pubescente",
-                        "épineuse": "épineuse"
+                        "épineuse": "épineuse",
+                        "crénelée": "crénelée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -1193,6 +1490,31 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_642ecaaea88d2",
+                    "label": "Pubescence du limbe",
+                    "name": "pubescence_du_limbe",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pubescent": "pubescent",
+                        "glabre": "glabre"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
                 }
             ]
         },
@@ -1215,11 +1537,6 @@
                         "field": "field_634e46c42f080",
                         "operator": "==",
                         "value": "plante à feuilles immergées et aériennes"
-                    },
-                    {
-                        "field": "field_634e46c42f080",
-                        "operator": "!=",
-                        "value": "plante à rameaux stériles et à rameaux fleuris distincts"
                     }
                 ]
             ],
@@ -1231,12 +1548,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_634e48ca9ffed",
-                    "label": "Photo de feuilles immergées",
-                    "name": "photo_de_feuilles_immergees",
+                    "key": "field_64302de9cb306",
+                    "label": "Illustration de la feuille immergée",
+                    "name": "illustration_de_la_feuille_immergee",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1244,16 +1561,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_634e48ca9ffed",
+                            "label": "Photo de feuilles immergées",
+                            "name": "photo_de_feuilles_immergees",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_64302e31cb307",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64302e55cb308",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_64302e8dcb309",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
+                        }
+                    ]
                 },
                 {
                     "key": "field_634e48ca9ffee",
@@ -1337,7 +1745,9 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1376,7 +1786,9 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1404,7 +1816,8 @@
                         "lobée": "lobée",
                         "dentée": "dentée",
                         "pubescente": "pubescente",
-                        "épineuse": "épineuse"
+                        "épineuse": "épineuse",
+                        "crénelée": "crénelée"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1628,6 +2041,31 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_642ecae7a88d3",
+                    "label": "Pubescence du limbe",
+                    "name": "pubescence_du_limbe",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pubescent": "pubescent",
+                        "glabre": "glabre"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
                 }
             ]
         },
@@ -1648,11 +2086,6 @@
                     },
                     {
                         "field": "field_634e46c42f080",
-                        "operator": "!=",
-                        "value": "plante à feuilles immergées et aériennes"
-                    },
-                    {
-                        "field": "field_634e46c42f080",
                         "operator": "==",
                         "value": "plante à rameaux stériles et à rameaux fleuris distincts"
                     }
@@ -1666,12 +2099,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_634e49d148010",
-                    "label": "Photo de feuilles des rameaux stériles",
-                    "name": "photo_de_feuilles_des_rameaux_steriles",
+                    "key": "field_64302ecd0360a",
+                    "label": "Illustration de la feuille des rameaux stériles",
+                    "name": "illustration_de_la_feuille_des_rameaux_steriles",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1679,16 +2112,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_634e49d148010",
+                            "label": "Photo de feuilles des rameaux stériles",
+                            "name": "photo_de_feuilles_des_rameaux_steriles",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_64302f410360b",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_64302f5c0360c",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_64302f6f0360d",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
                 },
                 {
                     "key": "field_634e49d148011",
@@ -1772,12 +2296,14 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
                 },
@@ -1811,12 +2337,14 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
                 },
@@ -1839,12 +2367,13 @@
                         "lobée": "lobée",
                         "dentée": "dentée",
                         "pubescente": "pubescente",
-                        "épineuse": "épineuse"
+                        "épineuse": "épineuse",
+                        "crénelée": "crénelée"
                     },
                     "default_value": [],
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_custom": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
                 },
@@ -2063,6 +2592,31 @@
                     "other_choice": 0,
                     "layout": "",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_642ecafda88d4",
+                    "label": "Pubescence du limbe",
+                    "name": "pubescence_du_limbe",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pubescent": "pubescent",
+                        "glabre": "glabre"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
                 }
             ]
         },
@@ -2083,11 +2637,6 @@
                     },
                     {
                         "field": "field_634e46c42f080",
-                        "operator": "!=",
-                        "value": "plante à feuilles immergées et aériennes"
-                    },
-                    {
-                        "field": "field_634e46c42f080",
                         "operator": "==",
                         "value": "plante à rameaux stériles et à rameaux fleuris distincts"
                     }
@@ -2101,29 +2650,120 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_634e49eb4801e",
-                    "label": "Photo de feuilles des rameaux fleuris",
-                    "name": "photo_de_feuilles_des_rameaux_fleuris",
+                    "key": "field_64302faf2cfc7",
+                    "label": "Illustration de la feuille des rameaux fleuris",
+                    "name": "illustration_de_la_feuille_des_rameaux_fleuris",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
-                    "required": 1,
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_634e49eb4801e",
+                            "label": "Photo de feuilles des rameaux fleuris",
+                            "name": "photo_de_feuilles_des_rameaux_fleuris",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_643030ad2cfc8",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_643030b82cfc9",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_643030e72cfca",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
+                        }
+                    ]
                 },
                 {
                     "key": "field_634e49eb4801f",
@@ -2207,7 +2847,9 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2246,7 +2888,9 @@
                         "triangulaire": "triangulaire",
                         "cordé": "cordé",
                         "pennatiséqué": "pennatiséqué",
-                        "palmatiséqué": "palmatiséqué"
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblongue": "oblongue"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2274,7 +2918,8 @@
                         "lobée": "lobée",
                         "dentée": "dentée",
                         "pubescente": "pubescente",
-                        "épineuse": "épineuse"
+                        "épineuse": "épineuse",
+                        "crénelée": "crénelée"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2498,6 +3143,31 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_642ecb14a88d5",
+                    "label": "Pubescence du limbe",
+                    "name": "pubescence_du_limbe",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pubescent": "pubescent",
+                        "glabre": "glabre"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
                 }
             ]
         },
@@ -2570,14 +3240,11 @@
                         "une ombelle": "une ombelle",
                         "un corymbe": "un corymbe",
                         "un capitule": "un capitule",
-                        "une panicule": "une panicule",
-                        "une cyme": "une cyme",
+                        "un panicule": "un panicule",
                         "une cyme bipare": "une cyme bipare",
                         "une cyme unipare scorpioide": "une cyme unipare scorpioide",
-                        "une cyme unipare hélicoïde": "une cyme unipare hélicoïde",
                         "une cyme multipare": "une cyme multipare",
-                        "un chaton": "un chaton",
-                        "autre": "autre, par exemple : un épi d'épillets, une panicule de corymbes"
+                        "autre": "autre"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -2610,7 +3277,7 @@
                     },
                     "default_value": "",
                     "maxlength": 180,
-                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules",
+                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules, un épi d'épillets, une panicule de corymbes",
                     "prepend": "",
                     "append": ""
                 }
@@ -2683,12 +3350,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_63108532cce34",
-                    "label": "Photo de fleur bisexuée",
-                    "name": "photo_de_fleur_bisexuee",
+                    "key": "field_6430313691d85",
+                    "label": "Illustration de la fleur bisexuée ou de l'inflorescence",
+                    "name": "illustration_de_la_fleur_bisexuee",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -2696,16 +3363,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "",
-                    "preview_size": "medium"
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_63108532cce34",
+                            "label": "Photo de fleur bisexuée ou de l'inflorescence",
+                            "name": "photo_de_fleur_bisexuee",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_6430318c91d86",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6430319791d87",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_643031b891d88",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
                 },
                 {
                     "key": "field_63108562cce35",
@@ -2784,11 +3542,11 @@
                 },
                 {
                     "key": "field_63108612cce38",
-                    "label": "Différenciation du périanthe",
-                    "name": "differenciation_du_perianthe",
+                    "label": "Composition du périanthe",
+                    "name": "composition_du_perianthe",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "Si la fleur comporte une seule catégorie d'organes dans le périanthe et que vous ne savez pas de quoi il s'agit, choisissez \"tépales\".",
                     "required": 1,
                     "conditional_logic": [
                         [
@@ -2806,13 +3564,15 @@
                     },
                     "choices": {
                         "tépales": "tépales",
+                        "sépales": "sépales",
+                        "pétales": "pétales",
                         "sépales et pétales": "sépales et pétales"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -3520,16 +4280,16 @@
                     },
                     "choices": {
                         "tous les organes floraux": "tous les organes floraux",
-                        "calice": "calice",
-                        "corolle": "corolle",
-                        "androcée": "androcée",
-                        "gynécée": "gynécée"
+                        "le calice": "le calice",
+                        "la corolle": "la corolle",
+                        "l'androcée": "l'androcée",
+                        "le gynécée": "le gynécée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -3589,12 +4349,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_6304ef9dbe188",
-                    "label": "Photo de la fleur mâle",
-                    "name": "photo_de_fleur_male",
+                    "key": "field_6430320019c3d",
+                    "label": "Illustration de la fleur mâle ou de l'inflorescence",
+                    "name": "illustration_de_la_fleur_male_ou_de_linflorescence",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -3602,16 +4362,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": ".jpg, .jpeg, .png",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_6304ef9dbe188",
+                            "label": "Photo de la fleur mâle ou de l'inflorescence",
+                            "name": "photo_de_fleur_male",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "",
+                            "library": "",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": ".jpg, .jpeg, .png",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_6430323419c3e",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6430324419c3f",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_6430327b19c40",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
                 },
                 {
                     "key": "field_6304f001be189",
@@ -3868,46 +4719,6 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_63bd4165d8db7",
-                    "label": "Soudure de la corolle",
-                    "name": "soudure_de_la_corolle",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_6304f10bbe18c",
-                                "operator": "==",
-                                "value": "sépales et pétales"
-                            },
-                            {
-                                "field": "field_6304f5bb2d9f2",
-                                "operator": "!=",
-                                "value": "1"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
-                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
-                        "libre": "libre",
-                        "partiellement soudés entre eux": "partiellement soudés entre eux"
-                    },
-                    "default_value": "",
-                    "return_format": "",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "",
-                    "save_other_choice": 0
-                },
-                {
                     "key": "field_6304f698c677e",
                     "label": "Soudure du calice et de la corolle",
                     "name": "soudure_du_calice_et_de_la_corolle",
@@ -4003,11 +4814,6 @@
                     "required": 0,
                     "conditional_logic": [
                         [
-                            {
-                                "field": "field_6304f10bbe18c",
-                                "operator": "==",
-                                "value": "tépales"
-                            },
                             {
                                 "field": "field_6304f734c677f",
                                 "operator": "!=",
@@ -4320,16 +5126,16 @@
                     },
                     "choices": {
                         "tous les organes floraux": "tous les organes floraux",
-                        "calice": "calice",
-                        "corolle": "corolle",
-                        "androcée": "androcée",
-                        "gynécée": "gynécée"
+                        "le calice": "le calice",
+                        "la corolle": "la corolle",
+                        "l'androcée": "l'androcée",
+                        "le gynécée": "le gynécée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -4397,12 +5203,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_630640cbdb1e4",
-                    "label": "Photo de la fleur femelle",
-                    "name": "photo_de_fleur_femelle",
+                    "key": "field_643032c845f1c",
+                    "label": "Illustration de la fleur femelle ou de l'inflorescence",
+                    "name": "illustration_de_la_fleur_femelle_ou_de_linflorescence",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -4410,16 +5216,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "uploadedTo",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": ".jpeg, .jpg, .png",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_630640cbdb1e4",
+                            "label": "Photo de la fleur femelle ou de l'inflorescence",
+                            "name": "photo_de_fleur_femelle",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "uploadedTo",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": ".jpeg, .jpg, .png",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_6430330045f1d",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6430330f45f1e",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_6430332d45f1f",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "WIkimédia": "WIkimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
                 },
                 {
                     "key": "field_630642a5a99d9",
@@ -4633,7 +5530,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_6304f10bbe18c",
+                                "field": "field_63075ab5ecd71",
                                 "operator": "==",
                                 "value": "sépales et pétales"
                             }
@@ -4667,9 +5564,9 @@
                         "20": "20",
                         "n > 20": "n > 20"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "return_format": "value",
-                    "multiple": 1,
+                    "multiple": 0,
                     "allow_null": 0,
                     "ui": 0,
                     "ajax": 0,
@@ -5025,16 +5922,16 @@
                     },
                     "choices": {
                         "tous les organes floraux": "tous les organes floraux",
-                        "calice": "calice",
-                        "corolle": "corolle",
-                        "androcée": "androcée",
-                        "gynécée": "gynécée"
+                        "le calice": "le calice",
+                        "la corolle": "la corolle",
+                        "l'androcée": "l'androcée",
+                        "le gynécée": "le gynécée"
                     },
-                    "allow_custom": 0,
                     "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "return_format": "value",
                     "save_custom": 0
                 },
                 {
@@ -5078,12 +5975,12 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_63076618ecd83",
-                    "label": "Photo",
-                    "name": "photo",
+                    "key": "field_6430339ac06aa",
+                    "label": "Illustration du fruit",
+                    "name": "illustration_du_fruit",
                     "aria-label": "",
-                    "type": "image",
-                    "instructions": "Photo de moins de 10 Mo. Sélectionnez une photo où on voit bien le fruit et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                    "type": "group",
+                    "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -5091,16 +5988,107 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": 10,
-                    "mime_types": "jpeg, .jpg, .png",
-                    "preview_size": "medium"
+                    "layout": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_63076618ecd83",
+                            "label": "Photo",
+                            "name": "photo",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien le fruit et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "jpeg, .jpg, .png",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_643033c4c06ab",
+                            "label": "Auteur de la photo",
+                            "name": "auteur_de_la_photo",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": 50,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_643033e6c06ac",
+                            "label": "Licence de la photo",
+                            "name": "licence_de_la_photo",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_643033fcc06ad",
+                            "label": "Source de la photo",
+                            "name": "source_de_la_photo",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Tela Botanica": "Tela Botanica",
+                                "Wikimédia": "Wikimédia",
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "layout": "vertical",
+                            "save_other_choice": 0
+                        }
+                    ]
                 },
                 {
                     "key": "field_6307665aecd84",
@@ -5126,11 +6114,8 @@
                         "un pseudo-fruit": "un pseudo-fruit",
                         "un fruit composé": "un fruit composé",
                         "une silique": "une silique",
-                        "un caryopse": "un caryopse",
-                        "un méricarpe": "un méricarpe",
-                        "une cypsèle": "une cypsèle",
-                        "une samare": "une samare",
-                        "un cynorhodon": "un cynorhodon"
+                        "une caryopse": "une caryopse",
+                        "une crypsèle": "une crypsèle"
                     },
                     "allow_null": 0,
                     "other_choice": 0,
@@ -5143,18 +6128,6 @@
         }
     ],
     "location": [
-        [
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:bdtfx"
-            },
-            {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "administrator"
-            }
-        ],
         [
             {
                 "param": "post_category",
@@ -5182,5 +6155,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675069428
+    "modified": 1680880664
 }
