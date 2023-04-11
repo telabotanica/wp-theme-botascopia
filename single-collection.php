@@ -245,6 +245,8 @@ get_header();
 									//TODO ouvrir un popup demandant de devenir vérificateur et renvoyer vers le
 									// formulaire
 									$href = '#';
+								} elseif ($status == 'publish') {
+									$href = get_permalink();
 								} else {
 									$href = '#';
 								}
