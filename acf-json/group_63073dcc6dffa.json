@@ -68,10 +68,10 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": 180,
             "placeholder": "ex : rochers, éboulis et dalles surtout calcaires ; landes mésohygrophiles acidophiles ; milieux pionniers ; friches nitrophiles ; bords de route, pâturages et prairies",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_63073ee9541b7",
@@ -172,18 +172,6 @@
                 "operator": "==",
                 "value": "draft"
             }
-        ],
-        [
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:bdtfx"
-            },
-            {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "administrator"
-            }
         ]
     ],
     "menu_order": 0,
@@ -195,5 +183,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675069463
+    "modified": 1680774755
 }

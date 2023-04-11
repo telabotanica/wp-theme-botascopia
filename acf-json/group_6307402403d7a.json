@@ -3,12 +3,12 @@
     "title": "Ne pas confondre avec",
     "fields": [
         {
-            "key": "field_63074029e36b8",
-            "label": "Photo",
-            "name": "photo",
+            "key": "field_6430349a043d9",
+            "label": "Illustration de la plante avec risque de confusion",
+            "name": "illustration_de_la_plante_avec_risque_de_confusion",
             "aria-label": "",
-            "type": "image",
-            "instructions": "Choisissez une plante qui peut être croisées dans les mêmes milieux et aires géographiques que la plante décrite et qui risquerait d'être confondue sur le terrain. Prenez une photo qui mette en valeur les différences autant que possible.<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+            "type": "group",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,16 +16,107 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium"
+            "layout": "",
+            "sub_fields": [
+                {
+                    "key": "field_63074029e36b8",
+                    "label": "Photo",
+                    "name": "photo",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Choisissez une plante qui peut être croisées dans les mêmes milieux et aires géographiques que la plante décrite et qui risquerait d'être confondue sur le terrain. Prenez une photo qui mette en valeur les différences autant que possible.<br>\r\nPhoto assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur !<\/B>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": 600,
+                    "min_height": 600,
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_643034db043da",
+                    "label": "Auteur de la photo",
+                    "name": "auteur_de_la_photo",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_643034e5043db",
+                    "label": "Licence de la photo",
+                    "name": "licence_de_la_photo",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "CC-by-SA": "CC-by-SA",
+                        "domaine publique": "domaine publique"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_64303502043dc",
+                    "label": "Source de la photo",
+                    "name": "source_de_la_photo",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Tela Botanica": "Tela Botanica",
+                        "Wikimédia": "Wikimédia",
+                        "Société Botanique de France": "Société Botanique de France",
+                        "Pixabay": "Pixabay"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 1,
+                    "save_other_choice": 0,
+                    "layout": "vertical"
+                }
+            ]
         },
         {
             "key": "field_630740991231a",
@@ -65,18 +156,6 @@
                 "operator": "==",
                 "value": "draft"
             }
-        ],
-        [
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:bdtfx"
-            },
-            {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "administrator"
-            }
         ]
     ],
     "menu_order": 0,
@@ -88,5 +167,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675069494
+    "modified": 1680880939
 }
