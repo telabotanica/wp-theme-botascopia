@@ -253,7 +253,7 @@ body.page-template-fiche_pdf {
   max-width: 100%;
 }
 
-.page-template-fiche_pdf .calendar {
+.page-template-fiche_pdf .calendar{
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(12, 1fr);
@@ -266,7 +266,7 @@ body.page-template-fiche_pdf {
   justify-content: right;
 }
 
-.page-template-fiche_pdf .calendar div {
+.page-template-fiche_pdf .calendar div{
   text-align: center;
   font-weight: bold;
   font-size: 0.42cm;

@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setFavoris('.card-collection-icon','category');
     setFavoris('.single-collection-buttons', 'category');
+    setFavoris('.single-collection-buttons', 'fiche');
     setFavoris('.card-fiche-icon', 'fiche');
     popupReserverFiche();
 });

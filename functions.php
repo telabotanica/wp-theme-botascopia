@@ -322,7 +322,7 @@ function custom_post_type() {
 
 add_action( 'init', 'custom_post_type' );
 
-// Template de page pour les post de type 'collection'
+// Template pour les post de type 'collection'
 add_filter( 'template_include', 'collection_template_include' );
 function collection_template_include( $template ) {
 
@@ -335,6 +335,21 @@ function collection_template_include( $template ) {
 
 	return $template;
 }
+
+// Template pour les fiches
+function custom_post_template($single) {
+	global $post;
+	
+	if ($post->post_type == 'post') {
+		$single_template = dirname(__FILE__) . '/fiche.php';
+		if (file_exists($single_template)) {
+			return $single_template;
+		}
+	}
+	return $single;
+}
+add_filter('single_template', 'custom_post_template');
+
 
 // AJout de catégories pour le post type collection
 function custom_taxonomy() {
@@ -503,3 +518,11 @@ function reserver_fiche() {
 	wp_die();
 }
 add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
+
+function affichageImageFiche($photo){
+	if (!empty($photo)){
+		$photoId = $photo['ID'];
+		$image = wp_get_attachment_image_src( $photoId, 'thumbnail' )[0];
+		echo ('<img src="'.esc_url( $image ).'" class="image-tige" height="275px" width="275px">');
+	}
+}
