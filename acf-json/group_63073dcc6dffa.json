@@ -20,7 +20,7 @@
             "placeholder": "ex : entre 0 et 1000 m d'altitude, au delà de 3000 m d'altitude, au niveau de la mer",
             "prepend": "",
             "append": "",
-            "maxlength": 180
+            "maxlength": ""
         },
         {
             "key": "field_63073e0c541b5",
@@ -71,7 +71,7 @@
             "placeholder": "ex : rochers, éboulis et dalles surtout calcaires ; landes mésohygrophiles acidophiles ; milieux pionniers ; friches nitrophiles ; bords de route, pâturages et prairies",
             "prepend": "",
             "append": "",
-            "maxlength": 180
+            "maxlength": ""
         },
         {
             "key": "field_63073ee9541b7",
@@ -172,6 +172,18 @@
                 "operator": "==",
                 "value": "draft"
             }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
         ]
     ],
     "menu_order": 0,
@@ -183,5 +195,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1669392506
+    "modified": 1675069463
 }

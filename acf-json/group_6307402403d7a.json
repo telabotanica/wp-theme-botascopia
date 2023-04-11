@@ -65,6 +65,18 @@
                 "operator": "==",
                 "value": "draft"
             }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:bdtfx"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
         ]
     ],
     "menu_order": 0,
@@ -76,5 +88,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1668068307
+    "modified": 1675069494
 }
