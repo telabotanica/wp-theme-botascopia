@@ -3,6 +3,7 @@
     $defaults = [
         'title_level' => get_sub_field('title_level'),
         'items' => get_sub_field('items'),
+		'icon' => [],
         'modifiers' => []
     ];
 
@@ -29,8 +30,8 @@
                 $data->title_level
             );
 
-            echo $item->content;
-
+//            echo $item->content;
+           acf_form($item->content);
             echo '</div>';
 
         endforeach;

@@ -475,3 +475,13 @@ body.page-template-fiche_pdf {
 .page-template-formulaire_creation_fiche #primary{
   background-color: var(--blanc);
 }
+
+.page-template-formulaire_creation_fiche main{
+  background-color: var(--blanc) !important;
+}
+
+.button-deplier{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

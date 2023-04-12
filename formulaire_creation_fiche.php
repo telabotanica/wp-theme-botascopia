@@ -58,10 +58,6 @@ if (isset($_GET['p'])) {
         'modifiers' =>['class' => 'fiche-cover']
     ]);
     ?>
-        <div class="text">
-            <h2><?php the_title(); ?></h2>
-            <p><?php echo get_the_excerpt(); ?></p>
-        </div>
     <?php endwhile;
     $auteur_autorise = false;
     // $current_user = wp_get_current_user();
@@ -72,9 +68,11 @@ if (isset($_GET['p'])) {
         if ($auteur_id !== $utilisateur and $auteur_id == "3") {
             if (isset($_GET['a']) and $_GET['a'] == "1" ) {
                 wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
-            } else {
-                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1';\">Devenir auteur</button>";
             }
+            // Le bouton devenir auteur est maintenant dans un popup depuis la page collection
+//            else {
+//                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1';\">Devenir auteur</button>";
+//            }
             $auteur_autorise = true;
             // s'il s'agit de l'utilisateur ayant modifié la fiche en premier
         } else if ($auteur_id === $utilisateur) {
@@ -83,52 +81,120 @@ if (isset($_GET['p'])) {
     }
     if ($auteur_autorise == true) {
         ?>
-        <div >
-            <div><a href="<?php the_field('lien_eflore') ?>" target="_blank">Nom scientifique : <?php the_field( 'nom_scientifique' ); ?></a></div>
-            <div>Nom vernaculaire : <?php the_field( 'nom_vernaculaire' ); ?></div>
-            <div>Famille : <?php the_field( 'famille' ); ?></div>
+        <div class="button-deplier">
+            <?php
+            the_botascopia_module('button',[
+                'tag' => 'button',
+                'title' => 'Tout déplier',
+                'text' => 'Tout déplier',
+                'modifiers' => 'green-button outline',
+                'extra_attributes' => ['id' => 'bouton-toutdeplier', 'accordion-status' => '0']
+            ]);
+            ?>
         </div>
         <?php
+        foreach ($formulaires as $id => $titre){
+            $args = array(
+                'post_id' => get_the_ID() ,
+                'field_groups' => array( $id ), // L'ID du post du groupe de champs
+                'submit_value' => 'Valider', // Intitulé du bouton
+                'updated_message' => "Votre demande a bien été prise en compte.",
+                'uploader' => 'wp',
+                'id' => 'form_draft'.$id,
+                'html_after_fields' => '<input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="1"/>',
+                'return' => home_url(),
+            );
 
+            the_botascopia_component('accordion',
+                 [
+                     'title_level' => 2,
+                     'items' => [
+                         [
+                             'content' => $args,
+                             'title' => $titre,
+                         ],
+                     ],
+                     'modifiers' => ['id' => 'accordion' . $id]
+                 ]
+            );
+        }
+// TODO Lors de la validation -> enlever le retour vers la page d'accueil
         $args = array(
             'post_id' => get_the_ID() ,
-            /*'new_post' => array(
-                'post_type' => 'post', // Enregistrer dans les articles
-                'post_status' => 'pending', // Enregistrer en brouillon
-            ),*/
             'field_groups' => array( $form ), // L'ID du post du groupe de champs
             'submit_value' => 'Enregistrer les modifications', // Intitulé du bouton
             'updated_message' => "Votre demande a bien été prise en compte.",
             'uploader' => 'wp',
             'id' => 'form_draft',
             'html_after_fields' => '<input type="hidden" id="hiddenId" name="acf[current_step]" value="1"/>',
-            'return' => home_url(),
-            // 'return' => '',
+//            'return' => home_url(),
+             'return' => '#',
         );
-
-
-        //acf_form( $args_brouillon ); // Afficher le formulaire
-        acf_form( $args ); // Afficher le formulaire
-        ?>
-        <input type="submit" id="pending_btn" class="acf-button2 button button-primary button-large" name="pending_btn" value="Mettre en relecture" onclick="click_ignore();">
-        <script type="text/javascript">
-            jQuery(document).ready(function(){
-                jQuery("#pending_btn").detach().appendTo('.acf-form-submit');
-            });
-        </script>
-
-        <script type="text/javascript">
-            function click_ignore(e) {
-                document.getElementById('hiddenId').value = 2;
-                return false;
-            }
-        </script>
+       ?>
+        <div>
+            <?php
+            the_botascopia_module('button',[
+                'tag' => 'button',
+                'title' => 'Retour',
+                'text' => 'retour',
+                'modifiers' => 'purple-button return-button'
+            ]);
+            
+            the_botascopia_module('button',[
+                'tag' => 'a',
+                'href' => '#',
+                'title' => 'Ne plus participer à cette fiche',
+                'text' => 'Ne plus participer à la fiche',
+                'modifiers' => 'purple-button outline'
+            ]);
+            
+            the_botascopia_module('button',[
+                'tag' => 'a',
+                'href' => '#',
+                'title' => 'Prévisualiser',
+                'text' => 'Prévisualiser',
+                'modifiers' => 'green-button outline',
+            ]);
+            
+            the_botascopia_module('button',[
+                'tag' => 'a',
+                'href' => '#',
+                'title' => 'Télécharger en pdf',
+                'text' => 'Télécharger en pdf',
+                'modifiers' => 'green-button',
+                'icon_after' => ['icon' => 'pdf', 'color'=>'blanc']
+            ]);
+            
+            the_botascopia_module('button',[
+                'tag' => 'button',
+                'title' => 'Envoyer la fiche à validation',
+                'text' => 'Envoyer la fiche à validation',
+                'modifiers' => 'green-button acf-button2',
+                'extra_attributes' => ['type' => "submit", 'id' => "pending_btn", 'name'=> "pending_btn", 'value' => "Envoyer la fiche à validation", 'onclick' => "click_ignore();"]
+            ]);
+            ?>
+        </div>
+        
+<!--        <input type="submit" id="pending_btn" class="acf-button2 green-button outline"-->
+<!--               name="pending_btn" value="Envoyer la fiche à validation" onclick="click_ignore();">-->
+<!--        <script type="text/javascript">-->
+<!--            jQuery(document).ready(function(){-->
+<!--                jQuery("#pending_btn").detach().appendTo('.acf-form-submit');-->
+<!--            });-->
+<!--        </script>-->
+<!---->
+<!--        <script type="text/javascript">-->
+<!--            function click_ignore(e) {-->
+<!--                document.getElementById('hiddenId').value = 2;-->
+<!--                return false;-->
+<!--            }-->
+<!--        </script>-->
 
         <?php
-        echo "<br />";
-        foreach ($formulaires as $id => $titre) {
-            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
-        }
+//        echo "<br />";
+//        foreach ($formulaires as $id => $titre) {
+//            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
+//        }
 
     } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor' TODO remplacer par action/filter
 
@@ -154,7 +220,7 @@ if (isset($_GET['p'])) {
                 <div>Famille : <?php the_field( 'famille' ); ?></div>
             </div>
             <?php
-
+           
             $args = array(
                     'post_id' => get_the_ID() ,
                     /*'new_post' => array(
@@ -191,9 +257,9 @@ if (isset($_GET['p'])) {
 
             <?php
             echo "<br />";
-            foreach ($formulaires as $id => $titre) {
-                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
-            }
+//            foreach ($formulaires as $id => $titre) {
+//                echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
+//            }
         }
     } else {
         echo "Vous n'êtes pas l'auteur de cette fiche";
