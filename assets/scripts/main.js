@@ -17,8 +17,8 @@ req.keys().forEach(req);
 
 // Blocks
 // Require all script.js files in the blocks folder
-var req = require.context('../../blocks/', true, /script\.js$/);
-req.keys().forEach(req);
+// var req = require.context('../../blocks/', true, /script\.js$/);
+// req.keys().forEach(req);
 
 // Composants
 // Require all script.js files in the components folder

@@ -4,6 +4,10 @@
 */
 acf_form_head();
 get_header();
+?>
+<div id="primary" class="content-area">
+    <main id="main" class="site-main " role="main">
+<?php
 $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 $form = 12;
 $formulaires = array(
@@ -22,7 +26,6 @@ if (isset($_GET['f']) && array_key_exists($_GET['f'], $formulaires)) {
 }
 
 $current_user = wp_get_current_user();
-
 
 if (isset($_GET['p'])) {
     $titre_du_post = $_GET['p'];
@@ -46,6 +49,15 @@ if (isset($_GET['p'])) {
     }
 
     while (have_posts()) : the_post(); ?>
+    
+    <?php
+    the_botascopia_module('cover',[
+        'subtitle' => get_post_meta(get_the_ID(), 'nom_vernaculaire', true).' - '.get_post_meta(get_the_ID(), 'famille',true),
+        'title' => get_post_meta(get_the_ID(), 'nom_scientifique', true),
+        'image' => ['url' => get_template_directory_uri() .'/images/recto-haut.svg'],
+        'modifiers' =>['class' => 'fiche-cover']
+    ]);
+    ?>
         <div class="text">
             <h2><?php the_title(); ?></h2>
             <p><?php echo get_the_excerpt(); ?></p>
@@ -190,5 +202,11 @@ if (isset($_GET['p'])) {
     echo "URL inexistante, vérifier celui de la fiche recherchée";
 }
 acf_enqueue_uploader();
+?>
+    
+    </main>
+</div>
+
+<?php
 get_footer();
 ?>

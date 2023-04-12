@@ -464,3 +464,14 @@ body.page-template-fiche_pdf {
 .fructification-mauve-icon {
   background-image: url("images/fructification-mauve.svg");
 }
+
+
+/****************** Page formulaire création fiche **************************/
+
+.page-template-formulaire_creation_fiche{
+  background-color: var(--blanc);
+}
+
+.page-template-formulaire_creation_fiche #primary{
+  background-color: var(--blanc);
+}
