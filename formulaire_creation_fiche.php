@@ -10,19 +10,44 @@ get_header();
 <?php
 $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 $form = 12;
-$formulaires = array(
-    "12" => "Description morphologique",
-    "127" => "Période de floraison et de fructification",
-    "130" => "Aire de répartition et statut",
-    "136" => "Écologie",
-    "143" => "Complément d’anecdote",
-    "145" => "Propriétés",
-    "147" => "Ne pas confondre avec",
-    "150" => "Description vulgarisée",
-    "154" => "Références");
 
-if (isset($_GET['f']) && array_key_exists($_GET['f'], $formulaires)) {
-    $form = $_GET['f'];
+$groups = acf_get_field_groups();
+$formulaires = [];
+
+$group_titles = [
+    "Description morphologique",
+    "Période de floraison et de fructification",
+    "Aire de répartition et statut",
+    "Écologie",
+    "Complément d'anecdote",
+    "Propriétés",
+    "Ne pas confondre avec",
+    "Description vulgarisée",
+    "Références",
+    "Logos",
+    "Taxonomie"
+];
+
+foreach ( $group_titles as $title ) {
+    foreach ($groups as $group) {
+        if ($group['title'] == $title){
+            $groupInfo = [];
+            $groupInfo = [
+                'ID' => $group['ID'],
+                'title' => $title,
+                'key' => $group['key']
+                ]
+            ;
+            $formulaires[] = $groupInfo;
+        }
+        
+    }
+}
+
+foreach ($formulaires as $formulaire){
+    if (isset($_GET['f']) && array_key_exists($_GET['f'], $formulaire)) {
+        $form = $_GET['f'];
+    }
 }
 
 $current_user = wp_get_current_user();
@@ -79,9 +104,37 @@ if (isset($_GET['p'])) {
             $auteur_autorise = true;
         }
     }
-    if ($auteur_autorise == true) {
+    if ($auteur_autorise) {
+        $auteur_name = get_the_author_meta('display_name', $auteur_id);
+        $date = get_the_date();
+        
+        switch (get_post_status()){
+            case 'draft':
+                $status = 'En cours';
+                break;
+            case 'pending':
+                $status = 'En cours de validation';
+                break;
+            case 'publish':
+                $status = 'Validée';
+                break;
+            default:
+                $status = '';
+        }
         ?>
-        <div class="button-deplier">
+        
+        <div class="formulaire-top-page">
+            <div class="formulaire-details">
+                <?php
+                the_botascopia_module('title',[
+                    'title' => __('Infos', 'botascopia'),
+                    'level' => 4,
+                ]);
+                ?>
+                <div class="formulaire-detail">Statue: <?php echo $status ?></div>
+                <div class="formulaire-detail">Créé le <?php echo get_the_date() ?></div>
+                <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
+            </div>
             <?php
             the_botascopia_module('button',[
                 'tag' => 'button',
@@ -93,18 +146,24 @@ if (isset($_GET['p'])) {
             ?>
         </div>
         <?php
-        foreach ($formulaires as $id => $titre){
+        foreach ($formulaires as $formulaire){
+            $id = $formulaire['ID'];
+            $titre = $formulaire['title'];
+            $key = $formulaire['key'];
+            
             $args = array(
                 'post_id' => get_the_ID() ,
                 'field_groups' => array( $id ), // L'ID du post du groupe de champs
+                'field_title' => $titre,
+                'field_key' => $key,
                 'submit_value' => 'Valider', // Intitulé du bouton
                 'updated_message' => "Votre demande a bien été prise en compte.",
                 'uploader' => 'wp',
                 'id' => 'form_draft'.$id,
                 'html_after_fields' => '<input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="1"/>',
-                'return' => home_url(),
+                'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title(),
             );
-
+            
             the_botascopia_component('accordion',
                  [
                      'title_level' => 2,
@@ -118,20 +177,8 @@ if (isset($_GET['p'])) {
                  ]
             );
         }
-// TODO Lors de la validation -> enlever le retour vers la page d'accueil
-        $args = array(
-            'post_id' => get_the_ID() ,
-            'field_groups' => array( $form ), // L'ID du post du groupe de champs
-            'submit_value' => 'Enregistrer les modifications', // Intitulé du bouton
-            'updated_message' => "Votre demande a bien été prise en compte.",
-            'uploader' => 'wp',
-            'id' => 'form_draft',
-            'html_after_fields' => '<input type="hidden" id="hiddenId" name="acf[current_step]" value="1"/>',
-//            'return' => home_url(),
-             'return' => '#',
-        );
        ?>
-        <div>
+        <div class="formulaire-boutons-bas">
             <?php
             the_botascopia_module('button',[
                 'tag' => 'button',
@@ -165,6 +212,7 @@ if (isset($_GET['p'])) {
                 'icon_after' => ['icon' => 'pdf', 'color'=>'blanc']
             ]);
             
+            // TODO: Ajouter une condition pour n'activer le bouton que si tous les champs sont complets
             the_botascopia_module('button',[
                 'tag' => 'button',
                 'title' => 'Envoyer la fiche à validation',
@@ -182,7 +230,7 @@ if (isset($_GET['p'])) {
 <!--                jQuery("#pending_btn").detach().appendTo('.acf-form-submit');-->
 <!--            });-->
 <!--        </script>-->
-<!---->
+
 <!--        <script type="text/javascript">-->
 <!--            function click_ignore(e) {-->
 <!--                document.getElementById('hiddenId').value = 2;-->
@@ -196,7 +244,8 @@ if (isset($_GET['p'])) {
 //            echo "<button onclick=\"window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&f=".$id."';\">".$titre."</button>";
 //        }
 
-    } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor' TODO remplacer par action/filter
+    } else if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor' (pour les validateurs) 
+        // TODO remplacer par action/filter
 
         $editor = get_post_meta(get_the_ID(), 'Editor', true);
 
