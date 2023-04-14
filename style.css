@@ -546,3 +546,19 @@ input[type="radio"]:checked {
   outline: solid 5px var(--noir-d34);
   outline-offset: -8px;
 }
+
+.acf-fields > .acf-field {
+  background-color: var(--rose-pale);
+}
+
+.acf-field select{
+  background-color: var(--rose-pale);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--rose-pale);
+  opacity: 1;
+  border: 2px solid #182D34;
+}
+
+

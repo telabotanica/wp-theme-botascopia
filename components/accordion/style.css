@@ -71,3 +71,9 @@
 .component-accordion .component-accordion__header + p {
     margin-top: 2rem;
 }
+
+.accordion-icon{
+    position: absolute;
+    left: 30px;
+    top: 10px;
+}

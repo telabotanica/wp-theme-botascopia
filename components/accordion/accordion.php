@@ -16,31 +16,79 @@
 		implode(' ', $data->modifiers)
 	);
 	
+	$titre = $data->items[0]['title'];
 	$post_id = $data->items[0]['content']['post_id'];
 	$field_title = $data->items[0]['content']['field_title'];
 	$field_group_key = $data->items[0]['content']['field_key'];
 	$field_group_id = $data->items[0]['content']['field_groups'][0];
 	
+	switch ($titre){
+		case 'Description vulgarisée':
+		case 'Description morphologique':
+			$image = 'description';
+			break;
+		case 'Période de floraison et de fructification':
+			$image = 'periode';
+			break;
+		case 'Écologie':
+			$image = 'ecologie';
+			break;
+		case 'tige':
+			$image = 'tige';
+			break;
+		case 'Aire de répartition et statut':
+			$image = 'location';
+			break;
+		case 'Ne pas confondre avec':
+			$image = 'ne-pas-confondre';
+			break;
+		default:
+			$image = '';
+	}
+
+	if ($image){
+		echo '<img class="accordion-icon" src="'.get_template_directory_uri().'/images/'.$image.'.svg" />' ;
+	}
+	
 	// récupérer tous les champs du post
 	$fields = get_field_objects($post_id);
-	
+
 // récupérer tous les champs du groupe de champs ACF
 	$group_fields = acf_get_fields($field_group_key);
 
 // vérifier si tous les champs du groupe sont remplis
 	$champs_complet = true;
+	$required = false;
+	$non_required = false;
+	
+	// Permet de savoir s'il y a un mélange de champs obligatoires et non obligatoires
 	foreach ($group_fields as $field) {
-//		if ( !array_key_exists($field['name'], $fields) || empty($fields[$field['name']]['value'])) {
-		if ( !array_key_exists($field['name'], $fields) && $field['required'] == 1) {
+		if ($field['required'] == 1) {
+			$required = true;
+		}
+		if ($field['required'] == 0) {
+			$non_required = true;
+		}
+	}
+	
+	foreach ($group_fields as $field) {
+		if ( (!array_key_exists($field['name'], $fields) || empty($fields[$field['name']]['value'])) && $field['required'] == 1 &&
+			$field['conditional_logic'] ==
+			0) {
 			$champs_complet = false;
 			break;
+		} elseif ($non_required && !$required) {
+			if (( !array_key_exists($field['name'], $fields) && $field['required'] == 0) || (empty($fields[$field['name']]['value']) && $field['required'] == 0)) {
+				$champs_complet = false;
+				break;
+			}
 		}
 	}
 	
 	$button = 'purple-button';
 	$text = 'Incomplet';
 	
-	if ($champs_complet){
+	if ($champs_complet) {
 		$button = 'green-button';
 		$text = 'complet';
 	}

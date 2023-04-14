@@ -108,7 +108,7 @@ get_header();
 										'active' => false,
 									],
 									[
-										'text' => 'Mes fiches à complètes',
+										'text' => 'Mes fiches à complèter',
 										'href' => '#',
 										'active' => false,
 									],
@@ -156,7 +156,7 @@ get_header();
 					if (is_user_logged_in()) :
 					
 					the_botascopia_module('title', [
-						'title' => __('Mes collections favoris', 'botascopia'),
+						'title' => __('Mes collections favorites', 'botascopia'),
 						'level' => 2,
 					]);
 					?>
