@@ -28,6 +28,12 @@ get_header();
 		
 		$post_id = $post->ID;
 		$post_author = get_the_author_meta('display_name', $post->post_author);
+		$verificateur = '';
+		$verificateur_id = get_post_meta(get_the_ID(), 'Editor', true);
+		$verificateur_data = get_userdata($verificateur_id);
+		if ($verificateur_data){
+			$verificateur = $verificateur_data->display_name;
+		}
 		
 		$date = $post->post_date;
 		setlocale(LC_TIME, 'fr_FR.utf8');
@@ -120,9 +126,19 @@ get_header();
 							[
 								'items' => [
 									[
+										'text' => 'Taxonomie',
+										'href' => '#taxonomie',
+										'active' => true,
+									],
+									[
 										'text' => 'Description morphologique',
 										'href' => '#description-morphologique',
-										'active' => true,
+										'active' => false,
+									],
+									[
+										'text' => 'Description vulgarisée',
+										'href' => '#description-vulgarisee',
+										'active' => false,
 									],
 									[
 										'text' => 'Tige',
@@ -189,7 +205,16 @@ get_header();
 										'href' => '#ne-pas-confondre',
 										'active' => false,
 									],
-									
+									[
+										'text' => 'Complément d\'anecdote',
+										'href' => '#complement-anecdote',
+										'active' => false,
+									],
+									[
+										'text' => 'Références',
+										'href' => '#references',
+										'active' => false,
+									],
 								]
 							],
 						]
@@ -218,7 +243,7 @@ get_header();
 							<div class="single-fiche-detail">Statue: <?php echo $status ?></div>
 							<div class="single-fiche-detail">Publié le <?php echo $post_date ?></div>
 							<div class="single-fiche-detail">Par <?php echo $post_author ?></div>
-							<div class="single-fiche-detail">Vérifié par</div>
+							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur ?></div>
 						</div>
 						<div id="fiche-infos-right">
 							<?php
@@ -247,6 +272,26 @@ get_header();
 					</div>
 				</div>
 				
+				<div id="taxonomie">
+					<?php
+					the_botascopia_module('title', [
+						'title' => __('Taxonomie', 'botascopia'),
+						'level' => 2,
+						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+					]);
+					?>
+					
+					<p>Nom scientifique: <?php the_field('nom_scientifique'); ?></p>
+					<p>Nom vernaculaire: <?php the_field('nom_vernaculaire'); ?></p>
+					<p>Famille: <?php the_field('famille'); ?></p>
+					<p>Numéro nomenclatural: <?php the_field('num_nom'); ?></p>
+					<p>Référentiel: <?php the_field('referentiel'); ?></p>
+					<?php if (!empty(get_field('lien_eflore'))): ?>
+					<p>Lien vers e-flore : <a href="<?php the_field('lien_eflore'); ?>" title="Lien vers eflore"
+											  target="_blank"><?php the_field('lien_eflore'); ?></a></p>
+					<?php endif; ?>
+				</div>
+				
 				<div id="description-morphologique">
 					
 					<div class="fiche-title-icon">
@@ -255,6 +300,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Description morphologique', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -266,6 +312,20 @@ get_header();
 					</p>
 				</div>
 				
+				<?php $description_vulgarisee = get_field('description_vulgarisee')?: null; ?>
+				<?php if ($description_vulgarisee): ?>
+				<div id="description-vulgarisee">
+					<?php
+					the_botascopia_module('title', [
+						'title' => __('Description vulgarisée', 'botascopia'),
+						'level' => 2,
+						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+					]);
+					?>
+					<p><?php the_field('description_vulgarisee'); ?>.</p>
+				</div>
+				<?php endif; ?>
+				
 				<div id="tige">
 					<div class="fiche-title-icon">
 						<img src=" <?php echo get_template_directory_uri() ?>/images/tige.svg" />
@@ -273,6 +333,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Tige', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -305,7 +366,10 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					affichageImageFiche($tige['photo_tige']);
+					if (isset($tige['photo_tige'])){
+						affichageImageFiche($tige['photo_tige']);
+					}
+					
 					?>
 				</div>
 				
@@ -316,6 +380,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Feuilles', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -323,9 +388,6 @@ get_header();
 					<?php  if (!empty(get_field('feuille'))) { ?>
 						<?php $presence_feuilles = get_field('feuille')['presence_de_feuilles']; ?>
 						<?php if ('jamais visibles' === $presence_feuilles): ?>
-							<h4 class="icon-title">
-								<div class="feuilles-icon icon"></div>Feuilles
-							</h4>
 							<p><?php echo $presence_feuilles; ?></p>
 						<?php else : ?>
 							
@@ -333,16 +395,6 @@ get_header();
 							<?php if (('feuilles toutes semblables' === $heteromorphisme_foliaire) || ('gradient de forme entre la base et le haut de la tige' === $heteromorphisme_foliaire)): ?>
 								
 								<?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
-								<?php if(!empty($feuilles_aeriennes['photo_de_feuilles_aeriennes'])): ?>
-									<h4 class="icon-title">
-										<div class="feuilles-icon icon"></div>Feuilles
-									</h4>
-									<?php
-									$refs_photo[] = $feuilles_aeriennes['photo_de_feuilles_aeriennes']["id"];
-									$index_photos++;
-									?>
-<!--									<div class="picture-ref">--><?php //echo $index_photos;?><!--</div>-->
-								<?php endif; ?>
 								<p>
 									Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
 									<?php
@@ -482,7 +534,9 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					affichageImageFiche($feuilles_aeriennes['photo_de_feuilles_aeriennes']);
+					if (isset($feuilles_aeriennes['photo_de_feuilles_aeriennes'])){
+						affichageImageFiche($feuilles_aeriennes['photo_de_feuilles_aeriennes']);
+					}
 					?>
 				</div>
 				
@@ -493,6 +547,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Inflorescence', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -516,6 +571,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fruits', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -545,10 +601,14 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					affichageImageFiche($fruit['photo']);
+					if (isset($fruit['photo'])){
+						affichageImageFiche($fruit['photo']);
+					}
 					?>
 				</div>
 				
+				<?php $fleur_male =  get_field('fleur_male') ?: null;?>
+				<?php if ($fleur_male) { ?>
 				<div id="fleur-male">
 					<div class="fiche-title-icon">
 						<img src=" <?php echo get_template_directory_uri() ?>/images/fleur-male.svg" />
@@ -556,6 +616,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fleur mâle', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -597,10 +658,17 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					affichageImageFiche($fleur_male['photo_de_fleur_male']);
+					if (isset($fleur_male['photo_de_fleur_male'])){
+						affichageImageFiche($fleur_male['photo_de_fleur_male']);
+					}
+					
 					?>
 				</div>
 				
+				<?php }
+				$fleur_femelle =  get_field('fleur_femelle') ?: null;
+				if ($fleur_femelle) {
+				?>
 				<div id="fleur-femelle">
 					<div class="fiche-title-icon">
 						<img src=" <?php echo get_template_directory_uri() ?>/images/fleur-femelle.svg" />
@@ -608,6 +676,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fleur femelle', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -649,10 +718,16 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					affichageImageFiche($fleur_femelle['photo_de_fleur_femelle']);
+					if (isset($fleur_femelle['photo_de_fleur_femelle'])){
+						affichageImageFiche($fleur_femelle['photo_de_fleur_femelle']);
+					}
 					?>
 				</div>
 				
+				<?php }
+				$fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;
+				if ($fleur_bisexuee) {
+				?>
 				<div id="fleur-bisexuee">
 					<div class="fiche-title-icon">
 						<img src=" <?php echo get_template_directory_uri() ?>/images/inflorescence.svg" />
@@ -660,6 +735,7 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fleur bisexuée', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -714,11 +790,15 @@ get_header();
 					?>
 				</div>
 				
+				<?php }
+				if (!empty(get_field('le_saviez-vous_'))){
+				?>
 				<div id="le-saviez-vous">
 						<?php
 						the_botascopia_module('title', [
 							'title' => __('Le saviez-vous ?', 'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					
@@ -726,6 +806,7 @@ get_header();
 					
 				</div>
 				
+				<?php }	?>
 				<div id="periode-floraison">
 					<div class="fiche-title-icon">
 						<img src=" <?php echo get_template_directory_uri() ?>/images/periode.svg"/>
@@ -734,6 +815,7 @@ get_header();
 							'title' => __('Période de <span class="text-floraison">floraison</span> et de <span class="text-fructification">fructification</span>',
 										  'botascopia'),
 							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -769,6 +851,146 @@ get_header();
 					</div>
 				
 				</div>
+				
+				<?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))): ?>
+				<div id="ecologie">
+					
+					<div class="fiche-title-icon">
+						<img src=" <?php echo get_template_directory_uri() ?>/images/ecologie.svg"/>
+						<?php
+						the_botascopia_module('title', [
+							'title' => __('Écologie','botascopia'),
+							'level' => 2,
+							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+						]);
+						?>
+					</div>
+					
+					<?php if (!empty(get_field('amplitude_altitudinale'))) :?> <p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?> .</p> <?php endif; ?>
+						<?php if (!empty(get_field('affinites_ecologiques'))) :?><p>Affinité écologique: <?php echo
+						get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";
+						?> .</p><?php endif; ?>
+						
+						<?php if (!empty(get_field('habitat_preferentiel'))) :?> <p>Habitat : <?php the_field('habitat_preferentiel'); ?>.</p> <?php endif; ?>
+						
+						<?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field
+						('pollinisation')))) :?> <p>Plante :<br><?php endif; ?>
+						
+						<?php if (!empty(get_field('systeme_de_reproduction'))) :?> Système de reproduction <?php
+							the_field('systeme_de_reproduction'); ?>, <?php endif; ?>
+						
+						<?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
+						
+						<?php if (!empty(get_field('dispersion'))) :?> dispersion des graines et des fruits <?php
+						echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p><?php endif;
+						?>
+					<?php endif ?>
+				</div>
+				
+				<?php $proprietes = get_field('proprietes')?: null;
+				if ($proprietes):
+				?>
+				<div id="proprietes">
+					<?php
+					the_botascopia_module('title', [
+						'title' => __('Propriétés','botascopia'),
+						'level' => 2,
+						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+					]);
+					?>
+					<p><?php echo $proprietes; ?></p>
+				</div>
+				<?php endif; ?>
+				
+				<?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))): ?>
+					<div id="aire-repartition">
+						<div class="fiche-title-icon">
+							<img src=" <?php echo get_template_directory_uri() ?>/images/location.svg"/>
+							<?php
+							the_botascopia_module('title', [
+								'title' => __('Aire de répartition et statut', 'botascopia'),
+								'level' => 2,
+								'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+							]);
+							?>
+						</div>
+					
+						<?php if (!empty(get_field('cultivee_en_france'))) { ?>
+							<?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
+							<p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+						<?php } ?>
+						<?php if (!empty(get_field('carte_de_metropole'))) :?>
+							<div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
+				
+				<?php $description = get_field('description')?: null; ?>
+				<?php if ($description): ?>
+					<div id="ne-pas-confondre">
+						<div class="fiche-title-icon">
+							<img src=" <?php echo get_template_directory_uri() ?>/images/ne-pas-confondre.svg"/>
+							<?php
+							the_botascopia_module('title', [
+								'title' => __('Ne pas confondre avec', 'botascopia'),
+								'level' => 2,
+								'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+							]);
+							?>
+						</div>
+						
+						<p><?php the_field('description'); ?></p>
+						<?php $photo = get_field('photo') ? : null;
+						if (isset($photo)) {
+							affichageImageFiche($photo);
+						}
+						?>
+					</div>
+				<?php endif; ?>
+				
+				<?php $anecdote = get_field('complement_danecdote')?: null; ?>
+				<?php if ($anecdote): ?>
+				<div id="complement-anecdote">
+					<?php
+					the_botascopia_module('title', [
+						'title' => __('Complément d\'anecdote', 'botascopia'),
+						'level' => 2,
+						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+					]);
+					?>
+					<p><?php the_field('complement_danecdote'); ?></p>
+				</div>
+				<?php endif; ?>
+				
+				<?php if (!empty(get_field('reference_1'))) : ?>
+				<div id="references">
+					<?php
+					the_botascopia_module('title', [
+						'title' => __('Références', 'botascopia'),
+						'level' => 2,
+						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
+					]);
+					?>
+					<ul>
+						<li><?php the_field('reference_1'); ?></li>
+						<?php if (!empty(get_field('reference_2'))) : ?>
+							<li><?php the_field('reference_2'); ?></li>
+						<?php endif; ?>
+						
+						<?php if (!empty(get_field('reference_3'))) : ?>
+							<li><?php the_field('reference_3'); ?></li>
+						<?php endif; ?>
+						
+						<?php if (!empty(get_field('reference_4'))) : ?>
+							<li><?php the_field('reference_4'); ?></li>
+						<?php endif; ?>
+						
+						<?php if (!empty(get_field('reference_5'))) : ?>
+							<li><?php the_field('reference_5'); ?></li>
+						<?php endif; ?>
+					</ul>
+				</div>
+				<?php endif; ?>
 				
 			</div>
 	</main><!-- .site-main -->
