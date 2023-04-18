@@ -224,40 +224,6 @@ function create_new_post_collection() {
 }
 add_action('init', 'create_new_post_collection');
 
-/*
-function getNbFiches($collectionId){
-	$cat_args = array(
-		'hide_empty' => 0,
-		'order' => 'ASC',
-		'cat' => $collectionId,
-		'post_status' => array('publish', 'draft', 'pending')
-	);
-	
-	query_posts($cat_args);
-	$nbFiches = 0;
-	$completed = true;
-	
-	if ( have_posts() ) :
-		while ( have_posts() ) : the_post();
-			$name = get_post_meta( get_the_ID(), 'nom_scientifique', true );
-			$species = get_post_meta( get_the_ID(), 'famille', true );
-			$image = get_the_post_thumbnail_url();
-			$id = get_the_ID();
-			$ficheName = get_the_title();
-			$collectionName = get_the_category_by_ID($collectionId);
-			if ($ficheName != $collectionName) {
-				$status = get_post_status($id);
-				$nbFiches++;
-				if ($status != 'publish') {
-					$completed = false;
-				}
-			}
-		endwhile;
-	endif;
-	wp_reset_query();
-	return [$nbFiches, $completed];
-}
-*/
 function getPostImage($id){
 	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
 	if ($getImage){
@@ -376,20 +342,6 @@ function custom_taxonomy() {
 	register_taxonomy( 'category-collection', 'collection', $args );
 }
 add_action( 'init', 'custom_taxonomy' );
-
-/*
-// Ajout des catégories 'normals' aux posts 'collection'
-function add_categories_to_collection() {
-	register_taxonomy_for_object_type( 'category', 'collection' );
-}
-add_action( 'init', 'add_categories_to_collection' );
-
-// Ajout des catégories collection aux posts normaux
-function add_collection_categories_to_posts() {
-	register_taxonomy_for_object_type( 'category-collection', 'post' );
-}
-add_action( 'init', 'add_collection_categories_to_posts' );
-*/
 
 // Fonction pour le plugin Posts 2 Posts
 function my_connection_types() {
@@ -525,4 +477,23 @@ function affichageImageFiche($photo){
 		$image = wp_get_attachment_image_src( $photoId, 'thumbnail' )[0];
 		echo ('<img src="'.esc_url( $image ).'" class="image-tige" height="275px" width="275px">');
 	}
+}
+
+// Envoyer une fiche à validation ou en publication
+add_action( 'wp_ajax_set_fiche_status', 'set_fiche_status' );
+add_action( 'wp_ajax_nopriv_set_fiche_status', 'set_fiche_status' );
+function set_fiche_status() {
+	$post_id = intval( $_POST['post_id'] );
+	$date = date('Y-m-d H:i:s');
+	$date_gmt = gmdate('Y-m-d H:i:s');
+	$status = $_POST['status'];
+	
+	wp_update_post(array('ID' => $post_id, 'post_date' => $date, 'post_date_gmt' => $date_gmt, 'post_status' =>
+		$status));
+	
+	if ($status == 'pending'){
+		update_post_meta( $post_id, 'Editor', 0 );
+	}
+	
+	die();
 }
