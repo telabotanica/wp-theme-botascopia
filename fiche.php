@@ -277,7 +277,6 @@ get_header();
 					the_botascopia_module('title', [
 						'title' => __('Taxonomie', 'botascopia'),
 						'level' => 2,
-						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 					]);
 					?>
 					
@@ -300,7 +299,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Description morphologique', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -319,7 +317,6 @@ get_header();
 					the_botascopia_module('title', [
 						'title' => __('Description vulgarisée', 'botascopia'),
 						'level' => 2,
-						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 					]);
 					?>
 					<p><?php the_field('description_vulgarisee'); ?>.</p>
@@ -333,11 +330,10 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Tige', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
-					
+					<?php if (!empty(get_field('tige'))):?>
 					<p class="tige-description">
 						<?php
 						$tige = get_field('tige');
@@ -372,6 +368,7 @@ get_header();
 					
 					?>
 				</div>
+				<?php endif; ?>
 				
 				<div id="feuilles">
 					<div class="fiche-title-icon">
@@ -380,7 +377,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Feuilles', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -547,7 +543,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Inflorescence', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -571,7 +566,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fruits', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -616,7 +610,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fleur mâle', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -676,7 +669,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fleur femelle', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -735,7 +727,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Fleur bisexuée', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -798,7 +789,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Le saviez-vous ?', 'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					
@@ -815,7 +805,6 @@ get_header();
 							'title' => __('Période de <span class="text-floraison">floraison</span> et de <span class="text-fructification">fructification</span>',
 										  'botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -861,7 +850,6 @@ get_header();
 						the_botascopia_module('title', [
 							'title' => __('Écologie','botascopia'),
 							'level' => 2,
-							'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 						]);
 						?>
 					</div>
@@ -895,7 +883,6 @@ get_header();
 					the_botascopia_module('title', [
 						'title' => __('Propriétés','botascopia'),
 						'level' => 2,
-						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 					]);
 					?>
 					<p><?php echo $proprietes; ?></p>
@@ -910,7 +897,6 @@ get_header();
 							the_botascopia_module('title', [
 								'title' => __('Aire de répartition et statut', 'botascopia'),
 								'level' => 2,
-								'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 							]);
 							?>
 						</div>
@@ -934,7 +920,6 @@ get_header();
 							the_botascopia_module('title', [
 								'title' => __('Ne pas confondre avec', 'botascopia'),
 								'level' => 2,
-								'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 							]);
 							?>
 						</div>
@@ -955,7 +940,6 @@ get_header();
 					the_botascopia_module('title', [
 						'title' => __('Complément d\'anecdote', 'botascopia'),
 						'level' => 2,
-						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 					]);
 					?>
 					<p><?php the_field('complement_danecdote'); ?></p>
@@ -968,7 +952,6 @@ get_header();
 					the_botascopia_module('title', [
 						'title' => __('Références', 'botascopia'),
 						'level' => 2,
-						'modifiers'=> ['class' => 'component-title.level-2 component-title-anchor']
 					]);
 					?>
 					<ul>

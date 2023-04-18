@@ -324,7 +324,7 @@ strong {
 
 .fiche-image{
     position: absolute;
-    right: 20vw;
+    right: 0;
     top: 10px;
     width: 255px;
     height: 255px;
@@ -436,4 +436,9 @@ strong {
 
 .text-fructification{
     color: var(--violet);
+}
+
+#aire-repartition .section-image > img{
+    width: 700px;
+    height: 700px;
 }
