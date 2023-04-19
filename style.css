@@ -569,4 +569,10 @@ input[type="checkbox"] {
   border: 2px solid #182D34;
 }
 
+.acf-fields.-left > .acf-field > .acf-label{
+  width: 100% !important;
+}
 
+.acf-fields.-left > .acf-field:before{
+  width: 100% !important;
+}

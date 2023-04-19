@@ -489,7 +489,7 @@ function set_fiche_status() {
 	$date_gmt = gmdate('Y-m-d H:i:s');
 	$status = $_POST['status'];
 	
-	wp_update_post(array('ID' => $post_id, 'post_date' => $date, 'post_date_gmt' => $date_gmt, 'post_status' =>
+	wp_update_post(array('ID' => $post_id, 'post_status' =>
 		$status));
 	
 	if ($status == 'pending'){
