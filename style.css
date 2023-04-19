@@ -7,6 +7,7 @@ Version: 1.0
 @import "base/_all.css";
 @import "components/_all.css";
 @import "modules/_all.css";
+@import "assets/styles/_all.css";
 /*@import "blocks/_all.css";*/
 
 @font-face {
@@ -463,108 +464,4 @@ body.page-template-fiche_pdf {
 
 .fructification-mauve-icon {
   background-image: url("images/fructification-mauve.svg");
-}
-
-
-/****************** Page formulaire création fiche **************************/
-
-.page-template-formulaire_creation_fiche{
-  background-color: var(--blanc);
-}
-
-.page-template-formulaire_creation_fiche #primary{
-  background-color: var(--blanc);
-}
-
-.page-template-formulaire_creation_fiche main{
-  background-color: var(--blanc) !important;
-}
-
-.formulaire-top-page{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin: 20px 0;
-}
-
-.formulaire-details{
-  width: 250px;
-  margin: 0;
-}
-
-.formulaire-details > h4{
-  text-transform: uppercase;
-}
-
-.formulaire-detail:nth-child(3){
-  border-top: 1px solid var(--noir);
-  border-bottom: 1px solid var(--noir);
-}
-.formulaire-detail{
-  width: 100%;
-  padding: 10px 0;
-  text-align: left;
-}
-
-.formulaire-field-status{
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 0;
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
-  width: 150px;
-}
-
-.formulaire-boutons-bas{
-  margin-top: 20px;
-}
-
-.acf-field input[type=text]{
-  background-color: var(--gris-f6);
-}
-
-ul.acf-radio-list li input[type=checkbox], ul.acf-radio-list li input[type=radio], ul.acf-checkbox-list li input[type=checkbox], ul.acf-checkbox-list li input[type=radio]{
-  margin: -1px 20px 0 0 !important;
-}
-
-input[type="radio"] {
-  -webkit-appearance: none; /* annule les styles CSS par défaut des navigateurs */
-  -moz-appearance: none;
-  appearance: none;
-  display: inline-block; /* affiche l'input en tant que bloc inline pour pouvoir définir une largeur */
-  width: 13px; /* définit une largeur pour l'input */
-  height: 13px; /* définit une hauteur pour l'input */
-  border-radius: 50%; /* arrondit les coins de l'input pour le transformer en un cercle */
-  border: 1px solid var(--noir-d34); /* ajoute une bordure autour de l'input */
-  padding: 5px;
-  background-color: var(--rose-pale); /* définit une couleur de fond pour l'input */
-  box-sizing: border-box; /* inclut la bordure et le padding dans le calcul de la largeur et la hauteur */
-}
-
-input[type="radio"]:checked {
-  outline: solid 5px var(--noir-d34);
-  outline-offset: -8px;
-}
-
-.acf-fields > .acf-field {
-  background-color: var(--rose-pale);
-}
-
-.acf-field select{
-  background-color: var(--rose-pale);
-}
-
-input[type="checkbox"] {
-  accent-color: var(--rose-pale);
-  opacity: 1;
-  border: 2px solid #182D34;
-}
-
-.acf-fields.-left > .acf-field > .acf-label{
-  width: 100% !important;
-}
-
-.acf-fields.-left > .acf-field:before{
-  width: 100% !important;
 }
