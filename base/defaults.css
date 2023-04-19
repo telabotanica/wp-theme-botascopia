@@ -134,7 +134,7 @@ strong {
 }
 
 /* TODO: A supprimer une fois les pages créer une collection et créer une fiche implémentées */
-#mes-collections  .toc-button:nth-child(1), #mes-collections  .toc-button:nth-child(2){
+#mes-collections  .toc-button:nth-child(1), #mes-collections  .toc-button:nth-child(2), #collection-modif-profil{
     display: none;
 }
 

@@ -34,7 +34,6 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    /*text-transform: capitalize;*/
 }
 
 .toc-item-link::before, .toc-item-link:hover::before, .toc-item-link:focus::before {

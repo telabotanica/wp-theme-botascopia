@@ -165,7 +165,7 @@
                         </div>
                     <?php } else {
                             $user_query = get_users($user_args);
-                            echo var_dump($user_query);
+//                            echo var_dump($user_query);
                             ?>
                             <div style="float:left;width:75%;margin-bottom:1em;margin-top:1em;"><?php the_field( 'nom_scientifique' ); ?>
                                 <span style="float:right;" >

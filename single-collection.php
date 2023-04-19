@@ -257,7 +257,7 @@ get_header();
 									//TODO ouvrir un popup demandant de devenir vérificateur et renvoyer vers le
 									// formulaire
 									$href = '/formulaire/?p='.get_the_title();
-								} elseif ($status == 'publish') {
+								} elseif ($status == 'publish' || $current_user_role == 'administrator') {
 									$href = get_permalink();
 								} else {
 									$href = '#';
