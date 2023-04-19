@@ -269,6 +269,13 @@ if (isset($_GET['p'])) {
         if (isset($_GET['a']) and $_GET['a'] == "5" ){
             update_post_meta( get_the_ID(), 'Editor',0 );
         }
+        
+        // Renvoyer à l'auteur pour correction
+        if (isset($_GET['a']) and $_GET['a'] == "3" ){
+            wp_update_post(array('ID' => get_the_ID(), 'post_status' =>
+                'draft'));
+            update_post_meta( get_the_ID(), 'Editor',0 );
+        }
 
         $editor = get_post_meta(get_the_ID(), 'Editor', true);
 
@@ -370,6 +377,15 @@ if (isset($_GET['p'])) {
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
                             .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=5'"]
                     ]);
+                    
+                    the_botascopia_module('button', [
+                        'tag' => 'button',
+                        'title' => 'Renvoyer pour correction',
+                        'text' => 'Renvoyer pour correction',
+                        'modifiers' => 'purple-button outline',
+                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise
+                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3'"]
+                    ]);
                 }
                 
                 the_botascopia_module('button',[
@@ -389,7 +405,6 @@ if (isset($_GET['p'])) {
                     'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
                 ]);
                 
-                    // TODO: Publier fiche
                     the_botascopia_module('button',[
                         'tag' => 'button',
                         'title' => 'Publier',
