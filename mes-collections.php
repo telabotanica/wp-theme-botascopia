@@ -239,6 +239,7 @@ get_header();
 							]);
 						}
 					}
+					/*
 					if ( !$completedCollection) {
 						echo('
                             <div>
@@ -252,7 +253,7 @@ get_header();
 							'text' => 'Créer une collection',
 							'modifiers' => 'green-button',
 						]);
-					}
+					}*/
 					endif;
 					?>
 				</div>
