@@ -227,4 +227,5 @@ the_botascopia_module('card-fiche', [
 
 ?>
 
+
 <?php get_footer(); ?>

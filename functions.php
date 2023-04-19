@@ -289,6 +289,7 @@ function custom_post_type() {
 add_action( 'init', 'custom_post_type' );
 
 // Template pour les post de type 'collection'
+
 add_filter( 'template_include', 'collection_template_include' );
 function collection_template_include( $template ) {
 
@@ -315,7 +316,6 @@ function custom_post_template($single) {
 	return $single;
 }
 add_filter('single_template', 'custom_post_template');
-
 
 // AJout de catégories pour le post type collection
 function custom_taxonomy() {
@@ -469,6 +469,7 @@ function reserver_fiche() {
 	wp_update_post(array('ID' => $ficheId, 'post_author' => $userId));
 	wp_die();
 }
+
 add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
 
 function affichageImageFiche($photo){

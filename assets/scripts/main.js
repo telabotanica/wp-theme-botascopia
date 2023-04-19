@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     popupReserverFiche();
     envoyerFicheEnValidation();
     publierFiche();
+
 });
 
 function setFavoris(selector, type){
@@ -188,7 +189,7 @@ function reserverFiche(ficheId, userId){
 
     // Envoi de la requête AJAX pour mettre à jour la valeur du post
     var xhr = new XMLHttpRequest();
-    // console.log('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
+
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
@@ -203,6 +204,7 @@ function reserverFiche(ficheId, userId){
     xhr.open('POST', ajaxurl);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
+
 }
 
 function envoyerFicheEnValidation(){
@@ -256,4 +258,5 @@ function setStatus(postId, status) {
     }
 
     setTimeout(function () { location.reload(); } , 1000 );
+
 }
