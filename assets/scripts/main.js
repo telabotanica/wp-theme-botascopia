@@ -38,8 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setFavoris('.card-collection-icon','category');
     setFavoris('.single-collection-buttons', 'category');
+    setFavoris('.single-collection-buttons', 'fiche');
     setFavoris('.card-fiche-icon', 'fiche');
     popupReserverFiche();
+    envoyerFicheEnValidation();
+    publierFiche();
+
 });
 
 function setFavoris(selector, type){
@@ -185,7 +189,7 @@ function reserverFiche(ficheId, userId){
 
     // Envoi de la requête AJAX pour mettre à jour la valeur du post
     var xhr = new XMLHttpRequest();
-    console.log('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
+
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
@@ -200,4 +204,59 @@ function reserverFiche(ficheId, userId){
     xhr.open('POST', ajaxurl);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
+
+}
+
+function envoyerFicheEnValidation(){
+    const fiche = document.querySelector('#pending_btn');
+
+    if (fiche){
+        fiche.addEventListener('click', function() {
+            var post_id = this.getAttribute('data-post-id');
+            setStatus(post_id, 'pending');
+        });
+    }
+
+}
+
+function publierFiche(){
+    const ficheAPublier = document.querySelector('#publish_btn');
+    if (ficheAPublier){
+        ficheAPublier.addEventListener('click', function() {
+            var post_id = this.getAttribute('data-post-id');
+            setStatus(post_id, 'publish');
+        });
+    }
+}
+
+function setStatus(postId, status) {
+    var ajaxurl = ajax_object.ajax_url;
+
+    var xhr = new XMLHttpRequest();
+    // console.log('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Si succès,
+                if (status == 'pending') {
+                    console.log('Post set to pending');
+                } else {
+                    console.log('Post published');
+                }
+            } else {
+                console.log('Erreur : ' + xhr.status);
+            }
+        }
+    };
+
+    xhr.open('POST', ajaxurl);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    if (status == 'pending'){
+        xhr.send('action=set_fiche_status&post_id=' + postId + '&status=pending');
+    } else {
+        xhr.send('action=set_fiche_status&post_id=' + postId + '&status=publish');
+    }
+
+    setTimeout(function () { location.reload(); } , 1000 );
+
 }

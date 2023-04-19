@@ -92,6 +92,7 @@ strong {
 #main{
     width: 60vw;
     margin: 0 auto;
+    background-color: var(--rose-pale);
 }
 
 /****************** Page collections **************************/
@@ -300,4 +301,136 @@ strong {
     position: absolute;
     bottom: 20px;
     right: 0;
+}
+
+/****************** popup  fiche **************************/
+.fiche-cover::before{
+    content: none !important;
+}
+
+.fiche-cover{
+    background-color: var(--rose-pale) !important;
+    background-position-x: right !important;
+    background-size: initial !important;
+}
+
+.fiche-cover h1{
+    color: var(--violet);
+}
+
+.fiche-cover .cover-subtitle{
+    color: var(--vert-clair);
+}
+
+.fiche-image{
+    position: absolute;
+    right: 20vw;
+    top: 10px;
+    width: 255px;
+    height: 255px;
+    border-radius: 200px;
+}
+
+#fiche{
+    margin-left: 40px;
+}
+#fiche-infos{
+    color: var(--noir-d34);
+}
+
+#fiche-infos > .fiche-title-infos{
+    text-transform: uppercase;
+}
+
+.fiche-infos{
+    display: flex;
+    justify-content: space-between;
+}
+
+.single-fiche-details{
+    width: 265px;
+    margin: 0;
+}
+
+.single-fiche-detail:nth-child(2){
+    border-top: 1px solid var(--noir);
+}
+
+.single-fiche-detail:nth-child(3){
+    border-top: 1px solid var(--noir);
+    border-bottom: 1px solid var(--noir);
+}
+
+.single-fiche-detail{
+    width: 100%;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.fiche-title-icon{
+    display: flex;
+    margin-left: -50px;
+}
+
+.fiche-title-icon > img{
+    margin-right: 10px;
+}
+
+#description-morphologique{
+    margin-top: 10px;
+}
+
+#tige, #feuilles, #fruits, #fleur-male, #fleur-femelle, #fleur-bisexuee{
+    position: relative;
+    min-height: 275px;
+    margin: 60px 0;
+}
+
+#tige > p, #feuilles > p, #fruits > p, #fleur-male > p, #fleur-femelle > p, #fleur-bisexuee > p{
+    width: 400px;
+}
+
+#inflorescence, #le-saviez-vous, #periode-floraison{
+    margin: 60px 0;
+}
+
+.image-tige{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 275px;
+    height: 275px;
+}
+
+#periode-floraison{
+    position: relative;
+}
+
+#periode-floraison .calendar{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 2mm;
+    grid-template-rows: repeat(3, 1cm);
+    /*width: 19cm;*/
+    margin-top: 0.5cm;
+    /*margin-left: 0.5cm;*/
+    padding: 0 1cm;
+    justify-content: right;
+}
+
+#periode-floraison .calendar div {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.42cm;
+    text-transform: uppercase;
+    padding: 0.4cm;
+}
+
+.text-floraison{
+    color: var(--vert-clair);
+}
+
+.text-fructification{
+    color: var(--violet);
 }

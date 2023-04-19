@@ -62,7 +62,7 @@ array_walk($botascopia_blocks, function ($block) {
  * Liste de tous les composants accessibles depuis les fonctions du styleguide
  */
 $botascopia_components = [
-//  'accordion',
+  'accordion',
 //  'articles',
   'buttons',
 //  'contact',

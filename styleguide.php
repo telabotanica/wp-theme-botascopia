@@ -1,95 +1,231 @@
+<?php get_header(); ?>
+
 <?php
-/**
- * Template pour les pages de documentation du styleguide
- */
+the_botascopia_module('breadcrumbs');
 
-global $wp_query;
+$categories_items = [[
+    'text' => 'categorie 1',
+    'href' => 'https://www.tela-botanica.org'
+],
+    [
+        'text' => 'categorie 2',
+        'href' => 'https://www.tela-botanica.org'
+    ]];
 
-get_header(); ?>
+the_botascopia_module('categories', [
+    'modifiers' => 'layout-column-item',
+    'items' => $categories_items
+]);
 
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+the_botascopia_module('categories-labels', [
+    'items' => $categories_items
+]);
+?>
+  <br>
+<?php
 
-      <?php
-      $current = false;
-      if ( $wp_query->get('styleguide_type') && $wp_query->get('styleguide_nom') ) :
-        $type = $wp_query->get('styleguide_type');
-        $nom = $wp_query->get('styleguide_nom');
-        $current = $type . '/' . $nom;
-      endif;
-      ?>
+the_botascopia_module('button', [
+    'tag' => 'a',
+    'href' => 'https://www.google.fr',
+    'target' => '_blank',
+    'text' => 'Bouton',
+    'title' => '',
+    'modifiers' => 'green-button',
+    'icon_after' => 'star'
+]);
+the_botascopia_module('button', [
+    'tag' => 'a',
+    'href' => 'https://www.google.fr',
+    'target' => '_blank',
+//				'text' => 'Bouton',
+    'title' => '',
+    'modifiers' => 'green-button outline',
+    'icon_after' => ['icon' => 'edit', 'color'=>'orange']
+]);
+the_botascopia_module('button', [
+    'tag' => 'a',
+    'href' => 'https://www.tela-botanica.org',
+    'target' => '_blank',
+    'title' => '',
+    'modifiers' => 'green-button outline',
+    'icon_after' => ['icon' => 'star-outline', 'color'=>'vert-clair'],
+    'extra_attributes' => ['type' => "submit", 'id' => "pending_btn", 'name'=> "pending_btn", 'value' => "Envoyer la fiche à validation", 'onclick' => "click_ignore();"]
+]);
+the_botascopia_component('buttons', [
+    'items' => [
+        [
+            'tag' => 'a',
+            'href' => 'https://www.tela-botanica.org',
+            'target' => '_blank',
+            'text' => 'Bouton 1',
+            'title' => '',
+            'modifiers' => 'green-button back',
+            'icon_after' => 'star',
+            'icon_before' => ['icon' => 'cog', 'color'=>'vert-clair']
+//						'icon_after' => ['icon' => 'edit', 'color'=>'green'],
+        ],
+        [
+            'tag' => 'a',
+            'href' => 'https://www.tela-botanica.org',
+            'target' => '_blank',
+            'text' => 'Bouton 2',
+            'title' => '',
+            'modifiers' => 'purple-button',
+            'icon_after' => ['icon' => 'angle-down', 'color'=>'blanc']
+        ],
+        [
+            'tag' => 'a',
+            'href' => 'https://www.tela-botanica.org',
+            'target' => '_blank',
+            'text' => 'Bouton 3',
+            'title' => '',
+            'modifiers' => 'green-button outline',
+            'icon_after' => ['icon' => 'cog-circle', 'color'=>'vert-clair'],
+        ],
+        [
+            'tag' => 'a',
+            'href' => 'https://www.tela-botanica.org',
+            'target' => '_blank',
+            'text' => 'Bouton 4',
+            'title' => '',
+            'modifiers' => 'purple-button outline',
+        ],
+        [
+            'tag' => 'a',
+            'href' => 'https://www.tela-botanica.org',
+            'target' => '_blank',
+//						'text' => '',
+            'title' => '',
+            'modifiers' => 'green-button outline',
+            'icon_after' => ['icon' => 'star-outline', 'color'=>'vert-clair']
+        ],
+    ]
+]);
+//			the_botascopia_module('cover');
+//			$cover_image = get_field('cover_image', get_queried_object());
+//			$cover_image = get_the_post_thumbnail(16,'cover-background');
+//			$cover_image = get_field('cover_image', get_queried_object());
+//            var_dump(get_queried_object());
+//            $image = [
+//				'ID' => get_post_thumbnail_id(16),
+//				'url' => wp_get_attachment_image_url( 16, 'cover-background' ),
+////				'title' => get_the_title(),
+//                'sizes' => 'cover-background'
+//            ];
 
-      <div class="layout-content-col">
-        <div class="layout-wrapper">
-          <aside class="layout-column">
-            <?php the_botascopia_module('toc', [
-              'items' => [
+the_botascopia_module('cover', [
+    'title' => 'Cover 1',
+//                'modifiers' => 'orange',
+    'subtitle' => __("Exemple de cover", 'botascopia'),
+//                'image' => $cover_image
+//				'image' => ['ID' => 239,
+//					'url' => wp_get_attachment_image_url( 239, 'cover-background' ),
+//					'title' => get_the_title(),
+//                    'sizes' => wp_get_attachment_image_sizes(239, 'cover-background' )
+//                ],
+] );
+
+echo '<div> icone :' . get_botascopia_module('icon', ['icon' => 'star-outline', 'color' => 'vert-clair']) .
+    '</div>';
+
+// TODO Pagination a tester
+get_botascopia_module('pagination', [
+//		'id' => 'pag-bottom',
+//		'count_id' => 'member-dir-count-bottom',
+//		'links_id' => 'member-dir-pag-bottom',
+//		'context' => 'buddypress',
+//		'type' => 'members'
+]);
+
+the_botascopia_module('notice', [
+    'type' => 'alert',
+    'closable' => true,
+    'title' => __('Bientôt disponible.', 'telabotanica'),
+    'text' => __('Vous retrouverez prochainement ici la liste complète de vos contributions.<br />Pour le moment, seules les plus récentes sont affichées.', 'telabotanica')
+]);
+
+the_botascopia_module('title', [
+    'title' => __('Module Titre', 'botascopia'),
+    'level' => 1,
+    'modifiers' => ''
+]);
+the_botascopia_component('title', [
+    'title' => __( "Composant titre niveau 2", 'telabotanica' ),
+    'level' => 2,
+]);
+the_botascopia_component('title', [
+    'title' => __( "Composant titre niveau 3", 'telabotanica' ),
+    'level' => 3,
+]);
+the_botascopia_component('title', [
+    'title' => __( "Composant titre niveau 4", 'telabotanica' ),
+    'level' => 4,
+]);
+echo '<div style="margin-top: 30px">';
+the_botascopia_module('toc', [
+    'title' => 'titre du sommaire',
+    'items' => [
+        [
+            'text' => 'Par département',
+            'href' => '?module=liste-zones-geo',
+            'active' => true,
+            'items' => [
                 [
-                  'text' => 'Modules',
-                  'href' => '#',
-                  'active' => (substr($current, 0, strlen('module')) === 'module'),
-                  'items' => array_map(function ($module) {
-                    global $current;
-                    return [
-                      'text' => $module,
-                      'href' => site_url('styleguide/module/' . $module),
-                      'active' => ($current === 'module/' . $module)
-                    ];
-                    // echo '<li' . ($current === 'module/' . $module ? ' class="current"' : '') . '><a href="' . site_url('styleguide/module/' . $module) . '"><code>' . $module . '</code></a></li>';
-                  }, $botascopia_modules)
+                    'text' => 'Liste des taxons',
+                    'href' => '?module=liste-taxons',
+                    'active' => true,
                 ],
                 [
-                  'text' => 'Composants rédactionnels',
-                  'href' => '#',
-                  'active' => (substr($current, 0, strlen('component')) === 'component'),
-                  'items' => array_map(function ($component) {
-                    global $current;
-                    return [
-                      'text' => $component,
-                      'href' => site_url('styleguide/component/' . $component),
-                      'active' => ($current === 'component/' . $component)
-                    ];
-                    // echo '<li' . ($current === 'component/' . $component ? ' class="current"' : '') . '><a href="' . site_url('styleguide/component/' . $component) . '"><code>' . $component . '</code></a></li>';
-                  }, $botascopia_components)
-                ]
-              ]
-            ] ); ?>
-            <?php the_botascopia_module('button-top'); ?>
-          </aside>
-          <div class="layout-content">
-            <?php
-            $breadcrumbs_items = [
-              [
-                'href' => esc_url( site_url('styleguide') ),
-                'text' => __('Styleguide', 'botascopia')
-              ]
-            ];
-            if ( $current ) :
-              $breadcrumbs_items[] = ['text' => $type . 's'];
-              $breadcrumbs_items[] = ['text' => $nom,];
-            endif;
-            the_botascopia_module('breadcrumbs', [
-              'items' => $breadcrumbs_items
+                    'text' => 'Liste des taxons2',
+                    'href' => '?module=liste-taxons',
+                    'active' => false,
+                ],
+            ]
+        ],
+        [
+            'text' => 'Carte',
+            'href' => '?module=carte',
+            'active' => false,
+            'items' => [
+                [
+                    'text' => 'Liste des taxons',
+                    'href' => '?module=liste-taxons',
+                    'active' => false,
+                ],
+                [
+                    'text' => 'Liste des taxons2',
+                    'href' => '?module=liste-taxons',
+                    'active' => false,
+                ],
+            ]
+        ]
+    ]
+]);
+echo '</div>';
+the_botascopia_module('search-box', [
+//				'suggestions' => ['coquelicot', 'quercus ilex', 'végétation', 'mooc'],
+    'modifiers' => ['large', 'is-primary']
+]);
+/*
+			the_botascopia_module('card-collection',[
+                    'href' => '#',
+		'image' => get_field('card_image'),
+		'name' => 'nom de la collection',
+		'nbFiches' => 'x',
+		'description' => 'Lorem ipsum dolor sit amet. Ut voluptatem dolor non omnis quia est eveniet illum. Ea alias ullam eos ut voluptatem dolor non lorem ipsum dolor sit amet bla bla bla bli',
+		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
+		'modifiers' => []
             ]);
+*/
+the_botascopia_module('card-fiche', [
+//                    'href' => '',
+    'image' => '',
+    'name' => 'Plante 1 bla bla bla bla bla bli bli bli bli bli bla bla bla bla bla',
+    'species' => 'Espèce 1aaaaa et gdf et defrew',
+    'icon' => ['icon' => 'star', 'color' => 'blanc']
+]);
 
-            if ( $current ) :
-              $exemples = require($type . 's/' . $nom . '/exemples.php');
-              if ( is_array($exemples) ) :
-                foreach ( $exemples as $exemple => $data ) {
-                  echo '<h3>' . $exemple . '</h3>';
-                  echo '<div class="styleguide-element">' . get_botascopia_styleguide_element($type, $nom, $data) . '</div>';
-                  echo '<pre class="styleguide-data" style="max-width: 62rem; overflow: auto;">' . htmlentities(json_encode($data, JSON_PRETTY_PRINT)) . '</pre>';
-                }
-              else :
-                echo '<p>' . $exemples . '</p>';
-              endif;
-            endif;
-            ?>
-          </div>
-        </div>
-      </div>
+?>
 
-    </main><!-- .site-main -->
-  </div><!-- .content-area -->
 
 <?php get_footer(); ?>

@@ -223,8 +223,20 @@ get_header();
 							
 							// Cas des fiches réservées (toujours en draft)
 							if ($fiche_author_roles == 'contributor') {
-								$fichesClasses = 'card-status-bandeau main-status-complete';
-								$ficheStatusText = 'en cours...';
+								if ($status == 'draft'){
+									$fichesClasses = 'card-status-bandeau main-status-incomplete';
+									$ficheStatusText = 'en cours...';
+								} elseif ($status == 'pending'){
+									$editor = get_post_meta($id, 'Editor', true);
+									
+									if ($editor == $current_user_id || $editor == 0){
+										$fichesClasses = 'card-status-bandeau main-status-complete';
+										$ficheStatusText = 'A vérifier';
+									} else {
+										$fichesClasses = 'card-status-bandeau main-status-complete';
+										$ficheStatusText = 'En cours de vérification';
+									}
+								}
 							}
 							
 							// Si la fiche n'appartient pas à un contributeur, un contributeur peut en prendre
@@ -244,7 +256,7 @@ get_header();
 								} elseif ($current_user_role == 'editor' && $status == 'pending') {
 									//TODO ouvrir un popup demandant de devenir vérificateur et renvoyer vers le
 									// formulaire
-									$href = '#';
+									$href = '/formulaire/?p='.get_the_title();
 								} elseif ($status == 'publish') {
 									$href = get_permalink();
 								} else {
