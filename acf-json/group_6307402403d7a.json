@@ -119,6 +119,26 @@
             ]
         },
         {
+            "key": "field_644141ea8ba81",
+            "label": "Nom d'espèce",
+            "name": "nom_despece",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 50,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_630740991231a",
             "label": "Description",
             "name": "description",
@@ -167,5 +187,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1680880939
+    "modified": 1681998347
 }

@@ -58,7 +58,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": 50,
+                    "maxlength": 35,
                     "placeholder": "Maris Portas",
                     "prepend": "",
                     "append": ""
@@ -304,6 +304,7 @@
                 "id": ""
             },
             "choices": {
+                "thérophyte": "thérophyte",
                 "géophyte à tubercule": "géophyte à tubercule",
                 "géophyte à rhizome": "géophyte à rhizome",
                 "géophyte à bulbe": "géophyte à bulbe",
@@ -481,7 +482,7 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": 50,
+                            "maxlength": 35,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -1052,7 +1053,7 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": 50,
+                            "maxlength": 35,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -1196,7 +1197,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1204,6 +1206,36 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
+                },
+                {
+                    "key": "field_64413c967e502",
+                    "label": "Nombre de folioles",
+                    "name": "nombre_de_folioles",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 2,
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_6304db6293737",
@@ -1237,7 +1269,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1603,7 +1636,7 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": 50,
+                            "maxlength": 35,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -1747,7 +1780,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1755,6 +1789,36 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
+                },
+                {
+                    "key": "field_64413e9995328",
+                    "label": "Nombre de folioles",
+                    "name": "nombre_de_folioles",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 2,
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_634e48ca9fff1",
@@ -1788,7 +1852,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2154,7 +2219,7 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": 50,
+                            "maxlength": 35,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -2298,7 +2363,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2306,6 +2372,36 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
+                },
+                {
+                    "key": "field_64413f147b5ba",
+                    "label": "Nombre de folioles",
+                    "name": "nombre_de_folioles",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 2,
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_634e49d148014",
@@ -2339,7 +2435,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2705,7 +2802,7 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": 50,
+                            "maxlength": 35,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -2849,7 +2946,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2857,6 +2955,36 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "save_custom": 0
+                },
+                {
+                    "key": "field_64413f347b5bb",
+                    "label": "Nombre de folioles",
+                    "name": "nombre_de_folioles",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 2,
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_634e49eb48022",
@@ -2890,7 +3018,8 @@
                         "pennatiséqué": "pennatiséqué",
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
-                        "oblongue": "oblongue"
+                        "oblongue": "oblongue",
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -3505,8 +3634,8 @@
                         "id": ""
                     },
                     "choices": {
-                        "présent": "présent",
-                        "absent": "absent"
+                        "absent": "absent",
+                        "présent": "présent"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4504,14 +4633,14 @@
                         "id": ""
                     },
                     "choices": {
-                        "présent": "présent",
-                        "absent": "absent"
+                        "absent": "absent",
+                        "présent": "présent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5128,8 +5257,7 @@
                         "tous les organes floraux": "tous les organes floraux",
                         "le calice": "le calice",
                         "la corolle": "la corolle",
-                        "l'androcée": "l'androcée",
-                        "le gynécée": "le gynécée"
+                        "l'androcée": "l'androcée"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -5358,14 +5486,14 @@
                         "id": ""
                     },
                     "choices": {
-                        "présent": "présent",
-                        "absent": "absent"
+                        "absent": "absent",
+                        "présent": "présent"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5924,7 +6052,6 @@
                         "tous les organes floraux": "tous les organes floraux",
                         "le calice": "le calice",
                         "la corolle": "la corolle",
-                        "l'androcée": "l'androcée",
                         "le gynécée": "le gynécée"
                     },
                     "default_value": [],
@@ -6155,5 +6282,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1680880664
+    "modified": 1681998203
 }
