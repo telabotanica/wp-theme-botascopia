@@ -498,3 +498,22 @@ function set_fiche_status() {
 	
 	die();
 }
+
+// Les pages utilisant le template mes-collections ne sont plus visible dans le menu de navigation si l'utilisateur
+// n'est pas connecté
+function custom_nav_menu_items($items, $args) {
+	// Vérifiez si l'utilisateur est connecté
+	if (is_user_logged_in()) {
+		// Si l'utilisateur est connecté, affichez tous les éléments de menu normalement
+		return $items;
+	} else {
+		// Sinon, supprimez les pages ayant le template "Mes Collections" du menu de navigation
+		foreach ($items as $key => $item) {
+			if (get_page_template_slug($item->object_id) == 'mes-collections.php') {
+				unset($items[$key]);
+			}
+		}
+		return $items;
+	}
+}
+add_filter('wp_nav_menu_objects', 'custom_nav_menu_items', 10, 2);
