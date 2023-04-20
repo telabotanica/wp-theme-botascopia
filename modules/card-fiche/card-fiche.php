@@ -28,19 +28,20 @@
 	endif;
 	
 	echo '<div class="card-fiche ' . implode(' ', $data->modifiers) . '" >';
+	
+	echo sprintf('<a href="%s" class="%s" '.$attributes.'>',
+				 $data->href,
+				 $data->popup
+	)
+	;
+	
 	echo sprintf(
 		'<img src="%s" class="card-fiche-image" alt="image-plante" title="%s"/>',
 		$data->image,
 		$data->name,
 	);
 	echo '<div class="card-fiche-body">';
-	
-	echo sprintf('<a href="%s" class="%s" '.$attributes.'>',
-	$data->href,
-	$data->popup
-	)
-	;
-	
+
 	echo sprintf('
 		<span class="card-fiche-title">%s</span>
 		<span class="card-fiche-espece">%s</span>',

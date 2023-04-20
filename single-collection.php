@@ -188,7 +188,7 @@ get_header();
 							$species = get_post_meta(get_the_ID(), 'famille', true);
 							$image = get_the_post_thumbnail_url();
 							$id = get_the_ID();
-							$ficheName = get_the_title();
+							$ficheTitle = get_the_title();
 							$status = get_post_status();
 							
 							$fiche_author_id = get_post_field('post_author', $id);
@@ -256,7 +256,7 @@ get_header();
 								} elseif ($current_user_role == 'editor' && $status == 'pending') {
 									//TODO ouvrir un popup demandant de devenir vérificateur et renvoyer vers le
 									// formulaire
-									$href = '/formulaire/?p='.get_the_title();
+									$href = '/formulaire/?p='.$ficheTitle;
 								} elseif ($status == 'publish') {
 									$href = get_permalink();
 								} else {
@@ -283,7 +283,7 @@ get_header();
 								'icon' => $icone,
 								'popup' => $popupClass,
 								'id' => 'fiche-'.$id,
-								'extra_attributes' => ['data-user-id' => $userId, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink()]
+								'extra_attributes' => ['data-user-id' => $userId, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle]
 							]);
 							echo '</div>';
 						endwhile;
