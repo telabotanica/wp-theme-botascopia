@@ -256,8 +256,8 @@ get_header();
 								} elseif ($current_user_role == 'editor' && $status == 'pending') {
 									//TODO ouvrir un popup demandant de devenir vérificateur et renvoyer vers le
 									// formulaire
-									$href = '/formulaire/?p='.$ficheTitle;
-								} elseif ($status == 'publish') {
+									$href = '/formulaire/?p='.get_the_title();
+								} elseif ($status == 'publish' || $current_user_role == 'administrator') {
 									$href = get_permalink();
 								} else {
 									$href = '#';

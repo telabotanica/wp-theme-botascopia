@@ -130,7 +130,7 @@ get_header();
 				
 				<?php
 				if (is_user_logged_in()) :
-					echo '<div class="toc-button">';
+					echo '<div class="toc-button" id="collection-modif-profil">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
 						'href' => admin_url('user-edit.php?user_id='.$userId, 'http'),

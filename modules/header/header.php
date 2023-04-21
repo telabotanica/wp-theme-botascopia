@@ -102,7 +102,8 @@ function botascopia_module_header($data) {
             $avatar_url = get_avatar($current_user->ID, 52, '', 'user avatar');
             ?>
               <div class="header-login">
-                  <a href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>"
+<!--                  <a href="--><?php //echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?><!--"  -->
+                  <div href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>"
                      title="editer compte" class="header-login-link">
                     <div class="header-links-item-text">
                         <div class="header-login-display-name">
@@ -115,9 +116,8 @@ function botascopia_module_header($data) {
                       <div>
                           <span class="header-links-item-user-avatar"><?php echo $avatar_url ?></span>
                       </div>
-                  </a>
-                  
-                  <a href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>"></a>
+                  </div>
+<!--                  <a href="--><?php //echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?><!--"></a>-->
               </div>
 		  <?php else :
           echo '<div class="header-login">';

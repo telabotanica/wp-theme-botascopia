@@ -127,6 +127,8 @@ if (isset($_GET['p'])) {
             } else {
                 $auteur_autorise = true;
             }
+        } else if ($current_user->wp_user_level == '10'){
+            $auteur_autorise = true;
         }
     }
     if ($auteur_autorise) {
