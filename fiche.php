@@ -85,7 +85,8 @@ get_header();
 						'modifiers' => 'green-button',
 					]); ?>
 					
-					<?php if (is_user_logged_in() && get_user_meta($current_user_id, 'favorite_collection') && ($key
+					<?php if (is_user_logged_in() && isset($ficheFavorites) &&get_user_meta($current_user_id, 'favorite_collection')
+						&& ($key
 							= array_search($post_id, $ficheFavorites[0])) !== false) :
 						//changer le bouton favoris si collection dans favoris ou pas
 						$icone = ['icon' => 'star', 'color' => 'blanc'];
@@ -362,8 +363,8 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($tige['photo_tige'])){
-						affichageImageFiche($tige['photo_tige']);
+					if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
+						affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
 					}
 					
 					?>
@@ -530,8 +531,8 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($feuilles_aeriennes['photo_de_feuilles_aeriennes'])){
-						affichageImageFiche($feuilles_aeriennes['photo_de_feuilles_aeriennes']);
+					if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
+						affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']);
 					}
 					?>
 				</div>
@@ -574,8 +575,6 @@ get_header();
 						<?php $fruit = get_field('fruit');?>
 						<?php if(!empty($fruit['photo'])): ?>
 							<?php
-							$index_fruit_photo = $index_photos+1;
-							$fruit_photo = $fruit['photo'];
 							if (!empty(get_field('fleur_male')) && (!empty(get_field('fleur_male')['photo_de_fleur_male']))) {
 								if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
 								}
@@ -595,14 +594,14 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($fruit['photo'])){
-						affichageImageFiche($fruit['photo']);
+					if (isset($fruit["illustration_du_fruit"]['photo'])){
+						affichageImageFiche($fruit["illustration_du_fruit"]['photo']);
 					}
 					?>
 				</div>
 				
 				<?php $fleur_male =  get_field('fleur_male') ?: null;?>
-				<?php if ($fleur_male) { ?>
+				<?php if ($fleur_male && !empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )) { ?>
 				<div id="fleur-male">
 					<div class="fiche-title-icon">
 						<img src=" <?php echo get_template_directory_uri() ?>/images/fleur-male.svg" />
@@ -651,8 +650,9 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($fleur_male['photo_de_fleur_male'])){
-						affichageImageFiche($fleur_male['photo_de_fleur_male']);
+					if (isset($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"])){
+						$image = wp_get_attachment_image_src( $fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"], 'thumbnail' )[0];
+						echo ('<img src="'.esc_url( $image ).'" class="image-tige" height="275px" width="275px">');
 					}
 					
 					?>
@@ -660,7 +660,9 @@ get_header();
 				
 				<?php }
 				$fleur_femelle =  get_field('fleur_femelle') ?: null;
-				if ($fleur_femelle) {
+				if ($fleur_femelle && !empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) ||
+					(get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "gynomonoïque"
+					) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" ) || (get_field('systeme_sexuel') == "andromonoïque" )) {
 				?>
 				<div id="fleur-femelle">
 					<div class="fiche-title-icon">
@@ -673,7 +675,6 @@ get_header();
 						?>
 					</div>
 					
-					<?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
 					<?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) ||
 						(get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "gynomonoïque"
 						) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" ) || (get_field('systeme_sexuel') == "andromonoïque" )): ?>
@@ -710,15 +711,16 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($fleur_femelle['photo_de_fleur_femelle'])){
-						affichageImageFiche($fleur_femelle['photo_de_fleur_femelle']);
+					if (isset($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle'])){
+						affichageImageFiche($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']);
 					}
 					?>
 				</div>
 				
 				<?php }
 				$fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;
-				if ($fleur_bisexuee) {
+				
+				if ($fleur_bisexuee && !empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )) {
 				?>
 				<div id="fleur-bisexuee">
 					<div class="fiche-title-icon">
@@ -739,7 +741,7 @@ get_header();
 									Le périanthe est absent.
 								<?php } else: { ?>
 									<?php
-									if ('tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
+									if (isset($fleur_bisexuee['differenciation_du_perianthe']) &&'tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
 										$perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
 										$perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
 									} else {
@@ -777,7 +779,9 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					affichageImageFiche($fleur_bisexuee['photo_de_fleur_bisexuee']);
+					if (isset($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']) && (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" ))) {
+						affichageImageFiche($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']);
+					}
 					?>
 				</div>
 				
@@ -925,7 +929,7 @@ get_header();
 						</div>
 						
 						<p><?php the_field('description'); ?></p>
-						<?php $photo = get_field('photo') ? : null;
+						<?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo') ? : null;
 						if (isset($photo)) {
 							affichageImageFiche($photo);
 						}
