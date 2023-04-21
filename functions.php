@@ -517,3 +517,22 @@ function custom_nav_menu_items($items, $args) {
 	}
 }
 add_filter('wp_nav_menu_objects', 'custom_nav_menu_items', 10, 2);
+
+function enregistrer_meta_groupe_champs_acf($post_id) {
+//	dump($_POST['acf']);
+	$field_group='';
+	foreach ($_POST['acf'] as $acf_field_key => $acf_value){
+		$field = acf_get_field($acf_field_key);
+		if (isset($field['name']) && $field['name'] != '_validate_email' && !empty($acf_value)){
+			$field_group = acf_get_field_group($field['parent'])['title'];
+			break;
+		}
+	}
+	
+	// Valeur de la meta à enregistrer
+	$meta_value = 'complet';
+	
+	// Ajoute la paire clé/valeur de métadonnées au post spécifié
+	add_post_meta($post_id, $field_group, 'complet', true);
+}
+add_action('acf/save_post', 'enregistrer_meta_groupe_champs_acf', 20);

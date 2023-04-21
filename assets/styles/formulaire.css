@@ -100,3 +100,7 @@ input[type="checkbox"] {
 .acf-fields.-left > .acf-field:before{
     width: 100% !important;
 }
+
+.acf-input a {
+    color: #8E9F31;
+}

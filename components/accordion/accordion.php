@@ -65,6 +65,10 @@
 	foreach ($group_fields as $field) {
 		if ($field['required'] == 1) {
 			$required = true;
+			if (!get_post_meta($post_id, $field_title)){
+				$champs_complet = false;
+				break;
+			}
 		}
 		if ($field['required'] == 0) {
 			$non_required = true;
@@ -72,16 +76,11 @@
 	}
 	
 	foreach ($group_fields as $field) {
-		if ( (!array_key_exists($field['name'], $fields) || empty($fields[$field['name']]['value'])) && $field['required'] == 1 &&
-			$field['conditional_logic'] ==
-			0) {
-			$champs_complet = false;
-			break;
-		} elseif ($non_required && !$required) {
-			if (( !array_key_exists($field['name'], $fields) && $field['required'] == 0) || (empty($fields[$field['name']]['value']) && $field['required'] == 0)) {
-				$champs_complet = false;
-				break;
-			}
+			if ($non_required && !$required) {
+				if (( !array_key_exists($field['name'], $fields) && $field['required'] == 0) || (empty($fields[$field['name']]['value']) && $field['required'] == 0)) {
+					$champs_complet = false;
+					break;
+				}
 		}
 	}
 	

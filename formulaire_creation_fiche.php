@@ -19,13 +19,13 @@ $group_titles = [
     "Période de floraison et de fructification",
     "Aire de répartition et statut",
     "Écologie",
-    "Complément d'anecdote",
     "Propriétés",
+    "Complément d'anecdote",
     "Ne pas confondre avec",
     "Description vulgarisée",
     "Références",
     "Logos",
-    "Taxonomie"
+//    "Taxonomie"
 ];
 
 foreach ( $group_titles as $title ) {
@@ -40,7 +40,6 @@ foreach ( $group_titles as $title ) {
             ;
             $formulaires[] = $groupInfo;
         }
-        
     }
 }
 
@@ -142,7 +141,7 @@ if (isset($_GET['p'])) {
                     'level' => 4,
                 ]);
                 ?>
-                <div class="formulaire-detail">Statue: <?php echo $status ?></div>
+                <div class="formulaire-detail">Statut: <?php echo $status ?></div>
                 <div class="formulaire-detail">Créé le <?php echo $modified_date ?></div>
                 <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
             </div>
@@ -197,13 +196,15 @@ if (isset($_GET['p'])) {
             
             // récupérer tous les champs du groupe de champs ACF
             $group_fields = acf_get_fields($key);
+            
             // Vérification si les champs obligatoires sont remplis
             foreach ($group_fields as $field) {
-                if ( (!array_key_exists($field['name'], $fields) || empty($fields[$field['name']]['value'])) && $field['required'] == 1 &&
-                    $field['conditional_logic'] ==
-                    0) {
-                    $fiche_complete = false;
-                    break;
+                if ($field['required'] == 1 && $field['name'] != '_validate_email'){
+                   $field_group = acf_get_field_group($field['parent'])['title'];
+                    if (!get_post_meta(get_the_ID(),$field_group)){
+                        $fiche_complete = false;
+                        break;
+                    }
                 }
             }
         }
@@ -311,8 +312,8 @@ if (isset($_GET['p'])) {
                     'level' => 4,
                 ]);
                 ?>
-                <div class="formulaire-detail">Statue: <?php echo $status ?></div>
-                <div class="formulaire-detail">Créé le <?php echo get_the_date() ?></div>
+                <div class="formulaire-detail">Statut: <?php echo $status ?></div>
+                <div class="formulaire-detail">Créé le <?php echo $modified_date ?></div>
                 <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
             </div>
             <?php
