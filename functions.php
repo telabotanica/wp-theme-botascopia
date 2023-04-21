@@ -391,7 +391,7 @@ function getFiches($id)
 			'connected_type' => 'collection_to_post',
 			'connected_items' => $id,
 			'nopaging' => true,
-			'post_status' => array('publish', 'draft', 'pending'),
+			'post_status' => array('publish', 'draft', 'pending', 'private'),
 		));
 	if ($connected_posts->have_posts()) :
 		while ($connected_posts->have_posts()) : $connected_posts->the_post();

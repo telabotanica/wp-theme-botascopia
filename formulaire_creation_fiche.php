@@ -90,6 +90,7 @@ if (isset($_GET['p'])) {
     $auteur_id = get_the_author_meta('ID');
     $auteur_name = get_the_author_meta('display_name', $auteur_id);
     $date = get_the_date();
+    $modified_date = get_the_modified_date();
     
     switch (get_post_status()){
         case 'draft':
@@ -140,7 +141,7 @@ if (isset($_GET['p'])) {
                 ]);
                 ?>
                 <div class="formulaire-detail">Statue: <?php echo $status ?></div>
-                <div class="formulaire-detail">Créé le <?php echo get_the_date() ?></div>
+                <div class="formulaire-detail">Créé le <?php echo $modified_date ?></div>
                 <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
             </div>
             <?php
