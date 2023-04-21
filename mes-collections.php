@@ -27,7 +27,7 @@ get_header();
 			$role = '';
 			$displayName = '';
 		endif;
-		$posts = getCollectionPosts('any');
+		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private']);
 		
 		the_botascopia_module('cover', [
 			'subtitle' => $role,
@@ -168,10 +168,16 @@ get_header();
 						if (get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search
 							($post['id'], $existingFavorites[0])) !== false) {
 							
+							if ($post['status'] == 'private' && $current_user->ID != $post['author']){
+								$nbFiches = 'x';
+							} else {
+								$nbFiches = $post['nbFiches'];
+							}
+
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
 								'name' => $post['name'],
-								'nbFiches' => $post['nbFiches'],
+								'nbFiches' => $nbFiches,
 								'description' => $post['description'],
 								'category' => $post['id'],
 								'icon' => $post['icon'],
@@ -197,10 +203,16 @@ get_header();
 					foreach ($posts as $post) {
 						if (( !$post['completed'] || $post['status'] != 'publish')) {
 							
+							if ($post['status'] == 'private' && $current_user->ID != $post['author']){
+								$nbFiches = 'x';
+							} else {
+								$nbFiches = $post['nbFiches'];
+							}
+							
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
 								'name' => $post['name'],
-								'nbFiches' => $post['nbFiches'],
+								'nbFiches' => $nbFiches,
 								'description' => $post['description'],
 								'category' => $post['id'],
 								'icon' => $post['icon'],
@@ -239,6 +251,7 @@ get_header();
 							]);
 						}
 					}
+					/*
 					if ( !$completedCollection) {
 						echo('
                             <div>
@@ -252,7 +265,7 @@ get_header();
 							'text' => 'Créer une collection',
 							'modifiers' => 'green-button',
 						]);
-					}
+					}*/
 					endif;
 					?>
 				</div>

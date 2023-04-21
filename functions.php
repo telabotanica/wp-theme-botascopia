@@ -289,6 +289,7 @@ function custom_post_type() {
 add_action( 'init', 'custom_post_type' );
 
 // Template pour les post de type 'collection'
+
 add_filter( 'template_include', 'collection_template_include' );
 function collection_template_include( $template ) {
 
@@ -315,7 +316,6 @@ function custom_post_template($single) {
 	return $single;
 }
 add_filter('single_template', 'custom_post_template');
-
 
 // AJout de catégories pour le post type collection
 function custom_taxonomy() {
@@ -391,7 +391,7 @@ function getFiches($id)
 			'connected_type' => 'collection_to_post',
 			'connected_items' => $id,
 			'nopaging' => true,
-			'post_status' => array('publish', 'draft', 'pending'),
+			'post_status' => array('publish', 'draft', 'pending', 'private'),
 		));
 	if ($connected_posts->have_posts()) :
 		while ($connected_posts->have_posts()) : $connected_posts->the_post();
@@ -469,6 +469,7 @@ function reserver_fiche() {
 	wp_update_post(array('ID' => $ficheId, 'post_author' => $userId));
 	wp_die();
 }
+
 add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
 
 function affichageImageFiche($photo){
@@ -497,3 +498,22 @@ function set_fiche_status() {
 	
 	die();
 }
+
+// Les pages utilisant le template mes-collections ne sont plus visible dans le menu de navigation si l'utilisateur
+// n'est pas connecté
+function custom_nav_menu_items($items, $args) {
+	// Vérifiez si l'utilisateur est connecté
+	if (is_user_logged_in()) {
+		// Si l'utilisateur est connecté, affichez tous les éléments de menu normalement
+		return $items;
+	} else {
+		// Sinon, supprimez les pages ayant le template "Mes Collections" du menu de navigation
+		foreach ($items as $key => $item) {
+			if (get_page_template_slug($item->object_id) == 'mes-collections.php') {
+				unset($items[$key]);
+			}
+		}
+		return $items;
+	}
+}
+add_filter('wp_nav_menu_objects', 'custom_nav_menu_items', 10, 2);

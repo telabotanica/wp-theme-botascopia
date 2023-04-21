@@ -136,9 +136,9 @@ function popupReserverFiche(){
             var user_id = this.getAttribute('data-user-id');
             var ficheId = this.getAttribute('data-fiche-id');
             var ficheName = this.getAttribute('data-fiche-name');
-            var ficheUrl = this.getAttribute('data-fiche-url');
+            var ficheTitle = this.getAttribute('data-fiche-title');
 
-            // Créer un élément de div pour afficher le contenu du popup
+// Créer un élément de div pour afficher le contenu du popup
             var popupContenu = document.createElement(`div`);
             popupContenu.innerHTML = "<h2>Réserver la fiche " + ficheName + "</h2>" +
                 "<p>Cette fiche est disponible, vous pouvez indiquer que vous commencez à travailler dessus, pour" +
@@ -166,10 +166,11 @@ function popupReserverFiche(){
                 var reserver = document.getElementById('reserver-fiche');
                 var annuler = document.getElementById('annuler');
                 if ( event.target == reserver) {
-                    reserverFiche(ficheId, user_id);
                     popup.parentNode.removeChild(popup);
                     document.querySelector('#content').classList.remove('blur-background');
-                    //TODO Effectuer la redirection vers le formulaire
+
+                    // Renvoie vers le formulaire et changement de propriétaire
+                    window.location.href = '/formulaire/?p=' + ficheTitle + '&a=1';
                 }
                 if (event.target.classList.contains('blur-background') || event.target == annuler) {
                     popup.parentNode.removeChild(popup);
@@ -178,31 +179,6 @@ function popupReserverFiche(){
             });
         })
     })
-}
-
-function reserverFiche(ficheId, userId){
-// Mettre à jour les données de la fiche dans la base de données
-
-    // Définit la variable ajaxurl en utilisant mon_ajax_object.ajax_url
-    var ajaxurl = ajax_object.ajax_url;
-
-    // Envoi de la requête AJAX pour mettre à jour la valeur du post
-    var xhr = new XMLHttpRequest();
-    // console.log('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Si succès,
-               console.log('changement de propriétaire de la fiche ' + ficheId);
-            } else {
-                console.log('Erreur : ' + xhr.status);
-            }
-        }
-    };
-
-    xhr.open('POST', ajaxurl);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
 }
 
 function envoyerFicheEnValidation(){

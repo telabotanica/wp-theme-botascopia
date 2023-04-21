@@ -47,7 +47,7 @@ get_header();
 		
 		switch ($post->post_status){
 			case 'draft':
-				$status = 'A complété';
+				$status = 'À compléter';
 				break;
 			case 'pending':
 				$status = 'En cours de validation';
