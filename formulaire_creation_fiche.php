@@ -430,7 +430,7 @@ if (isset($_GET['p'])) {
             'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1'"]
         ]);
         */
-        echo "Vous n'êtes pas l'auteur de cette fiche";
+//        echo "Vous n'êtes pas l'auteur de cette fiche";
     }
 } else {
     echo "URL inexistante, vérifier celui de la fiche recherchée";
