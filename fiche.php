@@ -651,8 +651,7 @@ get_header();
 					<?php
 					// Si une image est enregistrée on l'affiche
 					if (isset($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"])){
-						$image = wp_get_attachment_image_src( $fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"], 'thumbnail' )[0];
-						echo ('<img src="'.esc_url( $image ).'" class="image-tige" height="275px" width="275px">');
+						affichageImageFiche($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"]);
 					}
 					
 					?>
@@ -685,9 +684,25 @@ get_header();
 							<?php } else: { ?>
 								<?php
 								if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
-									$perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
+									$perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' .
+										$fleur_femelle['soudure_du_perigone'] . ' ; ';
 								} else {
-									$perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_femelle['corolle']) . ' pétale(s) ' . $fleur_femelle['soudure_de_la_corolle'] . ' ; ' .
+									if (getType($fleur_femelle['soudure_de_la_corolle']) == 'string'){
+										$soudure_corolle = $fleur_femelle['soudure_de_la_corolle'];
+									} else {
+										$soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle']);
+									}
+									
+									if (getType($fleur_femelle['corolle']) == 'string'){
+										$corolle = $fleur_femelle['corolle'];
+									} else {
+										$corolle = implode(' ou ', $fleur_femelle['corolle']);
+									}
+									
+									$perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' .
+										$fleur_femelle['soudure_du_calice'] . ' et ' .
+										$corolle . ' pétale(s) ' . $soudure_corolle
+										. ' ; ' .
 										('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
 								}
 								?>
@@ -711,7 +726,7 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle'])){
+					if (isset($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']) && $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']){
 						affichageImageFiche($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']);
 					}
 					?>
