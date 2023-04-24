@@ -250,14 +250,12 @@ get_header();
 							
 							// Différent lien selon le statut de la fiche et l'utilisateur
 							if (is_user_logged_in()) {
-								if ($current_user_role == 'contributor' && $status == 'draft' &&
-									$current_user_id == $fiche_author_id) {
+								if (($current_user_role == 'contributor' && $status == 'draft' &&
+									$current_user_id == $fiche_author_id) ||
+									$current_user_role == 'administrator' ||
+									($current_user_role == 'editor' && $status == 'pending')) {
 									$href = '/formulaire/?p='.get_the_title();
-								} elseif ($current_user_role == 'editor' && $status == 'pending') {
-									//TODO ouvrir un popup demandant de devenir vérificateur et renvoyer vers le
-									// formulaire
-									$href = '/formulaire/?p='.get_the_title();
-								} elseif ($status == 'publish' || $current_user_role == 'administrator') {
+								} elseif ($status == 'publish') {
 									$href = get_permalink();
 								} else {
 									$href = '#';

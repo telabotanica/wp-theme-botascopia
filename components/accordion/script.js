@@ -12,7 +12,7 @@ $(function () {
             $('#bouton-toutdeplier').attr('accordion-status', '1');
             $('#bouton-toutdeplier span').text('Tout replier');
             $('.formulaire-field-status svg use').attr("xlink:href", "#icon-angle-up");
-            $('.formulaire-field-status svg').toggleClass('icon-angle-down icon-angle-up');
+            // $('.formulaire-field-status svg').toggleClass('icon-angle-down icon-angle-up');
 
         } else {
             $('.js-accordion__header').attr('aria-expanded', 'false');
@@ -20,7 +20,7 @@ $(function () {
             $('#bouton-toutdeplier').attr('accordion-status', '0');
             $('#bouton-toutdeplier span').text('Tout déplier');
             $('.formulaire-field-status svg use').attr("xlink:href", "#icon-angle-down");
-            $('.formulaire-field-status svg').toggleClass('icon-angle-down icon-angle-up');
+            // $('.formulaire-field-status svg').toggleClass('icon-angle-down icon-angle-up');
         }
         $('#bouton-toutdeplier').toggleClass('outline');
     }

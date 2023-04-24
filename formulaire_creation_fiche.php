@@ -24,7 +24,7 @@ $group_titles = [
     "Ne pas confondre avec",
     "Description vulgarisée",
     "Références",
-    "Logos",
+//    "Logos",
 //    "Taxonomie"
 ];
 
@@ -87,6 +87,8 @@ if (isset($_GET['p'])) {
     // $current_user = wp_get_current_user();
     $utilisateur = get_current_user_id();
     $auteur_id = get_the_author_meta('ID');
+    $auteur = get_userdata($auteur_id);
+    $auteur_role = $auteur->roles;
     $auteur_name = get_the_author_meta('display_name', $auteur_id);
     $date = get_the_date();
     $modified_date = get_the_modified_date();
@@ -115,7 +117,7 @@ if (isset($_GET['p'])) {
     
     if ($utilisateur !== 0) {
         // si l'auteur du post n'est pas l'admin des fiches
-        if ($auteur_id !== $utilisateur && $auteur_id == "3" && isset($_GET['a']) && $_GET['a'] == "1") {
+        if ($auteur_id !== $utilisateur && $auteur_role[0] != 'contributor' && isset($_GET['a']) && $_GET['a'] == "1") {
                 wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
                 $auteur_autorise = true;
         } else if ($auteur_id === $utilisateur) {
@@ -419,6 +421,7 @@ if (isset($_GET['p'])) {
             <?php
         }
     } else {
+        /*
         the_botascopia_module('button',[
             'tag' => 'button',
             'title' => 'Devenir auteur',
@@ -426,7 +429,7 @@ if (isset($_GET['p'])) {
             'modifiers' => 'green-button',
             'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1'"]
         ]);
-        
+        */
         echo "Vous n'êtes pas l'auteur de cette fiche";
     }
 } else {

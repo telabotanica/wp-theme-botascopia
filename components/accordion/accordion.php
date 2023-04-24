@@ -97,7 +97,7 @@
 		'title' => $text,
 		'text' => $text,
 		'modifiers' => $button.' formulaire-field-status',
-		'icon_after' => ['icon' => 'angle-down', 'color' => 'blanc'],
+//		'icon_after' => ['icon' => 'angle-down', 'color' => 'blanc'],
 		'extra_attributes' => ['id' => 'bouton-status-'.$data->modifiers['id']]
 	]);
 	
