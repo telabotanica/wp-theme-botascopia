@@ -24,7 +24,7 @@
                     "name": "photo_de_la_plante_entiere",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSur la photo, la plante doit être entière autant que possible (ou un rameau), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur dans \"Légende\" !<\/B>",
+                    "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSur la photo, la plante doit être entière autant que possible (ou un rameau), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -448,7 +448,7 @@
                             "name": "photo_tige",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la tige et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la tige et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -880,7 +880,15 @@
                     "type": "text",
                     "instructions": "Si les feuilles ne sont pas visibles, vous pouvez ajouter des précisions sous forme de phrase avec une majsucule au début et un point à la fin.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304d8aeb94a2",
+                                "operator": "==",
+                                "value": "jamais visibles"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -1019,7 +1027,7 @@
                             "name": "photo_de_feuilles_aeriennes",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -1523,31 +1531,6 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
-                },
-                {
-                    "key": "field_642ecaaea88d2",
-                    "label": "Pubescence du limbe",
-                    "name": "pubescence_du_limbe",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "pubescent": "pubescent",
-                        "glabre": "glabre"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 }
             ]
         },
@@ -1602,7 +1585,7 @@
                             "name": "photo_de_feuilles_immergees",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -2106,31 +2089,6 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
-                },
-                {
-                    "key": "field_642ecae7a88d3",
-                    "label": "Pubescence du limbe",
-                    "name": "pubescence_du_limbe",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "pubescent": "pubescent",
-                        "glabre": "glabre"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 }
             ]
         },
@@ -2185,7 +2143,7 @@
                             "name": "photo_de_feuilles_des_rameaux_steriles",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -2689,31 +2647,6 @@
                     "other_choice": 0,
                     "layout": "",
                     "save_other_choice": 0
-                },
-                {
-                    "key": "field_642ecafda88d4",
-                    "label": "Pubescence du limbe",
-                    "name": "pubescence_du_limbe",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "pubescent": "pubescent",
-                        "glabre": "glabre"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 }
             ]
         },
@@ -2768,7 +2701,7 @@
                             "name": "photo_de_feuilles_des_rameaux_fleuris",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -3272,31 +3205,6 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
-                },
-                {
-                    "key": "field_642ecb14a88d5",
-                    "label": "Pubescence du limbe",
-                    "name": "pubescence_du_limbe",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "pubescent": "pubescent",
-                        "glabre": "glabre"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 }
             ]
         },
@@ -3405,7 +3313,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": 180,
+                    "maxlength": 100,
                     "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules, un épi d'épillets, une panicule de corymbes",
                     "prepend": "",
                     "append": ""
@@ -3500,7 +3408,7 @@
                             "name": "photo_de_fleur_bisexuee",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -3719,6 +3627,13 @@
                                 "operator": "==",
                                 "value": "sépales et pétales"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -3750,10 +3665,10 @@
                         "n>20": "n>20"
                     },
                     "default_value": [],
-                    "allow_null": 0,
-                    "multiple": 1,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
                 },
@@ -3771,6 +3686,18 @@
                                 "field": "field_63108612cce38",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6310864dcce39",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "sépales"
                             },
                             {
                                 "field": "field_6310864dcce39",
@@ -3811,6 +3738,13 @@
                                 "field": "field_63108612cce38",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "pétales"
                             }
                         ]
                     ],
@@ -3864,6 +3798,18 @@
                                 "field": "field_63108612cce38",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6310872ecce3c",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "pétales"
                             },
                             {
                                 "field": "field_6310872ecce3c",
@@ -4110,6 +4056,13 @@
                                 "field": "field_63108612cce38",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63108612cce38",
+                                "operator": "==",
+                                "value": "pétales"
                             }
                         ]
                     ],
@@ -4499,7 +4452,7 @@
                             "name": "photo_de_fleur_male",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -4507,8 +4460,8 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "",
-                            "library": "",
+                            "return_format": "array",
+                            "library": "all",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -4670,7 +4623,7 @@
                 },
                 {
                     "key": "field_6304f10bbe18c",
-                    "label": "Différenciation du périanthe",
+                    "label": "Composition du périanthe",
                     "name": "differenciation_du_perianthe",
                     "aria-label": "",
                     "type": "radio",
@@ -4692,13 +4645,15 @@
                     },
                     "choices": {
                         "tépales": "tépales",
+                        "sépales": "sépales",
+                        "pétales": "pétales",
                         "sépales et pétales": "sépales et pétales"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -4715,6 +4670,13 @@
                                 "field": "field_6304f10bbe18c",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales"
                             }
                         ]
                     ],
@@ -4774,6 +4736,18 @@
                                 "operator": "!=",
                                 "value": "1"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "sépales"
+                            },
+                            {
+                                "field": "field_6304f178be18d",
+                                "operator": "!=",
+                                "value": "1"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -4787,11 +4761,11 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -4808,6 +4782,13 @@
                                 "field": "field_6304f10bbe18c",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "pétales"
                             }
                         ]
                     ],
@@ -5063,6 +5044,13 @@
                                 "operator": "==",
                                 "value": "sépales et pétales"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "pétales"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -5074,11 +5062,11 @@
                         "soudées à la corolle": "soudées à la corolle",
                         "non soudées à la corolle": "non soudées à la corolle"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5352,7 +5340,7 @@
                             "name": "photo_de_fleur_femelle",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien la fleur ou l'inflorescence suivant ce qui vous parait le plus opportun, avec les caractères particuliers mis en évidence (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (sans fleur femelle si possible, isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -5523,7 +5511,7 @@
                 },
                 {
                     "key": "field_63075ab5ecd71",
-                    "label": "Différenciation du périanthe",
+                    "label": "Composition du périanthe",
                     "name": "differenciation_du_perianthe",
                     "aria-label": "",
                     "type": "radio",
@@ -5545,13 +5533,15 @@
                     },
                     "choices": {
                         "tépales": "tépales",
+                        "sépales": "sépales",
+                        "pétales": "pétales",
                         "sépales et pétales": "sépales et pétales"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5568,6 +5558,13 @@
                                 "field": "field_63075ab5ecd71",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales"
                             }
                         ]
                     ],
@@ -5627,6 +5624,18 @@
                                 "operator": "!=",
                                 "value": "1"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "sépales"
+                            },
+                            {
+                                "field": "field_63075ae3ecd72",
+                                "operator": "!=",
+                                "value": "1"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -5640,11 +5649,11 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5661,6 +5670,13 @@
                                 "field": "field_63075ab5ecd71",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "pétales"
                             }
                         ]
                     ],
@@ -5720,6 +5736,18 @@
                                 "operator": "!=",
                                 "value": "1"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_63075ab5ecd71",
+                                "operator": "==",
+                                "value": "pétales"
+                            },
+                            {
+                                "field": "field_63075bd9ecd75",
+                                "operator": "!=",
+                                "value": "1"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -5733,11 +5761,11 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -6123,7 +6151,7 @@
                             "name": "photo",
                             "aria-label": "",
                             "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien le fruit et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>\r\n<B> N'oubliez pas de remplir le nom de l'auteur  dans \"Légende\" !<\/B>",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\n Sélectionnez une photo où on voit bien le fruit et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -6282,5 +6310,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1681998203
+    "modified": 1682337983
 }

@@ -68,7 +68,15 @@
             "type": "select",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073315d174c",
+                        "operator": "==",
+                        "value": "à l'état sauvage"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -79,7 +87,7 @@
                 "Tela Botanica": "Tela Botanica"
             },
             "default_value": false,
-            "return_format": "",
+            "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
             "ui": 0,
@@ -94,7 +102,15 @@
             "type": "date_picker",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073315d174c",
+                        "operator": "==",
+                        "value": "à l'état sauvage"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -220,5 +236,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1680876531
+    "modified": 1682335777
 }
