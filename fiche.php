@@ -640,7 +640,7 @@ get_header();
 									<?php if ('pubescente' === $fleur_male['pubescence']) {
 										echo "La fleur est ".$fleur_male['pubescence'];?>
 										<?php if (!empty($fleur_male['localisation_des_poils'])) {
-											echo ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
+											echo ' sur '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
 										else { echo '.'; }}?>
 									<?php echo $fleur_male['autre_caractere'];
 								} ?>
@@ -716,7 +716,7 @@ get_header();
 								<?php if ('pubescente' === $fleur_femelle['pubescence']) {
 									echo "La fleur est ".$fleur_femelle['pubescence'];?>
 									<?php if (!empty($fleur_femelle['localisation_des_poils'])) {
-										echo ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
+										echo ' sur '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
 									else { echo '.'; }}?>
 								<?php echo $fleur_femelle['autre_caractere'];
 							}?>
@@ -786,7 +786,7 @@ get_header();
 								<?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
 									echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
 									<?php if (!empty($fleur_bisexuee['localisation_des_poils'])) {
-										echo ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
+										echo ' sur '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
 									else { echo '.'; }}?>
 								<?php echo $fleur_bisexuee['autre_caractere'];?>
 							</p>
