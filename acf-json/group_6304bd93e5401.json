@@ -49,7 +49,7 @@
                     "name": "auteur_de_la_photo",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Entrer ici le prénom et Nom de l'auteur, en oubliant pas les majuscules et sans poins ni virgule à la fin\r\nex : Maris Portas",
+                    "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -59,7 +59,7 @@
                     },
                     "default_value": "",
                     "maxlength": 35,
-                    "placeholder": "Maris Portas",
+                    "placeholder": "Prénom Nom",
                     "prepend": "",
                     "append": ""
                 },
@@ -78,8 +78,11 @@
                         "id": ""
                     },
                     "choices": {
-                        "CC-by-SA": "CC-by-SA",
-                        "domaine publique": "domaine publique"
+                        "CC-BY-SA": "CC-BY-SA",
+                        "CC-BY": "CC-BY",
+                        "CC0": "CC0",
+                        "Domaine public": "Domaine public",
+                        "Autre licence libre": "Autre licence libre"
                     },
                     "default_value": false,
                     "return_format": "value",
@@ -457,7 +460,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -473,7 +476,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -483,7 +486,7 @@
                             },
                             "default_value": "",
                             "maxlength": 35,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -502,8 +505,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -975,7 +981,7 @@
             "name": "feuilles_aeriennes",
             "aria-label": "",
             "type": "group",
-            "instructions": "Dans le cas où toutes les feuilles sont semblables, c'est ici que vous les décrivez. Si vous avez choisis \"gradient de forme\" alors décrivez ici les feuilles de la base seulement.",
+            "instructions": "Dans le cas où toutes les feuilles sont semblables, c'est ici que vous les décrivez. Si vous avez choisi \"gradient de forme\" alors décrivez ici les feuilles de la base seulement.",
             "required": 0,
             "conditional_logic": [
                 [
@@ -1036,7 +1042,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -1052,7 +1058,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -1062,7 +1068,7 @@
                             },
                             "default_value": "",
                             "maxlength": 35,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -1081,8 +1087,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -1577,7 +1586,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "",
+                    "layout": "block",
                     "sub_fields": [
                         {
                             "key": "field_634e48ca9ffed",
@@ -1594,7 +1603,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -1610,7 +1619,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -1620,7 +1629,7 @@
                             },
                             "default_value": "",
                             "maxlength": 35,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -1639,8 +1648,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -2135,7 +2147,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "",
+                    "layout": "block",
                     "sub_fields": [
                         {
                             "key": "field_634e49d148010",
@@ -2152,7 +2164,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -2168,7 +2180,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -2178,7 +2190,7 @@
                             },
                             "default_value": "",
                             "maxlength": 35,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -2197,8 +2209,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -2710,7 +2725,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -2726,7 +2741,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -2736,7 +2751,7 @@
                             },
                             "default_value": "",
                             "maxlength": 35,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -2755,8 +2770,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -3417,7 +3435,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -3433,7 +3451,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -3443,7 +3461,7 @@
                             },
                             "default_value": "",
                             "maxlength": 50,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -4461,7 +4479,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -4477,7 +4495,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -4487,7 +4505,7 @@
                             },
                             "default_value": "",
                             "maxlength": 50,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -4506,8 +4524,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -5365,7 +5386,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -5375,7 +5396,7 @@
                             },
                             "default_value": "",
                             "maxlength": 50,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -5394,8 +5415,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -6160,7 +6184,7 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "library": "all",
+                            "library": "uploadedTo",
                             "min_width": 600,
                             "min_height": 600,
                             "min_size": "",
@@ -6176,7 +6200,7 @@
                             "name": "auteur_de_la_photo",
                             "aria-label": "",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Entrez ici le prénom et nom de l'auteur, en n'oubliant pas les majuscules et sans point ni virgule à la fin ex : Prénom Nom",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -6186,7 +6210,7 @@
                             },
                             "default_value": "",
                             "maxlength": 50,
-                            "placeholder": "",
+                            "placeholder": "Prénom Nom",
                             "prepend": "",
                             "append": ""
                         },
@@ -6205,8 +6229,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -6310,5 +6337,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1682337983
+    "modified": 1682357419
 }
