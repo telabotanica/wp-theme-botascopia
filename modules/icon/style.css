@@ -1,0 +1,25 @@
+.icon {
+  height: 1.6rem;
+  width: 1.6rem;
+  margin: 0 10px -2px 10px;
+  vertical-align: middle;
+  display: inline-block;
+  /*padding-top: 5px;*/
+  /*display: block;*/
+}
+
+.icon-color-orange {
+  fill: var(--orange);
+}
+
+.icon-color-vert-clair {
+  fill: var(--vert-clair);
+}
+
+.icon-color-blanc {
+  fill: var(--blanc);
+}
+
+.icon-color-violet {
+  fill: var(--violet);
+}

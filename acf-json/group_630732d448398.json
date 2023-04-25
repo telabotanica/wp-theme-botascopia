@@ -51,14 +51,74 @@
             },
             "return_format": "array",
             "library": "all",
-            "min_width": "",
-            "min_height": "",
+            "min_width": 600,
+            "min_height": 600,
             "min_size": "",
             "max_width": "",
             "max_height": "",
             "max_size": "",
             "mime_types": "",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_643022d2d2ff4",
+            "label": "Source de la carte",
+            "name": "source_de_la_carte",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073315d174c",
+                        "operator": "==",
+                        "value": "à l'état sauvage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "OpenObs": "OpenObs",
+                "Tela Botanica": "Tela Botanica"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6430237ed2ff5",
+            "label": "Date d'export de la carte",
+            "name": "date_dexport_de_la_carte",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073315d174c",
+                        "operator": "==",
+                        "value": "à l'état sauvage"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d\/m\/Y",
+            "return_format": "d\/m\/Y",
+            "first_day": 1
         },
         {
             "key": "field_6307354ad174e",
@@ -156,18 +216,6 @@
                 "value": "category:bdtfx"
             },
             {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "administrator"
-            }
-        ],
-        [
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:bdtfx"
-            },
-            {
                 "param": "current_user",
                 "operator": "==",
                 "value": "logged_in"
@@ -188,5 +236,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675069367
+    "modified": 1682335777
 }

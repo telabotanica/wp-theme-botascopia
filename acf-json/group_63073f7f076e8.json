@@ -8,7 +8,7 @@
             "name": "complement_danecdote",
             "aria-label": "",
             "type": "text",
-            "instructions": "Ceci est champs libre non limité en place pour y ajouter les anecdotes sur la plante décrite que vous n'auriez pas pu ajouter dans le premier champ anecdote.",
+            "instructions": "Ceci est un champ libre non limité en place pour y ajouter les anecdotes sur la plante décrite que vous n'auriez pas pu ajouter dans le premier champ anecdote.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,25 +17,13 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         }
     ],
     "location": [
-        [
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:bdtfx"
-            },
-            {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "administrator"
-            }
-        ],
         [
             {
                 "param": "post_category",
@@ -63,5 +51,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675069396
+    "modified": 1682354037
 }

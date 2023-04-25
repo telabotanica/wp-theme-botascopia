@@ -1,0 +1,96 @@
+html {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+::selection {
+    background: rgba(178, 203, 67, 0.4);
+    color: inherit;
+    text-shadow: inherit;
+}
+
+img::selection {
+    background: transparent;
+}
+
+body {
+    color: var(--noir-d34);
+    font-family: "Muli", sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 2.4rem;
+    margin: 0 auto;
+    background-color: var(--rose-pale);
+}
+
+/*body.post-type-page {*/
+/*    max-width: 62rem;*/
+/*}*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 32px;
+    color: var(--noir-e35);
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 15px;
+}
+
+p {
+    margin: 0 0 2rem;
+}
+
+a {
+    color: var(--turquoise-fonce);
+    font-weight: normal;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+#primary{
+    height: 100%;
+    background-color: var(--rose-pale);
+    position: relative;
+}
+
+.bg-fill{
+    height: 100%;
+    right: 0;
+    top: 0;
+    left: calc(20vw + 275px);
+    position: absolute;
+    background-color: var(--blanc);
+}
+
+/* Définie le container principal */
+#main{
+    width: 60vw;
+    margin: 0 auto;
+    background-color: var(--rose-pale);
+}

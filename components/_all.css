@@ -1,0 +1,7 @@
+@import "buttons/style.css";
+@import "title/style.css";
+@import "accordion/style.css";
+
+.component + .component {
+  margin-top: 3rem;
+}

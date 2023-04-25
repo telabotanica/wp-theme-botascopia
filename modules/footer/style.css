@@ -1,0 +1,194 @@
+.footer {
+    /*border-top: 1rem solid rgba(145, 138, 111, 0.2);*/
+    background-color: var(--rose-pale);
+    margin-top: 10px;
+    height: 400px;
+}
+
+.footer-layout{
+    position: relative;
+    display: flex;
+    height: 100%;
+}
+
+.footer-nav-plan {
+    position: relative;
+    background-color: rgba(240, 240, 240, 0.5);
+    padding: 3.5rem 0;
+    margin: 0;
+    left: 20vw;
+}
+
+.footer-nav-plan > div > ul{
+    display: flex;
+    flex-direction: column;
+    max-height: 275px;
+    /*max-width: 500px;*/
+    /*align-items: flex-start;*/
+    flex-wrap: wrap;
+}
+
+.footer-nav-plan > div > ul > li{
+    max-height: 250px;
+    padding-top: 10px;
+}
+
+.footer-logos{
+    position: absolute;
+    bottom: 100px;
+    right: 30px;
+    align-items: center;
+    display: flex;
+}
+
+.footer-logo-tela{
+    height: 75px;
+    padding-right: 20px;
+}
+
+.footer-logo-saclay{
+    position: relative;
+    height: 75px;
+    /*border-left: 1px solid black;*/
+    padding-left: 20px;
+}
+
+.footer-logo-saclay::after{
+    content: "";
+    height: 30px;
+    width: 1px;
+    background: var(--noir);
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    z-index: 500000;
+}
+
+.footer-nav-bar {
+    height: 50px;
+    background-color: var(--gris-33);
+    letter-spacing: 0.1rem;
+    padding: 0 0.5rem;
+    position: relative;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-about-tela {
+    width: 260px;
+    height: 100%;
+    left: 20vw;
+    position: relative;
+}
+
+.footer-about-tela-details{
+    position: absolute;
+    bottom: 105px;
+}
+
+.footer-about-botascopia-logo {
+    position: absolute;
+    top: 50px;
+}
+
+.footer-about-botascopia-logo img {
+    width: 260px;
+    height: 125px;
+}
+
+.footer-nav-toggle {
+    display: none;
+}
+
+
+
+.footer-nav-items {
+    font-size: 1.4rem;
+    line-height: 2;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav-items a {
+    border-bottom: 0.1rem solid transparent;
+    text-decoration: none;
+    transition: border 0.2s ease;
+}
+
+.footer-nav-items a:hover {
+    border-bottom: 0.1rem solid;
+}
+
+/*.footer-nav-items > .menu-item + .menu-item {*/
+/*    margin-top: 2rem;*/
+/*}*/
+
+.footer-nav-items > .menu-item > a {
+    color: var(--violet);
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+.footer-nav-items > .menu-item:nth-child(1), .footer-nav-items > .menu-item:nth-child(2), .footer-nav-items > .menu-item:nth-child(3) {
+    height: 100%;
+    min-width: 200px;
+    position: relative;
+}
+
+.footer-nav-items .sub-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav-items .sub-menu a {
+    color: var(--gris-33);
+    font-family: "Ubuntu-light", sans-serif;
+    font-size: 14px;
+}
+
+.footer-nav-items .sub-menu .menu-item-more {
+    color: var(--vert-fonce);
+    fill: var(--vert-fonce);
+    white-space: nowrap;
+}
+
+.footer-nav-items .sub-menu .menu-item-more a {
+    color: inherit;
+    font-family: "Ubuntu-light", sans-serif;
+}
+
+.footer-nav-items .sub-menu .menu-item-more .icon {
+    height: 1rem;
+    margin-left: 0.6rem;
+    vertical-align: middle;
+    width: 1rem;
+}
+
+.footer-nav-bar-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.footer-nav-bar-items .menu-item {
+    display: inline-block;
+}
+
+.footer-nav-bar a {
+    color: var(--gris-b3);
+    fill: var(--gris-b3);
+    padding: 0 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease, fill 0.2s ease;
+}
+
+.footer-nav-bar a:hover {
+    color: var(--gris-f0);
+    fill: var(--gris-f0);
+}

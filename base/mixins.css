@@ -1,0 +1,108 @@
+:root {
+    --small-page-padding: 20px;
+    --large-min: calc(var(--layout-wrapper-width) + calc(var(--small-page-padding) * 2));
+    --medium-min: 768px;
+    --medium-max: calc(var(--large-min) - 0.1px);
+    --small-max: calc(var(--medium-min) - 0.1px);
+}
+
+/* Reset list (ul or ol)*/
+@mixin reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide elements accessibly*/
+/* based on the last method described at*/
+/* http://snook.ca/archives/html_and_css/hiding-content-for-accessibility*/
+@mixin hidden-accessibly {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    /* many screen reader and browser combinations announce*/
+    /* broken words as they would appear visually*/
+    word-wrap: normal !important;
+}
+
+.hidden-accessibly,
+.screen-reader-text {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+@media (max-width: var(--small-max)) {
+    .hidden-on-small {
+        display: none !important;
+    }
+}
+
+.only-on-small {
+    display: none !important;
+}
+
+@media (max-width: var(--small-max)) {
+    .only-on-small {
+        display: block !important;
+    }
+}
+
+@mixin large {
+    @media (min-width: var(--large-min)) {
+        @content;
+    }
+}
+@mixin large {
+    @media (min-width: var(--large-min)) {
+        @content;
+    }
+}
+
+
+@mixin medium {
+    @media (min-width: var(--medium-min)) and (max-width: var(--medium-max)) {
+        @content;
+    }
+}
+
+@mixin large-and-medium {
+    @media (min-width: var(--medium-min)) {
+        @content;
+    }
+}
+
+@mixin small {
+    @media (max-width: var(--small-max)) {
+        @content;
+    }
+}
+
+@mixin only-on-small {
+    .only-on-small {
+        display: none !important;
+    }
+
+    @include small {
+        display: block !important;
+    }
+}
+
+@mixin hidden-on-small {
+    @include small {
+        display: none !important;
+    }
+}
+
+@mixin medium-and-small {
+    @media (max-width: var(--medium-max)) {
+        @content;
+    }
+}

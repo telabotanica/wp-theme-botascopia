@@ -1,0 +1,84 @@
+.categories {
+    font-family: "Ubuntu", sans-serif;
+}
+
+.categories-items, .categories-subitems {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.categories-item.is-active .categories-item-link::before, .categories-item .categories-item-link:hover::before, .categories-item .categories-item-link:focus::before {
+    content: "▶";
+    display: block;
+    font-size: 1rem;
+    line-height: 2rem;
+    margin-left: -2rem;
+    position: absolute;
+}
+
+.categories-item {
+    border-bottom: 0.1rem solid var(--gris-dd);
+}
+
+.categories-item.is-active .categories-item-link {
+    color: var(--gris-23);
+    fill: var(--gris-23);
+}
+
+.categories-item.is-active .categories-item-link::before {
+    color: var(--vert-clair);
+}
+
+.categories-item-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+}
+
+.categories-item-title .icon {
+    margin-right: 0.5rem;
+    vertical-align: top;
+    transform: translateY(0.2rem);
+    width: 1.8rem;
+}
+
+.categories-item-link {
+    color: var(--marron-gris);
+    fill: var(--marron-gris);
+    text-decoration: none;
+}
+
+.categories-item-link:hover::before, .categories-item-link:focus::before {
+    color: var(--taupe);
+}
+
+.categories-subitems {
+    padding-bottom: 2rem;
+}
+
+.categories-subitem.is-active .categories-subitem-link {
+    background-color: var(--taupe);
+    border-color: var(--taupe);
+    color: #fff;
+}
+
+.categories-subitem-link {
+    border: 0.2rem solid;
+    border-radius: 1.6rem;
+    color: var(--taupe);
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.categories-subitem-link:hover, .categories-subitem-link:focus {
+    color: var(--gris-33);
+}
+
+.categories-subitem + .categories-subitem {
+    margin-top: 0.7rem;
+}
+
