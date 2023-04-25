@@ -5283,15 +5283,7 @@
                     "type": "text",
                     "instructions": "Si votre fleur mâle comporte d'autres caractères intéressants notez les ici",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_6304f0d3be18b",
-                                "operator": "==",
-                                "value": "présent"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
