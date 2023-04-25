@@ -97,7 +97,7 @@ if (isset($_GET['p'])) {
         case 'draft':
             $status = 'En cours';
             $acf_value = 1;
-            $acf_submit_text = 'Valider';
+            $acf_submit_text = 'Enregistrer';
             break;
         case 'pending':
             $status = 'En cours de validation';
