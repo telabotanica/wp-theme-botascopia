@@ -365,10 +365,7 @@ get_header();
 					// Si une image est enregistrée on l'affiche
 					if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
 						affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
-					} else {
-                        affichageImageFiche(get_field('tige_photo_tige'));
-                    }
-					
+					}
 					?>
 				</div>
 				<?php endif; ?>
@@ -535,9 +532,7 @@ get_header();
 					// Si une image est enregistrée on l'affiche
 					if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
 						affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']);
-					} else {
-                        affichageImageFiche($feuilles_aeriennes['photo_de_feuilles_aeriennes']);
-                    }
+					}
 					?>
 				</div>
 				
@@ -600,9 +595,7 @@ get_header();
 					// Si une image est enregistrée on l'affiche
 					if (isset($fruit["illustration_du_fruit"]['photo'])){
 						affichageImageFiche($fruit["illustration_du_fruit"]['photo']);
-					} else {
-                        affichageImageFiche($fruit['photo']);
-                    }
+					}
 					?>
 				</div>
 				
@@ -658,10 +651,7 @@ get_header();
 					// Si une image est enregistrée on l'affiche
 					if (isset($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"])){
 						affichageImageFiche($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"]);
-					} else {
-                        affichageImageFiche($fleur_male["photo_de_fleur_male"]);
-                    }
-					
+					}
 					?>
 				</div>
 				
@@ -736,9 +726,7 @@ get_header();
 					// Si une image est enregistrée on l'affiche
 					if (isset($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']) && $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']){
 						affichageImageFiche($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']);
-					} else {
-                        affichageImageFiche($fleur_femelle['photo_de_fleur_femelle']);
-                    }
+					}
 					?>
 				</div>
 				
@@ -806,9 +794,7 @@ get_header();
 					// Si une image est enregistrée on l'affiche
 					if (isset($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']) && (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" ))) {
 						affichageImageFiche($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']);
-					} else {
-                        affichageImageFiche($fleur_bisexuee['photo_de_fleur_bisexuee']);
-                    }
+					}
 					?>
 				</div>
 				
