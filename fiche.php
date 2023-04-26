@@ -756,7 +756,7 @@ get_header();
 									Le périanthe est absent.
 								<?php } else: { ?>
 									<?php
-									if (isset($fleur_bisexuee['differenciation_du_perianthe']) &&'tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
+									if (isset($fleur_bisexuee['composition_du_perianthe']) &&'tépales' === $fleur_bisexuee['composition_du_perianthe']) {
 										$perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
 										$perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
 									} else {
