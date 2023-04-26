@@ -494,7 +494,18 @@
                             if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
                             } else {
-                                $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_femelle['corolle']) . ' pétale(s) ' . $fleur_femelle['soudure_de_la_corolle'] . ' ; ' .
+                                if (getType($fleur_femelle['soudure_de_la_corolle']) == 'string'){
+                                    $soudure_corolle = $fleur_femelle['soudure_de_la_corolle'];
+                                } else {
+                                    $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle']);
+                                }
+
+                                if (getType($fleur_femelle['corolle']) == 'string'){
+                                    $corolle = $fleur_femelle['corolle'];
+                                } else {
+                                    $corolle = implode(' ou ', $fleur_femelle['corolle']);
+                                }
+                                $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
                                     ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
