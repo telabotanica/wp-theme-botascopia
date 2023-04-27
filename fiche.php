@@ -366,7 +366,6 @@ get_header();
 					if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
 						affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
 					}
-					
 					?>
 				</div>
 				<?php endif; ?>
