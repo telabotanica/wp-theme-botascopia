@@ -623,7 +623,18 @@ get_header();
 									if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
 										$perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
 									} else {
-										$perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_male['corolle']) . ' pétale(s) ' . $fleur_male['soudure_de_la_corolle'] . ' ; ' .
+                                        if (getType($fleur_male['soudure_de_la_corolle']) == 'string'){
+                                            $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
+                                        } else {
+                                            $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                        }
+
+                                        if (getType($fleur_male['corolle']) == 'string'){
+                                            $corolle = $fleur_male['corolle'];
+                                        } else {
+                                            $corolle = implode(' ou ', $fleur_male['corolle']);
+                                        }
+										$perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
 											('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
 									}
 									?>
@@ -639,7 +650,7 @@ get_header();
 									<?php if ('pubescente' === $fleur_male['pubescence']) {
 										echo "La fleur est ".$fleur_male['pubescence'];?>
 										<?php if (!empty($fleur_male['localisation_des_poils'])) {
-											echo ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
+											echo ' sur '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
 										else { echo '.'; }}?>
 									<?php echo $fleur_male['autre_caractere'];
 								} ?>
@@ -652,6 +663,7 @@ get_header();
 					if (isset($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"])){
 						affichageImageFiche($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"]);
 					}
+					
 					?>
 				</div>
 				
@@ -714,7 +726,7 @@ get_header();
 								<?php if ('pubescente' === $fleur_femelle['pubescence']) {
 									echo "La fleur est ".$fleur_femelle['pubescence'];?>
 									<?php if (!empty($fleur_femelle['localisation_des_poils'])) {
-										echo ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
+										echo ' sur '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
 									else { echo '.'; }}?>
 								<?php echo $fleur_femelle['autre_caractere'];
 							}?>
@@ -754,7 +766,7 @@ get_header();
 									Le périanthe est absent.
 								<?php } else: { ?>
 									<?php
-									if (isset($fleur_bisexuee['differenciation_du_perianthe']) &&'tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
+									if (isset($fleur_bisexuee['composition_du_perianthe']) &&'tépales' === $fleur_bisexuee['composition_du_perianthe']) {
 										$perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
 										$perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
 									} else {
@@ -784,7 +796,7 @@ get_header();
 								<?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
 									echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
 									<?php if (!empty($fleur_bisexuee['localisation_des_poils'])) {
-										echo ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
+										echo ' sur '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
 									else { echo '.'; }}?>
 								<?php echo $fleur_bisexuee['autre_caractere'];?>
 							</p>

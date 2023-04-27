@@ -446,7 +446,18 @@
                             if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
                             } else {
-                                $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_male['corolle']) . ' pétale(s) ' . $fleur_male['soudure_de_la_corolle'] . ' ; ' .
+                                if (getType($fleur_male['soudure_de_la_corolle']) == 'string'){
+                                    $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
+                                } else {
+                                    $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                }
+
+                                if (getType($fleur_male['corolle']) == 'string'){
+                                    $corolle = $fleur_male['corolle'];
+                                } else {
+                                    $corolle = implode(' ou ', $fleur_male['corolle']);
+                                }
+                                $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
                                     ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
@@ -462,7 +473,7 @@
                             <?php if ('pubescente' === $fleur_male['pubescence']) {
                                 echo "La fleur est ".$fleur_male['pubescence'];?>
                                 <?php if (!empty($fleur_male['localisation_des_poils']) && ($fleur_male['localisation_des_poils'] != array("tous les organes floraux"))) {
-                                    echo ' sur: '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
+                                    echo ' sur '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
                                 else { echo '.'; }}?>
                             <?php echo $fleur_male['autre_caractere'];
                         } ?>
@@ -494,7 +505,18 @@
                             if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
                             } else {
-                                $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . implode(' ou ', $fleur_femelle['corolle']) . ' pétale(s) ' . $fleur_femelle['soudure_de_la_corolle'] . ' ; ' .
+                                if (getType($fleur_femelle['soudure_de_la_corolle']) == 'string'){
+                                    $soudure_corolle = $fleur_femelle['soudure_de_la_corolle'];
+                                } else {
+                                    $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle']);
+                                }
+
+                                if (getType($fleur_femelle['corolle']) == 'string'){
+                                    $corolle = $fleur_femelle['corolle'];
+                                } else {
+                                    $corolle = implode(' ou ', $fleur_femelle['corolle']);
+                                }
+                                $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
                                     ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                             }
                             ?>
@@ -508,7 +530,7 @@
                             <?php if ('pubescente' === $fleur_femelle['pubescence']) {
                                 echo "La fleur est ".$fleur_femelle['pubescence'];?>
                                 <?php if (!empty($fleur_femelle['localisation_des_poils']) && ($fleur_femelle['localisation_des_poils'] != array("tous les organes floraux"))) {
-                                    echo ' sur: '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
+                                    echo ' sur '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
                                 else { echo '.'; }}?>
                             <?php echo $fleur_femelle['autre_caractere'];
                         }?>
@@ -536,7 +558,7 @@
                             <?php } else: { ?>
                                 Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?> ;
                                 <?php
-                                if ('tépales' === $fleur_bisexuee['differenciation_du_perianthe']) {
+                                if ('tépales' === $fleur_bisexuee['composition_du_perianthe']) {
                                     $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
                                     $perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
                                 } else {
@@ -566,7 +588,7 @@
                                 <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
                                     echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
                                     <?php if (!empty($fleur_bisexuee['localisation_des_poils']) && ($fleur_bisexuee['localisation_des_poils'] != array("tous les organes floraux"))) {
-                                        echo ' sur: '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
+                                        echo ' sur '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
                                     else { echo '.'; }}?>
                                 <?php echo $fleur_bisexuee['autre_caractere'];?>
                         </p>
