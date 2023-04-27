@@ -141,8 +141,8 @@ function popupReserverFiche(){
 // Créer un élément de div pour afficher le contenu du popup
             var popupContenu = document.createElement(`div`);
             popupContenu.innerHTML = "<h2>Réserver la fiche " + ficheName + "</h2>" +
-                "<p>Cette fiche est disponible, vous pouvez indiquer que vous commencez à travailler dessus, pour" +
-                " éviter qu’une autre personne travaille dessus en même temps.</p>" +
+                "<p>Cette fiche est disponible. Souhaitez-vous en devenir l'auteur ? Personne d'autre ne pourra y avoir accès" +
+                " tant que vous n'aurez pas envoyé le formulaire à vérification ou renoncé à la compléter.</p>" +
                 "<div class='popup-display-buttons'>" +
                 "<a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a>" +
                 // "<a class='button green-button' href='"+ ficheUrl + "'><span class='button-text'>Réserver" +

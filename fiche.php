@@ -901,7 +901,7 @@ get_header();
 						<?php if (!empty(get_field('dispersion'))) :?> dispersion des graines et des fruits <?php
 						echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p><?php endif;?>
 				</div>
-				<?php endif ?>
+					<?php endif ?>
 				
 				<?php $proprietes = get_field('proprietes')?: null;
 				if ($proprietes):
