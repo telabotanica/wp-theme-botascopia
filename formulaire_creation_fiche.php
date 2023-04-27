@@ -252,8 +252,8 @@ if (isset($_GET['p'])) {
             if ($fiche_complete){
                 the_botascopia_module('button',[
                     'tag' => 'button',
-                    'title' => 'Envoyer la fiche à validation',
-                    'text' => 'Envoyer la fiche à validation',
+                    'title' => 'Envoyer la fiche à vérification',
+                    'text' => 'Envoyer la fiche à vérification',
                     'modifiers' => 'green-button acf-button2',
                     'extra_attributes' => ['type' => "submit", 'id' => "pending_btn", 'name'=> "pending_btn", 'value'
                     => "Envoyer la fiche à validation",
