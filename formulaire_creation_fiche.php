@@ -28,6 +28,26 @@ $group_titles = [
 //    "Taxonomie"
 ];
 
+$button_titles = [
+    "Tige",
+    "Feuille",
+    "Inflorescence",
+    "Fleur mâle",
+    "Fleur femelle",
+    "Fleur bisexuée",
+    "Fruit",
+];
+
+$field_titles = [
+    "tige",
+    "feuille",
+    "inflorescence",
+    "fleur_male",
+    "fleur_femelle",
+    "fleur_bisexuee",
+    "fruit",
+];
+
 foreach ( $group_titles as $title ) {
     foreach ($groups as $group) {
         if ($group['title'] == $title){
@@ -182,6 +202,22 @@ if (isset($_GET['p'])) {
                 'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title(),
             );
             $formsId[] = $id;
+
+            /*if ($titre == "Description morphologique") {
+
+                the_botascopia_component('inner_accordion',
+                    [
+                        'title_level' => 2,
+                        'items' => [
+                            [
+                                'content' => $args,
+                                'title' => $titre,
+                            ],
+                        ],
+                        'modifiers' => ['id' => 'inner_accordion' . $id]
+                    ]
+                );
+            }*/
             
             the_botascopia_component('accordion',
                  [

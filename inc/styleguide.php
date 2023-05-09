@@ -63,6 +63,7 @@ array_walk($botascopia_blocks, function ($block) {
  */
 $botascopia_components = [
   'accordion',
+//  'inner_accordion',
 //  'articles',
   'buttons',
 //  'contact',
