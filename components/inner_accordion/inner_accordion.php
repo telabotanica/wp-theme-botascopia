@@ -33,8 +33,8 @@
 		case 'Écologie':
 			$image = 'ecologie';
 			break;
-		case 'Propriétés':
-			$image = 'feuilles';
+		case 'tige':
+			$image = 'tige';
 			break;
 		case 'Aire de répartition et statut':
 			$image = 'location';
