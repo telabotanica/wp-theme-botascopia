@@ -97,9 +97,7 @@
     right: 0;
     top: 0;
     object-fit: contain;
-    /*width: auto;*/
     max-width: 275px;
-    /*height: auto;*/
     max-height: 275px;
 }
 
