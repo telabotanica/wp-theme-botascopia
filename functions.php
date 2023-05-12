@@ -475,7 +475,7 @@ add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
 function affichageImageFiche($photo){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
-		$image = wp_get_attachment_image_src( $photoId )[0];
+		$image = wp_get_attachment_image_src( $photoId, 'large' )[0];
 		echo ('<img src="'.esc_url( $image ).'" class="image-tige">');
 	}
 }
