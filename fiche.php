@@ -643,7 +643,7 @@ get_header();
 						<?php $inflorescence = get_field('inflorescence');?>
 						<p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs'];
 						if($inflorescence['categorie'] != 'autre') {
-							?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
+							?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>bah .</p>
 						<?php } else {
 							?>. L’inflorescence est <?php echo $inflorescence['description']; ?>bouh .</p>
 						<?php } ?>
