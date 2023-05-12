@@ -433,7 +433,9 @@ get_header();
 									
 									<?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
 									<?php if(!empty($feuilles_aeriennes)): ?>
-										
+                                        <h4 class="icon-title">
+                                            <div class="feuilles-icon icon"></div>Feuilles aériennes
+                                        </h4>
 										<p>
 											Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
 											<?php
@@ -472,7 +474,9 @@ get_header();
 
                                     <?php $feuilles_immergees = get_field('feuilles_immergees'); ?>
                                     <?php if(!empty($feuilles_immergees)): ?>
-
+                                        <h4 class="icon-title">
+                                            <div class="feuilles-icon icon"></div>Feuilles immergées
+                                        </h4>
                                         <p>
                                             Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_immergees['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_immergees['type_de_feuille']);?>.<br>
                                             <?php
@@ -562,7 +566,7 @@ get_header();
                                     <?php $feuilles_des_rameaux_fleuris = get_field('feuilles_des_rameaux_fleuris'); ?>
                                     <?php if(!empty($feuilles_des_rameaux_fleuris)): ?>
                                         <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles des rameaux stériles
+                                            <div class="feuilles-icon icon"></div>Feuilles des rameaux fleuris
                                         </h4>
                                         <?php if(!empty($feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris'])): ?>
                                             <?php
