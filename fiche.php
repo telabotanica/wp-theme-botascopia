@@ -363,7 +363,7 @@ get_header();
 					
 					<?php
 					// Si une image est enregistrée on l'affiche
-					if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
+                        if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
 						affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
 					}
 					?>
@@ -520,13 +520,6 @@ get_header();
 										<h4 class="icon-title">
 											<div class="feuilles-icon icon"></div>Feuilles des rameaux stériles
 										</h4>
-										<?php if(!empty($feuilles_des_rameaux_steriles['photo_de_feuilles_des_rameaux_steriles'])): ?>
-											<?php
-											$refs_photo[] = $feuilles_des_rameaux_steriles['photo_de_feuilles_des_rameaux_steriles']["id"];
-											$index_photos++;
-											?>
-											<div class="picture-ref"><?php echo $index_photos;?></div>
-										<?php endif; ?>
 										<p>
 											Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_steriles['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles['type_de_feuille']);?>.<br>
 											<?php
@@ -568,13 +561,6 @@ get_header();
                                         <h4 class="icon-title">
                                             <div class="feuilles-icon icon"></div>Feuilles des rameaux fleuris
                                         </h4>
-                                        <?php if(!empty($feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris'])): ?>
-                                            <?php
-                                            $refs_photo[] = $feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris']["id"];
-                                            $index_photos++;
-                                            ?>
-                                            <div class="picture-ref"><?php echo $index_photos;?></div>
-                                        <?php endif; ?>
                                         <p>
                                             Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['type_de_feuille']);?>.<br>
                                             <?php
