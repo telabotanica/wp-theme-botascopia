@@ -1089,6 +1089,19 @@ get_header();
 					</ul>
 				</div>
 				<?php endif; ?>
+
+                <div class="formulaire-boutons-bas">
+                    <?php
+                    $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
+                    the_botascopia_module('button',[
+                        'tag' => 'a',
+                        'title' => 'Retour au formulaire',
+                        'text' => 'retour au formulaire',
+                        'modifiers' => 'purple-button',
+                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."'"]
+                    ]);
+                    ?>
+                </div>
 				
 			</div>
 	</main><!-- .site-main -->
