@@ -476,7 +476,6 @@ function affichageImageFiche($photo){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
 		$image = wp_get_attachment_image_src( $photoId, 'image-tige' )[0];
-        $image2 = image_downsize($photoId, array(275, 275));
 		echo ('<img src="'.esc_url( $image ).'" class="image-tige">');
 	}
 }
