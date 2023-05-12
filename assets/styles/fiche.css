@@ -99,6 +99,7 @@
     width: 100%;
     max-width: 275px;
     height: auto;
+    max-height: 275px;
 }
 
 #periode-floraison{
