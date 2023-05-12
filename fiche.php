@@ -469,6 +469,45 @@ get_header();
 											<?php endif; ?>
 										</p>
 									<?php endif; ?>
+
+                                    <?php $feuilles_immergees = get_field('feuilles_immergees'); ?>
+                                    <?php if(!empty($feuilles_immergees)): ?>
+
+                                        <p>
+                                            Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_immergees['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_immergees['type_de_feuille']);?>.<br>
+                                            <?php
+                                            $type_feuille_multiple = 1 < count($feuilles_immergees['type_de_feuille']);
+                                            $limbe = 'Le limbe %s est %s';
+                                            $type_limbe = [];
+
+                                            foreach ($feuilles_immergees['type_de_feuille'] as $type_feuille) {
+                                                if ('simples' === $type_feuille) {
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_immergees['limbe_des_feuilles_simples']));
+                                                } else {
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_immergees['limbe_des_folioles']));
+                                                }
+                                            }
+                                            ?>
+
+                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_immergees['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_immergees['nervation']);?>.<br>
+
+                                            <?php
+                                            $presence_petiole = $feuilles_immergees['petiole'];
+                                            $petiole = 'présent' === $presence_petiole ? $feuilles_immergees['longueur_du_petiole'] . ('engainant' === $feuilles_immergees['engainant'] ? ', ' . $feuilles_immergees['engainant'] :'') : $presence_petiole;
+                                            ?>
+
+                                            Le pétiole est <?php echo $petiole; ?>.<br>
+
+                                            <?php echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';?>
+
+                                            <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                            <?php if (!empty($port_de_la_plante)): ?>
+                                                <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                    <?php echo  $feuilles_immergees['feuillage'] ? 'Le feuillage est ' . $feuilles_immergees['feuillage'].'.' : '';?>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </p>
+                                    <?php endif; ?>
 								
 								<?php elseif ($deux_formes_distinctes === 'plante à rameaux stériles et à rameaux fleuris distincts'): ?>
 									
@@ -519,6 +558,55 @@ get_header();
 											<?php endif; ?>
 										</p>
 									<?php endif; ?>
+
+                                    <?php $feuilles_des_rameaux_fleuris = get_field('feuilles_des_rameaux_fleuris'); ?>
+                                    <?php if(!empty($feuilles_des_rameaux_fleuris)): ?>
+                                        <h4 class="icon-title">
+                                            <div class="feuilles-icon icon"></div>Feuilles des rameaux stériles
+                                        </h4>
+                                        <?php if(!empty($feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris'])): ?>
+                                            <?php
+                                            $refs_photo[] = $feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris']["id"];
+                                            $index_photos++;
+                                            ?>
+                                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                                        <?php endif; ?>
+                                        <p>
+                                            Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['type_de_feuille']);?>.<br>
+                                            <?php
+                                            $type_feuille_multiple = 1 < count($feuilles_des_rameaux_fleuris['type_de_feuille']);
+                                            $limbe = 'Le limbe %s est %s';
+                                            $type_limbe = [];
+
+                                            foreach ($feuilles_des_rameaux_fleuris['type_de_feuille'] as $type_feuille) {
+                                                if ('simples' === $type_feuille) {
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_feuilles_simples']));
+                                                } else {
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_folioles']));
+                                                }
+                                            }
+                                            ?>
+
+                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['nervation']);?>.<br>
+
+                                            <?php
+                                            $presence_petiole = $feuilles_des_rameaux_fleuris['petiole'];
+                                            $petiole = 'présent' === $presence_petiole ? $feuilles_des_rameaux_fleuris['longueur_du_petiole'] . ('engainant' === $feuilles_des_rameaux_fleuris['engainant'] ? ', ' . $feuilles_des_rameaux_fleuris['engainant'] :'') : $presence_petiole;
+                                            ?>
+
+                                            Le pétiole est <?php echo $petiole; ?>.<br>
+
+                                            <?php echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';?>
+
+                                            <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                            <?php if (!empty($port_de_la_plante)): ?>
+                                                <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                    <?php echo  $feuilles_des_rameaux_fleuris['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris['feuillage'].'.' : '';?>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </p>
+                                    <?php endif; ?>
+
 								<?php endif; ?>
 							
 							<?php endif; ?>
