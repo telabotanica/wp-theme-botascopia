@@ -475,8 +475,8 @@ add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
 function affichageImageFiche($photo){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
-		$image = wp_get_attachment_image_src( $photoId, false )[0];
-        $image = image_downsize($photoId, array(275, 275));
+		$image = wp_get_attachment_image_src( $photoId, array(275, 275) )[0];
+        $image2 = image_downsize($photoId, array(275, 275));
 		echo ('<img src="'.esc_url( $image ).'" class="image-tige">');
 	}
 }
