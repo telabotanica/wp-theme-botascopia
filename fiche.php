@@ -625,6 +625,15 @@ get_header();
 					if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
 						affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']);
 					}
+                    if (isset($feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees'])){
+                        affichageImageFiche($feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees']);
+                    }
+                    if (isset($feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles'])){
+                        affichageImageFiche($feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles']);
+                    }
+                    if (isset($feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris'])){
+                        affichageImageFiche($feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris']);
+                    }
 					?>
 				</div>
 				
