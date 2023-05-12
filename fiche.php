@@ -645,7 +645,7 @@ get_header();
 						if($inflorescence['categorie'] != 'autre') {
 							?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
 						<?php } else {
-							?>. L’inflorescence est <?php echo $inflorescence['description']; ?>.</p>
+							?>. L’inflorescence est <?php echo $inflorescence['description']; ?>bouh .</p>
 						<?php } ?>
 					<?php } ?>
 					
