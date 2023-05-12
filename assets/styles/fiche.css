@@ -96,8 +96,8 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: 275px;
-    height: 275px;
+    max-width: 275px;
+    max-height: 275px;
 }
 
 #periode-floraison{
