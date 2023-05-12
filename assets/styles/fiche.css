@@ -75,12 +75,12 @@
     margin-top: 10px;
 }
 
-/* Sections avec photos 
+/* Sections avec photos */
 #tige, #feuilles, #fruits, #fleur-male, #fleur-femelle, #fleur-bisexuee, #ne-pas-confondre{
     position: relative;
     min-height: 275px;
     margin: 60px 0;
-}*/
+}
 
 /* Sections avec photos */
 #tige > p, #feuilles > p, #fruits > p, #fleur-male > p, #fleur-femelle > p, #fleur-bisexuee > p, #ne-pas-confondre > p{
@@ -101,6 +101,7 @@
     max-width: 275px;
     /*height: auto;*/
     max-height: 275px;
+    background-color: #009fb8;
 }
 
 #periode-floraison{
