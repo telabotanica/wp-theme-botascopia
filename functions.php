@@ -476,17 +476,9 @@ function affichageImageFiche($photo){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
 		$image = wp_get_attachment_image_src( $photoId, 'image-tige' )[0];
-		echo ('<img src="'.esc_url( $image ).'" class="image-tige" height="275px" width="275px">');
+		echo ('<img src="'.esc_url( $image ).'" class="image-tige">');
 	}
 }
-
-/*function affichageImageFiche($photo){
-    if (!empty($photo)){
-        $photoId = $photo['ID'];
-        $image = wp_get_attachment_image_src( $photoId, 'image-tige' )[0];
-        echo ('<img src="'.esc_url( $image ).'" class="image-tige" height="275px" width="275px">');
-    }
-}*/
 
 // Envoyer une fiche à validation ou en publication
 add_action( 'wp_ajax_set_fiche_status', 'set_fiche_status' );
