@@ -241,7 +241,7 @@ get_header();
 					
 					<div class="fiche-infos">
 						<div class="single-fiche-details">
-							<div class="single-fiche-detail">Statue: <?php echo $status ?></div>
+							<div class="single-fiche-detail">Statut: <?php echo $status ?></div>
 							<div class="single-fiche-detail">Publié le <?php echo $post_date ?></div>
 							<div class="single-fiche-detail">Par <?php echo $post_author ?></div>
 							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur ?></div>
