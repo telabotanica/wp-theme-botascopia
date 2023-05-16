@@ -1,0 +1,79 @@
+@charset "UTF-8";
+.js-inner-accordion{
+    background-color: var(--rose-pale);
+    border: none;
+    border-radius: 10px;
+    padding: 0 0 0 90px;
+    position: relative;
+}
+.js-inner-accordion > button {
+    height: 50px;
+}
+
+.component-inner-accordion__panel {
+    display: block;
+    overflow: hidden;
+    opacity: 1;
+    transition: visibility 0s ease, max-height 0.5s ease, opacity 0.5s ease;
+    /*max-height: 1000rem;*/
+    /* magic number for max-height = enough height */
+    visibility: visible;
+    transition-delay: 0s;
+    margin: 0;
+    padding: 0;
+}
+
+.component-inner-accordion__panel[aria-hidden=true] {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0.5s, 0s, 0s;
+    margin: 0;
+    padding: 0;
+}
+
+.component-inner-accordion__panel[role="tabpanel"] .component-inner-accordion__header {
+    display: none;
+}
+
+.component-inner-accordion__header {
+    background: transparent;
+    border: 0;
+    /*border-bottom: 0.1rem solid var(--gris-dd);*/
+    color: var(--gris-23);
+    cursor: pointer;
+    display: block;
+    font-family: 'Ubuntu';
+    font-size: 1.8rem;
+    font-weight: normal;
+    padding: 1.5rem 0.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+/*.component-inner-accordion__header::before {*/
+/*    color: var(--vert-bouton);*/
+/*    content: "▷";*/
+/*    display: inline-block;*/
+/*    margin-right: 1.5rem;*/
+/*    transition: transform 0.2s ease;*/
+/*}*/
+
+/*.component-inner-accordion__header[aria-expanded="true"]::before {*/
+/*    transform: rotate(90deg);*/
+/*}*/
+
+/*.component-inner-accordion__header[aria-selected="true"]::before {*/
+/*    content: "▶";*/
+/*}*/
+
+.component-inner-accordion .component-inner-accordion__header + p {
+    margin-top: 2rem;
+}
+
+.inner-accordion-icon{
+    position: absolute;
+    left: 30px;
+    top: 10px;
+}
