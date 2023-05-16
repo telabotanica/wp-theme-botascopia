@@ -518,7 +518,7 @@ get_header();
 									<?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
 									<?php if(!empty($feuilles_des_rameaux_steriles)): ?>
 										<h4 class="icon-title">
-											<div class="feuilles-icon icon"></div>Feuilles des rameaux stériles
+											<div class="feuilles-icon list"></div>Feuilles des rameaux stériles
 										</h4>
 										<p>
 											Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_steriles['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles['type_de_feuille']);?>.<br>
