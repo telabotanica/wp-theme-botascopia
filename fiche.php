@@ -434,7 +434,7 @@ get_header();
 									<?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
 									<?php if(!empty($feuilles_aeriennes)): ?>
                                         <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles aériennes
+                                            <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles aériennes
                                         </h4>
 										<p>
 											Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
@@ -475,7 +475,7 @@ get_header();
                                     <?php $feuilles_immergees = get_field('feuilles_immergees'); ?>
                                     <?php if(!empty($feuilles_immergees)): ?>
                                         <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles immergées
+                                            <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles immergées
                                         </h4>
                                         <p>
                                             Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_immergees['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_immergees['type_de_feuille']);?>.<br>
@@ -518,7 +518,7 @@ get_header();
 									<?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
 									<?php if(!empty($feuilles_des_rameaux_steriles)): ?>
 										<h4 class="icon-title">
-											<div class="feuilles-icon list"></div>Feuilles des rameaux stériles
+											<div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles des rameaux stériles
 										</h4>
 										<p>
 											Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_steriles['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles['type_de_feuille']);?>.<br>
@@ -559,7 +559,7 @@ get_header();
                                     <?php $feuilles_des_rameaux_fleuris = get_field('feuilles_des_rameaux_fleuris'); ?>
                                     <?php if(!empty($feuilles_des_rameaux_fleuris)): ?>
                                         <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles des rameaux fleuris
+                                            <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles des rameaux fleuris
                                         </h4>
                                         <p>
                                             Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['type_de_feuille']);?>.<br>
