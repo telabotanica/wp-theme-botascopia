@@ -73,7 +73,7 @@
 
 .fiche-title-icon > list{
     margin-right: 10px;
-    background-size: contain;
+    background-size: cover;
 }
 
 #description-morphologique{
