@@ -1,5 +1,25 @@
 require('jquery-accessible-accordion-aria/jquery-accessible-accordion-aria.js');
 import $ from 'jquery';
+var defaultConfig = {
+    headersSelector: '.js-inner-accordion__header',
+    panelsSelector: '.js-inner-accordion__panel',
+    buttonsSelector: 'button.js-inner-accordion__header',
+    buttonsGeneratedContent: 'text',
+    button: $('<button></button>', {
+        class: 'js-inner-accordion__header',
+        type: 'button'
+    }),
+    buttonSuffixId: '_tab',
+    multiselectable: true,
+    prefixClass: 'inner-accordion',
+    headerSuffixClass: '__title',
+    buttonSuffixClass: '__header',
+    panelSuffixClass: '__panel',
+    direction: 'ltr',
+    accordionPrefixId: 'inner-accordion'
+};
+
+/*
 $(function () {
     $('.js-inner-accordion').accordion();
 
@@ -48,3 +68,4 @@ function changerIcone(accordionId){
         svg.toggleClass('icon-angle-down icon-angle-up');
     }
 }
+*/

@@ -1,6 +1,7 @@
 @import "buttons/style.css";
 @import "title/style.css";
 @import "accordion/style.css";
+@import "inner_accordion/style.css";
 
 .component + .component {
   margin-top: 3rem;
