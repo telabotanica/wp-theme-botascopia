@@ -1,29 +1,53 @@
 require('jquery-accessible-accordion-aria/jquery-accessible-accordion-aria.js');
 import $ from 'jquery';
-var defaultConfig = {
-    headersSelector: '.js-inner-accordion__header',
-    panelsSelector: '.js-inner-accordion__panel',
-    buttonsSelector: 'button.js-inner-accordion__header',
-    buttonsGeneratedContent: 'text',
-    button: $('<button></button>', {
-        class: 'js-inner-accordion__header',
-        type: 'button'
-    }),
-    buttonSuffixId: '_tab',
-    multiselectable: true,
-    prefixClass: 'inner-accordion',
-    headerSuffixClass: '__title',
-    buttonSuffixClass: '__header',
-    panelSuffixClass: '__panel',
-    direction: 'ltr',
-    accordionPrefixId: 'inner-accordion'
-};
 
-/*
 $(function () {
-    $('.js-inner-accordion').accordion();
 
-    function toutDeplier(){
+    var defaultConfig = {
+        headersSelector: '.js-inner-accordion__header',
+        panelsSelector: '.js-inner-accordion__panel',
+        buttonsSelector: 'button.js-inner-accordion__header',
+        buttonsGeneratedContent: 'text',
+        button: $('<button></button>', {
+            class: 'js-inner-accordion__header',
+            type: 'button'
+        }),
+        buttonSuffixId: '_tab',
+        multiselectable: true,
+        prefixClass: 'inner-accordion',
+        headerSuffixClass: '__title',
+        buttonSuffixClass: '__header',
+        panelSuffixClass: '__panel',
+        direction: 'ltr',
+        accordionPrefixId: 'inner-accordion'
+    };
+
+    var PLUGIN = 'inner_accordion';
+
+    $.fn[PLUGIN] = function(params) {
+        var options = $.extend({}, $.fn[PLUGIN].defaults, params);
+
+
+        return this.each(function() {
+            var $el = $(this);
+
+            var specificOptions = {
+                multiselectable: $el.attr('data-inner-accordion-multiselectable') === 'none' ? false : options.multiselectable,
+                prefixClass: typeof($el.attr('data-inner-accordion-prefix-classes')) !== 'undefined' ? $el.attr('data-inner-accordion-prefix-classes') : options.prefixClass,
+                buttonsGeneratedContent: typeof($el.attr('data-inner-accordion-button-generated-content')) !== 'undefined' ? $el.attr('data-inner-accordion-button-generated-content') : options.buttonsGeneratedContent,
+                direction: $el.closest('[dir="rtl"]').length > 0 ? 'rtl' : options.direction
+            };
+            specificOptions = $.extend({}, options, specificOptions);
+
+            $el.data[PLUGIN] = new Accordion($el, specificOptions);
+        });
+    };
+
+    $.fn[PLUGIN].defaults = defaultConfig;
+
+    $('.js-inner-accordion').inner_accordion();
+
+/*    function toutDeplier(){
         let status = $('#bouton-toutdeplier').attr('accordion-status');
 
         if (status == 0){
@@ -51,10 +75,11 @@ $(function () {
     $('.js-inner-accordion__header').on('click', function() {
         var accordionId = $(this).closest('.js-inner-accordion').attr('id');
         changerIcone(accordionId);
-    });
+    });*/
 
 });
 
+/*
 function changerIcone(accordionId){
     var use = $("#" + accordionId + " .formulaire-field-status svg use");
     var svg = $("#" + accordionId + " .formulaire-field-status svg");

@@ -29,82 +29,107 @@
     // echo var_dump($group_fields);
     $size = count($group_fields);
 
-    for ($i = 0; $i < $size; ++$i) {
+    foreach ($group_fields as $field) {
 
-        echo var_dump($field_groups);
+        //    for ($i = 0; $i < $size; ++$i) {
 
-        switch ($group_fields[$i]['name']) {
-            case 'tige':
-                $image = 'tige';
-                break;
-            case 'feuille':
-                $image = 'feuilles';
-                break;
-            case 'inflorescence':
-                $image = 'inflorescence';
-                break;
-            case 'fleur_male':
-                $image = 'fleur-male';
-                break;
-            case 'fleur_femelle':
-                $image = 'fleur-femelle';
-                break;
-            case 'fleur_bisexuee':
-                $image = 'inflorescence';
-                break;
-            case 'fruit':
-                $image = 'fruits';
-                break;
-            default:
-                $image = '';
-        }
+        if ($field['type'] === 'group') {
 
-        if ($image) {
-            echo '<img class="inner-accordion-icon" src="' . get_template_directory_uri() . '/images/' . $image . '.svg" />';
-        }
 
-        the_botascopia_module('button', [
-            'tag' => 'button',
-            'title' => 'complet',
-            'text' => 'complet',
-            'modifiers' => 'green-button' . ' formulaire-field-status',
-//	    	'icon_after' => ['icon' => 'angle-down', 'color' => 'blanc'],
-            'extra_attributes' => ['id' => 'bouton-status-' . $data->modifiers['id']]
-        ]);
+            switch ($field['name']) {
+                case 'tige':
+                    $image = 'tige';
+                    break;
+                case 'feuille':
+                    $image = 'feuilles';
+                    break;
+                case 'inflorescence':
+                    $image = 'inflorescence';
+                    break;
+                case 'fleur_male':
+                    $image = 'fleur-male';
+                    break;
+                case 'fleur_femelle':
+                    $image = 'fleur-femelle';
+                    break;
+                case 'fleur_bisexuee':
+                    $image = 'inflorescence';
+                    break;
+                case 'fruit':
+                    $image = 'fruits';
+                    break;
+                default:
+                    $image = '';
+            }
 
-        echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+            if ($image) {
+                echo '<img class="inner-accordion-icon" src="' . get_template_directory_uri() . '/images/' . $image . '.svg" />';
+            }
 
-        printf(
-            '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
-            $data->title_level,
-            $group_fields[$i]['label'],
-            $data->title_level
-        );
+            the_botascopia_module('button', [
+                'tag' => 'button',
+                'title' => 'complet',
+                'text' => 'complet',
+                'modifiers' => 'green-button' . ' formulaire-field-status',
+//	        	'icon_after' => ['icon' => 'angle-down', 'color' => 'blanc'],
+                'extra_attributes' => ['id' => 'bouton-status-' . $data->modifiers['id']]
+            ]);
 
-        acf_form($group_fields[$i]);
-        echo '</div>';
+            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
 
-        /*if ($data->items):
+            printf(
+                '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
+                $data->title_level,
+                $field['label'],
+                $data->title_level
+            );
 
-            foreach ($data->items as $item) :
-                echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+            // echo var_dump($field);
 
-                $item = (object)$item;
+            foreach ($field['sub_fields'] as $sub_field){
+                echo var_dump($sub_field);
 
-                printf(
-                    '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
-                    $data->title_level,
-                    $item->title,
-                    $data->title_level
+                $args = array(
+                    'post_id' => $data->items[0]['content']['post_id'],
+                    'field_groups' => $field['sub_fields'], // L'ID du post du groupe de champs
+                    'field_title' => $sub_field['name'],
+                    'field_key' => $sub_field['parent'],
+                    'submit_value' => 'Corriger', // Intitulé du bouton
+                    'html_submit_button' => '<button type="submit" class="acf-button button green-button">%s</button>',
+                    'updated_message' => "Votre demande a bien été prise en compte.",
+                    'uploader' => 'wp',
+                    'id' => $data->items[0]['content']['id'],
+                    // 'html_before_fields' => '<div class="js-inner-accordion__panel component-inner-accordion__panel">',
+                    // 'html_after_fields' => '</div>',
+                    'return' => $data->items[0]['content']['return'],
                 );
 
-                acf_form($item->content);
-                echo '</div>';
+                ($args);
+            }
+            echo '</div>';
 
-            endforeach;
+            /*if ($data->items):
 
-        endif;
+                foreach ($data->items as $item) :
+                    echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
 
-        echo '</div>';*/
+                    $item = (object)$item;
+
+                    printf(
+                        '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
+                        $data->title_level,
+                        $item->title,
+                        $data->title_level
+                    );
+
+                    acf_form($item->content);
+                    echo '</div>';
+
+                endforeach;
+
+            endif;
+
+            echo '</div>';*/
+        }
     }
 }
