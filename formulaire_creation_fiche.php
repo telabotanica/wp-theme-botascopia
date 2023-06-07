@@ -197,7 +197,8 @@ if (isset($_GET['p'])) {
                 'updated_message' => "Votre demande a bien été prise en compte.",
                 'uploader' => 'wp',
                 'id' => 'form_draft'.$id,
-                'html_after_fields' => '<input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="'.$acf_value
+                'html_before_fields' => '<div class="js-inner-accordion__panel component-inner-accordion__panel">',
+                'html_after_fields' => '</div> <input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="'.$acf_value
                     .'"/>',
                 'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title(),
             );

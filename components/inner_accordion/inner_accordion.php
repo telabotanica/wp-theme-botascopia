@@ -7,11 +7,43 @@
 		'icon' => [],
 		'modifiers' => []
 	];
+
+    printf('<h1>Example of nested accordions</h1>
+
+        <div class="js-accordion" id="accordion1" data-accordion-prefix-classes="minimalist-accordion">
+            <div class="js-accordion__panel">
+                <h2 class="js-accordion__header">First tab</h2>
+                <p>Content of 1st tab</p>
+            </div>
+            <div class="js-accordion__panel">
+                <h2 class="js-accordion__header">Second tab</h2>
+                <p>Content of 2nd tab</p>
+
+                <div class="js-accordion" id="accordion_inner" data-accordion-prefix-classes="minimalist-accordion">
+                    <div class="js-accordion__panel">
+                        <h3 class="js-accordion__header">First tab</h3>
+                        <p>Content of 1st tab</p>
+                    </div>
+                    <div class="js-accordion__panel">
+                        <h2 class="js-accordion__header">Second tab</h2>
+                        <p>Content of 2nd tab</p>
+                    </div>
+                    <div class="js-accordion__panel">
+                        <h2 class="js-accordion__header">Third tab</h2>
+                        <p>Content of 3rd tab</p>
+                    </div>
+                </div>
+            </div>
+            <div class="js-accordion__panel">
+                <h2 class="js-accordion__header">Third tab</h2>
+                <p>Content of 3rd tab</p>
+            </div>
+        </div>');
 	
 	$data = botascopia_styleguide_data($defaults, $data);
 	$data->modifiers = botascopia_styleguide_modifiers_array(['component', 'component-inner-accordion', 'js-inner-accordion'], $data->modifiers);
 
-	printf(
+	/*printf(
 		'<div class="%s" data-inner-accordion-prefix-classes="component-inner-accordion">',
 		implode(' ', $data->modifiers)
 	);
@@ -29,14 +61,13 @@
     // echo var_dump($group_fields);
     $size = count($group_fields);
 
-    foreach ($group_fields as $field) {
-
-        //    for ($i = 0; $i < $size; ++$i) {
-
-        if ($field['type'] === 'group') {
+    // foreach ($group_fields as $field) {
 
 
-            switch ($field['name']) {
+        // if ($field['type'] === 'group') {
+
+
+            switch ($data->items[0]['title']) {
                 case 'tige':
                     $image = 'tige';
                     break;
@@ -75,18 +106,18 @@
                 'extra_attributes' => ['id' => 'bouton-status-' . $data->modifiers['id']]
             ]);
 
-            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+/*            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
 
             printf(
                 '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
                 $data->title_level,
-                $field['label'],
+                $item->title,
                 $data->title_level
-            );
+            );*/
 
             // echo var_dump($field);
 
-            foreach ($field['sub_fields'] as $sub_field){
+            /*foreach ($field['sub_fields'] as $sub_field){
                 echo var_dump($sub_field);
 
                 $args = array(
@@ -106,9 +137,9 @@
 
                 ($args);
             }
-            echo '</div>';
+            echo '</div>';*/
 
-            /*if ($data->items):
+            /* if ($data->items):
 
                 foreach ($data->items as $item) :
                     echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
@@ -130,6 +161,6 @@
             endif;
 
             echo '</div>';*/
-        }
-    }
+       // }
+    // }
 }
