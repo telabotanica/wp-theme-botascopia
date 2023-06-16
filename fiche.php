@@ -191,7 +191,7 @@ get_header();
 										'active' => false,
 									],
 									[
-										'text' => 'Ecologie',
+										'text' => 'Écologie',
 										'href' => '#ecologie',
 										'active' => false,
 									],
