@@ -39,8 +39,8 @@ get_header();
 		setlocale(LC_TIME, 'fr_FR.utf8');
 		$post_date = strftime('%e %B %Y', strtotime($date));
 
-        if (!empty(get_field("field_6304bda381ab9"))) {
-            $image = ["url" => wp_get_attachment_image_src(get_field("field_6304bda381ab9"), 'image-tige' )[0]];
+        if (!empty(get_field("field_643027826f24d"))) {
+            $image = ["url" => wp_get_attachment_image_src(get_field("field_643027826f24d")["photo_de_la_plante_entiere"], 'image-tige' )[0]];
         } else {
             $image = getPostImage($post_id);
         }
