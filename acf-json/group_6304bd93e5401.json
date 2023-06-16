@@ -5,7 +5,7 @@
         {
             "key": "field_643027826f24d",
             "label": "Illustration de la plante entière",
-            "name": "",
+            "name": "illustration_de_la_plante_entiere",
             "aria-label": "",
             "type": "group",
             "instructions": "",
@@ -536,7 +536,8 @@
                             "choices": {
                                 "Tela Botanica": "Tela Botanica",
                                 "Wikimédia": "Wikimédia",
-                                "Société Botanique de France Pixabay": "Société Botanique de France Pixabay"
+                                "Société Botanique de France": "Société Botanique de France",
+                                "Pixabay": "Pixabay"
                             },
                             "default_value": "",
                             "return_format": "value",
@@ -2246,9 +2247,9 @@
                             "default_value": "",
                             "return_format": "value",
                             "allow_null": 0,
-                            "other_choice": 0,
-                            "layout": "vertical",
-                            "save_other_choice": 0
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
                         }
                     ]
                 },
@@ -2701,14 +2702,14 @@
                     "aria-label": "",
                     "type": "group",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "layout": "",
+                    "layout": "block",
                     "sub_fields": [
                         {
                             "key": "field_634e49eb4801e",
@@ -3295,7 +3296,7 @@
                         "une ombelle": "une ombelle",
                         "un corymbe": "un corymbe",
                         "un capitule": "un capitule",
-                        "un panicule": "un panicule",
+                        "une panicule": "une panicule",
                         "une cyme bipare": "une cyme bipare",
                         "une cyme unipare scorpioide": "une cyme unipare scorpioide",
                         "une cyme multipare": "une cyme multipare",
@@ -3514,9 +3515,9 @@
                             "default_value": "",
                             "return_format": "value",
                             "allow_null": 0,
-                            "other_choice": 0,
-                            "layout": "vertical",
-                            "save_other_choice": 0
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
                         }
                     ]
                 },
@@ -4090,8 +4091,8 @@
                         "id": ""
                     },
                     "choices": {
-                        "androcée soudée à la corolle": "androcée soudée à la corolle",
-                        "androcée non soudée à la corolle": "androcée non soudée à la corolle"
+                        "androcée soudé à la corolle": "androcée soudé à la corolle",
+                        "androcée non soudé à la corolle": "androcée non soudé à la corolle"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4561,9 +4562,9 @@
                             "default_value": "",
                             "return_format": "value",
                             "allow_null": 0,
-                            "other_choice": 0,
-                            "layout": "vertical",
-                            "save_other_choice": 0
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
                         }
                     ]
                 },
@@ -5283,7 +5284,15 @@
                     "type": "text",
                     "instructions": "Si votre fleur mâle comporte d'autres caractères intéressants notez les ici",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f0d3be18b",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -5444,9 +5453,9 @@
                             "default_value": "",
                             "return_format": "value",
                             "allow_null": 0,
-                            "other_choice": 0,
-                            "layout": "vertical",
-                            "save_other_choice": 0
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
                         }
                     ]
                 },
@@ -6258,9 +6267,9 @@
                             "default_value": "",
                             "return_format": "value",
                             "allow_null": 0,
-                            "other_choice": 0,
-                            "layout": "vertical",
-                            "save_other_choice": 0
+                            "other_choice": 1,
+                            "save_other_choice": 0,
+                            "layout": "vertical"
                         }
                     ]
                 },
@@ -6329,5 +6338,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1682357419
+    "modified": 1683707560
 }
