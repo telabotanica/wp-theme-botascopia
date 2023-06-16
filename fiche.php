@@ -38,8 +38,12 @@ get_header();
 		$date = $post->post_date;
 		setlocale(LC_TIME, 'fr_FR.utf8');
 		$post_date = strftime('%e %B %Y', strtotime($date));
-		
-		$image = getPostImage($post_id);
+
+        if (!empty(get_field("field_6304bda381ab9"))) {
+            $image = ["url" => wp_get_attachment_image_src(get_field("field_6304bda381ab9"), 'image-tige' )[0]];
+        } else {
+            $image = getPostImage($post_id);
+        }
 		
 		$index_photos = 0;
 		$fruit_photo=null;
@@ -187,7 +191,7 @@ get_header();
 										'active' => false,
 									],
 									[
-										'text' => 'écologie',
+										'text' => 'Ecologie',
 										'href' => '#ecologie',
 										'active' => false,
 									],
@@ -303,12 +307,16 @@ get_header();
 						]);
 						?>
 					</div>
-					
-					<p>
-						<?php
-							echo get_post_meta($post_id, 'description', true);
-						?>
-					</p>
+
+                    <p><?php if (!empty(get_field('port_de_la_plante'))) { echo ucfirst(get_field('port_de_la_plante')).", ";
+                            if (!empty(get_field('systeme_sexuel')) && get_field('systeme_sexuel') !== "hermaphrodite" ) { echo get_field('systeme_sexuel').", " ;}
+                            if ((get_field('port_de_la_plante') == "herbacée" || get_field('port_de_la_plante') == "liane") && !empty(get_field('mode_de_vie')) && get_field('mode_de_vie') !== array("terrestre") ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
+                            if (get_field('port_de_la_plante') == "herbacée" && !empty(get_field('type_de_developpement'))) { echo implode(', ', get_field('type_de_developpement')).", " ;}
+                            if ((get_field('port_de_la_plante') == "herbacée" || get_field('port_de_la_plante') == "liane") && !empty(get_field('forme_biologique'))) { echo implode(', ', get_field('forme_biologique')).", " ;} ?>
+                            qui peut atteindre jusqu'à <?php the_field('hauteur_maximale'); ?> de haut.
+                            <?php if (!empty(get_field(' pilosite_de_la_plante_entiere'))) { echo "Cette plante est ".get_field(' pilosite_de_la_plante_entiere').".";} ?>
+                        <?php } ?>
+                    </p>
 				</div>
 				
 				<?php $description_vulgarisee = get_field('description_vulgarisee')?: null; ?>
@@ -730,7 +738,7 @@ get_header();
 								<?php endif; ?>
 								<?php if(!empty($fleur_male['androcee'])): { ?>
 									androcée composé de <?php echo implode(' ou ' , $fleur_male['androcee']); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ;
-									<?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
+									<?php echo ('androcée soudé à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
 										('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
 									<?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
 									La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
@@ -870,7 +878,7 @@ get_header();
 								<?php endif; ?>
 								<?php if(!empty($fleur_bisexuee['androcee'])): { ?>
 									androcée composé de <?php echo implode(' ou ' , $fleur_bisexuee['androcee']); ?> étamine(s)
-									<?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+									<?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
 									<?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
 								} ?>
 								<?php endif; ?>
