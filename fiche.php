@@ -44,6 +44,10 @@ get_header();
         } else {
             $image = getPostImage($post_id);
         }
+
+
+        /* <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>'); background-size: cover;"> */
+
 		
 		$index_photos = 0;
 		$fruit_photo=null;
@@ -308,7 +312,7 @@ get_header();
 						?>
 					</div>
 
-                    <p><?php if (!empty(get_field('port_de_la_plante'))) { echo ucfirst(get_field('port_de_la_plante')).", ";
+                    <p><?php if (!empty(get_field('port_de_la_plante'))) { echo ucfirst(get_field('port_de_la_plante'))." ";
                             if (!empty(get_field('systeme_sexuel')) && get_field('systeme_sexuel') !== "hermaphrodite" ) { echo get_field('systeme_sexuel').", " ;}
                             if ((get_field('port_de_la_plante') == "herbacée" || get_field('port_de_la_plante') == "liane") && !empty(get_field('mode_de_vie')) && get_field('mode_de_vie') !== array("terrestre") ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
                             if (get_field('port_de_la_plante') == "herbacée" && !empty(get_field('type_de_developpement'))) { echo implode(', ', get_field('type_de_developpement')).", " ;}
@@ -1023,11 +1027,18 @@ get_header();
 							]);
 							?>
 						</div>
-					
+
 						<?php if (!empty(get_field('cultivee_en_france'))) { ?>
 							<?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
 							<p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
-						<?php } ?>
+
+                            <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
+                                <?php if (!empty(get_field('repartition_mondiale'))) { ?>
+                                <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
+                                <p><?php echo $repartition_mondiale; ?></p>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
 						<?php if (!empty(get_field('carte_de_metropole'))) :?>
 							<div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
 						<?php endif; ?>
