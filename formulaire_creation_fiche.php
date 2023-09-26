@@ -98,7 +98,7 @@ if (isset($_GET['p'])) {
     the_botascopia_module('cover',[
         'subtitle' => get_post_meta(get_the_ID(), 'nom_vernaculaire', true).' - '.get_post_meta(get_the_ID(), 'famille',true),
         'title' => get_post_meta(get_the_ID(), 'nom_scientifique', true),
-        'image' => ['url' => get_template_directory_uri() .'/images/recto-haut.svg'],
+        'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
         'modifiers' =>['class' => 'fiche-cover']
     ]);
     ?>

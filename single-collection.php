@@ -31,6 +31,9 @@ get_header();
 		$completed = getFiches($post_id)[1];
 		$image = getPostImage($post_id);
 		
+		$imageId = get_post_thumbnail_id($post_id);
+		$imageFull = wp_get_attachment_image_src($imageId, 'full');
+		
 		if (is_user_logged_in()) :
 			$current_user = wp_get_current_user();
 			$current_user_id = $current_user->ID;
@@ -40,7 +43,7 @@ get_header();
 		the_botascopia_module('cover', [
 			'subtitle' => '',
 			'title' => '',
-			'image' => $image
+			'image' => $imageFull
 		]);
 		
 		if ($post->post_status == 'private') {
@@ -74,6 +77,7 @@ get_header();
 					<?php the_botascopia_module('title', [
 						'title' => __($post->post_title, 'botascopia'),
 						'level' => 1,
+						'modifiers' => 'collection-title'
 					]);
 					?>
 				</div>

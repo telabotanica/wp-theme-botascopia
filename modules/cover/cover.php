@@ -13,7 +13,7 @@
   $data->modifiers = botascopia_styleguide_modifiers_array('cover', $data->modifiers);
 
   // Définir une image au hasard si aucune n'est présente
-  if ( empty( $data->image['url'] ) ) :
+  if ( empty( $data->image[0] ) ) :
 	
 	  printf(
 		  '<div class="%s" style="background: transparent linear-gradient(90deg, #000000BA , #00000095 , #00000069 , #00000000 ) no-repeat padding-box;">',
@@ -23,7 +23,7 @@
 	  printf(
 		  '<div class="%s" style="background-image: url(%s);">',
 		  implode(' ', $data->modifiers),
-		  $data->image['url']
+		  $data->image[0]
 	  );
   
   

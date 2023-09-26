@@ -38,9 +38,15 @@ get_header();
 		$date = $post->post_date;
 		setlocale(LC_TIME, 'fr_FR.utf8');
 		$post_date = strftime('%e %B %Y', strtotime($date));
+        
+        if (get_field("field_643027826f24d")){
+			$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+        }
 
-        if (!empty(get_field("field_643027826f24d"))) {
-            $image = ["url" => wp_get_attachment_image_src(get_field("field_643027826f24d")["photo_de_la_plante_entiere"], 'image-tige' )[0]];
+        if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+			$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+            
+            $image = ["url" => wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]];
         } else {
             $image = getPostImage($post_id);
         }
@@ -71,7 +77,7 @@ get_header();
 			'subtitle' => get_post_meta($post_id, 'nom_vernaculaire', true).' - '.get_post_meta($post_id, 'famille',
 																								true),
 			'title' => get_post_meta($post_id, 'nom_scientifique', true),
-			'image' => ['url' => get_template_directory_uri() .'/images/recto-haut.svg'],
+			'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
 			'modifiers' =>['class' => 'fiche-cover']
 		]);
 		echo ('

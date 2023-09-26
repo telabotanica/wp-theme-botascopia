@@ -14,16 +14,15 @@
 	$data->modifiers = botascopia_styleguide_modifiers_array('card', $data->modifiers);
 	
 	// Définir une image par défaut si aucune n'est présente
-	if (empty($data->image['url'])) :
-		$data->image = [
-		'url' => get_template_directory_uri() . '/images/logo-botascopia@2x.png'
-		];
+
+	if (empty($data->image[0])) :
+		$data->image[0] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	endif;
-	
+
 	echo '<div class="card-collection ' . implode(' ', $data->modifiers) . '">';
 	echo sprintf(
 		'<div class="card-collection-image"><img src="%s" class="" alt="image-plante" title="%s"/></div>',
-		$data->image['url'],
+		$data->image[0],
 		$data->name
 	);
 	echo '<div class="card-collection-body">';
