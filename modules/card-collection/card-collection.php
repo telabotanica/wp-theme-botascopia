@@ -22,15 +22,13 @@
 	
 	echo '<div class="card-collection ' . implode(' ', $data->modifiers) . '">';
 	echo sprintf(
-		'<div><img src="%s" class="card-collection-image" alt="image-plante" title="%s"/></div>',
+		'<div class="card-collection-image"><img src="%s" class="" alt="image-plante" title="%s"/></div>',
 		$data->image['url'],
 		$data->name
 	);
 	echo '<div class="card-collection-body">';
 	
-	echo sprintf('<a href="%s">',
-	$data->href)
-	;
+	echo sprintf('<a href="%s">',$data->href);
 	
 	echo sprintf('
 		<p class="card-collection-title">%s</p>

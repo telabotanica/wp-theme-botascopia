@@ -1,9 +1,12 @@
 /****************** Page collections **************************/
+#collections-container{
+    margin-bottom: 20px;
+}
 .collection-main{
     position: relative;
     display: flex;
     justify-content: space-between;
-    width: 275px;
+    width: calc(100% + 130px);
 }
 
 .left-div{
@@ -13,8 +16,8 @@
     width: 275px;
     margin: 0;
     height: 100%;
-
 }
+
 .right-div{
     height: 100%;
     position: relative;
@@ -23,7 +26,7 @@
     left: 80px;
     /*left: calc(20vw + 275px);*/
     top: 0;
-    min-width: 700px;
+    width: 100%;
 }
 
 .second-toc{
@@ -205,3 +208,24 @@
     bottom: 20px;
     right: 0;
 }
+
+/************** Media queries **************/
+/*
+@media screen and (min-width: 769px) and (max-width: 1250px) {
+    .left-div {
+        width: 150px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .left-div {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .left-div {
+        width: 150px;
+    }
+}
+*/
