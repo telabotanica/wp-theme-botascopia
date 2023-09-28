@@ -171,7 +171,7 @@
     height: 100%;
 }
 
-#content.blur-background::before {
+#content.blur-background::before{
     content: "";
     position: fixed;
     top: 0;
@@ -179,6 +179,17 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(31px);
+    z-index: 500;
+}
+
+header.blur-background::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     backdrop-filter: blur(31px);
     z-index: 500;
 }
@@ -237,6 +248,14 @@
     justify-content: flex-end;
 }
 
+.new-titre-collection-block, .new-description-collection-block {
+    width: 65%;
+}
+
+.description-area{
+    width: 100%;
+}
+
 .new-photo-collection-block {
     position: relative;
 }
@@ -292,6 +311,10 @@
     padding: 20px 0;
 }
 
+.new-collection-main > .display-fiches-cards-items {
+    margin-top: 0;
+}
+
 .new-collection-buttons {
     display: flex;
     justify-content: space-between;
@@ -322,6 +345,74 @@
     position: absolute;
     top: 0;
     right: 0;
+}
+
+#ouvrir_popup_ajouter_fiche{
+    cursor: pointer;
+}
+
+#ouvrir_popup_ajouter_fiche > .card-fiche-body {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#ouvrir_popup_ajouter_fiche > .card-fiche-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.existing-fiches{
+    display: flex;
+}
+
+.checkbox-area {
+    background-color: var(--blanc);
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 30px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.card-checkbox{
+display: none;
+}
+
+.checkbox-container {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #fff; /* Couleur du fond */
+    border: 2px solid #000; /* Couleur de la bordure */
+    border-radius: 50%; /* Bordure arrondie pour créer un cercle */
+}
+
+/* Style du point intérieur (visible lorsque la checkbox est cochée) */
+.checkbox-container::before {
+    content: '\2022'; /* Caractère Unicode pour un point • (utilisé comme coche) */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--noir); /* Couleur du point */
+    font-size: 40px; /* Taille du point */
+    display: none;
+}
+
+/* Style de la checkbox lorsque cochée */
+.card-checkbox:checked + .checkbox-container::before {
+    display: block;
 }
 
 /************** Media queries **************/

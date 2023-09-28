@@ -694,3 +694,46 @@ function load_popup_content() {
 	die();
 }
 add_action('wp_ajax_load_popup_content', 'load_popup_content');
+
+// Action pour récupérer les publications correspondant aux IDs sélectionnés
+add_action('wp_ajax_get_selected_posts', 'get_selected_posts_callback');
+add_action('wp_ajax_nopriv_get_selected_posts', 'get_selected_posts_callback');
+function get_selected_posts_callback() {
+	// Récupérer les IDs sélectionnés
+	$ids = $_GET['selected_ids'];
+	$selected_ids = explode(",", $ids);
+
+	$args = array(
+		'post_type' => 'post',
+		'post__in'  => $selected_ids,
+	);
+	
+	$query = new WP_Query($args);
+	
+	$response = array();
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$post_id = get_the_ID();
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
+			if($post_imageFull){
+				$post_imageFull = $post_imageFull[0];
+			} else {
+				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+			}
+			
+			$response[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull,
+			];
+		}
+	}
+	wp_send_json($response);
+	wp_die();
+}
+

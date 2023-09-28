@@ -30,7 +30,7 @@ endif;
                     <input type="hidden" name="meta-type" value="collection">
                     <input type="hidden" name="action" value="create_new_collection">
                     <label for="post-title" class="new-collection-title">Titre de la collection</label>
-                    <input type="text" name="post-title" id="post-title" placeholder="Nom de la collection" size="60" height="20px" required>
+                    <input type="text" name="post-title" id="post-title" class="description-area" placeholder="Nom de la collection" height="20px" required>
                 </div>
                 
                 <div class="new-photo-collection-block">
@@ -57,29 +57,31 @@ endif;
                 <h2 class="new-collection-title">
                     Ajouter des fiches
                 </h2>
+                
                 <!-- Section Ajout de fiches -->
                 <div id="section-ajout-fiches" class="display-fiches-cards-items">
                     <div class="existing-fiches"></div>
                     <div id="ouvrir_popup_ajouter_fiche" class="card-fiche card">
-                        <a href="#" class="">
-                            <figure class="card-fiche-image" alt="ajouter fiche" title="ajouter fiche">
-                                <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490
+                        
+                        <figure class="card-fiche-image" alt="ajouter fiche" title="ajouter fiche">
+                            <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490
                         490" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <polygon
-                                                points="222.031,490 267.969,490 267.969,267.969 490,267.969 490,222.031 267.969,222.031 267.969,0 222.031,0 222.031,222.031 0,222.031 0,267.969 222.031,267.969 "></polygon>
-                                    </g></svg>
-                            </figure>
-
-                        </a>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <polygon
+                                            points="222.031,490 267.969,490 267.969,267.969 490,267.969 490,222.031 267.969,222.031 267.969,0 222.031,0 222.031,222.031 0,222.031 0,267.969 222.031,267.969 "></polygon>
+                                </g></svg>
+                        </figure>
+                        
                         <div class="card-fiche-body">
                             <a href="#" class="">
                                 <span class="card-fiche-title">AJOUTER UNE FICHE</span>
-                            </a></div>
+                            </a>
+                        </div>
                     </div>
                     
                     <?php
+
                     /*
                     $data = [];
                     $args = array(

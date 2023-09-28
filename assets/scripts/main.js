@@ -280,6 +280,14 @@ function popupAjouterFiche() {
     ouvrirPopupButton.addEventListener("click", function (event) {
         event.preventDefault();
 
+        var selectedCardIds = []; // Tableau pour stocker les IDs des cartes cochées
+        const fiches = document.querySelectorAll('.card-selected');
+
+        fiches.forEach(function(fiche){
+            let id = fiche.getAttribute('data-fiche-id');
+            selectedCardIds.push(id);
+        })
+
         // Créer un élément de div pour afficher le contenu du popup
         var popupAjoutContenu = document.createElement(`div`);
         popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
@@ -294,8 +302,6 @@ function popupAjouterFiche() {
         cardContainer.classList.add('display-fiches-cards-items');
 
         var ajaxurl = ajax_object.ajax_url;
-
-        var selectedCardIds = []; // Tableau pour stocker les IDs des cartes cochées
 
         // Créer un champ de formulaire caché
         var hiddenInput = document.createElement('input');
@@ -315,13 +321,18 @@ function popupAjouterFiche() {
                         card.classList.add('card');
                         card.classList.add('card-fiche');
 
+                        // Vérifier si l'ID de l'élément est déjà dans le tableau selectedCardIds
+                        var isChecked = selectedCardIds.includes(String(item.id));
+
                         card.innerHTML = `
+                        <div class="checkbox-area">
+                        <input id="checkbox-${item.id}" type="checkbox" class="card-checkbox" data-fiche-id="${item.id}" ${isChecked ? 'checked' : ''}>
+                        <label for="checkbox-${item.id}" class="checkbox-container"></label>
+                        </div>
                         <a data-fiche-id="${item.id}">
                             <img src="${item.image}" alt="photo de ${item.name}" class="card-fiche-image" title="${item.name}">
                         </a>
                         <div class="card-fiche-body">
-                        <input type="checkbox" class="card-checkbox" data-fiche-id="${item.id}">
-
                             <a><span class="card-fiche-title">${item.name}</span>
                             <span class="card-fiche-espece">${item.species}</span>
                             </a>
@@ -345,8 +356,6 @@ function popupAjouterFiche() {
                                 }
                             }
                         });
-
-
                     });
 
                     // Ajouter le conteneur de cards au popup
@@ -368,6 +377,7 @@ function popupAjouterFiche() {
 
         // Ajouter le popup à la page
         document.querySelector('#content').classList.add('blur-background');
+        document.querySelector('header').classList.add('blur-background');
         document.body.appendChild(popupAjoutFiches);
 
         document.addEventListener('click', function (event) {
@@ -376,12 +386,60 @@ function popupAjouterFiche() {
             if (event.target == ajouter) {
                 popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
                 document.querySelector('#content').classList.remove('blur-background');
+                document.querySelector('header').classList.remove('blur-background');
                 hiddenInput.value = JSON.stringify(selectedCardIds);
+                displaySelectedFiches(selectedCardIds);
             }
             if (event.target.classList.contains('blur-background') || event.target == annuler) {
                 popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
                 document.querySelector('#content').classList.remove('blur-background');
+                document.querySelector('header').classList.remove('blur-background');
+                hiddenInput.value = JSON.stringify(selectedCardIds);
+                displaySelectedFiches(selectedCardIds);
             }
         });
     });
+}
+
+function displaySelectedFiches(selectedIds){
+    // Envoyer une requête AJAX pour récupérer les publications correspondantes
+    let selectedIdsString = selectedIds.join(",")
+    var xhrPosts = new XMLHttpRequest();
+    xhrPosts.onreadystatechange = function () {
+        if (xhrPosts.readyState === XMLHttpRequest.DONE) {
+            if (xhrPosts.readyState === 4 && xhrPosts.status === 200) {
+                // Manipulez la réponse ici, par exemple, affichez les données dans la console
+                var response = JSON.parse(xhrPosts.responseText);
+                // Afficher les publications dans la balise HTML
+                var existingFiches = document.querySelector('.existing-fiches');
+                existingFiches.innerHTML = ''; // Efface le contenu précédent
+
+                response.forEach(function (post) {
+                    var postElement = document.createElement('div');
+                    postElement.classList.add('card');
+                    postElement.classList.add('card-fiche');
+                    postElement.classList.add('card-selected');
+                    postElement.setAttribute("data-fiche-id", post.id);
+
+                    postElement.innerHTML = `
+                    <a data-fiche-id="${post.id}">
+                        <img src="${post.image}" alt="photo de ${post.name}" class="card-fiche-image" title="${post.name}">
+                    </a>
+                    <div class="card-fiche-body">
+                        <a><span class="card-fiche-title">${post.name}</span>
+                        <span class="card-fiche-espece">${post.species}</span>
+                        </a>
+                    </div>`;
+
+                    existingFiches.appendChild(postElement);
+                });
+            } else {
+                console.log('Erreur lors de la récupération des publications : ' + xhrPosts.status);
+            }
+        }
+    };
+
+    var ajaxurlPosts = ajax_object.ajax_url + "?action=get_selected_posts&selected_ids=" + selectedIdsString;
+    xhrPosts.open('GET', ajaxurlPosts, false);
+    xhrPosts.send();
 }
