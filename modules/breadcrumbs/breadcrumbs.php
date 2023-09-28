@@ -6,7 +6,7 @@
 
   // Génération des items selon le type de page courante
   if ( empty($data->items) ) :
-
+	 
     // Article seul
     if ( is_single() ) :
       $category = get_the_category();
@@ -70,6 +70,13 @@
 	  }
 
     endif;
+  
+  else :
+	  $defaults = [
+		  'items' => ['home'],
+		  'modifiers' => ''
+	  ];
+	  $data = botascopia_styleguide_data($defaults, $data);
 
   endif;
 

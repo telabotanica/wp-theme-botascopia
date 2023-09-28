@@ -225,7 +225,8 @@ function create_new_post_collection() {
 		if (isset($_POST['post-title']) && isset($_POST['post-description'])) {
 			$title = sanitize_text_field($_POST['post-title']);
 			$description = wp_kses_post($_POST['post-description']);
-
+			$linked_posts = isset($_POST['selectedCardIds']) ? json_decode(stripslashes($_POST['selectedCardIds']), true) : array();
+			
 			// Vérifiez si un fichier a été téléchargé
 			if (isset($_FILES['post-thumbnail'])) {
 				$file = $_FILES['post-thumbnail'];
@@ -249,8 +250,6 @@ function create_new_post_collection() {
 						echo 'Erreur inconnue lors du téléchargement du fichier.';
 					}
 				}
-			} else {
-				echo 'Vous devez télécharger une image pour la collection';
 			}
 			
 			// Créez un post de type 'collection'
@@ -266,6 +265,24 @@ function create_new_post_collection() {
 				// Associez l'image téléchargée comme image mise en avant de la collection
 				if ($imageId){
 					set_post_thumbnail($post_id, $imageId);
+				}
+				
+				// Vérifiez si des articles liés ont été sélectionnés
+				if (!empty($linked_posts)) {
+					// Assurez-vous que Posts 2 Posts est activé
+					if (function_exists('p2p_type')) {
+						
+						// Parcourez les articles liés et établissez la connexion
+						foreach ($linked_posts as $linked_post_id) {
+							p2p_create_connection('collection_to_post', array(
+								'from' => $post_id,
+								'to' => $linked_post_id,
+								'meta' => array(
+									'date' => current_time('mysql')
+								)
+							));
+						}
+					}
 				}
 				
 				wp_redirect(get_permalink($post_id));
@@ -494,6 +511,10 @@ function getFiches($id)
 	endif;
 	wp_reset_postdata();
 	
+	if ($nbFiches == 0 ){
+		$completed = false;
+	}
+	
 	return [$nbFiches, $completed];
 }
 
@@ -624,3 +645,52 @@ function enregistrer_meta_groupe_champs_acf($post_id) {
 	add_post_meta($post_id, $field_group, 'complet', true);
 }
 add_action('acf/save_post', 'enregistrer_meta_groupe_champs_acf', 20);
+
+// Charge les fiches dans le popup de création de collection
+function load_popup_content() {
+	$data = [];
+	
+	$args = array(
+		'post_type'      => 'post',
+		'posts_per_page' => 4,
+		'post_status'    => array('publish', 'draft', 'pending', 'private'),
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value',
+		'meta_key'       => 'nom_scientifique'
+	);
+	
+	$query = new WP_Query($args);
+	
+	if ($query->have_posts()) :
+		while ($query->have_posts()) : $query->the_post();
+			$post_id   = get_the_ID();
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
+			
+			if($post_imageFull){
+				$post_imageFull = $post_imageFull[0];
+			} else {
+				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+			}
+			
+			$data[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull, // Utilisez [0] pour obtenir l'URL de l'image
+			];
+		endwhile;
+		wp_reset_postdata();
+	endif;
+
+	$json_data = json_encode($data);
+	
+	// Envoyez les données JSON en tant que réponse à la requête Ajax
+	echo $json_data;
+
+	die();
+}
+add_action('wp_ajax_load_popup_content', 'load_popup_content');

@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     popupReserverFiche();
     envoyerFicheEnValidation();
     publierFiche();
+    popupAjouterFiche();
 });
 
 function setFavoris(selector, type){
@@ -138,7 +139,7 @@ function popupReserverFiche(){
             var ficheName = this.getAttribute('data-fiche-name');
             var ficheTitle = this.getAttribute('data-fiche-title');
 
-// Créer un élément de div pour afficher le contenu du popup
+            // Créer un élément de div pour afficher le contenu du popup
             var popupContenu = document.createElement(`div`);
             popupContenu.innerHTML = "<h2>Réserver la fiche " + ficheName + "</h2>" +
                 "<p>Cette fiche est disponible. Souhaitez-vous en devenir l'auteur ? Personne d'autre ne pourra y avoir accès" +
@@ -232,4 +233,155 @@ function setStatus(postId, status) {
     }
 
     setTimeout(function () { location.reload(); } , 1000 );
+}
+
+// Affichage de l'image sélectionnée lors de la création d'une collection
+document.addEventListener('DOMContentLoaded', function() {
+    const inputThumbnail = document.getElementById('post-thumbnail');
+    const imagePreview = document.getElementById('image-preview');
+
+    // Écoutez le changement de fichier
+    inputThumbnail.addEventListener('change', function() {
+        if (inputThumbnail.files && inputThumbnail.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                // Mettez à jour l'aperçu de l'image avec la nouvelle image sélectionnée
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+
+            // Chargez le contenu de l'image sélectionnée
+            reader.readAsDataURL(inputThumbnail.files[0]);
+        }
+    });
+});
+
+// On change la couleur du background pour l'id primary pour la page new-collection qui a un layout différent.
+document.addEventListener("DOMContentLoaded", function() {
+    // Sélectionnez l'élément avec la classe new-collection-main
+    var newCollectionMain = document.querySelector('.new-collection-main');
+
+    // Sélectionnez l'élément avec l'ID primary
+    var primaryElement = document.getElementById('primary');
+
+    // Vérifiez si new-collection-main est présent
+    if (newCollectionMain !== null) {
+        // Changez le background-color de l'élément avec l'ID primary
+        primaryElement.style.backgroundColor = 'var(--blanc)';
+    }
+});
+
+// Ajout de fiches lors de la création d'une nouvelle collection
+function popupAjouterFiche() {
+    const ouvrirPopupButton = document.querySelector('#ouvrir_popup_ajouter_fiche');
+    const formulaire = document.querySelector('#section-ajout-fiches');
+
+    ouvrirPopupButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        // Créer un élément de div pour afficher le contenu du popup
+        var popupAjoutContenu = document.createElement(`div`);
+        popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
+            "<div class='popup-ajout-display-buttons'>" +
+            "<a class='button purple-button outline'><span class='button-text'" +
+            " id='annuler-ajout-fiches'>Annuler</span></a>" +
+            "<a  class='button green-button' ><span" +
+            " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
+            "</div>";
+
+        var cardContainer = document.createElement('div');
+        cardContainer.classList.add('display-fiches-cards-items');
+
+        var ajaxurl = ajax_object.ajax_url;
+
+        var selectedCardIds = []; // Tableau pour stocker les IDs des cartes cochées
+
+        // Créer un champ de formulaire caché
+        var hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'selectedCardIds';
+        formulaire.appendChild(hiddenInput);
+
+        // Envoi de la requête AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var jsonData = JSON.parse(xhr.responseText);
+
+                    jsonData.forEach(function (item) {
+                        var card = document.createElement('div');
+                        card.classList.add('card');
+                        card.classList.add('card-fiche');
+
+                        card.innerHTML = `
+                        <a data-fiche-id="${item.id}">
+                            <img src="${item.image}" alt="photo de ${item.name}" class="card-fiche-image" title="${item.name}">
+                        </a>
+                        <div class="card-fiche-body">
+                        <input type="checkbox" class="card-checkbox" data-fiche-id="${item.id}">
+
+                            <a><span class="card-fiche-title">${item.name}</span>
+                            <span class="card-fiche-espece">${item.species}</span>
+                            </a>
+                        </div>`;
+
+                        cardContainer.appendChild(card);
+
+                        // Écouter les changements de checkbox
+                        var checkbox = card.querySelector('.card-checkbox');
+                        checkbox.addEventListener('change', function () {
+                            var ficheId = checkbox.dataset.ficheId;
+
+                            if (checkbox.checked) {
+                                // Ajouter l'ID à la liste si la checkbox est cochée
+                                selectedCardIds.push(ficheId);
+                            } else {
+                                // Retirer l'ID de la liste si la checkbox est décochée
+                                var index = selectedCardIds.indexOf(ficheId);
+                                if (index !== -1) {
+                                    selectedCardIds.splice(index, 1);
+                                }
+                            }
+                        });
+
+
+                    });
+
+                    // Ajouter le conteneur de cards au popup
+                    popupAjoutContenu.appendChild(cardContainer);
+                } else {
+                    console.log('Erreur : ' + xhr.status);
+                }
+            }
+        }
+
+        xhr.open('GET', ajaxurl + "?action=load_popup_content", false);
+        xhr.send();
+
+        // Créer un élément de div pour le popup
+        var popupAjoutFiches = document.createElement('div');
+        popupAjoutFiches.classList.add('popup');
+        popupAjoutFiches.classList.add('popup-ajout-fiches');
+        popupAjoutFiches.appendChild(popupAjoutContenu);
+
+        // Ajouter le popup à la page
+        document.querySelector('#content').classList.add('blur-background');
+        document.body.appendChild(popupAjoutFiches);
+
+        document.addEventListener('click', function (event) {
+            const ajouter = document.querySelector('#ajouter-fiche');
+            const annuler = document.querySelector('#annuler-ajout-fiches');
+            if (event.target == ajouter) {
+                popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
+                document.querySelector('#content').classList.remove('blur-background');
+                hiddenInput.value = JSON.stringify(selectedCardIds);
+            }
+            if (event.target.classList.contains('blur-background') || event.target == annuler) {
+                popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
+                document.querySelector('#content').classList.remove('blur-background');
+            }
+        });
+    });
 }

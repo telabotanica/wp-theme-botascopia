@@ -6,6 +6,7 @@
     'subtitle' => get_field('cover_subtitle'),
     'content' => false,
     'search' => false,
+	'backgroundColor' => '',
     'modifiers' => []
   ];
 
@@ -13,11 +14,17 @@
   $data->modifiers = botascopia_styleguide_modifiers_array('cover', $data->modifiers);
 
   // Définir une image au hasard si aucune n'est présente
-  if ( empty( $data->image[0] ) ) :
+  if ( empty( $data->image[0] ) && !$data->backgroundColor) :
 	
 	  printf(
 		  '<div class="%s" style="background: transparent linear-gradient(90deg, #000000BA , #00000095 , #00000069 , #00000000 ) no-repeat padding-box;">',
 		  implode(' ', $data->modifiers)
+	  );
+  elseif ($data->backgroundColor) :
+	  printf(
+		  '<div class="%s" style="background-color: %s;}">',
+		  implode(' ', $data->modifiers),
+		  $data->backgroundColor
 	  );
   else:
 	  printf(
@@ -38,10 +45,12 @@
         );
       endif;
 
+	  if (!$data->backgroundColor) :
       printf(
         '<h1 class="cover-title">%s</h1>',
         $data->title
       );
+	  endif;
 
       if ($data->subtitle) :
         printf(

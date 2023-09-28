@@ -21,7 +21,7 @@
 .right-div{
     height: 100%;
     position: relative;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
     left: 80px;
     /*left: calc(20vw + 275px);*/
@@ -37,11 +37,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
-
-/* TODO: A supprimer une fois les pages créer une collection et créer une fiche implémentées */
-#mes-collections  .toc-button:nth-child(1), #mes-collections  .toc-button:nth-child(2), #collection-modif-profil{
-    display: none;
 }
 
 .display-collection-cards{
@@ -213,6 +208,119 @@
 .popup-display-buttons> a:last-child{
     position: absolute;
     bottom: 20px;
+    right: 0;
+}
+/****************** page création de collection **************************/
+#image-preview {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: 0;
+    left: 32px;
+}
+
+#new-post-form{
+    width: 100%;
+}
+
+.new-collection-cover-area{
+    position: absolute;
+    top: 30px;
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-titre-collection-block, .new-photo-collection-block, .new-description-collection-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.new-photo-collection-block {
+    position: relative;
+}
+
+.new-collection-title {
+    font-size: 18px;
+    font-family: "Ubuntu-bold", sans-serif;
+    margin-bottom: 10px;
+}
+
+#post-title {
+    padding: 0 20px;
+    height: 40px;
+}
+
+#post-description {
+    padding: 20px;
+}
+
+#post-description, #post-title {
+    border: 1px solid #1D2D33;
+}
+
+.inputfile {
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-label {
+    font-size: 18px;
+    font-family: "Ubuntu", sans-serif;
+    margin-bottom: 10px;
+}
+
+.upload-explanation {
+    font-size: 12px;
+    font-family: "Muli", sans-serif;
+    line-height: 15px;
+}
+
+.new-collection-main {
+    background-color: var(--blanc);
+    padding: 20px 0;
+}
+
+.new-collection-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-collection-submit-button{
+    margin-top: 20px;
+}
+
+.popup-ajout-fiches{
+    width: 90vw;
+    height: 75vh;
+    top: 55%;
+    padding: 20px 40px;
+}
+
+.popup-ajout-display-buttons > a{
+    margin: 0;
+}
+
+.popup-ajout-display-buttons > a:first-child{
+    position: absolute;
+    top: 0;
+    right: 200px;
+}
+
+.popup-ajout-display-buttons> a:last-child{
+    position: absolute;
+    top: 0;
     right: 0;
 }
 
