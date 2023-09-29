@@ -26,6 +26,7 @@ $group_titles = [
     "Références",
 //    "Logos",
 //    "Taxonomie"
+    "Agroécologie"
 ];
 
 $button_titles = [
