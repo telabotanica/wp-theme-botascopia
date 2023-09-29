@@ -261,12 +261,13 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", function() {
     // Sélectionnez l'élément avec la classe new-collection-main
     var newCollectionMain = document.querySelector('.new-collection-main');
+    var profilMain = document.querySelector('.profil-main');
 
     // Sélectionnez l'élément avec l'ID primary
     var primaryElement = document.getElementById('primary');
 
     // Vérifiez si new-collection-main est présent
-    if (newCollectionMain !== null) {
+    if (newCollectionMain || profilMain) {
         // Changez le background-color de l'élément avec l'ID primary
         primaryElement.style.backgroundColor = 'var(--blanc)';
     }
