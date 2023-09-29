@@ -35,6 +35,9 @@ get_header();
 		]);
 		?>
 		<div class="collection-main" id="mes-collections">
+            <?php
+			if (is_user_logged_in()) :
+            ?>
 			<div class="left-div">
 				<div class="first-toc">
 					<?php
@@ -277,6 +280,13 @@ get_header();
 				</div>
 			</div>
 		</div>
+	<?php
+	else :
+		echo ('
+        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
+        ');
+	endif;
+	?>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
 

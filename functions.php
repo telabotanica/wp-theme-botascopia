@@ -649,15 +649,27 @@ add_action('acf/save_post', 'enregistrer_meta_groupe_champs_acf', 20);
 // Charge les fiches dans le popup de création de collection
 function load_popup_content() {
 	$data = [];
+	$search_term = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
 	
 	$args = array(
 		'post_type'      => 'post',
-		'posts_per_page' => 4,
+		'posts_per_page' => 30,
 		'post_status'    => array('publish', 'draft', 'pending', 'private'),
 		'order'          => 'ASC',
 		'orderby'        => 'meta_value',
-		'meta_key'       => 'nom_scientifique'
+		'meta_key'       => 'nom_scientifique',
 	);
+	
+	// If a search term is provided, add it to the query
+	if (!empty($search_term)) {
+		$args['meta_query'] = array(
+			array(
+				'key'   => 'nom_scientifique',
+				'value' => $search_term,
+				'compare' => 'LIKE',
+			),
+		);
+	}
 	
 	$query = new WP_Query($args);
 	

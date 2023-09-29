@@ -22,6 +22,8 @@ endif;
 			'backgroundColor' => 'var(--rose-pale)',
 			'modifiers'       => ['cover-create-collection']
 		]);
+		
+		if (is_user_logged_in()) :
 		?>
 
         <form id="new-post-form" method="post" enctype="multipart/form-data">
@@ -170,6 +172,16 @@ endif;
                 </div>
             </div>
         </form>
+        
+        <?php
+        else :
+        
+        echo ('
+        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
+        ');
+        
+        endif;
+        ?>
     </main>
 </div>
 

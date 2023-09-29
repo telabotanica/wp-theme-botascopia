@@ -327,8 +327,10 @@ header.blur-background::before{
 .popup-ajout-fiches{
     width: 90vw;
     height: 75vh;
-    top: 55%;
+    top: 50%;
     padding: 20px 40px;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
 }
 
 .popup-ajout-display-buttons > a{
@@ -337,13 +339,13 @@ header.blur-background::before{
 
 .popup-ajout-display-buttons > a:first-child{
     position: absolute;
-    top: 0;
+    top: 45px;
     right: 200px;
 }
 
 .popup-ajout-display-buttons> a:last-child{
     position: absolute;
-    top: 0;
+    top: 45px;
     right: 0;
 }
 
@@ -413,6 +415,25 @@ display: none;
 /* Style de la checkbox lorsque cochée */
 .card-checkbox:checked + .checkbox-container::before {
     display: block;
+}
+
+.card-container {
+    max-height: calc(100% - 100px); /* Ensure the card container does not exceed the popup height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.card-container::-webkit-scrollbar {
+    width: 0;  /* Set the width of the scrollbar to 0 */
+}
+
+.ajout-fiches-search-bar {
+    font-size: 13px;
+    padding: 5px 15px;
+    text-align: left;
+}
+
+.search-box-ajout-fiche {
+    width: 45%;
 }
 
 /************** Media queries **************/

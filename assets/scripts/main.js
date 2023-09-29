@@ -288,98 +288,54 @@ function popupAjouterFiche() {
             selectedCardIds.push(id);
         })
 
-        // Créer un élément de div pour afficher le contenu du popup
-        var popupAjoutContenu = document.createElement(`div`);
-        popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
-            "<div class='popup-ajout-display-buttons'>" +
-            "<a class='button purple-button outline'><span class='button-text'" +
-            " id='annuler-ajout-fiches'>Annuler</span></a>" +
-            "<a  class='button green-button' ><span" +
-            " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
-            "</div>";
-
-        var cardContainer = document.createElement('div');
-        cardContainer.classList.add('display-fiches-cards-items');
-
-        var ajaxurl = ajax_object.ajax_url;
+        var existingHiddenInput = document.querySelector('#fiches-selected');
+        if (existingHiddenInput){
+            existingHiddenInput.remove();
+        }
 
         // Créer un champ de formulaire caché
         var hiddenInput = document.createElement('input');
+        hiddenInput.id = 'fiches-selected'
         hiddenInput.type = 'hidden';
         hiddenInput.name = 'selectedCardIds';
         formulaire.appendChild(hiddenInput);
 
-        // Envoi de la requête AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var jsonData = JSON.parse(xhr.responseText);
-
-                    jsonData.forEach(function (item) {
-                        var card = document.createElement('div');
-                        card.classList.add('card');
-                        card.classList.add('card-fiche');
-
-                        // Vérifier si l'ID de l'élément est déjà dans le tableau selectedCardIds
-                        var isChecked = selectedCardIds.includes(String(item.id));
-
-                        card.innerHTML = `
-                        <div class="checkbox-area">
-                        <input id="checkbox-${item.id}" type="checkbox" class="card-checkbox" data-fiche-id="${item.id}" ${isChecked ? 'checked' : ''}>
-                        <label for="checkbox-${item.id}" class="checkbox-container"></label>
-                        </div>
-                        <a data-fiche-id="${item.id}">
-                            <img src="${item.image}" alt="photo de ${item.name}" class="card-fiche-image" title="${item.name}">
-                        </a>
-                        <div class="card-fiche-body">
-                            <a><span class="card-fiche-title">${item.name}</span>
-                            <span class="card-fiche-espece">${item.species}</span>
-                            </a>
-                        </div>`;
-
-                        cardContainer.appendChild(card);
-
-                        // Écouter les changements de checkbox
-                        var checkbox = card.querySelector('.card-checkbox');
-                        checkbox.addEventListener('change', function () {
-                            var ficheId = checkbox.dataset.ficheId;
-
-                            if (checkbox.checked) {
-                                // Ajouter l'ID à la liste si la checkbox est cochée
-                                selectedCardIds.push(ficheId);
-                            } else {
-                                // Retirer l'ID de la liste si la checkbox est décochée
-                                var index = selectedCardIds.indexOf(ficheId);
-                                if (index !== -1) {
-                                    selectedCardIds.splice(index, 1);
-                                }
-                            }
-                        });
-                    });
-
-                    // Ajouter le conteneur de cards au popup
-                    popupAjoutContenu.appendChild(cardContainer);
-                } else {
-                    console.log('Erreur : ' + xhr.status);
-                }
-            }
-        }
-
-        xhr.open('GET', ajaxurl + "?action=load_popup_content", false);
-        xhr.send();
-
         // Créer un élément de div pour le popup
         var popupAjoutFiches = document.createElement('div');
-        popupAjoutFiches.classList.add('popup');
-        popupAjoutFiches.classList.add('popup-ajout-fiches');
-        popupAjoutFiches.appendChild(popupAjoutContenu);
+        popupAjoutFiches.classList.add('popup', 'popup-ajout-fiches');
 
         // Ajouter le popup à la page
         document.querySelector('#content').classList.add('blur-background');
         document.querySelector('header').classList.add('blur-background');
+
+        // Créer un élément de div pour afficher le contenu du popup
+        var popupAjoutContenu = document.createElement(`div`);
+        popupAjoutContenu.innerHTML = '';
+        popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
+            "<div class='search-box-wrapper search-box-ajout-fiche'>" +
+                "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
+            " une fiche'>" +
+            // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
+            // "<use xlink:href=\"#icon-search\"></use></svg></span>" +
+            "</div>" +
+            "<div class='popup-ajout-display-buttons'>" +
+                "<a class='button purple-button outline'><span class='button-text'" +
+                " id='annuler-ajout-fiches'>Annuler</span></a>" +
+                "<a  class='button green-button' ><span" +
+                " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
+            "</div>";
+        popupAjoutContenu.classList.add('popup-ajout-fiches-content');
+
+        // On charge le contenu de la popup
+        var content = loadContent(selectedCardIds, '?action=load_popup_content');
+        popupAjoutContenu.appendChild(content);
+
+        // On ajoute le contenu à l'intérieur du popup'
+        popupAjoutFiches.appendChild(popupAjoutContenu);
+        // On ajoute le popup au body
         document.body.appendChild(popupAjoutFiches);
 
+        // Gestion de la fermeture du popup
         document.addEventListener('click', function (event) {
             const ajouter = document.querySelector('#ajouter-fiche');
             const annuler = document.querySelector('#annuler-ajout-fiches');
@@ -396,6 +352,23 @@ function popupAjouterFiche() {
                 document.querySelector('header').classList.remove('blur-background');
                 hiddenInput.value = JSON.stringify(selectedCardIds);
                 displaySelectedFiches(selectedCardIds);
+            }
+        });
+
+        // Handle search input change using event delegation
+        document.addEventListener('input', function (event) {
+            if (event.target.classList.contains('ajout-fiches-search-bar')) {
+                setTimeout(function () {
+                    const searchTerm = event.target.value.trim();
+                    // Clear existing content before loading new content
+                    var cardContainer = document.querySelector('#card-container-popup');
+                    if (cardContainer){
+                        cardContainer.remove()
+                    }
+                    const updatedContent = loadContent(selectedCardIds, '?action=load_popup_content&search=' + encodeURIComponent(searchTerm));
+
+                    popupAjoutContenu.appendChild(updatedContent); // Append updated content
+                }, 100);
             }
         });
     });
@@ -442,4 +415,75 @@ function displaySelectedFiches(selectedIds){
     var ajaxurlPosts = ajax_object.ajax_url + "?action=get_selected_posts&selected_ids=" + selectedIdsString;
     xhrPosts.open('GET', ajaxurlPosts, false);
     xhrPosts.send();
+}
+
+function loadContent(selectedCardIds, ajaxFunction){
+    // Créer un élément de div pour afficher le contenu du popup
+    var cardContainer = document.createElement('div');
+    cardContainer.classList.add('display-fiches-cards-items');
+    cardContainer.classList.add('card-container');
+    cardContainer.id = 'card-container-popup'
+    cardContainer.innerHTML = '';
+
+    var ajaxurl = ajax_object.ajax_url;
+    // Envoi de la requête AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var jsonData = JSON.parse(xhr.responseText);
+                // totalPages = Math.ceil(jsonData.length / 5);
+
+                // On remplit les infos de chaque card (on ajoute les cards au cardContainer)
+                jsonData.forEach(function (item) {
+                    var card = document.createElement('div');
+                    card.classList.add('card');
+                    card.classList.add('card-fiche');
+
+                    // Vérifier si l'ID de l'élément est déjà dans le tableau selectedCardIds
+                    var isChecked = selectedCardIds.includes(String(item.id));
+
+                    card.innerHTML = `
+                        <div class="checkbox-area">
+                        <input id="checkbox-${item.id}" type="checkbox" class="card-checkbox" data-fiche-id="${item.id}" ${isChecked ? 'checked' : ''}>
+                        <label for="checkbox-${item.id}" class="checkbox-container"></label>
+                        </div>
+                        <a data-fiche-id="${item.id}">
+                            <img src="${item.image}" alt="photo de ${item.name}" class="card-fiche-image" title="${item.name}">
+                        </a>
+                        <div class="card-fiche-body">
+                            <a><span class="card-fiche-title">${item.name}</span>
+                            <span class="card-fiche-espece">${item.species}</span>
+                            </a>
+                        </div>`;
+
+                    cardContainer.appendChild(card);
+
+                    // Écouter les changements de checkbox
+                    var checkbox = card.querySelector('.card-checkbox');
+                    checkbox.addEventListener('change', function () {
+                        var ficheId = checkbox.dataset.ficheId;
+
+                        if (checkbox.checked) {
+                            // Ajouter l'ID à la liste si la checkbox est cochée
+                            selectedCardIds.push(ficheId);
+                        } else {
+                            // Retirer l'ID de la liste si la checkbox est décochée
+                            var index = selectedCardIds.indexOf(ficheId);
+                            if (index !== -1) {
+                                selectedCardIds.splice(index, 1);
+                            }
+                        }
+                    });
+                });
+            } else {
+                console.log('Erreur : ' + xhr.status);
+            }
+        }
+    }
+
+    xhr.open('GET', ajaxurl + ajaxFunction, false);
+    xhr.send();
+
+    return cardContainer;
 }
