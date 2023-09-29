@@ -5,7 +5,7 @@
         {
             "key": "field_643027826f24d",
             "label": "Illustration de la plante entière",
-            "name": "illustration_de_la_plante_entiere",
+            "name": "",
             "aria-label": "",
             "type": "group",
             "instructions": "",
@@ -3296,7 +3296,7 @@
                         "une ombelle": "une ombelle",
                         "un corymbe": "un corymbe",
                         "un capitule": "un capitule",
-                        "une panicule": "une panicule",
+                        "un panicule": "un panicule",
                         "une cyme bipare": "une cyme bipare",
                         "une cyme unipare scorpioide": "une cyme unipare scorpioide",
                         "une cyme multipare": "une cyme multipare",
@@ -4091,8 +4091,8 @@
                         "id": ""
                     },
                     "choices": {
-                        "androcée soudé à la corolle": "androcée soudé à la corolle",
-                        "androcée non soudé à la corolle": "androcée non soudé à la corolle"
+                        "androcée soudée à la corolle": "androcée soudée à la corolle",
+                        "androcée non soudée à la corolle": "androcée non soudée à la corolle"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4649,7 +4649,7 @@
                     "name": "differenciation_du_perianthe",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "Si la fleur comporte une seule catégorie d'organes dans le périanthe et que vous ne savez pas de quoi il s'agit, choisissez \"tépales\".",
                     "required": 1,
                     "conditional_logic": [
                         [
@@ -5312,7 +5312,7 @@
             "name": "fleur_femelle",
             "aria-label": "",
             "type": "group",
-            "instructions": "",
+            "instructions": "Si la fleur comporte une seule catégorie d'organes dans le périanthe et que vous ne savez pas de quoi il s'agit, choisissez \"tépales\".",
             "required": 0,
             "conditional_logic": [
                 [
@@ -6338,5 +6338,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1683707560
+    "modified": 1695981718
 }
