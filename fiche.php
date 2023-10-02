@@ -80,8 +80,13 @@ get_header();
 			'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
 			'modifiers' =>['class' => 'fiche-cover']
 		]);
+
+		if (!isset($image[0])){
+			$image[0] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+		}
+  
 		echo ('
-			<img src= '.$image["url"] .' class="fiche-image">
+			<img src= '.$image[0] .' class="fiche-image">
 		');
 		?>
 		<div class="collection-main">
@@ -1118,13 +1123,20 @@ get_header();
                 <div class="formulaire-boutons-bas">
                     <?php
                     $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
-                    the_botascopia_module('button',[
-                        'tag' => 'a',
-                        'title' => 'Retour au formulaire',
-                        'text' => 'retour au formulaire',
-                        'modifiers' => 'purple-button',
-                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."'"]
-                    ]);
+					if (is_user_logged_in()){
+                        if ($current_user_role == 'administrator' ||
+							($current_user_role == 'contributor' && $status == 'draft' &&
+								$current_user_id == $post_id) ||
+							($current_user_role == 'editor' && $status == 'pending')){
+							the_botascopia_module('button',[
+								'tag' => 'a',
+								'title' => 'Retour au formulaire',
+								'text' => 'retour au formulaire',
+								'modifiers' => 'purple-button',
+								'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."'"]
+							]);
+                        }
+                    }
                     ?>
                 </div>
 				
