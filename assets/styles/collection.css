@@ -356,7 +356,7 @@ header.blur-background::before{
 #ouvrir_popup_ajouter_fiche > .card-fiche-body {
     width: 100%;
     position: absolute;
-    top: 60%;
+    top: 70%;
     padding: 0 10px;
     text-align: center;
 }
@@ -366,6 +366,7 @@ header.blur-background::before{
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: auto;
 }
 
 .existing-fiches{
