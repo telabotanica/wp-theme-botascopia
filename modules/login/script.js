@@ -1,3 +1,4 @@
+/*
 var iconTemplate = require('../icon/icon.pug');
 
 var Tela = window.Tela || {};
@@ -67,3 +68,4 @@ Tela.modules.login = (function(){
 $(document).ready(function(){
   Tela.modules.login('#login');
 });
+*/

@@ -8,7 +8,8 @@ function tb_login_redirect( $redirect_to, $request, $user ) {
   $url = $redirect_to;
 
   // Ex-telabotaniste ('deleted_tb_user' role user) can't login
-  if (is_array( $user->roles ) && in_array( 'deleted_tb_user', $user->roles)) {
+	
+  if ($user instanceof WP_User && is_array( $user->roles ) && in_array( 'deleted_tb_user', $user->roles)) {
     wp_logout();
     $url = site_url();
   }

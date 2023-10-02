@@ -13,7 +13,14 @@ require get_template_directory() . '/inc/styleguide.php';
 // Chargement du fichier utile
 require get_template_directory() . '/inc/utile.php';
 
+// Personnalisation de la page de login
 require get_template_directory() . '/inc/login.php';
+
+// Redirection des non-admins vers la page d'accueil lors du login
+require get_template_directory() . '/inc/redirect-after-login.php';
+
+// Gestion des contenus, liens, commentaires etc. à la suppression d'un compte
+require get_template_directory() . '/inc/manage-delete-account.php';
 
 // add theme supports
 function bs_theme_supports() {
