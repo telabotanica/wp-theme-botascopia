@@ -13,6 +13,8 @@ require get_template_directory() . '/inc/styleguide.php';
 // Chargement du fichier utile
 require get_template_directory() . '/inc/utile.php';
 
+require get_template_directory() . '/inc/login.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
