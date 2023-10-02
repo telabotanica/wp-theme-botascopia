@@ -102,7 +102,7 @@ function botascopia_module_header($data) {
             $avatar_url = get_avatar($current_user->ID, 52, '', 'user avatar');
             ?>
               <div class="header-login">
-                  <a href="<?php echo(site_url(). '/profil.')?>" title="Afficher profil" class="header-login-link">
+                  <a href="<?php echo(home_url(). '/profil.')?>" title="Afficher profil" class="header-login-link">
                     <div class="header-links-item-text">
                         <div class="header-login-display-name">
 							<?php echo $current_user->display_name ?>
