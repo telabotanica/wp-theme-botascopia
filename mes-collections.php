@@ -78,7 +78,7 @@ get_header();
 					echo '<div class="toc-button">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
-						'href' => site_url() . '/collection/creer-une-collection/',
+						'href' => home_url() . '/collection/creer-une-collection/',
 						'title' => 'Créer une collection',
 						'text' => 'Créer une collection',
 						'modifiers' => 'green-button',
@@ -269,7 +269,7 @@ get_header();
                             ');
 						the_botascopia_module('button', [
 							'tag' => 'a',
-							'href' => site_url() . '/collection/creer-une-collection/',
+							'href' => home_url() . '/collection/creer-une-collection/',
 							'title' => 'Créer une collection',
 							'text' => 'Créer une collection',
 							'modifiers' => 'green-button',
