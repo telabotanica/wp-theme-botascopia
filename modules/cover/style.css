@@ -70,6 +70,11 @@
     margin-left: 20%;
 }
 
+.cover-create-collection::before{
+    color: var(--noir);
+    background-color: var(--rose-pale);
+}
+
 @media (max-width: 767.9px) {
     .cover {
         min-height: 16rem;

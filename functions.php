@@ -172,6 +172,7 @@ function cxc_custom_category_templates( $template ) {
 	return $template;
 }
 
+/*
 // Permet de lier le nom d'une collection (post) avec une catégorie du même nom
 function create_category_from_post_name($post_id) {
 	if (isset($_POST['meta-type']) && $_POST['meta-type'] === 'collection') {
@@ -189,32 +190,102 @@ function create_category_from_post_name($post_id) {
 	}
 }
 add_action('wp_insert_post', 'create_category_from_post_name');
+*/
+// Ajoutez une règle de réécriture pour le slug personnalisé
+function custom_rewrite_rule() {
+	add_rewrite_rule('^collection/creer-une-collection/?','index.php?custom_collection=create-collection','top');
+}
+add_action('init', 'custom_rewrite_rule', 10, 0);
+
+// Ajoutez la variable de requête personnalisée
+function custom_query_vars($query_vars) {
+	$query_vars[] = 'custom_collection';
+	return $query_vars;
+}
+add_filter('query_vars', 'custom_query_vars');
+
+// Affichez le formulaire sur la page personnalisée
+function display_collection_form() {
+	if (get_query_var('custom_collection') === 'create-collection') {
+		include(dirname(__FILE__) . '/create-collection.php');
+		exit;
+	}
+}
+add_action('template_redirect', 'display_collection_form');
 
 // Permet de créer une nouvelle collection (Post)
 function create_new_post_collection() {
+	$imageId = null;
 	
 	// Vérification si le nom existe déjà
-	if (isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'post', false )){
-		wp_redirect( home_url( '/creer-une-collection/?error=existing_title' ) );
+	if (isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'collection', false )){
+		wp_redirect( home_url( '/collection/creer-une-collection/?error=existing_title' ) );
 		exit();
 	} else {
 		if (isset($_POST['post-title']) && isset($_POST['post-description'])) {
 			$title = sanitize_text_field($_POST['post-title']);
 			$description = wp_kses_post($_POST['post-description']);
-			$my_post = array(
-				'post_title' => $title,
-				'post_content' => $description,
-//			'post_status' => 'publish',
-				'post_category' => array( get_cat_ID( $title ) ),
-			);
+			$linked_posts = isset($_POST['selectedCardIds']) ? json_decode(stripslashes($_POST['selectedCardIds']), true) : array();
 			
-			$post_id = wp_insert_post( $my_post );
-			if (isset($_POST['meta-type']) && 'collection' === $_POST['meta-type']){
-				create_category_from_post_name($post_id);
+			// Vérifiez si un fichier a été téléchargé
+			if (isset($_FILES['post-thumbnail'])) {
+				$file = $_FILES['post-thumbnail'];
+
+				// Vérifiez s'il n'y a pas d'erreurs de téléchargement
+				if ($file['error'] === 0) {
+					$imageId=uploadImage($file);
+				} else {
+					switch ($file['error']) {
+					case UPLOAD_ERR_INI_SIZE:
+					case UPLOAD_ERR_FORM_SIZE:
+						echo 'Le fichier est trop volumineux.';
+						break;
+					case UPLOAD_ERR_PARTIAL:
+						echo 'Le téléchargement du fichier a été partiellement effectué.';
+						break;
+					case UPLOAD_ERR_NO_FILE:
+						echo 'Aucun fichier n\'a été téléchargé.';
+						break;
+					default:
+						echo 'Erreur inconnue lors du téléchargement du fichier.';
+					}
+				}
 			}
 			
+			// Créez un post de type 'collection'
+			$post_id = wp_insert_post(
+				array(
+					'post_title' => $title,
+					'post_content' => $description,
+					'post_status' => 'publish',
+					'post_type' => 'collection',
+				));
+			
 			if ($post_id) {
-				wp_redirect( get_permalink( $post_id ) );
+				// Associez l'image téléchargée comme image mise en avant de la collection
+				if ($imageId){
+					set_post_thumbnail($post_id, $imageId);
+				}
+				
+				// Vérifiez si des articles liés ont été sélectionnés
+				if (!empty($linked_posts)) {
+					// Assurez-vous que Posts 2 Posts est activé
+					if (function_exists('p2p_type')) {
+						
+						// Parcourez les articles liés et établissez la connexion
+						foreach ($linked_posts as $linked_post_id) {
+							p2p_create_connection('collection_to_post', array(
+								'from' => $post_id,
+								'to' => $linked_post_id,
+								'meta' => array(
+									'date' => current_time('mysql')
+								)
+							));
+						}
+					}
+				}
+				
+				wp_redirect(get_permalink($post_id));
 				exit;
 			} else {
 				echo 'Erreur lors de la création de la collection';
@@ -224,12 +295,46 @@ function create_new_post_collection() {
 }
 add_action('init', 'create_new_post_collection');
 
-function getPostImage($id){
-	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
-	if ($getImage){
-		$image['url'] = $getImage[0];
+function uploadImage($file){
+	// get the file suffix
+	$suffix = pathinfo($file['name'], PATHINFO_EXTENSION);
+	// define the save location and filename
+	$filename = date('YmdHis').'.'.$suffix;
+	$wp_upload_dir = wp_upload_dir();
+	$path = $wp_upload_dir['path'].'/'.$filename;
+	
+	// upload file
+	if(move_uploaded_file($file['tmp_name'], $path)) {
+		$attach_id = wp_insert_attachment(array(
+											  'guid'              =>  $wp_upload_dir['url'].'/'.$filename,
+											  'post_mime_type'    =>  $file['type'],
+											  'post_title'        =>  preg_replace( '/\.[^.]+$/', '', $filename),
+											  'post_content'      =>  '',
+											  'post_status'       =>  'inherit',
+										  ), $path, get_the_ID());
+		
+		// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+		// Generate the metadata for the attachment, and update the database record.
+		$attach_data = wp_generate_attachment_metadata($attach_id, $path);
+		wp_update_attachment_metadata( $attach_id, $attach_data );
+		
+		return $attach_id;
 	} else {
-		$image['url'] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+		return null;
+	}
+}
+
+function getPostImage($id){
+	$imageId = get_post_thumbnail_id($id);
+	$getImage = wp_get_attachment_image_src($imageId, 'full');
+	
+//	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
+	if ($getImage){
+		$image[] = $getImage[0];
+	} else {
+		$image[] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
 	
 	return $image;
@@ -406,6 +511,10 @@ function getFiches($id)
 	endif;
 	wp_reset_postdata();
 	
+	if ($nbFiches == 0 ){
+		$completed = false;
+	}
+	
 	return [$nbFiches, $completed];
 }
 
@@ -536,3 +645,107 @@ function enregistrer_meta_groupe_champs_acf($post_id) {
 	add_post_meta($post_id, $field_group, 'complet', true);
 }
 add_action('acf/save_post', 'enregistrer_meta_groupe_champs_acf', 20);
+
+// Charge les fiches dans le popup de création de collection
+function load_popup_content() {
+	$data = [];
+	$search_term = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+	
+	$args = array(
+		'post_type'      => 'post',
+		'posts_per_page' => 30,
+		'post_status'    => array('publish', 'draft', 'pending', 'private'),
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value',
+		'meta_key'       => 'nom_scientifique',
+	);
+	
+	// If a search term is provided, add it to the query
+	if (!empty($search_term)) {
+		$args['meta_query'] = array(
+			array(
+				'key'   => 'nom_scientifique',
+				'value' => $search_term,
+				'compare' => 'LIKE',
+			),
+		);
+	}
+	
+	$query = new WP_Query($args);
+	
+	if ($query->have_posts()) :
+		while ($query->have_posts()) : $query->the_post();
+			$post_id   = get_the_ID();
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
+			
+			if($post_imageFull){
+				$post_imageFull = $post_imageFull[0];
+			} else {
+				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+			}
+			
+			$data[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull, // Utilisez [0] pour obtenir l'URL de l'image
+			];
+		endwhile;
+		wp_reset_postdata();
+	endif;
+
+	$json_data = json_encode($data);
+	
+	// Envoyez les données JSON en tant que réponse à la requête Ajax
+	echo $json_data;
+
+	die();
+}
+add_action('wp_ajax_load_popup_content', 'load_popup_content');
+
+// Action pour récupérer les publications correspondant aux IDs sélectionnés
+add_action('wp_ajax_get_selected_posts', 'get_selected_posts_callback');
+add_action('wp_ajax_nopriv_get_selected_posts', 'get_selected_posts_callback');
+function get_selected_posts_callback() {
+	// Récupérer les IDs sélectionnés
+	$ids = $_GET['selected_ids'];
+	$selected_ids = explode(",", $ids);
+
+	$args = array(
+		'post_type' => 'post',
+		'post__in'  => $selected_ids,
+	);
+	
+	$query = new WP_Query($args);
+	
+	$response = array();
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$post_id = get_the_ID();
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
+			if($post_imageFull){
+				$post_imageFull = $post_imageFull[0];
+			} else {
+				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+			}
+			
+			$response[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull,
+			];
+		}
+	}
+	wp_send_json($response);
+	wp_die();
+}
+

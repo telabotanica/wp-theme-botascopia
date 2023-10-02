@@ -1,9 +1,12 @@
 /****************** Page collections **************************/
+#collections-container{
+    margin-bottom: 20px;
+}
 .collection-main{
     position: relative;
     display: flex;
     justify-content: space-between;
-    width: 275px;
+    width: calc(100% + 130px);
 }
 
 .left-div{
@@ -13,17 +16,17 @@
     width: 275px;
     margin: 0;
     height: 100%;
-
 }
+
 .right-div{
     height: 100%;
     position: relative;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
     left: 80px;
     /*left: calc(20vw + 275px);*/
     top: 0;
-    min-width: 700px;
+    width: 100%;
 }
 
 .second-toc{
@@ -36,16 +39,15 @@
     align-items: center;
 }
 
-/* TODO: A supprimer une fois les pages créer une collection et créer une fiche implémentées */
-#mes-collections  .toc-button:nth-child(1), #mes-collections  .toc-button:nth-child(2), #collection-modif-profil{
-    display: none;
-}
-
 .display-collection-cards{
     margin: 30px 0 0 20px;
 }
 
 /****************** Page single collection **************************/
+.collection-title{
+    font-size: 24px;
+}
+
 .single-collection-title{
     margin: 20px 0 80px 0;
     text-transform: capitalize;
@@ -145,6 +147,9 @@
     border-radius: 0 0 10px 10px;
     color: var(--blanc);
     z-index: 2;
+    text-align: center;
+    font-size: 13px;
+    line-height: 16px;
 }
 
 /****************** popup réservation de fiche **************************/
@@ -166,7 +171,7 @@
     height: 100%;
 }
 
-#content.blur-background::before {
+#content.blur-background::before{
     content: "";
     position: fixed;
     top: 0;
@@ -174,6 +179,17 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(31px);
+    z-index: 500;
+}
+
+header.blur-background::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     backdrop-filter: blur(31px);
     z-index: 500;
 }
@@ -205,3 +221,238 @@
     bottom: 20px;
     right: 0;
 }
+/****************** page création de collection **************************/
+#image-preview {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: 0;
+    left: 32px;
+}
+
+#new-post-form{
+    width: 100%;
+}
+
+.new-collection-cover-area{
+    position: absolute;
+    top: 30px;
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-titre-collection-block, .new-photo-collection-block, .new-description-collection-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.new-titre-collection-block, .new-description-collection-block {
+    width: 65%;
+}
+
+.description-area{
+    width: 100%;
+}
+
+.new-photo-collection-block {
+    position: relative;
+}
+
+.new-collection-title {
+    font-size: 18px;
+    font-family: "Ubuntu-bold", sans-serif;
+    margin-bottom: 10px;
+}
+
+#post-title {
+    padding: 0 20px;
+    height: 40px;
+}
+
+#post-description {
+    padding: 20px;
+}
+
+#post-description, #post-title {
+    border: 1px solid #1D2D33;
+}
+
+.inputfile {
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-label {
+    font-size: 18px;
+    font-family: "Ubuntu", sans-serif;
+    margin-bottom: 10px;
+}
+
+.upload-explanation {
+    font-size: 12px;
+    font-family: "Muli", sans-serif;
+    line-height: 15px;
+}
+
+.new-collection-main {
+    background-color: var(--blanc);
+    padding: 20px 0;
+}
+
+.new-collection-main > .display-fiches-cards-items {
+    margin-top: 0;
+}
+
+.new-collection-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-collection-submit-button{
+    margin-top: 20px;
+}
+
+.popup-ajout-fiches{
+    width: 90vw;
+    height: 75vh;
+    top: 50%;
+    padding: 20px 40px;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.popup-ajout-display-buttons > a{
+    margin: 0;
+}
+
+.popup-ajout-display-buttons > a:first-child{
+    position: absolute;
+    top: 45px;
+    right: 200px;
+}
+
+.popup-ajout-display-buttons> a:last-child{
+    position: absolute;
+    top: 45px;
+    right: 0;
+}
+
+#ouvrir_popup_ajouter_fiche{
+    cursor: pointer;
+}
+
+#ouvrir_popup_ajouter_fiche > .card-fiche-body {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#ouvrir_popup_ajouter_fiche > .card-fiche-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.existing-fiches{
+    display: flex;
+}
+
+.checkbox-area {
+    background-color: var(--blanc);
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 30px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.card-checkbox{
+display: none;
+}
+
+.checkbox-container {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #fff; /* Couleur du fond */
+    border: 2px solid #000; /* Couleur de la bordure */
+    border-radius: 50%; /* Bordure arrondie pour créer un cercle */
+}
+
+/* Style du point intérieur (visible lorsque la checkbox est cochée) */
+.checkbox-container::before {
+    content: '\2022'; /* Caractère Unicode pour un point • (utilisé comme coche) */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--noir); /* Couleur du point */
+    font-size: 40px; /* Taille du point */
+    display: none;
+}
+
+/* Style de la checkbox lorsque cochée */
+.card-checkbox:checked + .checkbox-container::before {
+    display: block;
+}
+
+.card-container {
+    max-height: calc(100% - 100px); /* Ensure the card container does not exceed the popup height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.card-container::-webkit-scrollbar {
+    width: 0;  /* Set the width of the scrollbar to 0 */
+}
+
+.ajout-fiches-search-bar {
+    font-size: 13px;
+    padding: 5px 15px;
+    text-align: left;
+}
+
+.search-box-ajout-fiche {
+    width: 45%;
+}
+
+/************** Media queries **************/
+/*
+@media screen and (min-width: 769px) and (max-width: 1250px) {
+    .left-div {
+        width: 150px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .left-div {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .left-div {
+        width: 150px;
+    }
+}
+*/
