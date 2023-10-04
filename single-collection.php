@@ -171,54 +171,16 @@ get_header();
 
 					?>
 				</div>
-                
-                <div id="single-collection-pagination" class="pagination">
-                    <?php
-					if ($paged > 2){?>
-                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=1")?>">
-                            <span class="meta-nav screen-reader-text">Page </span>
-							<?php echo 1 ?>
-                        </a>
-						<?php
-					}
-					?>
-					<?php
-                    if ($paged != 1){
-                        ?>
-                        <a class="prev page-numbers" href="<?php echo (get_the_permalink() . "?t=". $prevPage)?>">Page précédente</a>
-                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=". $prevPage)?>">
-                            <span class="meta-nav screen-reader-text">Page </span>
-                            <?php echo $prevPage ?>
-                        </a>
-					<?php }
-                    ?>
-                    
-                    <span aria-current="page" class="page-numbers current">
-                        <span class="meta-nav screen-reader-text">Page </span>
-                            <?php echo $paged ?>
-                    </span>
-                    
-                    <?php
-                    if ($paged != $totalPage){?>
-                    <a class="next page-numbers" href="<?php echo (get_the_permalink() . "?t=". $nextPage)?>">Page suivante</a>
-                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=". $nextPage)?>">
-                            <span class="meta-nav screen-reader-text">Page </span>
-							<?php echo $nextPage ?>
-                        </a>
-                   <?php }
-					?>
-					
-					<?php
-					if ($paged != ($totalPage - 1) && $paged != $totalPage){?>
-                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=". $totalPage)?>">
-                            <span class="meta-nav screen-reader-text">Page </span>
-							<?php echo $totalPage ?>
-                        </a>
-						<?php
-					}
-					?>
-                
-                </div>
+				
+				<?php
+				the_botascopia_module('pagination', [
+					'page'      => $paged,
+					'totalPage' => $totalPage,
+					'id'        => 'single-collection-pagination',
+					'href'      => get_the_permalink()
+				]);
+				?>
+
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
 
