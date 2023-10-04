@@ -95,10 +95,7 @@ get_header();
 						'modifiers' => 'green-button',
 					]); ?>
 					
-					<?php if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search($post_id,
-																																			 $collectionFavorites[0]))
-						!==
-						false) :
+					<?php if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search($post_id, $collectionFavorites[0])) !== false) :
 						//changer le bouton favoris si collection dans favoris ou pas
 						$icone = ['icon' => 'star', 'color' => 'blanc'];
 						$modifiers = 'green-button';
@@ -145,7 +142,8 @@ get_header();
 				<div>
 					<?php the_botascopia_module('search-box', [
 						'placeholder' => 'Rechercher une fiche',
-//                            'pageurl' => get_page_uri()
+						'id' => 'single-collection-search',
+                        'post' => $post_id
 					]); ?>
 				</div>
 				
@@ -160,29 +158,16 @@ get_header();
 					<?php echo $post->post_content ?>
 				</div>
 				
-				<div class="display-fiches-cards-items">
+				<div id="single-collection-fiches-container" class="display-fiches-cards-items">
 					<?php
 					
-					$search_query = get_search_query();
+//					$search_query = get_search_query();
 					$connected_posts = new WP_Query(
 						array(
 							'connected_type' => 'collection_to_post',
 							'connected_items' => $post_id,
 							'nopaging' => true,
-							'post_status' => 'any',
-//							'meta_query' => array(
-//								'relation' => 'OR',
-//								array(
-//									'key' => 'nom_scientifique',
-//									'value' => $search_query,
-//									'compare' => 'LIKE'
-//								),
-//								array(
-//									'key' => 'famille',
-//									'value' => $search_query,
-//									'compare' => 'LIKE'
-//								)
-//							)
+							'post_status' => 'any'
 						));
 					
 					if ($connected_posts->have_posts()) :

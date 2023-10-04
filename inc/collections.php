@@ -363,3 +363,164 @@ function load_popup_content() {
 	die();
 }
 add_action('wp_ajax_load_popup_content', 'load_popup_content');
+
+// Charge les fiches dans le popup de création de collection
+function load_collection_content() {
+	$data = [];
+	$search_term = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+	$post_id = isset($_GET['post']) ? sanitize_text_field($_GET['post']) : '';
+	
+	if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche')):
+		$ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
+	endif;
+	
+	if (is_user_logged_in()) :
+		$current_user = wp_get_current_user();
+		$current_user_id = $current_user->ID;
+		$current_user_role = $current_user->roles[0];
+	endif;
+	
+	$args = array(
+		'connected_type' => 'collection_to_post',
+		'connected_items' => $post_id,
+		'nopaging' => true,
+		'posts_per_page' => 30,
+		'post_status'    => array('publish', 'draft', 'pending', 'private'),
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value',
+		'meta_key'       => 'nom_scientifique',
+	);
+	
+	// If a search term is provided, add it to the query
+	if (!empty($search_term)) {
+		$args['meta_query'] = array(
+			'relation' => 'OR',
+			array(
+				'key'   => 'nom_scientifique',
+				'value' => $search_term,
+				'compare' => 'LIKE',
+			),
+			array(
+				'key' => 'famille',
+				'value' => $search_term,
+				'compare' => 'LIKE'
+			)
+		);
+	}
+
+	$connected_posts = new WP_Query($args);
+	
+	if ($connected_posts->have_posts()) :
+		while ($connected_posts->have_posts()) : $connected_posts->the_post();
+			// Afficher ici les informations sur chaque article de type "post" connecté
+			$name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
+			$species = get_post_meta(get_the_ID(), 'famille', true);
+			$image = get_the_post_thumbnail_url();
+			$id = trim(get_the_ID());
+			$ficheTitle = get_the_title();
+			$status = get_post_status();
+			
+			if (!$image) :
+				$image =
+					get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+			endif;
+			
+			$fiche_author_id = get_post_field('post_author', $id);
+			$fiche_author_info = get_userdata($fiche_author_id);
+			$fiche_author_roles = $fiche_author_info->roles[0];
+			
+			if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche') && ($key = array_search($id, $ficheFavorites[0])) !== false) :
+				$icone = ['icon' => 'star', 'color' => 'icon-color-blanc'];
+			else:
+				$icone = ['icon' => 'star-outline', 'color' => 'icon-color-blanc'];
+			endif;
+			
+			switch ($status):
+			case 'draft':
+				$fichesClasses = 'card-status-bandeau main-status-incomplete';
+				$ficheStatusText = 'à completer';
+				break;
+			case 'pending':
+				$fichesClasses = 'card-status-bandeau main-status-complete';
+				$ficheStatusText = 'en cours...';
+				break;
+			case 'publish':
+				$fichesClasses = 'card-status-bandeau main-status-complete';
+				$ficheStatusText = 'complet';
+				break;
+			default:
+				$fichesClasses = '';
+				$ficheStatusText = '';
+			endswitch;
+			
+			// Cas des fiches réservées (toujours en draft)
+			if ($fiche_author_roles == 'contributor') {
+				if ($status == 'draft'){
+					$fichesClasses = 'card-status-bandeau main-status-incomplete';
+					$ficheStatusText = 'en cours...';
+				} elseif ($status == 'pending'){
+					$editor = get_post_meta($id, 'Editor', true);
+					
+					if ($editor == $current_user_id || $editor == 0){
+						$fichesClasses = 'card-status-bandeau main-status-complete';
+						$ficheStatusText = 'A vérifier';
+					} else {
+						$fichesClasses = 'card-status-bandeau main-status-complete';
+						$ficheStatusText = 'En cours de vérification';
+					}
+				}
+			}
+			
+			// Si la fiche n'appartient pas à un contributeur, un contributeur peut en prendre l'ownership si celle-ci est en draft
+			if (is_user_logged_in() && $current_user_role == 'contributor' && $status == 'draft' &&
+				$current_user_id != $fiche_author_id && $fiche_author_roles != 'contributor') {
+				$popupClass = 'fiche-non-reserve';
+			} else {
+				$popupClass = '';
+			}
+			
+			// Différent lien selon le statut de la fiche et l'utilisateur
+			if (is_user_logged_in()) {
+				if (($current_user_role == 'contributor' && $status == 'draft' &&
+						$current_user_id == $fiche_author_id) ||
+					($current_user_role == 'editor' && $status == 'pending')) {
+					$href = '/formulaire/?p='.get_the_title();
+				} elseif ($status == 'publish' || $current_user_role == 'administrator' ) {
+					$href = get_permalink();
+				} else {
+					$href = '#';
+				}
+			} elseif ($status == 'publish') {
+				$href = get_permalink();
+			} else {
+				$href = '#';
+			}
+			
+			$data[] = [
+				'href'             => $href,
+				'image'            => $image,
+				'name'             => $name,
+				'species'          => $species,
+				'icon'             => $icone,
+				'popup'            => $popupClass,
+				'id'               => 'fiche-'.$id,
+				'data-user-id'     => $current_user_id,
+				'data-fiche-id'    => $id,
+				'data-fiche-name'  => $name,
+				'data-fiche-url'   => get_permalink(),
+				'data-fiche-title' => $ficheTitle,
+				'fichesClasses'    => $fichesClasses,
+				'ficheStatusText'  => $ficheStatusText
+				];
+		endwhile;
+		wp_reset_postdata();
+	endif;
+//	print_r($data);
+	$json_data = json_encode($data);
+
+	// Envoyez les données JSON en tant que réponse à la requête Ajax
+	echo $json_data;
+	
+	die();
+}
+add_action('wp_ajax_load_collection_content', 'load_collection_content');

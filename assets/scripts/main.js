@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     envoyerFicheEnValidation();
     publierFiche();
     popupAjouterFiche();
+    collectionSearchFiches();
 });
 
 function setFavoris(selector, type){
@@ -132,54 +133,56 @@ function setFavoris(selector, type){
 // Affichage du popup pour réserver une fiche
 function popupReserverFiche(){
     var fiches= document.querySelectorAll('.fiche-non-reserve');
-    fiches.forEach(function(fiche){
-        fiche.addEventListener('click', function (){
-            var user_id = this.getAttribute('data-user-id');
-            var ficheId = this.getAttribute('data-fiche-id');
-            var ficheName = this.getAttribute('data-fiche-name');
-            var ficheTitle = this.getAttribute('data-fiche-title');
+    if (fiches) {
+        fiches.forEach(function (fiche) {
+            fiche.addEventListener('click', function () {
+                var user_id = this.getAttribute('data-user-id');
+                var ficheId = this.getAttribute('data-fiche-id');
+                var ficheName = this.getAttribute('data-fiche-name');
+                var ficheTitle = this.getAttribute('data-fiche-title');
 
-            // Créer un élément de div pour afficher le contenu du popup
-            var popupContenu = document.createElement(`div`);
-            popupContenu.innerHTML = "<h2>Réserver la fiche " + ficheName + "</h2>" +
-                "<p>Cette fiche est disponible. Souhaitez-vous en devenir l'auteur ? Personne d'autre ne pourra y avoir accès" +
-                " tant que vous n'aurez pas envoyé le formulaire à vérification ou renoncé à la compléter.</p>" +
-                "<div class='popup-display-buttons'>" +
-                "<a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a>" +
-                // "<a class='button green-button' href='"+ ficheUrl + "'><span class='button-text'>Réserver" +
-                "<a  class='button green-button' ><span" +
-            // " class='button-text' id='reserver-fiche' onclick='reserverFiche("+ ficheId +","+ user_id +")'>Réserver" +
-            " class='button-text' id='reserver-fiche'>Réserver" +
-                " la fiche</span></a>" +
-                "</div>" ;
+                // Créer un élément de div pour afficher le contenu du popup
+                var popupContenu = document.createElement(`div`);
+                popupContenu.innerHTML = "<h2>Réserver la fiche " + ficheName + "</h2>" +
+                    "<p>Cette fiche est disponible. Souhaitez-vous en devenir l'auteur ? Personne d'autre ne pourra y avoir accès" +
+                    " tant que vous n'aurez pas envoyé le formulaire à vérification ou renoncé à la compléter.</p>" +
+                    "<div class='popup-display-buttons'>" +
+                    "<a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a>" +
+                    // "<a class='button green-button' href='"+ ficheUrl + "'><span class='button-text'>Réserver" +
+                    "<a  class='button green-button' ><span" +
+                    // " class='button-text' id='reserver-fiche' onclick='reserverFiche("+ ficheId +","+ user_id +")'>Réserver" +
+                    " class='button-text' id='reserver-fiche'>Réserver" +
+                    " la fiche</span></a>" +
+                    "</div>";
 
-            // Créer un élément de div pour le popup
-            var popup = document.createElement('div');
-            popup.classList.add('popup');
-            popup.appendChild(popupContenu);
+                // Créer un élément de div pour le popup
+                var popup = document.createElement('div');
+                popup.classList.add('popup');
+                popup.appendChild(popupContenu);
 
-            // Ajouter le popup à la page
-            document.querySelector('#content').classList.add('blur-background');
-            document.body.appendChild(popup);
+                // Ajouter le popup à la page
+                document.querySelector('#content').classList.add('blur-background');
+                document.body.appendChild(popup);
 
-            // Ajouter un événement de clic pour fermer le popup
-            document.addEventListener('click', function(event) {
-                var reserver = document.getElementById('reserver-fiche');
-                var annuler = document.getElementById('annuler');
-                if ( event.target == reserver) {
-                    popup.parentNode.removeChild(popup);
-                    document.querySelector('#content').classList.remove('blur-background');
+                // Ajouter un événement de clic pour fermer le popup
+                document.addEventListener('click', function (event) {
+                    var reserver = document.getElementById('reserver-fiche');
+                    var annuler = document.getElementById('annuler');
+                    if (event.target == reserver) {
+                        popup.parentNode.removeChild(popup);
+                        document.querySelector('#content').classList.remove('blur-background');
 
-                    // Renvoie vers le formulaire et changement de propriétaire
-                    window.location.href = '/formulaire/?p=' + ficheTitle + '&a=1';
-                }
-                if (event.target.classList.contains('blur-background') || event.target == annuler) {
-                    popup.parentNode.removeChild(popup);
-                    document.querySelector('#content').classList.remove('blur-background');
-                }
-            });
+                        // Renvoie vers le formulaire et changement de propriétaire
+                        window.location.href = '/formulaire/?p=' + ficheTitle + '&a=1';
+                    }
+                    if (event.target.classList.contains('blur-background') || event.target == annuler) {
+                        popup.parentNode.removeChild(popup);
+                        document.querySelector('#content').classList.remove('blur-background');
+                    }
+                });
+            })
         })
-    })
+    }
 }
 
 function envoyerFicheEnValidation(){
@@ -277,20 +280,20 @@ document.addEventListener("DOMContentLoaded", function() {
 function popupAjouterFiche() {
     const ouvrirPopupButton = document.querySelector('#ouvrir_popup_ajouter_fiche');
     const formulaire = document.querySelector('#section-ajout-fiches');
-
+if (ouvrirPopupButton) {
     ouvrirPopupButton.addEventListener("click", function (event) {
         event.preventDefault();
 
         var selectedCardIds = []; // Tableau pour stocker les IDs des cartes cochées
         const fiches = document.querySelectorAll('.card-selected');
 
-        fiches.forEach(function(fiche){
+        fiches.forEach(function (fiche) {
             let id = fiche.getAttribute('data-fiche-id');
             selectedCardIds.push(id);
         })
 
         var existingHiddenInput = document.querySelector('#fiches-selected');
-        if (existingHiddenInput){
+        if (existingHiddenInput) {
             existingHiddenInput.remove();
         }
 
@@ -314,16 +317,16 @@ function popupAjouterFiche() {
         popupAjoutContenu.innerHTML = '';
         popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
             "<div class='search-box-wrapper search-box-ajout-fiche'>" +
-                "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
+            "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
             " une fiche'>" +
             // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
             // "<use xlink:href=\"#icon-search\"></use></svg></span>" +
             "</div>" +
             "<div class='popup-ajout-display-buttons'>" +
-                "<a class='button purple-button outline'><span class='button-text'" +
-                " id='annuler-ajout-fiches'>Annuler</span></a>" +
-                "<a  class='button green-button' ><span" +
-                " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
+            "<a class='button purple-button outline'><span class='button-text'" +
+            " id='annuler-ajout-fiches'>Annuler</span></a>" +
+            "<a  class='button green-button' ><span" +
+            " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
             "</div>";
         popupAjoutContenu.classList.add('popup-ajout-fiches-content');
 
@@ -363,7 +366,7 @@ function popupAjouterFiche() {
                     const searchTerm = event.target.value.trim();
                     // Clear existing content before loading new content
                     var cardContainer = document.querySelector('#card-container-popup');
-                    if (cardContainer){
+                    if (cardContainer) {
                         cardContainer.remove()
                     }
                     const updatedContent = loadContent(selectedCardIds, '?action=load_popup_content&search=' + encodeURIComponent(searchTerm));
@@ -374,7 +377,9 @@ function popupAjouterFiche() {
         });
     });
 }
+}
 
+//Affichage des fiches sur le popup ajout de fiches
 function displaySelectedFiches(selectedIds){
     // Envoyer une requête AJAX pour récupérer les publications correspondantes
     let selectedIdsString = selectedIds.join(",")
@@ -382,7 +387,6 @@ function displaySelectedFiches(selectedIds){
     xhrPosts.onreadystatechange = function () {
         if (xhrPosts.readyState === XMLHttpRequest.DONE) {
             if (xhrPosts.readyState === 4 && xhrPosts.status === 200) {
-                // Manipulez la réponse ici, par exemple, affichez les données dans la console
                 var response = JSON.parse(xhrPosts.responseText);
                 // Afficher les publications dans la balise HTML
                 var existingFiches = document.querySelector('.existing-fiches');
@@ -418,6 +422,7 @@ function displaySelectedFiches(selectedIds){
     xhrPosts.send();
 }
 
+//Affichage des fiches sur le popup ajout de fiches
 function loadContent(selectedCardIds, ajaxFunction){
     // Créer un élément de div pour afficher le contenu du popup
     var cardContainer = document.createElement('div');
@@ -462,20 +467,22 @@ function loadContent(selectedCardIds, ajaxFunction){
 
                     // Écouter les changements de checkbox
                     var checkbox = card.querySelector('.card-checkbox');
-                    checkbox.addEventListener('change', function () {
-                        var ficheId = checkbox.dataset.ficheId;
+                    if (checkbox) {
+                        checkbox.addEventListener('change', function () {
+                            var ficheId = checkbox.dataset.ficheId;
 
-                        if (checkbox.checked) {
-                            // Ajouter l'ID à la liste si la checkbox est cochée
-                            selectedCardIds.push(ficheId);
-                        } else {
-                            // Retirer l'ID de la liste si la checkbox est décochée
-                            var index = selectedCardIds.indexOf(ficheId);
-                            if (index !== -1) {
-                                selectedCardIds.splice(index, 1);
+                            if (checkbox.checked) {
+                                // Ajouter l'ID à la liste si la checkbox est cochée
+                                selectedCardIds.push(ficheId);
+                            } else {
+                                // Retirer l'ID de la liste si la checkbox est décochée
+                                var index = selectedCardIds.indexOf(ficheId);
+                                if (index !== -1) {
+                                    selectedCardIds.splice(index, 1);
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 });
             } else {
                 console.log('Erreur : ' + xhr.status);
@@ -487,4 +494,87 @@ function loadContent(selectedCardIds, ajaxFunction){
     xhr.send();
 
     return cardContainer;
+}
+
+// Recherche de fiches sur la page single collection
+function collectionSearchFiches() {
+    var searchForm = document.querySelector('#single-collection-search');
+
+    if (searchForm) {
+        var searchButton = searchForm.querySelector('#search-button .button-text')
+        var post = searchForm.dataset.post;
+        var searchInput = searchForm.querySelector('.search-box-input');
+
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch(searchForm, post);
+            }
+        });
+    }
+
+    if (searchButton) {
+        searchButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            performSearch(searchForm, post);
+        });
+    }
+}
+
+// Recherche de fiches sur la page single collection
+function performSearch(searchForm, post) {
+    var searchValue = searchForm.querySelector('.search-box-input').value;
+    var cardContainer = document.querySelector('#single-collection-fiches-container');
+    cardContainer.innerHTML = '';
+    var ajaxurl = ajax_object.ajax_url;
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var jsonData = JSON.parse(xhr.responseText);
+
+                jsonData.forEach(function (item) {
+                    var card = document.createElement('div');
+                    card.classList.add('fiche-status');
+
+                    card.innerHTML = `
+                        <div class="${item.fichesClasses}">
+                                ${item.ficheStatusText}
+                        </div>
+                        
+                        <div class="card-fiche card">
+                            <a href="${item.href}" class="${item.popup}" data-user-id="${item["data-user-id"]}" 
+                            data-fiche-id = "${item["data-fiche-id"]}"
+                            data-fiche-name="${item["data-fiche-name"]}" data-fiche-url="${item["data-fiche-url"]}" data-fiche-title="${item["data-fiche-title"]}">
+                                <img src="${item.image}" class="card-fiche-image" alt="image-plante" title="${"data-fiche-name"}"/>
+                            </a>
+                            <div class="card-fiche-body">
+                                <a href="${item.href}" class="${item.popup}" data-user-id="${item["data-user-id"]}" 
+                            data-fiche-id = "${item["data-fiche-id"]}"
+                            data-fiche-name="${item["data-fiche-name"]}" data-fiche-url="${item["data-fiche-url"]}" data-fiche-title="${item["data-fiche-title"]}">
+                                    <span class="card-fiche-title">${item.name}</span>
+                                    <span class="card-fiche-espece">${item.species}</span>
+                                </a>
+                            </div> 
+                            <div class="card-fiche-icon" data-user-id="${item["data-user-id"]}" 
+                            data-fiche-id = "${item["data-fiche-id"]}"
+                            data-fiche-name="${item["data-fiche-name"]}" data-fiche-url="${item["data-fiche-url"]}" data-fiche-title="${item["data-fiche-title"]}" id="${item.id}">
+                                <svg aria-hidden="true" role="img" class="icon icon-${item.icon.icon} ${item.icon.color}">
+                                <use xlink:href="#icon-${item.icon.icon}"></use></svg>
+                            </div>
+                        </div>
+                        `;
+                    cardContainer.appendChild(card);
+                    setFavoris('.card-fiche-icon', 'fiche');
+                });
+
+            } else {
+                console.log('Erreur lors de la récupération des fiches : ' + xhr.status);
+            }
+        }
+    }
+
+    xhr.open('GET', ajaxurl + '?action=load_collection_content&post=' + post + '&search=' + encodeURIComponent(searchValue), true);
+    xhr.send();
 }
