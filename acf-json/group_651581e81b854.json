@@ -306,7 +306,7 @@
                     "name": "tolerance_au_gel",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "Indiquez si la plante tolère le gel (vrai) ou pas (faux).",
+                    "instructions": "Si la plante tolère le gel, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -344,7 +344,7 @@
                     "name": "des_symbioses_avec_des_organismes_fixateurs_dazote",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "",
+                    "instructions": "Si oui, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -360,11 +360,11 @@
                 },
                 {
                     "key": "field_6514330d63326",
-                    "label": "Les plantes connues pour attirer des auxiliaires de culture",
-                    "name": "les_plantes_connues_pour_attirer_des_auxiliaires_de_culture",
+                    "label": "Plantes connues pour attirer des auxiliaires de culture",
+                    "name": "plantes_connues_pour_attirer_des_auxiliaires_de_culture",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "Si la plante est connue pour attirer des auxiliaires de culture, choisissez \"vrai\".",
+                    "instructions": "Si la plante est connue pour attirer des auxiliaires de culture, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -380,11 +380,11 @@
                 },
                 {
                     "key": "field_6514332f63327",
-                    "label": "Les plantes connues pour repousser les ravageurs",
-                    "name": "les_plantes_connues_pour_repousser_les_ravageurs",
+                    "label": "Plantes connues pour repousser les ravageurs",
+                    "name": "plantes_connues_pour_repousser_les_ravageurs",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "Si la plante est connue pour repousser des ravageurs de culture, choisissez \"vrai\".",
+                    "instructions": "Si la plante est connue pour repousser des ravageurs de culture, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -400,11 +400,11 @@
                 },
                 {
                     "key": "field_6514334363328",
-                    "label": "Les plantes connues pour attirer les ravageurs",
-                    "name": "les_plantes_connues_pour_attirer_les_ravageurs",
+                    "label": "Plantes connues pour attirer les ravageurs",
+                    "name": "plantes_connues_pour_attirer_les_ravageurs",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "Si la plante est connue pour attirer des ravageurs de culture, choisissez \"vrai\".",
+                    "instructions": "Si la plante est connue pour attirer des ravageurs de culture, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -426,7 +426,15 @@
                     "type": "checkbox",
                     "instructions": "Précisez ici le type d'auxiliaires de culture, plusieurs choix possibles.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514330d63326",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -452,7 +460,20 @@
                     "type": "checkbox",
                     "instructions": "Précisez les prédateurs concernés, plusieurs choix possibles.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514330d63326",
+                                "operator": "==",
+                                "value": "1"
+                            },
+                            {
+                                "field": "field_6514335c63329",
+                                "operator": "==",
+                                "value": "prédateurs"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -481,7 +502,22 @@
                     "type": "checkbox",
                     "instructions": "Précisez les ravageurs concernés, plusieurs choix possibles.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514332f63327",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6514334363328",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -543,8 +579,8 @@
                 },
                 {
                     "key": "field_65143478296f3",
-                    "label": "Communautés végétales",
-                    "name": "communautes_vegetales",
+                    "label": "Communautés végétales dans lesquelles la plante est observée",
+                    "name": "communautes_vegetales_dans_lesquelles_la_plante_est_observee",
                     "aria-label": "",
                     "type": "checkbox",
                     "instructions": "Précisez les communautés végétales dont peut faire partie la plante décrite. Plusieurs choix possibles.",
@@ -586,7 +622,7 @@
                     "name": "plante_presentant_une_multiplication_vegetative",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "Si la plante présente une multiplication végétative, cochez \"vrai\".",
+                    "instructions": "Si la plante présente une multiplication végétative, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -642,7 +678,7 @@
                     "name": "la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "",
+                    "instructions": "Si oui, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -721,7 +757,7 @@
                     "name": "toxicite_pour_lhumain",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "",
+                    "instructions": "Si oui, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -737,8 +773,8 @@
                 },
                 {
                     "key": "field_6514358e34ca3",
-                    "label": "Partie(s) toxique(s) de la plante",
-                    "name": "parties_toxiques_de_la_plante",
+                    "label": "La plante est toxique au niveau...",
+                    "name": "la_plante_est_toxique_au_niveau_",
                     "aria-label": "",
                     "type": "checkbox",
                     "instructions": "Précisez la ou les structure(s) toxique(s). Plusieurs réponses possibles.",
@@ -918,7 +954,7 @@
                         "id": ""
                     },
                     "choices": {
-                        "d'hiver (dates d'implantation)": "d'hiver (dates d'implantation)",
+                        "d'hiver": "d'hiver",
                         "d'été": "d'été"
                     },
                     "default_value": "",
@@ -1122,7 +1158,7 @@
                     "name": "cette_plante_est-elle_connue_pour_avoir_ete_ou_etre_actuellement_cultivee_",
                     "aria-label": "",
                     "type": "true_false",
-                    "instructions": "",
+                    "instructions": "Si oui, cochez la case.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1138,8 +1174,8 @@
                 },
                 {
                     "key": "field_65143d9832454",
-                    "label": "Usages",
-                    "name": "usages",
+                    "label": "Cette plante a-t-elle été ou est-elle cultivée pour les usages suivants ?",
+                    "name": "cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants",
                     "aria-label": "",
                     "type": "checkbox",
                     "instructions": "Si vous connaissez un usage qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.",
@@ -1193,8 +1229,8 @@
                 },
                 {
                     "key": "field_65143df032456",
-                    "label": "Propriétés connues (autre que la toxicité - cf catégorie interaction avec le vivant)",
-                    "name": "proprietes_connues_autre_que_la_toxicite_-_cf_categorie_interaction_avec_le_vivant",
+                    "label": "Plante connue pour des propriétés autres que la toxicité (cf catégorie interaction avec le vivant)",
+                    "name": "plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant",
                     "aria-label": "",
                     "type": "checkbox",
                     "instructions": "Si vous connaissez une propriété qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.\r\n\r\nLa toxicité est abordée plus haut dans le formulaire.",
@@ -1255,9 +1291,48 @@
                         "id": ""
                     },
                     "choices": {
-                        "n'a pas de statut de protection sur tout le territoire (LC)": "n'a pas de statut de protection sur tout le territoire (LC)",
-                        "est protégée sur tout le territoire": "est protégée sur tout le territoire",
-                        "est protégée régionalement": "est protégée régionalement"
+                        "n'a aucun statut de protection sur tout le territoire métropolitain (LC)": "n'a aucun statut de protection sur tout le territoire métropolitain (LC)",
+                        "a un statut de protection au niveau national et\/ou régional": "a un statut de protection au niveau national et\/ou régional"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143eed05d3a",
+                    "label": "Quel est le statut de protection ? - France métropolitaine",
+                    "name": "quel_est_le_statut_de_protection_france_metropolitaine",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante en France métropolitaine.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e3132458",
+                                "operator": "==",
+                                "value": "a un statut de protection au niveau national et\/ou régional"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -1268,18 +1343,18 @@
                 },
                 {
                     "key": "field_65143e8605d38",
-                    "label": "Région(s) concernée(s)",
-                    "name": "regions_concernees",
+                    "label": "Statut de protection à l'échelle locale - Région(s) concernée(s)",
+                    "name": "statut_de_protection_a_l_echelle_locale_regions_concernees",
                     "aria-label": "",
                     "type": "checkbox",
-                    "instructions": "Pour chaque région cochée, vous pourrez préciser le statut de protection de la plante. Si le statut est le même sur toute la France métropolitaine, ne sélectionnez aucune région.",
+                    "instructions": "Cochez toutes les régions bénéficiant d'un statut de protection spécifique. Vous pourrez ensuite préciser le statut de protection de la plante. \r\n\r\nSi le statut est le même sur toute la France métropolitaine, ne cochez aucune région !",
                     "required": 0,
                     "conditional_logic": [
                         [
                             {
                                 "field": "field_65143e3132458",
-                                "operator": "!=",
-                                "value": "n'a pas de statut de protection sur tout le territoire (LC)"
+                                "operator": "==",
+                                "value": "a un statut de protection au niveau national et\/ou régional"
                             }
                         ]
                     ],
@@ -1316,8 +1391,8 @@
                 },
                 {
                     "key": "field_65143ec505d39",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Auvergne-Rhône-Alpes",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1344,8 +1419,8 @@
                 },
                 {
                     "key": "field_65143fa2d9e27",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Bourgogne-Franche-Comté",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bourgogne_franhce_comte",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1372,8 +1447,8 @@
                 },
                 {
                     "key": "field_65143fa2d9e26",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Bretagne",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bretagne",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1400,8 +1475,8 @@
                 },
                 {
                     "key": "field_65143fa1d9e25",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Centre-Val de Loire",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_centre_val_de_loire",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1428,8 +1503,8 @@
                 },
                 {
                     "key": "field_65143fa1d9e24",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Corse",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_corse",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1456,8 +1531,8 @@
                 },
                 {
                     "key": "field_65143fa0d9e23",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Grand-Est",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_grand_est",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1484,8 +1559,8 @@
                 },
                 {
                     "key": "field_65143f9fd9e22",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Guadeloupe",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_guadeloupe",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1512,8 +1587,8 @@
                 },
                 {
                     "key": "field_65143f90d9e21",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Hauts-de-France",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_hauts_de_france",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1540,8 +1615,8 @@
                 },
                 {
                     "key": "field_65144010d9e2b",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier2)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier2",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) -  Île-de-France",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_ile_de_france",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1568,8 +1643,8 @@
                 },
                 {
                     "key": "field_6514400fd9e2a",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier2)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier2",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - La Réunion",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_la_reunion",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1596,8 +1671,8 @@
                 },
                 {
                     "key": "field_6514400fd9e29",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier2)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier2",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Martinique",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_martinique",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1624,8 +1699,8 @@
                 },
                 {
                     "key": "field_6514400ed9e28",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier2)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier2",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Mayotte",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_mayotte",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1652,8 +1727,8 @@
                 },
                 {
                     "key": "field_65144044d9e2c",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier3)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier3",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Normandie",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_normandie",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1680,8 +1755,8 @@
                 },
                 {
                     "key": "field_6514404bd9e2d",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier4)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier4",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Nouvelle-Aquitaine",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_nouvelle_aquitaine",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1708,8 +1783,8 @@
                 },
                 {
                     "key": "field_65144052d9e2e",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier5)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier5",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Occitanie",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_occitanie",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1736,8 +1811,8 @@
                 },
                 {
                     "key": "field_6514405ad9e2f",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier6)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier6",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Pays de la Loire",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_pays_de_la_loire",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1764,8 +1839,8 @@
                 },
                 {
                     "key": "field_65144066d9e30",
-                    "label": "Précisions sur la zone de la région concernée (département, environnement...) (copier7)",
-                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_copier7",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Provence-Alpes-Côte d'Azur",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_provence_alpes_cote_d_azur",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
@@ -1791,49 +1866,9 @@
                     "append": ""
                 },
                 {
-                    "key": "field_65143eed05d3a",
-                    "label": "Quel est le statut de protection ?",
-                    "name": "quel_est_le_statut_de_protection_",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "Précisez le statut de protection de la plante en France métropolitaine.",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_65143e3132458",
-                                "operator": "==",
-                                "value": "est protégée sur tout le territoire"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "Éteinte (EX)": "Éteinte (EX)",
-                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
-                        "En danger critique (CR)": "En danger critique (CR)",
-                        "En danger (EN)": "En danger (EN)",
-                        "Vulnérable (VU)": "Vulnérable (VU)",
-                        "Quasi menacée (NT)": "Quasi menacée (NT)",
-                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
-                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
-                        "Non évaluée (NE)": "Non évaluée (NE)"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
                     "key": "field_651440b9109e3",
-                    "label": "Quel est le statut de protection ? (copier)",
-                    "name": "quel_est_le_statut_de_protection__copier",
+                    "label": "Quel est le statut de protection ? - Auvergne-Rhône-Alpes",
+                    "name": "quel_est_le_statut_de_protection__auvergne_rhone_alpes",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -1872,8 +1907,8 @@
                 },
                 {
                     "key": "field_651440d1109e4",
-                    "label": "Quel est le statut de protection ? (copier2)",
-                    "name": "quel_est_le_statut_de_protection__copier2",
+                    "label": "Quel est le statut de protection ? - Bourgogne-Franche-Comté",
+                    "name": "quel_est_le_statut_de_protection__bourgogne_franche_comte",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -1912,8 +1947,8 @@
                 },
                 {
                     "key": "field_651440db109e5",
-                    "label": "Quel est le statut de protection ? (copier3)",
-                    "name": "quel_est_le_statut_de_protection__copier3",
+                    "label": "Quel est le statut de protection ? - Bretagne",
+                    "name": "quel_est_le_statut_de_protection__bretagne",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -1952,8 +1987,8 @@
                 },
                 {
                     "key": "field_651440dd109e6",
-                    "label": "Quel est le statut de protection ? (copier4)",
-                    "name": "quel_est_le_statut_de_protection__copier4",
+                    "label": "Quel est le statut de protection ? - Centre-Val de Loire",
+                    "name": "quel_est_le_statut_de_protection__centre_val_de_loire",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -1992,8 +2027,8 @@
                 },
                 {
                     "key": "field_651440de109e7",
-                    "label": "Quel est le statut de protection ? (copier5)",
-                    "name": "quel_est_le_statut_de_protection__copier5",
+                    "label": "Quel est le statut de protection ? - Corse",
+                    "name": "quel_est_le_statut_de_protection__corse",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2032,8 +2067,8 @@
                 },
                 {
                     "key": "field_651440df109e8",
-                    "label": "Quel est le statut de protection ? (copier6)",
-                    "name": "quel_est_le_statut_de_protection__copier6",
+                    "label": "Quel est le statut de protection ? - Grand-Est",
+                    "name": "quel_est_le_statut_de_protection__grand_est",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2072,8 +2107,8 @@
                 },
                 {
                     "key": "field_651440e0109e9",
-                    "label": "Quel est le statut de protection ? (copier7)",
-                    "name": "quel_est_le_statut_de_protection__copier7",
+                    "label": "Quel est le statut de protection ? - Guadeloupe",
+                    "name": "quel_est_le_statut_de_protection__guadeloupe",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2112,8 +2147,8 @@
                 },
                 {
                     "key": "field_651440e1109ea",
-                    "label": "Quel est le statut de protection ? (copier8)",
-                    "name": "quel_est_le_statut_de_protection__copier8",
+                    "label": "Quel est le statut de protection ? - Hauts-de-France",
+                    "name": "quel_est_le_statut_de_protection__hauts_de_france",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2152,8 +2187,8 @@
                 },
                 {
                     "key": "field_651440e2109eb",
-                    "label": "Quel est le statut de protection ? (copier9)",
-                    "name": "quel_est_le_statut_de_protection__copier9",
+                    "label": "Quel est le statut de protection ? - Île-de-France",
+                    "name": "quel_est_le_statut_de_protection__ile_de_france",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2192,8 +2227,8 @@
                 },
                 {
                     "key": "field_651440e4109ec",
-                    "label": "Quel est le statut de protection ? (copier10)",
-                    "name": "quel_est_le_statut_de_protection__copier10",
+                    "label": "Quel est le statut de protection ? - La Réunion",
+                    "name": "quel_est_le_statut_de_protection__la_reunion",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2232,8 +2267,8 @@
                 },
                 {
                     "key": "field_651441a8109ed",
-                    "label": "Quel est le statut de protection ? (copier11)",
-                    "name": "quel_est_le_statut_de_protection__copier11",
+                    "label": "Quel est le statut de protection ? - Martinique",
+                    "name": "quel_est_le_statut_de_protection__martinique",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2272,8 +2307,8 @@
                 },
                 {
                     "key": "field_651441a9109ee",
-                    "label": "Quel est le statut de protection ? (copier12)",
-                    "name": "quel_est_le_statut_de_protection__copier12",
+                    "label": "Quel est le statut de protection ? - Mayotte",
+                    "name": "quel_est_le_statut_de_protection__mayotte",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2312,8 +2347,8 @@
                 },
                 {
                     "key": "field_651441aa109ef",
-                    "label": "Quel est le statut de protection ? (copier13)",
-                    "name": "quel_est_le_statut_de_protection__copier13",
+                    "label": "Quel est le statut de protection ? - Normandie",
+                    "name": "quel_est_le_statut_de_protection__normandie",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2352,8 +2387,8 @@
                 },
                 {
                     "key": "field_651441ab109f0",
-                    "label": "Quel est le statut de protection ? (copier14)",
-                    "name": "quel_est_le_statut_de_protection__copier14",
+                    "label": "Quel est le statut de protection ? - Nouvelle-Aquitaine",
+                    "name": "quel_est_le_statut_de_protection__nouvelle_aquitaine",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2392,8 +2427,8 @@
                 },
                 {
                     "key": "field_651441f0109f3",
-                    "label": "Quel est le statut de protection ? (copier15)",
-                    "name": "quel_est_le_statut_de_protection__copier15",
+                    "label": "Quel est le statut de protection ? - Occitanie",
+                    "name": "quel_est_le_statut_de_protection__occitanie",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2432,8 +2467,8 @@
                 },
                 {
                     "key": "field_651441f0109f2",
-                    "label": "Quel est le statut de protection ? (copier15)",
-                    "name": "quel_est_le_statut_de_protection__copier15",
+                    "label": "Quel est le statut de protection ? - Pays de la Loire",
+                    "name": "quel_est_le_statut_de_protection__pays_de_la_loire",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
@@ -2472,13 +2507,21 @@
                 },
                 {
                     "key": "field_651441ee109f1",
-                    "label": "Quel est le statut de protection ? (copier15)",
-                    "name": "quel_est_le_statut_de_protection__copier15",
+                    "label": "Quel est le statut de protection ? - Provence-Alpes-Côte d'Azur",
+                    "name": "quel_est_le_statut_de_protection__provence_alpes_cote_d_azur",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Provence-Alpes-Côte d'Azur"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -2523,5 +2566,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1695912919
+    "modified": 1696343818
 }

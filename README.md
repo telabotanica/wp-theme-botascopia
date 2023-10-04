@@ -11,6 +11,8 @@ Installer le plugin wordpress `Advanced Custom Fields`.
 
 Installer le plugin wordpress `Posts 2 Posts`
 
+Cloner le plugin tela sso dans le dossier wp-content/plugins
+
 Installer les dépendences du projet
 
     npm install

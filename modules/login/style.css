@@ -1,0 +1,105 @@
+body.login {
+    background-color: var(--gris-f4);
+}
+
+.login #login_error,
+.login .message {
+    border-color: var(--orange);
+}
+
+.login #backtoblog a:hover,
+.login #nav a:hover,
+.login h1 a:hover {
+    color: var(--turquoise);
+}
+
+#login h1 a {
+    background-image: url("../../images/logo-login.png");
+    /*background-image: url("../../images/logo-botascopia.png");*/
+    margin-bottom: 1.5rem;
+}
+
+#login .button-primary {
+    background-color: var(--vert-clair);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 0;
+    text-shadow: none;
+}
+
+#login .button-primary:hover, #login .button-primary:focus {
+    background-color: var(--vert-clair);
+}
+
+#login input[type="text"]:focus,
+#login input[type="password"]:focus,
+#login input[type="checkbox"]:focus {
+    border-color: var(--vert-clair);
+    box-shadow: 0 0 0.2rem var(--vert-clair);
+}
+
+#login label,
+#login .login-providers {
+    color: var(--taupe);
+    font-size: 1.4rem;
+}
+
+#login .login-providers {
+    margin-bottom: 2rem;
+}
+
+#login .login-providers label {
+    background-color: var(--gris-f0);
+    border: 0.1rem solid var(--gris-dd);
+    color: var(--gris-33);
+    display: inline-block;
+    line-height: 3rem;
+    margin: 0;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    padding: 0 1.2rem;
+}
+
+#login .login-providers label.active {
+    filter: none;
+    font-weight: bold;
+}
+
+#login.has-js .login-providers label {
+    background-color: var(--blanc);
+    border: 0;
+}
+
+#login.has-js .login-provider-default {
+    float: right;
+    margin-right: 0;
+    padding: 0;
+}
+
+#login.has-js .login-provider-default .icon {
+    fill: var(--gris-b3);
+    height: 2.4rem;
+    margin-top: 0.4rem;
+    width: 2.4rem;
+}
+
+#login.has-js .login-provider-plantnet,
+#login.has-js .login-provider-recolnat {
+    background: left center no-repeat;
+    background-size: 2.5rem auto;
+    filter: grayscale(100%);
+    padding-left: 3rem;
+}
+
+#login.has-js .login-provider-plantnet {
+    background-image: url("../../modules/login/icon-plantnet.svg");
+}
+
+#login.has-js .login-provider-recolnat {
+    background-image: url("../../modules/login/icon-recolnat.png");
+}
+
+.login-providers{
+    display: none;
+}

@@ -52,7 +52,9 @@ get_header();
 									$collectionName = get_the_title();
 									$collection_id = get_the_ID();
                                     $description = get_the_content();
-									$image = getPostImage($collection_id);
+                                    
+                                    $imageId = get_post_thumbnail_id($collection_id);
+									$image = wp_get_attachment_image_src($imageId, 'full');
          
 									if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection')) :
 										$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
