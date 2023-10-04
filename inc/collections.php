@@ -320,11 +320,17 @@ function load_popup_content() {
 	// If a search term is provided, add it to the query
 	if (!empty($search_term)) {
 		$args['meta_query'] = array(
+			'relation' => 'OR',
 			array(
 				'key'   => 'nom_scientifique',
 				'value' => $search_term,
 				'compare' => 'LIKE',
 			),
+			array(
+				'key' => 'famille',
+				'value' => $search_term,
+				'compare' => 'LIKE'
+			)
 		);
 	}
 	
@@ -369,7 +375,6 @@ function load_collection_content() {
 	$data = [];
 	$search_term = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
 	$post_id = isset($_GET['post']) ? sanitize_text_field($_GET['post']) : '';
-//	var_dump('BLAAAAAAAAAAAAABLIIIIIIIIIIIIIIIIIIIIIII');
 	if (empty($search_term) && $post_id){
 		$url = get_the_permalink($post_id);
 		echo $url;
@@ -550,7 +555,10 @@ function loadFiches($post_id, $paged){
 			'posts_per_page' => 10,
 			'paged' => $paged,
 			'offset' => $offset,
-			'post_status' => 'any'
+			'post_status' => 'any',
+			'order'          => 'ASC',
+			'orderby'        => 'meta_value',
+			'meta_key'       => 'nom_scientifique',
 		));
 
 	if ($connected_posts->have_posts()) :

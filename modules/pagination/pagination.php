@@ -18,10 +18,12 @@
 	
 	if ($page > 2) {
 		echo sprintf('
+
 			  <a class="page-numbers" href="%s?t=1">
 				<span class="meta-nav screen-reader-text">Page </span>
 				1
-				</a>', $data->href);
+				</a>
+				<span class="page-numbers dots">…</span>', $data->href);
 	}
 	
 	if ($page != 1){
@@ -50,6 +52,7 @@
 	
 	if ($page != ($totalPage - 1) && $page != $totalPage){
 		echo sprintf('
+<span class="page-numbers dots">…</span>
 			  <a class="page-numbers" href="%s?t=%s">
 				<span class="meta-nav screen-reader-text">Page </span>
 				%s

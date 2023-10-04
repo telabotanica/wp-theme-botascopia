@@ -43,6 +43,11 @@
     margin: 30px 0 0 20px;
 }
 
+/****************** Page mes collections **************************/
+#mes-collections-completes, #collection-a-completer{
+    margin-top: 20px;
+}
+
 /****************** Page single collection **************************/
 .collection-title{
     font-size: 24px;
@@ -371,6 +376,7 @@ header.blur-background::before{
 
 .existing-fiches{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .checkbox-area {
