@@ -532,13 +532,15 @@ function performSearch(searchForm, post) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var jsonData = JSON.parse(xhr.responseText);
+                document.querySelector('#single-collection-pagination').innerHTML = '';
+                if (searchValue) {
+                    var jsonData = JSON.parse(xhr.responseText);
 
-                jsonData.forEach(function (item) {
-                    var card = document.createElement('div');
-                    card.classList.add('fiche-status');
+                    jsonData.forEach(function (item) {
+                        var card = document.createElement('div');
+                        card.classList.add('fiche-status');
 
-                    card.innerHTML = `
+                        card.innerHTML = `
                         <div class="${item.fichesClasses}">
                                 ${item.ficheStatusText}
                         </div>
@@ -565,10 +567,13 @@ function performSearch(searchForm, post) {
                             </div>
                         </div>
                         `;
-                    cardContainer.appendChild(card);
-                    setFavoris('.card-fiche-icon', 'fiche');
-                });
-
+                        cardContainer.appendChild(card);
+                        setFavoris('.card-fiche-icon', 'fiche');
+                    });
+                } else {
+                    // Si pas de recherche ou effacement de la recherche, on réouvrir la page
+                    window.location.href = xhr.responseText;
+                }
             } else {
                 console.log('Erreur lors de la récupération des fiches : ' + xhr.status);
             }

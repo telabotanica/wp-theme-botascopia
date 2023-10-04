@@ -160,125 +160,65 @@ get_header();
 				
 				<div id="single-collection-fiches-container" class="display-fiches-cards-items">
 					<?php
-					
-//					$search_query = get_search_query();
-					$connected_posts = new WP_Query(
-						array(
-							'connected_type' => 'collection_to_post',
-							'connected_items' => $post_id,
-							'nopaging' => true,
-							'post_status' => 'any'
-						));
-					
-					if ($connected_posts->have_posts()) :
-						while ($connected_posts->have_posts()) : $connected_posts->the_post();
-							// Afficher ici les informations sur chaque article de type "post" connecté
-							$name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
-							$species = get_post_meta(get_the_ID(), 'famille', true);
-							$image = get_the_post_thumbnail_url();
-							$id = get_the_ID();
-							$ficheTitle = get_the_title();
-							$status = get_post_status();
-							
-							$fiche_author_id = get_post_field('post_author', $id);
-							$fiche_author_info = get_userdata($fiche_author_id);
-							$fiche_author_roles = $fiche_author_info->roles[0];
-							
-							if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche') && ($key = array_search($id, $ficheFavorites[0]))
-								!==
-								false) :
-								$icone = ['icon' => 'star', 'color' => 'blanc'];
-							else:
-								$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
-							endif;
-							
-							switch ($status):
-								case 'draft':
-									$fichesClasses = 'card-status-bandeau main-status-incomplete';
-									$ficheStatusText = 'à completer';
-									break;
-								case 'pending':
-									$fichesClasses = 'card-status-bandeau main-status-complete';
-									$ficheStatusText = 'en cours...';
-									break;
-								case 'publish':
-									$fichesClasses = 'card-status-bandeau main-status-complete';
-									$ficheStatusText = 'complet';
-									break;
-								default:
-									$fichesClasses = '';
-									$ficheStatusText = '';
-							endswitch;
-							
-							// Cas des fiches réservées (toujours en draft)
-							if ($fiche_author_roles == 'contributor') {
-								if ($status == 'draft'){
-									$fichesClasses = 'card-status-bandeau main-status-incomplete';
-									$ficheStatusText = 'en cours...';
-								} elseif ($status == 'pending'){
-									$editor = get_post_meta($id, 'Editor', true);
-									
-									if ($editor == $current_user_id || $editor == 0){
-										$fichesClasses = 'card-status-bandeau main-status-complete';
-										$ficheStatusText = 'A vérifier';
-									} else {
-										$fichesClasses = 'card-status-bandeau main-status-complete';
-										$ficheStatusText = 'En cours de vérification';
-									}
-								}
-							}
-							
-							// Si la fiche n'appartient pas à un contributeur, un contributeur peut en prendre
-							// l'ownership si celle-ci est en draft
-							if (is_user_logged_in() && $current_user_role == 'contributor' && $status == 'draft' &&
-								$current_user_id != $fiche_author_id && $fiche_author_roles != 'contributor') {
-								$popupClass = 'fiche-non-reserve';
-							} else {
-								$popupClass = '';
-							}
-							
-							// Différent lien selon le statut de la fiche et l'utilisateur
-							if (is_user_logged_in()) {
-								if (($current_user_role == 'contributor' && $status == 'draft' &&
-									$current_user_id == $fiche_author_id) ||
-									($current_user_role == 'editor' && $status == 'pending')) {
-									$href = '/formulaire/?p='.get_the_title();
-								} elseif ($status == 'publish' || $current_user_role == 'administrator' ) {
-									$href = get_permalink();
-								} else {
-									$href = '#';
-								}
-							} elseif ($status == 'publish') {
-								$href = get_permalink();
-							} else {
-								$href = '#';
-							}
-							
-							echo('
-                                <div class="fiche-status">
-                                    <div class="'.$fichesClasses.'">
-                                        '.$ficheStatusText.'
-                                    </div>
-                                ');
-							
-							the_botascopia_module('card-fiche', [
-								'href' => $href,
-								'image' => $image,
-								'name' => $name,
-								'species' => $species,
-								'icon' => $icone,
-								'popup' => $popupClass,
-								'id' => 'fiche-'.$id,
-								'extra_attributes' => ['data-user-id' => $userId, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle]
-							]);
-							echo '</div>';
-						endwhile;
-					endif;
-					wp_reset_postdata();
+					$page = $_GET['t'] ?? '1';
+                    $prevPage = $page - 1;
+                    $nextPage = $page + 1;
+                    
+                    $totalPage = ceil($nbFiches / 10);
+                    $paged = $page;
+                    
+                   loadFiches($post_id, $paged);
+
 					?>
 				</div>
-			
-			</div>
+                
+                <div id="single-collection-pagination" class="pagination">
+                    <?php
+					if ($paged > 2){?>
+                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=1")?>">
+                            <span class="meta-nav screen-reader-text">Page </span>
+							<?php echo 1 ?>
+                        </a>
+						<?php
+					}
+					?>
+					<?php
+                    if ($paged != 1){
+                        ?>
+                        <a class="prev page-numbers" href="<?php echo (get_the_permalink() . "?t=". $prevPage)?>">Page précédente</a>
+                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=". $prevPage)?>">
+                            <span class="meta-nav screen-reader-text">Page </span>
+                            <?php echo $prevPage ?>
+                        </a>
+					<?php }
+                    ?>
+                    
+                    <span aria-current="page" class="page-numbers current">
+                        <span class="meta-nav screen-reader-text">Page </span>
+                            <?php echo $paged ?>
+                    </span>
+                    
+                    <?php
+                    if ($paged != $totalPage){?>
+                    <a class="next page-numbers" href="<?php echo (get_the_permalink() . "?t=". $nextPage)?>">Page suivante</a>
+                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=". $nextPage)?>">
+                            <span class="meta-nav screen-reader-text">Page </span>
+							<?php echo $nextPage ?>
+                        </a>
+                   <?php }
+					?>
+					
+					<?php
+					if ($paged != ($totalPage - 1) && $paged != $totalPage){?>
+                        <a class="page-numbers" href="<?php echo (get_the_permalink() . "?t=". $totalPage)?>">
+                            <span class="meta-nav screen-reader-text">Page </span>
+							<?php echo $totalPage ?>
+                        </a>
+						<?php
+					}
+					?>
+                
+                </div>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
 
