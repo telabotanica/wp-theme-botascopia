@@ -11,6 +11,38 @@
 	$data = botascopia_styleguide_data($defaults, $data);
 	$data->modifiers = botascopia_styleguide_modifiers_array(['component', 'component-inner-accordion', 'js-inner-accordion'], $data->modifiers);
 
+    /*printf('<h1>Example of nested accordions</h1>
+
+        <div class="js-accordion" id="accordion1" data-accordion-prefix-classes="minimalist-accordion">
+            <div class="js-accordion__panel">
+                <h2 class="js-accordion__header">First tab</h2>
+                <p>Content of 1st tab</p>
+            </div>
+            <div class="js-accordion__panel">
+                <h2 class="js-accordion__header">Second tab</h2>
+                <p>Content of 2nd tab</p>
+
+                <div class="js-accordion" id="accordion_inner" data-accordion-prefix-classes="minimalist-accordion">
+                    <div class="js-accordion__panel">
+                        <h3 class="js-accordion__header">First tab</h3>
+                        <p>Content of 1st tab</p>
+                    </div>
+                    <div class="js-accordion__panel">
+                        <h2 class="js-accordion__header">Second tab</h2>
+                        <p>Content of 2nd tab</p>
+                    </div>
+                    <div class="js-accordion__panel">
+                        <h2 class="js-accordion__header">Third tab</h2>
+                        <p>Content of 3rd tab</p>
+                    </div>
+                </div>
+            </div>
+            <div class="js-accordion__panel">
+                <h2 class="js-accordion__header">Third tab</h2>
+                <p>Content of 3rd tab</p>
+            </div>
+        </div>');*/
+
 	printf(
 		'<div class="%s" data-inner-accordion-prefix-classes="component-inner-accordion">',
 		implode(' ', $data->modifiers)
