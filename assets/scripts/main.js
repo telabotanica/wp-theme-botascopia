@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     publierFiche();
     popupAjouterFiche();
     collectionSearchFiches();
+    loadMoreCollections();
 });
 
 function setFavoris(selector, type){
@@ -582,4 +583,31 @@ function performSearch(searchForm, post) {
 
     xhr.open('GET', ajaxurl + '?action=load_collection_content&post=' + post + '&search=' + encodeURIComponent(searchValue), true);
     xhr.send();
+}
+
+
+function loadMoreCollections() {
+    var loadMoreButton = document.getElementById('loadMoreCollections');
+    var collectionsContainer = document.getElementById('collections-container');
+
+    // Hide all collections except the first 10 initially
+    for (var i = 10; i < collectionsContainer.children.length; i++) {
+        collectionsContainer.children[i].style.display = 'none';
+    }
+
+    loadMoreButton.addEventListener("click", function () {
+        var hiddenCollections = collectionsContainer.querySelectorAll(':scope > div[style*="display: none"]');
+
+        hiddenCollections.forEach(function (collection, index) {
+            // Show the next 5 collections
+            if (index < 10) {
+                collection.style.display = 'flex';
+            }
+        });
+
+        // If all collections are now visible, hide the "Voir plus" button
+        if (hiddenCollections.length <= 10) {
+            loadMoreButton.style.display = 'none';
+        }
+    });
 }

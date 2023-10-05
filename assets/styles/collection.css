@@ -43,6 +43,20 @@
     margin: 30px 0 0 20px;
 }
 
+.voir-plus-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-collection-cards-items > div {
+    display: none;
+}
+
+.display-collection-cards-items > div:nth-child(-n+10) {
+    display: flex;
+}
+
 /****************** Page mes collections **************************/
 #mes-collections-completes, #collection-a-completer{
     margin-top: 20px;

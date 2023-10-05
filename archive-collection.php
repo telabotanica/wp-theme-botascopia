@@ -60,6 +60,18 @@ get_header();
 							?>
                         </div>
                     </div>
+                    <div class="voir-plus-container">
+						<?php
+						the_botascopia_module('button', [
+							'tag'              => 'button',
+							'title'            => 'Voir plus',
+							'text'             => 'Voir plus',
+							'modifiers'        => 'green-button',
+							'extra_attributes' => ['id' => 'loadMoreCollections']
+						]);
+						?>
+                    </div>
+<!--                    <button id="loadMoreCollections" >Voir plus</button>-->
                 </div>
             </div>
 
