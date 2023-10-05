@@ -94,3 +94,12 @@ strong {
     margin: 0 auto;
     background-color: var(--rose-pale);
 }
+
+.error {
+    height: 50px;
+    background-color: var(--rouge);
+    text-align: center;
+    font-size: 18px;
+    color: var(--noir);
+    padding: 10px 20px;
+}

@@ -167,6 +167,10 @@ get_header();
                     $totalPage = ceil($nbFiches / 10);
                     $paged = $page;
                     
+                    if ($totalPage == 0){
+                        $totalPage = 1;
+                    }
+                    
                    loadFiches($post_id, $paged);
 
 					?>

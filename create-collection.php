@@ -18,12 +18,36 @@ endif;
 
     <main id="main" class="site-main " role="main">
 		<?php
-		the_botascopia_module('cover', [
+		if (is_user_logged_in()) :
+			
+			$edit = isset($_GET['edit']) ? $_GET['edit'] : false;
+
+            if ($edit == 'true'){
+                $edit = true;
+                $collection_id = isset($_GET['collection']) ? $_GET['collection'] : '';
+                if ($collection_id){
+                    $collection = get_post($collection_id);
+                }
+				
+				if (!isset($collection) || $collection->post_type != 'collection' || !$collection_id){
+					echo ('<div class="error">Erreur: La collection n\'est pas valide</div>');
+					$edit = false;
+				}
+				
+				if (isset($collection) && $userId != $collection->post_author){
+					echo ('<div class="error">Erreur lors de la récupération de la collection</div>');
+					$edit = false;
+				}
+
+            } else {
+				$edit = false;
+            }
+            
+        the_botascopia_module('cover', [
 			'backgroundColor' => 'var(--rose-pale)',
 			'modifiers'       => ['cover-create-collection']
 		]);
-		
-		if (is_user_logged_in()) :
+  
 		?>
 
         <form id="new-post-form" method="post" enctype="multipart/form-data">
@@ -32,7 +56,11 @@ endif;
                     <input type="hidden" name="meta-type" value="collection">
                     <input type="hidden" name="action" value="create_new_collection">
                     <label for="post-title" class="new-collection-title">Titre de la collection</label>
-                    <input type="text" name="post-title" id="post-title" class="description-area" placeholder="Nom de la collection" height="20px" required>
+                    <input type="text" name="post-title" id="post-title" class="description-area" placeholder="Nom de la collection" height="20px" required <?php
+					if ($edit){
+						echo 'value="' . esc_attr($collection->post_title) . '"';
+					}
+					?>>
                 </div>
                 
                 <div class="new-photo-collection-block">
@@ -47,14 +75,27 @@ endif;
                         <span class="upload-explanation">10 Mo</span>
                         <span class="upload-explanation">Formats: png, jpg</span>
                     </label>
-                    <img src="#" id="image-preview" alt="Aperçu de l'image" style="display: none;">
+                    <?php
+                    if ($edit && get_the_post_thumbnail_url($collection_id, 'full')){
+                        $image = get_the_post_thumbnail_url($collection_id, 'full');
+						echo('<img src="'.$image.'" id="image-preview" alt="Aperçu de l\'image" style="display: block;">');
+                    } else {
+                        echo ('<img src="#" id="image-preview" alt="Aperçu de l\'image" style="display: none;">');
+                    }
+                    ?>
+                    
                 </div>
             </div>
 
             <div class="new-collection-main">
                 <div class="new-description-collection-block">
                     <label for="post-description" class="new-collection-title">Description de la collection</label>
-                    <textarea name="post-description" id="post-description" rows="6" placeholder="500 caractères maximum" maxlength="500" required></textarea>
+                    <textarea name="post-description" id="post-description" rows="6" placeholder="500 caractères maximum" maxlength="500" required><?php if ($edit){ echo esc_textarea
+						($collection->post_content);
+                    }
+                    ?>
+                    </textarea>
+
                 </div>
                 <h2 class="new-collection-title">
                     Ajouter des fiches
@@ -62,7 +103,63 @@ endif;
                 
                 <!-- Section Ajout de fiches -->
                 <div id="section-ajout-fiches" class="display-fiches-cards-items">
-                    <div class="existing-fiches"></div>
+                    <div class="existing-fiches">
+                        <?php
+                        if ($edit){
+                            $fiches = [];
+                            $selectedIds = [];
+							$connected_posts = new WP_Query(
+								array(
+									'connected_type' => 'collection_to_post',
+									'connected_items' => $collection_id,
+									'post_status' => 'any',
+									'order'          => 'ASC',
+									'orderby'        => 'meta_value',
+									'meta_key'       => 'nom_scientifique',
+								));
+							
+							if ($connected_posts->have_posts()) :
+								while ($connected_posts->have_posts()) : $connected_posts->the_post();
+									$post_id = get_the_ID();
+									$post_species = get_post_meta(get_the_ID(), 'famille', true);
+									$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+									$post_imageId = get_post_thumbnail_id($post_id);
+									$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
+									if($post_imageFull){
+										$post_imageFull = $post_imageFull[0];
+									} else {
+										$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+									}
+									
+									$fiches[] = [
+										'id'      => $post_id,
+										'name'    => $post_name,
+										'species' => $post_species,
+										'image'   => $post_imageFull,
+									];
+                                endwhile;
+                            endif;
+                            
+                            foreach ($fiches as $fiche){?>
+                            
+                            <div class="card card-fiche card-selected" data-fiche-id="<?php echo $fiche['id']; ?>">
+                                <a data-fiche-id="<?php echo $fiche['id']; ?>">
+                                <img src="<?php echo $fiche['image']; ?>" alt="photo de <?php echo $fiche['name']; ?>" class="card-fiche-image" title="<?php echo $fiche['name']; ?>">
+                                </a>
+                                <div class="card-fiche-body">
+                                    <a><span class="card-fiche-title"><?php echo $fiche['name']; ?></span>
+                                        <span class="card-fiche-espece"><?php echo $fiche['species']; ?></span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+							<?php
+                                $selectedIds[] = $fiche['id'];
+							}
+                        }
+                        ?>
+                        
+                    </div>
                     <div id="ouvrir_popup_ajouter_fiche" class="card-fiche card">
                         
                         <figure class="card-fiche-image" alt="ajouter fiche" title="ajouter fiche">
@@ -81,73 +178,13 @@ endif;
                             </a>
                         </div>
                     </div>
-                    
+                    <input id="fiches-selected" type="hidden" name="selectedCardIds" <?php
+					if ($edit){
+						echo 'value="' . esc_attr(json_encode($selectedIds)) . '"';
+					}
+					?>>
                     <?php
 
-                    /*
-                    $data = [];
-                    $args = array(
-                        'post_type'      => 'post',
-                        'posts_per_page' => 10,
-                        'post_status'    => array('publish', 'draft', 'pending', 'private'),
-                        'order'          => 'ASC',
-                        'orderby'        => 'meta_value',
-                        'meta_key'       => 'nom_scientifique'
-                    );
-                    
-                    $query = new WP_Query($args);
-                    
-                    if ($query->have_posts()) :
-                        while ($query->have_posts()) : $query->the_post();
-                            $post_id   = get_the_ID();
-                            $post_name = get_post_meta($post_id, 'nom_scientifique', true);
-                            
-                            $post_species = get_post_meta(get_the_ID(), 'famille', true);
-                            $post_imageId = get_post_thumbnail_id($post_id);
-                            $post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
-                            $icone = ['icon' => 'star-outline', 'color' => 'blanc'];
-                            $ficheTitle = get_the_title();
-                            
-                            if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche')) :
-                                
-                                $ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
-                                
-                                if ($ficheFavorites && ($key = array_search($post_id, $ficheFavorites[0])) !== false) {
-                                    $icone = ['icon' => 'star', 'color' => 'blanc'];
-                                }
-                            endif;
-                            
-                            the_botascopia_module('card-fiche', [
-                                'image'            => $post_imageFull,
-                                'name'             => $post_name,
-                                'species'          => $post_species,
-                                'icon'             => $icone,
-                                'id'               => 'fiche-'.$post_id,
-                                'extra_attributes' => ['data-user-id'     => $userId,
-                                                       'data-fiche-id'    => $post_id,
-                                                       'data-fiche-name'  => $post_name,
-                                                       'data-fiche-url'   => get_permalink(),
-                                                       'data-fiche-title' => $ficheTitle
-                                ]
-                            ]);
-                            
-                            echo '<option value="'.esc_attr($post_id).'">'.esc_html($post_name).'</option>';
- 
-                            if($post_imageFull){
-                                $post_imageFull = $post_imageFull[0];
-                            } else {
-                                $post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-                            }
-                            $data[] = [
-                                'id'      => $post_id,
-                                'name'    => $post_name,
-                                'species' => $post_species,
-                                'image'   => $post_imageFull, // Utilisez [0] pour obtenir l'URL de l'image
-                            ];
-                        endwhile;
-                        wp_reset_postdata();
-                    endif;
-                    */
                     ?>
                 </div>
 
@@ -168,6 +205,11 @@ endif;
                         <input type="submit" value="VALIDER" title="Créer la collection" class="button green-button new-collection-submit-button">
                         
 						<?php wp_nonce_field('new-post-collection'); ?>
+                        
+                        <?php if($edit) : ?>
+                            <input type="hidden" name="edit" value="<?php echo 'true' ?>">
+                            <input type="hidden" name="collection_id" value="<?php echo esc_attr($collection_id); ?>">
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

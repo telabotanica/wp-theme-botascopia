@@ -154,15 +154,26 @@ add_action('template_redirect', 'display_collection_form');
 // Permet de créer une nouvelle collection (Post)
 function create_new_post_collection() {
 	$imageId = null;
-	
-	// Vérification si le nom existe déjà
-	if (isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'collection', false )){
-		wp_redirect( home_url( '/collection/creer-une-collection/?error=existing_title' ) );
-		exit();
+	// Vérifier si nous sommes en mode édition
+	$edit = isset($_POST['edit']) && $_POST['edit'] === 'true';
+	print_r($edit);
+	if ($edit == 'true'){
+		$edit = true;
 	} else {
+		$edit = false;
+	}
+	// Si c'est une mise à jour, récupérer l'ID du post
+	$collection_id = $edit && isset($_POST['collection_id']) ? (int)$_POST['collection_id'] : null;
+	
+//	// Vérification si le nom existe déjà
+//	if (!$edit && isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'collection', false )){
+//		wp_redirect( home_url( '/collection/creer-une-collection/?error=existing_title' ) );
+//		exit();
+//	} else {
 		if (isset($_POST['post-title']) && isset($_POST['post-description'])) {
 			$title = sanitize_text_field($_POST['post-title']);
 			$description = wp_kses_post($_POST['post-description']);
+			
 			$linked_posts = isset($_POST['selectedCardIds']) ? json_decode(stripslashes($_POST['selectedCardIds']), true) : array();
 			
 			// Vérifiez si un fichier a été téléchargé
@@ -191,13 +202,26 @@ function create_new_post_collection() {
 			}
 			
 			// Créez un post de type 'collection'
-			$post_id = wp_insert_post(
-				array(
-					'post_title' => $title,
-					'post_content' => $description,
-					'post_status' => 'publish',
-					'post_type' => 'collection',
-				));
+			if ($edit){
+				$post_id = wp_update_post(
+					array(
+						'ID'           => $collection_id,
+						'post_title'   => $title,
+						'post_name'    => $title,
+						'post_content' => $description,
+						'post_status'  => 'publish',
+						'post_type'    => 'collection',
+					));
+			} else {
+				$post_id = wp_insert_post(
+					array(
+						'post_title'   => $title,
+						'post_content' => $description,
+						'post_status'  => 'publish',
+						'post_type'    => 'collection',
+					));
+			}
+			
 			
 			if ($post_id) {
 				// Associez l'image téléchargée comme image mise en avant de la collection
@@ -205,20 +229,66 @@ function create_new_post_collection() {
 					set_post_thumbnail($post_id, $imageId);
 				}
 				
-				// Vérifiez si des articles liés ont été sélectionnés
-				if (!empty($linked_posts)) {
-					// Assurez-vous que Posts 2 Posts est activé
-					if (function_exists('p2p_type')) {
-						
-						// Parcourez les articles liés et établissez la connexion
-						foreach ($linked_posts as $linked_post_id) {
+				// Lier les fiiches à la collection
+				$old_linked_posts = array();
+				if ($edit) {
+					$old_connections = p2p_get_connections('collection_to_post', array(
+						'from' => $collection_id,
+					));
+					// Tableau associatif pour stocker l'ID de la connexion en fonction de l'ID du post lié
+					$old_connections_mapping = [];
+					
+					foreach ($old_connections as $old_connection) {
+						$old_linked_posts[] = $old_connection->p2p_to;
+						// Stocker l'ID de la connexion en fonction de l'ID du post lié
+						$old_connections_mapping[$old_connection->p2p_to] = $old_connection->p2p_id;
+					}
+					
+					// Comparez les anciennes et les nouvelles connexions
+					$added_connections   = array_diff($linked_posts, $old_linked_posts);
+					$removed_connections = array_diff($old_linked_posts, $linked_posts);
+					
+					$removed_ids = [];
+					foreach ($removed_connections as $removed_connection_post_id) {
+						// Récupérer l'ID de la connexion à partir du tableau associatif
+						$removed_ids[] = $old_connections_mapping[$removed_connection_post_id];
+					}
+					
+					// Ajoutez les nouvelles connexions
+					if ( !empty($added_connections)) {
+						foreach ($added_connections as $linked_post_id) {
 							p2p_create_connection('collection_to_post', array(
-								'from' => $post_id,
-								'to' => $linked_post_id,
+								'from' => $collection_id,
+								'to'   => $linked_post_id,
 								'meta' => array(
 									'date' => current_time('mysql')
 								)
 							));
+						}
+					}
+
+					// Supprimez les connexions existantes qui ne sont plus nécessaires
+					if ( !empty($removed_ids)) {
+						foreach ($removed_ids as $p2p_id) {
+							p2p_delete_connection($p2p_id);
+						}
+					}
+				} else {
+					// Vérifiez si des articles liés ont été sélectionnés
+					if (!empty($linked_posts)) {
+						// Assurez-vous que Posts 2 Posts est activé
+						if (function_exists('p2p_type')) {
+							
+							// Parcourez les articles liés et établissez la connexion
+							foreach ($linked_posts as $linked_post_id) {
+								p2p_create_connection('collection_to_post', array(
+									'from' => $post_id,
+									'to' => $linked_post_id,
+									'meta' => array(
+										'date' => current_time('mysql')
+									)
+								));
+							}
 						}
 					}
 				}
@@ -229,7 +299,7 @@ function create_new_post_collection() {
 				echo 'Erreur lors de la création de la collection';
 			}
 		}
-	}
+//	}
 }
 add_action('init', 'create_new_post_collection');
 

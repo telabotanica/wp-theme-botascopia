@@ -9,9 +9,10 @@
 }
 
 .home-author-fiches {
-    width: 400px;
+    /*width: 400px;*/
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
     align-items: center;
+    border-bottom: 1px dotted var(--noir);
 }

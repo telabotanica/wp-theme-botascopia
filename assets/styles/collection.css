@@ -241,7 +241,7 @@ header.blur-background::before{
     right: 0;
 }
 /****************** page création de collection **************************/
-#image-preview {
+#image-preview, #existing-image-preview {
     position: absolute;
     width: 90px;
     height: 90px;

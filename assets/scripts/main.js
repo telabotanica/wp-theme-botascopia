@@ -295,15 +295,16 @@ if (ouvrirPopupButton) {
 
         var existingHiddenInput = document.querySelector('#fiches-selected');
         if (existingHiddenInput) {
-            existingHiddenInput.remove();
+            existingHiddenInput.value ='';
         }
 
         // Créer un champ de formulaire caché
-        var hiddenInput = document.createElement('input');
-        hiddenInput.id = 'fiches-selected'
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'selectedCardIds';
-        formulaire.appendChild(hiddenInput);
+        var hiddenInput = formulaire.querySelector('#fiches-selected');
+        // var hiddenInput = document.createElement('input');
+        // hiddenInput.id = 'fiches-selected'
+        // hiddenInput.type = 'hidden';
+        // hiddenInput.name = 'selectedCardIds';
+        // formulaire.appendChild(hiddenInput);
 
         // Créer un élément de div pour le popup
         var popupAjoutFiches = document.createElement('div');

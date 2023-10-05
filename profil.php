@@ -84,6 +84,50 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 					}
                     ?>
                 </div>
+                
+<!--                Affichage des collections de l'utilisateur-->
+                <div class="home-author-fiches-container">
+                    <?php
+					the_botascopia_module('title', [
+						'title' => __('Mes collections', 'botascopia'),
+						'level' => 2,
+					]);
+					$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private']);
+                    
+                    foreach ($posts as $post) {
+                        if ($current_user->ID == $post['author']){
+                            $href = home_url() . '/collection/creer-une-collection/?collection='.$post['id'].'&edit=true';
+                            echo ('
+                            <div class="home-author-fiches">
+                                <div>
+                                    '. $post["name"] .'
+                                </div>
+                                <div>');
+                                
+                            the_botascopia_module('button', [
+									'tag' => 'a',
+									'href' => $href,
+									'title' => 'modifier la collection',
+									'text' => 'Modifier la collection',
+									'modifiers' => 'green-button'
+								]);
+                            echo('</div><div>');
+                            
+							the_botascopia_module('button', [
+								'tag' => 'button',
+								'title' => 'supprimer la collection',
+								'text' => 'supprimer la collection',
+								'modifiers' => 'purple-button',
+								'extra_attributes' => ['id' => 'delete-collection-button', 'data-collection-id' => $post['id']]
+							]);
+                            
+                            echo('</div></div>');
+                            
+                        }
+					}
+     
+                    ?>
+                </div>
             </div>
    <?php
 		else :
