@@ -67,7 +67,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 							$cpt_query->the_post();
 							if ($current_user->wp_user_level === '1') {
 								echo('<div class="home-author-fiches">
-                                <div>');
+                                <div class="profil-collection-name">');
 								the_field('nom_scientifique');
 								echo '</div><div>';
 								the_botascopia_module('button', [
@@ -80,7 +80,6 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 								echo('</div></div>');
 							}
 						}
-						
 					}
                     ?>
                 </div>
@@ -98,8 +97,8 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
                         if ($current_user->ID == $post['author']){
                             $href = home_url() . '/collection/creer-une-collection/?collection='.$post['id'].'&edit=true';
                             echo ('
-                            <div class="home-author-fiches">
-                                <div>
+                            <div class="home-author-fiches" id="profil-collection-'.$post["id"].'">
+                                <div class="profil-collection-name">
                                     '. $post["name"] .'
                                 </div>
                                 <div>');
@@ -117,8 +116,8 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 								'tag' => 'button',
 								'title' => 'supprimer la collection',
 								'text' => 'supprimer la collection',
-								'modifiers' => 'purple-button',
-								'extra_attributes' => ['id' => 'delete-collection-button', 'data-collection-id' => $post['id']]
+								'modifiers' => 'purple-button delete-collection-button',
+								'extra_attributes' => ['id' => 'delete-collection-'.$post['id'], 'data-collection-id' => $post['id']]
 							]);
                             
                             echo('</div></div>');

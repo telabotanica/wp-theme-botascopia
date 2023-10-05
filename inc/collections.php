@@ -737,3 +737,24 @@ function loadFiches($post_id, $paged){
 	endif;
 	wp_reset_postdata();
 }
+
+// Ajoutez ceci dans votre fichier functions.php ou un plugin personnalisé
+add_action('wp_ajax_delete_collection', 'delete_collection_callback');
+function delete_collection_callback() {
+	// Vérifiez les autorisations si nécessaire
+	
+	// Récupérez l'ID du post à supprimer depuis la requête AJAX
+	$post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+	
+	// Supprimez le post
+	$result = wp_delete_post($post_id, true); // Le deuxième paramètre à true force la suppression du post même s'il a des connexions
+	
+	if ($result) {
+		echo 'La collection a été supprimée avec succès.';
+	} else {
+		echo 'Erreur lors de la suppression de la collection.';
+	}
+	
+	// Assurez-vous de terminer l'exécution pour éviter une sortie HTML supplémentaire
+	wp_die();
+}

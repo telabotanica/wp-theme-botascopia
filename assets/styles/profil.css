@@ -16,3 +16,13 @@
     align-items: center;
     border-bottom: 1px dotted var(--noir);
 }
+
+.profil-collection-name {
+    font-family: "Muli", sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    width: 30%;
+}

@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     popupAjouterFiche();
     collectionSearchFiches();
     loadMoreCollections();
+    deleteCollection();
 });
 
 function setFavoris(selector, type){
@@ -586,7 +587,6 @@ function performSearch(searchForm, post) {
     xhr.send();
 }
 
-
 function loadMoreCollections() {
     var loadMoreButton = document.getElementById('loadMoreCollections');
     var collectionsContainer = document.getElementById('collections-container');
@@ -612,5 +612,42 @@ function loadMoreCollections() {
                 loadMoreButton.style.display = 'none';
             }
         });
+    }
+}
+
+function deleteCollection(){
+    var deleteButtons = document.querySelectorAll('.delete-collection-button');
+    if (deleteButtons){
+        deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Récupérez l'ID du post que vous voulez supprimer
+                var postId = deleteButton.getAttribute('data-collection-id');
+                var collectionDiv = document.getElementById('profil-collection-' + postId);
+
+                // Confirmez la suppression avec l'utilisateur
+                if (confirm("Êtes-vous sûr de vouloir supprimer la collection ? Toute suppression est définitive !")) {
+                    // Effectuez une requête AJAX pour appeler la fonction PHP de suppression
+                    var ajaxurl = ajax_object.ajax_url;
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('POST', ajaxurl, true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            // La suppression a réussi
+                            console.log(xhr.responseText);
+                            collectionDiv.style.display = 'none';
+                        } else {
+                            // La suppression a échoué
+                            console.error('Erreur lors de la suppression');
+                        }
+                    };
+                    xhr.send('action=delete_collection&post_id=' + postId);
+                }
+            });
+        })
     }
 }
