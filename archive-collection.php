@@ -71,7 +71,6 @@ get_header();
 						]);
 						?>
                     </div>
-<!--                    <button id="loadMoreCollections" >Voir plus</button>-->
                 </div>
             </div>
 

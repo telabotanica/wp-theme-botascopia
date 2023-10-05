@@ -590,24 +590,26 @@ function loadMoreCollections() {
     var loadMoreButton = document.getElementById('loadMoreCollections');
     var collectionsContainer = document.getElementById('collections-container');
 
-    // Hide all collections except the first 10 initially
-    for (var i = 10; i < collectionsContainer.children.length; i++) {
-        collectionsContainer.children[i].style.display = 'none';
-    }
+    if (loadMoreButton && collectionsContainer){
+        // Hide all collections except the first 10 initially
+        for (var i = 10; i < collectionsContainer.children.length; i++) {
+            collectionsContainer.children[i].style.display = 'none';
+        }
 
-    loadMoreButton.addEventListener("click", function () {
-        var hiddenCollections = collectionsContainer.querySelectorAll(':scope > div[style*="display: none"]');
+        loadMoreButton.addEventListener("click", function () {
+            var hiddenCollections = collectionsContainer.querySelectorAll(':scope > div[style*="display: none"]');
 
-        hiddenCollections.forEach(function (collection, index) {
-            // Show the next 5 collections
-            if (index < 10) {
-                collection.style.display = 'flex';
+            hiddenCollections.forEach(function (collection, index) {
+                // Show the next 5 collections
+                if (index < 10) {
+                    collection.style.display = 'flex';
+                }
+            });
+
+            // If all collections are now visible, hide the "Voir plus" button
+            if (hiddenCollections.length <= 10) {
+                loadMoreButton.style.display = 'none';
             }
         });
-
-        // If all collections are now visible, hide the "Voir plus" button
-        if (hiddenCollections.length <= 10) {
-            loadMoreButton.style.display = 'none';
-        }
-    });
+    }
 }
