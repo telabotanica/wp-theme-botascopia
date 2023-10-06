@@ -392,3 +392,46 @@ function get_selected_posts_callback() {
 	wp_die();
 }
 
+function ajout_boite_meta_description() {
+	add_meta_box(
+		'page_description', // ID unique de la boîte de méta
+		'Description de la Page', // Titre de la boîte de méta
+		'afficher_boite_meta_description', // Fonction pour afficher le contenu de la boîte de méta
+		'page', // Type de contenu où la boîte de méta doit apparaître (page dans cet exemple)
+		'normal', // Emplacement de la boîte de méta (normal, side, advanced)
+		'high' // Priorité de la boîte de méta (high, core, default, low)
+	);
+}
+
+// Fonction pour afficher le contenu de la boîte de méta description
+function afficher_boite_meta_description($post) {
+	// Récupérer la valeur actuelle du champ personnalisé "description_page"
+	$description_page = get_post_meta($post->ID, 'description_page', true);
+	
+	// Afficher le champ de saisie pour la description
+	?>
+	<label for="description_page">Description de la page :</label>
+	<textarea id="description_page" maxlength="100" name="description_page" style="width:100%;" rows="1"><?php echo esc_textarea($description_page); ?> </textarea>
+	<?php
+}
+
+// Fonction pour sauvegarder la valeur du champ personnalisé
+function sauvegarder_meta_description($post_id) {
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
+	
+	// Vérifier les autorisations
+	if (!current_user_can('edit_page', $post_id)) {
+		return;
+	}
+	
+	// Enregistrez la valeur du champ personnalisé
+	if (isset($_POST['description_page'])) {
+		update_post_meta($post_id, 'description_page', sanitize_text_field($_POST['description_page']));
+	}
+}
+
+// Ajouter des actions pour lier les fonctions aux événements appropriés
+add_action('add_meta_boxes', 'ajout_boite_meta_description');
+add_action('save_post', 'sauvegarder_meta_description');
