@@ -3,3 +3,35 @@
     padding: 20px 0;
     min-height: 500px;
 }
+
+.profil-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-author-fiches-container, .home-author-collections-container {
+    margin: 20px 0;
+}
+
+.home-author-fiches, .home-author-collections {
+    /*width: 400px;*/
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    border-bottom: 1px dotted var(--noir);
+}
+
+.home-author-fiches {
+    justify-content: flex-start;
+}
+
+.profil-collection-name {
+    font-family: "Muli", sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    width: 30%;
+}

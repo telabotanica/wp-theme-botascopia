@@ -1,14 +1,16 @@
 <?php function botascopia_module_search_box($data) {
   $defaults = [
-    'autocomplete' => false,
-    'instantsearch' => false,
-    'placeholder' => __('Rechercher une collection', 'botascopia'),
-    'value' => get_search_query() ?: get_query_var( 'q', false ),
-    'index' => false,
-    'suggestions' => false,
-    'facetFilters' => '',
-    'modifiers' => ['large'],
-    'pageurl' => ''
+	  'autocomplete'  => false,
+	  'instantsearch' => false,
+	  'placeholder'   => __('Rechercher une collection', 'botascopia'),
+	  'value'         => get_search_query() ? : get_query_var('q', false),
+	  'index'         => false,
+	  'suggestions'   => false,
+	  'facetFilters'  => '',
+	  'modifiers'     => ['large'],
+	  'pageurl'       => '',
+	  'id'            => '',
+	  'post'          => ''
   ];
 
   $data = botascopia_styleguide_data($defaults, $data);
@@ -23,8 +25,10 @@
     $data->facetFilters
   );
     printf(
-      '<form role="search" method="get" action="%s">',
-      esc_url( home_url( '/' . $data->pageurl ) )
+      '<form role="search" method="get" action="%s" data-post="%s", id="%s">',
+      esc_url( home_url( '/' . $data->pageurl ) ),
+		$data->post,
+		$data->id
     );
       if ($data->index) :
         printf(
@@ -49,7 +53,7 @@
 		'title' => 'Rechercher',
 		'text' => 'Rechercher',
 		'modifiers' => 'green-button',
-		'extra_attributes' => ['type' => 'submit']
+		'extra_attributes' => ['type' => 'button', 'id' => 'search-button']
 	]);
     echo '</form>';
 //var_dump($data->suggestions);
