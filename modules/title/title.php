@@ -6,11 +6,18 @@
     'suffix' => false,
     'href' => false,
     'target' => false,
-    'modifiers' => []
+    'modifiers' => [],
+	'extra_attributes' => []
   ];
 
   $data = botascopia_styleguide_data($defaults, $data);
   $data->modifiers = botascopia_styleguide_modifiers_array('title', $data->modifiers);
+  
+	$attributes = '';
+	
+	foreach ($data->extra_attributes as $name => $value) {
+		$attributes .= sprintf('%s="%s" ', $name, $value);
+	}
 
   if ( $data->suffix !== false ) :
     $data->title .= sprintf( '<span class="title-suffix">%s</span>', $data->suffix );
@@ -26,9 +33,10 @@
   endif;
 
   printf(
-    '<h%s class="%s">%s</h%s>',
+    '<h%s class="%s" %s>%s</h%s>',
     $data->level,
     implode(' ', $data->modifiers),
+	$attributes,
     $data->title,
     $data->level
   );

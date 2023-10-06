@@ -4,17 +4,26 @@
     min-height: 500px;
 }
 
-.home-author-fiches-container {
+.profil-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-author-fiches-container, .home-author-collections-container {
     margin: 20px 0;
 }
 
-.home-author-fiches {
+.home-author-fiches, .home-author-collections {
     /*width: 400px;*/
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
     align-items: center;
     border-bottom: 1px dotted var(--noir);
+}
+
+.home-author-fiches {
+    justify-content: flex-start;
 }
 
 .profil-collection-name {

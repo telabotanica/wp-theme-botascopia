@@ -651,3 +651,139 @@ function deleteCollection(){
         })
     }
 }
+
+
+// TOC dynamique pour page guide
+document.addEventListener('DOMContentLoaded', function() {
+    // Sélectionnez le conteneur de table des matières et le contenu principal
+    var tocContainer = document.querySelector('.first-toc div ul li ul');
+    var contentContainer = document.getElementById('guide-container');
+
+    // Fonction pour mettre à jour la table des matières
+    if (tocContainer && contentContainer){
+        function updateToc() {
+            // Sélectionnez tous les titres h2 dans le contenu principal
+            var titles = contentContainer.querySelectorAll('h2');
+
+            // Nettoyez le contenu actuel de la table des matières
+            tocContainer.innerHTML = '';
+
+            // Parcourez tous les titres et mettez à jour la table des matières
+            titles.forEach(function(title, index) {
+                // Créez un ID unique pour le lien
+                var uniqueId = 'toc-link-' + index;
+
+                // Créez un élément de lien pour la table des matières
+                var tocLink = document.createElement('a');
+                tocLink.classList.add('toc-subitem-link')
+                tocLink.href = '#' + uniqueId;
+                tocLink.textContent = title.textContent;
+
+                // Créez un élément de liste pour la table des matières
+                var tocItem = document.createElement('li');
+                tocItem.classList.add('toc-subitem')
+                tocItem.appendChild(tocLink);
+
+                // Ajoutez un gestionnaire d'événements au clic sur le lien
+                tocLink.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // setActiveLink(tocItem);
+                    // scrollToTitle(uniqueId);
+                });
+
+                // Ajoutez l'élément de liste à la table des matières
+                tocContainer.appendChild(tocItem);
+
+                // Ajoutez un ID unique au titre pour le lien
+                title.setAttribute('id', uniqueId);
+            });
+        }
+    }
+
+    // Fonction pour définir le lien actif
+    function setActiveLink(activeItem) {
+        // Supprimez la classe is-active de tous les liens
+        var allItems = tocContainer.querySelectorAll('li');
+        allItems.forEach(function(item) {
+            item.classList.remove('is-active');
+        });
+
+        // Ajoutez la classe is-active au lien actif
+        activeItem.classList.add('is-active');
+
+        // Ajoutez l'élément SVG au lien actif
+        var svgIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svgIcon.setAttribute('aria-hidden', 'true');
+        svgIcon.setAttribute('role', 'img');
+        svgIcon.setAttribute('class', 'icon icon-feuilles');
+
+        var useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        useElement.setAttribute('xlink:href', '#icon-feuilles');
+
+        svgIcon.appendChild(useElement);
+
+        // linkItem.append(svgIcon);
+        // linkItem.insertAdjacentHTML("afterbegin", svgIcon);
+    }
+
+    // Appelez la fonction pour la première fois pour initialiser la table des matières
+    updateToc();
+
+    // Écoutez les modifications dans le contenu principal
+    var observer = new MutationObserver(updateToc);
+    observer.observe(contentContainer, { subtree: true, childList: true });
+
+    // Écoutez le défilement de la page
+    window.addEventListener('scroll', function() {
+        // Trouvez le titre visible dans la fenêtre
+        var visibleTitle = Array.from(tocContainer.getElementsByTagName('a')).find(function(link) {
+            var targetId = link.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                var rect = targetElement.getBoundingClientRect();
+                return rect.top >= 0 && rect.bottom <= window.innerHeight;
+            }
+            return false;
+        });
+
+        // Si un titre est visible, définissez le lien actif
+        if (visibleTitle) {
+            var listItem = visibleTitle.parentNode;
+            // setActiveLink(listItem);
+        }
+    });
+});
+
+// Décalage lors de l'utilisation de la toc, sinon la section sélectionnée est dans le header
+document.addEventListener('DOMContentLoaded', function () {
+    // Fonction pour gérer le clic sur le lien
+    function handleLinkClick(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+
+        // Obtient l'ID de la cible à partir de l'attribut href du lien
+        var targetId = event.currentTarget.getAttribute('href').substring(1);
+
+        // Recherche de l'élément avec l'ID spécifié
+        var targetElement = document.getElementById(targetId);
+
+        // Vérification si l'élément existe
+        if (targetElement) {
+            // Calcul du décalage de 250px vers le bas
+            var offset = targetElement.offsetTop + 250;
+
+            // Animation de défilement vers l'élément avec le décalage
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth' // Pour une animation fluide, si prise en charge
+            });
+        }
+    }
+
+    // Récupération de tous les liens à l'intérieur de la div avec la classe "toc"
+    var links = document.querySelectorAll('.toc a');
+
+    // Ajout d'un écouteur d'événement au clic sur chaque lien
+    links.forEach(function (link) {
+        link.addEventListener('click', handleLinkClick);
+    });
+});

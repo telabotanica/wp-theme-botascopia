@@ -28,24 +28,27 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 		]);
 		?>
             <div class="profil-main">
-                <?php
-				the_botascopia_module('button', [
-					'tag' => 'a',
-					'href' => site_url() . '/profil/mes-collections/',
-					'title' => 'Mes collections',
-					'text' => 'Mes collections',
-					'modifiers' => 'green-button',
-				]);
-                ?>
-            <?php
-                the_botascopia_module('button',[
-                    'tag' => 'button',
-                    'title' => 'Se déconnecter',
-                    'text' => 'Se déconnecter',
-                    'modifiers' => 'purple-button',
-                    'extra_attributes' => ['onclick' => "window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."'"]
-                ]);
-            ?>
+                <div class="profil-buttons">
+					<?php
+					the_botascopia_module('button', [
+						'tag' => 'a',
+						'href' => site_url() . '/profil/mes-collections/',
+						'title' => 'Mes collections',
+						'text' => 'Mes collections',
+						'modifiers' => 'green-button',
+					]);
+					?>
+					<?php
+					the_botascopia_module('button',[
+						'tag' => 'button',
+						'title' => 'Se déconnecter',
+						'text' => 'Se déconnecter',
+						'modifiers' => 'purple-button',
+						'extra_attributes' => ['onclick' => "window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."'"]
+					]);
+					?>
+                </div>
+               
                 <div class="home-author-fiches-container">
                     <?php
 					the_botascopia_module('title', [
@@ -85,7 +88,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
                 </div>
                 
 <!--                Affichage des collections de l'utilisateur-->
-                <div class="home-author-fiches-container">
+                <div class="home-author-collections-container">
                     <?php
 					the_botascopia_module('title', [
 						'title' => __('Mes collections', 'botascopia'),
@@ -97,7 +100,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
                         if ($current_user->ID == $post['author']){
                             $href = home_url() . '/collection/creer-une-collection/?collection='.$post['id'].'&edit=true';
                             echo ('
-                            <div class="home-author-fiches" id="profil-collection-'.$post["id"].'">
+                            <div class="home-author-collections" id="profil-collection-'.$post["id"].'">
                                 <div class="profil-collection-name">
                                     '. $post["name"] .'
                                 </div>
