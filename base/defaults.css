@@ -103,3 +103,7 @@ strong {
     color: var(--noir);
     padding: 10px 20px;
 }
+
+#content {
+    min-height: 66vh;
+}

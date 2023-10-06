@@ -43,7 +43,9 @@ function bs_theme_supports() {
 			'principal' => __('Menu principal', 'botascopia'),
 			'secondary' => __('Menu secondaire', 'botascopia'),
 			'footer-bar' => __('Pied de page - bandeau', 'botascopia'),
-			'footer-columns' => __('Pied de page - en colonnes', 'botascopia'),
+			'footer-liens' => __('footer-liens', 'botascopia'),
+			'footer-legal' => __('footer-legal', 'botascopia'),
+			'footer-contacts' => __('footer-contacts', 'botascopia'),
 		]);
 }
 add_action('after_setup_theme', 'bs_theme_supports');

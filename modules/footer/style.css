@@ -1,3 +1,4 @@
+
 .footer {
     /*border-top: 1rem solid rgba(145, 138, 111, 0.2);*/
     background-color: var(--rose-pale);
@@ -13,10 +14,27 @@
 
 .footer-nav-plan {
     position: relative;
-    background-color: rgba(240, 240, 240, 0.5);
+    background-color: var(--rose-pale);
     padding: 3.5rem 0;
     margin: 0;
     left: 20vw;
+    display: flex;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    width: 55%;
+    justify-content: space-between;
+}
+
+.footer-nav-title{
+    color: var(--violet);
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
 }
 
 .footer-nav-plan > div > ul{
@@ -102,13 +120,16 @@
     display: none;
 }
 
-
+/*.footer-column a {*/
+/*    margin-left: 0;*/
+/*}*/
 
 .footer-nav-items {
     font-size: 1.4rem;
     line-height: 2;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .footer-nav-items a {
@@ -126,11 +147,10 @@
 /*}*/
 
 .footer-nav-items > .menu-item > a {
-    color: var(--violet);
-    font-size: 20px;
+    color: var(--gris-33);
+    font-size: 14px;
     font-weight: normal;
     letter-spacing: 0.1rem;
-    text-transform: uppercase;
 }
 
 .footer-nav-items > .menu-item:nth-child(1), .footer-nav-items > .menu-item:nth-child(2), .footer-nav-items > .menu-item:nth-child(3) {
