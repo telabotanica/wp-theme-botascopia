@@ -131,7 +131,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
                                 '. $name.',<br>'. $species.'
                                     </div><div>');
                                 
-                                    the_botascopia_module('button', [
+                                the_botascopia_module('button', [
                                 'tag' => 'a',
                                 'href' => home_url() .'/formulaire/?p='.$ficheTitle.'&a=4',
                                 'title' => 'Devenir vérificateur de cette fiche',
