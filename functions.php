@@ -758,3 +758,46 @@ function get_selected_posts_callback() {
 	wp_die();
 }
 
+function creer_groupe_champs_acf($form_id) {
+    $field_group = acf_get_field_group($form_id);
+    foreach ($_POST['acf'] as $acf_field_key => $acf_value){
+        $field = acf_get_field($acf_field_key);
+        if (isset($field['name']) && $field['name'] != '_validate_email' && !empty($acf_value)){
+            $field_group = acf_get_field_group($field['parent'])['title'];
+            break;
+        }
+
+        switch ($titre){
+            case 'tige':
+                $image = 'tige';
+                break;
+            case 'feuille':
+                $image = 'feuilles';
+                break;
+            case 'inflorescence':
+                $image = 'inflorescence';
+                break;
+            case 'fleur_male':
+                $image = 'fleur-male';
+                break;
+            case 'fleur_femelle':
+                $image = 'fleur-femelle';
+                break;
+            case 'fleur_bisexuee':
+                $image = 'inflorescence';
+                break;
+            case 'fruit':
+                $image = 'fruits';
+                break;
+            default:
+                $image = '';
+        }
+    }
+
+    // Valeur de la meta à enregistrer
+    $meta_value = 'complet';
+
+    // Ajoute la paire clé/valeur de métadonnées au post spécifié
+    add_post_meta($post_id, $field_group, 'complet', true);
+}
+

@@ -103,8 +103,9 @@
 				$item->title,
 				$data->title_level
 			);
-			
-			acf_form($item->content);
+
+            echo(var_dump(acf_get_fields(12)));
+
 			echo '</div>';
 		
 		endforeach;
