@@ -107,3 +107,47 @@ strong {
 #content {
     min-height: 66vh;
 }
+
+.hidden{
+    display: none !important;
+}
+
+.flex {
+    display: flex;
+}
+
+@media (769px <= width <= 1250px) {
+    #main {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .bg-fill{
+        left: 275px;
+    }
+}
+
+@media (481px <= width <= 768px) {
+    #main {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .bg-fill{
+        left: 225px;
+    }
+}
+
+@media ( width <= 480px) {
+    #main {
+        width: 100%;
+        /*padding: 0 20px;*/
+    }
+
+    .bg-fill{
+        /*left: 0;*/
+        /*top: 400px;*/
+        display: none;
+        /*height: 200px;*/
+    }
+}

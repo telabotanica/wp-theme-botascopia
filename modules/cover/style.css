@@ -79,6 +79,8 @@
     .cover {
         min-height: 16rem;
         text-align: center;
+        width: calc(100% + 40px);
+        left: -20px;
     }
 
     .cover.tall {
@@ -95,6 +97,13 @@
 
     .cover-credits {
         display: none;
+    }
+}
+@media (769px <= width <= 1250px) {
+    .cover {
+        width: calc(100% + 40px);
+        left: -20px;
+        /*min-height: 150px;*/
     }
 }
 

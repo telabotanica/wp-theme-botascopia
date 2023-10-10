@@ -214,6 +214,17 @@ header.blur-background::before{
     z-index: 500;
 }
 
+#primary.blur-background::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(1000px);
+    z-index: 500;
+}
+
 .popup::before {
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
@@ -459,22 +470,74 @@ display: none;
 }
 
 /************** Media queries **************/
-/*
-@media screen and (min-width: 769px) and (max-width: 1250px) {
+@media (769px <= width <= 1250px) {
     .left-div {
-        width: 150px;
+        width: 300px;
+    }
+
+    .right-div{
+        left: 20px;
+    }
+
+    .collection-main {
+        width: 100%;
+    }
+
+    .main-status-bandeau {
+        margin-left: -20px;
+        width: 275px;
     }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media (481px <= width <= 768px) {
     .left-div {
-        width: 100px;
+        width: 200px;
+    }
+
+    .right-div{
+        left: 20px;
+    }
+
+    .collection-main {
+        width: 100%;
+    }
+
+    .single-collection-details {
+        width: 200px;
+    }
+
+    .main-status-bandeau {
+        margin-left: -20px;
+        width: 225px;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media ( width <= 480px) {
+    .collection-main {
+        width: 100%;
+        flex-direction: column;
+    }
     .left-div {
-        width: 150px;
+        width: 100%;
+        padding: 20px 20px;
+    }
+
+    .right-div{
+        left: 0;
+        width: 100%;
+        background-color: var(--blanc);
+        padding: 20px 20px;
+    }
+
+    .main-status-bandeau {
+        margin-top: -30px;
+        width: 225px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .display-fiches-cards-items{
+        justify-content: center;
     }
 }
-*/
+

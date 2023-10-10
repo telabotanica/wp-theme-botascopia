@@ -27,7 +27,17 @@ req.keys().forEach(req);
 
 //Enregistre les collections favorites
 document.addEventListener('DOMContentLoaded', function() {
+// to find overflow
+    var docWidth = document.documentElement.offsetWidth;
 
+    [].forEach.call(
+        document.querySelectorAll('*'),
+        function(el) {
+            if (el.offsetWidth > docWidth) {
+                console.log(el);
+            }
+        }
+    );
     // Bouton retour renvoyant à la page précédente
     if (document.querySelector('.return-button')){
         document.querySelector('.return-button').addEventListener('click', function(e) {
@@ -47,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
     collectionSearchFiches();
     loadMoreCollections();
     deleteCollection();
+
+
+
 });
 
 function setFavoris(selector, type){
