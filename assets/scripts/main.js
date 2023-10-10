@@ -727,7 +727,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Appelez la fonction pour la première fois pour initialiser la table des matières
-    updateToc();
+    if (tocContainer && contentContainer) {
+        updateToc();
+
 
     // Écoutez les modifications dans le contenu principal
     var observer = new MutationObserver(updateToc);
@@ -752,6 +754,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // setActiveLink(listItem);
         }
     });
+    }
 });
 
 // Décalage lors de l'utilisation de la toc, sinon la section sélectionnée est dans le header

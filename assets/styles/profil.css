@@ -35,3 +35,8 @@
     margin: 0;
     width: 30%;
 }
+
+.profil-verificateur-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}

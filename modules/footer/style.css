@@ -24,7 +24,7 @@
 .footer-left {
     display: flex;
     align-items: center;
-    width: 55%;
+    width: 50%;
     justify-content: space-between;
 }
 
