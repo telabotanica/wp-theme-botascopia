@@ -75,11 +75,14 @@
     background-color: var(--rose-pale);
 }
 
+
+
 @media (max-width: 767.9px) {
     .cover {
         min-height: 16rem;
         text-align: center;
-        width: calc(100% + 40px);
+        /*width: calc(100% + 30px);*/
+        /*width: unset;*/
         left: -20px;
     }
 
@@ -99,7 +102,7 @@
         display: none;
     }
 }
-@media (769px <= width <= 1250px) {
+@media (768px <= width <= 1250px) {
     .cover {
         width: calc(100% + 40px);
         left: -20px;
@@ -141,6 +144,14 @@
 
     .cover-credits a:hover {
         border-bottom: 0.1rem solid;
+    }
+}
+
+@media (width <= 480px) {
+    .cover {
+        width: calc(100% + 20px);
+        /*width: unset;*/
+        left: -20px;
     }
 }
 

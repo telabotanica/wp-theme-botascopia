@@ -57,9 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     collectionSearchFiches();
     loadMoreCollections();
     deleteCollection();
-
-
-
+    onResize()
 });
 
 function setFavoris(selector, type){
@@ -803,3 +801,66 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', handleLinkClick);
     });
 });
+
+function toggleElementsVisibilityMedium(el) {
+    var screenWidth = window.innerWidth;
+
+    // Ajoutez ou retirez la classe .hidden en fonction de la largeur de l'écran
+    if (screenWidth <= 780) {
+        el.classList.add("hidden");
+    } else {
+        el.classList.remove("hidden");
+    }
+}
+
+function toggleElementsVisibilitySmall(el) {
+    var screenWidth = window.innerWidth;
+
+    // Ajoutez ou retirez la classe .hidden en fonction de la largeur de l'écran
+    if (screenWidth <= 480) {
+        el.classList.add("hidden");
+    } else {
+        el.classList.remove("hidden");
+    }
+}
+
+function onResize(){
+    var menuToggle = document.getElementById("menu-toggle");
+    var headerNav = document.querySelector(".header-nav-usecases");
+    let loginNav = document.querySelector(".header-login");
+    let menuContainer = document.querySelector(".menu-container");
+    let deco = document.querySelector(".deconnexion-button");
+    let returnButton = document.querySelector(".return-button");
+
+    if (returnButton){
+        toggleElementsVisibilitySmall(returnButton);
+        window.addEventListener("resize", function () {
+            toggleElementsVisibilitySmall(returnButton);
+        });
+    }
+
+    // Header
+    if (menuToggle && headerNav) {
+        toggleElementsVisibilityMedium(headerNav);
+        toggleElementsVisibilityMedium(loginNav);
+
+        window.addEventListener("resize", function () {
+            toggleElementsVisibilityMedium(headerNav);
+            toggleElementsVisibilityMedium(loginNav);
+
+            document.querySelector('#primary').classList.remove('blur-background');
+            menuContainer.classList.remove("bg-rose");
+            menuContainer.classList.remove("flex");
+            deco.classList.add("hidden");
+        });
+
+        menuToggle.addEventListener("click", function () {
+            headerNav.classList.toggle("hidden");
+            loginNav.classList.toggle("hidden");
+            deco.classList.toggle("hidden");
+            menuContainer.classList.toggle("bg-rose");
+            menuContainer.classList.toggle("flex");
+            document.querySelector('#primary').classList.toggle('blur-background');
+        });
+    }
+}

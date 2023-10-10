@@ -53,14 +53,15 @@
     .breadcrumbs-button .icon {
       height: 1.8rem;
       width: 1.8rem; }
-@media (481px <= width <= 780px) {
+
+@media (515px <= width <= 800px) {
   .breadcrumbs-item{
     display: block;
     margin-top: 15px;
   }
 }
 
-@media (width <= 480px) {
+@media (width <= 4514px) {
   .breadcrumbs{
     display: none;
   }

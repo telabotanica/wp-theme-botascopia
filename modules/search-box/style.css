@@ -165,6 +165,10 @@
     text-decoration: none;
 }
 
+.search-box {
+    margin-top: 20px;
+}
+
 
 @media ( width <= 480px) {
     .large {
@@ -203,7 +207,7 @@
 
     .large {
       .search-box-wrapper {
-        height: 5.6rem;
+        /*height: 5.6rem;*/
       }
 
         .search-box-input {
