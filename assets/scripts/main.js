@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
     collectionSearchFiches();
     loadMoreCollections();
     deleteCollection();
-    onResize()
+    onResize();
+    onResizeFooter();
 });
 
 function setFavoris(selector, type){
@@ -825,8 +826,8 @@ function toggleElementsVisibilitySmall(el) {
 }
 
 function onResize(){
-    var menuToggle = document.getElementById("menu-toggle");
-    var headerNav = document.querySelector(".header-nav-usecases");
+    let menuToggle = document.getElementById("menu-toggle");
+    let headerNav = document.querySelector(".header-nav-usecases");
     let loginNav = document.querySelector(".header-login");
     let menuContainer = document.querySelector(".menu-container");
     let deco = document.querySelector(".deconnexion-button");
@@ -851,16 +852,46 @@ function onResize(){
             document.querySelector('#primary').classList.remove('blur-background');
             menuContainer.classList.remove("bg-rose");
             menuContainer.classList.remove("flex");
-            deco.classList.add("hidden");
+            if (deco){
+                deco.classList.add("hidden");
+            }
         });
 
         menuToggle.addEventListener("click", function () {
             headerNav.classList.toggle("hidden");
             loginNav.classList.toggle("hidden");
-            deco.classList.toggle("hidden");
+            if (deco) {
+                deco.classList.toggle("hidden");
+            }
             menuContainer.classList.toggle("bg-rose");
             menuContainer.classList.toggle("flex");
             document.querySelector('#primary').classList.toggle('blur-background');
         });
     }
 }
+
+function onResizeFooter(){
+    let footerNavPlan = document.querySelector('.footer-nav-plan');
+    let togglePlanBtn = document.getElementById('togglePlanBtn');
+    let aboutTela = document.querySelector('.footer-about-tela');
+    let footerLogos = document.querySelector('.footer-logos');
+
+    if (togglePlanBtn){
+        toggleElementsVisibilityMedium(footerNavPlan);
+        aboutTela.classList.remove("hidden")
+        footerLogos.classList.remove("hidden")
+
+        window.addEventListener("resize", function () {
+            toggleElementsVisibilityMedium(footerNavPlan);
+            aboutTela.classList.remove("hidden")
+            footerLogos.classList.remove("hidden")
+        });
+
+        togglePlanBtn.addEventListener("click", function () {
+            footerNavPlan.classList.toggle("hidden");
+            aboutTela.classList.toggle("hidden")
+            footerLogos.classList.toggle("hidden")
+        });
+    }
+}
+

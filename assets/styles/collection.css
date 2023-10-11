@@ -222,6 +222,8 @@ header.blur-background::before{
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(1000px);
+    background-color: #707070;
+    opacity: 0.5;
     z-index: 500;
 }
 

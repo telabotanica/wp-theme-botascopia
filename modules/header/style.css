@@ -798,6 +798,10 @@ body.bp-user .header-logo > a {
     #menu-toggle > button {
         background-color: transparent;
     }
+
+    .header-logo {
+        margin-left: 30px;
+    }
 }
 
 @media (min-width: var(--header-breakpoint-large)) {

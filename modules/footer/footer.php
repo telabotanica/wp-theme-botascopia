@@ -16,7 +16,7 @@
               </div>
 			 
               <div class="footer-nav-plan" role="navigation" aria-label="<?php esc_attr_e('Plan du site', 'botascopia'); ?>">
-                  <div class="footer-column">
+                  <div class="footer-column footer-liens">
                       <h4 class="footer-nav-title">Liens rapide</h4>
 					  <?php
 					  if (has_nav_menu('footer-liens')) :
@@ -27,7 +27,7 @@
 								  ]);
 					 endif; ?>
                   </div>
-                  <div class="footer-column">
+                  <div class="footer-column footer-legal">
                       <div>
 						  <?php
 						  if (has_nav_menu('footer-legal')) :?>
@@ -61,6 +61,19 @@
               <img src="<?php echo get_template_directory_uri() . '/images/logo-tela@2x.png'; ?>" class="footer-logo-tela">
               <img src="<?php echo get_template_directory_uri() . '/images/logo-saclay.png'; ?>" class="footer-logo-saclay">
           </div>
+          <div class="footer-plan-button">
+              <?php
+              the_botascopia_module('button',[
+                  'tag' => 'button',
+                  'title' => 'Plan du site',
+                  'text' => 'Plan du site',
+                  'modifiers' => 'green-button outline',
+                  'extra_attributes' => ["id" => "togglePlanBtn"]
+              ]);
+              ?>
+          </div>
+<!--          <button id="togglePlanBtn">Plan du site</button>-->
+          
       </div>
     <?php if ( has_nav_menu( 'footer-bar' ) ) : ?>
       <nav class="footer-nav-bar" role="navigation" aria-label="<?php esc_attr_e( 'Menu de pied de page', 'botascopia'
@@ -74,6 +87,9 @@
         ?>
       </nav>
     <?php endif; ?>
+
+    
+    
   </footer><!-- .site-footer -->
 <?php
 }

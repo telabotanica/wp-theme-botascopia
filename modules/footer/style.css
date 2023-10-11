@@ -66,8 +66,8 @@
 
 .footer-logo-saclay{
     position: relative;
-    height: 75px;
-    /*border-left: 1px solid black;*/
+    height: 50px;
+    border-left: 1px solid black;
     padding-left: 20px;
 }
 
@@ -211,4 +211,68 @@
 .footer-nav-bar a:hover {
     color: var(--gris-f0);
     fill: var(--gris-f0);
+}
+
+#togglePlanBtn {
+    display: none;
+}
+
+@media ( width <= 780px) {
+    #togglePlanBtn {
+        display: block;
+    }
+
+    .footer-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-left {
+        width: 80%;
+        margin-top: 20px;
+        border-bottom: 1px solid var(--gris-b3);
+        padding-bottom: 20px;
+        justify-content: center;
+    }
+
+    .footer-about-tela {
+        width: 100%;
+        position: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-about-botascopia-logo {
+        position: unset;
+        margin-bottom: 10px;
+    }
+
+    .footer-about-tela-details {
+        position: unset;
+        bottom: unset;
+    }
+
+    .footer-logos {
+        position: unset;
+        margin: 20px 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .footer-nav-bar{
+        bottom: unset;
+    }
+
+    .footer-nav-plan {
+        position: unset;
+        padding: 0;
+    }
+
+    .footer-legal {
+        text-align: end;
+    }
+
 }
