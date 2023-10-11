@@ -131,7 +131,7 @@ strong {
     }
 }
 
-@media (481px <= width <= 768px) {
+@media (581px <= width <= 768px) {
     #main {
         width: 100%;
         padding: 0 20px;
@@ -140,9 +140,13 @@ strong {
     .bg-fill{
         left: 225px;
     }
+
+    .main-accueil {
+        padding: 20px;
+    }
 }
 
-@media ( width <= 480px) {
+@media ( width <= 580px) {
     #main {
         width: 100%;
         /*padding: 0 20px;*/
@@ -153,5 +157,13 @@ strong {
         /*top: 400px;*/
         display: none;
         /*height: 200px;*/
+    }
+
+    #primary {
+        margin-top: 20px;
+    }
+
+    .main-accueil {
+        padding: 20px;
     }
 }

@@ -818,7 +818,7 @@ function toggleElementsVisibilitySmall(el) {
     var screenWidth = window.innerWidth;
 
     // Ajoutez ou retirez la classe .hidden en fonction de la largeur de l'écran
-    if (screenWidth <= 480) {
+    if (screenWidth <= 580) {
         el.classList.add("hidden");
     } else {
         el.classList.remove("hidden");
@@ -835,6 +835,7 @@ function onResize(){
 
     if (returnButton){
         toggleElementsVisibilitySmall(returnButton);
+
         window.addEventListener("resize", function () {
             toggleElementsVisibilitySmall(returnButton);
         });

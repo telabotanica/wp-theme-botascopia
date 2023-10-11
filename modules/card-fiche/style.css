@@ -69,3 +69,24 @@
     width: 20px;
     margin: 0;
 }
+
+@media ( width <= 780px) {
+    .card-fiche {
+        width: 150px;
+        height: 200px;
+    }
+
+    .card-fiche-image{
+        height: 150px;
+    }
+
+    .card-fiche-body{
+        padding: 0 5px;
+        margin-top: -5px;
+        font-size: 12px;
+    }
+
+    .card-fiche-title {
+        -webkit-line-clamp: 1;
+    }
+}

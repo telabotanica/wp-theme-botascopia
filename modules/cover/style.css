@@ -147,7 +147,7 @@
     }
 }
 
-@media (width <= 480px) {
+@media (width <= 580px) {
     .cover {
         width: calc(100% + 20px);
         /*width: unset;*/
