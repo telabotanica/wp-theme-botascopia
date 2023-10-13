@@ -10,7 +10,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 
 <div id="primary" class="content-area">
 
-    <main id="main" class="site-main " role="main">
+    <main id="main" class="site-main site-main-profil" role="main">
 		<?php
 		if (is_user_logged_in()) :
 			$current_user = wp_get_current_user();
