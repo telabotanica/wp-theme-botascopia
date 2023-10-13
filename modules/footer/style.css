@@ -217,6 +217,66 @@
     display: none;
 }
 
+@media (1030px < width <= 1350px) {
+    .footer-about-tela {
+        left: 10vw;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+
+    .footer-about-tela-details {
+        width: 260px;
+    }
+}
+
+@media (890px < width <= 1030px) {
+    .footer-about-tela {
+        left: 5vw;
+    }
+
+    .footer-about-botascopia-logo{
+        top: 75px;
+    }
+
+    .footer-about-botascopia-logo img {
+        width: 200px;
+        height: unset;
+    }
+
+    .footer-about-tela-details {
+        width: 200px;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+}
+
+@media (780px < width <= 890px) {
+    .footer-about-tela {
+        left: 2vw;
+    }
+
+    .footer-about-botascopia-logo{
+        top: 90px;
+    }
+
+    .footer-about-botascopia-logo img {
+        width: 150px;
+        height: unset;
+    }
+
+    .footer-about-tela-details {
+        width: 150px;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+}
+
 @media ( width <= 780px) {
     #togglePlanBtn {
         display: block;
