@@ -61,7 +61,7 @@
   }
 }
 
-@media (width <= 4514px) {
+@media (width <= 514px) {
   .breadcrumbs{
     display: none;
   }
