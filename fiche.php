@@ -9,7 +9,7 @@ get_header();
 	<div class="bg-fill">
 	
 	</div>
-	<main id="main" class="site-main " role="main">
+	<main id="main" class="site-main fiche-main" role="main">
 		
 		<?php
 		$post = get_queried_object();
@@ -131,7 +131,7 @@ get_header();
 					Formats : PDF (60Mo)
 				</div>
 				
-				<a class="return-button" href="#">
+				<a class="return-button return-button-collection" href="#">
 					<?php the_botascopia_module('icon', [
 						'icon' => 'arrow-left'
 					]); ?>

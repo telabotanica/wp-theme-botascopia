@@ -157,7 +157,9 @@
 
     .layout-wrapper{
         margin-left: 10%;
-        width: 150px;
+        /*width: 150px;*/
+        width: 100%;
     }
+
 }
 

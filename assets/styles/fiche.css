@@ -234,4 +234,8 @@
     #fiche {
         margin-left: 0;
     }
+
+    .fiche-main .layout-wrapper {
+        width: 150px;
+    }
 }

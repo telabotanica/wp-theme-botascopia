@@ -161,17 +161,18 @@ function popupReserverFiche(){
                     "<p>Cette fiche est disponible. Souhaitez-vous en devenir l'auteur ? Personne d'autre ne pourra y avoir accès" +
                     " tant que vous n'aurez pas envoyé le formulaire à vérification ou renoncé à la compléter.</p>" +
                     "<div class='popup-display-buttons'>" +
-                    "<a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a>" +
+                    "<div><a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a></div>" +
                     // "<a class='button green-button' href='"+ ficheUrl + "'><span class='button-text'>Réserver" +
-                    "<a  class='button green-button' ><span" +
+                    "<div><a  class='button green-button' ><span" +
                     // " class='button-text' id='reserver-fiche' onclick='reserverFiche("+ ficheId +","+ user_id +")'>Réserver" +
                     " class='button-text' id='reserver-fiche'>Réserver" +
-                    " la fiche</span></a>" +
+                    " la fiche</span></a></div>" +
                     "</div>";
 
                 // Créer un élément de div pour le popup
                 var popup = document.createElement('div');
                 popup.classList.add('popup');
+                popup.classList.add('popup-reserver-fiche');
                 popup.appendChild(popupContenu);
 
                 // Ajouter le popup à la page
@@ -331,7 +332,7 @@ if (ouvrirPopupButton) {
         var popupAjoutContenu = document.createElement(`div`);
         popupAjoutContenu.innerHTML = '';
         popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
-            "<div class='search-box-wrapper search-box-ajout-fiche'>" +
+            "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
             "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
             " une fiche'>" +
             // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
@@ -342,7 +343,7 @@ if (ouvrirPopupButton) {
             " id='annuler-ajout-fiches'>Annuler</span></a>" +
             "<a  class='button green-button' ><span" +
             " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
-            "</div>";
+            "</div></div>";
         popupAjoutContenu.classList.add('popup-ajout-fiches-content');
 
         // On charge le contenu de la popup
@@ -831,7 +832,7 @@ function onResize(){
     let loginNav = document.querySelector(".header-login");
     let menuContainer = document.querySelector(".menu-container");
     let deco = document.querySelector(".deconnexion-button");
-    let returnButton = document.querySelector(".return-button");
+    let returnButton = document.querySelector(".return-button-collection");
 
     if (returnButton){
         toggleElementsVisibilitySmall(returnButton);

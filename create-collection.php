@@ -16,7 +16,7 @@ endif;
 
 <div id="primary" class="content-area">
 
-    <main id="main" class="site-main " role="main">
+    <main id="main" class="site-main new-collection-main" role="main">
 		<?php
 		if (is_user_logged_in()) :
 			
@@ -64,15 +64,15 @@ endif;
                 </div>
                 
                 <div class="new-photo-collection-block">
-                    <input type="file" class="inputfile" name="post-thumbnail" id="post-thumbnail" accept="image/*">
+                    <input type="file" class="inputfile hidden" name="post-thumbnail" id="post-thumbnail" accept="image/*">
                     <label for="post-thumbnail">
-                        <figure>
-                            <svg fill="#000000" height="70px" width="70px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490
+                        <figure class="add-photo-cross">
+                            <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490
                             490" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polygon points="222.031,490 267.969,490 267.969,267.969 490,267.969 490,222.031 267.969,222.031 267.969,0 222.031,0 222.031,222.031 0,222.031 0,267.969 222.031,267.969 "></polygon> </g></svg>
                         </figure>
                         <span class="upload-label">Ajouter une photo</span>
                         <span class="upload-explanation">820 x 320 pixels maximum</span>
-                        <span class="upload-explanation">10 Mo</span>
+                        <span class="upload-explanation">10 Mo maximum</span>
                         <span class="upload-explanation">Formats: png, jpg</span>
                     </label>
                     <?php
@@ -87,15 +87,10 @@ endif;
                 </div>
             </div>
 
-            <div class="new-collection-main">
+            <div class="new-collection-container">
                 <div class="new-description-collection-block">
                     <label for="post-description" class="new-collection-title">Description de la collection</label>
-                    <textarea name="post-description" id="post-description" rows="6" placeholder="500 caractères maximum" maxlength="500" required><?php if ($edit){ echo esc_textarea
-						($collection->post_content);
-                    }
-                    ?>
-                    </textarea>
-
+                    <textarea name="post-description" id="post-description" rows="6" placeholder="500 caractères maximum" maxlength="500" required><?php if ($edit){ echo esc_textarea($collection->post_content);}?></textarea>
                 </div>
                 <h2 class="new-collection-title">
                     Ajouter des fiches
