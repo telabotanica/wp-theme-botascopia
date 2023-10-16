@@ -28,16 +28,17 @@ req.keys().forEach(req);
 //Enregistre les collections favorites
 document.addEventListener('DOMContentLoaded', function() {
 // to find overflow
-    var docWidth = document.documentElement.offsetWidth;
+//     var docWidth = document.documentElement.offsetWidth;
+//
+//     [].forEach.call(
+//         document.querySelectorAll('*'),
+//         function(el) {
+//             if (el.offsetWidth > docWidth) {
+//                 console.log(el);
+//             }
+//         }
+//     );
 
-    [].forEach.call(
-        document.querySelectorAll('*'),
-        function(el) {
-            if (el.offsetWidth > docWidth) {
-                console.log(el);
-            }
-        }
-    );
     // Bouton retour renvoyant à la page précédente
     if (document.querySelector('.return-button')){
         document.querySelector('.return-button').addEventListener('click', function(e) {
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     popupAjouterFiche();
     collectionSearchFiches();
     loadMoreCollections();
+    loadMoreFiches();
     deleteCollection();
     onResize();
     onResizeFooter();
@@ -259,20 +261,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const imagePreview = document.getElementById('image-preview');
 
     // Écoutez le changement de fichier
-    inputThumbnail.addEventListener('change', function() {
-        if (inputThumbnail.files && inputThumbnail.files[0]) {
-            const reader = new FileReader();
+    if (inputThumbnail){
+        inputThumbnail.addEventListener('change', function() {
+            if (inputThumbnail.files && inputThumbnail.files[0]) {
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-                // Mettez à jour l'aperçu de l'image avec la nouvelle image sélectionnée
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
+                reader.onload = function(e) {
+                    // Mettez à jour l'aperçu de l'image avec la nouvelle image sélectionnée
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
 
-            // Chargez le contenu de l'image sélectionnée
-            reader.readAsDataURL(inputThumbnail.files[0]);
-        }
-    });
+                // Chargez le contenu de l'image sélectionnée
+                reader.readAsDataURL(inputThumbnail.files[0]);
+            }
+        });
+    }
 });
 
 // On change la couleur du background pour l'id primary pour la page new-collection qui a un layout différent.
@@ -606,6 +610,9 @@ function loadMoreCollections() {
 
     if (loadMoreButton && collectionsContainer){
         // Hide all collections except the first 10 initially
+        if (collectionContainer.children.length <=10){
+            loadMoreButton.style.display = 'none';
+        }
         for (var i = 10; i < collectionsContainer.children.length; i++) {
             collectionsContainer.children[i].style.display = 'none';
         }
@@ -614,7 +621,7 @@ function loadMoreCollections() {
             var hiddenCollections = collectionsContainer.querySelectorAll(':scope > div[style*="display: none"]');
 
             hiddenCollections.forEach(function (collection, index) {
-                // Show the next 5 collections
+                // Show the next 10 collections
                 if (index < 10) {
                     collection.style.display = 'flex';
                 }
@@ -623,6 +630,40 @@ function loadMoreCollections() {
             // If all collections are now visible, hide the "Voir plus" button
             if (hiddenCollections.length <= 10) {
                 loadMoreButton.style.display = 'none';
+            }
+        });
+    }
+}
+
+function loadMoreFiches() {
+    var loadMoreFicheButton = document.getElementById('loadMoreFiches');
+    var fichesContainer = document.getElementById('fiches-container');
+
+    if (loadMoreFicheButton && fichesContainer){
+        // Hide all collections except the first 10 initially
+
+        if (fichesContainer.children.length <= 10){
+            loadMoreFicheButton.style.display = 'none';
+        }
+
+        for (var i = 10; i < fichesContainer.children.length; i++) {
+            fichesContainer.children[i].style.display = 'none';
+
+        }
+
+        loadMoreFicheButton.addEventListener("click", function () {
+            var hiddenFiches = fichesContainer.querySelectorAll(':scope > div[style*="display: none"]');
+
+            hiddenFiches.forEach(function (collection, index) {
+                // Show the next 10 collections
+                if (index < 10) {
+                    collection.style.display = 'flex';
+                }
+            });
+
+            // If all fiches are now visible, hide the "Voir plus" button
+            if (hiddenFiches.length <= 10) {
+                loadMoreFicheButton.style.display = 'none';
             }
         });
     }
