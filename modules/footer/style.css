@@ -24,7 +24,7 @@
 .footer-left {
     display: flex;
     align-items: center;
-    width: 55%;
+    width: 50%;
     justify-content: space-between;
 }
 
@@ -66,8 +66,8 @@
 
 .footer-logo-saclay{
     position: relative;
-    height: 75px;
-    /*border-left: 1px solid black;*/
+    height: 50px;
+    border-left: 1px solid black;
     padding-left: 20px;
 }
 
@@ -211,4 +211,143 @@
 .footer-nav-bar a:hover {
     color: var(--gris-f0);
     fill: var(--gris-f0);
+}
+
+#togglePlanBtn {
+    display: none;
+}
+
+@media (1030px < width <= 1350px) {
+    .footer-about-tela {
+        left: 10vw;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+
+    .footer-about-tela-details {
+        width: 260px;
+    }
+}
+
+@media (890px < width <= 1030px) {
+    .footer-about-tela {
+        left: 5vw;
+    }
+
+    .footer-about-botascopia-logo{
+        top: 75px;
+    }
+
+    .footer-about-botascopia-logo img {
+        width: 200px;
+        height: unset;
+    }
+
+    .footer-about-tela-details {
+        width: 200px;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+}
+
+@media (780px < width <= 890px) {
+    .footer-about-tela {
+        left: 2vw;
+    }
+
+    .footer-about-botascopia-logo{
+        top: 90px;
+    }
+
+    .footer-about-botascopia-logo img {
+        width: 150px;
+        height: unset;
+    }
+
+    .footer-about-tela-details {
+        width: 150px;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+}
+
+@media ( width <= 780px) {
+    #togglePlanBtn {
+        display: block;
+    }
+
+    .footer-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .footer-left {
+        width: 80%;
+        margin-top: 20px;
+        border-bottom: 1px solid var(--gris-b3);
+        padding-bottom: 20px;
+        justify-content: center;
+    }
+
+    .footer-about-tela {
+        width: 100%;
+        position: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-about-botascopia-logo {
+        position: unset;
+        margin-bottom: 10px;
+    }
+
+    .footer-about-tela-details {
+        position: unset;
+        bottom: unset;
+    }
+
+    .footer-logos {
+        position: unset;
+        margin: 20px 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .footer-nav-bar{
+        bottom: unset;
+    }
+
+    .footer-nav-plan {
+        position: unset;
+        padding: 0;
+    }
+
+    .footer-legal {
+        text-align: end;
+    }
+}
+
+@media ( width <= 480px) {
+    .footer-nav-items > .menu-item:nth-child(1), .footer-nav-items > .menu-item:nth-child(2), .footer-nav-items > .menu-item:nth-child(3) {
+        height: unset;
+        min-width: unset;
+    }
+
+    .footer-nav-plan {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .footer-nav-bar{
+        font-size: 12px;
+    }
 }

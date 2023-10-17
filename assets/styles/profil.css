@@ -35,3 +35,33 @@
     margin: 0;
     width: 30%;
 }
+
+.profil-verificateur-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media ( width <= 1250px) {
+    .site-main-profil {
+        padding: 0 !important;
+    }
+
+    .profil-main {
+        padding: 0 20px;
+    }
+}
+
+@media ( width <= 580px) {
+    .home-author-fiches, .home-author-collections {
+        flex-direction: column;
+    }
+
+    .profil-verificateur-buttons {
+        justify-content: center;
+    }
+
+    .profil-collection-name {
+        width: 100%;
+        text-align: center;
+    }
+}

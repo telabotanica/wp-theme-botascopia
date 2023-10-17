@@ -11,26 +11,21 @@
     if ( is_single() ) :
       $category = get_the_category();
       $data->items = ['home'];
-
-      if ( count($category) > 0  && get_post_type() != 'collection') {
-        $category = $category[0];
-
-        // Catégorie parente
-        if ( $category->parent ) {
-          $category_parent = get_category( $category->parent );
-          $data->items[] = [ 'href' => get_category_link( $category_parent ), 'text' => $category_parent->name ];
-        }
-
-        // Catégorie de l'article
-        $data->items[] = [ 'href' => get_category_link( $category ), 'text' => $category->name ];
-      }
+	  
+	  if (get_post_type() === 'post'){
+		  $data->items[] = [ 'href' => site_url().'/fiches', 'text' => 'Les fiches' ];
+	  }
 	  
 	  if (get_post_type() === 'collection' ){
 		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
 	  }
 
       // Article courant
-      $data->items[] = [ 'text' => get_the_title() ];
+		if (get_post_type() === 'post' ) {
+			$data->items[] = ['text' => get_post_meta(get_the_ID(), 'nom_scientifique', true)];
+		} else {
+			$data->items[] = ['text' => get_the_title()];
+		}
 
     // Page
     elseif ( is_page() ) :

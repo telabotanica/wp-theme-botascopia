@@ -97,7 +97,7 @@ get_header();
                     Formats : PDF (60Mo)
                 </div>
                 
-                <a class="return-button" href="#">
+                <a class="return-button return-button-collection" href="#">
                     <?php the_botascopia_module('icon',[
                             'icon'=> 'arrow-left'
                     ]); ?>

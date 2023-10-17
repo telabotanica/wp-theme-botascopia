@@ -27,6 +27,17 @@ req.keys().forEach(req);
 
 //Enregistre les collections favorites
 document.addEventListener('DOMContentLoaded', function() {
+// to find overflow
+//     var docWidth = document.documentElement.offsetWidth;
+//
+//     [].forEach.call(
+//         document.querySelectorAll('*'),
+//         function(el) {
+//             if (el.offsetWidth > docWidth) {
+//                 console.log(el);
+//             }
+//         }
+//     );
 
     // Bouton retour renvoyant à la page précédente
     if (document.querySelector('.return-button')){
@@ -46,7 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
     popupAjouterFiche();
     collectionSearchFiches();
     loadMoreCollections();
+    loadMoreFiches();
     deleteCollection();
+    onResize();
+    onResizeFooter();
 });
 
 function setFavoris(selector, type){
@@ -149,17 +163,18 @@ function popupReserverFiche(){
                     "<p>Cette fiche est disponible. Souhaitez-vous en devenir l'auteur ? Personne d'autre ne pourra y avoir accès" +
                     " tant que vous n'aurez pas envoyé le formulaire à vérification ou renoncé à la compléter.</p>" +
                     "<div class='popup-display-buttons'>" +
-                    "<a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a>" +
+                    "<div><a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a></div>" +
                     // "<a class='button green-button' href='"+ ficheUrl + "'><span class='button-text'>Réserver" +
-                    "<a  class='button green-button' ><span" +
+                    "<div><a  class='button green-button' ><span" +
                     // " class='button-text' id='reserver-fiche' onclick='reserverFiche("+ ficheId +","+ user_id +")'>Réserver" +
                     " class='button-text' id='reserver-fiche'>Réserver" +
-                    " la fiche</span></a>" +
+                    " la fiche</span></a></div>" +
                     "</div>";
 
                 // Créer un élément de div pour le popup
                 var popup = document.createElement('div');
                 popup.classList.add('popup');
+                popup.classList.add('popup-reserver-fiche');
                 popup.appendChild(popupContenu);
 
                 // Ajouter le popup à la page
@@ -246,20 +261,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const imagePreview = document.getElementById('image-preview');
 
     // Écoutez le changement de fichier
-    inputThumbnail.addEventListener('change', function() {
-        if (inputThumbnail.files && inputThumbnail.files[0]) {
-            const reader = new FileReader();
+    if (inputThumbnail){
+        inputThumbnail.addEventListener('change', function() {
+            if (inputThumbnail.files && inputThumbnail.files[0]) {
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-                // Mettez à jour l'aperçu de l'image avec la nouvelle image sélectionnée
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
+                reader.onload = function(e) {
+                    // Mettez à jour l'aperçu de l'image avec la nouvelle image sélectionnée
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
 
-            // Chargez le contenu de l'image sélectionnée
-            reader.readAsDataURL(inputThumbnail.files[0]);
-        }
-    });
+                // Chargez le contenu de l'image sélectionnée
+                reader.readAsDataURL(inputThumbnail.files[0]);
+            }
+        });
+    }
 });
 
 // On change la couleur du background pour l'id primary pour la page new-collection qui a un layout différent.
@@ -319,7 +336,7 @@ if (ouvrirPopupButton) {
         var popupAjoutContenu = document.createElement(`div`);
         popupAjoutContenu.innerHTML = '';
         popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
-            "<div class='search-box-wrapper search-box-ajout-fiche'>" +
+            "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
             "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
             " une fiche'>" +
             // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
@@ -330,7 +347,7 @@ if (ouvrirPopupButton) {
             " id='annuler-ajout-fiches'>Annuler</span></a>" +
             "<a  class='button green-button' ><span" +
             " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
-            "</div>";
+            "</div></div>";
         popupAjoutContenu.classList.add('popup-ajout-fiches-content');
 
         // On charge le contenu de la popup
@@ -593,6 +610,9 @@ function loadMoreCollections() {
 
     if (loadMoreButton && collectionsContainer){
         // Hide all collections except the first 10 initially
+        if (collectionContainer.children.length <=10){
+            loadMoreButton.style.display = 'none';
+        }
         for (var i = 10; i < collectionsContainer.children.length; i++) {
             collectionsContainer.children[i].style.display = 'none';
         }
@@ -601,7 +621,7 @@ function loadMoreCollections() {
             var hiddenCollections = collectionsContainer.querySelectorAll(':scope > div[style*="display: none"]');
 
             hiddenCollections.forEach(function (collection, index) {
-                // Show the next 5 collections
+                // Show the next 10 collections
                 if (index < 10) {
                     collection.style.display = 'flex';
                 }
@@ -610,6 +630,40 @@ function loadMoreCollections() {
             // If all collections are now visible, hide the "Voir plus" button
             if (hiddenCollections.length <= 10) {
                 loadMoreButton.style.display = 'none';
+            }
+        });
+    }
+}
+
+function loadMoreFiches() {
+    var loadMoreFicheButton = document.getElementById('loadMoreFiches');
+    var fichesContainer = document.getElementById('fiches-container');
+
+    if (loadMoreFicheButton && fichesContainer){
+        // Hide all collections except the first 10 initially
+
+        if (fichesContainer.children.length <= 10){
+            loadMoreFicheButton.style.display = 'none';
+        }
+
+        for (var i = 10; i < fichesContainer.children.length; i++) {
+            fichesContainer.children[i].style.display = 'none';
+
+        }
+
+        loadMoreFicheButton.addEventListener("click", function () {
+            var hiddenFiches = fichesContainer.querySelectorAll(':scope > div[style*="display: none"]');
+
+            hiddenFiches.forEach(function (collection, index) {
+                // Show the next 10 collections
+                if (index < 10) {
+                    collection.style.display = 'flex';
+                }
+            });
+
+            // If all fiches are now visible, hide the "Voir plus" button
+            if (hiddenFiches.length <= 10) {
+                loadMoreFicheButton.style.display = 'none';
             }
         });
     }
@@ -727,7 +781,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Appelez la fonction pour la première fois pour initialiser la table des matières
-    updateToc();
+    if (tocContainer && contentContainer) {
+        updateToc();
+
 
     // Écoutez les modifications dans le contenu principal
     var observer = new MutationObserver(updateToc);
@@ -752,6 +808,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // setActiveLink(listItem);
         }
     });
+    }
 });
 
 // Décalage lors de l'utilisation de la toc, sinon la section sélectionnée est dans le header
@@ -787,3 +844,97 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', handleLinkClick);
     });
 });
+
+function toggleElementsVisibilityMedium(el) {
+    var screenWidth = window.innerWidth;
+
+    // Ajoutez ou retirez la classe .hidden en fonction de la largeur de l'écran
+    if (screenWidth <= 780) {
+        el.classList.add("hidden");
+    } else {
+        el.classList.remove("hidden");
+    }
+}
+
+function toggleElementsVisibilitySmall(el) {
+    var screenWidth = window.innerWidth;
+
+    // Ajoutez ou retirez la classe .hidden en fonction de la largeur de l'écran
+    if (screenWidth <= 580) {
+        el.classList.add("hidden");
+    } else {
+        el.classList.remove("hidden");
+    }
+}
+
+function onResize(){
+    let menuToggle = document.getElementById("menu-toggle");
+    let headerNav = document.querySelector(".header-nav-usecases");
+    let loginNav = document.querySelector(".header-login");
+    let menuContainer = document.querySelector(".menu-container");
+    let deco = document.querySelector(".deconnexion-button");
+    let returnButton = document.querySelector(".return-button-collection");
+
+    if (returnButton){
+        toggleElementsVisibilitySmall(returnButton);
+
+        window.addEventListener("resize", function () {
+            toggleElementsVisibilitySmall(returnButton);
+        });
+    }
+
+    // Header
+    if (menuToggle && headerNav) {
+        toggleElementsVisibilityMedium(headerNav);
+        toggleElementsVisibilityMedium(loginNav);
+
+        window.addEventListener("resize", function () {
+            toggleElementsVisibilityMedium(headerNav);
+            toggleElementsVisibilityMedium(loginNav);
+
+            document.querySelector('#primary').classList.remove('blur-background');
+            menuContainer.classList.remove("bg-rose");
+            menuContainer.classList.remove("flex");
+            if (deco){
+                deco.classList.add("hidden");
+            }
+        });
+
+        menuToggle.addEventListener("click", function () {
+            headerNav.classList.toggle("hidden");
+            loginNav.classList.toggle("hidden");
+            if (deco) {
+                deco.classList.toggle("hidden");
+            }
+            menuContainer.classList.toggle("bg-rose");
+            menuContainer.classList.toggle("flex");
+            document.querySelector('#primary').classList.toggle('blur-background');
+        });
+    }
+}
+
+function onResizeFooter(){
+    let footerNavPlan = document.querySelector('.footer-nav-plan');
+    let togglePlanBtn = document.getElementById('togglePlanBtn');
+    let aboutTela = document.querySelector('.footer-about-tela');
+    let footerLogos = document.querySelector('.footer-logos');
+
+    if (togglePlanBtn){
+        toggleElementsVisibilityMedium(footerNavPlan);
+        aboutTela.classList.remove("hidden")
+        footerLogos.classList.remove("hidden")
+
+        window.addEventListener("resize", function () {
+            toggleElementsVisibilityMedium(footerNavPlan);
+            aboutTela.classList.remove("hidden")
+            footerLogos.classList.remove("hidden")
+        });
+
+        togglePlanBtn.addEventListener("click", function () {
+            footerNavPlan.classList.toggle("hidden");
+            aboutTela.classList.toggle("hidden")
+            footerLogos.classList.toggle("hidden")
+        });
+    }
+}
+

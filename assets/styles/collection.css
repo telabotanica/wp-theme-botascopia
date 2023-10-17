@@ -41,7 +41,7 @@
 }
 
 .display-collection-cards{
-    margin: 30px 0 0 20px;
+    margin: 30px 20px 0 20px;
 }
 
 .voir-plus-container {
@@ -106,6 +106,7 @@
     color: var(--noir-d34);
     margin-top: 20px;
 }
+
 .single-collection-details{
     width: 250px;
     margin: 30px 0;
@@ -191,6 +192,15 @@
     height: 100%;
 }
 
+.popup-reserver-fiche .popup-display-buttons {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 #content.blur-background::before{
     content: "";
     position: fixed;
@@ -211,6 +221,19 @@ header.blur-background::before{
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(31px);
+    z-index: 500;
+}
+
+#primary.blur-background::before{
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(1000px);
+    background-color: #707070;
+    opacity: 0.5;
     z-index: 500;
 }
 
@@ -246,7 +269,7 @@ header.blur-background::before{
     position: absolute;
     width: 90px;
     height: 90px;
-    top: 0;
+    top: -10px;
     left: 32px;
 }
 
@@ -326,12 +349,12 @@ header.blur-background::before{
     line-height: 15px;
 }
 
-.new-collection-main {
+.new-collection-container {
     background-color: var(--blanc);
     padding: 20px 0;
 }
 
-.new-collection-main > .display-fiches-cards-items {
+.new-collection-container > .display-fiches-cards-items {
     margin-top: 0;
 }
 
@@ -358,15 +381,30 @@ header.blur-background::before{
 }
 
 .popup-ajout-display-buttons > a:first-child{
-    position: absolute;
-    top: 45px;
-    right: 200px;
+    /*position: absolute;*/
+    /*top: 45px;*/
+    /*right: 200px;*/
+    margin-right: 20px;
 }
 
-.popup-ajout-display-buttons> a:last-child{
-    position: absolute;
-    top: 45px;
-    right: 0;
+/*.popup-ajout-display-buttons> a:last-child{*/
+/*    position: absolute;*/
+/*    top: 45px;*/
+/*    right: 0;*/
+/*}*/
+
+.popup-ajout-display-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.popup-ajout-fiches-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 #ouvrir_popup_ajouter_fiche{
@@ -458,23 +496,233 @@ display: none;
     width: 45%;
 }
 
+.add-photo-cross {
+    height: 70px;
+    width: 70px;
+}
+
+
+
 /************** Media queries **************/
-/*
-@media screen and (min-width: 769px) and (max-width: 1250px) {
-    .left-div {
-        width: 150px;
+@media ( width <= 1250px) {
+    .new-collection-main {
+        padding: 0 !important;
+    }
+
+    .new-collection-container {
+        padding: 20px;
     }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
-    .left-div {
-        width: 100px;
+@media ( width <= 781px) {
+    .add-photo-cross {
+        height: 30px;
+        width: 30px;
+    }
+
+    .upload-label {
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    .upload-explanation {
+        font-size: 10px;
+    }
+
+    #image-preview, #existing-image-preview {
+        width: 40px;
+        height: 40px;
+        left: 45px;
+        top: 0;
+    }
+
+    .new-description-collection-block {
+        width: 100%;
+    }
+
+    .search-box-ajout-fiche {
+        width: 100%;
+    }
+
+    .popup-ajout-display-buttons > a {
+        margin-top: 20px;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media (781px <= width <= 1250px) {
     .left-div {
+        width: 300px;
+    }
+
+    .right-div{
+        left: 20px;
+    }
+
+    .collection-main {
+        width: 100%;
+    }
+
+    .main-status-bandeau {
+        margin-left: -20px;
+        width: 275px;
+    }
+
+    .new-collection-cover-area {
+        width: 85vw;
+        padding: 0 20px;
+    }
+
+    .cover-create-collection {
+        width: calc(100vw - 15px);
+    }
+
+    .popup-reserver-fiche {
+        width: 80%;
+    }
+
+}
+
+@media (581px <= width <= 780px) {
+    .left-div {
+        width: 200px;
+    }
+
+    .right-div{
+        left: 10px;
+        width: 60%;
+    }
+
+    .collection-main {
+        width: 100%;
+    }
+
+    .single-collection-details {
+        width: 200px;
+    }
+
+    .main-status-bandeau {
+        margin-left: -20px;
+        width: 225px;
+    }
+
+    .fiche-status {
         width: 150px;
+        margin-right: 10px;
+    }
+
+    .display-collection-cards  {
+        margin: 30px 10px 0 10px;
+    }
+
+    .new-collection-cover-area {
+        width: 85vw;
+        padding: 0 20px;
+    }
+
+    .popup-reserver-fiche {
+        width: 80%;
+        height: 300px;
     }
 }
-*/
+
+@media ( width <= 580px) {
+    .collection-main {
+        width: 100%;
+        flex-direction: column;
+    }
+    .left-div {
+        width: 100%;
+        padding: 20px 20px;
+    }
+
+    .right-div{
+        left: 0;
+        width: 100%;
+        background-color: var(--blanc);
+        padding: 20px 20px;
+    }
+
+    .main-status-bandeau {
+        margin-top: -30px;
+        width: 225px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .display-fiches-cards-items{
+        justify-content: center;
+    }
+
+    .display-collection-cards  {
+        margin: 0;
+    }
+
+    .fiche-status {
+        width: 150px;
+        margin-right: 10px;
+    }
+
+    return-button{
+        display: none;
+    }
+
+    .single-collection-title {
+        margin-bottom: 0;
+    }
+
+    .single-collection-buttons {
+        justify-content: center;
+    }
+
+    .single-collection-detail {
+        text-align: left;
+    }
+
+    .single-collection-details {
+        margin: 0;
+    }
+
+    .new-collection-cover-area {
+        flex-direction: column-reverse;
+        width: 100%;
+        align-items: center;
+        height: 250px;
+        justify-content: space-evenly;
+    }
+
+    .cover-create-collection {
+        min-height: 300px;
+    }
+
+    .new-titre-collection-block {
+        width: 100%;
+        padding: 0 20px;
+        align-items: center;
+    }
+
+    .new-collection-title{
+        text-align: center;
+    }
+
+    .existing-fiches {
+        justify-content: center;
+    }
+
+    .popup-ajout-fiches {
+        padding: 20px 20px;
+    }
+
+    .popup-reserver-fiche {
+        width: 90%;
+        height: 400px;
+    }
+
+}
+
+@media ( width <= 395px) {
+    .popup-reserver-fiche {
+        width: 90%;
+        height: 600px;
+    }
+}
+

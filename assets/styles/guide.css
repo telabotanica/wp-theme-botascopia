@@ -1,7 +1,15 @@
 #guide-container  p {
     text-align: justify;
+    margin-top: 20px;
 }
 
 #glossaire-container {
     left: 110px;
+    text-align: justify;
+}
+
+@media ( width <= 580px) {
+    #glossaire-container {
+        left: unset;
+    }
 }

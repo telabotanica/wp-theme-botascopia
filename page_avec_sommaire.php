@@ -11,10 +11,16 @@ get_header();
 	<main id="main" class="site-main " role="main">
 		<?php
 		$description_page = get_post_meta(get_the_ID(), 'description_page', true);
+		$imageId = get_post_thumbnail_id(get_the_ID());
+        if ($imageId) {
+			$imageFull = wp_get_attachment_image_src($imageId, 'full');
+		} else {
+            $imageFull = null;
+        }
 		the_botascopia_module('cover', [
 			'subtitle' => esc_html($description_page),
 			'title' => get_the_title(),
-//			'image' => [get_template_directory_uri() .'/images/logo-botascopia.png']
+			'image' => $imageFull
 		]);
 
 		?>

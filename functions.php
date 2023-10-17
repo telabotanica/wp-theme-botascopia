@@ -13,8 +13,11 @@ require get_template_directory() . '/inc/styleguide.php';
 // Chargement du fichier utile
 require get_template_directory() . '/inc/utile.php';
 
-// Personnalisation de la page de login
+// Personnalisation de la page de collections
 require get_template_directory() . '/inc/collections.php';
+
+// Personnalisation de la page des fiches
+require get_template_directory() . '/inc/fiches.php';
 
 // Personnalisation de la page de login
 require get_template_directory() . '/inc/login.php';
@@ -308,7 +311,7 @@ function affichageImageFiche($photo){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
 		$image = wp_get_attachment_image_src( $photoId, 'image-tige' )[0];
-		echo ('<img src="'.esc_url( $image ).'" class="image-tige">');
+		echo ('<div class="image-fiche"><img src="'.esc_url( $image ).'" class="image-tige"></div>');
 	}
 }
 
