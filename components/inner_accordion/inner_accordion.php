@@ -104,7 +104,7 @@
 				$data->title_level
 			);
 
-            echo(var_dump(acf_get_fields(12)[3]));
+            echo(var_dump($item));
 
             acf_form(array('fields' => array("field_643027826f24d",
                 "field_6304bda381ab9",
@@ -121,6 +121,19 @@
                 "field_6304c46075be1",
                 "field_6304c4aa75be2",)));
 
+            echo '</div>';
+
+            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+
+            $item = (object)$item;
+
+            printf(
+                '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
+                $data->title_level,
+                $item->title,
+                $data->title_level
+            );
+
             acf_form(array('fields' => array("field_6304e1ece18b0",
                 "field_64302a1423559",
                 "field_6304c61a23918",
@@ -134,6 +147,19 @@
                 "field_6304c9762391d",
                 "field_6304ca5e58ca8",
                 "field_6304cd8ee66c2",)));
+
+            echo '</div>';
+
+            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+
+            $item = (object)$item;
+
+            printf(
+                '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
+                $data->title_level,
+                $item->title,
+                $data->title_level
+            );
 
             acf_form(array('fields' => array("field_6304d897b94a1",
                 "field_6304d8aeb94a2",
@@ -216,6 +242,19 @@
                     "field_634e49eb48028",
                     "field_634e49eb48029",
                     "field_634e49eb4802a",)));
+
+            echo '</div>';
+
+            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+
+            $item = (object)$item;
+
+            printf(
+                '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
+                $data->title_level,
+                $item->title,
+                $data->title_level
+            );
 
             acf_form(array('fields' => array("field_6304e4f591a4b",
                 "field_6304ea4b91a4c",
@@ -301,6 +340,19 @@
                 "field_630762f1ecd7f",
                 "field_6307632eecd80",
                 "field_630763f2ecd81",)));
+
+            echo '</div>';
+
+            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+
+            $item = (object)$item;
+
+            printf(
+                '<h%s class="js-inner-accordion__header component-inner-accordion__header">%s</h%s>',
+                $data->title_level,
+                $item->title,
+                $data->title_level
+            );
 
             acf_form(array('fields' => array("field_63076535ecd82",
                 "field_6430339ac06aa",
