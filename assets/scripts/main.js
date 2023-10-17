@@ -610,7 +610,7 @@ function loadMoreCollections() {
 
     if (loadMoreButton && collectionsContainer){
         // Hide all collections except the first 10 initially
-        if (collectionContainer.children.length <=10){
+        if (collectionsContainer.children.length <=10){
             loadMoreButton.style.display = 'none';
         }
         for (var i = 10; i < collectionsContainer.children.length; i++) {
