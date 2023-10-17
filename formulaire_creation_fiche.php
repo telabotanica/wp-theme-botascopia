@@ -16,6 +16,7 @@ $formulaires = [];
 
 $group_titles = [
     "Description morphologique",
+    "Description morphologique (copy)",
     "Période de floraison et de fructification",
     "Aire de répartition et statut",
     "Écologie",
