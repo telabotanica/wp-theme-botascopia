@@ -414,7 +414,7 @@ function afficher_boite_meta_description($post) {
 	// Afficher le champ de saisie pour la description
 	?>
 	<label for="description_page">Description de la page :</label>
-	<textarea id="description_page" maxlength="100" name="description_page" style="width:100%;" rows="1"><?php echo esc_textarea($description_page); ?> </textarea>
+	<textarea id="description_page" name="description_page" style="width:100%;" rows="1"><?php echo esc_textarea($description_page); ?> </textarea>
 	<?php
 }
 

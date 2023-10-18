@@ -116,6 +116,15 @@ strong {
     display: flex;
 }
 
+.main-accueil {
+    width: 100% !important;
+}
+
+.container {
+    width: 60vw;
+    margin-left: 20vw;
+}
+
 /** {*/
 /*    outline: solid 1px red;*/
 /*}*/
@@ -128,6 +137,10 @@ strong {
 
     .bg-fill{
         left: 275px;
+    }
+
+    .main-accueil {
+        padding: 0 !important;
     }
 }
 
@@ -142,7 +155,8 @@ strong {
     }
 
     .main-accueil {
-        padding: 20px;
+        /*padding: 20px;*/
+        padding: 0 !important;
     }
 }
 
@@ -164,6 +178,7 @@ strong {
     }
 
     .main-accueil {
-        padding: 20px;
+        /*padding: 20px;*/
+        padding: 0 !important;
     }
 }
