@@ -222,7 +222,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
                     
                     foreach ($posts as $post) {
                         if ($current_user->ID == $post['author']){
-                            $href = home_url() . '/collection/creer-une-collection/?collection='.$post['id'].'&edit=true';
+                            $href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post['id'];
                             echo ('
                             <div class="home-author-collections" id="profil-collection-'.$post["id"].'">
                                 <div class="profil-collection-name">

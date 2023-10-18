@@ -52,14 +52,7 @@
       $data->items = ['home'];
 
 	  if (get_post_type() !== 'collection'){
-		  // Catégorie parente
-		  if ( $category->parent && get_post_type() != 'collection') {
-			  $category_parent = get_category( $category->parent );
-			  $data->items[] = [ 'href' => get_category_link( $category_parent ), 'text' => $category_parent->name ];
-		  }
-		
-		  // Catégorie courante
-		  $data->items[] = [ 'text' => $category->name ];
+		  $data->items[] = [ 'href' => site_url().'/fiches', 'text' => 'Les fiches' ];
 	  } else {
 		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
 	  }

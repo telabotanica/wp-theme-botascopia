@@ -46,7 +46,7 @@ add_filter( 'template_include', 'collection_template_include' );
 function collection_template_include( $template ) {
 	
 	if ( get_post_type() == 'collection' ) {
-		$new_template = locate_template( array( 'archive-collection.php' ) );
+		$new_template = locate_template( array( '/templates/archive-collection.php' ) );
 		if ( '' != $new_template ) {
 			return $new_template ;
 		}
@@ -106,17 +106,6 @@ function add_fav_collection_meta() {
 }
 add_action( 'wp_ajax_set_fav_coll', 'add_fav_collection_meta' );
 
-// Template for single collection (subcategory of 'collections' category
-add_filter( 'category_template', 'cxc_custom_category_templates' );
-function cxc_custom_category_templates( $template ) {
-	$category = get_category( get_queried_object_id() );
-	if ( $category->category_parent > 0 ) {
-		$sub_category_template = locate_template( 'category-collections-single.php' ); // specify template name which you create for child category
-		$template = !empty($sub_category_template) ? $sub_category_template : $template;
-	}
-	return $template;
-}
-
 // Pour définir le fichier single-collection.php en tant que template des collections
 add_filter(
 	'template_include',
@@ -125,7 +114,7 @@ add_filter(
 		if (1 == $wp_query->found_posts) {
 			global $wp_query;
 			$type = $wp_query->get('post_type') ?: false;
-			$template_type = $type ? 'single-' . $type. '.php' : 'single.php';
+			$template_type = $type ? '/templates/single-' . $type. '.php' : 'single.php';
 			if ( locate_template($template_type) ) {
 				return locate_template($template_type);
 			} elseif ( $type && locate_template('single.php') ) {
@@ -137,19 +126,19 @@ add_filter(
 );
 
 // Ajoutez une règle de réécriture pour le slug personnalisé
-function custom_rewrite_rule() {
-	add_rewrite_rule('^collection/creer-une-collection/?','index.php?custom_collection=create-collection','top');
-}
-add_action('init', 'custom_rewrite_rule', 10, 0);
+//function custom_rewrite_rule() {
+//	add_rewrite_rule('^profil/mes-collections/creer-une-collection/?','index.php?custom_collection=create-collection','top');
+//}
+//add_action('init', 'custom_rewrite_rule', 10, 0);
 
 // Affichez le formulaire sur la page personnalisée
-function display_collection_form() {
-	if (get_query_var('custom_collection') === 'create-collection') {
-		include(__DIR__ . '/../create-collection.php');
-		exit;
-	}
-}
-add_action('template_redirect', 'display_collection_form');
+//function display_collection_form() {
+//	if (get_query_var('custom_collection') === 'create-collection') {
+//		include(__DIR__ . '/../templates/create-collection.php');
+//		exit;
+//	}
+//}
+//add_action('template_redirect', 'display_collection_form');
 
 // Permet de créer une nouvelle collection (Post)
 function create_new_post_collection() {
@@ -364,7 +353,7 @@ function custom_nav_menu_items($items, $args) {
 	} else {
 		// Sinon, supprimez les pages ayant le template "Mes Collections" du menu de navigation
 		foreach ($items as $key => $item) {
-			if (get_page_template_slug($item->object_id) == 'mes-collections.php') {
+			if (get_page_template_slug($item->object_id) == '/templates/mes-collections.php') {
 				unset($items[$key]);
 			}
 		}
@@ -607,6 +596,10 @@ function load_collection_content() {
 add_action('wp_ajax_load_collection_content', 'load_collection_content');
 
 function loadFiches($post_id, $paged){
+	$current_user = "";
+	$current_user_id = "";
+	$current_user_role = "";
+	
 	if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche')):
 		$ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
 	endif;

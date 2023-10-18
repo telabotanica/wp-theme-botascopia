@@ -2,6 +2,9 @@
 
 function getPublishedFiches(){
     $ficheFavorites = [];
+	$current_user = "";
+	$current_user_id = "";
+	
     if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche')):
         $ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
     endif;
