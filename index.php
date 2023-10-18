@@ -1,25 +1,22 @@
 <?php get_header(); ?>
-      <nav id="navigation">
-<?php
-/*wp_nav_menu(
-  array(
-    'theme_location' => 'main-menu',
-    'menu_id' => 'primary-menu',
- )
-);*/
-?>
-</nav>
+
 <div id="primary" class="content-area">
         <main id="main" class="site-main main-accueil" role="main">
-        <?php if ( have_posts() ) : ?>
-
-            <?php if ( is_home() && ! is_front_page() ) : ?>
-                <header>
-                    <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-                </header>
-            <?php endif; ?>
-
-            <?php
+			<?php
+			$imageId          = get_post_thumbnail_id(get_the_ID());
+			if ($imageId) {
+				$imageFull = wp_get_attachment_image_src($imageId, 'full');
+			} else {
+				$imageFull = null;
+			}
+			
+			the_botascopia_module('cover', [
+				'title'    => 'Bienvenue sur Botascopia',
+				'subtitle' => 'Quand Tela Botanica met à profit son savoir-faire collaboratif et l’Université Paris Saclay sa rigueur scientifique, cela donne Botascopia ! Ce site vous propose des fiches sur les plantes contenant de nombreuses informations sur les plantes de France en licence CC-BY-SA 40.. Vous pouvez les consulter, les télécharger en pdf, les organiser en collections et même les rédiger !',
+				'image'    => $imageFull
+			]);
+			?>
+        <?php if ( have_posts() ) :
             // Start the loop.
             while ( have_posts() ) : the_post();
 

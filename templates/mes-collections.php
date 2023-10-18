@@ -43,7 +43,7 @@ get_header();
 					<?php
 					// Actions collections
 					if (is_user_logged_in()) :
-						$collectionHref = site_url().'/'.get_page_uri();
+						$collectionHref = home_url().'/'.get_page_uri();
 					else:
 						$collectionHref = get_post_type_archive_link('collection');
 					endif;

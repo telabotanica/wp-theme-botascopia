@@ -33,7 +33,7 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 					<?php
 					the_botascopia_module('button', [
 						'tag' => 'a',
-						'href' => site_url() . '/profil/mes-collections/',
+						'href' => home_url() . '/profil/mes-collections/',
 						'title' => 'Mes collections',
 						'text' => 'Mes collections',
 						'modifiers' => 'green-button',
