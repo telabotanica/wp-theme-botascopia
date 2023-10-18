@@ -19,12 +19,11 @@ endif;
     <main id="main" class="site-main new-collection-main" role="main">
 		<?php
 		if (is_user_logged_in()) :
-			
 			$edit = isset($_GET['edit']) ? $_GET['edit'] : false;
 
             if ($edit == 'true'){
                 $edit = true;
-                $collection_id = isset($_GET['collection']) ? $_GET['collection'] : '';
+                $collection_id = isset($_GET['c']) ? $_GET['c'] : '';
                 if ($collection_id){
                     $collection = get_post($collection_id);
                 }

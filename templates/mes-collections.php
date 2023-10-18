@@ -41,7 +41,7 @@ get_header();
 			<div class="left-div">
 				<div class="first-toc">
 					<?php
-					//                    Actions collections
+					// Actions collections
 					if (is_user_logged_in()) :
 						$collectionHref = site_url().'/'.get_page_uri();
 					else:
@@ -78,7 +78,7 @@ get_header();
 					echo '<div class="toc-button">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
-						'href' => home_url() . '/collection/creer-une-collection/',
+						'href' => home_url() . '/profil/mes-collections/creer-une-collection/',
 						'title' => 'Créer une collection',
 						'text' => 'Créer une collection',
 						'modifiers' => 'green-button',
@@ -269,7 +269,7 @@ get_header();
                             ');
 						the_botascopia_module('button', [
 							'tag' => 'a',
-							'href' => home_url() . '/collection/creer-une-collection/',
+							'href' => home_url() . '/profil/mes-collections/creer-une-collection/',
 							'title' => 'Créer une collection',
 							'text' => 'Créer une collection',
 							'modifiers' => 'green-button',
