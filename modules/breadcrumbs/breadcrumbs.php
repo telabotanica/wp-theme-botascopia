@@ -13,7 +13,7 @@
       $data->items = ['home'];
 	  
 	  if (get_post_type() === 'post'){
-		  $data->items[] = [ 'href' => site_url().'/fiches', 'text' => 'Les fiches' ];
+		  $data->items[] = [ 'href' => home_url().'/fiches', 'text' => 'Les fiches' ];
 	  }
 	  
 	  if (get_post_type() === 'collection' ){
@@ -44,7 +44,6 @@
       // Page courante
       $data->items[] = [ 'text' => get_the_title() ];
 
-
     // Archive
     elseif ( is_archive() ) :
 		
@@ -52,7 +51,7 @@
       $data->items = ['home'];
 
 	  if (get_post_type() !== 'collection'){
-		  $data->items[] = [ 'href' => site_url().'/fiches', 'text' => 'Les fiches' ];
+		  $data->items[] = [ 'href' => home_url().'/fiches', 'text' => 'Les fiches' ];
 	  } else {
 		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
 	  }
@@ -84,7 +83,7 @@
 
         if ( $item === 'home' ) {
           $item = [
-            'href' => site_url(),
+            'href' => home_url(),
             'text' => __( 'Accueil', 'botascopia' )
           ];
         }
