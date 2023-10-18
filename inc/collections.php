@@ -607,6 +607,10 @@ function load_collection_content() {
 add_action('wp_ajax_load_collection_content', 'load_collection_content');
 
 function loadFiches($post_id, $paged){
+	$current_user = "";
+	$current_user_id = "";
+	$current_user_role = "";
+	
 	if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche')):
 		$ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
 	endif;
