@@ -205,55 +205,11 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 							}
 						}
 						?>
-
-
                     </div>
                 <?php
                 endif;
                 ?>
-<!--                Affichage des collections de l'utilisateur-->
-                <div class="home-author-collections-container">
-                    <?php
-					the_botascopia_module('title', [
-						'title' => __('Mes collections', 'botascopia'),
-						'level' => 2,
-					]);
-					$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private']);
-                    
-                    foreach ($posts as $post) {
-                        if ($current_user->ID == $post['author']){
-                            $href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post['id'];
-                            echo ('
-                            <div class="home-author-collections" id="profil-collection-'.$post["id"].'">
-                                <div class="profil-collection-name">
-                                    '. $post["name"] .'
-                                </div><div class="profil-verificateur-buttons">
-                                <div>');
-                                
-                            the_botascopia_module('button', [
-									'tag' => 'a',
-									'href' => $href,
-									'title' => 'modifier la collection',
-									'text' => 'Modifier la collection',
-									'modifiers' => 'green-button'
-								]);
-                            echo('</div><div>');
-                            
-							the_botascopia_module('button', [
-								'tag' => 'button',
-								'title' => 'supprimer la collection',
-								'text' => 'supprimer la collection',
-								'modifiers' => 'purple-button delete-collection-button',
-								'extra_attributes' => ['id' => 'delete-collection-'.$post['id'], 'data-collection-id' => $post['id']]
-							]);
-                            
-                            echo('</div></div></div>');
-                            
-                        }
-					}
-     
-                    ?>
-                </div>
+
             </div>
    <?php
 		else :
