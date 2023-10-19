@@ -49,8 +49,15 @@
 	);
 
     $titre = $data->items[0]['title'];
+    $post_id = $data->items[0]['content']['post_id'];
+    $field_title = $data->items[0]['content']['field_title'];
+    $field_group_key = $data->items[0]['content']['field_key'];
+    $field_group_id = $data->items[0]['content']['field_groups'][0];
 
 	switch ($titre){
+        case 'Description morphologique (copy)':
+            $image = 'tige';
+            break;
 		case 'tige':
 			$image = 'tige';
 			break;
@@ -80,6 +87,56 @@
 		echo '<img class="inner-accordion-icon" src="'.get_template_directory_uri().'/images/'.$image.'.svg" />' ;
 	}
 
+    // récupérer tous les champs du post
+    $fields = get_field_objects($post_id);
+
+// récupérer tous les champs du groupe de champs ACF
+    $group_fields = acf_get_fields($field_group_key);
+
+// vérifier si tous les champs du groupe sont remplis
+    $champs_complet = true;
+    $required = false;
+    $non_required = false;
+
+    // Permet de savoir s'il y a un mélange de champs obligatoires et non obligatoires
+    foreach ($group_fields as $field) {
+        if ($field['type'] == 'group') {
+            echo(var_dump($field['key']));
+            $args = array(
+                'fields' => array($field['key']), // L'ID du post du groupe de champs
+            );
+
+            echo '<div class="js-accordion__panel component-accordion__panel">';
+
+            printf(
+                '<h%s class="js-accordion__header component-accordion__header">%s</h%s>',
+                2,
+                $field['name'],
+                2
+            );
+
+            acf_form($args);
+            echo '</div>';
+        }
+    }
+
+    foreach ($group_fields as $field) {
+        if ($non_required && !$required) {
+            if (( !array_key_exists($field['name'], $fields) && $field['required'] == 0) || (empty($fields[$field['name']]['value']) && $field['required'] == 0)) {
+                $champs_complet = false;
+                break;
+            }
+        }
+    }
+
+    $button = 'purple-button';
+    $text = 'Incomplet';
+
+    if ($champs_complet) {
+        $button = 'green-button';
+        $text = 'complet';
+    }
+
 
 	the_botascopia_module('button', [
 		'tag' => 'button',
@@ -90,7 +147,7 @@
 		'extra_attributes' => ['id' => 'bouton-status-'.$data->modifiers['id']]
 	]);
 
-	if ($data->items):
+	/*if ($data->items):
 
 		foreach ($data->items as $item) :
 			echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
@@ -365,8 +422,26 @@
 			echo '</div>';
 		
 		endforeach;
+
+        foreach ($data->items as $item) :
+
+            echo '<div class="js-inner-accordion__panel component-inner-accordion__panel">';
+
+            $item = (object)$item;
+
+            printf(
+                '<h%s class="js-inner-accordion__header component-inner-accordion__header">Oe oe oe</h%s>',
+                $data->title_level,
+                $item->title,
+                $data->title_level
+            );
+
+            //acf_form($item->content);
+            echo '</div>';
+
+        endforeach;
 	
-	endif;
+	endif;*/
 	
 	echo '</div>';
 }

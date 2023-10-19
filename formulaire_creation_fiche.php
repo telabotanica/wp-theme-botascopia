@@ -205,7 +205,7 @@ if (isset($_GET['p'])) {
             );
             $formsId[] = $id;
 
-            if ($titre == "Description morphologique") {
+            if ($titre == "Description morphologique (copy)") {
 
                 the_botascopia_component('inner_accordion',
                     [
