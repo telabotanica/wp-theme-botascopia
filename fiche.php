@@ -235,6 +235,11 @@ get_header();
 										'href' => '#references',
 										'active' => false,
 									],
+                                    [
+                                        'text' => 'Agroécologie',
+                                        'href' => '#agroecologie',
+                                        'active' => false,
+                                    ],
 								]
 							],
 						]
@@ -1167,6 +1172,56 @@ get_header();
 					</ul>
 				</div>
 				<?php endif; ?>
+
+                <div id="tige" class="display-fiche-container">
+                    <div class="fiche-title-container">
+                        <div class="fiche-title-icon">
+                            <img src=" <?php echo get_template_directory_uri() ?>/images/tige.svg" />
+                            <?php
+                            the_botascopia_module('title', [
+                                'title' => __('Tige', 'botascopia'),
+                                'level' => 2,
+                            ]);
+                            ?>
+                        </div>
+                        <div>
+                            <?php if (!empty(get_field('tige'))):?>
+                            <p class="tige-description">
+                                <?php
+                                $tige = get_field('tige');
+                                if (!empty($tige)) {
+                                    $type_tige = implode(', ', $tige['type_de_tige']);
+                                    $section_tige = implode('-', $tige['section_de_la_tige']);
+                                    $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
+                                    $port_de_la_plante = get_field('port_de_la_plante');
+                                    if (!empty($port_de_la_plante)) {
+                                        if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) {
+                                            if (!empty($tige['surface_de_lecorce'])) {
+                                                $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                                La tige aérienne est <?php echo $tige['tige_aerienne'];?>
+                                <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
+                                    <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
+                                    <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))): ?>
+                                        <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    </div>
+
+                    <?php
+                    // Si une image est enregistrée on l'affiche
+                    if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
+                        affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
+                    }
+                    ?>
+                </div>
+            <?php endif; ?>
 
                 <div class="formulaire-boutons-bas">
                     <?php
