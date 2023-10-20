@@ -1173,13 +1173,13 @@ get_header();
 				</div>
 				<?php endif; ?>
 
-                <div id="tige" class="display-fiche-container">
+                <div id="agroecologie" class="display-fiche-container">
                     <div class="fiche-title-container">
                         <div class="fiche-title-icon">
-                            <img src=" <?php echo get_template_directory_uri() ?>/images/tige.svg" />
+                            <img src=" <?php echo get_template_directory_uri() ?>/images/ecologie.svg" />
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Tige', 'botascopia'),
+                                'title' => __('Agroécologie', 'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
