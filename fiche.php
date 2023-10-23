@@ -1189,7 +1189,7 @@ get_header();
                             <p class="tolerance_au_gel">
                                 <?php
                                 ?>
-                                Cette plante <?php if (get_field('tolerance_au_gel')) {?>tolère<?} else {?>ne tolère pas<?}?> le gel et supporte une température minimale de L11 °C.
+                                Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de L11 °C.
                                 <?php echo $tige['tige_aerienne'];?>
                                 <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
                                     <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
