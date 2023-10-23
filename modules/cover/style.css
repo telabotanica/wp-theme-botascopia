@@ -40,9 +40,8 @@
 .cover-subtitle {
     font-family: "Muli", sans-serif;
     font-weight: normal;
-    margin-top: 1rem;
+    margin: 1rem 1rem 0 0;
     font-size: 18px;
-    max-width: 75%;
 }
 
 .cover-subtitle a {
@@ -67,8 +66,10 @@
     width: 44rem;
 }
 
-.layout-wrapper{
+.cover-layout-wrapper{
     margin-left: 20%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .cover-create-collection::before{
@@ -80,6 +81,10 @@
     width: 100% !important;
     left: unset;
     margin-bottom: 20px;
+}
+
+.layout-wrapper-titles{
+    max-width: 75%;
 }
 
 @media (max-width: 767.9px) {
@@ -109,7 +114,7 @@
         display: none;
     }
 
-    .layout-wrapper{
+    .cover-layout-wrapper{
         margin: 20px;
         padding: 20px;
     }
@@ -124,7 +129,7 @@
 
 @media (min-width: 768px) {
     .cover {
-        min-height: 27.5rem;
+        min-height: 35rem;
     }
 
     .cover.tall {
@@ -166,7 +171,7 @@
         left: -20px;
     }
 
-    .layout-wrapper{
+    .cover-layout-wrapper{
         /*margin-left: 10%;*/
         /*width: 150px;*/
         width: 100%;

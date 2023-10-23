@@ -35,15 +35,7 @@
   
   
   endif;
-    echo '<div class="layout-wrapper">';
-
-      if ($data->search) :
-        $data->search['autocomplete'] = false;
-        printf(
-          '<div class="cover-search-box">%s</div>',
-          get_botascopia_module('search-box', $data->search)
-        );
-      endif;
+    echo '<div class="cover-layout-wrapper"><div class="layout-wrapper-titles">';
 
 	  if (!$data->backgroundColor) :
       printf(
@@ -58,13 +50,22 @@
           $data->subtitle
         );
       endif;
-
+		
+	  echo '</div>';
       if ($data->content) :
         printf(
           '<div class="cover-content">%s</div>',
           $data->content
         );
       endif;
+	
+	if ($data->search) :
+		$data->search['autocomplete'] = false;
+		printf(
+			'<div class="cover-search-box">%s</div>',
+			get_botascopia_module('search-box', $data->search)
+		);
+	endif;
 
     echo '</div>';
 

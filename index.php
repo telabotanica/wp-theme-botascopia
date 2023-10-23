@@ -9,11 +9,18 @@
 			} else {
 				$imageFull = null;
 			}
+			$search = $_GET['q'] ?? '';
 			
 			the_botascopia_module('cover', [
 				'title'    => 'Bienvenue sur Botascopia',
 				'subtitle' => 'Quand Tela Botanica met à profit son savoir-faire collaboratif et l’Université Paris Saclay sa rigueur scientifique, cela donne Botascopia ! Ce site vous propose des fiches sur les plantes contenant de nombreuses informations sur les plantes de France en licence CC-BY-SA 40.. Vous pouvez les consulter, les télécharger en pdf, les organiser en collections et même les rédiger !',
-				'image'    => $imageFull
+				'image'    => $imageFull,
+				'search' => [
+					'placeholder'   => __('Rechercher une collection ...', 'botascopia'),
+					'value' => $search,
+					'pageurl' => 'collection?q',
+					'id' => 'search-home'
+				]
 			]);
 			?>
         <?php if ( have_posts() ) :
