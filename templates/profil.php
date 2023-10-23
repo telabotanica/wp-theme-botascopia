@@ -22,10 +22,17 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
             } else {
                 $nameToShow = $current_user->first_name.' '.$current_user->last_name;
             }
-   
+			
+			$imageId = get_post_thumbnail_id(get_the_ID());
+			if ($imageId) {
+				$imageFull = wp_get_attachment_image_src($imageId, 'full');
+			} else {
+				$imageFull = null;
+			}
 		the_botascopia_module('cover', [
 			'subtitle' => $current_user->roles[0],
-			'title' => $nameToShow
+			'title' => $nameToShow,
+			'image' => $imageFull,
 		]);
 		?>
             <div class="profil-main">
