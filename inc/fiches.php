@@ -80,7 +80,7 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 	);
 	
 	if ($userId){
-		if ($role == 'contributor'){
+		if ($role == 'contributor' || $role == 'administrator'){
 			$args['author'] =  $userId;
 		}
 	} else {
@@ -158,6 +158,13 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 						$href = '/formulaire/?p='.get_the_title();
 					}
 				}
+				break;
+			
+			case 'administrator':
+				if ($status == 'draft' && $userId == $fiche_author_id){
+					$href = '/formulaire/?p='.get_the_title();
+				}
+				
 				break;
 			}
 			

@@ -85,6 +85,14 @@ get_header();
 					echo '<div class="second-toc">';
                     
                     $fichesHref = home_url().'/'.get_page_uri();
+					$textACompleter = 'Compléter une fiche';
+					$lienACompleter = '#fiches-a-completer';
+                    
+                    if ($role == 'editor'){
+						$textACompleter = 'Fiches dont je suis le vérificateur';
+						$lienACompleter = '#fiches-en-verification';
+                    }
+                    
 					the_botascopia_module('toc', [
 						'title' => '',
 						'items' => [
@@ -99,8 +107,8 @@ get_header();
 										'active' => true,
 									],
 									[
-										'text' => 'Compléter une fiche',
-										'href' => '#fiches-a-completer',
+										'text' => $textACompleter,
+										'href' => $lienACompleter,
 										'active' => false,
 									],
 									[
@@ -108,6 +116,7 @@ get_header();
 										'href' => '#fiches-a-valider',
 										'active' => false,
 									],
+         
 									[
 										'text' => 'Mes fiches validées',
 										'href' => '#mes-fiches-validees',
@@ -141,7 +150,7 @@ get_header();
 				<div id="fiches-favoris">
 					<?php
 					the_botascopia_module('title', [
-						'title' => __('Mes fiches favorites', 'botascopia'),
+						'title' => __('Mes fiches favoris', 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -182,7 +191,7 @@ get_header();
 					?>
 				</div>
 				<!--            Compléter une fiche-->
-                <?php if ($role == 'contributor'): ?>
+                <?php if ($role == 'contributor' || $role == 'administrator'): ?>
 				<div id="fiches-a-completer">
 					<?php
 					the_botascopia_module('title', [
@@ -211,6 +220,37 @@ get_header();
 					?>
 				</div>
                 <?php endif; ?>
+
+                <!--            fiches dont je suis le vérificateur (profil vérificateur)  -->
+				<?php if ($role == 'editor'): ?>
+                    <div id="fiches-en-verification">
+						<?php
+						the_botascopia_module('title', [
+							'title' => __('Fiches dont je suis le vérificateur', 'botascopia'),
+							'level' => 2,
+						]);
+						?>
+                    </div>
+
+                    <div class="display-fiches-cards-items">
+						<?php
+						$fichesInValidation = getMesFiches('pending', $role, $userId, $userId, $userId);
+						
+						foreach ($fichesInValidation as $fiche){
+							the_botascopia_module('card-fiche', [
+								'href' => $fiche['href'],
+								'image' => $fiche['image'],
+								'name' => $fiche['name'],
+								'species' => $fiche['species'],
+								'icon' => $fiche['icon'],
+								'popup' => $fiche['popup'],
+								'id' => $fiche['id'],
+								'extra_attributes' => $fiche['extra_attributes']
+							]);
+						}
+						?>
+                    </div>
+				<?php endif; ?>
                 
                 <!--            Fiches à valider-->
                 <div id="fiches-a-valider">
@@ -242,36 +282,7 @@ get_header();
 					}
 					?>
                 </div>
-                <!--            fiches dont je suis le vérificateur (profil vérificateur)  -->
-				<?php if ($role == 'editor'): ?>
-                <div id="fiches-en-verification">
-					<?php
-					the_botascopia_module('title', [
-						'title' => __('Fiches dont je suis le vérificateur', 'botascopia'),
-						'level' => 2,
-					]);
-					?>
-                </div>
-
-                <div class="display-fiches-cards-items">
-					<?php
-					$fichesInValidation = getMesFiches('pending', $role, $userId, $userId, $userId);
-					
-					foreach ($fichesInValidation as $fiche){
-							the_botascopia_module('card-fiche', [
-								'href' => $fiche['href'],
-								'image' => $fiche['image'],
-								'name' => $fiche['name'],
-								'species' => $fiche['species'],
-								'icon' => $fiche['icon'],
-								'popup' => $fiche['popup'],
-								'id' => $fiche['id'],
-								'extra_attributes' => $fiche['extra_attributes']
-							]);
-					}
-					?>
-                </div>
-				<?php endif; ?>
+                
     
 				<!--                Fiches complètes-->
 				<div id="mes-fiches-validees">
