@@ -1185,25 +1185,12 @@ get_header();
                             ?>
                         </div>
                         <div>
-                            <?php if (!empty(get_field('tige'))):?>
-                            <p class="tige-description">
+                            <?php if (!empty(get_field('tolerance_au_gel'))):?>
+                            <p class="tolerance_au_gel">
                                 <?php
-                                $tige = get_field('tige');
-                                if (!empty($tige)) {
-                                    $type_tige = implode(', ', $tige['type_de_tige']);
-                                    $section_tige = implode('-', $tige['section_de_la_tige']);
-                                    $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
-                                    $port_de_la_plante = get_field('port_de_la_plante');
-                                    if (!empty($port_de_la_plante)) {
-                                        if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) {
-                                            if (!empty($tige['surface_de_lecorce'])) {
-                                                $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
-                                            }
-                                        }
-                                    }
-                                }
                                 ?>
-                                La tige aérienne est <?php echo $tige['tige_aerienne'];?>
+                                Cette plante <?php if (get_field('tolerance_au_gel')) {?>tolère<?} else {?>ne tolère pas<?}?> le gel et supporte une température minimale de L11 °C.
+                                <?php echo $tige['tige_aerienne'];?>
                                 <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
                                     <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
                                     <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))): ?>
