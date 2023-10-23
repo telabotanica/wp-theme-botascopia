@@ -27,7 +27,7 @@ get_header();
 			$role = '';
 			$displayName = '';
 		endif;
-		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private']);
+		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private'], '');
 		
 		the_botascopia_module('cover', [
 			'subtitle' => $role,

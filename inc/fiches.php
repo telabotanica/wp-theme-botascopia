@@ -1,10 +1,10 @@
 <?php
 
-function getPublishedFiches(){
+function getPublishedFiches($search_term){
     $ficheFavorites = [];
 	$current_user = "";
 	$current_user_id = "";
-	
+
     if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche')):
         $ficheFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_fiche');
     endif;
@@ -13,15 +13,34 @@ function getPublishedFiches(){
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
     endif;
+	
+	$args = [
+		'post_type' => 'post',
+		'posts_per_page' => -1,
+		'post_status' => ['publish'],
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value',
+		'meta_key'       => 'nom_scientifique',
+	];
+	
+	// If a search term is provided, add it to the query
+	if ($search_term) {
+		$args['meta_query'] = array(
+			'relation' => 'OR',
+			array(
+				'key'   => 'nom_scientifique',
+				'value' => $search_term,
+				'compare' => 'LIKE',
+			),
+			array(
+				'key' => 'famille',
+				'value' => $search_term,
+				'compare' => 'LIKE'
+			)
+		);
+	}
 
-    $posts = new WP_Query([
-            'post_type' => 'post',
-            'posts_per_page' => -1,
-            'post_status' => ['publish'],
-            'order'          => 'ASC',
-            'orderby'        => 'meta_value',
-            'meta_key'       => 'nom_scientifique',
-        ]);
+    $posts = new WP_Query($args);
 
     $fiches = [];
 
