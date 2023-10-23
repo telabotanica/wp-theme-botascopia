@@ -1192,22 +1192,96 @@ get_header();
                                     <br>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.
                                 <?php endif; ?>
                                 <?php if (get_field('plantes_connues_pour_attirer_des_auxiliaires_de_culture')): ?>
-                                    <br>Cette plante est connue pour attirer des auxiliaires de culture.
-                                <?php endif; ?>
-                                <?php if (get_field('plantes_connues_pour_repousser_les_ravageurs')): ?>
-                                    <br>Cette plante est connue pour repousser les ravageurs de culture.
-                                <?php endif; ?>
-                                <?php if (get_field('plantes_connues_pour_attirer_les_ravageurs')): ?>
-                                    <br>Cette plante est connue pour attirer des ravageurs de culture.
-                                <?php endif; ?>
-
-                                <?php echo $tige['tige_aerienne'];?>
-                                <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
-                                    <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
-                                    <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))): ?>
-                                        <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
+                                    <?php if (get_field('type_dauxiliaires') == 'pollinisateurs' || get_field('type_dauxiliaires') == 'parasitoïdes' && !empty(get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_'))): ?>
+                                        <br>Cette plante attire des <?php echo get_field('type_dauxiliaires');?> grâce à <?php echo get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
+                                    <?php endif; ?>
+                                    <?php if (get_field('type_dauxiliaires') == 'prédateurs' && !empty(get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_')) && !empty(get_field('les_predateurs'))): ?>
+                                        <br>Cette plante attire des <?php echo get_field('les_predateurs');?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à<?php echo get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
                                     <?php endif; ?>
                                 <?php endif; ?>
+                                <?php if (get_field('plantes_connues_pour_repousser_les_ravageurs')): ?>
+                                    <?php if (!empty(get_field('plantes_connues_pour_repousser_les_ravageurs'))):
+                                        $les_ravageurs = implode('-', get_field('les_ravageurs'));?>
+                                    <br>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php if (get_field('plantes_connues_pour_attirer_les_ravageurs')): ?>
+                                    <?php if (!empty(get_field('plantes_connues_pour_attirer_les_ravageurs'))):
+                                        $les_ravageurs = implode('-', get_field('les_ravageurs'));?>
+                                        <br>Cette plante attire des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('communautes_vegetales_dans_lesquelles_la_plante_est_observee'))): ?>
+                                    <br>Elle pousse <?php echo get_field('communautes_vegetales_dans_lesquelles_la_plante_est_observee');?>.
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('plante_presentant_une_multiplication_vegetative')) && get_field('plante_presentant_une_multiplication_vegetative') == 'oui'): ?>
+                                    <?php if (!empty(get_field('structures_liees_a_la_multiplication_vegetative'))): ?>
+                                        <br>Cette plante présente une multiplication végétative grâce à <?php echo get_field('structures_liees_a_la_multiplication_vegetative');?>.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_')) && get_field('la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_') == 'oui'): ?>
+                                    <br>Elle est connue pour émetttre des substances allélopathiques.
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_'))): ?>
+                                    <br>Cette plante est utilisée comme plante compagne des <?php echo get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_');?>.
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('toxicite_pour_les_animaux_non_humains'))):
+                                    $animaux_affectes = implode('-', get_field('toxicite_pour_les_animaux_non_humains'));?>
+                                    <br>Elle est toxique pour <?php echo $animaux_affectes;?>
+                                    <?php if (get_field('toxicite_pour_lhumain') == 'oui'): ?>
+                                        et l'humain
+                                    <?php endif; ?>
+                                    <?php if (!empty(get_field('la_plante_est_toxique_au_niveau_'))): ?>
+                                        au niveau <?php echo get_field('la_plante_est_toxique_au_niveau_');?>
+                                    <?php endif; ?>
+                                    .
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('cette_espece_est_observee')) && get_field('cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'): ?>
+                                    <?php if (!empty(get_field('cette_espece_est_observee_preferentiellement'))): ?>
+                                        <?php if (!empty(get_field('precision_-_cette_espece_est_observee_preferentiellement'))): ?>
+                                            <?php if (!empty(get_field('type_de_culture_preferentiel'))): ?>
+                                            <br>Cette espèce est observée <?php echo get_field('cette_espece_est_observee');?> <?php echo get_field('precision_-_cette_espece_est_observee_preferentiellement');?> <?php echo get_field('cette_espece_est_observee_preferentiellement');?> <?php echo get_field('type_de_culture_preferentiel');?>.
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php /*if (!empty(get_field('periode_de_levee'))): */?><!--
+                                    <br>Cette plante est utilisée comme plante compagne des <?php /*echo get_field('periode_de_levee');*/?>.
+                                --><?php /*endif; */?>
+
+                                <?php if (!empty(get_field('cette_plante_est_favorisee_dans_les_systemes_de_culture')) && get_field('cette_plante_est_favorisee_dans_les_systemes_de_culture') != 'sans travail du sol'): ?>
+                                    <?php if (!empty(get_field('profondeur_du_travail_du_sol'))): ?>
+                                        <br>Cette plante est favorisée dans les systèmes de culture <?php echo get_field('cette_plante_est_favorisee_dans_les_systemes_de_culture');?> <?php echo get_field('profondeur_du_travail_du_sol');?>.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if (!empty(get_field('au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_'))): ?>
+                                    <br>La moitié du stock semencier a perdu son pouvoir germinatif au bout de <?php echo get_field('au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_');?> années.
+                                <?php endif; ?>
+
+                                <?php if (!empty(get_field('est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_')) && get_field('est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_') == 'oui'): ?>
+                                    <?php if (!empty(get_field('a_quelles_molecules_'))): ?>
+                                        <br>La plante est résistante à <?php echo get_field('a_quelles_molecules_');?>.
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('est-cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants'))): ?>
+                                    <br>Cette plante a été ou est cultivée pour <?php echo get_field('cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants');?>.
+                                <?php endif; ?>
+                                <?php if (!empty(get_field('est-plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant'))): ?>
+                                    <br>Cette plante est connue pour <?php echo get_field('plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant');?>.
+                                <?php endif; ?>
+
+                                <?php if (!empty(get_field('statut_de_protection')) && get_field('statut_de_protection') != 'a un statut de protection au niveau national et/ou régional'): ?>
+                                    <?php if (!empty(get_field('quel_est_le_statut_de_protection_france_metropolitaine'))): ?>
+                                        <?php if (!empty(get_field('statut_de_protection_a_l_echelle_locale_regions_concernees'))): ?>
+<!--                                            --><?php //if (!empty(get_field('precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes'))): ?>
+                                                <br>Elle a le statut de protection <?php echo get_field('statut_de_protection');?> dans la région <?php echo get_field('statut_de_protection_a_l_echelle_locale_regions_concernees');?>.
+<!--                                            --><?php //endif; ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+
                             </p>
                         </div>
                     </div>
