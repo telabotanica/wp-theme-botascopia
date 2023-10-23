@@ -158,6 +158,12 @@ strong {
         /*padding: 20px;*/
         padding: 0 !important;
     }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0 20px;
+    }
 }
 
 @media ( width <= 580px) {
@@ -180,5 +186,11 @@ strong {
     .main-accueil {
         /*padding: 20px;*/
         padding: 0 !important;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0 20px;
     }
 }

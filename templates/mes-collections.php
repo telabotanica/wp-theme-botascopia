@@ -27,7 +27,7 @@ get_header();
 			$role = '';
 			$displayName = '';
 		endif;
-		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private']);
+		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private'], '');
 		
 		the_botascopia_module('cover', [
 			'subtitle' => $role,
@@ -92,27 +92,27 @@ get_header();
 						'items' => [
 							[
 								'text' => 'MES FICHES',
-								'href' => '/fiches',
+								'href' => home_url().'/profil/mes-fiches',
 								'active' => false,
 								'items' => [
 									[
 										'text' => 'Mes fiches favoris',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Compléter une fiche',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Mes fiches à valider',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Mes fiches à complèter',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 								]
@@ -177,7 +177,7 @@ get_header();
 							} else {
 								$nbFiches = $post['nbFiches'];
 							}
-
+       
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
 								'name' => $post['name'],
@@ -214,9 +214,10 @@ get_header();
 					<?php
 					
 					foreach ($posts as $post) {
-                        if ($current_user->ID && $current_user->ID == $post['author']){
+                        if ($userId && $userId == $post['author']){
 							if (( !$post['completed'] || $post['status'] != 'publish')){
 								$nbFiches = $post['nbFiches'];
+                                echo ('<div id="profil-collection-'.$post["id"].'">');
 								the_botascopia_module('card-collection', [
 									'href' => $post['href'],
 									'name' => $post['name'],
@@ -226,6 +227,25 @@ get_header();
 									'icon' => $post['icon'],
 									'image' => $post['image']
 								]);
+								$href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post['id'];
+                                echo ('
+                                <div class="update-collection-buttons"><div>');
+								the_botascopia_module('button', [
+									'tag' => 'a',
+									'href' => $href,
+									'title' => 'modifier la collection',
+									'text' => 'Modifier la collection',
+									'modifiers' => 'green-button'
+								]);
+                                echo ('</div><div>');
+								the_botascopia_module('button', [
+									'tag' => 'button',
+									'title' => 'supprimer la collection',
+									'text' => 'supprimer la collection',
+									'modifiers' => 'purple-button delete-collection-button',
+									'extra_attributes' => ['id' => 'delete-collection-'.$post['id'], 'data-collection-id' => $post['id']]
+								]);
+								echo ('</div></div></div>');
                             }
                         }
 					}
@@ -249,6 +269,7 @@ get_header();
 						if ($post['completed'] && $post['status'] == 'publish' && $post['nbFiches'] != 0 &&
 							$post['author'] == $userId) {
 							$completedCollection = true;
+							echo ('<div id="profil-collection-'.$post["id"].'">');
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
 								'name' => $post['name'],
@@ -258,6 +279,25 @@ get_header();
 								'icon' => $post['icon'],
 								'image' => $post['image']
 							]);
+							$href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post['id'];
+							echo ('
+                                <div class="update-collection-buttons"><div>');
+							the_botascopia_module('button', [
+								'tag' => 'a',
+								'href' => $href,
+								'title' => 'modifier la collection',
+								'text' => 'Modifier la collection',
+								'modifiers' => 'green-button'
+							]);
+							echo ('</div><div>');
+							the_botascopia_module('button', [
+								'tag' => 'button',
+								'title' => 'supprimer la collection',
+								'text' => 'supprimer la collection',
+								'modifiers' => 'purple-button delete-collection-button',
+								'extra_attributes' => ['id' => 'delete-collection-'.$post['id'], 'data-collection-id' => $post['id']]
+							]);
+							echo ('</div></div></div>');
 						}
 					}
 					

@@ -14,9 +14,17 @@ body.login {
 }
 
 #login h1 a {
-    background-image: url("../../images/logo-login.png");
-    /*background-image: url("../../images/logo-botascopia.png");*/
+    background-image: unset;
+}
+
+#login h1 {
+    background-image: url("../../images/logo-botascopia.png");
     margin-bottom: 1.5rem;
+    align-items: center;
+    background-size: contain;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #login .button-primary {
@@ -40,7 +48,8 @@ body.login {
 }
 
 #login label,
-#login .login-providers {
+#login .login-providers,
+#login .login-info-text{
     color: var(--taupe);
     font-size: 1.4rem;
 }
@@ -102,4 +111,8 @@ body.login {
 
 .login-providers{
     display: none;
+}
+
+#login .login-info-text {
+    margin-top: 7rem;
 }

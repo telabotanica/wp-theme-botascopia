@@ -293,7 +293,7 @@ function create_new_post_collection() {
 add_action('init', 'create_new_post_collection');
 
 // Récupère les informations des collections
-function getCollectionPosts($status){
+function getCollectionPosts($status, $search_term){
 	// Posts de type collection
 	$args = array(
 		'post_type' => 'collection',
@@ -301,6 +301,18 @@ function getCollectionPosts($status){
 		'posts_per_page' => -1,
 		'order' => 'ASC'
 	);
+	
+	if ($search_term) {
+		$args['s'] = sanitize_text_field($search_term);
+//		$args['meta_query'] = array(
+//			array(
+//				'key'   => 'post_title',
+//				'value' => $search_term,
+//				'compare' => 'LIKE',
+//			),
+//		);
+	}
+	
 	$collection_query = new WP_Query( $args );
 	$posts = [];
 	
@@ -429,7 +441,7 @@ function load_popup_content() {
 }
 add_action('wp_ajax_load_popup_content', 'load_popup_content');
 
-// Charge les fiches dans le popup de création de collection
+// Charge les fiches lors d'une recherche sur la page single collection
 function load_collection_content() {
 	$data = [];
 	$search_term = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';

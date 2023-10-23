@@ -13,9 +13,25 @@ get_header();
     </div>
     <main id="main" class="site-main " role="main">
 		<?php
+		$search = $_GET['q'] ?? '';
+		
+		$imageId = get_post_thumbnail_id(get_the_ID());
+		if ($imageId) {
+			$imageFull = wp_get_attachment_image_src($imageId, 'full');
+		} else {
+			$imageFull = null;
+		}
+  
 		the_botascopia_module('cover', [
 			'subtitle' => 'Consultez des collections et téléchargez des fiches',
-            'title' => 'Les collections'
+            'title' => 'Les collections',
+			'image' => $imageFull,
+			'search' => [
+				'placeholder'   => __('Rechercher une collection', 'botascopia'),
+				'value' => $search,
+				'pageurl' => 'collection?q',
+				'id' => 'search-archive-collection'
+			]
 		]);
 		?>
         <div class="collection-main">
@@ -37,7 +53,8 @@ get_header();
                         <div id="collections-container" class="display-collection-cards-items">
                             <?php
                             // Posts de type collection
-                            $collections = getCollectionPosts(['publish', 'draft', 'pending']);
+							$search = $_GET['q'] ?? '';
+                            $collections = getCollectionPosts(['publish', 'draft', 'pending'], $search);
                             
                             foreach ($collections as $collection){
 								$nbFiches = 0;

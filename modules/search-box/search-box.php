@@ -38,7 +38,7 @@
       endif;
       echo '<div class="search-box-wrapper">';
         printf(
-          '<input name="s" type="text" class="search-box-input" placeholder="%s" value="%s" autocomplete="off" spellcheck="false" />',
+          '<input name="q" type="text" class="search-box-input" placeholder="%s" value="%s" autocomplete="off" spellcheck="false" />',
           esc_attr( $data->placeholder ),
           esc_attr( $data->value )
         );
@@ -53,7 +53,7 @@
 		'title' => 'Rechercher',
 		'text' => 'Rechercher',
 		'modifiers' => 'green-button',
-		'extra_attributes' => ['type' => 'button', 'id' => 'search-button']
+		'extra_attributes' => ['type' => 'submit', 'id' => 'search-button']
 	]);
     echo '</form>';
 //var_dump($data->suggestions);
