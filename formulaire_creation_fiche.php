@@ -116,7 +116,7 @@ if (isset($_GET['p'])) {
     
     switch (get_post_status()){
         case 'draft':
-            $status = 'En cours';
+            $status = 'A compléter';
             $acf_value = 1;
             $acf_submit_text = 'Enregistrer';
             break;
