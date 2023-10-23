@@ -181,4 +181,8 @@ strong {
         /*padding: 20px;*/
         padding: 0 !important;
     }
+
+    .container {
+        width: 100vw;
+    }
 }

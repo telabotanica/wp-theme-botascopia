@@ -92,27 +92,27 @@ get_header();
 						'items' => [
 							[
 								'text' => 'MES FICHES',
-								'href' => '/fiches',
+								'href' => home_url().'/profil/mes-fiches',
 								'active' => false,
 								'items' => [
 									[
 										'text' => 'Mes fiches favoris',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Compléter une fiche',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Mes fiches à valider',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Mes fiches à complèter',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 								]
