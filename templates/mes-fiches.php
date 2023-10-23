@@ -24,10 +24,17 @@ get_header();
 			$role = '';
 			$displayName = '';
 		endif;
-		
+  
+		$imageId = get_post_thumbnail_id(get_the_ID());
+		if ($imageId) {
+			$imageFull = wp_get_attachment_image_src($imageId, 'full');
+		} else {
+			$imageFull = null;
+		}
 		the_botascopia_module('cover', [
 			'subtitle' => $role,
-			'title' => $displayName
+			'title' => $displayName,
+			'image' => $imageFull,
 		]);
 		?>
 		<div class="collection-main" id="mes-fiches">

@@ -35,7 +35,7 @@
   
   
   endif;
-    echo '<div class="layout-wrapper"><div class="layout-wrapper-titles">';
+    echo '<div class="cover-layout-wrapper"><div class="layout-wrapper-titles">';
 
 	  if (!$data->backgroundColor) :
       printf(
