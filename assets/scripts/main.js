@@ -738,13 +738,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 tocItem.classList.add('toc-subitem')
                 tocItem.appendChild(tocLink);
 
-                // Ajoutez un gestionnaire d'événements au clic sur le lien
-                tocLink.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    // setActiveLink(tocItem);
-                    // scrollToTitle(uniqueId);
-                });
-
                 // Ajoutez l'élément de liste à la table des matières
                 tocContainer.appendChild(tocItem);
 
@@ -815,7 +808,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function () {
     // Fonction pour gérer le clic sur le lien
     function handleLinkClick(event) {
-        event.preventDefault(); // Empêche le comportement par défaut du lien
 
         // Obtient l'ID de la cible à partir de l'attribut href du lien
         var targetId = event.currentTarget.getAttribute('href').substring(1);
@@ -825,6 +817,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Vérification si l'élément existe
         if (targetElement) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien
             // Calcul du décalage de 250px vers le bas
             var offset = targetElement.offsetTop + 250;
 
