@@ -1187,9 +1187,20 @@ get_header();
                         <div>
                             <?php if (!empty(get_field('tolerance_au_gel'))):?>
                             <p class="tolerance_au_gel">
-                                <?php
-                                ?>
                                 Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de L11 °C.
+                                <?php if (get_field('des_symbioses_avec_des_organismes_fixateurs_dazote')): ?>
+                                    <br>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.
+                                <?php endif; ?>
+                                <?php if (get_field('plantes_connues_pour_attirer_des_auxiliaires_de_culture')): ?>
+                                    <br>Cette plante est connue pour attirer des auxiliaires de culture.
+                                <?php endif; ?>
+                                <?php if (get_field('plantes_connues_pour_repousser_les_ravageurs')): ?>
+                                    <br>Cette plante est connue pour repousser les ravageurs de culture.
+                                <?php endif; ?>
+                                <?php if (get_field('plantes_connues_pour_attirer_les_ravageurs')): ?>
+                                    <br>Cette plante est connue pour attirer des ravageurs de culture.
+                                <?php endif; ?>
+
                                 <?php echo $tige['tige_aerienne'];?>
                                 <?php if ($tige['tige_aerienne'] != 'non visible'):;?>, <?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
                                     <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
