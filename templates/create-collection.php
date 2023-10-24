@@ -91,6 +91,34 @@ endif;
                     <label for="post-description" class="new-collection-title">Description de la collection</label>
                     <textarea name="post-description" id="post-description" rows="6" placeholder="500 caractères maximum" maxlength="500" required><?php if ($edit){ echo esc_textarea($collection->post_content);}?></textarea>
                 </div>
+                <!-- Section ajouter des participants-->
+                <h2 class="new-collection-title">
+                    Ajouter des participants
+                </h2>
+                
+                <div id="section-ajout-participants">
+					<?php
+                    if ($edit){
+                        $participantsEmails = [];
+                        //TODO chercher et afficher les invitations déjà envoyées
+                    }
+                    
+					the_botascopia_module('button', [
+						'tag' => 'button',
+						'href' => '#',
+						'title' => 'Ajouter par mail',
+						'text' => 'Ajouter par mail',
+						'modifiers' => 'green-button',
+                        'extra_attributes' => ['id' => 'button-ajout-participant']
+					]);
+					?>
+                    <input id="emails-selected" type="hidden" name="participantsEmails" <?php
+					if ($edit){
+						echo 'value="' . esc_attr(json_encode($participantsEmails)) . '"';
+					}
+					?>>
+                </div>
+                
                 <h2 class="new-collection-title">
                     Ajouter des fiches
                 </h2>
@@ -177,9 +205,7 @@ endif;
 						echo 'value="' . esc_attr(json_encode($selectedIds)) . '"';
 					}
 					?>>
-                    <?php
-
-                    ?>
+ 
                 </div>
 
                 <div class="new-collection-buttons">
