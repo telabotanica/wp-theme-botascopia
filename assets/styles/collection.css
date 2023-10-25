@@ -509,11 +509,9 @@ display: none;
 .add-photo-cross {
     height: 70px;
     width: 70px;
+    margin: 0 0 1em;
 }
 
-/*.popup-ajout-participants > .search-box-ajout-fiche {*/
-/*    width: 100%;*/
-/*}*/
 
 .popup-ajout-participants {
     width: 90vw;
