@@ -88,7 +88,7 @@ get_header();
 							],
 						]
 					]);
-					
+					if ($role != 'contributor'):
 					echo '<div class="toc-button">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
@@ -98,6 +98,7 @@ get_header();
 						'modifiers' => 'green-button',
 					]);
 					echo '</div>';
+                    endif;
 					
 					//                    Actions fiches
 					echo '<div class="second-toc">';
@@ -321,6 +322,7 @@ get_header();
                             Vous n\'avez pas encore de collections, voulez vous en créer une ?
                             </div>
                             ');
+						if ($role != 'contributor'):
 						the_botascopia_module('button', [
 							'tag' => 'a',
 							'href' => home_url() . '/profil/mes-collections/creer-une-collection/',
@@ -328,6 +330,7 @@ get_header();
 							'text' => 'Créer une collection',
 							'modifiers' => 'green-button',
 						]);
+                        endif;
 					}
 					endif;
 					?>
