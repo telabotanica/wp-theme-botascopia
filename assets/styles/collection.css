@@ -567,8 +567,6 @@ display: none;
 .delete-email {
     margin-left: 20px;
     cursor: pointer;
-
-
 }
 
 .delete-email > .icon {
@@ -580,13 +578,6 @@ display: none;
     transform: translate(-0.3rem, -0.3rem);
     width: 2.2rem;
 }
-
-/*.displayed-email::after{*/
-/*    content: "x";*/
-/*    display: inline-block;*/
-/*    margin-left: 20px;*/
-/*    cursor: pointer;*/
-/*}*/
 
 /************** Media queries **************/
 @media ( width <= 1250px) {

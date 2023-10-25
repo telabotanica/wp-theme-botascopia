@@ -145,7 +145,7 @@ function create_new_post_collection() {
 	$imageId = null;
 	// Vérifier si nous sommes en mode édition
 	$edit = isset($_POST['edit']) && $_POST['edit'] === 'true';
-	print_r($edit);
+
 	if ($edit == 'true'){
 		$edit = true;
 	} else {
@@ -218,7 +218,7 @@ function create_new_post_collection() {
 					set_post_thumbnail($post_id, $imageId);
 				}
 				
-				// Lier les fiiches à la collection
+				// Lier les fiches à la collection
 				$old_linked_posts = array();
 				if ($edit) {
 					$old_connections = p2p_get_connections('collection_to_post', array(
@@ -281,6 +281,12 @@ function create_new_post_collection() {
 						}
 					}
 				}
+
+				$emails = isset($_POST['participantsEmails']) ? json_decode(stripslashes($_POST['participantsEmails']), true) : array();
+
+				if ($emails){
+					sendInvitationMail($emails, $post_id);
+				}
 				
 				wp_redirect(get_permalink($post_id));
 				exit;
@@ -288,7 +294,6 @@ function create_new_post_collection() {
 				echo 'Erreur lors de la création de la collection';
 			}
 		}
-//	}
 }
 add_action('init', 'create_new_post_collection');
 
@@ -762,4 +767,30 @@ function delete_collection_callback() {
 	
 	// Assurez-vous de terminer l'exécution pour éviter une sortie HTML supplémentaire
 	wp_die();
+}
+
+//Envoi de mail pour invitation à collection
+function sendInvitationMail($emails, $collection_id){
+	$subject = 'Botascopia: Un utilisateur vous a invité à participer à une collection';
+	$headers[] = 'Content-Type: text/html; charset=UTF-8';
+	$receiverEmailsArray = [];
+	
+	$collection_name = get_the_title($collection_id);
+	$collection_href = get_the_permalink($collection_id);
+
+	foreach ($emails as $mail) {
+		if (is_email($mail)) {
+			$receiverEmailsArray[] = $mail;
+		}
+	}
+	$emails = $receiverEmailsArray;
+
+	$message = '<body style="background-color: #f7f3ec"><div id="main"><h2 class="title">Invitation à une collection</h2><div><p>Un utilisateur vous invite à participer à la complétion des fiches de la collection suivante: </p><p><a target="_blank" href="'
+		.esc_url($collection_href).'" title="collection"> '.esc_html($collection_name).'</a></p><p>Si vous n\'avez pas encore de compte sur Botascopia : <br>
+		- connectez-vous sur Botascopia avec votre compte Tela Botanica<br>
+		- créez vous un compte sur le lien suivant:  <a target="_blank" href="https://www.tela-botanica.org/inscription/">https://www.tela-botanica.org/inscription/</a> vous aurez ainsi accès à Botascopia et à tous les outils de Tela Botanica.</p></div>
+		<div class="footer" style="display: flex; justify-content: center; margin-top: 20px"><img src="'.get_template_directory_uri().'/images/logo-botascopia.png" style="height: 100px"></div>
+		</div></body>';
+
+		wp_mail($emails, $subject, $message, $headers);
 }
