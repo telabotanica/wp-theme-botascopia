@@ -84,7 +84,8 @@ get_header();
 							],
 						]
 					]);
-					
+
+					if ($role != 'contributor'):
 					echo '<div class="toc-button">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
@@ -94,7 +95,7 @@ get_header();
 						'modifiers' => 'green-button',
 					]);
 					echo '</div>';
-					
+					endif;
 					//                    Actions fiches
 					echo '<div class="second-toc">';
                     
