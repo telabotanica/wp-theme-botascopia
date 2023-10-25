@@ -8,8 +8,27 @@
     text-align: justify;
 }
 
+@media ( width <= 1250px) {
+    #glossaire-container, #guide-container {
+        margin-right: 20px;
+    }
+
+    #glossaire-container {
+        left: 20px;
+        width: 80%;
+    }
+}
+
+@media ( 580px <= width <= 780px) {
+    #glossaire-container {
+        left: 10px;
+        width: 60%;
+    }
+}
+
 @media ( width <= 580px) {
     #glossaire-container {
         left: unset;
+        width: 100%;
     }
 }
