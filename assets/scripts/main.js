@@ -653,7 +653,7 @@ function loadMoreFiches() {
             hiddenFiches.forEach(function (collection, index) {
                 // Show the next 10 collections
                 if (index < 10) {
-                    collection.style.display = 'flex';
+                    collection.style.display = 'block';
                 }
             });
 
