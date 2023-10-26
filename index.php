@@ -1,26 +1,36 @@
 <?php get_header(); ?>
-      <nav id="navigation">
-<?php
-/*wp_nav_menu(
-  array(
-    'theme_location' => 'main-menu',
-    'menu_id' => 'primary-menu',
- )
-);*/
-?>
-</nav>
+
 <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
+        <main id="main" class="site-main main-accueil" role="main">
+			<?php
+			$imageId          = get_post_thumbnail_id(get_the_ID());
+			if ($imageId) {
+				$imageFull = wp_get_attachment_image_src($imageId, 'full');
+			} else {
+				$imageFull = null;
+			}
+			$search = $_GET['q'] ?? '';
+            $legende = get_post(get_post_thumbnail_id())->post_excerpt;
+            $licence = '';
 
-        <?php if ( have_posts() ) : ?>
-
-            <?php if ( is_home() && ! is_front_page() ) : ?>
-                <header>
-                    <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-                </header>
-            <?php endif; ?>
-
-            <?php
+            if ($legende){
+                $licence = $legende .', licence CC-BY-SA';
+            }
+			
+			the_botascopia_module('cover', [
+				'title'    => 'Bienvenue sur Botascopia',
+				'subtitle' => 'Quand Tela Botanica met à profit son savoir-faire collaboratif et l’Université Paris Saclay sa rigueur scientifique, cela donne Botascopia ! Ce site vous propose des fiches sur les plantes contenant de nombreuses informations sur les plantes de France en licence CC-BY-SA 40.. Vous pouvez les consulter, les télécharger en pdf, les organiser en collections et même les rédiger !',
+				'image'    => $imageFull,
+				'search' => [
+					'placeholder'   => __('Rechercher une collection ...', 'botascopia'),
+					'value' => $search,
+					'pageurl' => 'collection?q',
+					'id' => 'search-home'
+				],
+                'licence' => $licence
+			]);
+			?>
+        <?php if ( have_posts() ) :
             // Start the loop.
             while ( have_posts() ) : the_post();
 
@@ -49,53 +59,7 @@
         endif;
      
 	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
-	
-    if ( is_user_logged_in() ) {
-        $current_user = wp_get_current_user();
-        echo('<div class="home-author-fiches">');
-        the_botascopia_module('title', [
-            'title' => __('Mes fiches', 'botascopia'),
-            'level' => 2,
-        ]);
-        echo('</div>');
-        
-        $args = array(
-            'post_type' => 'post',
-            'post_status' => 'draft',
-            'author' => $current_user->ID,
-            'showposts' => 10
-        );
-        
-        $cpt_query = new WP_Query($args);
-        // Create cpt loop, with a have_posts() check!
-        if ($cpt_query->have_posts()) {
-            while ($cpt_query->have_posts()) {
-                $cpt_query->the_post();
-                if ($current_user->wp_user_level === '1') {
-                    echo('<div class="home-author-fiches">');
-                    the_field('nom_scientifique');
-                    
-                    the_botascopia_module('button', [
-                        'tag' => 'button',
-                        'title' => 'compléter',
-                        'text' => 'compléter',
-                        'modifiers' => 'green-button',
-                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title()."'"]
-                    ]);
-                    echo('</div>');
-                }
-            }
-            
-        }
-        
-		the_botascopia_module('button',[
-			'tag' => 'button',
-			'title' => 'Se déconnecter',
-			'text' => 'Se déconnecter',
-			'modifiers' => 'purple-button',
-			'extra_attributes' => ['onclick' => "window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."'"]
-		]);
-    }
+
         ?>
 
         </main><!-- .site-main -->

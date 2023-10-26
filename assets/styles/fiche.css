@@ -40,6 +40,7 @@
 .fiche-infos{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .single-fiche-details{
@@ -80,20 +81,22 @@
     position: relative;
     min-height: 275px;
     margin: 60px 0;
+    padding-right: 20px;
 }
 
 /* Sections avec photos */
 #tige > p, #feuilles > p, #fruits > p, #fleur-male > p, #fleur-femelle > p, #fleur-bisexuee > p, #ne-pas-confondre > p{
-    width: 400px;
+    /*width: 400px;*/
 }
 
 /* Sections sans photos */
 #inflorescence, #le-saviez-vous, #periode-floraison, #ecologie, #proprietes, #aire-repartition, #description-vulgarisee, #complement-anecdote, #references, #taxonomie{
     margin: 60px 0;
+    padding-right: 20px;
 }
 
 .image-tige{
-    position: absolute;
+    /*position: absolute;*/
     right: 0;
     top: 0;
     object-fit: contain;
@@ -106,24 +109,16 @@
 }
 
 #periode-floraison .calendar{
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 2mm;
-    grid-template-rows: repeat(3, 1cm);
-    /*width: 19cm;*/
-    margin-top: 0.5cm;
-    /*margin-left: 0.5cm;*/
-    padding: 0 1cm;
-    justify-content: right;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
-#periode-floraison .calendar div {
+#periode-floraison .calendar div{
     text-align: center;
     font-weight: bold;
     font-size: 0.42cm;
     text-transform: uppercase;
-    padding: 0.4cm;
 }
 
 .text-floraison{
@@ -134,7 +129,113 @@
     color: var(--violet);
 }
 
+#aire-repartition .section-image{
+    width: 100%;
+    /*height: 700px;*/
+}
+
 #aire-repartition .section-image > img{
-    width: 700px;
-    height: 700px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.monthly-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+#periode-floraison .calendar .icon {
+    margin: 10px 0;
+    height: 40px;
+    width: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.display-fiche-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+.fiche-title-container {
+    width: 55%;
+}
+
+#fiche-infos-right {
+    margin-right: 20px;
+}
+
+@media (width <= 910px) {
+    .fiche-title-container {
+        width: 100%;
+    }
+
+    #fiche-infos-right {
+        margin-top: 20px;
+    }
+
+}
+
+/*@media (width <= 890px) {*/
+/*    .fiche-title-container {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+@media (781px <= width <= 1250px) {
+     #fiche {
+         margin-left: 10px;
+     }
+
+     .fiche-title-icon {
+         margin-left: 0;
+     }
+}
+
+@media (581px <= width <= 780px) {
+    .fiche-title-icon {
+        margin-left: 0;
+    }
+
+    #fiche {
+        margin-left: 10px;
+    }
+}
+
+@media (width <= 767.9px) {
+    .fiche-image{
+        right: 10px;
+        top: 25px;
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media ( width <= 580px) {
+    .monthly-calendar {
+        margin-right: 5px;
+    }
+
+    .fiche-title-icon {
+        margin-left: 0;
+
+        .title{
+            font-size: 18px;
+        }
+    }
+
+    #fiche {
+        margin-left: 0;
+    }
+
+    .fiche-main .layout-wrapper {
+        width: 150px;
+    }
 }

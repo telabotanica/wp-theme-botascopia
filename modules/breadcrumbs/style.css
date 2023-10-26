@@ -54,3 +54,15 @@
       height: 1.8rem;
       width: 1.8rem; }
 
+@media (515px <= width <= 800px) {
+  .breadcrumbs-item{
+    display: block;
+    margin-top: 15px;
+  }
+}
+
+@media (width <= 514px) {
+  .breadcrumbs{
+    display: none;
+  }
+}

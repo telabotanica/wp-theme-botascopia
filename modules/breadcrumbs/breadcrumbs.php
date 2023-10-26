@@ -6,31 +6,26 @@
 
   // Génération des items selon le type de page courante
   if ( empty($data->items) ) :
-
+	 
     // Article seul
     if ( is_single() ) :
       $category = get_the_category();
       $data->items = ['home'];
-
-      if ( count($category) > 0  && get_post_type() != 'collection') {
-        $category = $category[0];
-
-        // Catégorie parente
-        if ( $category->parent ) {
-          $category_parent = get_category( $category->parent );
-          $data->items[] = [ 'href' => get_category_link( $category_parent ), 'text' => $category_parent->name ];
-        }
-
-        // Catégorie de l'article
-        $data->items[] = [ 'href' => get_category_link( $category ), 'text' => $category->name ];
-      }
+	  
+	  if (get_post_type() === 'post'){
+		  $data->items[] = [ 'href' => home_url().'/fiches', 'text' => 'Les fiches' ];
+	  }
 	  
 	  if (get_post_type() === 'collection' ){
-		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
+		  $data->items[] = [ 'href' => home_url().'/collections', 'text' => 'Les collections' ];
 	  }
 
       // Article courant
-      $data->items[] = [ 'text' => get_the_title() ];
+		if (get_post_type() === 'post' ) {
+			$data->items[] = ['text' => get_post_meta(get_the_ID(), 'nom_scientifique', true)];
+		} else {
+			$data->items[] = ['text' => get_the_title()];
+		}
 
     // Page
     elseif ( is_page() ) :
@@ -49,7 +44,6 @@
       // Page courante
       $data->items[] = [ 'text' => get_the_title() ];
 
-
     // Archive
     elseif ( is_archive() ) :
 		
@@ -57,19 +51,19 @@
       $data->items = ['home'];
 
 	  if (get_post_type() !== 'collection'){
-		  // Catégorie parente
-		  if ( $category->parent && get_post_type() != 'collection') {
-			  $category_parent = get_category( $category->parent );
-			  $data->items[] = [ 'href' => get_category_link( $category_parent ), 'text' => $category_parent->name ];
-		  }
-		
-		  // Catégorie courante
-		  $data->items[] = [ 'text' => $category->name ];
+		  $data->items[] = [ 'href' => home_url().'/fiches', 'text' => 'Les fiches' ];
 	  } else {
-		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
+		  $data->items[] = [ 'href' => home_url().'/collections', 'text' => 'Les collections' ];
 	  }
 
     endif;
+  
+  else :
+	  $defaults = [
+		  'items' => ['home'],
+		  'modifiers' => ''
+	  ];
+	  $data = botascopia_styleguide_data($defaults, $data);
 
   endif;
 
@@ -89,7 +83,7 @@
 
         if ( $item === 'home' ) {
           $item = [
-            'href' => site_url(),
+            'href' => home_url(),
             'text' => __( 'Accueil', 'botascopia' )
           ];
         }

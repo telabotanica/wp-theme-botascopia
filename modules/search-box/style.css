@@ -165,9 +165,13 @@
     text-decoration: none;
 }
 
-/*
-  @include small {
-    &.large {
+.search-box {
+    margin-top: 20px;
+}
+
+
+@media ( width <= 480px) {
+    .large {
       .search-box-wrapper {
         height: 3.6rem;
       }
@@ -192,28 +196,35 @@
       font-size: 1.3rem;
       margin-top: 1rem;
     }
-  }
+}
 
-  @include large-and-medium {
-    &.tiny {
+@media (481px <= width <= 768px) {
+    .tiny {
       .search-box-input {
         font-size: 1.2rem;
       }
     }
 
-    &.large {
+    .large {
       .search-box-wrapper {
-        height: 5.6rem;
+        /*height: 5.6rem;*/
       }
 
-      .search-box-input {
-        font-size: 1.8rem;
-      }
+        .search-box-input {
+            border-bottom-left-radius: 0.2rem;
+            border-top-left-radius: 0.2rem;
+            overflow: hidden;
+            padding-left: 1rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 1.8rem;
+        }
 
-      .search-box-button {
-        color: var(--blanc);
-        font-size: 2.7rem;
-      }
+        .search-box-button {
+            color: var(--blanc);
+            font-size: 2.7rem;
+            padding: 0 1rem;
+        }
 
       .aa-dropdown-menu {
         width: 62.5rem;
@@ -223,23 +234,6 @@
     &-suggestions {
       margin-top: 2rem;
     }
-  }
+  /*}*/
 
 }
-
-// instantsearch
-.ais-infinite-hits {
-  &--showmore {
-    text-align: center;
-
-    button {
-      @extend .button;
-    }
-
-    // Hide instantsearch infiniteHits button when disabled
-    button[disabled] {
-      display: none;
-    }
-  }
-}
-*/

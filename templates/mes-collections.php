@@ -27,20 +27,37 @@ get_header();
 			$role = '';
 			$displayName = '';
 		endif;
-		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private']);
+		$posts = getCollectionPosts(['draft', 'pending', 'publish', 'private'], '');
+		$imageId = get_post_thumbnail_id(get_the_ID());
+		if ($imageId) {
+			$imageFull = wp_get_attachment_image_src($imageId, 'full');
+		} else {
+			$imageFull = null;
+		}
+		$legende = get_post(get_post_thumbnail_id())->post_excerpt;
+		$licence = '';
 		
+		if ($legende){
+			$licence = $legende .', licence CC-BY-SA';
+		}
+  
 		the_botascopia_module('cover', [
 			'subtitle' => $role,
-			'title' => $displayName
+			'title' => $displayName,
+			'image' => $imageFull,
+			'licence' => $licence
 		]);
 		?>
 		<div class="collection-main" id="mes-collections">
+            <?php
+			if (is_user_logged_in()) :
+            ?>
 			<div class="left-div">
 				<div class="first-toc">
 					<?php
-					//                    Actions collections
+					// Actions collections
 					if (is_user_logged_in()) :
-						$collectionHref = site_url().'/'.get_page_uri();
+						$collectionHref = home_url().'/'.get_page_uri();
 					else:
 						$collectionHref = get_post_type_archive_link('collection');
 					endif;
@@ -71,16 +88,17 @@ get_header();
 							],
 						]
 					]);
-					
+					if ($role != 'contributor'):
 					echo '<div class="toc-button">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
-						'href' => '#',
+						'href' => home_url() . '/profil/mes-collections/creer-une-collection/',
 						'title' => 'Créer une collection',
 						'text' => 'Créer une collection',
 						'modifiers' => 'green-button',
 					]);
 					echo '</div>';
+                    endif;
 					
 					//                    Actions fiches
 					echo '<div class="second-toc">';
@@ -89,27 +107,27 @@ get_header();
 						'items' => [
 							[
 								'text' => 'MES FICHES',
-								'href' => '/fiches',
+								'href' => home_url().'/profil/mes-fiches',
 								'active' => false,
 								'items' => [
 									[
 										'text' => 'Mes fiches favoris',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Compléter une fiche',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Mes fiches à valider',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 									[
 										'text' => 'Mes fiches à complèter',
-										'href' => '#',
+										'href' => home_url().'/profil/mes-fiches/#fiches-favoris',
 										'active' => false,
 									],
 								]
@@ -117,13 +135,13 @@ get_header();
 						]
 					]);
 					echo '<div class="toc-button">';
-					the_botascopia_module('button', [
-						'tag' => 'a',
-						'href' => '#',
-						'title' => 'Créer une fiche',
-						'text' => 'Créer une fiche',
-						'modifiers' => 'green-button',
-					]);
+//					the_botascopia_module('button', [
+//						'tag' => 'a',
+//						'href' => '#',
+//						'title' => 'Créer une fiche',
+//						'text' => 'Créer une fiche',
+//						'modifiers' => 'green-button',
+//					]);
 					echo '</div>';
 					?>
 				</div>
@@ -131,14 +149,14 @@ get_header();
 				<?php
 				if (is_user_logged_in()) :
 					echo '<div class="toc-button" id="collection-modif-profil">';
-					the_botascopia_module('button', [
-						'tag' => 'a',
-						'href' => admin_url('user-edit.php?user_id='.$userId, 'http'),
-						'title' => 'Modifier mon profil',
-						'text' => 'Modifier mon profil',
-						'modifiers' => 'green-button outline',
-						'icon_after' => ['icon' => 'cog-circle', 'color' => 'vert-clair'],
-					]);
+//					the_botascopia_module('button', [
+//						'tag' => 'a',
+//						'href' => admin_url('user-edit.php?user_id='.$userId, 'http'),
+//						'title' => 'Modifier mon profil',
+//						'text' => 'Modifier mon profil',
+//						'modifiers' => 'green-button outline',
+//						'icon_after' => ['icon' => 'cog-circle', 'color' => 'vert-clair'],
+//					]);
 					echo '</div>';
 				endif;
 				?>
@@ -164,6 +182,7 @@ get_header();
 				
 				<div class="display-collection-cards-items">
 					<?php
+                    $hasFavorite = false;
 					foreach ($posts as $post) {
 						if (get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search
 							($post['id'], $existingFavorites[0])) !== false) {
@@ -173,7 +192,7 @@ get_header();
 							} else {
 								$nbFiches = $post['nbFiches'];
 							}
-
+       
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
 								'name' => $post['name'],
@@ -183,7 +202,16 @@ get_header();
 								'icon' => $post['icon'],
 								'image' => $post['image']
 							]);
+							$hasFavorite = true;
 						}
+					}
+					
+					if ( !$hasFavorite) {
+						echo('
+                            <div>
+                            Vous n\'avez pas encore de collection favorite.
+                            </div>
+                            ');
 					}
 					?>
 				</div>
@@ -201,24 +229,40 @@ get_header();
 					<?php
 					
 					foreach ($posts as $post) {
-						if (( !$post['completed'] || $post['status'] != 'publish')) {
-							
-							if ($post['status'] == 'private' && $current_user->ID != $post['author']){
-								$nbFiches = 'x';
-							} else {
+                        if ($userId && $userId == $post['author']){
+							if (( !$post['completed'] || $post['status'] != 'publish')){
 								$nbFiches = $post['nbFiches'];
-							}
-							
-							the_botascopia_module('card-collection', [
-								'href' => $post['href'],
-								'name' => $post['name'],
-								'nbFiches' => $nbFiches,
-								'description' => $post['description'],
-								'category' => $post['id'],
-								'icon' => $post['icon'],
-								'image' => $post['image']
-							]);
-						}
+                                echo ('<div id="profil-collection-'.$post["id"].'">');
+								the_botascopia_module('card-collection', [
+									'href' => $post['href'],
+									'name' => $post['name'],
+									'nbFiches' => $nbFiches,
+									'description' => $post['description'],
+									'category' => $post['id'],
+									'icon' => $post['icon'],
+									'image' => $post['image']
+								]);
+								$href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post['id'];
+                                echo ('
+                                <div class="update-collection-buttons"><div>');
+								the_botascopia_module('button', [
+									'tag' => 'a',
+									'href' => $href,
+									'title' => 'modifier la collection',
+									'text' => 'Modifier la collection',
+									'modifiers' => 'green-button'
+								]);
+                                echo ('</div><div>');
+								the_botascopia_module('button', [
+									'tag' => 'button',
+									'title' => 'supprimer la collection',
+									'text' => 'supprimer la collection',
+									'modifiers' => 'purple-button delete-collection-button',
+									'extra_attributes' => ['id' => 'delete-collection-'.$post['id'], 'data-collection-id' => $post['id']]
+								]);
+								echo ('</div></div></div>');
+                            }
+                        }
 					}
 					
 					?>
@@ -240,6 +284,7 @@ get_header();
 						if ($post['completed'] && $post['status'] == 'publish' && $post['nbFiches'] != 0 &&
 							$post['author'] == $userId) {
 							$completedCollection = true;
+							echo ('<div id="profil-collection-'.$post["id"].'">');
 							the_botascopia_module('card-collection', [
 								'href' => $post['href'],
 								'name' => $post['name'],
@@ -249,28 +294,56 @@ get_header();
 								'icon' => $post['icon'],
 								'image' => $post['image']
 							]);
+							$href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post['id'];
+							echo ('
+                                <div class="update-collection-buttons"><div>');
+							the_botascopia_module('button', [
+								'tag' => 'a',
+								'href' => $href,
+								'title' => 'modifier la collection',
+								'text' => 'Modifier la collection',
+								'modifiers' => 'green-button'
+							]);
+							echo ('</div><div>');
+							the_botascopia_module('button', [
+								'tag' => 'button',
+								'title' => 'supprimer la collection',
+								'text' => 'supprimer la collection',
+								'modifiers' => 'purple-button delete-collection-button',
+								'extra_attributes' => ['id' => 'delete-collection-'.$post['id'], 'data-collection-id' => $post['id']]
+							]);
+							echo ('</div></div></div>');
 						}
 					}
-					/*
+					
 					if ( !$completedCollection) {
 						echo('
                             <div>
                             Vous n\'avez pas encore de collections, voulez vous en créer une ?
                             </div>
                             ');
+						if ($role != 'contributor'):
 						the_botascopia_module('button', [
 							'tag' => 'a',
-							'href' => '#',
+							'href' => home_url() . '/profil/mes-collections/creer-une-collection/',
 							'title' => 'Créer une collection',
 							'text' => 'Créer une collection',
 							'modifiers' => 'green-button',
 						]);
-					}*/
+                        endif;
+					}
 					endif;
 					?>
 				</div>
 			</div>
 		</div>
+	<?php
+	else :
+		echo ('
+        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
+        ');
+	endif;
+	?>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
 

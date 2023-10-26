@@ -1,3 +1,4 @@
+
 .footer {
     /*border-top: 1rem solid rgba(145, 138, 111, 0.2);*/
     background-color: var(--rose-pale);
@@ -13,10 +14,27 @@
 
 .footer-nav-plan {
     position: relative;
-    background-color: rgba(240, 240, 240, 0.5);
+    background-color: var(--rose-pale);
     padding: 3.5rem 0;
     margin: 0;
     left: 20vw;
+    display: flex;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.footer-nav-title{
+    color: var(--violet);
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
 }
 
 .footer-nav-plan > div > ul{
@@ -48,8 +66,8 @@
 
 .footer-logo-saclay{
     position: relative;
-    height: 75px;
-    /*border-left: 1px solid black;*/
+    height: 50px;
+    border-left: 1px solid black;
     padding-left: 20px;
 }
 
@@ -102,13 +120,16 @@
     display: none;
 }
 
-
+/*.footer-column a {*/
+/*    margin-left: 0;*/
+/*}*/
 
 .footer-nav-items {
     font-size: 1.4rem;
     line-height: 2;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .footer-nav-items a {
@@ -126,11 +147,10 @@
 /*}*/
 
 .footer-nav-items > .menu-item > a {
-    color: var(--violet);
-    font-size: 20px;
+    color: var(--gris-33);
+    font-size: 14px;
     font-weight: normal;
     letter-spacing: 0.1rem;
-    text-transform: uppercase;
 }
 
 .footer-nav-items > .menu-item:nth-child(1), .footer-nav-items > .menu-item:nth-child(2), .footer-nav-items > .menu-item:nth-child(3) {
@@ -191,4 +211,143 @@
 .footer-nav-bar a:hover {
     color: var(--gris-f0);
     fill: var(--gris-f0);
+}
+
+#togglePlanBtn {
+    display: none;
+}
+
+@media (1030px < width <= 1350px) {
+    .footer-about-tela {
+        left: 10vw;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+
+    .footer-about-tela-details {
+        width: 260px;
+    }
+}
+
+@media (890px < width <= 1030px) {
+    .footer-about-tela {
+        left: 5vw;
+    }
+
+    .footer-about-botascopia-logo{
+        top: 75px;
+    }
+
+    .footer-about-botascopia-logo img {
+        width: 200px;
+        height: unset;
+    }
+
+    .footer-about-tela-details {
+        width: 200px;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+}
+
+@media (780px < width <= 890px) {
+    .footer-about-tela {
+        left: 2vw;
+    }
+
+    .footer-about-botascopia-logo{
+        top: 90px;
+    }
+
+    .footer-about-botascopia-logo img {
+        width: 150px;
+        height: unset;
+    }
+
+    .footer-about-tela-details {
+        width: 150px;
+    }
+
+    .footer-nav-plan {
+        left: 25vw;
+    }
+}
+
+@media ( width <= 780px) {
+    #togglePlanBtn {
+        display: block;
+    }
+
+    .footer-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .footer-left {
+        width: 80%;
+        margin-top: 20px;
+        border-bottom: 1px solid var(--gris-b3);
+        padding-bottom: 20px;
+        justify-content: center;
+    }
+
+    .footer-about-tela {
+        width: 100%;
+        position: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-about-botascopia-logo {
+        position: unset;
+        margin-bottom: 10px;
+    }
+
+    .footer-about-tela-details {
+        position: unset;
+        bottom: unset;
+    }
+
+    .footer-logos {
+        position: unset;
+        margin: 20px 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .footer-nav-bar{
+        bottom: unset;
+    }
+
+    .footer-nav-plan {
+        position: unset;
+        padding: 0;
+    }
+
+    .footer-legal {
+        text-align: end;
+    }
+}
+
+@media ( width <= 480px) {
+    .footer-nav-items > .menu-item:nth-child(1), .footer-nav-items > .menu-item:nth-child(2), .footer-nav-items > .menu-item:nth-child(3) {
+        height: unset;
+        min-width: unset;
+    }
+
+    .footer-nav-plan {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .footer-nav-bar{
+        font-size: 12px;
+    }
 }

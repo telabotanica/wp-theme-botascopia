@@ -1,0 +1,2570 @@
+{
+    "key": "group_651581e81b854",
+    "title": "Agroécologie",
+    "fields": [
+        {
+            "key": "field_6514286a850b9",
+            "label": "Préférences physico-chimiques",
+            "name": "preferences_physico-chimiques",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_651428c1850ba",
+                    "label": "Lumière",
+                    "name": "lumiere",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum entre ombre et lumière, 1 étant très ombragé et 9 très lumineux. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - ombre - hypersciaphile (10 lux)": "1 - ombre - hypersciaphile (10 lux)",
+                        "2 - persciaphile (50 lux)": "2 - persciaphile (50 lux)",
+                        "3 - sciaphile (100 lux)": "3 - sciaphile (100 lux)",
+                        "4 - hémisciaphile (1000 lux)": "4 - hémisciaphile (1000 lux)",
+                        "5 - héliocline à sciacline (5000 lux)": "5 - héliocline à sciacline (5000 lux)",
+                        "6 - hémihéliophile (10 000 lux)": "6 - hémihéliophile (10 000 lux)",
+                        "7 - héliophile (50 000 lux)": "7 - héliophile (50 000 lux)",
+                        "8 - perhéliophile (75 000 lux)": "8 - perhéliophile (75 000 lux)",
+                        "9 - lumière - hyperhéliophile (100 000 lux)": "9 - lumière - hyperhéliophile (100 000 lux)"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142ed1409a9",
+                    "label": "Humidité atmosphérique",
+                    "name": "humidite_atmospherique",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum entre sec et humide, 1 étant très sec et 9 très humide. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - sec - aéroxérophile (10%)": "1 - sec - aéroxérophile (10%)",
+                        "2 - intermédiaire (20%)": "2 - intermédiaire (20%)",
+                        "3 - aéromésoxérophile (30%)": "3 - aéromésoxérophile (30%)",
+                        "4 - intermédiaire (40%)": "4 - intermédiaire (40%)",
+                        "5 - aéromésohydrique (50%)": "5 - aéromésohydrique (50%)",
+                        "6 - intermédiaire (60%)": "6 - intermédiaire (60%)",
+                        "7 - aéromésohygrophile (70%)": "7 - aéromésohygrophile (70%)",
+                        "8 - intermédiaire (80%)": "8 - intermédiaire (80%)",
+                        "9 - humide - aérohydrophile (90%)": "9 - humide - aérohydrophile (90%)"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142f18409aa",
+                    "label": "Continentalité",
+                    "name": "continentalite",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum entre influence climatique marine marin et influence climatique continentale, 1 étant très marine et 9 très continentale. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - marine à maritime (AT≈8°C)": "1 - marine à maritime (AT≈8°C)",
+                        "2 - hyperocéanique (AT≈10°C)": "2 - hyperocéanique (AT≈10°C)",
+                        "3 - océanique (AT≈17°C)": "3 - océanique (AT≈17°C)",
+                        "4 - subocéanique (AT≈19°C)": "4 - subocéanique (AT≈19°C)",
+                        "5 - intermédiaire (AT≈21°C)": "5 - intermédiaire (AT≈21°C)",
+                        "6 - précontinentale (AT≈23°C)": "6 - précontinentale (AT≈23°C)",
+                        "7 - subcontinentale (AT≈25°C)": "7 - subcontinentale (AT≈25°C)",
+                        "8 - continentale (AT≈30°C)": "8 - continentale (AT≈30°C)",
+                        "9 - hypercontinentale (AT≈40°C)": "9 - hypercontinentale (AT≈40°C)"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142f42409ab",
+                    "label": "Réaction (pH)",
+                    "name": "reaction_ph",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum entre sol acide et sol basique, 1 étant très acide et 9 très basique. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - acide - hyperacidophile (3,0<pH<4,0)": "1 - acide - hyperacidophile (3,0<pH<4,0)",
+                        "2 - peracidophiles (4,0<pH<4,5)": "2 - peracidophiles (4,0<pH<4,5)",
+                        "3 - acidophiles (4,5<pH<5,0)": "3 - acidophiles (4,5<pH<5,0)",
+                        "4 - acidoclines (5,0<pH<5,5)": "4 - acidoclines (5,0<pH<5,5)",
+                        "5 - neutroclines (5,5<pH<6,5)": "5 - neutroclines (5,5<pH<6,5)",
+                        "6 - basoclines (6,5<pH<7,0)": "6 - basoclines (6,5<pH<7,0)",
+                        "7 - basophiles (7,0<pH<7,5)": "7 - basophiles (7,0<pH<7,5)",
+                        "8 - perbasophiles (7,5<pH<8,0)": "8 - perbasophiles (7,5<pH<8,0)",
+                        "9 - basique - hyperbasophiles (8,0<pH<9,0)": "9 - basique - hyperbasophiles (8,0<pH<9,0)"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142f6bf16f5",
+                    "label": "Humidité du sol",
+                    "name": "humidite_du_sol",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum entre sol sec et milieu aquatique, 1 étant très sec et 9 aquatique profond ou intra-aquatique. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - sec - hyperxérophiles": "1 - sec - hyperxérophiles",
+                        "2 - perxérophiles": "2 - perxérophiles",
+                        "3 - xérophiles": "3 - xérophiles",
+                        "4 - mésoxérophiles": "4 - mésoxérophiles",
+                        "5 - mésohydriques": "5 - mésohydriques",
+                        "6 - mésohygroclines, mésohygrophiles": "6 - mésohygroclines, mésohygrophiles",
+                        "7 - hygrophiles": "7 - hygrophiles",
+                        "8 - hydrophiles": "8 - hydrophiles",
+                        "9 - amphibies saisonnières": "9 - amphibies saisonnières",
+                        "10 - amphibies permanentes": "10 - amphibies permanentes",
+                        "11 - aquatique superficielle ou flottante": "11 - aquatique superficielle ou flottante",
+                        "12 - aquatique profonde ou intra-aquatique": "12 - aquatique profonde ou intra-aquatique"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142f80f16f6",
+                    "label": "Texture du sol",
+                    "name": "texture_du_sol",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Sélectionner autant de choix que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - argile": "1 - argile",
+                        "2 - intermédiaire": "2 - intermédiaire",
+                        "3 - limon": "3 - limon",
+                        "4 - sable fin": "4 - sable fin",
+                        "5 - sable grossier": "5 - sable grossier",
+                        "6 - graviers": "6 - graviers",
+                        "7 -  galets, rocailles": "7 -  galets, rocailles",
+                        "8 - blocs, dalles, replats rocheux": "8 - blocs, dalles, replats rocheux",
+                        "9 - fissures verticales et parois": "9 - fissures verticales et parois"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142f90f16f7",
+                    "label": "Richesse en azote (N)",
+                    "name": "richesse_en_azote_n",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum entre sol pauvre et sol riche, 1 étant très pauvre et 9 très riche. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1 - pauvre - hyperoligotrophiles (≈100 µg N\/l)": "1 - pauvre - hyperoligotrophiles (≈100 µg N\/l)",
+                        "2 - peroligotrophiles (≈200 µg N\/l)": "2 - peroligotrophiles (≈200 µg N\/l)",
+                        "3 - ligotrophiles (≈300 µg N\/l)": "3 - ligotrophiles (≈300 µg N\/l)",
+                        "4 - méso-oligotrophiles (≈400 µg N\/l)": "4 - méso-oligotrophiles (≈400 µg N\/l)",
+                        "5 - mésotrophiles (≈500 µg N\/l)": "5 - mésotrophiles (≈500 µg N\/l)",
+                        "6 - méso-eutrophiles (≈750 µg N\/l)": "6 - méso-eutrophiles (≈750 µg N\/l)",
+                        "7 - eutrophiles (≈1000 µg N\/l)": "7 - eutrophiles (≈1000 µg N\/l)",
+                        "8 - pereutrophiles (≈1250 µg N\/l)": "8 - pereutrophiles (≈1250 µg N\/l)",
+                        "9 - riche - hypereutrophiles (≈1500 µg N\/l)": "9 - riche - hypereutrophiles (≈1500 µg N\/l)"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142fb0a01c0",
+                    "label": "Salinité",
+                    "name": "salinite",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Ces choix représentent un continuum de tolérance au sel, 1 étant ne supportant pas le sel et 9 très tolérant au sel. Choisissez autant de valeurs que nécessaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "0 - ne supportant pas le sel": "0 - ne supportant pas le sel",
+                        "1 - hyperoligohalines, [0-0,1% Cl-]": "1 - hyperoligohalines, [0-0,1% Cl-]",
+                        "2 - peroligohalines, [0,1-0,3% Cl-]": "2 - peroligohalines, [0,1-0,3% Cl-]",
+                        "3 - oligohalines, [0,3-0,5% Cl-]": "3 - oligohalines, [0,3-0,5% Cl-]",
+                        "4 - meso-oligohalines, [0,5-0,7% Cl-]": "4 - meso-oligohalines, [0,5-0,7% Cl-]",
+                        "5 - mesohalines, [0,7-0,9% Cl-]": "5 - mesohalines, [0,7-0,9% Cl-]",
+                        "6 - meso-euhalines, [0,9-1,2% Cl-]": "6 - meso-euhalines, [0,9-1,2% Cl-]",
+                        "7 - euhalines, [1,2-1,6% Cl-]": "7 - euhalines, [1,2-1,6% Cl-]",
+                        "8 - polyhalines, [1,6-2,3% Cl-]": "8 - polyhalines, [1,6-2,3% Cl-]",
+                        "9 - très tolérant - hyperhalines, [>2,3% Cl-]": "9 - très tolérant - hyperhalines, [>2,3% Cl-]"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65142fbfa01c1",
+                    "label": "Température minimale supportée",
+                    "name": "temperature_minimale_supportee",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Indiquer la température minimale supportée par la plante en °C.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65142fe4a01c2",
+                    "label": "Tolérance au gel",
+                    "name": "tolerance_au_gel",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si la plante tolère le gel, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                }
+            ]
+        },
+        {
+            "key": "field_651432af63324",
+            "label": "Interaction avec le vivant",
+            "name": "interaction_avec_le_vivant",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_651432d663325",
+                    "label": "Des symbioses avec des organismes fixateurs d'azote ont-elles été identifiées ?",
+                    "name": "des_symbioses_avec_des_organismes_fixateurs_dazote",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si oui, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_6514330d63326",
+                    "label": "Plantes connues pour attirer des auxiliaires de culture",
+                    "name": "plantes_connues_pour_attirer_des_auxiliaires_de_culture",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si la plante est connue pour attirer des auxiliaires de culture, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_6514332f63327",
+                    "label": "Plantes connues pour repousser les ravageurs",
+                    "name": "plantes_connues_pour_repousser_les_ravageurs",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si la plante est connue pour repousser des ravageurs de culture, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_6514334363328",
+                    "label": "Plantes connues pour attirer les ravageurs",
+                    "name": "plantes_connues_pour_attirer_les_ravageurs",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si la plante est connue pour attirer des ravageurs de culture, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_6514335c63329",
+                    "label": "Type d'auxiliaires",
+                    "name": "type_dauxiliaires",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez ici le type d'auxiliaires de culture, plusieurs choix possibles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514330d63326",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pollinisateurs": "pollinisateurs",
+                        "prédateurs": "prédateurs",
+                        "parasitoïdes": "parasitoïdes"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6514339d6332a",
+                    "label": "Les prédateurs",
+                    "name": "les_predateurs",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez les prédateurs concernés, plusieurs choix possibles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514330d63326",
+                                "operator": "==",
+                                "value": "1"
+                            },
+                            {
+                                "field": "field_6514335c63329",
+                                "operator": "==",
+                                "value": "prédateurs"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "acariens": "acariens",
+                        "coccinelles": "coccinelles",
+                        "chrysopes": "chrysopes",
+                        "carabes": "carabes",
+                        "staphylins": "staphylins",
+                        "araignées": "araignées"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 1,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
+                },
+                {
+                    "key": "field_65143413b8a4a",
+                    "label": "Les ravageurs",
+                    "name": "les_ravageurs",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez les ravageurs concernés, plusieurs choix possibles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514332f63327",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6514334363328",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pucerons": "pucerons",
+                        "coléoptères": "coléoptères",
+                        "cicadelles": "cicadelles",
+                        "cochenilles": "cochenilles",
+                        "cécidomyes": "cécidomyes",
+                        "aleurodes": "aleurodes",
+                        "chenilles": "chenilles",
+                        "limaces": "limaces",
+                        "nématodes": "nématodes",
+                        "petits rongeurs": "petits rongeurs"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 1,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
+                },
+                {
+                    "key": "field_65143429b8a4b",
+                    "label": "Quelles sont les structures connues pour attirer les auxiliaires de culture ?",
+                    "name": "quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Plusieurs choix possibles.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "un tube floral": "un tube floral",
+                        "des éperons nectarifères": "des éperons nectarifères",
+                        "des nectaires floraux": "des nectaires floraux",
+                        "des nectaires extra-floraux": "des nectaires extra-floraux",
+                        "des domaties": "des domaties",
+                        "une tige creuse": "une tige creuse",
+                        "des feuilles persistantes ou marcescentes": "des feuilles persistantes ou marcescentes",
+                        "une gaine foliaire persistante": "une gaine foliaire persistante",
+                        "un port en touffe": "un port en touffe",
+                        "une écorce crevassée": "une écorce crevassée",
+                        "des inflorescences en plateau (capitule, corymbe dense, ombelle dense...)": "des inflorescences en plateau (capitule, corymbe dense, ombelle dense...)",
+                        "des interactions chimiques": "des interactions chimiques"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 1,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
+                },
+                {
+                    "key": "field_65143478296f3",
+                    "label": "Communautés végétales dans lesquelles la plante est observée",
+                    "name": "communautes_vegetales_dans_lesquelles_la_plante_est_observee",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez les communautés végétales dont peut faire partie la plante décrite. Plusieurs choix possibles.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "dans des bandes fleuries": "dans des bandes fleuries",
+                        "sur des sols rocailleux": "sur des sols rocailleux",
+                        "dans des pelouses": "dans des pelouses",
+                        "dans des prairies": "dans des prairies",
+                        "dans des ourlets": "dans des ourlets",
+                        "dans des mégaphorbiaies": "dans des mégaphorbiaies",
+                        "dans des forêts": "dans des forêts",
+                        "dans des landes": "dans des landes",
+                        "dans des maquis": "dans des maquis",
+                        "dans des garrigues": "dans des garrigues",
+                        "dans des marais": "dans des marais",
+                        "dans des ripisylves": "dans des ripisylves",
+                        "dans des bosquets": "dans des bosquets",
+                        "isolée": "isolée",
+                        "dans des friches": "dans des friches",
+                        "dans des haies": "dans des haies"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 1,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
+                },
+                {
+                    "key": "field_651434a0296f4",
+                    "label": "Plante présentant une multiplication végétative",
+                    "name": "plante_presentant_une_multiplication_vegetative",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si la plante présente une multiplication végétative, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_651434bb296f5",
+                    "label": "Structures liées à la multiplication végétative",
+                    "name": "structures_liees_a_la_multiplication_vegetative",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez les structures de la plante liée à la multiplication végétative. Plusieurs choix possibles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_651434a0296f4",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "des tubercules": "des tubercules",
+                        "des stolons": "des stolons",
+                        "des rhizomes": "des rhizomes",
+                        "des bulbilles": "des bulbilles",
+                        "des propagules": "des propagules"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_651434e4296f6",
+                    "label": "La plante est-elle connue pour émettre des substances allélopathiques ?",
+                    "name": "la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si oui, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_6514350a296f7",
+                    "label": "Cette plante est-elle utilisée comme plante compagne ?",
+                    "name": "cette_plante_est-elle_utilisee_comme_plante_compagne_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez le type de cultures dont la plante décrite peut être compagne, Plusieurs choix possibles. Si non, ne cochez rien !",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "grandes cultures": "grandes cultures",
+                        "maraîchages": "maraîchages",
+                        "vignes": "vignes",
+                        "vergers": "vergers"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6514355a296f8",
+                    "label": "Toxicité pour les animaux non humains",
+                    "name": "toxicite_pour_les_animaux_non_humains",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Préciser pour quels animaux la plante est toxique. Plusieurs choix possibles. Si elle n'est pas toxique pour les animaux alors ne cochez rien !",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "les porcins": "les porcins",
+                        "les ovins": "les ovins",
+                        "les bovins": "les bovins",
+                        "les caprins": "les caprins",
+                        "les équins": "les équins",
+                        "les volailles": "les volailles",
+                        "les asins": "les asins",
+                        "les lapins": "les lapins",
+                        "tous les animaux d'élevage": "tous les animaux d'élevage"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_6514357c34ca2",
+                    "label": "Toxicité pour l'humain",
+                    "name": "toxicite_pour_lhumain",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si oui, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_6514358e34ca3",
+                    "label": "La plante est toxique au niveau...",
+                    "name": "la_plante_est_toxique_au_niveau_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Précisez la ou les structure(s) toxique(s). Plusieurs réponses possibles.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514355a296f8",
+                                "operator": "!=empty"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6514357c34ca2",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "des racines": "des racines",
+                        "des tiges": "des tiges",
+                        "des feuilles": "des feuilles",
+                        "des fleurs": "des fleurs",
+                        "des fruits": "des fruits",
+                        "des graines": "des graines",
+                        "de toutes ses parties": "de toutes ses parties"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65143a7934ca4",
+                    "label": "Plante servant explicitement d'abri à un organisme",
+                    "name": "plante_servant_explicitement_dabri_a_un_organisme",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si oui, détaillez sous forme de phrase (majuscule au début et point à la fin) en précisant quel organisme est abrité, quel organe de la plante constitue un abri, et quel nom on donne à la structure (ex. galle, domatie).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_65143ab9be160",
+            "label": "Adaptations aux pratiques de culture",
+            "name": "adaptations_aux_pratiques_de_culture",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_65143ad4be161",
+                    "label": "Cette espèce est observée",
+                    "name": "cette_espece_est_observee",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "fréquemment dans les cultures et leurs abords": "fréquemment dans les cultures et leurs abords",
+                        "occasionnellement dans les cultures et leurs abords": "occasionnellement dans les cultures et leurs abords",
+                        "rarement ou jamais dans les cultures et leurs abords": "rarement ou jamais dans les cultures et leurs abords"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143af2be162",
+                    "label": "Cette espèce est observée préférentiellement",
+                    "name": "cette_espece_est_observee_preferentiellement",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Cochez uniquement les choix les plus fréquents et ne cochez pas les choix qu'on observe seulement rarement. Si elle n'est jamais observée dans les cultures et leurs abords, ne cochez aucune case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "de grandes cultures, type open field": "de grandes cultures, type open field",
+                        "de prairies temporaires pâturées": "de prairies temporaires pâturées",
+                        "de prairies temporaires fauchées": "de prairies temporaires fauchées",
+                        "de prairies permanentes pâturées": "de prairies permanentes pâturées",
+                        "de prairies permanentes fauchées": "de prairies permanentes fauchées",
+                        "d'espaces de maraîchage": "d'espaces de maraîchage",
+                        "de vignes": "de vignes",
+                        "de vergers": "de vergers",
+                        "de sylvicultures": "de sylvicultures"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65143b09be163",
+                    "label": "Précision - Cette espèce est observée préférentiellement",
+                    "name": "precision_-_cette_espece_est_observee_preferentiellement",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Lorsque l'espèce est observée dans les cultures et leurs abords, précisez où. Si elle n'est jamais observée dans les cultures et leurs abords, ne cochez aucune case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "au sein de parcelles cultivées": "au sein de parcelles cultivées",
+                        "en bordure de parcelles cultivées - haies": "en bordure de parcelles cultivées - haies",
+                        "en bordure de parcelles cultivées - bandes fleuries": "en bordure de parcelles cultivées - bandes fleuries",
+                        "en bordure de parcelles cultivées - bandes enherbées (incluant celles en bord de zone humide), principalement composées de graminées": "en bordure de parcelles cultivées - bandes enherbées (incluant celles en bord de zone humide), principalement composées de graminées",
+                        "en bordure de parcelles cultivées - autres interfaces (espace inter-parcellaire, merlon, chemin, bord de route, fossé...)": "en bordure de parcelles cultivées - autres interfaces (espace inter-parcellaire, merlon, chemin, bord de route, fossé...)"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65143ba9c09dc",
+                    "label": "Type de culture préférentiel",
+                    "name": "type_de_culture_preferentiel",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Si elle n'est jamais observée dans les cultures et leurs abords, ne cochez aucune case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "d'hiver": "d'hiver",
+                        "d'été": "d'été"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143be5c09dd",
+                    "label": "Période de levée",
+                    "name": "periode_de_levee",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Sélectionnez tous les mois qui correspondent à la période de levée de la plante.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Janvier": "Janvier",
+                        "Février": "Février",
+                        "Mars": "Mars",
+                        "Avril": "Avril",
+                        "Mai": "Mai",
+                        "Juin": "Juin",
+                        "Juillet": "Juillet",
+                        "Août": "Août",
+                        "Septembre": "Septembre",
+                        "Octobre": "Octobre",
+                        "Novembre": "Novembre",
+                        "Décembre": "Décembre"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65143bfec09de",
+                    "label": "Cette plante est favorisée dans les systèmes de culture",
+                    "name": "cette_plante_est_favorisee_dans_les_systemes_de_culture",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "sans travail du sol": "sans travail du sol",
+                        "avec travail du sol modéré": "avec travail du sol modéré",
+                        "avec travail du sol systématique": "avec travail du sol systématique"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143c43979a2",
+                    "label": "Profondeur du travail du sol",
+                    "name": "profondeur_du_travail_du_sol",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143bfec09de",
+                                "operator": "!=",
+                                "value": "sans travail du sol"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "superficiel (0-5 cm)": "superficiel (0-5 cm)",
+                        "profond sans retournement (5 - 15 cm)": "profond sans retournement (5 - 15 cm)",
+                        "profond avec retournement (labour, jusqu'à 30 cm)": "profond avec retournement (labour, jusqu'à 30 cm)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143c5e979a3",
+                    "label": "Au bout de combien de temps la moitié du stock semencier a perdu son pouvoir germinatif ?",
+                    "name": "au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Temps en année(s)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 0,
+                    "prepend": "",
+                    "append": "année(s)"
+                },
+                {
+                    "key": "field_65143c92979a4",
+                    "label": "Est-ce qu'une résistance aux herbicides a été identifiée chez cette espèce ?",
+                    "name": "est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "oui": "oui",
+                        "non": "non"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143cbc979a5",
+                    "label": "À quelle(s) molécule(s) ?",
+                    "name": "a_quelles_molecules_",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Donnez le nom des molécules sous forme de liste sans majuscule, avec une virgule pour séparer les molécules et sans point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143c92979a4",
+                                "operator": "==",
+                                "value": "oui"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "glyphosate, cyanure de calcium, dinitroanilines",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
+            "key": "field_65143d5632452",
+            "label": "Valeurs écologiques, historiques et locales",
+            "name": "valeurs_ecologiques_historiques_et_locales",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_65143d7432453",
+                    "label": "Cette plante est-elle connue pour avoir été ou être actuellement cultivée ?",
+                    "name": "cette_plante_est-elle_connue_pour_avoir_ete_ou_etre_actuellement_cultivee_",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Si oui, cochez la case.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_65143d9832454",
+                    "label": "Cette plante a-t-elle été ou est-elle cultivée pour les usages suivants ?",
+                    "name": "cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Si vous connaissez un usage qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "l'alimentation humaine courante": "l'alimentation humaine courante",
+                        "l'alimentation humaine en situation de crise alimentaire": "l'alimentation humaine en situation de crise alimentaire",
+                        "l'alimentation animale": "l'alimentation animale",
+                        "ses propriétés médicinales": "ses propriétés médicinales",
+                        "la teinturerie": "la teinturerie",
+                        "la vannerie": "la vannerie",
+                        "la fabrication de textile": "la fabrication de textile",
+                        "l'ornement et décoration": "l'ornement et décoration",
+                        "la parfumerie": "la parfumerie",
+                        "la construction": "la construction",
+                        "la production d'énergie": "la production d'énergie",
+                        "ses propriétés psychotropes": "ses propriétés psychotropes"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 1,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
+                },
+                {
+                    "key": "field_65143dd532455",
+                    "label": "Référence pour les informations sur les usages",
+                    "name": "reference_pour_les_informations_sur_les_usages",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Respectez la typographie habituelle des références.\r\n\r\nLivre : NOM, Prénom. Titre. Édition. Lieu de publication : éditeur, année. Pagination\r\nChapitre : NOM, Prénom. Titre du chapitre In NOM, Prénom. Titre de l’ouvrage collectif. Lieu de publication : éditeur, année. Pagination.\r\nArticles en ligne : Noms auteurs, premère lettre du prénom. Titre. Nom du journal [en ligne]. Mois année, volume, n°, pages, DOI. [consulté le jour mois année]\r\nSite web : AUTEUR. Titre [en ligne]. Nom de l'éditeur, date de publication, date de mise à jour [date de consultation]. Disponibilité et accès",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "Source(s) :",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143df032456",
+                    "label": "Plante connue pour des propriétés autres que la toxicité (cf catégorie interaction avec le vivant)",
+                    "name": "plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Si vous connaissez une propriété qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.\r\n\r\nLa toxicité est abordée plus haut dans le formulaire.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "être allergisante": "être allergisante",
+                        "entrer en compétition avec les cultures": "entrer en compétition avec les cultures",
+                        "dégrader la qualité des productions agricoles": "dégrader la qualité des productions agricoles",
+                        "avoir une action fertilisante sur le milieu": "avoir une action fertilisante sur le milieu",
+                        "dépolluer, phytoremédiation": "dépolluer, phytoremédiation",
+                        "acidifier le milieu": "acidifier le milieu"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 1,
+                    "save_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0
+                },
+                {
+                    "key": "field_65143e0932457",
+                    "label": "Particularité(s) de cette espèce en lien avec le terroir ou le territoire",
+                    "name": "particularites_de_cette_espece_en_lien_avec_le_terroir_ou_le_territoire",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Décrivez sous forme de phrase (avec majuscule au début et point à la fin) une particularité de l'espèce en lien avec un terroir ou un territoire précis. N'oubliez pas de préciser quel territoire est concerné !",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143e3132458",
+                    "label": "Statut de protection",
+                    "name": "statut_de_protection",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "n'a aucun statut de protection sur tout le territoire métropolitain (LC)": "n'a aucun statut de protection sur tout le territoire métropolitain (LC)",
+                        "a un statut de protection au niveau national et\/ou régional": "a un statut de protection au niveau national et\/ou régional"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143eed05d3a",
+                    "label": "Quel est le statut de protection ? - France métropolitaine",
+                    "name": "quel_est_le_statut_de_protection_france_metropolitaine",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante en France métropolitaine.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e3132458",
+                                "operator": "==",
+                                "value": "a un statut de protection au niveau national et\/ou régional"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143e8605d38",
+                    "label": "Statut de protection à l'échelle locale - Région(s) concernée(s)",
+                    "name": "statut_de_protection_a_l_echelle_locale_regions_concernees",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Cochez toutes les régions bénéficiant d'un statut de protection spécifique. Vous pourrez ensuite préciser le statut de protection de la plante. \r\n\r\nSi le statut est le même sur toute la France métropolitaine, ne cochez aucune région !",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e3132458",
+                                "operator": "==",
+                                "value": "a un statut de protection au niveau national et\/ou régional"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Auvergne-Rhône-Alpes": "Auvergne-Rhône-Alpes",
+                        "Bourgogne-Franche-Comté": "Bourgogne-Franche-Comté",
+                        "Bretagne": "Bretagne",
+                        "Centre-Val de Loire": "Centre-Val de Loire",
+                        "Corse": "Corse",
+                        "Grand-Est": "Grand-Est",
+                        "Guadeloupe": "Guadeloupe",
+                        "Hauts-de-France": "Hauts-de-France",
+                        "Île-de-France": "Île-de-France",
+                        "La Réunion": "La Réunion",
+                        "Martinique": "Martinique",
+                        "Mayotte": "Mayotte",
+                        "Normandie": "Normandie",
+                        "Nouvelle-Aquitaine": "Nouvelle-Aquitaine",
+                        "Occitanie": "Occitanie",
+                        "Pays de la Loire": "Pays de la Loire",
+                        "Provence-Alpes-Côte d'Azur": "Provence-Alpes-Côte d'Azur"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_65143ec505d39",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Auvergne-Rhône-Alpes",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Auvergne-Rhône-Alpes"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143fa2d9e27",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Bourgogne-Franche-Comté",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bourgogne_franhce_comte",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Bourgogne-Franche-Comté"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143fa2d9e26",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Bretagne",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bretagne",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Bretagne"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143fa1d9e25",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Centre-Val de Loire",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_centre_val_de_loire",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Centre-Val de Loire"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143fa1d9e24",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Corse",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_corse",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Corse"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143fa0d9e23",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Grand-Est",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_grand_est",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Grand-Est"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143f9fd9e22",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Guadeloupe",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_guadeloupe",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Guadeloupe"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65143f90d9e21",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Hauts-de-France",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_hauts_de_france",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Hauts-de-France"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65144010d9e2b",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) -  Île-de-France",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_ile_de_france",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Île-de-France"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6514400fd9e2a",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - La Réunion",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_la_reunion",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "La Réunion"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6514400fd9e29",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Martinique",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_martinique",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Martinique"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6514400ed9e28",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Mayotte",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_mayotte",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Mayotte"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65144044d9e2c",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Normandie",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_normandie",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Normandie"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6514404bd9e2d",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Nouvelle-Aquitaine",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_nouvelle_aquitaine",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Nouvelle-Aquitaine"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65144052d9e2e",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Occitanie",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_occitanie",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Occitanie"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6514405ad9e2f",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Pays de la Loire",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_pays_de_la_loire",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Pays de la Loire"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_65144066d9e30",
+                    "label": "Précisions sur la zone de la région concernée (département, environnement...) - Provence-Alpes-Côte d'Azur",
+                    "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_provence_alpes_cote_d_azur",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Provence-Alpes-Côte d'Azur"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_651440b9109e3",
+                    "label": "Quel est le statut de protection ? - Auvergne-Rhône-Alpes",
+                    "name": "quel_est_le_statut_de_protection__auvergne_rhone_alpes",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Auvergne-Rhône-Alpes"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440d1109e4",
+                    "label": "Quel est le statut de protection ? - Bourgogne-Franche-Comté",
+                    "name": "quel_est_le_statut_de_protection__bourgogne_franche_comte",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Bourgogne-Franche-Comté"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440db109e5",
+                    "label": "Quel est le statut de protection ? - Bretagne",
+                    "name": "quel_est_le_statut_de_protection__bretagne",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Bretagne"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440dd109e6",
+                    "label": "Quel est le statut de protection ? - Centre-Val de Loire",
+                    "name": "quel_est_le_statut_de_protection__centre_val_de_loire",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Centre-Val de Loire"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440de109e7",
+                    "label": "Quel est le statut de protection ? - Corse",
+                    "name": "quel_est_le_statut_de_protection__corse",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Corse"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440df109e8",
+                    "label": "Quel est le statut de protection ? - Grand-Est",
+                    "name": "quel_est_le_statut_de_protection__grand_est",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Grand-Est"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440e0109e9",
+                    "label": "Quel est le statut de protection ? - Guadeloupe",
+                    "name": "quel_est_le_statut_de_protection__guadeloupe",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Guadeloupe"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440e1109ea",
+                    "label": "Quel est le statut de protection ? - Hauts-de-France",
+                    "name": "quel_est_le_statut_de_protection__hauts_de_france",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Hauts-de-France"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440e2109eb",
+                    "label": "Quel est le statut de protection ? - Île-de-France",
+                    "name": "quel_est_le_statut_de_protection__ile_de_france",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Île-de-France"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651440e4109ec",
+                    "label": "Quel est le statut de protection ? - La Réunion",
+                    "name": "quel_est_le_statut_de_protection__la_reunion",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "La Réunion"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441a8109ed",
+                    "label": "Quel est le statut de protection ? - Martinique",
+                    "name": "quel_est_le_statut_de_protection__martinique",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Martinique"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441a9109ee",
+                    "label": "Quel est le statut de protection ? - Mayotte",
+                    "name": "quel_est_le_statut_de_protection__mayotte",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Mayotte"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441aa109ef",
+                    "label": "Quel est le statut de protection ? - Normandie",
+                    "name": "quel_est_le_statut_de_protection__normandie",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Normandie"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441ab109f0",
+                    "label": "Quel est le statut de protection ? - Nouvelle-Aquitaine",
+                    "name": "quel_est_le_statut_de_protection__nouvelle_aquitaine",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Nouvelle-Aquitaine"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441f0109f3",
+                    "label": "Quel est le statut de protection ? - Occitanie",
+                    "name": "quel_est_le_statut_de_protection__occitanie",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Occitanie"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441f0109f2",
+                    "label": "Quel est le statut de protection ? - Pays de la Loire",
+                    "name": "quel_est_le_statut_de_protection__pays_de_la_loire",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Pays de la Loire"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_651441ee109f1",
+                    "label": "Quel est le statut de protection ? - Provence-Alpes-Côte d'Azur",
+                    "name": "quel_est_le_statut_de_protection__provence_alpes_cote_d_azur",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Précisez le statut de protection de la plante sur la zone géographique définie.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143e8605d38",
+                                "operator": "==",
+                                "value": "Provence-Alpes-Côte d'Azur"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Éteinte (EX)": "Éteinte (EX)",
+                        "Éteinte à l'état sauvage (EW)": "Éteinte à l'état sauvage (EW)",
+                        "En danger critique (CR)": "En danger critique (CR)",
+                        "En danger (EN)": "En danger (EN)",
+                        "Vulnérable (VU)": "Vulnérable (VU)",
+                        "Quasi menacée (NT)": "Quasi menacée (NT)",
+                        "Préoccupation mineure (LC)": "Préoccupation mineure (LC)",
+                        "Données insuffisantes (DD)": "Données insuffisantes (DD)",
+                        "Non évaluée (NE)": "Non évaluée (NE)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1696343818
+}

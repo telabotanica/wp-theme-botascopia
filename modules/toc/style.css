@@ -179,3 +179,16 @@
     margin-top: 1rem;
     padding-left: 2.5rem;
 }
+
+@media ( 480px < width <= 780px) {
+    .toc{
+        padding-right: 50px;
+    }
+}
+
+@media ( width <= 480px) {
+    .toc{
+        width: 100%;
+        padding-right: 0;
+    }
+}

@@ -3,13 +3,19 @@
 Ce thème utilise le bundler [Webpack](https://webpack.github.io) et l'outil de
 gestion de dépendances [Composer](https://getcomposer.org).
 
+Ce thème a été crée sous PHP 8.
+
 ## Pour débuter
 
-Installer [Node](https://nodejs.org)
+- Installer [Node](https://nodejs.org)
 
-Installer le plugin wordpress `Advanced Custom Fields`.
+- Installer le plugin wordpress `Advanced Custom Fields`.
 
-Installer le plugin wordpress `Posts 2 Posts`
+- Installer le plugin wordpress `Posts 2 Posts`.
+
+- Cloner le plugin [tela sso](https://github.com/telabotanica/wp-plugin-bs-sso) dans le dossier wp-content/plugins et l'activer
+
+- Installer le plugin `WP Mail SMTP` et configurer le serveur mail.
 
 Installer les dépendences du projet
 

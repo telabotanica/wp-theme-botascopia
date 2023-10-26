@@ -473,10 +473,3 @@ body.page-template-fiche_pdf {
 .fructification-mauve-icon {
   background-image: url("images/fructification-mauve.svg");
 }
-
-.home-author-fiches {
-  width: 400px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}

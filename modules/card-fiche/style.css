@@ -14,6 +14,8 @@
     overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    object-fit: contain;
+    object-position: center;
 }
 
 .card-fiche-body{
@@ -66,4 +68,25 @@
     height: 20px;
     width: 20px;
     margin: 0;
+}
+
+@media ( width <= 780px) {
+    .card-fiche {
+        width: 150px;
+        height: 200px;
+    }
+
+    .card-fiche-image{
+        height: 150px;
+    }
+
+    .card-fiche-body{
+        padding: 0 5px;
+        margin-top: -5px;
+        font-size: 12px;
+    }
+
+    .card-fiche-title {
+        -webkit-line-clamp: 1;
+    }
 }

@@ -4649,7 +4649,7 @@
                     "name": "differenciation_du_perianthe",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "Si la fleur comporte une seule catégorie d'organes dans le périanthe et que vous ne savez pas de quoi il s'agit, choisissez \"tépales\".",
                     "required": 1,
                     "conditional_logic": [
                         [
@@ -5312,7 +5312,7 @@
             "name": "fleur_femelle",
             "aria-label": "",
             "type": "group",
-            "instructions": "",
+            "instructions": "Si la fleur comporte une seule catégorie d'organes dans le périanthe et que vous ne savez pas de quoi il s'agit, choisissez \"tépales\".",
             "required": 0,
             "conditional_logic": [
                 [
@@ -6338,5 +6338,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1683707560
+    "modified": 1695981718
 }

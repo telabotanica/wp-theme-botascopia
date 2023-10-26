@@ -13,6 +13,21 @@ require get_template_directory() . '/inc/styleguide.php';
 // Chargement du fichier utile
 require get_template_directory() . '/inc/utile.php';
 
+// Personnalisation de la page de collections
+require get_template_directory() . '/inc/collections.php';
+
+// Personnalisation de la page des fiches
+require get_template_directory() . '/inc/fiches.php';
+
+// Personnalisation de la page de login
+require get_template_directory() . '/inc/login.php';
+
+// Redirection des non-admins vers la page d'accueil lors du login
+require get_template_directory() . '/inc/redirect-after-login.php';
+
+// Gestion des contenus, liens, commentaires etc. à la suppression d'un compte
+require get_template_directory() . '/inc/manage-delete-account.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
@@ -31,7 +46,9 @@ function bs_theme_supports() {
 			'principal' => __('Menu principal', 'botascopia'),
 			'secondary' => __('Menu secondaire', 'botascopia'),
 			'footer-bar' => __('Pied de page - bandeau', 'botascopia'),
-			'footer-columns' => __('Pied de page - en colonnes', 'botascopia'),
+			'footer-liens' => __('footer-liens', 'botascopia'),
+			'footer-legal' => __('footer-legal', 'botascopia'),
+			'footer-contacts' => __('footer-contacts', 'botascopia'),
 		]);
 }
 add_action('after_setup_theme', 'bs_theme_supports');
@@ -110,30 +127,6 @@ function my_acf_save_post($post_id) {
 // run after ACF saves the $_POST['acf'] data
 add_action('acf/save_post', 'my_acf_save_post', 20);
 
-// Save collection to favorite
-function add_fav_collection_meta() {
-	$user_id = $_POST['user_id'];
-	$category = $_POST['category'];
-	$favorites = [];
-	
-	// On récupère les favoris existants
-	$existingFavorites = get_user_meta($user_id, 'favorite_collection');
-	
-	foreach ($existingFavorites[0] as $key => $value) {
-		$favorites[] = $value;
-	}
-	
-	// si category déjà dans favoris on l'enlève
-	if (($key = array_search($category, $favorites)) !== false) {
-		unset($favorites[$key]);
-	} else {
-		$favorites[] = $category;
-	}
-	
-	// update user meta with array
-	update_user_meta($user_id, 'favorite_collection', $favorites);
-}
-add_action( 'wp_ajax_set_fav_coll', 'add_fav_collection_meta' );
 
 // Save fiche to favorite
 function add_fav_fiche_meta() {
@@ -160,18 +153,7 @@ function add_fav_fiche_meta() {
 }
 add_action( 'wp_ajax_set_fav_fiche', 'add_fav_fiche_meta' );
 
-
-// Template for single collection (subcategory of 'collections' category
-add_filter( 'category_template', 'cxc_custom_category_templates' );
-function cxc_custom_category_templates( $template ) {
-	$category = get_category( get_queried_object_id() );
-	if ( $category->category_parent > 0 ) {
-		$sub_category_template = locate_template( 'category-collections-single.php' ); // specify template name which you create for child category
-		$template = !empty($sub_category_template) ? $sub_category_template : $template;
-	}
-	return $template;
-}
-
+/*
 // Permet de lier le nom d'une collection (post) avec une catégorie du même nom
 function create_category_from_post_name($post_id) {
 	if (isset($_POST['meta-type']) && $_POST['meta-type'] === 'collection') {
@@ -189,47 +171,55 @@ function create_category_from_post_name($post_id) {
 	}
 }
 add_action('wp_insert_post', 'create_category_from_post_name');
+*/
 
-// Permet de créer une nouvelle collection (Post)
-function create_new_post_collection() {
+// Ajoutez la variable de requête personnalisée
+function custom_query_vars($query_vars) {
+	$query_vars[] = 'custom_collection';
+	return $query_vars;
+}
+add_filter('query_vars', 'custom_query_vars');
+
+function uploadImage($file){
+	// get the file suffix
+	$suffix = pathinfo($file['name'], PATHINFO_EXTENSION);
+	// define the save location and filename
+	$filename = date('YmdHis').'.'.$suffix;
+	$wp_upload_dir = wp_upload_dir();
+	$path = $wp_upload_dir['path'].'/'.$filename;
 	
-	// Vérification si le nom existe déjà
-	if (isset($_POST['post-title']) && get_page_by_title( $_POST['post-title'], 'OBJECT', 'post', false )){
-		wp_redirect( home_url( '/creer-une-collection/?error=existing_title' ) );
-		exit();
+	// upload file
+	if(move_uploaded_file($file['tmp_name'], $path)) {
+		$attach_id = wp_insert_attachment(array(
+											  'guid'              =>  $wp_upload_dir['url'].'/'.$filename,
+											  'post_mime_type'    =>  $file['type'],
+											  'post_title'        =>  preg_replace( '/\.[^.]+$/', '', $filename),
+											  'post_content'      =>  '',
+											  'post_status'       =>  'inherit',
+										  ), $path, get_the_ID());
+		
+		// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+		// Generate the metadata for the attachment, and update the database record.
+		$attach_data = wp_generate_attachment_metadata($attach_id, $path);
+		wp_update_attachment_metadata( $attach_id, $attach_data );
+		
+		return $attach_id;
 	} else {
-		if (isset($_POST['post-title']) && isset($_POST['post-description'])) {
-			$title = sanitize_text_field($_POST['post-title']);
-			$description = wp_kses_post($_POST['post-description']);
-			$my_post = array(
-				'post_title' => $title,
-				'post_content' => $description,
-//			'post_status' => 'publish',
-				'post_category' => array( get_cat_ID( $title ) ),
-			);
-			
-			$post_id = wp_insert_post( $my_post );
-			if (isset($_POST['meta-type']) && 'collection' === $_POST['meta-type']){
-				create_category_from_post_name($post_id);
-			}
-			
-			if ($post_id) {
-				wp_redirect( get_permalink( $post_id ) );
-				exit;
-			} else {
-				echo 'Erreur lors de la création de la collection';
-			}
-		}
+		return null;
 	}
 }
-add_action('init', 'create_new_post_collection');
 
 function getPostImage($id){
-	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
+	$imageId = get_post_thumbnail_id($id);
+	$getImage = wp_get_attachment_image_src($imageId, 'full');
+	
+//	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
 	if ($getImage){
-		$image['url'] = $getImage[0];
+		$image[] = $getImage[0];
 	} else {
-		$image['url'] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+		$image[] = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
 	
 	return $image;
@@ -245,64 +235,6 @@ function changeFavIcon($categoryId, $favoritesArray){
 	return $icone;
 }
 
-// Ajout d'un type de post 'collection'
-function custom_post_type() {
-	
-	$labels = array(
-		'name' => 'collection',
-		'singular_name' => 'collection',
-		'add_new' => 'Ajouter une nouvelle collection',
-		'add_new_item' => 'une nouvelle collection',
-		'edit_item' => 'Modifier la collection',
-		'new_item' => 'Nouvelle collection',
-		'view_item' => 'Voir la collection',
-		'search_items' => 'Rechercher des collections',
-		'not_found' => 'Aucune collection trouvé',
-		'not_found_in_trash' => 'Aucune collection trouvé dans la corbeille',
-		'parent_item_colon' => 'collection',
-		'menu_name' => 'Les collections'
-	);
-	
-	$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'has_archive' => true,
-		'publicly_queryable' => true,
-		'query_var' => true,
-		'rewrite' => array('slug' => 'collection'),
-		'capability_type' => 'post',
-		'hierarchical' => false,
-		'supports' => array(
-			'title',
-			'editor',
-			'author',
-			'thumbnail',
-			'excerpt',
-			'comments',
-			'custom-fields'
-		),
-	);
-	
-	register_post_type( 'collection', $args );
-}
-
-add_action( 'init', 'custom_post_type' );
-
-// Template pour les post de type 'collection'
-
-add_filter( 'template_include', 'collection_template_include' );
-function collection_template_include( $template ) {
-
-	if ( get_post_type() == 'collection' ) {
-		$new_template = locate_template( array( 'archive-collection.php' ) );
-		if ( '' != $new_template ) {
-			return $new_template ;
-		}
-	}
-
-	return $template;
-}
-
 // Template pour les fiches
 function custom_post_template($single) {
 	global $post;
@@ -316,32 +248,6 @@ function custom_post_template($single) {
 	return $single;
 }
 add_filter('single_template', 'custom_post_template');
-
-// AJout de catégories pour le post type collection
-function custom_taxonomy() {
-	$args = array(
-		'hierarchical'      => true, // Si les catégories doivent être hiérarchiques ou non
-		'labels'            => array(
-			'name'              => 'Les collections',
-			'singular_name'     => 'Collection',
-			'search_items'      => 'Rechercher des collections',
-			'all_items'         => 'Toutes les collections',
-			'parent_item'       => 'Collection parente',
-			'parent_item_colon' => 'Collection parente :',
-			'edit_item'         => 'Modifier la collection',
-			'update_item'       => 'Mettre à jour la collection',
-			'add_new_item'      => 'Ajouter une nouvelle collection',
-			'new_item_name'     => 'Nom de la nouvelle collection',
-			'menu_name'         => 'catégories',
-		),
-		'show_ui'           => true, // Si l'interface utilisateur de la taxonomie doit être affichée ou non
-		'show_admin_column' => true, // Si une colonne doit être affichée dans l'interface d'administration pour cette taxonomie
-		'query_var'         => true, // Si la taxonomie doit être utilisée dans les requêtes URL
-		'rewrite'           => array( 'slug' => 'collection' ), // Le slug à utiliser pour les URLs
-	);
-	register_taxonomy( 'category-collection', 'collection', $args );
-}
-add_action( 'init', 'custom_taxonomy' );
 
 // Fonction pour le plugin Posts 2 Posts
 function my_connection_types() {
@@ -362,27 +268,7 @@ function add_private_collections( $args, $ctype, $post ) {
 	return $args;
 }
 
-// Pour définir le fichier single-collection.php en tant que template des collections
-add_filter(
-	'template_include',
-	function($template) {
-		global $wp_query;
-		if (1 == $wp_query->found_posts) {
-			global $wp_query;
-			$type = $wp_query->get('post_type') ?: false;
-			$template_type = $type ? 'single-' . $type. '.php' : 'single.php';
-			if ( locate_template($template_type) ) {
-				return locate_template($template_type);
-			} elseif ( $type && locate_template('single.php') ) {
-				return locate_template('single.php');
-			}
-		}
-		return $template;
-	}
-);
-
-function getFiches($id)
-{
+function getFiches($id){
 	$nbFiches = 0;
 	$completed = true;
 	
@@ -406,62 +292,12 @@ function getFiches($id)
 	endif;
 	wp_reset_postdata();
 	
-	return [$nbFiches, $completed];
-}
-
-// Récupère les informations des collections
-function getCollectionPosts($status){
-	// Posts de type collection
-	$args = array(
-		'post_type' => 'collection',
-		'post_status' => $status,
-		'posts_per_page' => -1,
-		'order' => 'ASC'
-	);
-	$collection_query = new WP_Query( $args );
-	$posts = [];
-	
-	if ( $collection_query->have_posts() ) {
-		while ( $collection_query->have_posts() ) {
-			$collection_query->the_post();
-			
-			$collectionName = get_the_title();
-			$collection_id = get_the_ID();
-			$description = get_the_content();
-			$image = getPostImage($collection_id);
-			$collectionStatus = get_post_status($collection_id);
-			$author = get_the_author_meta('ID');
-			
-			if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection')) :
-				$existingFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
-				$icone = changeFavIcon($collection_id, $existingFavorites[0]);
-			else:
-				$icone = ['icon' => 'star-outline', 'color' => 'blanc'];
-			endif;
-
-			$fiches = getFiches($collection_id);
-			$post = [
-				'href' => get_the_guid($collection_id),
-				'name' => $collectionName,
-				'nbFiches' => $fiches[0],
-				'description' => $description,
-				'id' => $collection_id,
-				'icon' => $icone,
-				'image' => $image,
-				'status' => $collectionStatus,
-				'completed' => $fiches[1],
-				'author' => $author
-			];
-			
-			$posts[] = $post;
-		}
+	if ($nbFiches == 0 ){
+		$completed = false;
 	}
 	
-	wp_reset_postdata();
-	return $posts;
+	return [$nbFiches, $completed];
 }
-
-//add_action( 'set_publish', 'publish_post' );
 
 function reserver_fiche() {
 	$userId = $_POST['user_id'];
@@ -469,14 +305,13 @@ function reserver_fiche() {
 	wp_update_post(array('ID' => $ficheId, 'post_author' => $userId));
 	wp_die();
 }
-
 add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
 
 function affichageImageFiche($photo){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
 		$image = wp_get_attachment_image_src( $photoId, 'image-tige' )[0];
-		echo ('<img src="'.esc_url( $image ).'" class="image-tige">');
+		echo ('<div class="image-fiche"><img src="'.esc_url( $image ).'" class="image-tige"></div>');
 	}
 }
 
@@ -499,25 +334,6 @@ function set_fiche_status() {
 	die();
 }
 
-// Les pages utilisant le template mes-collections ne sont plus visible dans le menu de navigation si l'utilisateur
-// n'est pas connecté
-function custom_nav_menu_items($items, $args) {
-	// Vérifiez si l'utilisateur est connecté
-	if (is_user_logged_in()) {
-		// Si l'utilisateur est connecté, affichez tous les éléments de menu normalement
-		return $items;
-	} else {
-		// Sinon, supprimez les pages ayant le template "Mes Collections" du menu de navigation
-		foreach ($items as $key => $item) {
-			if (get_page_template_slug($item->object_id) == 'mes-collections.php') {
-				unset($items[$key]);
-			}
-		}
-		return $items;
-	}
-}
-add_filter('wp_nav_menu_objects', 'custom_nav_menu_items', 10, 2);
-
 function enregistrer_meta_groupe_champs_acf($post_id) {
 //	dump($_POST['acf']);
 	$field_group='';
@@ -536,3 +352,89 @@ function enregistrer_meta_groupe_champs_acf($post_id) {
 	add_post_meta($post_id, $field_group, 'complet', true);
 }
 add_action('acf/save_post', 'enregistrer_meta_groupe_champs_acf', 20);
+
+// Action pour récupérer les publications correspondant aux IDs sélectionnés
+add_action('wp_ajax_get_selected_posts', 'get_selected_posts_callback');
+add_action('wp_ajax_nopriv_get_selected_posts', 'get_selected_posts_callback');
+function get_selected_posts_callback() {
+	// Récupérer les IDs sélectionnés
+	$ids = $_GET['selected_ids'];
+	$selected_ids = explode(",", $ids);
+
+	$args = array(
+		'post_type' => 'post',
+		'post__in'  => $selected_ids,
+	);
+	
+	$query = new WP_Query($args);
+	
+	$response = array();
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$post_id = get_the_ID();
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
+			if($post_imageFull){
+				$post_imageFull = $post_imageFull[0];
+			} else {
+				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+			}
+			
+			$response[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull,
+			];
+		}
+	}
+	wp_send_json($response);
+	wp_die();
+}
+
+function ajout_boite_meta_description() {
+	add_meta_box(
+		'page_description', // ID unique de la boîte de méta
+		'Description de la Page', // Titre de la boîte de méta
+		'afficher_boite_meta_description', // Fonction pour afficher le contenu de la boîte de méta
+		'page', // Type de contenu où la boîte de méta doit apparaître (page dans cet exemple)
+		'normal', // Emplacement de la boîte de méta (normal, side, advanced)
+		'high' // Priorité de la boîte de méta (high, core, default, low)
+	);
+}
+
+// Fonction pour afficher le contenu de la boîte de méta description
+function afficher_boite_meta_description($post) {
+	// Récupérer la valeur actuelle du champ personnalisé "description_page"
+	$description_page = get_post_meta($post->ID, 'description_page', true);
+	
+	// Afficher le champ de saisie pour la description
+	?>
+	<label for="description_page">Description de la page :</label>
+	<textarea id="description_page" name="description_page" style="width:100%;" rows="1"><?php echo esc_textarea($description_page); ?> </textarea>
+	<?php
+}
+
+// Fonction pour sauvegarder la valeur du champ personnalisé
+function sauvegarder_meta_description($post_id) {
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
+	
+	// Vérifier les autorisations
+	if (!current_user_can('edit_page', $post_id)) {
+		return;
+	}
+	
+	// Enregistrez la valeur du champ personnalisé
+	if (isset($_POST['description_page'])) {
+		update_post_meta($post_id, 'description_page', sanitize_text_field($_POST['description_page']));
+	}
+}
+
+// Ajouter des actions pour lier les fonctions aux événements appropriés
+add_action('add_meta_boxes', 'ajout_boite_meta_description');
+add_action('save_post', 'sauvegarder_meta_description');

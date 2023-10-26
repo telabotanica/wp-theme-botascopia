@@ -1,0 +1,72 @@
+.profil-main {
+    background-color: var(--blanc);
+    padding: 20px 0;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profil-buttons{
+    display: flex;
+    /*justify-content: space-between;*/
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.home-author-fiches-container, .home-author-collections-container {
+    margin: 20px 0;
+}
+
+.home-author-fiches, .home-author-collections {
+    /*width: 400px;*/
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    border-bottom: 1px dotted var(--noir);
+}
+
+.home-author-fiches {
+    justify-content: flex-start;
+}
+
+.profil-collection-name {
+    font-family: "Muli", sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    width: 30%;
+}
+
+.profil-verificateur-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media ( width <= 1250px) {
+    .site-main-profil {
+        padding: 0 !important;
+    }
+
+    .profil-main {
+        padding: 0 20px;
+    }
+}
+
+@media ( width <= 580px) {
+    .home-author-fiches, .home-author-collections {
+        flex-direction: column;
+    }
+
+    .profil-verificateur-buttons {
+        justify-content: center;
+    }
+
+    .profil-collection-name {
+        width: 100%;
+        text-align: center;
+    }
+}

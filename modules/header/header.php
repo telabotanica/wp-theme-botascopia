@@ -83,7 +83,12 @@ function botascopia_module_header($data) {
 //endif;
   if ( has_nav_menu('principal') && $header_small !== true ) :
 	  printf(
-		  '<nav class="header-nav-usecases" role="navigation" aria-label="%s">',
+        '<div id="menu-toggle" class="header-toggle"><button type="button" class="button">%s%s</button></div>',
+        __( 'Menu', 'botascopia' ),
+        get_botascopia_module('icon', ['icon' => 'menu'])
+      );
+  
+	  printf('<div class="menu-container"><div class="menu-and-login"><nav class="header-nav-usecases" role="navigation" aria-label="%s">',
 		  esc_attr__( 'Menu principal', 'telabotanica' )
 	  );
   
@@ -102,9 +107,7 @@ function botascopia_module_header($data) {
             $avatar_url = get_avatar($current_user->ID, 52, '', 'user avatar');
             ?>
               <div class="header-login">
-<!--                  <a href="--><?php //echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?><!--"  -->
-                  <div href="<?php echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?>"
-                     title="editer compte" class="header-login-link">
+                  <a href="<?php echo(home_url(). '/profil.')?>" title="Afficher profil" class="header-login-link">
                     <div class="header-links-item-text">
                         <div class="header-login-display-name">
 							<?php echo $current_user->display_name ?>
@@ -116,9 +119,20 @@ function botascopia_module_header($data) {
                       <div>
                           <span class="header-links-item-user-avatar"><?php echo $avatar_url ?></span>
                       </div>
-                  </div>
-<!--                  <a href="--><?php //echo admin_url( 'user-edit.php?user_id=' . $current_user->ID, 'http' ); ?><!--"></a>-->
-              </div>
+                  </a>
+              </div></div>
+          <div class="deconnexion-button hidden">
+			  <?php
+			  $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
+			  the_botascopia_module('button',[
+				  'tag' => 'button',
+				  'title' => 'Se déconnecter',
+				  'text' => 'Se déconnecter',
+				  'modifiers' => 'green-button outline',
+				  'extra_attributes' => ['onclick' => "window.location.href = '".wp_logout_url( $securise.$_SERVER['HTTP_HOST'] )."'"]
+			  ]);
+			  ?>
+          </div>
 		  <?php else :
           echo '<div class="header-login">';
 			  the_botascopia_module('button', [
@@ -129,7 +143,7 @@ function botascopia_module_header($data) {
 				  'title' => 'Se connecter',
 				  'modifiers' => 'green-button',
 			  ]);
-    echo '</div>';
+    echo '</div></div>';
 		  endif;
 
   echo '</header>';

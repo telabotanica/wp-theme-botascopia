@@ -1,67 +1,63 @@
-<?php function botascopia_module_pagination($data) {
+<?php function botascopia_module_pagination($data)
+{
+	$defaults = [
+		'id'        => '',
+		'page'      => 1,
+		'totalPage' => 1,
+		'href'      => ''
+	];
+	
+	$data = botascopia_styleguide_data($defaults, $data);
+	
+	$page      = $data->page;
+	$totalPage = $data->totalPage;
+	$prevPage = $page - 1;
+	$nextPage = $page + 1;
+	
+	echo sprintf('<div id="%s" class="pagination">', $data->id);
+	
+	if ($page > 2) {
+		echo sprintf('
 
-  $defaults = [
-    'id' => false,
-    'count_id' => false,
-    'links_id' => false,
-    'context' => 'wordpress',
-    'type' => 'posts'
-  ];
-
-  $data = botascopia_styleguide_data($defaults, $data);
-
-  if ( $data->context === 'wordpress' ) :
-
-    if ( $data->type === 'posts' ) :
-      global $sort_events;
-
-      $args = [
-        'prev_text' => __( 'Page précédente', 'botascopia' ),
-        'next_text' => __( 'Page suivante', 'botascopia' ),
-        'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'botascopia' ) . ' </span>',
-      ];
-      // when events limit page count to $sort_events->max_num_pages
-      if (isset($sort_events) && $sort_events->max_num_pages) :
-        $args['total'] = (int) ceil($sort_events->max_num_pages);
-      endif;
-
-      the_posts_pagination( $args );
-
-    endif;
-
-  elseif ( $data->context === 'buddypress' ) :
-
-    printf( '<div id="%s" class="pagination">', $data->id );
-      // Do not display the pagination count
-
-      // printf( '<div id="%s" class="pag-count">', $data->count_id );
-      //   if ( $data->type === 'members' ) :
-      //     bp_members_pagination_count();
-      //   elseif ( $data->type === 'groups' ) :
-      //     bp_groups_pagination_count();
-      //   endif;
-      // echo '</div>';
-
-      printf( '<div id="%s" class="pagination-links">', $data->links_id );
-        if ( $data->type === 'members' ) :
-          bp_members_pagination_links();
-        elseif ( $data->type === 'groups' ) :
-          bp_groups_pagination_links();
-        endif;
-      echo '</div>';
-    echo '</div>';
-
-  endif;
-
+			  <a class="page-numbers" href="%s?t=1">
+				<span class="meta-nav screen-reader-text">Page </span>
+				1
+				</a>
+				<span class="page-numbers dots">…</span>', $data->href);
+	}
+	
+	if ($page != 1){
+		echo sprintf('
+			<a class="prev page-numbers" href="%s?t=%s")>Page précédente</a>
+			<a class="page-numbers" href="%s?t=%s"">
+				<span class="meta-nav screen-reader-text">Page </span>
+				%s
+			</a>', $data->href, $prevPage, $data->href, $prevPage, $prevPage);
+	}
+	
+	echo sprintf('
+ 		<span aria-current="page" class="page-numbers current">
+			<span class="meta-nav screen-reader-text">Page </span>
+				%s
+		</span>', $page);
+	
+	if ($page != $totalPage){
+		echo sprintf('
+			<a class="next page-numbers" href="%s?t=%s")>Page suivante</a>
+			<a class="page-numbers" href="%s?t=%s"">
+				<span class="meta-nav screen-reader-text">Page </span>
+				%s
+			</a>', $data->href, $nextPage, $data->href, $nextPage, $nextPage);
+	}
+	
+	if ($page != ($totalPage - 1) && $page != $totalPage){
+		echo sprintf('
+<span class="page-numbers dots">…</span>
+			  <a class="page-numbers" href="%s?t=%s">
+				<span class="meta-nav screen-reader-text">Page </span>
+				%s
+				</a>', $data->href, $totalPage, $totalPage);
+	}
+	
+	echo '</div>';
 }
-
-// Personnalisation des boutons précédent / suivant dans les paginations buddypress
-function botascopia_bp_get_pagination_links($links) {
-  $links = str_replace('&larr;', __( 'Page précédente', 'botascopia' ), $links);
-  $links = str_replace('←', __( 'Page précédente', 'botascopia' ), $links);
-  $links = str_replace('&rarr;', __( 'Page suivante', 'botascopia' ), $links);
-  $links = str_replace('→', __( 'Page suivante', 'botascopia' ), $links);
-  return $links;
-}
-add_filter( 'bp_get_members_pagination_links', 'botascopia_bp_get_pagination_links', 10, 1 );
-add_filter( 'bp_get_groups_pagination_links', 'botascopia_bp_get_pagination_links', 10, 1 );
