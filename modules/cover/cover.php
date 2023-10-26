@@ -6,6 +6,7 @@
     'subtitle' => get_field('cover_subtitle'),
     'content' => false,
     'search' => false,
+	  'licence' => '',
 	'backgroundColor' => '',
     'modifiers' => []
   ];
@@ -68,6 +69,11 @@
 	endif;
 
     echo '</div>';
+	if ($data->licence){
+		printf(
+			'<div class="cover-credits">%s</div>', $data->licence
+		);
+	}
 
 //    botascopia_image_credits( $data->image, 'cover' );
 

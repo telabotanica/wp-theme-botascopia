@@ -17,10 +17,17 @@ get_header();
 		} else {
             $imageFull = null;
         }
+		$legende = get_post(get_post_thumbnail_id())->post_excerpt;
+		$licence = '';
+		
+		if ($legende){
+			$licence = $legende .', licence CC-BY-SA';
+		}
 		the_botascopia_module('cover', [
 			'subtitle' => esc_html($description_page),
 			'title' => get_the_title(),
-			'image' => $imageFull
+			'image' => $imageFull,
+			'licence' => $licence
 		]);
 
 		?>

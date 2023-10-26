@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     deleteCollection();
     onResize();
     onResizeFooter();
+    popupAjouterParticipant();
 });
 
 function setFavoris(selector, type){
@@ -299,104 +300,99 @@ document.addEventListener("DOMContentLoaded", function() {
 function popupAjouterFiche() {
     const ouvrirPopupButton = document.querySelector('#ouvrir_popup_ajouter_fiche');
     const formulaire = document.querySelector('#section-ajout-fiches');
-if (ouvrirPopupButton) {
-    ouvrirPopupButton.addEventListener("click", function (event) {
-        event.preventDefault();
+    if (ouvrirPopupButton) {
+        ouvrirPopupButton.addEventListener("click", function (event) {
+            event.preventDefault();
 
-        var selectedCardIds = []; // Tableau pour stocker les IDs des cartes cochées
-        const fiches = document.querySelectorAll('.card-selected');
+            var selectedCardIds = []; // Tableau pour stocker les IDs des cartes cochées
+            const fiches = document.querySelectorAll('.card-selected');
 
-        fiches.forEach(function (fiche) {
-            let id = fiche.getAttribute('data-fiche-id');
-            selectedCardIds.push(id);
-        })
+            fiches.forEach(function (fiche) {
+                let id = fiche.getAttribute('data-fiche-id');
+                selectedCardIds.push(id);
+            })
 
-        var existingHiddenInput = document.querySelector('#fiches-selected');
-        if (existingHiddenInput) {
-            existingHiddenInput.value ='';
-        }
-
-        // Créer un champ de formulaire caché
-        var hiddenInput = formulaire.querySelector('#fiches-selected');
-        // var hiddenInput = document.createElement('input');
-        // hiddenInput.id = 'fiches-selected'
-        // hiddenInput.type = 'hidden';
-        // hiddenInput.name = 'selectedCardIds';
-        // formulaire.appendChild(hiddenInput);
-
-        // Créer un élément de div pour le popup
-        var popupAjoutFiches = document.createElement('div');
-        popupAjoutFiches.classList.add('popup', 'popup-ajout-fiches');
-
-        // Ajouter le popup à la page
-        document.querySelector('#content').classList.add('blur-background');
-        document.querySelector('header').classList.add('blur-background');
-
-        // Créer un élément de div pour afficher le contenu du popup
-        var popupAjoutContenu = document.createElement(`div`);
-        popupAjoutContenu.innerHTML = '';
-        popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
-            "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
-            "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
-            " une fiche'>" +
-            // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
-            // "<use xlink:href=\"#icon-search\"></use></svg></span>" +
-            "</div>" +
-            "<div class='popup-ajout-display-buttons'>" +
-            "<a class='button purple-button outline'><span class='button-text'" +
-            " id='annuler-ajout-fiches'>Annuler</span></a>" +
-            "<a  class='button green-button' ><span" +
-            " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
-            "</div></div>";
-        popupAjoutContenu.classList.add('popup-ajout-fiches-content');
-
-        // On charge le contenu de la popup
-        var content = loadContent(selectedCardIds, '?action=load_popup_content');
-        popupAjoutContenu.appendChild(content);
-
-        // On ajoute le contenu à l'intérieur du popup'
-        popupAjoutFiches.appendChild(popupAjoutContenu);
-        // On ajoute le popup au body
-        document.body.appendChild(popupAjoutFiches);
-
-        // Gestion de la fermeture du popup
-        document.addEventListener('click', function (event) {
-            const ajouter = document.querySelector('#ajouter-fiche');
-            const annuler = document.querySelector('#annuler-ajout-fiches');
-            if (event.target == ajouter) {
-                popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
-                document.querySelector('#content').classList.remove('blur-background');
-                document.querySelector('header').classList.remove('blur-background');
-                hiddenInput.value = JSON.stringify(selectedCardIds);
-                displaySelectedFiches(selectedCardIds);
+            var existingHiddenInput = document.querySelector('#fiches-selected');
+            if (existingHiddenInput) {
+                existingHiddenInput.value ='';
             }
-            if (event.target.classList.contains('blur-background') || event.target == annuler) {
-                popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
-                document.querySelector('#content').classList.remove('blur-background');
-                document.querySelector('header').classList.remove('blur-background');
-                hiddenInput.value = JSON.stringify(selectedCardIds);
-                displaySelectedFiches(selectedCardIds);
-            }
+
+            // Créer un champ de formulaire caché
+            var hiddenInput = formulaire.querySelector('#fiches-selected');
+
+            // Créer un élément de div pour le popup
+            var popupAjoutFiches = document.createElement('div');
+            popupAjoutFiches.classList.add('popup', 'popup-ajout-fiches');
+
+            // Ajouter le popup à la page
+            document.querySelector('#content').classList.add('blur-background');
+            document.querySelector('header').classList.add('blur-background');
+
+            // Créer un élément de div pour afficher le contenu du popup
+            var popupAjoutContenu = document.createElement(`div`);
+            popupAjoutContenu.innerHTML = '';
+            popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
+                "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
+                "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
+                " une fiche'>" +
+                // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
+                // "<use xlink:href=\"#icon-search\"></use></svg></span>" +
+                "</div>" +
+                "<div class='popup-ajout-display-buttons'>" +
+                "<a class='button purple-button outline'><span class='button-text'" +
+                " id='annuler-ajout-fiches'>Annuler</span></a>" +
+                "<a  class='button green-button' ><span" +
+                " class='button-text' id='ajouter-fiche'>AJOUTER LES FICHES</span></a>" +
+                "</div></div>";
+            popupAjoutContenu.classList.add('popup-ajout-fiches-content');
+
+            // On charge le contenu de la popup
+            var content = loadContent(selectedCardIds, '?action=load_popup_content');
+            popupAjoutContenu.appendChild(content);
+
+            // On ajoute le contenu à l'intérieur du popup'
+            popupAjoutFiches.appendChild(popupAjoutContenu);
+            // On ajoute le popup au body
+            document.body.appendChild(popupAjoutFiches);
+
+            // Gestion de la fermeture du popup
+            document.addEventListener('click', function (event) {
+                const ajouter = document.querySelector('#ajouter-fiche');
+                const annuler = document.querySelector('#annuler-ajout-fiches');
+                if (event.target == ajouter) {
+                    popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
+                    document.querySelector('#content').classList.remove('blur-background');
+                    document.querySelector('header').classList.remove('blur-background');
+                    hiddenInput.value = JSON.stringify(selectedCardIds);
+                    displaySelectedFiches(selectedCardIds);
+                }
+                if (event.target.classList.contains('blur-background') || event.target == annuler) {
+                    popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
+                    document.querySelector('#content').classList.remove('blur-background');
+                    document.querySelector('header').classList.remove('blur-background');
+                    hiddenInput.value = JSON.stringify(selectedCardIds);
+                    displaySelectedFiches(selectedCardIds);
+                }
+            });
+
+            // Handle search input change using event delegation
+            document.addEventListener('input', function (event) {
+                if (event.target.classList.contains('ajout-fiches-search-bar')) {
+                    setTimeout(function () {
+                        const searchTerm = event.target.value.trim();
+                        // Clear existing content before loading new content
+                        var cardContainer = document.querySelector('#card-container-popup');
+                        if (cardContainer) {
+                            cardContainer.remove()
+                        }
+                        const updatedContent = loadContent(selectedCardIds, '?action=load_popup_content&search=' + encodeURIComponent(searchTerm));
+
+                        popupAjoutContenu.appendChild(updatedContent); // Append updated content
+                    }, 100);
+                }
+            });
         });
-
-        // Handle search input change using event delegation
-        document.addEventListener('input', function (event) {
-            if (event.target.classList.contains('ajout-fiches-search-bar')) {
-                setTimeout(function () {
-                    const searchTerm = event.target.value.trim();
-                    // Clear existing content before loading new content
-                    var cardContainer = document.querySelector('#card-container-popup');
-                    if (cardContainer) {
-                        cardContainer.remove()
-                    }
-                    const updatedContent = loadContent(selectedCardIds, '?action=load_popup_content&search=' + encodeURIComponent(searchTerm));
-
-                    popupAjoutContenu.appendChild(updatedContent); // Append updated content
-                }, 100);
-            }
-        });
-    });
-}
+    }
 }
 
 //Affichage des fiches sur le popup ajout de fiches
@@ -929,5 +925,168 @@ function onResizeFooter(){
             footerLogos.classList.toggle("hidden")
         });
     }
+}
+
+// Ajout de participants lors de la création d'une nouvelle collection
+function popupAjouterParticipant() {
+    const buttonPopupParticipant = document.querySelector('#button-ajout-participant');
+
+    if (buttonPopupParticipant) {
+        buttonPopupParticipant.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            let participantsEmails = [];
+
+            let existingEmailsHidden = document.querySelector('#emails-selected');
+            let hiddenEmailInput  = existingEmailsHidden.value;
+
+            if (hiddenEmailInput){
+                hiddenEmailInput = JSON.parse(hiddenEmailInput)
+                hiddenEmailInput.forEach(value => {
+                    participantsEmails.push(value);
+                })
+            }
+
+            // Créer un élément de div pour le popup
+            var popupAjoutParticipants = document.createElement('div');
+            popupAjoutParticipants.classList.add('popup', 'popup-ajout-participants');
+
+            // Ajouter le popup à la page
+            document.querySelector('#content').classList.add('blur-background');
+            document.querySelector('header').classList.add('blur-background');
+
+            // Créer un élément de div pour afficher le contenu du popup
+            var popupAjoutContenu = document.createElement(`div`);
+            popupAjoutContenu.innerHTML = '';
+            popupAjoutContenu.innerHTML = "<h2>AJOUTER DES PARTICIPANTS</h2>" +
+                "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
+                "<input type='email' id='email-a-ajouter' class='ajout-participants-search-bar search-box-input'" + " placeholder='etudiant@botascopia.com'>" +
+                "</div>" +
+                "<div id='ajouter-participant' class='popup-button-ajout-participant'>" +
+                "<a  class='button green-button' ><span" +
+                " class='button-text' >Inviter par email</span></a>" +
+                "</div>" +
+                "</div>" +
+                "<div class='popup-ajoutParticipants-display-buttons'>" +
+                "<a class='button purple-button outline'><span class='button-text'" +
+                " id='annuler-ajout-participants'>Annuler</span></a>" +
+                "<a  class='button green-button' ><span" +
+                " class='button-text' id='ajouter-participants'>AJOUTER LES PARTICIPANTS</span></a>" +
+                "</div>";
+            popupAjoutContenu.classList.add('popup-ajout-emails-content');
+
+            // On ajoute le contenu à l'intérieur du popup'
+            popupAjoutParticipants.appendChild(popupAjoutContenu);
+            document.body.appendChild(popupAjoutParticipants);
+            displaySelectedEmails(participantsEmails);
+
+            // Gestion de l'ajout d'email
+            let emailInputButton = document.querySelector('#ajouter-participant');
+            let emailInput = document.querySelector('#email-a-ajouter');
+
+            emailInputButton.addEventListener('click', function (event) {
+                const email = emailInput.value.trim();
+                emailInput.value = '';
+                participantsEmails.push(email);
+                displaySelectedEmails(participantsEmails);
+            })
+
+            emailInput.addEventListener('keydown', (event) => {
+                if (event.key === "Enter") {
+                    const email = emailInput.value.trim();
+                    emailInput.value = '';
+                    participantsEmails.push(email);
+                    displaySelectedEmails(participantsEmails);
+                }
+            })
+
+            // Gestion de la suppression d'adresses
+            let removedEmail = [];
+            document.addEventListener('click', function(event) {
+                // Vérifiez si l'élément cliqué a la classe 'delete-email'
+                if (event.target.classList.contains('delete-email')) {
+                    // Supprimez l'e-mail de participantsEmails en utilisant son ID
+                    let emailId = event.target.id;
+
+                    removedEmail.push(emailId)
+                    participantsEmails = participantsEmails.filter(item => item !== emailId);
+
+                    // Supprimez l'élément parent (le div avec la classe 'displayed-email')
+                    event.target.parentElement.remove();
+
+                }
+            });
+
+            // Gestion de la fermeture du popup
+            document.addEventListener('click', function (event) {
+                const ajouter = document.querySelector('#ajouter-participants');
+                const annuler = document.querySelector('#annuler-ajout-participants');
+                if (event.target == ajouter) {
+                    popupAjoutParticipants.parentNode.removeChild(popupAjoutParticipants);
+                    document.querySelector('#content').classList.remove('blur-background');
+                    document.querySelector('header').classList.remove('blur-background');
+                    existingEmailsHidden.value = JSON.stringify(participantsEmails);
+                    participantsEmails = [];
+
+                    // displaySelectedFiches(participantsEmails);
+                }
+                if (event.target.classList.contains('blur-background') || event.target == annuler) {
+                    popupAjoutParticipants.parentNode.removeChild(popupAjoutParticipants);
+                    document.querySelector('#content').classList.remove('blur-background');
+                    document.querySelector('header').classList.remove('blur-background');
+
+                    // displaySelectedFiches(participantsEmails);
+                }
+            });
+
+        });
+    }
+}
+
+function displaySelectedEmails(participantsEmails){
+    let existingContent = document.querySelector('.popup-content-email');
+    if (existingContent){
+        existingContent.remove();
+    }
+
+    let content = document.createElement(`div`);
+    content.classList.add('popup-content-email')
+    content.innerHTML = '';
+
+    let contentDiv = document.querySelector('.popup-ajout-emails-content');
+
+    participantsEmails.forEach(email => {
+        let emailHtml = document.createElement('div');
+        emailHtml.classList.add('displayed-email')
+        emailHtml.innerHTML = email;
+
+        let deleteButton = document.createElement('span');
+        deleteButton.classList.add('delete-email');
+        deleteButton.id = email; // L'ID est défini sur la valeur de l'e-mail
+        deleteButton.innerHTML = '   x';
+
+        //TODO: svg ne se charge pas
+        // let svg = addSvg('close');
+        // deleteButton.appendChild(svg);
+
+        emailHtml.appendChild(deleteButton);
+        content.appendChild(emailHtml);
+    })
+
+    contentDiv.appendChild(content);
+}
+
+function addSvg(name){
+    var svgIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgIcon.setAttribute('aria-hidden', 'true');
+    svgIcon.setAttribute('role', 'img');
+    svgIcon.setAttribute('class', 'icon icon-' + name);
+
+    var useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    useElement.setAttribute('xlink:href', '#icon-'+ name);
+
+    svgIcon.appendChild(useElement);
+
+    return svgIcon;
 }
 

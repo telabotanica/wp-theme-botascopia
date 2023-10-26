@@ -21,6 +21,12 @@ get_header();
 		} else {
 			$imageFull = null;
 		}
+		$legende = get_post(get_post_thumbnail_id())->post_excerpt;
+		$licence = '';
+		
+		if ($legende){
+			$licence = $legende .', licence CC-BY-SA';
+		}
   
 		the_botascopia_module('cover', [
 			'subtitle' => 'Consultez et téléchargez des fiches',
@@ -31,7 +37,8 @@ get_header();
                 'value' => $search,
                 'pageurl' => 'fiches?q',
                 'id' => 'search-archive-fiches'
-            ]
+            ],
+			'licence' => $licence
 		]);
 		?>
         <div class="collection-main">

@@ -34,6 +34,13 @@ get_header();
 		$imageId = get_post_thumbnail_id($post_id);
 		$imageFull = wp_get_attachment_image_src($imageId, 'full');
 		
+		$legende = get_post(get_post_thumbnail_id())->post_excerpt;
+		$licence = '';
+		
+		if ($legende){
+			$licence = $legende .', licence CC-BY-SA';
+		}
+		
 		if (is_user_logged_in()) :
 			$current_user = wp_get_current_user();
 			$current_user_id = $current_user->ID;
@@ -43,7 +50,8 @@ get_header();
 		the_botascopia_module('cover', [
 			'subtitle' => '',
 			'title' => '',
-			'image' => $imageFull
+			'image' => $imageFull,
+			'licence' => $licence
 		]);
 		
 		if ($post->post_status == 'private') {

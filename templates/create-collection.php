@@ -9,6 +9,7 @@ get_header();
 if (is_user_logged_in()):
 	$current_user = wp_get_current_user();
 	$userId = $current_user->ID;
+	$role = $current_user->roles[0];
 else:
 	$userId = '';
 endif;
@@ -18,7 +19,7 @@ endif;
 
     <main id="main" class="site-main new-collection-main" role="main">
 		<?php
-		if (is_user_logged_in()) :
+		if (is_user_logged_in() && $role != 'contributor') :
 			$edit = isset($_GET['edit']) ? $_GET['edit'] : false;
 
             if ($edit == 'true'){
@@ -91,6 +92,34 @@ endif;
                     <label for="post-description" class="new-collection-title">Description de la collection</label>
                     <textarea name="post-description" id="post-description" rows="6" placeholder="500 caractères maximum" maxlength="500" required><?php if ($edit){ echo esc_textarea($collection->post_content);}?></textarea>
                 </div>
+                <!-- Section ajouter des participants-->
+                <h2 class="new-collection-title">
+                    Ajouter des participants
+                </h2>
+                
+                <div id="section-ajout-participants">
+					<?php
+                    if ($edit){
+                        $participantsEmails = [];
+                        //TODO chercher et afficher les invitations déjà envoyées
+                    }
+                    
+					the_botascopia_module('button', [
+						'tag' => 'button',
+						'href' => '#',
+						'title' => 'Ajouter par mail',
+						'text' => 'Ajouter par mail',
+						'modifiers' => 'green-button',
+                        'extra_attributes' => ['id' => 'button-ajout-participant']
+					]);
+					?>
+                    <input id="emails-selected" type="hidden" name="participantsEmails" <?php
+					if ($edit){
+						echo 'value="' . esc_attr(json_encode($participantsEmails)) . '"';
+					}
+					?>>
+                </div>
+                
                 <h2 class="new-collection-title">
                     Ajouter des fiches
                 </h2>
@@ -177,9 +206,7 @@ endif;
 						echo 'value="' . esc_attr(json_encode($selectedIds)) . '"';
 					}
 					?>>
-                    <?php
-
-                    ?>
+ 
                 </div>
 
                 <div class="new-collection-buttons">
@@ -213,7 +240,7 @@ endif;
         else :
         
         echo ('
-        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
+        <div><p>Vous devez être connecté ou n\'avez pas les autorisations nécessaires pour accéder à cette page</p></div>
         ');
         
         endif;

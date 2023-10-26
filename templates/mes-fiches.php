@@ -31,10 +31,17 @@ get_header();
 		} else {
 			$imageFull = null;
 		}
+		$legende = get_post(get_post_thumbnail_id())->post_excerpt;
+		$licence = '';
+		
+		if ($legende){
+			$licence = $legende .', licence CC-BY-SA';
+		}
 		the_botascopia_module('cover', [
 			'subtitle' => $role,
 			'title' => $displayName,
 			'image' => $imageFull,
+			'licence' => $licence
 		]);
 		?>
 		<div class="collection-main" id="mes-fiches">
@@ -77,7 +84,8 @@ get_header();
 							],
 						]
 					]);
-					
+
+					if ($role != 'contributor'):
 					echo '<div class="toc-button">';
 					the_botascopia_module('button', [
 						'tag' => 'a',
@@ -87,7 +95,7 @@ get_header();
 						'modifiers' => 'green-button',
 					]);
 					echo '</div>';
-					
+					endif;
 					//                    Actions fiches
 					echo '<div class="second-toc">';
                     

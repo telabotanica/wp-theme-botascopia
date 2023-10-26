@@ -10,6 +10,12 @@
 				$imageFull = null;
 			}
 			$search = $_GET['q'] ?? '';
+            $legende = get_post(get_post_thumbnail_id())->post_excerpt;
+            $licence = '';
+
+            if ($legende){
+                $licence = $legende .', licence CC-BY-SA';
+            }
 			
 			the_botascopia_module('cover', [
 				'title'    => 'Bienvenue sur Botascopia',
@@ -20,7 +26,8 @@
 					'value' => $search,
 					'pageurl' => 'collection?q',
 					'id' => 'search-home'
-				]
+				],
+                'licence' => $licence
 			]);
 			?>
         <?php if ( have_posts() ) :

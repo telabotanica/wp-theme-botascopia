@@ -29,10 +29,17 @@ $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 			} else {
 				$imageFull = null;
 			}
+			$legende = get_post(get_post_thumbnail_id())->post_excerpt;
+			$licence = '';
+			
+			if ($legende){
+				$licence = $legende .', licence CC-BY-SA';
+			}
 		the_botascopia_module('cover', [
 			'subtitle' => $current_user->roles[0],
 			'title' => $nameToShow,
 			'image' => $imageFull,
+			'licence' => $licence
 		]);
 		?>
             <div class="profil-main">
