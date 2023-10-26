@@ -17,7 +17,7 @@
 	  }
 	  
 	  if (get_post_type() === 'collection' ){
-		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
+		  $data->items[] = [ 'href' => home_url().'/collections', 'text' => 'Les collections' ];
 	  }
 
       // Article courant
@@ -53,7 +53,7 @@
 	  if (get_post_type() !== 'collection'){
 		  $data->items[] = [ 'href' => home_url().'/fiches', 'text' => 'Les fiches' ];
 	  } else {
-		  $data->items[] = [ 'href' => get_post_type_archive_link('collection'), 'text' => 'Les collections' ];
+		  $data->items[] = [ 'href' => home_url().'/collections', 'text' => 'Les collections' ];
 	  }
 
     endif;
