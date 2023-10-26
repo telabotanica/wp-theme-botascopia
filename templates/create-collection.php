@@ -9,6 +9,7 @@ get_header();
 if (is_user_logged_in()):
 	$current_user = wp_get_current_user();
 	$userId = $current_user->ID;
+	$role = $current_user->roles[0];
 else:
 	$userId = '';
 endif;
@@ -18,7 +19,7 @@ endif;
 
     <main id="main" class="site-main new-collection-main" role="main">
 		<?php
-		if (is_user_logged_in()) :
+		if (is_user_logged_in() && $role != 'contributor') :
 			$edit = isset($_GET['edit']) ? $_GET['edit'] : false;
 
             if ($edit == 'true'){
@@ -239,7 +240,7 @@ endif;
         else :
         
         echo ('
-        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
+        <div><p>Vous devez être connecté ou n\'avez pas les autorisations nécessaires pour accéder à cette page</p></div>
         ');
         
         endif;
