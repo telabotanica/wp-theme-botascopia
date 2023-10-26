@@ -388,7 +388,7 @@ function popupAjouterFiche() {
                         const updatedContent = loadContent(selectedCardIds, '?action=load_popup_content&search=' + encodeURIComponent(searchTerm));
 
                         popupAjoutContenu.appendChild(updatedContent); // Append updated content
-                    }, 100);
+                    }, 1000);
                 }
             });
         });
