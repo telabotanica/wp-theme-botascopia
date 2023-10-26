@@ -23,10 +23,10 @@ $group_titles = [
     "Complément d'anecdote",
     "Ne pas confondre avec",
     "Description vulgarisée",
-    "Références",
+    "Agroécologie",
+    "Références"
 //    "Logos",
 //    "Taxonomie"
-    "Agroécologie"
 ];
 
 $button_titles = [
