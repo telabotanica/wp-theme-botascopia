@@ -418,16 +418,8 @@ function load_popup_content() {
 		while ($query->have_posts()) : $query->the_post();
 			$post_id   = get_the_ID();
 			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
-			
 			$post_species = get_post_meta(get_the_ID(), 'famille', true);
-			$post_imageId = get_post_thumbnail_id($post_id);
-			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
-			
-			if($post_imageFull){
-				$post_imageFull = $post_imageFull[0];
-			} else {
-				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-			}
+			$post_imageFull = getFicheImage($post_id);
 			
 			$data[] = [
 				'id'      => $post_id,
@@ -648,10 +640,10 @@ function loadFiches($post_id, $paged){
 			// Afficher ici les informations sur chaque article de type "post" connecté
 			$name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
 			$species = get_post_meta(get_the_ID(), 'famille', true);
-			$image = get_the_post_thumbnail_url();
 			$id = get_the_ID();
 			$ficheTitle = get_the_title();
 			$status = get_post_status();
+			$image = getFicheImage($id);
 			
 			$fiche_author_id = get_post_field('post_author', $id);
 			$fiche_author_info = get_userdata($fiche_author_id);

@@ -214,8 +214,7 @@ function uploadImage($file){
 function getPostImage($id){
 	$imageId = get_post_thumbnail_id($id);
 	$getImage = wp_get_attachment_image_src($imageId, 'full');
-	
-//	$getImage = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'thumbnail');
+
 	if ($getImage){
 		$image[] = $getImage[0];
 	} else {
@@ -223,6 +222,21 @@ function getPostImage($id){
 	}
 	
 	return $image;
+}
+
+function getFicheImage($id){
+	if (get_field("field_643027826f24d")){
+		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+	}
+	if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+		
+		$image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
+	} else {
+		$image = getPostImage($id)[0];
+	}
+    
+    return $image;
 }
 
 function changeFavIcon($categoryId, $favoritesArray){
@@ -376,12 +390,7 @@ function get_selected_posts_callback() {
 			$post_species = get_post_meta(get_the_ID(), 'famille', true);
 			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
 			$post_imageId = get_post_thumbnail_id($post_id);
-			$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
-			if($post_imageFull){
-				$post_imageFull = $post_imageFull[0];
-			} else {
-				$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-			}
+			$post_imageFull = getFicheImage($post_id);
 			
 			$response[] = [
 				'id'      => $post_id,
