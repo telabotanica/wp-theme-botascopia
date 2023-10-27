@@ -285,6 +285,8 @@ function create_new_post_collection() {
 				$emails = isset($_POST['participantsEmails']) ? json_decode(stripslashes($_POST['participantsEmails']), true) : array();
 
 				if ($emails){
+					//todo enregistrer la liste
+//					update_post_meta( $post_id, 'invitations', $emails );
 					sendInvitationMail($emails, $post_id);
 				}
 				
@@ -774,6 +776,11 @@ function sendInvitationMail($emails, $collection_id){
 	$subject = 'Botascopia: Un utilisateur vous a invité à participer à une collection';
 	$headers[] = 'Content-Type: text/html; charset=UTF-8';
 	$receiverEmailsArray = [];
+	$sentEmails = [];
+	$alreadySentEmails = get_post_meta($collection_id, 'invitations', true);
+	if ($alreadySentEmails){
+		$sentEmails = $alreadySentEmails;
+	}
 	
 	$collection_name = get_the_title($collection_id);
 	$collection_href = get_the_permalink($collection_id);
@@ -792,5 +799,10 @@ function sendInvitationMail($emails, $collection_id){
 		<div class="footer" style="display: flex; justify-content: center; margin-top: 20px"><img src="'.get_template_directory_uri().'/images/logo-botascopia.png" style="height: 100px"></div>
 		</div></body>';
 
-		wp_mail($emails, $subject, $message, $headers);
+		if(wp_mail($emails, $subject, $message, $headers)){
+			foreach ($emails as $email){
+				$sentEmails[] = $email;
+			}
+			update_post_meta( $collection_id, 'invitations', $sentEmails);
+		};
 }
