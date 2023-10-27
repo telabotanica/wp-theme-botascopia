@@ -49,9 +49,11 @@ function getPublishedFiches($search_term){
             // Afficher ici les informations sur chaque article de type "post" connecté
             $name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
             $species = get_post_meta(get_the_ID(), 'famille', true);
-            $image = get_the_post_thumbnail_url();
+//            $image = get_the_post_thumbnail_url();
             $id = get_the_ID();
             $ficheTitle = get_the_title();
+
+			$image = getFicheImage($id);
 
             if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche') && ($key = array_search($id, $ficheFavorites[0]))
                 !==
