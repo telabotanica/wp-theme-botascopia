@@ -130,8 +130,9 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 			
 			$name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
 			$species = get_post_meta(get_the_ID(), 'famille', true);
-			$image = get_the_post_thumbnail_url();
+//			$image = get_the_post_thumbnail_url();
 			$id = get_the_ID();
+			$image = getFicheImage($id);
 			$ficheTitle = get_the_title();
 			$favorite = false;
 			$href = get_the_permalink();
