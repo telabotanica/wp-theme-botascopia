@@ -232,7 +232,10 @@ function getFicheImage($id){
 		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
 		
 		$image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-	} else {
+	} elseif (!empty(get_post_meta($id, 'photo_de_la_plante_entiere', true))){
+        $imageId = get_post_meta($id, 'photo_de_la_plante_entiere', true);
+        $image = wp_get_attachment_image_src($imageId, 'full')[0];
+    } else  {
 		$image = getPostImage($id)[0];
 	}
     
