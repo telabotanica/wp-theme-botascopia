@@ -112,7 +112,19 @@ endif;
 						'modifiers' => 'green-button',
                         'extra_attributes' => ['id' => 'button-ajout-participant']
 					]);
+                    if ($edit) {
+						$sentEmails = get_post_meta($collection_id, 'invitations', true);
+                        if ($sentEmails){
+                            echo ('<h3>Invitations déjà envoyées</h3>');
+							echo ('<div class="popup-content-email">');
+							foreach ($sentEmails as $email){
+								echo ('<div class="displayed-email">'.$email.'</div>');
+							}
+							echo ('</div>');
+                        }
+					}
 					?>
+                    
                     <input id="emails-selected" type="hidden" name="participantsEmails" <?php
 					if ($edit){
 						echo 'value="' . esc_attr(json_encode($participantsEmails)) . '"';
@@ -146,13 +158,7 @@ endif;
 									$post_id = get_the_ID();
 									$post_species = get_post_meta(get_the_ID(), 'famille', true);
 									$post_name = get_post_meta($post_id, 'nom_scientifique', true);
-									$post_imageId = get_post_thumbnail_id($post_id);
-									$post_imageFull = wp_get_attachment_image_src($post_imageId, 'full');
-									if($post_imageFull){
-										$post_imageFull = $post_imageFull[0];
-									} else {
-										$post_imageFull = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-									}
+									$post_imageFull = getFicheImage($post_id);
 									
 									$fiches[] = [
 										'id'      => $post_id,
