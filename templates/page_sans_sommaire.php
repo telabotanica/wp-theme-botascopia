@@ -4,7 +4,7 @@
 <?php
 get_header();
 ?>
-<div id="primary" class="content-area">
+<div id="primary" class="content-area page-sans-sommaire-primary">
 	<div class="bg-fill">
 	
 	</div>
@@ -31,7 +31,7 @@ get_header();
 		]);
 
 		?>
-		<div class="collection-main">
+		<div class="collection-main page-sans-sommaire-main">
 			<div class="left-div">
 <!--				<div class="first-toc">-->
 <!--					--><?php

@@ -112,7 +112,19 @@ endif;
 						'modifiers' => 'green-button',
                         'extra_attributes' => ['id' => 'button-ajout-participant']
 					]);
+                    if ($edit) {
+						$sentEmails = get_post_meta($collection_id, 'invitations', true);
+                        if ($sentEmails){
+                            echo ('<h3>Invitations déjà envoyées</h3>');
+							echo ('<div class="popup-content-email">');
+							foreach ($sentEmails as $email){
+								echo ('<div class="displayed-email">'.$email.'</div>');
+							}
+							echo ('</div>');
+                        }
+					}
 					?>
+                    
                     <input id="emails-selected" type="hidden" name="participantsEmails" <?php
 					if ($edit){
 						echo 'value="' . esc_attr(json_encode($participantsEmails)) . '"';

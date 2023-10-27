@@ -8,13 +8,29 @@
     text-align: justify;
 }
 
+.page-sans-sommaire-primary {
+    .left-div {
+        display: none;
+    }
+
+    .bg-fill {
+        left: 300px;
+    }
+}
+
 @media ( width <= 1250px) {
     #glossaire-container, #guide-container {
         margin-right: 20px;
     }
 
+    .page-sans-sommaire-primary {
+        .bg-fill {
+            left: 100px;
+        }
+    }
+
     #glossaire-container {
-        left: 20px;
+        /*left: 20px;*/
         width: 80%;
     }
 }
@@ -22,7 +38,13 @@
 @media ( 580px <= width <= 780px) {
     #glossaire-container {
         left: 10px;
-        width: 60%;
+        width: 100%;
+    }
+
+    .page-sans-sommaire-primary {
+        .bg-fill {
+            left: 0;
+        }
     }
 }
 
