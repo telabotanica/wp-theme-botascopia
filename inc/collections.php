@@ -798,3 +798,45 @@ function sendInvitationMail($emails, $collection_id){
 			update_post_meta( $collection_id, 'invitations', $sentEmails);
 		};
 }
+
+// Action pour récupérer les publications correspondant aux IDs sélectionnés (pour l'affichage des fiches à la fermeture du popup sur la pagge creation de collection)
+add_action('wp_ajax_get_selected_posts', 'get_selected_posts_callback');
+add_action('wp_ajax_nopriv_get_selected_posts', 'get_selected_posts_callback');
+function get_selected_posts_callback() {
+	// Récupérer les IDs sélectionnés
+	$ids = $_GET['selected_ids'];
+	$selected_ids = explode(",", $ids);
+	
+	$args = array(
+		'post_type' => 'post',
+		'post__in'  => $selected_ids,
+		'nopaging' => true,
+		'post_status' => array('publish', 'draft', 'pending', 'private'),
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value',
+		'meta_key'       => 'nom_scientifique',
+	);
+	
+	$query = new WP_Query($args);
+	
+	$response = array();
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$post_id = get_the_ID();
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = getFicheImage($post_id);
+			
+			$response[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull,
+			];
+		}
+	}
+	wp_send_json($response);
+	wp_die();
+}

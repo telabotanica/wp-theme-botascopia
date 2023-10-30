@@ -370,43 +370,6 @@ function enregistrer_meta_groupe_champs_acf($post_id) {
 }
 add_action('acf/save_post', 'enregistrer_meta_groupe_champs_acf', 20);
 
-// Action pour récupérer les publications correspondant aux IDs sélectionnés
-add_action('wp_ajax_get_selected_posts', 'get_selected_posts_callback');
-add_action('wp_ajax_nopriv_get_selected_posts', 'get_selected_posts_callback');
-function get_selected_posts_callback() {
-	// Récupérer les IDs sélectionnés
-	$ids = $_GET['selected_ids'];
-	$selected_ids = explode(",", $ids);
-
-	$args = array(
-		'post_type' => 'post',
-		'post__in'  => $selected_ids,
-	);
-	
-	$query = new WP_Query($args);
-	
-	$response = array();
-	if ($query->have_posts()) {
-		while ($query->have_posts()) {
-			$query->the_post();
-			$post_id = get_the_ID();
-			$post_species = get_post_meta(get_the_ID(), 'famille', true);
-			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
-			$post_imageId = get_post_thumbnail_id($post_id);
-			$post_imageFull = getFicheImage($post_id);
-			
-			$response[] = [
-				'id'      => $post_id,
-				'name'    => $post_name,
-				'species' => $post_species,
-				'image'   => $post_imageFull,
-			];
-		}
-	}
-	wp_send_json($response);
-	wp_die();
-}
-
 function ajout_boite_meta_description() {
 	add_meta_box(
 		'page_description', // ID unique de la boîte de méta
