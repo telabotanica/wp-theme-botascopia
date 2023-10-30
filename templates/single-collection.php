@@ -140,6 +140,21 @@ get_header();
 					<div class="single-collection-detail">Publié le <?php echo $post_date ?></div>
 					<div class="single-collection-detail">Par <?php echo $post_author ?></div>
 				</div>
+                
+                <?php
+                if (is_user_logged_in() && get_the_author_meta('ID') == $userId){
+					$href = home_url() . '/profil/mes-collections/creer-une-collection/?edit=true&c='.$post_id;
+					echo ('<div id="modifier-single-collection" class="update-collection-buttons">');
+					the_botascopia_module('button', [
+						'tag' => 'a',
+						'href' => $href,
+						'title' => 'modifier la collection',
+						'text' => 'Modifier la collection',
+						'modifiers' => 'green-button'
+					]);
+					echo ('</div>');
+                }
+                ?>
 			
 			</div>
 			<div class="right-div">

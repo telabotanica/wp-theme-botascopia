@@ -138,6 +138,8 @@
     flex-wrap: wrap;
 }
 
+
+
 /****************** Bandeau complète/en cours /pas complète **************************/
 
 .main-status-bandeau{
@@ -542,7 +544,7 @@ display: none;
     margin-right: 20px;
 }
 
-.popup-content-email {
+.popup-content-email, .content-email {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -702,7 +704,7 @@ display: none;
         height: 80vh;
     }
 
-    .popup-content-email {
+    .popup-content-email, .content-email {
         max-height: 50vh;
         overflow-y: scroll;
     }
@@ -804,9 +806,13 @@ display: none;
         height: 80vh;
     }
 
-    .popup-content-email {
+    .popup-content-email, .content-email {
         max-height: 50vh;
         overflow-y: scroll;
+    }
+
+    #modifier-single-collection {
+        justify-content: center;
     }
 }
 

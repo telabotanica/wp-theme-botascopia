@@ -115,7 +115,7 @@ endif;
 						$sentEmails = get_post_meta($collection_id, 'invitations', true);
                         if ($sentEmails){
                             echo ('<h3>Invitations déjà envoyées</h3>');
-							echo ('<div class="popup-content-email">');
+							echo ('<div class="content-email">');
 							foreach ($sentEmails as $email){
 								echo ('<div class="displayed-email">'.$email.'</div>');
 							}
@@ -123,7 +123,7 @@ endif;
                         }
 					}
 					?>
-                    
+                    <div id="invitations-a-envoyer-container"></div>
                     <input id="emails-selected" type="hidden" name="participantsEmails" <?php
 					if ($edit){
 						echo 'value="' . esc_attr(json_encode($participantsEmails)) . '"';
