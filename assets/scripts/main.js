@@ -312,11 +312,6 @@ function popupAjouterFiche() {
                 selectedCardIds.push(id);
             })
 
-            var existingHiddenInput = document.querySelector('#fiches-selected');
-            if (existingHiddenInput) {
-                existingHiddenInput.value ='';
-            }
-
             // Créer un champ de formulaire caché
             var hiddenInput = formulaire.querySelector('#fiches-selected');
 
@@ -370,8 +365,6 @@ function popupAjouterFiche() {
                     popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
                     document.querySelector('#content').classList.remove('blur-background');
                     document.querySelector('header').classList.remove('blur-background');
-                    hiddenInput.value = JSON.stringify(selectedCardIds);
-                    displaySelectedFiches(selectedCardIds);
                 }
             });
 

@@ -101,7 +101,6 @@ endif;
 					<?php
                     if ($edit){
                         $participantsEmails = [];
-                        //TODO chercher et afficher les invitations déjà envoyées
                     }
                     
 					the_botascopia_module('button', [
@@ -147,7 +146,8 @@ endif;
 								array(
 									'connected_type' => 'collection_to_post',
 									'connected_items' => $collection_id,
-									'post_status' => 'any',
+									'nopaging' => true,
+									'post_status' => array('publish', 'draft', 'pending', 'private'),
 									'order'          => 'ASC',
 									'orderby'        => 'meta_value',
 									'meta_key'       => 'nom_scientifique',
@@ -159,6 +159,7 @@ endif;
 									$post_species = get_post_meta(get_the_ID(), 'famille', true);
 									$post_name = get_post_meta($post_id, 'nom_scientifique', true);
 									$post_imageFull = getFicheImage($post_id);
+									$selectedIds[] = $post_id;
 									
 									$fiches[] = [
 										'id'      => $post_id,
@@ -168,8 +169,8 @@ endif;
 									];
                                 endwhile;
                             endif;
-                            
-                            foreach ($fiches as $fiche){?>
+							
+							foreach ($fiches as $fiche){?>
                             
                             <div class="card card-fiche card-selected" data-fiche-id="<?php echo $fiche['id']; ?>">
                                 <a data-fiche-id="<?php echo $fiche['id']; ?>">
