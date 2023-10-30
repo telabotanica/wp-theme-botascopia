@@ -1019,16 +1019,13 @@ function popupAjouterParticipant() {
                     document.querySelector('#content').classList.remove('blur-background');
                     document.querySelector('header').classList.remove('blur-background');
                     existingEmailsHidden.value = JSON.stringify(participantsEmails);
+                    displaySelectedEmailsMainPage(participantsEmails)
                     participantsEmails = [];
-
-                    // displaySelectedFiches(participantsEmails);
                 }
                 if (event.target.classList.contains('blur-background') || event.target == annuler) {
                     popupAjoutParticipants.parentNode.removeChild(popupAjoutParticipants);
                     document.querySelector('#content').classList.remove('blur-background');
                     document.querySelector('header').classList.remove('blur-background');
-
-                    // displaySelectedFiches(participantsEmails);
                 }
             });
 
@@ -1083,3 +1080,22 @@ function addSvg(name){
     return svgIcon;
 }
 
+function displaySelectedEmailsMainPage(participantsEmails){
+    const invitationsContainer = document.querySelector('#invitations-a-envoyer-container');
+    if (participantsEmails.length > 0){
+        invitationsContainer.innerHTML = '<h3>Invitations qui seront envoyées</h3>';
+
+        let content = document.createElement(`div`);
+        content.classList.add('content-email')
+        content.innerHTML = '';
+
+        participantsEmails.forEach(email => {
+            let emailHtml = document.createElement('div');
+            emailHtml.classList.add('displayed-email')
+            emailHtml.innerHTML = email;
+
+            content.appendChild(emailHtml);
+        })
+        invitationsContainer.appendChild(content);
+    }
+}

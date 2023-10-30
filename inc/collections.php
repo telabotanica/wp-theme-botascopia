@@ -787,7 +787,8 @@ function sendInvitationMail($emails, $collection_id){
 	$message = '<body style="background-color: #f7f3ec"><div id="main"><h2 class="title">Invitation à une collection</h2><div><p>Un utilisateur vous invite à participer à la complétion des fiches de la collection suivante: </p><p><a target="_blank" href="'
 		.esc_url($collection_href).'" title="collection"> '.esc_html($collection_name).'</a></p><p>Si vous n\'avez pas encore de compte sur Botascopia : <br>
 		- connectez-vous sur Botascopia avec votre compte Tela Botanica<br>
-		- créez vous un compte sur le lien suivant:  <a target="_blank" href="https://www.tela-botanica.org/inscription/">https://www.tela-botanica.org/inscription/</a> vous aurez ainsi accès à Botascopia et à tous les outils de Tela Botanica.</p></div>
+		- créez vous un compte avec l\'adresse mail sur laquelle vous avez reçu l\'invitation sur le lien suivant:  <a target="_blank" href="https://www.tela-botanica.org/inscription/">https://www
+	//.tela-botanica.org/inscription/</a> vous aurez ainsi accès à Botascopia et à tous les outils de Tela Botanica.</p></div>
 		<div class="footer" style="display: flex; justify-content: center; margin-top: 20px"><img src="'.get_template_directory_uri().'/images/logo-botascopia.png" style="height: 100px"></div>
 		</div></body>';
 
