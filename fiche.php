@@ -1153,48 +1153,45 @@ get_header();
                                 'level' => 2,
                             ]);
                             ?>
-                        </div>
-                        <div>
-                            <p class="agro-ecologie">
                                 <?php if (!empty(get_field('temperature_minimale_supportee'))):?>
-                                    Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de <?php echo get_field('temperature_minimale_supportee');?> °C.
+                                    <p>Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de <?php echo get_field('temperature_minimale_supportee');?> °C.</p>
                                 <?php endif; ?>
                                 <?php if (get_field('des_symbioses_avec_des_organismes_fixateurs_dazote')): ?>
-                                    <br>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.
+                                    <p>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.</p>
                                 <?php endif; ?>
                                 <?php if (get_field('plantes_connues_pour_attirer_des_auxiliaires_de_culture')): ?>
                                     <?php if (get_field('type_dauxiliaires') == 'pollinisateurs' || get_field('type_dauxiliaires') == 'parasitoïdes' && !empty(get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_'))): ?>
-                                        <br>Cette plante attire des <?php echo get_field('type_dauxiliaires');?> grâce à <?php echo get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
+                                        <p>Cette plante attire des <?php echo get_field('type_dauxiliaires');?> grâce à <?php echo get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.</p>
                                     <?php endif; ?>
                                     <?php if (get_field('type_dauxiliaires') == 'prédateurs' && !empty(get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_')) && !empty(get_field('les_predateurs'))): ?>
-                                        <br>Cette plante attire des <?php echo get_field('les_predateurs');?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à<?php echo get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
+                                        <p>Cette plante attire des <?php echo get_field('les_predateurs');?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à<?php echo get_field('quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (get_field('plantes_connues_pour_repousser_les_ravageurs')): ?>
                                     <?php if (!empty(get_field('plantes_connues_pour_repousser_les_ravageurs'))):
                                         $les_ravageurs = implode('-', get_field('les_ravageurs'));?>
-                                        <br>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                        <p>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (get_field('plantes_connues_pour_attirer_les_ravageurs')): ?>
                                     <?php if (!empty(get_field('plantes_connues_pour_attirer_les_ravageurs'))):
                                         $les_ravageurs = implode('-', get_field('les_ravageurs'));?>
-                                        <br>Cette plante attire des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                        <p>Cette plante attire des <?php echo $les_ravageurs;?>, ravageurs de culture.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('communautes_vegetales_dans_lesquelles_la_plante_est_observee'))): ?>
-                                    <br>Elle pousse <?php echo get_field('communautes_vegetales_dans_lesquelles_la_plante_est_observee');?>.
+                                    <p>Elle pousse <?php echo get_field('communautes_vegetales_dans_lesquelles_la_plante_est_observee');?>.</p>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('plante_presentant_une_multiplication_vegetative')) && get_field('plante_presentant_une_multiplication_vegetative') == 'oui'): ?>
                                     <?php if (!empty(get_field('structures_liees_a_la_multiplication_vegetative'))): ?>
-                                        <br>Cette plante présente une multiplication végétative grâce à <?php echo get_field('structures_liees_a_la_multiplication_vegetative');?>.
+                                        <p>Cette plante présente une multiplication végétative grâce à <?php echo get_field('structures_liees_a_la_multiplication_vegetative');?>.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_')) && get_field('la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_') == 'oui'): ?>
-                                    <br>Elle est connue pour émetttre des substances allélopathiques.
+                                    <p>Elle est connue pour émetttre des substances allélopathiques.</p>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_'))): ?>
-                                    <br>Cette plante est utilisée comme plante compagne des <?php echo get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_');?>.
+                                    <p>Cette plante est utilisée comme plante compagne des <?php echo get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_');?>.</p>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('toxicite_pour_les_animaux_non_humains'))):
                                     $animaux_affectes = implode('-', get_field('toxicite_pour_les_animaux_non_humains'));?>
