@@ -1196,8 +1196,8 @@ get_header();
                                 <?php if (!empty(get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_'))): ?>
                                     <br>Cette plante est utilisée comme plante compagne des <?php echo get_field('cette_plante_est-elle_utilisee_comme_plante_compagne_');?>.
                                 <?php endif; ?>
-                                <?php if (!empty(get_field('toxicite_pour_les_animaux_non_humains'))):
-                                    $animaux_affectes = implode('-', get_field('toxicite_pour_les_animaux_non_humains'));?>
+                                <?php if (!empty(get_field('interaction_avec_le_vivant_toxicite_pour_les_animaux_non_humains'))):
+                                    $animaux_affectes = implode('-', get_field('interaction_avec_le_vivant_toxicite_pour_les_animaux_non_humains'));?>
                                     <br>Elle est toxique pour <?php echo $animaux_affectes;?>
                                     <?php if (get_field('toxicite_pour_lhumain') == 'oui'): ?>
                                     et l'humain
