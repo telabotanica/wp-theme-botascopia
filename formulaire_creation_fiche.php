@@ -434,7 +434,7 @@ if (isset($_GET['p'])) {
                         'text' => 'Renvoyer pour correction',
                         'modifiers' => 'purple-button outline',
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
-                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3&author=".$auteur_id."'"]
+                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."&a=3&author=".$auteur_id."'"]
                     ]);
                 }
                 
