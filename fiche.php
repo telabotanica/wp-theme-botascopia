@@ -1194,7 +1194,7 @@ get_header();
                                     <br>Elle est connue pour émetttre des substances allélopathiques.
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_cette_plante_est-elle_utilisee_comme_plante_compagne_'))): ?>
-                                    <br>Cette plante est utilisée comme plante compagne des <?php echo get_field('interaction_avec_le_vivant_cette_plante_est-elle_utilisee_comme_plante_compagne_');?>.
+                                    <br>Cette plante est utilisée comme plante compagne des <?php echo sprintf(get_field('interaction_avec_le_vivant_cette_plante_est-elle_utilisee_comme_plante_compagne_'));?>.
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_toxicite_pour_les_animaux_non_humains'))):
                                     $animaux_affectes = implode(', ', get_field('interaction_avec_le_vivant_toxicite_pour_les_animaux_non_humains'));?>
