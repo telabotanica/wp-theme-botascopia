@@ -1167,12 +1167,12 @@ get_header();
                                         <br>Cette plante attire des <?php echo implode(get_field('interaction_avec_le_vivant_type_dauxiliaires'));?> grâce à <?php echo get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
                                     <?php endif; ?>
                                     <?php if (get_field('interaction_avec_le_vivant_type_dauxiliaires') == 'prédateurs' && !empty(get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_')) && !empty(get_field('interaction_avec_le_vivant_les_predateurs'))): ?>
-                                        <br>Cette plante attire des <?php echo get_field('interaction_avec_le_vivant_les_predateurs');?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à<?php echo get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
+                                        <br>Cette plante attire des <?php echo implode(get_field('interaction_avec_le_vivant_les_predateurs'));?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à <?php echo implode(', ', get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_'));?>.
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (get_field('interaction_avec_le_vivant_plantes_connues_pour_repousser_les_ravageurs')): ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_plantes_connues_pour_repousser_les_ravageurs'))):
-                                        $les_ravageurs = implode('-', get_field('interaction_avec_le_vivant_les_ravageurs'));?>
+                                        $les_ravageurs = implode(', ', get_field('interaction_avec_le_vivant_les_ravageurs'));?>
                                         <br>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.
                                     <?php endif; ?>
                                 <?php endif; ?>
@@ -1183,11 +1183,11 @@ get_header();
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_communautes_vegetales_dans_lesquelles_la_plante_est_observee'))): ?>
-                                    <br>Elle pousse <?php echo get_field('interaction_avec_le_vivant_communautes_veg   etales_dans_lesquelles_la_plante_est_observee');?>.
+                                    <br>Elle pousse <?php echo implode(get_field('interaction_avec_le_vivant_communautes_vegetales_dans_lesquelles_la_plante_est_observee'));?>.
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_plante_presentant_une_multiplication_vegetative')) && get_field('interaction_avec_le_vivant_plante_presentant_une_multiplication_vegetative') == 'oui'): ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_structures_liees_a_la_multiplication_vegetative'))): ?>
-                                        <br>Cette plante présente une multiplication végétative grâce à <?php echo get_field('interaction_avec_le_vivant_structures_liees_a_la_multiplication_vegetative');?>.
+                                        <br>Cette plante présente une multiplication végétative grâce à <?php echo implode(', ', get_field('interaction_avec_le_vivant_structures_liees_a_la_multiplication_vegetative'));?>.
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_')) && get_field('interaction_avec_le_vivant_la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_') == 'oui'): ?>
@@ -1203,21 +1203,19 @@ get_header();
                                     et l'humain
                                 <?php endif; ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'))): ?>
-                                    au niveau <?php echo get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_');?>
+                                    au niveau <?php echo implode(get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'));?>
                                 <?php endif; ?>
                                     .
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee')) && get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'): ?>
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'))): ?>
-                                        <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))): ?>
-                                            <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel'))): ?>
-                                                <br>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> <?php echo get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement');?> <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement');?> <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.
-                                            <?php endif; ?>
+                                        <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel'))): ?>
+                                            <br>Cette espèce est observée <?php echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee'));?> <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ echo implode(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); }?> <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement');?> <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php /*if (!empty(get_field('adaptations_aux_pratiques_de_culture_periode_de_levee'))): */?><!--
-                                    <br>Cette plante est utilisée comme plante compagne des <?php /*echo get_field('adaptations_aux_pratiques_de_culture_periode_de_levee');*/?>.
+                                    <br>Cette plante est utilisée comme plante compagne des <?php /*echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_periode_de_levee'));*/?>.
                                 --><?php /*endif; */?>
 
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_plante_est_favorisee_dans_les_systemes_de_culture')) && get_field('adaptations_aux_pratiques_de_culture_cette_plante_est_favorisee_dans_les_systemes_de_culture') != 'sans travail du sol'): ?>
@@ -1236,17 +1234,17 @@ get_header();
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_est-cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants'))): ?>
-                                    <br>Cette plante a été ou est cultivée pour <?php echo get_field('valeurs_ecologiques_historiques_et_locales_cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants');?>.
+                                    <br>Cette plante a été ou est cultivée pour <?php echo implode(', ', get_field('valeurs_ecologiques_historiques_et_locales_cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants'));?>.
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_est-plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant'))): ?>
-                                    <br>Cette plante est connue pour <?php echo get_field('valeurs_ecologiques_historiques_et_locales_plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant');?>.
+                                    <br>Cette plante est connue pour <?php echo implode(', ', get_field('valeurs_ecologiques_historiques_et_locales_plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant'));?>.
                                 <?php endif; ?>
 
                                 <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection')) && get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection') != 'a un statut de protection au niveau national et/ou régional'): ?>
                                     <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection_france_metropolitaine'))): ?>
                                         <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection_a_l_echelle_locale_regions_concernees'))): ?>
                                             <!--                                            --><?php //if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes'))): ?>
-                                            <br>Elle a le statut de protection <?php echo get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection');?> dans la région <?php echo get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection_a_l_echelle_locale_regions_concernees');?>.
+                                            <br>Elle a le statut de protection <?php echo get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection');?> dans la région <?php echo implode(get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection_a_l_echelle_locale_regions_concernees'));?>.
                                             <!--                                            --><?php //endif; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
