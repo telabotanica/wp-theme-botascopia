@@ -316,9 +316,9 @@ if (isset($_GET['p'])) {
         
         // Renvoyer à l'auteur pour correction
         if (isset($_GET['a']) and $_GET['a'] == "3" ){
-            if (isset($_GET['author'])){
+            if (isset($_GET['h'])){
 				wp_update_post(array('ID' => get_the_ID(), 'post_status' =>
-					'draft', 'post_author' => $_GET['author']));
+					'draft', 'post_author' => $_GET['h']));
 			} else {
 				wp_update_post(array('ID' => get_the_ID(), 'post_status' =>
 					'draft'));
@@ -434,7 +434,7 @@ if (isset($_GET['p'])) {
                         'text' => 'Renvoyer pour correction',
                         'modifiers' => 'purple-button outline',
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
-                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."&a=3&author=".$auteur_id."'"]
+                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3&h=".$auteur_id."'"]
                     ]);
                 }
                 
