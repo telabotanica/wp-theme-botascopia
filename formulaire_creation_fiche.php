@@ -451,7 +451,7 @@ if (isset($_GET['p'])) {
                         'title' => 'Publier',
                         'text' => 'Publier',
                         'modifiers' => 'green-button acf-button2',
-                        'extra_attributes' => ['type' => "submit", 'id' => "publish_btn", 'name'=> "publish_btn", 'value' => "Envoyer la fiche à validation", 'data-post-id' => get_the_ID()]
+                        'extra_attributes' => ['type' => "submit", 'id' => "publish_btn", 'name'=> "publish_btn", 'value' => "Envoyer la fiche pour vérification", 'data-post-id' => get_the_ID()]
                     ]);
                 ?>
             </div>
