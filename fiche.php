@@ -1204,7 +1204,7 @@ get_header();
                                     <?php endif; ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'))): ?>
                                         au niveau <?php echo implode(get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'));?>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                                     .
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee')) && get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'): ?>
