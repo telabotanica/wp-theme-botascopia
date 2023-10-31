@@ -145,11 +145,11 @@ get_header();
 						'items' => [
 							[
 								'items' => [
-									[
+									/*[
 										'text' => 'Taxonomie',
 										'href' => '#taxonomie',
 										'active' => true,
-									],
+									],*/
 									[
 										'text' => 'Description morphologique',
 										'href' => '#description-morphologique',
@@ -297,24 +297,24 @@ get_header();
 					</div>
 				</div>
 				
-				<div id="taxonomie">
+				<!--<div id="taxonomie">
 					<?php
-					the_botascopia_module('title', [
+/*					the_botascopia_module('title', [
 						'title' => __('Taxonomie', 'botascopia'),
 						'level' => 2,
 					]);
-					?>
+					*/?>
 					
-					<p>Nom scientifique: <?php the_field('nom_scientifique'); ?></p>
-					<p>Nom vernaculaire: <?php the_field('nom_vernaculaire'); ?></p>
-					<p>Famille: <?php the_field('famille'); ?></p>
-					<p>Numéro nomenclatural: <?php the_field('num_nom'); ?></p>
-					<p>Référentiel: <?php the_field('referentiel'); ?></p>
-					<?php if (!empty(get_field('lien_eflore'))): ?>
-					<p>Lien vers e-flore : <a href="<?php the_field('lien_eflore'); ?>" title="Lien vers eflore"
-											  target="_blank"><?php the_field('lien_eflore'); ?></a></p>
-					<?php endif; ?>
-				</div>
+					<p>Nom scientifique: <?php /*the_field('nom_scientifique'); */?></p>
+					<p>Nom vernaculaire: <?php /*the_field('nom_vernaculaire'); */?></p>
+					<p>Famille: <?php /*the_field('famille'); */?></p>
+					<p>Numéro nomenclatural: <?php /*the_field('num_nom'); */?></p>
+					<p>Référentiel: <?php /*the_field('referentiel'); */?></p>
+					<?php /*if (!empty(get_field('lien_eflore'))): */?>
+					<p>Lien vers e-flore : <a href="<?php /*the_field('lien_eflore'); */?>" title="Lien vers eflore"
+											  target="_blank"><?php /*the_field('lien_eflore'); */?></a></p>
+					<?php /*endif; */?>
+				</div>-->
 				
 				<div id="description-morphologique">
 					
@@ -1185,9 +1185,10 @@ get_header();
                             ?>
                         </div>
                         <div>
-                            <?php if (!empty(get_field('tolerance_au_gel'))):?>
-                            <p class="tolerance_au_gel">
-                                Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de L11 °C.
+                            <p class="agro_ecologie">
+                                <?php if (!empty(get_field('tolerance_au_gel'))):?>
+                                    Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de L11 °C.
+                                <?php endif; ?>
                                 <?php if (get_field('des_symbioses_avec_des_organismes_fixateurs_dazote')): ?>
                                     <br>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.
                                 <?php endif; ?>
