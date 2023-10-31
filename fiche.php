@@ -1155,7 +1155,7 @@ get_header();
                             ?>
                         </div>
                         <div>
-                            <p class="agro_ecologie">
+                            <p class="agro-ecologie">
                                 <?php if (!empty(get_field('temperature_minimale_supportee'))):?>
                                     Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de <?php echo get_field('temperature_minimale_supportee');?> °C.
                                 <?php endif; ?>
@@ -1251,8 +1251,6 @@ get_header();
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
-
-
                             </p>
                         </div>
                     </div>
