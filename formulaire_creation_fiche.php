@@ -253,7 +253,7 @@ if (isset($_GET['p'])) {
             <?php
             the_botascopia_module('button',[
                 'tag' => 'a',
-                'href' => '/collection',
+                'href' => '/collections',
                 'title' => 'Retour aux collections',
                 'text' => 'retour aux collection',
                 'modifiers' => 'purple-button'
@@ -412,7 +412,7 @@ if (isset($_GET['p'])) {
                 <?php
                 the_botascopia_module('button',[
                     'tag' => 'a',
-                    'href' => '/collection',
+                    'href' => '/collections',
                     'title' => 'Retour aux collections',
                     'text' => 'retour aux collection',
                     'modifiers' => 'purple-button'
