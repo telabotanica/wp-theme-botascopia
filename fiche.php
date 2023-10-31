@@ -1186,8 +1186,8 @@ get_header();
                         </div>
                         <div>
                             <p class="agro_ecologie">
-                                <?php if (!empty(get_field('tolerance_au_gel'))):?>
-                                    Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de L11 °C.
+                                <?php if (!empty(get_field('temperature_minimale_supportee'))):?>
+                                    Cette plante <?php if (get_field('tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de <?php echo get_field('temperature_minimale_supportee');?> °C.
                                 <?php endif; ?>
                                 <?php if (get_field('des_symbioses_avec_des_organismes_fixateurs_dazote')): ?>
                                     <br>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.
@@ -1294,7 +1294,6 @@ get_header();
                     }
                     ?>
                 </div>
-                
                 <div class="formulaire-boutons-bas">
                     <?php
                     $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
