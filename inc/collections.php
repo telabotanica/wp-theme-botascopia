@@ -693,31 +693,8 @@ function loadFiches($post_id, $paged){
 				}
 			}
 			
-			// Si la fiche n'appartient pas à un contributeur, un contributeur peut en prendre
-			// l'ownership si celle-ci est en draft
-			if (is_user_logged_in() && $current_user_role == 'contributor' && $status == 'draft' &&
-				$current_user_id != $fiche_author_id && $fiche_author_roles != 'contributor') {
-				$popupClass = 'fiche-non-reserve';
-			} else {
-				$popupClass = '';
-			}
-			
-			// Différent lien selon le statut de la fiche et l'utilisateur
-			if (is_user_logged_in()) {
-				if (($current_user_role == 'contributor' && $status == 'draft' &&
-						$current_user_id == $fiche_author_id) ||
-					($current_user_role == 'editor' && $status == 'pending')) {
-					$href = '/formulaire/?p='.get_the_title();
-				} elseif ($status == 'publish' || $current_user_role == 'administrator' ) {
-					$href = get_permalink();
-				} else {
-					$href = '#';
-				}
-			} elseif ($status == 'publish') {
-				$href = get_permalink();
-			} else {
-				$href = '#';
-			}
+			$href = afficherLienFiche()[0];
+			$popupClass = afficherLienFiche()[1];
 			
 			echo('
 				<div class="fiche-status">
