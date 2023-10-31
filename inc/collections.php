@@ -660,11 +660,23 @@ function loadFiches($post_id, $paged){
 			switch ($status):
 			case 'draft':
 				$fichesClasses = 'card-status-bandeau main-status-incomplete';
-				$ficheStatusText = 'à completer';
+				if (in_array($fiche_author_roles, ['contributor', 'editor'])) {
+					$ficheStatusText = 'en cours...';
+				} else {
+					$ficheStatusText = 'à completer';
+				}
 				break;
 			case 'pending':
 				$fichesClasses = 'card-status-bandeau main-status-complete';
-				$ficheStatusText = 'en cours...';
+
+				$editor = get_post_meta($id, 'Editor', true);
+				
+				if (!$editor || $editor == 0){
+					$ficheStatusText = 'A vérifier';
+				} else {
+					$ficheStatusText = 'En cours de vérification';
+				}
+				
 				break;
 			case 'publish':
 				$fichesClasses = 'card-status-bandeau main-status-complete';
@@ -674,24 +686,6 @@ function loadFiches($post_id, $paged){
 				$fichesClasses = '';
 				$ficheStatusText = '';
 			endswitch;
-			
-			// Cas des fiches réservées (toujours en draft)
-			if ($fiche_author_roles == 'contributor') {
-				if ($status == 'draft'){
-					$fichesClasses = 'card-status-bandeau main-status-incomplete';
-					$ficheStatusText = 'en cours...';
-				} elseif ($status == 'pending'){
-					$editor = get_post_meta($id, 'Editor', true);
-					
-					if ($editor == $current_user_id || $editor == 0){
-						$fichesClasses = 'card-status-bandeau main-status-complete';
-						$ficheStatusText = 'A vérifier';
-					} else {
-						$fichesClasses = 'card-status-bandeau main-status-complete';
-						$ficheStatusText = 'En cours de vérification';
-					}
-				}
-			}
 			
 			$href = afficherLienFiche()[0];
 			$popupClass = afficherLienFiche()[1];
