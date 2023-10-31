@@ -660,11 +660,23 @@ function loadFiches($post_id, $paged){
 			switch ($status):
 			case 'draft':
 				$fichesClasses = 'card-status-bandeau main-status-incomplete';
-				$ficheStatusText = 'à completer';
+				if (in_array($fiche_author_roles, ['contributor', 'editor'])) {
+					$ficheStatusText = 'en cours...';
+				} else {
+					$ficheStatusText = 'à completer';
+				}
 				break;
 			case 'pending':
 				$fichesClasses = 'card-status-bandeau main-status-complete';
-				$ficheStatusText = 'en cours...';
+
+				$editor = get_post_meta($id, 'Editor', true);
+				
+				if (!$editor || $editor == 0){
+					$ficheStatusText = 'A vérifier';
+				} else {
+					$ficheStatusText = 'En cours de vérification';
+				}
+				
 				break;
 			case 'publish':
 				$fichesClasses = 'card-status-bandeau main-status-complete';
@@ -675,49 +687,8 @@ function loadFiches($post_id, $paged){
 				$ficheStatusText = '';
 			endswitch;
 			
-			// Cas des fiches réservées (toujours en draft)
-			if ($fiche_author_roles == 'contributor') {
-				if ($status == 'draft'){
-					$fichesClasses = 'card-status-bandeau main-status-incomplete';
-					$ficheStatusText = 'en cours...';
-				} elseif ($status == 'pending'){
-					$editor = get_post_meta($id, 'Editor', true);
-					
-					if ($editor == $current_user_id || $editor == 0){
-						$fichesClasses = 'card-status-bandeau main-status-complete';
-						$ficheStatusText = 'A vérifier';
-					} else {
-						$fichesClasses = 'card-status-bandeau main-status-complete';
-						$ficheStatusText = 'En cours de vérification';
-					}
-				}
-			}
-			
-			// Si la fiche n'appartient pas à un contributeur, un contributeur peut en prendre
-			// l'ownership si celle-ci est en draft
-			if (is_user_logged_in() && $current_user_role == 'contributor' && $status == 'draft' &&
-				$current_user_id != $fiche_author_id && $fiche_author_roles != 'contributor') {
-				$popupClass = 'fiche-non-reserve';
-			} else {
-				$popupClass = '';
-			}
-			
-			// Différent lien selon le statut de la fiche et l'utilisateur
-			if (is_user_logged_in()) {
-				if (($current_user_role == 'contributor' && $status == 'draft' &&
-						$current_user_id == $fiche_author_id) ||
-					($current_user_role == 'editor' && $status == 'pending')) {
-					$href = '/formulaire/?p='.get_the_title();
-				} elseif ($status == 'publish' || $current_user_role == 'administrator' ) {
-					$href = get_permalink();
-				} else {
-					$href = '#';
-				}
-			} elseif ($status == 'publish') {
-				$href = get_permalink();
-			} else {
-				$href = '#';
-			}
+			$href = afficherLienFiche()[0];
+			$popupClass = afficherLienFiche()[1];
 			
 			echo('
 				<div class="fiche-status">

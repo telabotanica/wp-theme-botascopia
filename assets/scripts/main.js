@@ -207,8 +207,10 @@ function envoyerFicheEnValidation(){
     const fiche = document.querySelector('#pending_btn');
 
     if (fiche){
-        fiche.addEventListener('click', function() {
+        fiche.addEventListener('click', function(event) {
+            event.preventDefault();
             var post_id = this.getAttribute('data-post-id');
+            setTimeout(function () { window.location.href = '/profil/mes-fiches'; } , 1000 );
             setStatus(post_id, 'pending');
         });
     }
@@ -218,8 +220,11 @@ function envoyerFicheEnValidation(){
 function publierFiche(){
     const ficheAPublier = document.querySelector('#publish_btn');
     if (ficheAPublier){
-        ficheAPublier.addEventListener('click', function() {
+        ficheAPublier.addEventListener('click', function(event) {
+            event.preventDefault();
             var post_id = this.getAttribute('data-post-id');
+            var post_title = this.getAttribute('data-post-title');
+            setTimeout(function () { window.location.href = '/' + post_title } , 1000 );
             setStatus(post_id, 'publish');
         });
     }
@@ -252,8 +257,6 @@ function setStatus(postId, status) {
     } else {
         xhr.send('action=set_fiche_status&post_id=' + postId + '&status=publish');
     }
-
-    setTimeout(function () { location.reload(); } , 1000 );
 }
 
 // Affichage de l'image sélectionnée lors de la création d'une collection

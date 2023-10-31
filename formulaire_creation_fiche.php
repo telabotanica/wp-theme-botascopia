@@ -79,7 +79,7 @@ if (isset($_GET['p'])) {
 
         query_posts(array(
             'post_type' => 'post',
-            'post_status' => 'pending',
+            'post_status' => ['draft','pending'],
             'title' => $titre_du_post,
             'showposts' => 1
         ));
@@ -107,7 +107,7 @@ if (isset($_GET['p'])) {
     $auteur_autorise = false;
     // $current_user = wp_get_current_user();
     $utilisateur = get_current_user_id();
-    $auteur_id = get_the_author_meta('ID');
+	$auteur_id = get_post_field('post_author', get_the_ID());
     $auteur = get_userdata($auteur_id);
     $auteur_role = $auteur->roles;
     $auteur_name = get_the_author_meta('display_name', $auteur_id);
@@ -116,12 +116,12 @@ if (isset($_GET['p'])) {
     
     switch (get_post_status()){
         case 'draft':
-            $status = 'A compléter';
+            $status = 'En cours...';
             $acf_value = 1;
             $acf_submit_text = 'Enregistrer';
             break;
         case 'pending':
-            $status = 'En cours de validation';
+            $status = 'En cours de vérification';
             $acf_value = 2;
             $acf_submit_text = 'Corriger';
             break;
@@ -138,15 +138,15 @@ if (isset($_GET['p'])) {
     
     if ($utilisateur !== 0) {
         // si l'auteur du post n'est pas l'admin des fiches
-        if ($auteur_id !== $utilisateur && $auteur_role[0] != 'contributor' && isset($_GET['a']) && $_GET['a'] == "1") {
+        if ($auteur_id != $utilisateur && isset($_GET['a']) && $_GET['a'] == "1" && get_post_status() == 'draft') {
                 wp_update_post(array('ID' => get_the_ID(), 'post_author' => $utilisateur));
                 $auteur_autorise = true;
-        } else if ($auteur_id === $utilisateur) {
+        } else if ($auteur_id == $utilisateur) {
             if (isset($_GET['a']) and $_GET['a'] == "2" ) {
                 // Désinscription de la fiche
                 wp_update_post(array('ID' => get_the_ID(), 'post_author' => 3));
                 $auteur_autorise = false;
-            } else {
+            } elseif(get_post_status() == 'draft') {
                 $auteur_autorise = true;
             }
         } else if ($current_user->wp_user_level == '10'){
@@ -289,12 +289,15 @@ if (isset($_GET['p'])) {
             if ($fiche_complete){
                 the_botascopia_module('button',[
                     'tag' => 'button',
-                    'title' => 'Envoyer la fiche à vérification',
-                    'text' => 'Envoyer la fiche à vérification',
+                    'title' => 'Envoyer la fiche pour vérification',
+                    'text' => 'Envoyer la fiche pour vérification',
                     'modifiers' => 'green-button acf-button2',
-                    'extra_attributes' => ['type' => "submit", 'id' => "pending_btn", 'name'=> "pending_btn", 'value'
-                    => "Envoyer la fiche à validation",
-                        'data-post-id' => get_the_ID(),
+                    'extra_attributes' => [
+                            'type' => "submit",
+                            'id' => "pending_btn",
+                            'name'=> "pending_btn",
+                            'value' => "Envoyer la fiche pour vérification",
+                            'data-post-id' => get_the_ID()
                     ]
                 ]);
             }
@@ -313,8 +316,14 @@ if (isset($_GET['p'])) {
         
         // Renvoyer à l'auteur pour correction
         if (isset($_GET['a']) and $_GET['a'] == "3" ){
-            wp_update_post(array('ID' => get_the_ID(), 'post_status' =>
-                'draft'));
+            if (isset($_GET['author'])){
+				wp_update_post(array('ID' => get_the_ID(), 'post_status' =>
+					'draft', 'post_author' => $_GET['author']));
+			} else {
+				wp_update_post(array('ID' => get_the_ID(), 'post_status' =>
+					'draft'));
+			}
+            
             update_post_meta( get_the_ID(), 'Editor',0 );
         }
 
@@ -418,14 +427,14 @@ if (isset($_GET['p'])) {
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
                             .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=5'"]
                     ]);
-                    
+
                     the_botascopia_module('button', [
                         'tag' => 'button',
                         'title' => 'Renvoyer pour correction',
                         'text' => 'Renvoyer pour correction',
                         'modifiers' => 'purple-button outline',
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
-                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3'"]
+                            .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3&author=".$auteur_id."'"]
                     ]);
                 }
                 
@@ -451,7 +460,8 @@ if (isset($_GET['p'])) {
                         'title' => 'Publier',
                         'text' => 'Publier',
                         'modifiers' => 'green-button acf-button2',
-                        'extra_attributes' => ['type' => "submit", 'id' => "publish_btn", 'name'=> "publish_btn", 'value' => "Envoyer la fiche pour vérification", 'data-post-id' => get_the_ID()]
+                        'extra_attributes' => ['type' => "submit", 'id' => "publish_btn", 'name'=> "publish_btn", 'value' => "Envoyer la fiche à validation", 'data-post-id' => get_the_ID(), 'data-post-title' => get_the_title()]
+
                     ]);
                 ?>
             </div>
