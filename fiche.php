@@ -230,16 +230,16 @@ get_header();
 										'href' => '#complement-anecdote',
 										'active' => false,
 									],
-									[
-										'text' => 'Références',
-										'href' => '#references',
-										'active' => false,
-									],
                                     [
                                         'text' => 'Agroécologie',
                                         'href' => '#agroecologie',
                                         'active' => false,
                                     ],
+									[
+										'text' => 'Références',
+										'href' => '#references',
+										'active' => false,
+									],
 								]
 							],
 						]
@@ -1143,36 +1143,6 @@ get_header();
 					<p><?php the_field('complement_danecdote'); ?></p>
 				</div>
 				<?php endif; ?>
-				
-				<?php if (!empty(get_field('reference_1'))) : ?>
-				<div id="references">
-					<?php
-					the_botascopia_module('title', [
-						'title' => __('Références', 'botascopia'),
-						'level' => 2,
-					]);
-					?>
-					<ul>
-						<li><?php the_field('reference_1'); ?></li>
-						<?php if (!empty(get_field('reference_2'))) : ?>
-							<li><?php the_field('reference_2'); ?></li>
-						<?php endif; ?>
-						
-						<?php if (!empty(get_field('reference_3'))) : ?>
-							<li><?php the_field('reference_3'); ?></li>
-						<?php endif; ?>
-						
-						<?php if (!empty(get_field('reference_4'))) : ?>
-							<li><?php the_field('reference_4'); ?></li>
-						<?php endif; ?>
-						
-						<?php if (!empty(get_field('reference_5'))) : ?>
-							<li><?php the_field('reference_5'); ?></li>
-						<?php endif; ?>
-					</ul>
-				</div>
-				<?php endif; ?>
-
                 <div id="agroecologie" class="display-fiche-container">
                     <div class="fiche-title-container">
                         <div class="fiche-title-icon">
@@ -1203,7 +1173,7 @@ get_header();
                                 <?php if (get_field('plantes_connues_pour_repousser_les_ravageurs')): ?>
                                     <?php if (!empty(get_field('plantes_connues_pour_repousser_les_ravageurs'))):
                                         $les_ravageurs = implode('-', get_field('les_ravageurs'));?>
-                                    <br>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                        <br>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (get_field('plantes_connues_pour_attirer_les_ravageurs')): ?>
@@ -1230,18 +1200,18 @@ get_header();
                                     $animaux_affectes = implode('-', get_field('toxicite_pour_les_animaux_non_humains'));?>
                                     <br>Elle est toxique pour <?php echo $animaux_affectes;?>
                                     <?php if (get_field('toxicite_pour_lhumain') == 'oui'): ?>
-                                        et l'humain
-                                    <?php endif; ?>
+                                    et l'humain
+                                <?php endif; ?>
                                     <?php if (!empty(get_field('la_plante_est_toxique_au_niveau_'))): ?>
-                                        au niveau <?php echo get_field('la_plante_est_toxique_au_niveau_');?>
-                                    <?php endif; ?>
+                                    au niveau <?php echo get_field('la_plante_est_toxique_au_niveau_');?>
+                                <?php endif; ?>
                                     .
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('cette_espece_est_observee')) && get_field('cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'): ?>
                                     <?php if (!empty(get_field('cette_espece_est_observee_preferentiellement'))): ?>
                                         <?php if (!empty(get_field('precision_-_cette_espece_est_observee_preferentiellement'))): ?>
                                             <?php if (!empty(get_field('type_de_culture_preferentiel'))): ?>
-                                            <br>Cette espèce est observée <?php echo get_field('cette_espece_est_observee');?> <?php echo get_field('precision_-_cette_espece_est_observee_preferentiellement');?> <?php echo get_field('cette_espece_est_observee_preferentiellement');?> <?php echo get_field('type_de_culture_preferentiel');?>.
+                                                <br>Cette espèce est observée <?php echo get_field('cette_espece_est_observee');?> <?php echo get_field('precision_-_cette_espece_est_observee_preferentiellement');?> <?php echo get_field('cette_espece_est_observee_preferentiellement');?> <?php echo get_field('type_de_culture_preferentiel');?>.
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
@@ -1275,9 +1245,9 @@ get_header();
                                 <?php if (!empty(get_field('statut_de_protection')) && get_field('statut_de_protection') != 'a un statut de protection au niveau national et/ou régional'): ?>
                                     <?php if (!empty(get_field('quel_est_le_statut_de_protection_france_metropolitaine'))): ?>
                                         <?php if (!empty(get_field('statut_de_protection_a_l_echelle_locale_regions_concernees'))): ?>
-<!--                                            --><?php //if (!empty(get_field('precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes'))): ?>
-                                                <br>Elle a le statut de protection <?php echo get_field('statut_de_protection');?> dans la région <?php echo get_field('statut_de_protection_a_l_echelle_locale_regions_concernees');?>.
-<!--                                            --><?php //endif; ?>
+                                            <!--                                            --><?php //if (!empty(get_field('precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes'))): ?>
+                                            <br>Elle a le statut de protection <?php echo get_field('statut_de_protection');?> dans la région <?php echo get_field('statut_de_protection_a_l_echelle_locale_regions_concernees');?>.
+                                            <!--                                            --><?php //endif; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
@@ -1294,6 +1264,36 @@ get_header();
                     }
                     ?>
                 </div>
+
+				<?php if (!empty(get_field('reference_1'))) : ?>
+				<div id="references">
+					<?php
+					the_botascopia_module('title', [
+						'title' => __('Références', 'botascopia'),
+						'level' => 2,
+					]);
+					?>
+					<ul>
+						<li><?php the_field('reference_1'); ?></li>
+						<?php if (!empty(get_field('reference_2'))) : ?>
+							<li><?php the_field('reference_2'); ?></li>
+						<?php endif; ?>
+						
+						<?php if (!empty(get_field('reference_3'))) : ?>
+							<li><?php the_field('reference_3'); ?></li>
+						<?php endif; ?>
+						
+						<?php if (!empty(get_field('reference_4'))) : ?>
+							<li><?php the_field('reference_4'); ?></li>
+						<?php endif; ?>
+						
+						<?php if (!empty(get_field('reference_5'))) : ?>
+							<li><?php the_field('reference_5'); ?></li>
+						<?php endif; ?>
+					</ul>
+				</div>
+				<?php endif; ?>
+
                 <div class="formulaire-boutons-bas">
                     <?php
                     $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
