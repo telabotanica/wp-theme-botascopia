@@ -1294,8 +1294,7 @@ get_header();
                     }
                     ?>
                 </div>
-            <?php endif; ?>
-
+                
                 <div class="formulaire-boutons-bas">
                     <?php
                     $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
