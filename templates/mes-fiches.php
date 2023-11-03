@@ -210,7 +210,7 @@ get_header();
 				<div id="fiches-a-completer">
 					<?php
 					the_botascopia_module('title', [
-						'title' => __('Compléter une fiche', 'botascopia'),
+						'title' => __('Fiches en cours de complétion', 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -271,7 +271,7 @@ get_header();
                 <div id="fiches-a-valider">
 					<?php
 					the_botascopia_module('title', [
-						'title' => __('Fiches à valider', 'botascopia'),
+						'title' => __('Fiches terminées et en attente de vérification', 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -303,7 +303,7 @@ get_header();
 				<div id="mes-fiches-validees">
 					<?php
 					the_botascopia_module('title', [
-						'title' => __('Mes fiches validées', 'botascopia'),
+						'title' => __('Mes fiches publiées', 'botascopia'),
 						'level' => 2,
 					]);
 					?>

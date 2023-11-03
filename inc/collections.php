@@ -660,11 +660,23 @@ function loadFiches($post_id, $paged){
 			switch ($status):
 			case 'draft':
 				$fichesClasses = 'card-status-bandeau main-status-incomplete';
-				$ficheStatusText = 'à completer';
+				if (in_array($fiche_author_roles, ['contributor', 'editor'])) {
+					$ficheStatusText = 'en cours...';
+				} else {
+					$ficheStatusText = 'à completer';
+				}
 				break;
 			case 'pending':
 				$fichesClasses = 'card-status-bandeau main-status-complete';
-				$ficheStatusText = 'en cours...';
+
+				$editor = get_post_meta($id, 'Editor', true);
+				
+				if (!$editor || $editor == 0){
+					$ficheStatusText = 'A vérifier';
+				} else {
+					$ficheStatusText = 'En cours de vérification';
+				}
+				
 				break;
 			case 'publish':
 				$fichesClasses = 'card-status-bandeau main-status-complete';
@@ -675,49 +687,8 @@ function loadFiches($post_id, $paged){
 				$ficheStatusText = '';
 			endswitch;
 			
-			// Cas des fiches réservées (toujours en draft)
-			if ($fiche_author_roles == 'contributor') {
-				if ($status == 'draft'){
-					$fichesClasses = 'card-status-bandeau main-status-incomplete';
-					$ficheStatusText = 'en cours...';
-				} elseif ($status == 'pending'){
-					$editor = get_post_meta($id, 'Editor', true);
-					
-					if ($editor == $current_user_id || $editor == 0){
-						$fichesClasses = 'card-status-bandeau main-status-complete';
-						$ficheStatusText = 'A vérifier';
-					} else {
-						$fichesClasses = 'card-status-bandeau main-status-complete';
-						$ficheStatusText = 'En cours de vérification';
-					}
-				}
-			}
-			
-			// Si la fiche n'appartient pas à un contributeur, un contributeur peut en prendre
-			// l'ownership si celle-ci est en draft
-			if (is_user_logged_in() && $current_user_role == 'contributor' && $status == 'draft' &&
-				$current_user_id != $fiche_author_id && $fiche_author_roles != 'contributor') {
-				$popupClass = 'fiche-non-reserve';
-			} else {
-				$popupClass = '';
-			}
-			
-			// Différent lien selon le statut de la fiche et l'utilisateur
-			if (is_user_logged_in()) {
-				if (($current_user_role == 'contributor' && $status == 'draft' &&
-						$current_user_id == $fiche_author_id) ||
-					($current_user_role == 'editor' && $status == 'pending')) {
-					$href = '/formulaire/?p='.get_the_title();
-				} elseif ($status == 'publish' || $current_user_role == 'administrator' ) {
-					$href = get_permalink();
-				} else {
-					$href = '#';
-				}
-			} elseif ($status == 'publish') {
-				$href = get_permalink();
-			} else {
-				$href = '#';
-			}
+			$href = afficherLienFiche()[0];
+			$popupClass = afficherLienFiche()[1];
 			
 			echo('
 				<div class="fiche-status">
@@ -787,7 +758,8 @@ function sendInvitationMail($emails, $collection_id){
 	$message = '<body style="background-color: #f7f3ec"><div id="main"><h2 class="title">Invitation à une collection</h2><div><p>Un utilisateur vous invite à participer à la complétion des fiches de la collection suivante: </p><p><a target="_blank" href="'
 		.esc_url($collection_href).'" title="collection"> '.esc_html($collection_name).'</a></p><p>Si vous n\'avez pas encore de compte sur Botascopia : <br>
 		- connectez-vous sur Botascopia avec votre compte Tela Botanica<br>
-		- créez vous un compte sur le lien suivant:  <a target="_blank" href="https://www.tela-botanica.org/inscription/">https://www.tela-botanica.org/inscription/</a> vous aurez ainsi accès à Botascopia et à tous les outils de Tela Botanica.</p></div>
+		- créez vous un compte avec l\'adresse mail sur laquelle vous avez reçu l\'invitation sur le lien suivant:  <a target="_blank" href="https://www.tela-botanica.org/inscription/">https://www
+	//.tela-botanica.org/inscription/</a> vous aurez ainsi accès à Botascopia et à tous les outils de Tela Botanica.</p></div>
 		<div class="footer" style="display: flex; justify-content: center; margin-top: 20px"><img src="'.get_template_directory_uri().'/images/logo-botascopia.png" style="height: 100px"></div>
 		</div></body>';
 
@@ -797,4 +769,46 @@ function sendInvitationMail($emails, $collection_id){
 			}
 			update_post_meta( $collection_id, 'invitations', $sentEmails);
 		};
+}
+
+// Action pour récupérer les publications correspondant aux IDs sélectionnés (pour l'affichage des fiches à la fermeture du popup sur la pagge creation de collection)
+add_action('wp_ajax_get_selected_posts', 'get_selected_posts_callback');
+add_action('wp_ajax_nopriv_get_selected_posts', 'get_selected_posts_callback');
+function get_selected_posts_callback() {
+	// Récupérer les IDs sélectionnés
+	$ids = $_GET['selected_ids'];
+	$selected_ids = explode(",", $ids);
+	
+	$args = array(
+		'post_type' => 'post',
+		'post__in'  => $selected_ids,
+		'nopaging' => true,
+		'post_status' => array('publish', 'draft', 'pending', 'private'),
+		'order'          => 'ASC',
+		'orderby'        => 'meta_value',
+		'meta_key'       => 'nom_scientifique',
+	);
+	
+	$query = new WP_Query($args);
+	
+	$response = array();
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$post_id = get_the_ID();
+			$post_species = get_post_meta(get_the_ID(), 'famille', true);
+			$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+			$post_imageId = get_post_thumbnail_id($post_id);
+			$post_imageFull = getFicheImage($post_id);
+			
+			$response[] = [
+				'id'      => $post_id,
+				'name'    => $post_name,
+				'species' => $post_species,
+				'image'   => $post_imageFull,
+			];
+		}
+	}
+	wp_send_json($response);
+	wp_die();
 }

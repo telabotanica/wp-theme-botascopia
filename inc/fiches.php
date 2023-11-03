@@ -130,19 +130,13 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 			
 			$name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
 			$species = get_post_meta(get_the_ID(), 'famille', true);
-//			$image = get_the_post_thumbnail_url();
 			$id = get_the_ID();
 			$image = getFicheImage($id);
 			$ficheTitle = get_the_title();
 			$favorite = false;
-			$href = get_the_permalink();
-			$status = get_post_status();
+
 			$fiche_author_id = get_post_field('post_author', $id);
 			$fiche_author_info = get_userdata($fiche_author_id);
-			$fiche_author_roles = $fiche_author_info->roles[0];
-			$popupClass = '';
-			$isEditor = false;
-			$editor = '';
 			
 			// Affichae de l'icone favoris
 			if ($existingFavorites && get_user_meta($userFavorite, 'favorite_fiche') && ($key = array_search($id, $existingFavorites[0]))
@@ -155,41 +149,11 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 			endif;
 
 			// Changement des liens sur la fiche selon le role et status
-			switch ($role){
-			case 'contributor':
-				if ($status == 'draft'){
-					if ($userId != $fiche_author_id && $fiche_author_roles != 'contributor'){
-						$popupClass = 'fiche-non-reserve';
-						$href = '#';
-					}
-					
-					if ($userId == $fiche_author_id){
-						$href = '/formulaire/?p='.get_the_title();
-					}
-				} elseif ($status == 'pending' && $userId != $fiche_author_id){
-					$href = '#';
-				}
-				break;
-				
-			case 'editor':
-				if ($status == 'pending'){
-					$editor = get_post_meta($id, 'Editor', true);
-					
-					if ($editor == $userId || $editor == 0 || !$editor){
-						$isEditor = true;
-						$href = '/formulaire/?p='.get_the_title();
-					}
-				}
-				break;
-			
-			case 'administrator':
-				if ($status == 'draft' && $userId == $fiche_author_id){
-					$href = '/formulaire/?p='.get_the_title();
-				}
-				
-				break;
-			}
-			
+			$href = afficherLienFiche()[0];
+			$popupClass = afficherLienFiche()[1];
+			$isEditor = afficherLienFiche()[2];
+			$editor = afficherLienFiche()[3];
+
 			$data[] = [
 				'href' => $href,
 				'image' => $image,
@@ -207,6 +171,73 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 			
 		}
 	}
-	
 	return $data;
+}
+
+function afficherLienFiche(){
+	$id = get_the_ID();
+	$ficheTitle = get_the_title();
+	$status = get_post_status();
+	$fiche_author_id = get_post_field('post_author', $id);
+	$fiche_author_info = get_userdata($fiche_author_id);
+	$fiche_author_roles = $fiche_author_info->roles[0];
+	
+	$popupClass = '';
+	$href = '#';
+	$isEditor = false;
+	$editor = '';
+	
+	if ($status == 'publish'){
+		$href = get_permalink();
+	}
+	
+	if (is_user_logged_in()) {
+		$current_user = wp_get_current_user();
+		$current_user_id = $current_user->ID;
+		$current_user_role = $current_user->roles[0];
+		
+		switch ($status) {
+		case 'draft':
+			if ($current_user_id != $fiche_author_id && $fiche_author_roles == 'administrator') {
+				// popup pour réserver la fiche
+				$popupClass = 'fiche-non-reserve';
+			}
+			
+			if ($current_user_id == $fiche_author_id) {
+				// La fiche appartient à l'utilisateur donc lien vers formulaire
+				$href = '/formulaire/?p='.$ficheTitle;
+			}
+			
+			if ($fiche_author_roles != 'administrator' && $current_user_role == 'administrator') {
+				// Si fiche réservée et user admin
+				$href = get_permalink();
+			}
+			break;
+		case 'pending':
+			switch ($current_user_role){
+			case 'contributor':
+				if ($current_user_id == $fiche_author_id){
+					$href = get_permalink();
+				}
+				break;
+			case 'editor':
+				$editor = get_post_meta($id, 'Editor', true);
+				
+				if ($editor == $current_user_id || $editor == 0 || !$editor) {
+					// Si aucun éditeur n'a réservé la fiche ou le vérificateur a déjà réservé la fiche
+					$href = '/formulaire/?p='.$ficheTitle;
+					$isEditor = true;
+				} else {
+					// Si un autre éditeur a réservé la fiche
+					$href = get_permalink();
+				}
+				break;
+			case 'administrator':
+				$href = get_permalink();
+				break;
+			}
+		}
+	}
+	
+	return [$href, $popupClass, $isEditor, $editor];
 }

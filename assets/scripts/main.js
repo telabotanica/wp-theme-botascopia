@@ -207,8 +207,10 @@ function envoyerFicheEnValidation(){
     const fiche = document.querySelector('#pending_btn');
 
     if (fiche){
-        fiche.addEventListener('click', function() {
+        fiche.addEventListener('click', function(event) {
+            event.preventDefault();
             var post_id = this.getAttribute('data-post-id');
+            setTimeout(function () { window.location.href = '/profil/mes-fiches'; } , 1000 );
             setStatus(post_id, 'pending');
         });
     }
@@ -218,8 +220,11 @@ function envoyerFicheEnValidation(){
 function publierFiche(){
     const ficheAPublier = document.querySelector('#publish_btn');
     if (ficheAPublier){
-        ficheAPublier.addEventListener('click', function() {
+        ficheAPublier.addEventListener('click', function(event) {
+            event.preventDefault();
             var post_id = this.getAttribute('data-post-id');
+            var post_title = this.getAttribute('data-post-title');
+            setTimeout(function () { window.location.href = '/' + post_title } , 1000 );
             setStatus(post_id, 'publish');
         });
     }
@@ -252,8 +257,6 @@ function setStatus(postId, status) {
     } else {
         xhr.send('action=set_fiche_status&post_id=' + postId + '&status=publish');
     }
-
-    setTimeout(function () { location.reload(); } , 1000 );
 }
 
 // Affichage de l'image sélectionnée lors de la création d'une collection
@@ -312,11 +315,6 @@ function popupAjouterFiche() {
                 selectedCardIds.push(id);
             })
 
-            var existingHiddenInput = document.querySelector('#fiches-selected');
-            if (existingHiddenInput) {
-                existingHiddenInput.value ='';
-            }
-
             // Créer un champ de formulaire caché
             var hiddenInput = formulaire.querySelector('#fiches-selected');
 
@@ -370,8 +368,6 @@ function popupAjouterFiche() {
                     popupAjoutFiches.parentNode.removeChild(popupAjoutFiches);
                     document.querySelector('#content').classList.remove('blur-background');
                     document.querySelector('header').classList.remove('blur-background');
-                    hiddenInput.value = JSON.stringify(selectedCardIds);
-                    displaySelectedFiches(selectedCardIds);
                 }
             });
 
@@ -1026,16 +1022,13 @@ function popupAjouterParticipant() {
                     document.querySelector('#content').classList.remove('blur-background');
                     document.querySelector('header').classList.remove('blur-background');
                     existingEmailsHidden.value = JSON.stringify(participantsEmails);
+                    displaySelectedEmailsMainPage(participantsEmails)
                     participantsEmails = [];
-
-                    // displaySelectedFiches(participantsEmails);
                 }
                 if (event.target.classList.contains('blur-background') || event.target == annuler) {
                     popupAjoutParticipants.parentNode.removeChild(popupAjoutParticipants);
                     document.querySelector('#content').classList.remove('blur-background');
                     document.querySelector('header').classList.remove('blur-background');
-
-                    // displaySelectedFiches(participantsEmails);
                 }
             });
 
@@ -1090,3 +1083,22 @@ function addSvg(name){
     return svgIcon;
 }
 
+function displaySelectedEmailsMainPage(participantsEmails){
+    const invitationsContainer = document.querySelector('#invitations-a-envoyer-container');
+    if (participantsEmails.length > 0){
+        invitationsContainer.innerHTML = '<h3>Invitations qui seront envoyées</h3>';
+
+        let content = document.createElement(`div`);
+        content.classList.add('content-email')
+        content.innerHTML = '';
+
+        participantsEmails.forEach(email => {
+            let emailHtml = document.createElement('div');
+            emailHtml.classList.add('displayed-email')
+            emailHtml.innerHTML = email;
+
+            content.appendChild(emailHtml);
+        })
+        invitationsContainer.appendChild(content);
+    }
+}
