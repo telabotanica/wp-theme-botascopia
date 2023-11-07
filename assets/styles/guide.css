@@ -18,6 +18,10 @@
     }
 }
 
+#glossaire-container h4 {
+    margin: 0;
+}
+
 @media ( width <= 1250px) {
     #glossaire-container, #guide-container {
         margin-right: 20px;
