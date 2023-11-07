@@ -329,8 +329,8 @@ function popupAjouterFiche() {
             // Créer un élément de div pour afficher le contenu du popup
             var popupAjoutContenu = document.createElement(`div`);
             popupAjoutContenu.innerHTML = '';
-            popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2>" +
-                "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
+            popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2><p" +
+                "><i>Les fiches avec une photos sont celles qui sont déjà au moins en partie remplie, voire validée et publiée.</i></p><div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
                 "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
                 " une fiche'>" +
                 // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +

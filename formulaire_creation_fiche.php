@@ -259,7 +259,7 @@ if (isset($_GET['p'])) {
                 'modifiers' => 'purple-button'
             ]);
             
-            if ($auteur_id === $utilisateur || (isset($_GET['a']) && $_GET['a'] == "1")) {
+            if ($auteur_id == $utilisateur || (isset($_GET['a']) && $_GET['a'] == "1")) {
                 the_botascopia_module('button', [
                     'tag' => 'button',
                     'title' => 'Ne plus participer à cette fiche',
@@ -305,7 +305,7 @@ if (isset($_GET['p'])) {
         </div>
 
         <?php
-    } else if ( $current_user->wp_user_level === '7' && $status != 'Validée') { //$current_user->roles[0] === 'editor'
+    } else if ( $current_user->wp_user_level == '7' && $status != 'Validée') { //$current_user->roles[0] === 'editor'
         // (pour les validateurs)
         // TODO remplacer par action/filter
         
@@ -329,7 +329,7 @@ if (isset($_GET['p'])) {
 
         $editor = get_post_meta(get_the_ID(), 'Editor', true);
 
-        if ((intval($editor) === 0)) {
+        if ((intval($editor) == 0)) {
             if (isset($_GET['a']) and $_GET['a'] == "4" ) {
                 // Devenir vérificateur
                 update_post_meta( get_the_ID(), 'Editor', $current_user->ID );
