@@ -1,6 +1,6 @@
 #guide-container  p {
     text-align: justify;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
 #glossaire-container {
@@ -18,12 +18,36 @@
     }
 }
 
+#guide-container h4 {
+    margin: 0;
+}
+
+.filtre-glossaire {
+    margin: 20px 0;
+}
+
+.bouton-glossaire {
+    margin: 0 10px 10px 0;
+    width: 30px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.filtre-glossaire-actif {
+    background-color: var(--gris-77);
+    color: var(--blanc);
+}
+
+.bouton-glossaire:hover, .filtre-glossaire-actif:hover {
+    cursor: pointer;
+}
+
 @media ( width <= 1250px) {
     #glossaire-container, #guide-container {
         margin-right: 20px;
     }
 
-    .page-sans-sommaire-primary {
+    .page-sans-sommaire-primary, .glossaire-primary {
         .bg-fill {
             left: 100px;
         }
@@ -41,10 +65,17 @@
         width: 100%;
     }
 
-    .page-sans-sommaire-primary {
+    .page-sans-sommaire-primary, .glossaire-primary {
         .bg-fill {
             left: 0;
         }
+    }
+
+    .bouton-glossaire {
+        width: 35px;
+        height: 35px;
+        border-radius: 20px;
+        margin: 0 15px 15px 0;
     }
 }
 
@@ -52,5 +83,17 @@
     #glossaire-container {
         left: unset;
         width: 100%;
+    }
+
+    .bouton-glossaire {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        margin: 0 20px 20px 0;
+    }
+
+    .filtre-glossaire {
+        width: 100%;
+        padding-right: unset;
     }
 }

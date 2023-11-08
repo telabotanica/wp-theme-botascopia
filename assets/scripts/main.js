@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onResize();
     onResizeFooter();
     popupAjouterParticipant();
+    filtrerGlossaire();
 });
 
 function setFavoris(selector, type){
@@ -1100,5 +1101,98 @@ function displaySelectedEmailsMainPage(participantsEmails){
             content.appendChild(emailHtml);
         })
         invitationsContainer.appendChild(content);
+    }
+}
+
+function filtrerGlossaire(){
+    const boutonsGlossaire = document.querySelectorAll('.bouton-glossaire');
+    const glossaireContainer = document.getElementById('guide-container');
+
+    if (boutonsGlossaire && glossaireContainer){
+        let glossaireIdActif = null;
+        // Fonction pour masquer tout le contenu du glossaire
+        function masquerContenuGlossaire() {
+            const elements = glossaireContainer.children;
+            let estDansGlossaire = false;
+
+            for (let i = 0; i < elements.length; i++) {
+                const element = elements[i];
+
+                if (element.tagName === 'H2' && element.id) {
+                    estDansGlossaire = true;
+                }
+
+                if (estDansGlossaire) {
+                    element.style.display = 'none';
+                }
+            }
+            glossaireIdActif = null;
+        }
+
+        // Fonction pour afficher le contenu du glossaire spécifié
+        function afficherContenuGlossaire(glossaireId) {
+            const elements = glossaireContainer.children;
+            let estDansGlossaire = false;
+
+            for (let i = 0; i < elements.length; i++) {
+                const element = elements[i];
+
+                if (element.tagName === 'H2' && element.id) {
+                    if (element.id === glossaireId) {
+                        estDansGlossaire = true;
+                        element.style.display = 'block';
+                    } else {
+                        estDansGlossaire = false;
+                        element.style.display = 'none';
+                    }
+                }
+
+                if (estDansGlossaire) {
+                    element.style.display = 'block';
+                }
+            }
+            glossaireIdActif = glossaireId;
+        }
+
+        // Fonction pour réafficher tout le contenu du glossaire
+        function resetAffichageGlossaire(){
+            const elements = glossaireContainer.children;
+            let estDansGlossaire = false;
+
+            for (let i = 0; i < elements.length; i++) {
+                const element = elements[i];
+
+                if (element.tagName === 'H2' && element.id) {
+                    estDansGlossaire = true;
+                }
+
+                if (estDansGlossaire) {
+                    element.style.display = 'block';
+                }
+            }
+            glossaireIdActif = null;
+        }
+
+        function removeActiveClass(){
+            boutonsGlossaire.forEach((button) => {
+                button.classList.remove('filtre-glossaire-actif')
+            })
+        }
+
+        // Gestion des événements de clic sur les boutons
+        boutonsGlossaire.forEach(function (bouton) {
+            bouton.addEventListener('click', function () {
+                const glossaireId = bouton.getAttribute('data-target');
+                if (glossaireIdActif == glossaireId){
+                    resetAffichageGlossaire()
+                    bouton.classList.remove('filtre-glossaire-actif')
+                } else {
+                    removeActiveClass()
+                    masquerContenuGlossaire();
+                    afficherContenuGlossaire(glossaireId);
+                    bouton.classList.add('filtre-glossaire-actif')
+                }
+            });
+        });
     }
 }
