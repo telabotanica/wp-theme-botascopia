@@ -561,7 +561,15 @@
                     "type": "checkbox",
                     "instructions": "Plusieurs choix possibles.",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6514330d63326",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -2618,5 +2626,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1699626790
+    "modified": 1699626995
 }
