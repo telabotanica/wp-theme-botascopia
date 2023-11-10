@@ -48,7 +48,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142ed1409a9",
@@ -80,7 +81,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142f18409aa",
@@ -112,7 +114,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142f42409ab",
@@ -144,7 +147,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142f6bf16f5",
@@ -179,7 +183,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142f80f16f6",
@@ -211,7 +216,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142f90f16f7",
@@ -243,7 +249,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142fb0a01c0",
@@ -276,7 +283,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65142fbfa01c1",
@@ -450,7 +458,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6514339d6332a",
@@ -492,7 +501,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143413b8a4a",
@@ -540,7 +550,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143429b8a4b",
@@ -575,7 +586,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143478296f3",
@@ -614,7 +626,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_651434a0296f4",
@@ -670,7 +683,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_651434e4296f6",
@@ -717,7 +731,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6514355a296f8",
@@ -749,7 +764,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6514357c34ca2",
@@ -813,7 +829,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143a7934ca4",
@@ -909,7 +926,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143b09be163",
@@ -937,7 +955,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143ba9c09dc",
@@ -997,7 +1016,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143bfec09de",
@@ -1198,14 +1218,44 @@
                         "la parfumerie": "la parfumerie",
                         "la construction": "la construction",
                         "la production d'énergie": "la production d'énergie",
-                        "ses propriétés psychotropes": "ses propriétés psychotropes"
+                        "ses propriétés psychotropes": "ses propriétés psychotropes",
+                        "autre": "autre"
                     },
                     "default_value": [],
                     "return_format": "value",
-                    "allow_custom": 1,
-                    "save_custom": 0,
+                    "allow_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_654e3cb1d1365",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_65143d9832454",
+                                "operator": "==",
+                                "value": "autre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_65143dd532455",
@@ -1254,7 +1304,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143e0932457",
@@ -1387,7 +1438,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_65143ec505d39",
@@ -2566,5 +2618,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1696343818
+    "modified": 1699626790
 }
