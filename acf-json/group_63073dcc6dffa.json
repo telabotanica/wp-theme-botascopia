@@ -108,7 +108,20 @@
             "type": "radio",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073ee9541b7",
+                        "operator": "==",
+                        "value": "allogame"
+                    },
+                    {
+                        "field": "field_63073ee9541b7",
+                        "operator": "==",
+                        "value": "à régime mixte"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -185,5 +198,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1699627118
+    "modified": 1699636807
 }
