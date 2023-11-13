@@ -3507,8 +3507,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
