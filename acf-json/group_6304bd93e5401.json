@@ -3359,7 +3359,7 @@
                     },
                     "default_value": "",
                     "maxlength": 100,
-                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules, un épi d'épillets, une panicule de corymbes",
+                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules, un épi d'épillets, un panicule de corymbes",
                     "prepend": "",
                     "append": ""
                 }
@@ -4076,10 +4076,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "soudée(s) sur plus de la moitié de la longueur": "soudée(s) sur plus de la moitié de la longueur",
-                        "soudée(s) sur moins de la moitié de la longueur": "soudée(s) sur moins de la moitié de la longueur",
+                        "soudé(s) sur plus de la moitié de la longueur": "soudé(s) sur plus de la moitié de la longueur",
+                        "soudé(s) sur moins de la moitié de la longueur": "soudé(s) sur moins de la moitié de la longueur",
                         "libres": "libres",
-                        "partiellement soudée(s) entre eux": "partiellement soudée(s) entre eux"
+                        "partiellement soudé(s) entre eux": "partiellement soudé(s) entre eux"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4118,8 +4118,8 @@
                         "id": ""
                     },
                     "choices": {
-                        "androcée soudée à la corolle": "androcée soudée à la corolle",
-                        "androcée non soudée à la corolle": "androcée non soudée à la corolle"
+                        "androcée soudé à la corolle": "androcée soudé à la corolle",
+                        "androcée non soudé à la corolle": "androcée non soudé à la corolle"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -6392,5 +6392,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1699880419
+    "modified": 1699880917
 }
