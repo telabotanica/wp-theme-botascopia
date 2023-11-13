@@ -51,7 +51,8 @@
             "layout": "vertical",
             "toggle": 0,
             "return_format": "value",
-            "save_custom": 0
+            "save_custom": 0,
+            "custom_choice_button_text": "Ajouter un nouveau choix"
         },
         {
             "key": "field_63073e5c541b6",
@@ -59,7 +60,7 @@
             "name": "habitat_preferentiel",
             "aria-label": "",
             "type": "text",
-            "instructions": "Décrivez ici les habitats préférentiels de la plante, ne mentionnez pas ceux où on peut trouver la plante seulement occasionnellement pour vous concentrez sur les milieux habituels.",
+            "instructions": "Décrivez ici les habitats préférentiels de la plante, ne mentionnez pas ceux où on peut trouver la plante seulement occasionnellement pour vous concentrer sur les milieux habituels.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -107,7 +108,20 @@
             "type": "radio",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63073ee9541b7",
+                        "operator": "==",
+                        "value": "allogame"
+                    },
+                    {
+                        "field": "field_63073ee9541b7",
+                        "operator": "==",
+                        "value": "à régime mixte"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -152,7 +166,8 @@
             "layout": "vertical",
             "toggle": 0,
             "return_format": "value",
-            "save_custom": 0
+            "save_custom": 0,
+            "custom_choice_button_text": "Ajouter un nouveau choix"
         }
     ],
     "location": [
@@ -183,5 +198,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1680774755
+    "modified": 1699636807
 }

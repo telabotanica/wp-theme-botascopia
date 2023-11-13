@@ -241,7 +241,8 @@
             "layout": "vertical",
             "toggle": 0,
             "return_format": "value",
-            "save_custom": 0
+            "save_custom": 0,
+            "custom_choice_button_text": "Ajouter un nouveau choix"
         },
         {
             "key": "field_6304c15175bdc",
@@ -275,7 +276,8 @@
             "allow_custom": 0,
             "layout": "vertical",
             "toggle": 0,
-            "save_custom": 0
+            "save_custom": 0,
+            "custom_choice_button_text": "Ajouter un nouveau choix"
         },
         {
             "key": "field_6304c1bd75bdd",
@@ -322,7 +324,8 @@
             "allow_custom": 1,
             "save_custom": 0,
             "layout": "vertical",
-            "toggle": 0
+            "toggle": 0,
+            "custom_choice_button_text": "Ajouter un nouveau choix"
         },
         {
             "key": "field_6304c23d75be0",
@@ -450,25 +453,21 @@
                             "label": "Photo de tige",
                             "name": "photo_tige",
                             "aria-label": "",
-                            "type": "image",
-                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la tige et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
-                            "required": 0,
-                            "conditional_logic": 0,
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "library": "uploadedTo",
-                            "min_width": 600,
-                            "min_height": 600,
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": 10,
-                            "mime_types": "",
-                            "preview_size": "medium"
+                            "0": false,
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         },
                         {
                             "key": "field_64302ab82355a",
@@ -606,7 +605,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304c8e02391b",
@@ -676,7 +676,8 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304c9762391d",
@@ -714,7 +715,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304ca5e58ca8",
@@ -1156,7 +1158,8 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304da7252e04",
@@ -1181,7 +1184,8 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304dac552e05",
@@ -1223,7 +1227,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_64413c967e502",
@@ -1295,7 +1300,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304dbec93738",
@@ -1324,7 +1330,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304dc3393739",
@@ -1354,7 +1361,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304dc629373a",
@@ -1717,7 +1725,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e48ca9ffef",
@@ -1742,7 +1751,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e48ca9fff0",
@@ -1784,7 +1794,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_64413e9995328",
@@ -1797,7 +1808,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_6304da7252e04",
+                                "field": "field_634e48ca9ffef",
                                 "operator": "==",
                                 "value": "composées"
                             }
@@ -1856,7 +1867,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e48ca9fff2",
@@ -1885,7 +1897,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e48ca9fff3",
@@ -1915,7 +1928,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e48ca9fff4",
@@ -2278,7 +2292,8 @@
                     "allow_custom": 0,
                     "layout": "",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49d148012",
@@ -2303,7 +2318,8 @@
                     "allow_custom": 0,
                     "layout": "",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49d148013",
@@ -2345,7 +2361,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_64413f147b5ba",
@@ -2358,7 +2375,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_6304da7252e04",
+                                "field": "field_634e49d148012",
                                 "operator": "==",
                                 "value": "composées"
                             }
@@ -2417,7 +2434,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49d148015",
@@ -2446,7 +2464,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49d148016",
@@ -2476,7 +2495,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49d148017",
@@ -2839,7 +2859,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49eb48020",
@@ -2864,7 +2885,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49eb48021",
@@ -2906,7 +2928,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_64413f347b5bb",
@@ -2919,7 +2942,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_6304da7252e04",
+                                "field": "field_634e49eb48020",
                                 "operator": "==",
                                 "value": "composées"
                             }
@@ -2978,7 +3001,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49eb48023",
@@ -3007,7 +3031,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49eb48024",
@@ -3037,7 +3062,8 @@
                     "allow_custom": 1,
                     "save_custom": 0,
                     "layout": "vertical",
-                    "toggle": 0
+                    "toggle": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_634e49eb48025",
@@ -3333,7 +3359,7 @@
                     },
                     "default_value": "",
                     "maxlength": 100,
-                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules, un épi d'épillets, une panicule de corymbes",
+                    "placeholder": "ex : une thyrse, un rhipidium, une ombelle d’ombellules, un épi d'épillets, un panicule de corymbes",
                     "prepend": "",
                     "append": ""
                 }
@@ -3481,8 +3507,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -3544,7 +3573,8 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_631085accce36",
@@ -4049,10 +4079,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "soudée(s) sur plus de la moitié de la longueur": "soudée(s) sur plus de la moitié de la longueur",
-                        "soudée(s) sur moins de la moitié de la longueur": "soudée(s) sur moins de la moitié de la longueur",
+                        "soudé(s) sur plus de la moitié de la longueur": "soudé(s) sur plus de la moitié de la longueur",
+                        "soudé(s) sur moins de la moitié de la longueur": "soudé(s) sur moins de la moitié de la longueur",
                         "libres": "libres",
-                        "partiellement soudée(s) entre eux": "partiellement soudée(s) entre eux"
+                        "partiellement soudé(s) entre eux": "partiellement soudé(s) entre eux"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4091,8 +4121,8 @@
                         "id": ""
                     },
                     "choices": {
-                        "androcée soudée à la corolle": "androcée soudée à la corolle",
-                        "androcée non soudée à la corolle": "androcée non soudée à la corolle"
+                        "androcée soudé à la corolle": "androcée soudé à la corolle",
+                        "androcée non soudé à la corolle": "androcée non soudé à la corolle"
                     },
                     "default_value": "",
                     "return_format": "value",
@@ -4325,12 +4355,12 @@
                         "bleu vif": "bleu vif",
                         "orange": "orange"
                     },
-                    "allow_null": 0,
-                    "other_choice": 1,
-                    "save_other_choice": 1,
                     "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
                     "layout": "vertical",
-                    "return_format": "value"
+                    "save_other_choice": 0
                 },
                 {
                     "key": "field_6310aa6f3ed5b",
@@ -4391,7 +4421,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6310aac33ed5d",
@@ -4569,31 +4600,6 @@
                     ]
                 },
                 {
-                    "key": "field_6304f001be189",
-                    "label": "Symétrie",
-                    "name": "symetrie",
-                    "aria-label": "",
-                    "type": "checkbox",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "actinomorphe": "actinomorphe",
-                        "zygomorphe": "zygomorphe"
-                    },
-                    "allow_custom": 0,
-                    "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
-                    "return_format": "value",
-                    "save_custom": 0
-                },
-                {
                     "key": "field_6304f06dbe18a",
                     "label": "Hypanthium",
                     "name": "hypanthium",
@@ -4642,6 +4648,40 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304f001be189",
+                    "label": "Symétrie",
+                    "name": "symetrie",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304f0d3be18b",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "actinomorphe": "actinomorphe",
+                        "zygomorphe": "zygomorphe"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304f10bbe18c",
@@ -4851,46 +4891,6 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_63bd4165d8db7",
-                    "label": "Soudure de la corolle",
-                    "name": "soudure_de_la_corolle",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_6304f10bbe18c",
-                                "operator": "==",
-                                "value": "sépales et pétales"
-                            },
-                            {
-                                "field": "field_6304f5bb2d9f2",
-                                "operator": "!=",
-                                "value": "1"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "soudé sur plus de la moitié de la longueur": "soudé sur plus de la moitié de la longueur",
-                        "soudé sur moins de la moitié de la longueur": "soudé sur moins de la moitié de la longueur",
-                        "libre": "libre",
-                        "partiellement soudés entre eux": "partiellement soudés entre eux"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
                     "key": "field_6304f698c677e",
                     "label": "Soudure du calice et de la corolle",
                     "name": "soudure_du_calice_et_de_la_corolle",
@@ -4990,6 +4990,11 @@
                                 "field": "field_6304f734c677f",
                                 "operator": "!=",
                                 "value": "1"
+                            },
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "tépales"
                             }
                         ]
                     ],
@@ -5004,11 +5009,11 @@
                         "libre": "libre",
                         "partiellement soudés entre eux": "partiellement soudés entre eux"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5314,7 +5319,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_6304fdcd68d53",
@@ -5522,7 +5528,8 @@
                     "layout": "vertical",
                     "toggle": 0,
                     "return_format": "value",
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_63075a6becd6f",
@@ -6012,7 +6019,15 @@
                     "type": "radio",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075fcfecd7b",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -6024,11 +6039,11 @@
                         "soudés uniquement au niveau de l'ovaire": "soudés uniquement au niveau de l'ovaire",
                         "non soudés": "non soudés"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -6152,7 +6167,8 @@
                     "allow_custom": 0,
                     "layout": "vertical",
                     "toggle": 0,
-                    "save_custom": 0
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
                     "key": "field_630763f2ecd81",
@@ -6338,13 +6354,14 @@
                         "un fruit composé": "un fruit composé",
                         "une silique": "une silique",
                         "une caryopse": "une caryopse",
-                        "une crypsèle": "une crypsèle"
+                        "une crypsèle": "une crypsèle",
+                        "une samare": "une samare"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 }
             ]
@@ -6378,5 +6395,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1695981718
+    "modified": 1699880917
 }
