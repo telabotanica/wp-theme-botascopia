@@ -1416,11 +1416,11 @@
                         "de la même longueur que le limbe": "de la même longueur que le limbe",
                         "plus grand que le limbe": "plus grand que le limbe"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -1449,11 +1449,11 @@
                         "engainant": "engainant",
                         "non engainant": "non engainant"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -1504,10 +1504,10 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": 100,
                     "placeholder": "Les stipules sont épineux ; Les stipules sont frangés ; Les stipules sont verts, très développés et pointus à l’extrémité",
                     "prepend": "",
-                    "append": "",
-                    "maxlength": 100
+                    "append": ""
                 },
                 {
                     "key": "field_6304df4410a7a",
@@ -2551,10 +2551,10 @@
                         "plus grand que le limbe": "plus grand que le limbe"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "save_other_choice": 0
                 },
                 {
@@ -2584,10 +2584,10 @@
                         "non engainant": "non engainant"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "save_other_choice": 0
                 },
                 {
@@ -3507,11 +3507,8 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-BY-SA": "CC-BY-SA",
-                                "CC-BY": "CC-BY",
-                                "CC0": "CC0",
-                                "Domaine public": "Domaine public",
-                                "Autre licence libre": "Autre licence libre"
+                                "CC-by-SA": "CC-by-SA",
+                                "domaine publique": "domaine publique"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -6395,5 +6392,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1699880917
+    "modified": 1699889296
 }
