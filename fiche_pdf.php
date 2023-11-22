@@ -84,9 +84,9 @@
                         <h4 class="icon-title">
                             <div class="tige-icon icon"></div>Tige
                         </h4>
-                        <?php if(!empty($tige['photo_tige'])): ?>
+                        <?php if(!empty($tige["illustration_de_la_tige"]['photo_tige'])): ?>
                             <?php
-                            $refs_photo[] = $tige['photo_tige']["id"];
+                            $refs_photo[] = $tige["illustration_de_la_tige"]['photo_tige']["id"];
                             $index_photos++;
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -119,12 +119,12 @@
                             <?php if (('feuilles toutes semblables' === $heteromorphisme_foliaire) || ('gradient de forme entre la base et le haut de la tige' === $heteromorphisme_foliaire)): ?>
 
                                 <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
-                                <?php if(!empty($feuilles_aeriennes['photo_de_feuilles_aeriennes'])): ?>
+                                <?php if(!empty($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])): ?>
                                     <h4 class="icon-title">
                                         <div class="feuilles-icon icon"></div>Feuilles
                                     </h4>
                                     <?php
-                                    $refs_photo[] = $feuilles_aeriennes['photo_de_feuilles_aeriennes']["id"];
+                                    $refs_photo[] = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"];
                                     $index_photos++;
                                     ?>
                                     <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -174,9 +174,9 @@
                                         <h4 class="icon-title">
                                             <div class="feuilles-icon icon"></div>Feuilles aériennes
                                         </h4>
-                                        <?php if(!empty($feuilles_aeriennes['photo_de_feuilles_aeriennes'])): ?>
+                                        <?php if(!empty($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_aeriennes['photo_de_feuilles_aeriennes']["id"];
+                                            $refs_photo[] = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"];
                                             $index_photos++;
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -222,9 +222,9 @@
                                         <h4 class="icon-title">
                                             <div class="feuilles-icon icon"></div>Feuilles immergées
                                         </h4>
-                                        <?php /*if(!empty($feuilles_immergees['photo_de_feuilles_immergees'])): */?>
+                                        <?php /*if(!empty($feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees'])): */?>
                                             <?php
-/*                                            $refs_photo[] = $feuilles_immergees['photo_de_feuilles_immergees']["id"];
+/*                                            $refs_photo[] = $feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees']["id"];
                                             $index_photos++;
                                             */?>
                                             <div class="picture-ref"><?php /*echo $index_photos;*/?></div>
@@ -272,9 +272,9 @@
                                         <h4 class="icon-title">
                                             <div class="feuilles-icon icon"></div>Feuilles des rameaux stériles
                                         </h4>
-                                        <?php if(!empty($feuilles_des_rameaux_steriles['photo_de_feuilles_des_rameaux_steriles'])): ?>
+                                        <?php if(!empty($feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_des_rameaux_steriles['photo_de_feuilles_des_rameaux_steriles']["id"];
+                                            $refs_photo[] = $feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles']["id"];
                                             $index_photos++;
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -320,9 +320,9 @@
                                         <h4 class="icon-title">
                                             <div class="feuilles-icon icon"></div>Feuilles des reameaux fleuris
                                         </h4>
-                                        <?php /*if(!empty($feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris'])): */?>
+                                        <?php /*if(!empty($feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris'])): */?>
                                             <?php
-/*                                            $refs_photo[] = $feuilles_des_rameaux_fleuris['photo_de_feuilles_des_rameaux_fleuris']["id"];
+/*                                            $refs_photo[] = $feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris']["id"];
                                             $index_photos++;
                                             */?>
                                             <div class="picture-ref"><?php /*echo $index_photos;*/?></div>
@@ -395,23 +395,23 @@
                             <div class="fruits-icon icon"></div>Fruits
                         </h4>
                         <?php $fruit = get_field('fruit');?>
-                        <?php if(!empty($fruit['photo'])): ?>
+                        <?php if(!empty($fruit["illustration_du_fruit"]['photo'])): ?>
                             <?php
-                            // $refs_photo[] = $fruit['photo']["id"];
+                            // $refs_photo[] = $fruit["illustration_du_fruit"]['photo']["id"];
                             // $index_photos++;
                             $index_fruit_photo = $index_photos+1;
-                            $fruit_photo = $fruit['photo'];
-                            if (!empty(get_field('fleur_male')) && (!empty(get_field('fleur_male')['photo_de_fleur_male']))) {
+                            $fruit_photo = $fruit["illustration_du_fruit"]['photo'];
+                            if (!empty(get_field('fleur_male')) && (!empty(get_field('fleur_male')["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male']))) {
                                 if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
                                     $index_fruit_photo++;
                                 }
                             }
-                            if (!empty(get_field('fleur_femelle')) && (!empty(get_field('fleur_femelle')['photo_de_fleur_femelle']))) {
+                            if (!empty(get_field('fleur_femelle')) && (!empty(get_field('fleur_femelle')["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']))) {
                                 if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "gynomonoïque") || (get_field('systeme_sexuel') == "gynodioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
                                     $index_fruit_photo++;
                                 }
                             }
-                            if (!empty(get_field('fleur_bisexuee')) && (!empty(get_field('fleur_bisexuee')['photo_de_fleur_bisexuee']))) {
+                            if (!empty(get_field('fleur_bisexuee')) && (!empty(get_field('fleur_bisexuee')['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']))) {
                                 if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "gynomonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "gynodioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
                                     $index_fruit_photo++;
                                 }
@@ -430,9 +430,9 @@
                     <h4 class="icon-title">
                         <div class="fleur-male-icon icon"></div>Fleur mâle
                     </h4>
-                    <?php if(!empty($fleur_male['photo_de_fleur_male'])): ?>
+                    <?php if(!empty($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male'])): ?>
                         <?php
-                        $refs_photo[] = $fleur_male['photo_de_fleur_male']["id"];
+                        $refs_photo[] = $fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male']["id"];
                         $index_photos++;
                         ?>
                         <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -489,9 +489,9 @@
                     <h4 class="icon-title">
                         <div class="fleur-femelle-icon icon"></div>Fleur femelle
                     </h4>
-                    <?php if(!empty($fleur_femelle['photo_de_fleur_femelle'])): ?>
+                    <?php if(!empty($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle'])): ?>
                         <?php
-                        $refs_photo[] = $fleur_femelle['photo_de_fleur_femelle']["id"];
+                        $refs_photo[] = $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']["id"];
                         $index_photos++;
                         ?>
                         <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -545,9 +545,9 @@
                         <h4 class="icon-title">
                             <div class="fleur-bisexuee-icon icon"></div>Fleur bisexuée
                         </h4>
-                        <?php if(!empty($fleur_bisexuee['photo_de_fleur_bisexuee'])): ?>
+                        <?php if(!empty($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee'])): ?>
                             <?php
-                            $refs_photo[] = $fleur_bisexuee['photo_de_fleur_bisexuee']["id"];
+                            $refs_photo[] = $fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']["id"];
                             $index_photos++;
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -702,7 +702,7 @@
                             <div class="picture-ref"><?php echo $index_photos+1;?></div>
                         </h3>
                         <p><?php the_field('description'); ?>.</p>
-                        <?php $photo = get_field('photo')?: null; ?>
+                        <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
                             <?php
                             $refs_photo[] = $photo['id'];
