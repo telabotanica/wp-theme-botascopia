@@ -57,8 +57,8 @@
                 $index_photos = 0;
                 $fruit_photo=null;
                 $refs_photo = array();
-                if (!empty(get_field('photo_de_la_plante_entiere'))) {
-                    $refs_photo[] = get_field('photo_de_la_plante_entiere');
+                if (!empty(get_field('field_643027826f24d')['photo_de_la_plante_entiere'])) {
+                    $refs_photo[] = get_field('field_643027826f24d')['photo_de_la_plante_entiere'];
                 }
                 ?>
                 <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>'); background-size: cover;">
@@ -91,7 +91,7 @@
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
-                        <p>La tige aérienne est <?php if ($tige['tige_aerienne'] !== 'visible') { echo $tige['tige_aerienne'];?>, <?php echo var_dump($tige["illustration_de_la_tige"]['photo_tige']['ID']);?> <?php }?>
+                        <p>La tige aérienne est <?php if ($tige['tige_aerienne'] !== 'visible') { echo $tige['tige_aerienne'];?>, <?php }?>
                             <?php if ($tige['tige_aerienne'] != 'non visible'):;?><?php echo $type_tige;?>, <?php echo $tige['ramification'];?>
                             <?php if ($section_tige !== 'pleine') {?>, à section <?php echo $section_tige;}?>.
                                 <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
