@@ -87,12 +87,11 @@
                         <?php if(!empty($tige["illustration_de_la_tige"]['photo_tige'])): ?>
                             <?php
                             $refs_photo[] = $tige["illustration_de_la_tige"]['photo_tige']["id"];
-                            echo var_dump($tige["illustration_de_la_tige"]['photo_tige']);
                             $index_photos++;
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
-                        <p>La tige aérienne est <?php if ($tige['tige_aerienne'] !== 'visible') { echo $tige['tige_aerienne'];?>, <?php }?>
+                        <p>La tige aérienne est <?php if ($tige['tige_aerienne'] !== 'visible') { echo $tige['tige_aerienne'];?>, <?php echo var_dump($tige["illustration_de_la_tige"]['photo_tige']);?> <?php }?>
                             <?php if ($tige['tige_aerienne'] != 'non visible'):;?><?php echo $type_tige;?>, <?php echo $tige['ramification'];?>
                             <?php if ($section_tige !== 'pleine') {?>, à section <?php echo $section_tige;}?>.
                                 <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
