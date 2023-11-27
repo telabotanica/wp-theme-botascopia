@@ -87,6 +87,7 @@
                         <?php if(!empty($tige["illustration_de_la_tige"]['photo_tige'])): ?>
                             <?php
                             $refs_photo[] = $tige["illustration_de_la_tige"]['photo_tige']["id"];
+                            echo var_dump($tige["illustration_de_la_tige"]['photo_tige']);
                             $index_photos++;
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
@@ -401,7 +402,6 @@
                             // $index_photos++;
                             $index_fruit_photo = $index_photos+1;
                             $fruit_photo = $fruit["illustration_du_fruit"]['photo'];
-                            echo var_dump($fruit_photo);
                             if (!empty(get_field('fleur_male')) && (!empty(get_field('fleur_male')["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male']))) {
                                 if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
                                     $index_fruit_photo++;
