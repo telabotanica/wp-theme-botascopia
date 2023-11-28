@@ -708,7 +708,6 @@
                             $refs_photo[] = $photo['id'];
                             $index_photos++;
                             ?>
-                            <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
                             <div class="characteristic-photos">
                                 <?php echo wp_get_attachment_image($photo['id'], [148, 148]); ?>
                             </div>
