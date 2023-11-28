@@ -719,17 +719,31 @@
                 <?php if ($description): ?>
                     <div class="characteristic">
                         <h4 class="icon-title">
-                            interactions avec le vivant
+                            Interactions avec le vivant
                         </h4>
-                        <p><?php the_field('description'); ?>.</p>
-                        <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
-                        <?php if (!empty($photo)): ?>
-                            <?php
-                            $refs_photo[] = $photo['id'];
-                            $index_photos++;
-                            ?>
-                            <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
-                        <?php endif; ?>
+                        <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Pousse dans : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
+                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> Toxique pour : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php $description = get_field('description')?: null; ?>
+                <?php if ($description): ?>
+                    <div class="characteristic">
+                        <h4 class="icon-title">
+                            Préférences physico-chimiques
+                        </h4>
+                        <p></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php $description = get_field('description')?: null; ?>
+                <?php if ($description): ?>
+                    <div class="characteristic">
+                        <h4 class="icon-title">
+                            Valeurs écologiques, historiques et locales
+                        </h4>
+                        <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> A été ou est cultivée pour : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
+                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> Elle est connue pour : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?></p>
                     </div>
                 <?php endif; ?>
             </main>
