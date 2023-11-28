@@ -669,15 +669,15 @@
                         <?php if (!empty(get_field('dispersion'))) :?> Dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
                 </div>
                 <?php endif; ?>
-                <?php $proprietes = get_field('proprietes')?: null; ?>
-                <?php if ($proprietes): ?>
+                <?php /*$proprietes = get_field('proprietes')?: null; */?><!--
+                <?php /*if ($proprietes): */?>
                     <div class="characteristic">
                         <h3 class="icon-title">
                             <div class="groupe-163-icon icon"></div>propriétés
                         </h3>
-                        <p><?php echo $proprietes; ?></p>
+                        <p><?php /*echo $proprietes; */?></p>
                     </div>
-                <?php endif; ?>
+                --><?php /*endif; */?>
                 <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
@@ -685,7 +685,7 @@
                     </h3>
                     <?php if (!empty(get_field('cultivee_en_france'))) { ?>
                         <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : '.'); ?> Statut de protection : <?php the_field('statut_uicn'); ?>.</p>
                     <?php } ?>
                     <?php if (!empty(get_field('carte_de_metropole'))) :?>
                         <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
@@ -701,6 +701,27 @@
                             <div class="ne-pas-confondre-icon icon"></div>ne pas confondre avec
                             <div class="picture-ref"><?php echo $index_photos+1;?></div>
                         </h3>
+                        <p><?php the_field('description'); ?>.</p>
+                        <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
+                        <?php if (!empty($photo)): ?>
+                            <?php
+                            $refs_photo[] = $photo['id'];
+                            $index_photos++;
+                            ?>
+                            <div class="section-image"><?php echo wp_get_attachment_image($photo['id'], 'large'); ?></div>
+                            <div class="characteristic-photos">
+                                <?php echo wp_get_attachment_image($photo['id'], [148, 148]); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php $description = get_field('description')?: null; ?>
+                <?php if ($description): ?>
+                    <div class="characteristic">
+                        <h4 class="icon-title">
+                            interactions avec le vivant
+                        </h4>
                         <p><?php the_field('description'); ?>.</p>
                         <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
