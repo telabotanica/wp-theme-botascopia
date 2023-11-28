@@ -685,7 +685,7 @@
                     </h3>
                     <?php if (!empty(get_field('cultivee_en_france'))) { ?>
                         <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
                     <?php } ?>
                     <?php if (!empty(get_field('carte_de_metropole'))) :?>
                         <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
