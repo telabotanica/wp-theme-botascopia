@@ -662,7 +662,7 @@
                 <?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
-                        <div class="ecologie-icon icon"></div>écologie
+                        <div class="ecologie-icon icon"></div>écologie - agroécologie
                     </h3>
                     <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Altitude : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
                         <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
@@ -698,7 +698,7 @@
                 <?php if ($description): ?>
                     <div class="characteristic">
                         <h3 class="icon-title">
-                            <div class="ne-pas-confondre-icon icon"></div>ne pas confondre
+                            <div class="ne-pas-confondre-icon icon"></div>ne pas confondre avec
                             <div class="picture-ref"><?php echo $index_photos+1;?></div>
                         </h3>
                         <p><?php the_field('description'); ?>.</p>
