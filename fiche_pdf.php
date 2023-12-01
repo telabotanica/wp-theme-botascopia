@@ -694,6 +694,14 @@
                 </div>
                 <?php endif; ?>
 
+                <!--  Affichage des champs agroeco-->
+                <h3>Préférences physico-chimiques</h3>
+                <?php
+                $champs_agros_eco = getChampsAgroEcoPourSvg();
+                genererSVG(get_the_title(), $champs_agros_eco);
+                ?>
+                <img width="400" height="330" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+
                 <?php $description = get_field('description')?: null; ?>
                 <?php if ($description): ?>
                     <div class="characteristic">

@@ -28,6 +28,9 @@ require get_template_directory() . '/inc/redirect-after-login.php';
 // Gestion des contenus, liens, commentaires etc. à la suppression d'un compte
 require get_template_directory() . '/inc/manage-delete-account.php';
 
+// Génération du svg pour champs agro eco du pdf
+require get_template_directory() . '/inc/graphiques.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
