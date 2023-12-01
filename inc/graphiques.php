@@ -62,7 +62,7 @@ function getChampsAgroEcoPourSvg(){
         "ve_humidite_atm" => ['x' => ajusterValeurs(extractFirstValue($humidite_atm), 1, 9, 30), 'y'=> 68],
         "ve_continentalite" => ['x' => ajusterValeurs(extractFirstValue($continentalite), 1, 9, 30), 'y'=> 105],
         "ve_reaction_ph" => ['x' => ajusterValeurs(extractFirstValue($reaction_ph), 1, 9, 30), 'y'=> 143],
-        "humidite_sol" => ['x' => ajusterValeurs(extractFirstValue($humidite_sol), 1, 12, 24), 'y'=> 183],
+        "humidite_sol" => ['x' => ajusterValeurs(extractFirstValue($humidite_sol), 1, 12, 21.818), 'y'=> 183],
         "ve_texture_sol" => ['x' => ajusterValeurs(extractFirstValue($texture_sol), 1, 9, 30), 'y'=> 220],
         "ve_richesse_en_n" => ['x' => ajusterValeurs(extractFirstValue($richesse_azote), 1, 9, 30), 'y'=> 255],
         "ve_salinite" => ['x' => ajusterValeurs(extractFirstValue($salinite), 1, 9, 30), 'y'=> 290],
