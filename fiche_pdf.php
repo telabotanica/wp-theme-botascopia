@@ -35,7 +35,7 @@
         <div id="page-1" class="page page-1">
 
             <header>
-                <div class="container">
+                <div class="pdf-container">
                     <h1><?php the_field('nom_scientifique');?></h1>
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
                     <div class="characteristic">
@@ -64,7 +64,7 @@
                 <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>'); background-size: cover;">
             </header>
 
-            <main class="container">
+            <main class="pdf-container">
                 <div class="characteristic">
                     <?php
                     $tige = get_field('tige');
@@ -658,49 +658,51 @@
                     <?php endforeach; ?>
                 </div>
             </header>
-            <main class="container">
-                <?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))): ?>
-                <div class="characteristic">
-                    <h3 class="icon-title">
-                        <div class="ecologie-icon icon"></div>écologie - agroécologie
-                    </h3>
-                    <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Altitude : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
-                        <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
-                        <?php if (!empty(get_field('dispersion'))) :?> Dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
-                </div>
-                <?php endif; ?>
-                <?php /*$proprietes = get_field('proprietes')?: null; */?><!--
-                <?php /*if ($proprietes): */?>
-                    <div class="characteristic">
-                        <h3 class="icon-title">
-                            <div class="groupe-163-icon icon"></div>propriétés
-                        </h3>
-                        <p><?php /*echo $proprietes; */?></p>
-                    </div>
-                --><?php /*endif; */?>
+            <main class="pdf-container">
+
                 <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
-                        <div class="location-icon icon"></div>aire de répartition
+                        <div class="location-icon icon"></div>aire de répartition et statut
                     </h3>
+                    <div class="pdf-inline-image">
                     <?php if (!empty(get_field('cultivee_en_france'))) { ?>
                         <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : '.'); ?> Statut de protection : <?php the_field('statut_uicn'); ?>.</p>
+                        <p>En France la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : '.'); ?> Statut de protection : <br><?php the_field('statut_uicn'); ?>.</p>
                     <?php } ?>
                     <?php if (!empty(get_field('carte_de_metropole'))) :?>
-                        <div class="section-image"><?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], 'large'); ?></div>
-                        <div class="credits-photo">OpenObs - 02/2023</div>
+                            <div class="characteristic-photos section-image">
+                            <?php echo wp_get_attachment_image(get_field('carte_de_metropole')['id'], [100, 100]); ?>
+                        </div>
                     <?php endif; ?>
+                    </div>
                 </div>
                 <?php endif; ?>
 
-                <!--  Affichage des champs agroeco-->
-                <h3>Préférences physico-chimiques</h3>
-                <?php
-                $champs_agros_eco = getChampsAgroEcoPourSvg();
-                genererSVG(get_the_title(), $champs_agros_eco);
-                ?>
-                <img width="400" height="330" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+                <?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))): ?>
+                    <div class="characteristic">
+                        <h3 class="icon-title">
+                            <div class="ecologie-icon icon"></div>écologie
+                        </h3>
+                        <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Altitude : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
+                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
+                            <?php if (!empty(get_field('dispersion'))) :?> Dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php $description = get_field('description')?: null; ?>
+                <?php if ($description): ?>
+                    <div class="characteristic">
+                        <h4 class="icon-title">
+                            Préférences physico-chimiques
+                        </h4>
+                        <?php
+                        $champs_agros_eco = getChampsAgroEcoPourSvg();
+                        genererSVG(get_the_title(), $champs_agros_eco);
+                        ?>
+                        <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+                    </div>
+                <?php endif; ?>
 
                 <?php $description = get_field('description')?: null; ?>
                 <?php if ($description): ?>
@@ -709,6 +711,7 @@
                             <div class="ne-pas-confondre-icon icon"></div>ne pas confondre avec
                             <div class="picture-ref"><?php echo $index_photos+1;?></div>
                         </h3>
+                        <div class="pdf-inline-image">
                         <p><?php the_field('description'); ?>.</p>
                         <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
@@ -720,6 +723,7 @@
                                 <?php echo wp_get_attachment_image($photo['id'], [148, 148]); ?>
                             </div>
                         <?php endif; ?>
+                        </div>
                     </div>
                 <?php endif; ?>
 
@@ -738,16 +742,6 @@
                 <?php if ($description): ?>
                     <div class="characteristic">
                         <h4 class="icon-title">
-                            Préférences physico-chimiques
-                        </h4>
-                        <p></p>
-                    </div>
-                <?php endif; ?>
-
-                <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
-                    <div class="characteristic">
-                        <h4 class="icon-title">
                             Valeurs écologiques, historiques et locales
                         </h4>
                         <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> A été ou est cultivée pour : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
@@ -756,7 +750,7 @@
                 <?php endif; ?>
             </main>
             <footer>
-                <div class="container">
+                <div class="pdf-container">
                     <div class="footer-section">
                         <ul class="logos">
                             <li><img class="logo-saclay" src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Logo Université Paris-Saclay"></li>

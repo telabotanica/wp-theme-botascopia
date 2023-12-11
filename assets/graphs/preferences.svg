@@ -4,7 +4,7 @@
 	 <style id="cssGraphique" type="text/css">
 		@CHARSET "UTF-8";
 		.fond {
-		    fill:#F8F8F8;
+		    fill:#fff;
 		    stroke:#F8F8F8;
 		    stroke-width:3;
 		}
@@ -30,7 +30,7 @@
 		 fill:#964e75;
 		 }
 		.cache {
-			fill:#F8F8F8;
+			fill:#fff;
 		}
 		.titre {
 			fill:#000;
@@ -60,89 +60,89 @@
 	<rect id="fond" x="0px" y="0px" class="fond" width="400px" height="350px"/>
 
 <!--	Lignes de base-->
-	<line class="ligne_grad"  x1="140" y1="39" x2="380" y2="39"/>
-	<line class="ligne_grad" x1="140" y1="73" x2="380" y2="73"/>
-	<line class="ligne_grad" x1="140" y1="110" x2="380" y2="110"/>
-	<line class="ligne_grad" x1="140" y1="148" x2="380" y2="148"/>
-	<line class="ligne_grad" x1="140" y1="188" x2="380" y2="188"/>
-	<line class="ligne_grad" x1="140" y1="225" x2="380" y2="225"/>
-	<line class="ligne_grad" x1="140" y1="260" x2="380" y2="260"/>
-	<line class="ligne_grad" x1="140" y1="295" x2="380" y2="295"/>
+	<line class="ligne_grad"  x1="120" y1="39" x2="360" y2="39"/>
+	<line class="ligne_grad" x1="120" y1="73" x2="360" y2="73"/>
+	<line class="ligne_grad" x1="120" y1="110" x2="360" y2="110"/>
+	<line class="ligne_grad" x1="120" y1="148" x2="360" y2="148"/>
+	<line class="ligne_grad" x1="120" y1="188" x2="360" y2="188"/>
+	<line class="ligne_grad" x1="120" y1="225" x2="360" y2="225"/>
+	<line class="ligne_grad" x1="120" y1="260" x2="360" y2="260"/>
+	<line class="ligne_grad" x1="120" y1="295" x2="360" y2="295"/>
 
 <!--Lignes de graduation de 1 à 9-->
-	<line id="un" class="graduation"  x1="140" y1="33" x2="140" y2="300"/>
-	<line id="deux" class="graduation"  x1="170" y1="33" x2="170" y2="180"/>
-	<line id="trois" class="graduation"  x1="200" y1="33" x2="200" y2="180"/>
-	<line id="quatre" class="graduation"  x1="230" y1="33" x2="230" y2="180"/>
-	<line id="six" class="graduation"  x1="290" y1="33" x2="290" y2="180"/>
-	<line id="sept" class="graduation"  x1="320" y1="33" x2="320" y2="180"/>
-	<line id="huit" class="graduation"  x1="350" y1="33" x2="350" y2="180"/>
-	<line id="neuf" class="graduation"  x1="380" y1="33" x2="380" y2="300"/>
+	<line id="un" class="graduation"  x1="120" y1="33" x2="120" y2="300"/>
+	<line id="deux" class="graduation"  x1="150" y1="33" x2="150" y2="180"/>
+	<line id="trois" class="graduation"  x1="180" y1="33" x2="180" y2="180"/>
+	<line id="quatre" class="graduation"  x1="210" y1="33" x2="210" y2="180"/>
+	<line id="six" class="graduation"  x1="270" y1="33" x2="270" y2="180"/>
+	<line id="sept" class="graduation"  x1="300" y1="33" x2="300" y2="180"/>
+	<line id="huit" class="graduation"  x1="330" y1="33" x2="330" y2="180"/>
+	<line id="neuf" class="graduation"  x1="360" y1="33" x2="360" y2="300"/>
 
-	<line class="graduation"  x1="170" y1="210" x2="170" y2="300"/>
-	<line class="graduation"  x1="200" y1="210" x2="200" y2="300"/>
-	<line class="graduation"  x1="230" y1="210" x2="230" y2="300"/>
-	<line class="graduation"  x1="290" y1="210" x2="290" y2="300"/>
-	<line class="graduation"  x1="320" y1="210" x2="320" y2="300"/>
-	<line class="graduation"  x1="350" y1="210" x2="350" y2="300"/>
+	<line class="graduation"  x1="150" y1="210" x2="150" y2="300"/>
+	<line class="graduation"  x1="180" y1="210" x2="180" y2="300"/>
+	<line class="graduation"  x1="210" y1="210" x2="210" y2="300"/>
+	<line class="graduation"  x1="270" y1="210" x2="270" y2="300"/>
+	<line class="graduation"  x1="300" y1="210" x2="300" y2="300"/>
+	<line class="graduation"  x1="330" y1="210" x2="330" y2="300"/>
 
 <!--	Lignes de graduation de 1 à 12-->
-	<line class="graduation"  x1="161.818" y1="180" x2="161.818" y2="210"/>
-	<line class="graduation"  x1="183.636" y1="180" x2="183.636" y2="210"/>
-	<line class="graduation"  x1="205.454" y1="180" x2="205.454" y2="210"/>
-	<line class="graduation"  x1="227.272" y1="180" x2="227.272" y2="210"/>
-	<line class="graduation"  x1="249.09" y1="180" x2="249.09" y2="210"/>
-	<line class="graduation"  x1="270.908" y1="180" x2="270.908" y2="210"/>
-	<line class="graduation"  x1="292.728" y1="180" x2="292.728" y2="210"/>
-	<line class="graduation"  x1="314.546" y1="180" x2="314.546" y2="210"/>
-	<line class="graduation"  x1="336.364" y1="180" x2="336.364" y2="210"/>
-	<line class="graduation"  x1="358.182" y1="180" x2="358.182" y2="210"/>
+	<line class="graduation"  x1="141.818" y1="180" x2="141.818" y2="210"/>
+	<line class="graduation"  x1="163.636" y1="180" x2="163.636" y2="210"/>
+	<line class="graduation"  x1="185.454" y1="180" x2="185.454" y2="210"/>
+	<line class="graduation"  x1="207.272" y1="180" x2="207.272" y2="210"/>
+	<line class="graduation"  x1="229.09" y1="180" x2="229.09" y2="210"/>
+	<line class="graduation"  x1="250.908" y1="180" x2="250.908" y2="210"/>
+	<line class="graduation"  x1="272.728" y1="180" x2="272.728" y2="210"/>
+	<line class="graduation"  x1="294.546" y1="180" x2="294.546" y2="210"/>
+	<line class="graduation"  x1="316.364" y1="180" x2="316.364" y2="210"/>
+	<line class="graduation"  x1="338.182" y1="180" x2="338.182" y2="210"/>
 
 <!--	Rectangles pour couper les lignes verticales de graduation-->
-	<rect x="135" y="44.12" class="cache" width="440" height="23.061"/>
-	<rect x="135" y="77.292" class="cache" width="440" height="26.314"/>
-	<rect x="135" y="115.044" class="cache" width="440" height="28.484"/>
-	<rect x="135" y="153.677" class="cache" width="440" height="29.293"/>
-	<rect x="135" y="194.397" class="cache" width="440" height="25.322"/>
-	<rect x="135" y="230" class="cache" width="440" height="25.322"/>
-	<rect x="135" y="265" class="cache" width="440" height="25.322"/>
+	<rect x="115" y="44.12" class="cache" width="440" height="23.061"/>
+	<rect x="115" y="77.292" class="cache" width="440" height="26.314"/>
+	<rect x="115" y="115.044" class="cache" width="440" height="28.484"/>
+	<rect x="115" y="153.677" class="cache" width="440" height="29.293"/>
+	<rect x="115" y="194.397" class="cache" width="440" height="25.322"/>
+	<rect x="115" y="230" class="cache" width="440" height="25.322"/>
+	<rect x="115" y="265" class="cache" width="440" height="25.322"/>
 
 <!--	Texte à gauche-->
-	<text transform="matrix(1 0 0 1 30 42)" class="titre">Lumière </text>
-	<text transform="matrix(1 0 0 1 30 76)" class="titre">Humidité atm </text>
-	<text transform="matrix(1 0 0 1 30 113)" class="titre">Continentalité </text>
-	<text transform="matrix(1 0 0 1 30 151)" class="titre">Réaction (pH) </text>
-	<text transform="matrix(1 0 0 1 30 191)" class="titre">Humidité du sol</text>
-	<text transform="matrix(1 0 0 1 30 228)" class="titre">Texture du sol</text>
-	<text transform="matrix(1 0 0 1 30 263)" class="titre">Richesse en N</text>
-	<text transform="matrix(1 0 0 1 30 298)" class="titre">Salinité</text>
+	<text transform="matrix(1 0 0 1 10 42)" class="titre">Lumière </text>
+	<text transform="matrix(1 0 0 1 10 76)" class="titre">Humidité atm </text>
+	<text transform="matrix(1 0 0 1 10 113)" class="titre">Continentalité </text>
+	<text transform="matrix(1 0 0 1 10 151)" class="titre">Réaction (pH) </text>
+	<text transform="matrix(1 0 0 1 10 191)" class="titre">Humidité du sol</text>
+	<text transform="matrix(1 0 0 1 10 228)" class="titre">Texture du sol</text>
+	<text transform="matrix(1 0 0 1 10 263)" class="titre">Richesse en N</text>
+	<text transform="matrix(1 0 0 1 10 298)" class="titre">Salinité</text>
 
 <!--	Texte des niveaux-->
-	<text transform="matrix(1 0 0 1 140 29.1284)"  class="min_max">ombre</text>
-	<text transform="matrix(1 0 0 1 340 27.6206)"  class="min_max">lumière</text>
-	<text transform="matrix(1 0 0 1 140 61.4976)" class="min_max">sec</text>
-	<text transform="matrix(1 0 0 1 340 63.1626)"  class="min_max">humide</text>
-	<text transform="matrix(1 0 0 1 140 98.3706)"  class="min_max">marine</text>
-	<text transform="matrix(1 0 0 1 290 98.3706)" class="min_max">hypercontinentale</text>
-	<text transform="matrix(1 0 0 1 140 133.9976)"  class="min_max">acide</text>
-	<text transform="matrix(1 0 0 1 340 136.604)"  class="min_max">basique</text>
-	<text transform="matrix(1 0 0 1 140 177.8887)"  class="min_max">sec</text>
-	<text transform="matrix(1 0 0 1 330 176.3809)"  class="min_max">aquatique</text>
-	<text transform="matrix(1 0 0 1 140 211.0957)" class="min_max">argile</text>
-	<text transform="matrix(1 0 0 1 350 212.7617)"  class="min_max">parois</text>
-	<text transform="matrix(1 0 0 1 140 250)" class="min_max">pauvre</text>
-	<text transform="matrix(1 0 0 1 355 250)"  class="min_max">riche</text>
-	<text transform="matrix(1 0 0 1 140 285)" class="min_max">hyperoligohalines</text>
-	<text transform="matrix(1 0 0 1 320 285)"  class="min_max">très tolérant</text>
+	<text transform="matrix(1 0 0 1 120 29.1284)"  class="min_max">ombre</text>
+	<text transform="matrix(1 0 0 1 320 27.6206)"  class="min_max">lumière</text>
+	<text transform="matrix(1 0 0 1 120 61.4976)" class="min_max">sec</text>
+	<text transform="matrix(1 0 0 1 320 63.1626)"  class="min_max">humide</text>
+	<text transform="matrix(1 0 0 1 120 98.3706)"  class="min_max">marine</text>
+	<text transform="matrix(1 0 0 1 270 98.3706)" class="min_max">hypercontinentale</text>
+	<text transform="matrix(1 0 0 1 120 133.9976)"  class="min_max">acide</text>
+	<text transform="matrix(1 0 0 1 320 136.604)"  class="min_max">basique</text>
+	<text transform="matrix(1 0 0 1 120 177.8887)"  class="min_max">sec</text>
+	<text transform="matrix(1 0 0 1 310 176.3809)"  class="min_max">aquatique</text>
+	<text transform="matrix(1 0 0 1 120 211.0957)" class="min_max">argile</text>
+	<text transform="matrix(1 0 0 1 330 212.7617)"  class="min_max">parois</text>
+	<text transform="matrix(1 0 0 1 120 250)" class="min_max">pauvre</text>
+	<text transform="matrix(1 0 0 1 335 250)"  class="min_max">riche</text>
+	<text transform="matrix(1 0 0 1 120 285)" class="min_max">hyperoligohalines</text>
+	<text transform="matrix(1 0 0 1 300 285)"  class="min_max">très tolérant</text>
 
 <!--Lignes du milieu-->
-	<line class="median"  x1="260" y1="252.5" x2="260" y2="267.5"/>
-	<line class="median"  x1="260" y1="287.5" x2="260" y2="302.5"/>
-	<line id="cinq" class="median"  x1="260" y1="218.481" x2="260" y2="233.049"/>
-	<line class="median"  x1="249.09" y1="180.033" x2="249.09" y2="195.11"/>
-	<line class="median"  x1="260" y1="140.767" x2="260" y2="155.845"/>
-	<line class="median"  x1="260" y1="102.091" x2="260" y2="117.17"/>
-	<line class="median"  x1="260" y1="65.391" x2="260" y2="80.469"/>
-	<line class="median"  x1="260" y1="31.509" x2="260" y2="46.588"/>
+	<line class="median"  x1="240" y1="252.5" x2="240" y2="267.5"/>
+	<line class="median"  x1="240" y1="287.5" x2="240" y2="302.5"/>
+	<line id="cinq" class="median"  x1="240" y1="218.481" x2="240" y2="233.049"/>
+	<line class="median"  x1="229.09" y1="180.033" x2="229.09" y2="195.11"/>
+	<line class="median"  x1="240" y1="140.767" x2="240" y2="155.845"/>
+	<line class="median"  x1="240" y1="102.091" x2="240" y2="117.17"/>
+	<line class="median"  x1="240" y1="65.391" x2="240" y2="80.469"/>
+	<line class="median"  x1="240" y1="31.509" x2="240" y2="46.588"/>
 
 </svg>

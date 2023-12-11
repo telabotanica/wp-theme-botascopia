@@ -34,6 +34,7 @@ body.page-template-fiche_pdf {
   width: 21cm;
   height: 59.4cm;
   font-size: 0.37cm;
+  background-color: unset;
 }
 
 .page-template-fiche_pdf .page {
@@ -54,19 +55,31 @@ body.page-template-fiche_pdf {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: flex-start;
   row-gap: 0.4cm;
   column-gap: 0.8cm;
+  flex-direction: column;
 }
 
 #page-2 main {
   padding: 0 1cm;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
   align-items: baseline;
-  gap: 0.8cm;
+  gap: 0.3cm;
 }
 
-.page-template-fiche_pdf header .container {
+#page-1 > .pdf-container {
+  height: 550px;
+}
+
+#page-2 > .pdf-container {
+  height: 670px;
+}
+
+.page-template-fiche_pdf header .pdf-container {
   height: 6.6cm;
   width: 12.18cm;
 }
@@ -115,6 +128,7 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf h4 {
   font-size: 0.43cm;
   margin-bottom: 0.2cm;
+  /*margin: 0;*/
 }
 
 .page-template-fiche_pdf h5 {
@@ -131,6 +145,10 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf ol li {
   list-style-type: none;
   display: inline-block;
+}
+
+.graph-agro-eco{
+  margin: -10px;
 }
 
 /* *************** */
@@ -197,7 +215,7 @@ body.page-template-fiche_pdf {
   margin-left: 0.8cm;
 }*/
 
-.page-template-fiche_pdf .characteristic,
+/*.page-template-fiche_pdf .characteristic,*/
 .page-template-fiche_pdf .characteristic h4,
 .page-template-fiche_pdf .fleur-monosexe h4,
 .page-template-fiche_pdf .fleur-bisexuee h4,
@@ -236,6 +254,14 @@ body.page-template-fiche_pdf {
 /* ******************** */
 /* * image in section * */
 /* ******************** */
+.pdf-inline-image {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 340px;
+}
 
 .page-template-fiche_pdf .section-image {
   width: 100%;
@@ -256,6 +282,7 @@ body.page-template-fiche_pdf {
   width: 100%;
   height: 7cm;
   max-width: 100%;
+  margin-top: -1cm;
 }
 
 .page-template-fiche_pdf .calendar{
@@ -326,6 +353,10 @@ body.page-template-fiche_pdf {
   border-radius: 50%;
 }
 
+.page-template-fiche_pdf .section-image img {
+  border-radius: 0;
+}
+
 .page-template-fiche_pdf .characteristic-photos .picture-ref {
   margin-left: -0.4cm;
 }
@@ -387,8 +418,8 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf .icon-title .icon {
   position: absolute;
-  left: -1.2cm;
-  bottom: -15px;
+  left: -1.5cm;
+  bottom: -5px;
   width: 1cm;
   height: 1.5cm;
   background-repeat: no-repeat;
@@ -396,14 +427,19 @@ body.page-template-fiche_pdf {
   background-position: 50% 70%;
 }
 
+/*.page-template-fiche_pdf #page-2  .icon-title .icon{*/
+/*  left: -1.5cm;*/
+/*  bottom: -5px;*/
+/*}*/
+
 .page-template-fiche_pdf .page-2 header h3.icon-title {
   margin-left: 2cm;
   margin-top: 0;
-  padding-top: 1cm;
+  padding-top: 1.5cm;
 }
 
 .page-template-fiche_pdf .page-2 .characteristic {
-  margin-top: 0.5cm;
+  /*margin-top: 0.5cm;*/
 }
 
 .description-icon {

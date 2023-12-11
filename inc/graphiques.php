@@ -31,15 +31,15 @@ function genererSVG($nom_fiche, $valeurs) {
                 $element = "<rect id=\"$id\" class=\"valeur\" x=\"$start_x\" y=\"$valeur_y\" width=\"$width\" height=\"10\" rx=\"5\" ry=\"5\"/>";
             }
         } elseif ($valeur['x'] && $valeur['x'][0] == 0){
-                $element = '<rect id="line_grad_salinite" x="135" y="265" class="cache" width="440" height="50"/>
-                            <text transform="matrix(1 0 0 1 140 298)" class="titre">Ne supporte pas le sel</text>';
+                $element = '<rect id="line_grad_salinite" x="115" y="265" class="cache" width="440" height="50"/>
+                            <text transform="matrix(1 0 0 1 120 298)" class="titre">Ne supporte pas le sel</text>';
         }
         $template = substr_replace($template, $element, $insertionPoint, 0);
     }
     if ($tolerance_gel){
-        $element = '<text transform="matrix(1 0 0 1 30 330)" class="titre">Cette plante tolère le gel</text>';
+        $element = '<text transform="matrix(1 0 0 1 10 330)" class="titre">Cette plante tolère le gel</text>';
     } else {
-        $element = '<text transform="matrix(1 0 0 1 30 330)" class="titre">Cette plante ne tolère pas le gel</text>';
+        $element = '<text transform="matrix(1 0 0 1 10 330)" class="titre">Cette plante ne tolère pas le gel</text>';
     }
     $template = substr_replace($template, $element, $insertionPoint, 0);
 
@@ -87,7 +87,7 @@ function ajusterValeurs($valeurs, $min, $max, $interval) {
         if ($valeur == 0){
             $result[] = 0;
         } elseif ($valeur >= $min && $valeur <= $max) {
-            $adjustedValue = 140 + ($valeur - 1) * $interval;
+            $adjustedValue = 120 + ($valeur - 1) * $interval;
             $result[] = $adjustedValue;
         }
     }
