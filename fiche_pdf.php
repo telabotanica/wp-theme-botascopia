@@ -465,10 +465,13 @@
                             if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
                                 $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
                             } else {
-                                if (getType($fleur_male['soudure_de_la_corolle']) == 'string'){
-                                    $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
-                                } else {
-                                    $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                $soudure_corolle = '';
+                                if (isset($fleur_male['soudure_de_la_corolle'])) {
+                                    if (getType($fleur_male['soudure_de_la_corolle']) == 'string') {
+                                        $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
+                                    } else {
+                                        $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                    }
                                 }
 
                                 if (getType($fleur_male['corolle']) == 'string'){
