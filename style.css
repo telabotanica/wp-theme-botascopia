@@ -84,6 +84,11 @@ body.page-template-fiche_pdf {
   width: 12.18cm;
 }
 
+#page-2 footer .pdf-container {
+  height: 5.5cm;
+  margin-top: 10px;
+}
+
 .page-template-fiche_pdf .purple {
   color: #964E75 !important;
 }
@@ -314,7 +319,7 @@ body.page-template-fiche_pdf {
 }
 
 .page-2 footer {
-  padding: 0.7cm 1cm 0 1cm;
+  padding: 0.7cm 0.5cm 0 0.5cm;
   font-size: 0.29cm;
   height: 6.5cm;
 }
@@ -331,7 +336,15 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf .footer-section .columns {
   flex-direction: column;
-  width: 50%;
+  width: 10cm;
+}
+
+.columns-left, columns-right {
+  line-height: 15px;
+}
+
+.columns-right {
+  padding-left: 1cm;
 }
 
 /* ************************ */
@@ -365,24 +378,31 @@ body.page-template-fiche_pdf {
 /* * footer logos page 2 * */
 /* ************************ */
 
-.page-template-fiche_pdf .footer-section .logos {
+#page-2 .footer-section-logos{
   width: 100%;
   height: 1.5cm;
   padding-left: 0;
-  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 0 0;
 }
 
-.page-template-fiche_pdf .footer-section .logos li {
-  display: inline-block;
+.footer-logos-left, .footer-logos-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer-logo {
   padding-right: 2mm;
 }
 
-.page-template-fiche_pdf .footer-section .logos li img {
-  height: 1.5cm;
+.footer-logo img {
+  height: 1cm;
 }
 
-.page-template-fiche_pdf .footer-section .logos li img.logo-saclay {
-  height: 1.2cm;
+.logo-saclay{
+  height: 0.6cm !important;
 }
 
 /* ************************* */
@@ -395,11 +415,30 @@ body.page-template-fiche_pdf {
   grid-template-columns:  50% 50%;
   padding-left: 0;
   margin-top: 0;
+  align-items: center;
 }
 .page-template-fiche_pdf .footer-section .credits-photo li {
   display: block;
   width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.ref-liste {
+  padding-left: 0;
+  position: relative;
+  display: list-item;
+  list-style-type: disc;
+}
+
+.ref-liste-item {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 15px;
 }
 
 /* ********* */

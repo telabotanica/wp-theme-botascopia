@@ -86,8 +86,11 @@
                         </h4>
                         <?php if(!empty($tige["illustration_de_la_tige"]['photo_tige'])): ?>
                             <?php
-                            $refs_photo[] = $tige["illustration_de_la_tige"]['photo_tige']["id"];
+                            $id_photo = $tige["illustration_de_la_tige"]['photo_tige']["id"]?: null;
                             $index_photos++;
+                            $credit_photo = get_field('tige_illustration_de_la_tige_auteur_de_la_photo')?: null;
+                            $source_photo = get_field('tige_illustration_de_la_tige_source_de_la_photo')?: null;
+                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
@@ -124,10 +127,13 @@
                                         <div class="feuilles-icon icon"></div>Feuilles
                                     </h4>
                                     <?php
-                                    $refs_photo[] = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"];
+                                    $id_photo = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"]?: null;
                                     $index_photos++;
+                                    $credit_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_auteur_de_la_photo')?: null;
+                                    $source_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_source_de_la_photo')?: null;
+                                $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                                     ?>
-                                    <div class="picture-ref"><?php echo $index_photos;?></div>
+                                    <div class="picture-ref"><?php echo $index_photos;?>x1</div>
                                 <?php endif; ?>
                                 <p>
                                     Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
@@ -176,10 +182,13 @@
                                         </h4>
                                         <?php if(!empty($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"];
+                                            $id_photo = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"]?: null;
                                             $index_photos++;
+                                            $credit_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_auteur_de_la_photo')?: null;
+                                            $source_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_source_de_la_photo')?: null;
+                                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                                             ?>
-                                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                                            <div class="picture-ref"><?php echo $index_photos;?>x2</div>
                                         <?php endif; ?>
                                         <p>
                                             Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
@@ -274,8 +283,11 @@
                                         </h4>
                                         <?php if(!empty($feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles'])): ?>
                                             <?php
-                                            $refs_photo[] = $feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles']["id"];
+                                            $id_photo = $feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles']["id"]?: null;
                                             $index_photos++;
+                                            $credit_photo = get_field('feuilles_des_rameaux_steriles_illustration_de_la_feuille_des_rameaux_steriles_auteur_de_la_photo')?: null;
+                                            $source_photo = get_field('feuilles_des_rameaux_steriles_illustration_de_la_feuille_des_rameaux_steriles_source_de_la_photo')?: null;
+                                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                                             ?>
                                             <div class="picture-ref"><?php echo $index_photos;?></div>
                                         <?php endif; ?>
@@ -432,8 +444,11 @@
                     </h4>
                     <?php if(!empty($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male'])): ?>
                         <?php
-                        $refs_photo[] = $fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male']["id"];
+                        $id_photo = $fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]['photo_de_fleur_male']["id"]?: null;
                         $index_photos++;
+                        $credit_photo = get_field('fleur_male_illustration_de_la_fleur_male_ou_de_linflorescence_auteur_de_la_photo')?: null;
+                        $source_photo = get_field('fleur_male_illustration_de_la_fleur_male_ou_de_linflorescence_source_de_la_photo')?: null;
+                        $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                         ?>
                         <div class="picture-ref"><?php echo $index_photos;?></div>
                     <?php endif; ?>
@@ -491,8 +506,11 @@
                     </h4>
                     <?php if(!empty($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle'])): ?>
                         <?php
-                        $refs_photo[] = $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']["id"];
+                        $id_photo = $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']["id"]?: null;
                         $index_photos++;
+                        $credit_photo = get_field('fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_auteur_de_la_photo')?: null;
+                        $source_photo = get_field('fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_source_de_la_photo')?: null;
+                        $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                         ?>
                         <div class="picture-ref"><?php echo $index_photos;?></div>
                     <?php endif; ?>
@@ -547,8 +565,11 @@
                         </h4>
                         <?php if(!empty($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee'])): ?>
                             <?php
-                            $refs_photo[] = $fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']["id"];
+                            $id_photo = $fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']["id"]?: null;
                             $index_photos++;
+                            $credit_photo = get_field('fleur_bisexuee_illustration_de_la_fleur_bisexuee_auteur_de_la_photo')?: null;
+                            $source_photo = get_field('fleur_bisexuee_illustration_de_la_fleur_bisexuee_source_de_la_photo')?: null;
+                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
@@ -606,8 +627,11 @@
                 <?php if(0 < $index_photos): ?>
                     <?php if(!empty($fruit_photo)): ?>
                         <?php
-                        $refs_photo[] = $fruit_photo["id"];
+                        $id_photo = $fruit_photo["id"]?: null;
                         $index_photos++;
+                        $credit_photo = get_field('fruit_illustration_du_fruit_auteur_de_la_photo')?: null;
+                        $source_photo = get_field('fruit_illustration_du_fruit_source_de_la_photo')?: null;
+                        $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                         ?>
                     <?php endif; ?>
                     <div class="footer-section">
@@ -615,7 +639,7 @@
                             <?php for ($i = 1;$i <= $index_photos; $i++): ?>
                                 <?php if($i == 6) : {break;} ?>
                                 <?php endif; ?>
-                                <li><?php echo wp_get_attachment_image($refs_photo[$i], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
+                                <li><?php echo wp_get_attachment_image($refs_photo[$i]['id'], [148, 148]); ?><div class="picture-ref"><?php echo $i; ?></div></li>
 
                             <?php endfor; ?>
                         </ol>
@@ -716,8 +740,11 @@
                         <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
                             <?php
-                            $refs_photo[] = $photo['id'];
+                            $id_photo = $photo['id']?: null;
                             $index_photos++;
+                            $credit_photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_auteur_de_la_photo')?: null;
+                            $source_photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_source_de_la_photo')?: null;
+                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                             ?>
                             <div class="characteristic-photos">
                                 <?php echo wp_get_attachment_image($photo['id'], [148, 148]); ?>
@@ -751,15 +778,8 @@
             </main>
             <footer>
                 <div class="pdf-container">
-                    <div class="footer-section">
-                        <ul class="logos">
-                            <li><img class="logo-saclay" src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Logo Université Paris-Saclay"></li>
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Logo Botascopia"></li>
-                            <li><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Logo Tela Botanica"></li>
-                        </ul>
-                    </div>
                     <div class="footer-section info">
-                        <div class="columns">
+                        <div class="columns columns-left">
                             <div>
                                 <h5 class="inline">auteur(e-s) :</h5>
                                 <p class="inline"><?php echo get_the_author(); ?></p>
@@ -773,23 +793,36 @@
 
                             <?php if(0 < $index_photos): ?>
                                 <ol class="credits-photo">
-                                    <?php foreach ($refs_photo as $i => $photo_id) : ?>
-                                        <?php $credit =  get_the_excerpt($photo_id) ?: null; ?>
-                                        <li><?php echo $i.' - '. (get_the_excerpt($photo_id) ?: 'nc'); ?></li>
-                                    <?php endforeach; ?>
+                                    <?php foreach ($refs_photo as $i => $photo) :
+                                        if ($i > 0) :
+                                        ?>
+                                        <li><?php echo $i.' - '. ($photo['credit_photo'] ?: 'nc') .', '. ($photo['source_photo'] ?: null); ?></li>
+                                    <?php endif; endforeach; ?>
                                 </ol>
                             <?php endif; ?>
-
                         </div>
-
-                        <div class="columns">
+                        <div class="columns columns-right">
                             <h5>référence(s) :</h5>
+
                             <?php for($i = 1; $i <= 3; $i++): ?>
+                            <div class="ref-liste">
                                 <?php $ref = get_field('reference_'.strval($i)) ?: null;?>
                                 <?php if($ref):?>
-                                    <p><?php echo $ref; ?></p>
+                                    <p class="ref-liste-item"><?php echo $ref; ?></p>
                                 <?php endif; ?>
+                            </div>
                             <?php endfor; ?>
+
+                        </div>
+                    </div>
+
+                    <div class="footer-section-logos">
+                        <div class="footer-logos-left">
+                            <div class="footer-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Logo Botascopia"></div>
+                        </div>
+                        <div class="footer-logos-right">
+                            <div class="footer-logo"><img class="logo-saclay" src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Logo Université Paris-Saclay"></div>
+                            <div class="footer-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Logo Tela Botanica"></div>
                         </div>
                     </div>
                 </div>
@@ -797,7 +830,7 @@
 
         </div>
     <?php endwhile;?>
-<?php else: //Handle the case where there is no parameter?>
+<?php else: ?>
     <p>Nom de fiche invalide</p>
 <?php endif; ?>
 </body>
