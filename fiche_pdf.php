@@ -61,7 +61,11 @@
                     $refs_photo[] = get_field('field_643027826f24d')['photo_de_la_plante_entiere'];
                 }
                 ?>
-                <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>'); background-size: cover;">
+                <div class="round-picture" style="background-image: url('<?php
+                if (isset($refs_photo[0])){
+                    echo wp_get_attachment_image_url($refs_photo[0], 'large');
+                }
+                ?>'); background-size: cover;">
             </header>
 
             <main class="pdf-container">

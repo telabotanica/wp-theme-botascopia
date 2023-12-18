@@ -89,12 +89,13 @@
 
 .single-collection-buttons{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
 .single-collection-buttons > a:nth-child(1){
-    display: none; /* TODO: A supprimer une fois la fonction export implémenter */
+    /*display: none; !* TODO: A supprimer une fois la fonction export implémenter *!*/
     width: 200px;
 }
 
@@ -103,10 +104,10 @@
 }
 
 .single-collection-export-format{
-    display: none; /* TODO: A supprimer une fois la fonction export implémenter */
+    /*display: none; !* TODO: A supprimer une fois la fonction export implémenter *!*/
     font-size: 11px;
     color: var(--vert-clair);
-    margin: -10px 0 50px 10px;
+    margin: -10px 0 0px 10px;
 }
 
 .return-button{
