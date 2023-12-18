@@ -133,7 +133,7 @@
                                     $source_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_source_de_la_photo')?: null;
                                 $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                                     ?>
-                                    <div class="picture-ref"><?php echo $index_photos;?>x1</div>
+                                    <div class="picture-ref"><?php echo $index_photos;?></div>
                                 <?php endif; ?>
                                 <p>
                                     Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
@@ -188,7 +188,7 @@
                                             $source_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_source_de_la_photo')?: null;
                                             $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
                                             ?>
-                                            <div class="picture-ref"><?php echo $index_photos;?>x2</div>
+                                            <div class="picture-ref"><?php echo $index_photos;?></div>
                                         <?php endif; ?>
                                         <p>
                                             Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
@@ -805,12 +805,12 @@
                             <h5>référence(s) :</h5>
 
                             <?php for($i = 1; $i <= 3; $i++): ?>
-                            <div class="ref-liste">
                                 <?php $ref = get_field('reference_'.strval($i)) ?: null;?>
                                 <?php if($ref):?>
-                                    <p class="ref-liste-item"><?php echo $ref; ?></p>
+                                    <div class="ref-liste">
+                                        <p class="ref-liste-item"><?php echo $ref; ?></p>
+                                    </div>
                                 <?php endif; ?>
-                            </div>
                             <?php endfor; ?>
 
                         </div>
