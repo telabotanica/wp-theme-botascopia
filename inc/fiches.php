@@ -101,7 +101,7 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 	);
 	
 	if ($userId){
-		if ($role == 'contributor' || $role == 'administrator'){
+		if ($role == 'contributor' || $role == 'administrator' || ($role == 'editor' && !$editorId && $status == 'draft')){
 			$args['author'] =  $userId;
 		}
 	} else {

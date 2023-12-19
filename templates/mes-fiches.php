@@ -206,7 +206,6 @@ get_header();
 					?>
 				</div>
 				<!--            Compléter une fiche-->
-                <?php if ($role == 'contributor' || $role == 'administrator'): ?>
 				<div id="fiches-a-completer">
 					<?php
 					the_botascopia_module('title', [
@@ -234,7 +233,6 @@ get_header();
                     }
 					?>
 				</div>
-                <?php endif; ?>
 
                 <!--            fiches dont je suis le vérificateur (profil vérificateur)  -->
 				<?php if ($role == 'editor'): ?>
