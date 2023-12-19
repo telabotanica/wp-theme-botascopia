@@ -50,15 +50,17 @@ body.page-template-fiche_pdf {
 }
 
 #page-1 main {
-  margin-top: -0.8cm;
+  /*margin-top: -0.8cm;*/
   padding: 0 1cm;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: flex-start;
-  row-gap: 0.4cm;
-  column-gap: 0.8cm;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+  /*align-items: baseline;*/
+  /*justify-content: flex-start;*/
+  /*row-gap: 0.4cm;*/
+  /*column-gap: 0.8cm;*/
+  /*flex-direction: column;*/
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
 #page-2 main {
@@ -77,6 +79,7 @@ body.page-template-fiche_pdf {
 
 #page-2 > .pdf-container {
   height: 670px;
+  margin-top: 10px;
 }
 
 .page-template-fiche_pdf header .pdf-container {
@@ -115,6 +118,11 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf h1 em {
   font-style: italic;
 }
+
+.page-template-fiche_pdf .pdf-espece-pas-confondre {
+  font-style: italic;
+}
+
 .page-template-fiche_pdf h2 {
   font-size: 0.42cm;
   font-weight: normal;
@@ -124,6 +132,7 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf p {
   margin: 0;
+  line-height: 20px;
 }
 .page-template-fiche_pdf h3 {
   font-size: 0.53cm;
@@ -160,7 +169,7 @@ body.page-template-fiche_pdf {
 /* * backgrounds * */
 /* *************** */
 .page-template-fiche_pdf .page-1 header {
-  background: top / cover no-repeat url("images/recto-haut.svg");
+  background: top / cover no-repeat url("images/recto-hautv2.svg");
 }
 
 .page-template-fiche_pdf .page-2 header {
@@ -199,10 +208,24 @@ body.page-template-fiche_pdf {
   padding-left: 1cm;
 }
 
+.page-template-fiche_pdf .pdf-description-morpho {
+  margin-top: 90px;
+}
+
+.page-template-fiche_pdf .pdf-ecologie {
+  min-height: 50px;
+  max-height: 230px;
+  display: -webkit-box;
+  -webkit-line-clamp: 11;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .page-template-fiche_pdf .fleur-bisexuee {
-  /*width: 18cm;*/
+  width: 18cm;
   vertical-align: top;
   padding-left: 1cm;
+  grid-column: span 2;
 }
 
 .page-template-fiche_pdf .fleur-monosexe + .fleur-bisexuee {
@@ -446,8 +469,8 @@ body.page-template-fiche_pdf {
 /* ********* */
 .page-template-fiche_pdf .icon-title {
   position: relative;
+  margin: 0;
 }
-
 
 .page-template-fiche_pdf .icon {
   background-repeat: no-repeat;

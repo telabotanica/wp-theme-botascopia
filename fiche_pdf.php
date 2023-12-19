@@ -38,7 +38,7 @@
                 <div class="pdf-container">
                     <h1><?php the_field('nom_scientifique');?></h1>
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
-                    <div class="characteristic">
+                    <div class="characteristic pdf-description-morpho">
                         <h3 class="icon-title">
                             <div class="description-icon icon"></div>description morphologique
                         </h3>
@@ -69,6 +69,7 @@
             </header>
 
             <main class="pdf-container">
+<!--Tige                -->
                 <div class="characteristic">
                     <?php
                     $tige = get_field('tige');
@@ -110,6 +111,7 @@
                     <?php } ?>
                 </div>
 
+<!--feuilles                -->
                 <div class="characteristic">
                     <?php
                     $feuille = get_field('feuille');
@@ -179,6 +181,7 @@
                                 <?php $deux_formes_distinctes = get_field('deux_formes_distinctes'); ?>
                                 <?php if ($deux_formes_distinctes === 'plante à feuilles immergées et aériennes'): ?>
 
+                                    <!-- feuilles aeriennes-->
                                     <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
                                     <?php if(!empty($feuilles_aeriennes)): ?>
                                         <h4 class="icon-title">
@@ -230,54 +233,7 @@
                                         </p>
                                     <?php endif; ?>
 
-                                    <?php /*$feuilles_immergees = get_field('feuilles_immergees'); */?><!--
-                                    <?php /*if(!empty($feuilles_immergees)): */?>
-                                        <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles immergées
-                                        </h4>
-                                        <?php /*if(!empty($feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees'])): */?>
-                                            <?php
-/*                                            $refs_photo[] = $feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees']["id"];
-                                            $index_photos++;
-                                            */?>
-                                            <div class="picture-ref"><?php /*echo $index_photos;*/?></div>
-                                        <?php /*endif; */?>
-                                        <p>
-                                            Les feuilles sont disposées de façon <?php /*echo implode(' et ', $feuilles_immergees['phyllotaxie']);*/?> et elles sont <?php /*echo implode(' et ', $feuilles_immergees['type_de_feuille']);*/?>.<br>
-                                            <?php
-/*                                            $type_feuille_multiple = 1 < count($feuilles_immergees['type_de_feuille']);
-                                            $limbe = 'Le limbe %s est %s';
-                                            $type_limbe = [];
-
-                                            foreach ($feuilles_immergees['type_de_feuille'] as $type_feuille) {
-                                                if ('simples' === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_immergees['limbe_des_feuilles_simples']));
-                                                } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_immergees['limbe_des_folioles']));
-                                                }
-                                            }
-                                            */?>
-
-                                            <?php /*echo implode(', ', $type_limbe);*/?>, à marge foliaire <?php /*echo implode(' et ', $feuilles_immergees['marge_foliaire']);*/?> et à nervation <?php /*echo implode(' et ', $feuilles_immergees['nervation']);*/?>.<br>
-
-                                            <?php
-/*                                            $presence_petiole = $feuilles_immergees['petiole'];
-                                            $petiole = 'présent' === $presence_petiole ? $feuilles_immergees['longueur_du_petiole'] . ('engainant' === $feuilles_immergees['engainant'] ? ', ' . $feuilles_immergees['engainant'] :'') : $presence_petiole;
-                                            */?>
-
-                                            Le pétiole est <?php /*echo $petiole; */?>.<br>
-
-                                            <?php /*echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';*/?>
-
-                                            <?php /*$port_de_la_plante = get_field('port_de_la_plante'); */?>
-                                            <?php /*if (!empty($port_de_la_plante)): */?>
-                                                <?php /*if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): */?>
-                                                    <?php /*echo  $feuilles_immergees['feuillage'] ? 'Le feuillage est ' . $feuilles_immergees['feuillage'].'.' : '';*/?>
-                                                <?php /*endif; */?>
-                                            <?php /*endif; */?>
-                                        </p>
-                                    --><?php /*endif; */?>
-
+                                    <!--Feuilles à rameau stérile                                -->
                                 <?php elseif ($deux_formes_distinctes === 'plante à rameaux stériles et à rameaux fleuris distincts'): ?>
 
                                     <?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
@@ -331,63 +287,15 @@
                                         </p>
                                     <?php endif; ?>
 
-                                    <?php /*$feuilles_des_rameaux_fleuris = get_field('feuilles_des_rameaux_fleuris'); */?><!--
-                                    <?php /*if (!empty($feuilles_des_rameaux_fleuris)) : */?>
-                                        <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles des reameaux fleuris
-                                        </h4>
-                                        <?php /*if(!empty($feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris'])): */?>
-                                            <?php
-/*                                            $refs_photo[] = $feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris']["id"];
-                                            $index_photos++;
-                                            */?>
-                                            <div class="picture-ref"><?php /*echo $index_photos;*/?></div>
-                                        <?php /*endif; */?>
-                                        <p>
-                                            Les feuilles sont disposées de façon <?php /*echo implode(' et ', $feuilles_des_rameaux_fleuris['phyllotaxie']);*/?> et elles sont <?php /*echo implode(' et ', $feuilles_des_rameaux_fleuris['type_de_feuille']);*/?>.<br>
-                                            <?php
-/*                                            $type_feuille_multiple = 1 < count($feuilles_des_rameaux_fleuris['type_de_feuille']);
-                                            $limbe = 'Le limbe %s est %s';
-                                            $type_limbe = [];
-
-                                            foreach ($feuilles_des_rameaux_fleuris['type_de_feuille'] as $type_feuille) {
-                                                if ('simples' === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_feuilles_simples']));
-                                                } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_folioles']));
-                                                }
-                                            }
-                                            */?>
-
-                                            <?php /*echo implode(', ', $type_limbe);*/?>, à marge foliaire <?php /*echo implode(' et ', $feuilles_des_rameaux_fleuris['marge_foliaire']);*/?> et à nervation <?php /*echo implode(' et ', $feuilles_des_rameaux_fleuris['nervation']);*/?>.<br>
-
-                                            <?php
-/*                                            $presence_petiole = $feuilles_des_rameaux_fleuris['petiole'];
-                                            $petiole = 'présent' === $presence_petiole ? $feuilles_des_rameaux_fleuris['longueur_du_petiole'] . ('engainant' === $feuilles_des_rameaux_fleuris['engainant'] ? ', ' . $feuilles_des_rameaux_fleuris['engainant'] :'') : $presence_petiole;
-                                            */?>
-
-                                            Le pétiole est <?php /*echo $petiole; */?>.<br>
-
-                                            <?php /*echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';*/?>
-
-                                            <?php /*$port_de_la_plante = get_field('port_de_la_plante'); */?>
-                                            <?php /*if (!empty($port_de_la_plante)): */?>
-                                                <?php /*if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): */?>
-                                                    <?php /*echo  $feuilles_des_rameaux_fleuris['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris['feuillage'].'.' : '';*/?>
-                                                <?php /*endif; */?>
-                                            <?php /*endif; */?>
-                                        </p>
-                                    --><?php /*endif; */?>
-
                                 <?php endif; ?>
 
-                        <?php endif; ?>
+                            <?php endif; ?>
 
 
                         <?php endif; ?>
                     <?php } ?>
                 </div>
-
+<!--Inflorescence-->
                 <div class="characteristic">
                     <?php  if (!empty(get_field('inflorescence'))) { ?>
                         <h4 class="icon-title">
@@ -405,6 +313,7 @@
                     <?php } ?>
                 </div>
 
+<!--Fruits-->
                 <div class="characteristic">
                     <?php  if (!empty(get_field('fruit'))) { ?>
                         <h4 class="icon-title">
@@ -439,7 +348,127 @@
                     <?php } ?>
                 </div>
 
+<!--  Fleur bisexuée-->
+                <?php $fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;?>
+                <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
+                    <div class="characteristic fleur-bisexuee">
+                        <h4 class="icon-title">
+                            <div class="fleur-bisexuee-icon icon"></div>Fleur bisexuée
+                        </h4>
+                        <?php if(!empty($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee'])): ?>
+                            <?php
+                            $id_photo = $fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']["id"]?: null;
+                            $index_photos++;
+                            $credit_photo = get_field('fleur_bisexuee_illustration_de_la_fleur_bisexuee_auteur_de_la_photo')?: null;
+                            $source_photo = get_field('fleur_bisexuee_illustration_de_la_fleur_bisexuee_source_de_la_photo')?: null;
+                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
+                            ?>
+                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                        <?php endif; ?>
+                        <p>
+                            <?php if('présent' !== $fleur_bisexuee['perianthe']): { ?>
+                                Périanthe absent ;
+                            <?php } else: { ?>
+                                Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?> ;
+                                <?php
+                                if ('tépales' === $fleur_bisexuee['composition_du_perianthe']) {
+                                    $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
+                                    $perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
+                                } else {
+                                    $perianthe = implode(' ou ', $fleur_bisexuee['calice']) . ' sépale( s) ';
+                                    $perianthe .= !empty($fleur_bisexuee['soudure_du_calice']) ? $fleur_bisexuee['soudure_du_calice'] : "" ;
+                                    $perianthe .=    ' et ' . implode(' ou ', $fleur_bisexuee['corolle']) . ' pétale(s) ' ;
+                                    $perianthe .= !empty($fleur_bisexuee['soudure_de_la_corolle']) ? $fleur_bisexuee['soudure_de_la_corolle'] . ' ; ' : "" ;
+                                    $perianthe .= ('corolle soudée au calice' === $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] ?
+                                        $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                }
+                                ?>
+                                périanthe composé de <?php echo $perianthe;
+                            } ?>
+                            <?php endif; ?>
+                            <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
+                                androcée composé de <?php echo implode(' ou ' , $fleur_bisexuee['androcee']); ?> étamine(s)
+                                <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
+                            } ?>
+                            <?php endif; ?>
+                            <?php if(!empty($fleur_bisexuee['gynecee'])): { ?>
+                                gynécée composé de <?php echo implode(' ou ' , $fleur_bisexuee['gynecee']); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
+                                ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
+                            <?php } ?>
+                            <?php endif; ?>
+                            La couleur principale de la fleur est le <?php echo $fleur_bisexuee['couleur_principale']; ?>.
+                            <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
+                                echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
+                                <?php if (!empty($fleur_bisexuee['localisation_des_poils']) && ($fleur_bisexuee['localisation_des_poils'] != array("tous les organes floraux"))) {
+                                    echo ' sur '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
+                                else { echo '.'; }}?>
+                            <?php echo $fleur_bisexuee['autre_caractere'];?>
+                        </p>
+                    </div>
+                <?php endif ?>
 
+<!--Fleur femelle-->
+                <?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
+                <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
+                    <div class="characteristic fleur-monosexe">
+                        <h4 class="icon-title">
+                            <div class="fleur-femelle-icon icon"></div>Fleur femelle
+                        </h4>
+                        <?php if(!empty($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle'])): ?>
+                            <?php
+                            $id_photo = $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']["id"]?: null;
+                            $index_photos++;
+                            $credit_photo = get_field('fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_auteur_de_la_photo')?: null;
+                            $source_photo = get_field('fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_source_de_la_photo')?: null;
+                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
+                            ?>
+                            <div class="picture-ref"><?php echo $index_photos;?></div>
+                        <?php endif; ?>
+                        <p>
+                            <?php if('présent' !== $fleur_femelle['perianthe']): { ?>
+                                Périanthe absent ;
+                            <?php } else: { ?>
+                                Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
+                                <?php
+                                if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
+                                    $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
+                                } else {
+                                    if (getType($fleur_femelle['soudure_de_la_corolle']) == 'string'){
+                                        $soudure_corolle = $fleur_femelle['soudure_de_la_corolle'];
+                                    } else {
+                                        $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle']);
+                                    }
+
+                                    if (getType($fleur_femelle['corolle']) == 'string'){
+                                        $corolle = $fleur_femelle['corolle'];
+                                    } else {
+                                        $corolle = implode(' ou ', $fleur_femelle['corolle']);
+                                    }
+                                    $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
+                                        ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                }
+                                ?>
+                                périanthe composé de <?php echo $perianthe;
+                            } ?>
+                            <?php endif; ?>
+                            <?php if(!empty($fleur_femelle['gynecee'])): { ?>
+                                gynécée composé de <?php echo implode(' ou ' , $fleur_femelle['gynecee']); ?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
+                                ovaire <?php echo $fleur_femelle['ovaire']; ?>.
+                                La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
+                                <?php if ('pubescente' === $fleur_femelle['pubescence']) {
+                                    echo "La fleur est ".$fleur_femelle['pubescence'];?>
+                                    <?php if (!empty($fleur_femelle['localisation_des_poils']) && ($fleur_femelle['localisation_des_poils'] != array("tous les organes floraux"))) {
+                                        echo ' sur '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
+                                    else { echo '.'; }}?>
+                                <?php echo $fleur_femelle['autre_caractere'];
+                            }?>
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                <?php endif ?>
+
+<!--fleur male-->
                 <?php $fleur_male =  get_field('fleur_male') ?: null;?>
                 <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
                 <div class="characteristic fleur-monosexe">
@@ -502,125 +531,6 @@
                         <?php endif; ?>
                     </p>
                 </div>
-                <?php endif ?>
-
-
-                <?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
-                <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
-                <div class="characteristic fleur-monosexe">
-                    <h4 class="icon-title">
-                        <div class="fleur-femelle-icon icon"></div>Fleur femelle
-                    </h4>
-                    <?php if(!empty($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle'])): ?>
-                        <?php
-                        $id_photo = $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']["id"]?: null;
-                        $index_photos++;
-                        $credit_photo = get_field('fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_auteur_de_la_photo')?: null;
-                        $source_photo = get_field('fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_source_de_la_photo')?: null;
-                        $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
-                        ?>
-                        <div class="picture-ref"><?php echo $index_photos;?></div>
-                    <?php endif; ?>
-                    <p>
-                        <?php if('présent' !== $fleur_femelle['perianthe']): { ?>
-                            Périanthe absent ;
-                        <?php } else: { ?>
-                            Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
-                            <?php
-                            if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
-                                $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
-                            } else {
-                                if (getType($fleur_femelle['soudure_de_la_corolle']) == 'string'){
-                                    $soudure_corolle = $fleur_femelle['soudure_de_la_corolle'];
-                                } else {
-                                    $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle']);
-                                }
-
-                                if (getType($fleur_femelle['corolle']) == 'string'){
-                                    $corolle = $fleur_femelle['corolle'];
-                                } else {
-                                    $corolle = implode(' ou ', $fleur_femelle['corolle']);
-                                }
-                                $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
-                                    ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                            }
-                            ?>
-                            périanthe composé de <?php echo $perianthe;
-                        } ?>
-                        <?php endif; ?>
-                        <?php if(!empty($fleur_femelle['gynecee'])): { ?>
-                            gynécée composé de <?php echo implode(' ou ' , $fleur_femelle['gynecee']); ?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
-                            ovaire <?php echo $fleur_femelle['ovaire']; ?>.
-                            La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
-                            <?php if ('pubescente' === $fleur_femelle['pubescence']) {
-                                echo "La fleur est ".$fleur_femelle['pubescence'];?>
-                                <?php if (!empty($fleur_femelle['localisation_des_poils']) && ($fleur_femelle['localisation_des_poils'] != array("tous les organes floraux"))) {
-                                    echo ' sur '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
-                                else { echo '.'; }}?>
-                            <?php echo $fleur_femelle['autre_caractere'];
-                        }?>
-                        <?php endif; ?>
-                    </p>
-                </div>
-                <?php endif ?>
-
-                <?php $fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;?>
-                <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
-                    <div class="characteristic fleur-bisexuee">
-                        <h4 class="icon-title">
-                            <div class="fleur-bisexuee-icon icon"></div>Fleur bisexuée
-                        </h4>
-                        <?php if(!empty($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee'])): ?>
-                            <?php
-                            $id_photo = $fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']["id"]?: null;
-                            $index_photos++;
-                            $credit_photo = get_field('fleur_bisexuee_illustration_de_la_fleur_bisexuee_auteur_de_la_photo')?: null;
-                            $source_photo = get_field('fleur_bisexuee_illustration_de_la_fleur_bisexuee_source_de_la_photo')?: null;
-                            $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo]
-                            ?>
-                            <div class="picture-ref"><?php echo $index_photos;?></div>
-                        <?php endif; ?>
-                        <p>
-                            <?php if('présent' !== $fleur_bisexuee['perianthe']): { ?>
-                                Périanthe absent ;
-                            <?php } else: { ?>
-                                Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?> ;
-                                <?php
-                                if ('tépales' === $fleur_bisexuee['composition_du_perianthe']) {
-                                    $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ';
-                                    $perianthe .=  !empty($fleur_bisexuee['soudure_du_perigone']) ? $fleur_bisexuee['soudure_du_perigone'] . ' ; ' : " ;";
-                                } else {
-                                    $perianthe = implode(' ou ', $fleur_bisexuee['calice']) . ' sépale( s) ';
-                                    $perianthe .= !empty($fleur_bisexuee['soudure_du_calice']) ? $fleur_bisexuee['soudure_du_calice'] : "" ;
-                                    $perianthe .=    ' et ' . implode(' ou ', $fleur_bisexuee['corolle']) . ' pétale(s) ' ;
-                                    $perianthe .= !empty($fleur_bisexuee['soudure_de_la_corolle']) ? $fleur_bisexuee['soudure_de_la_corolle'] . ' ; ' : "" ;
-                                    $perianthe .= ('corolle soudée au calice' === $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] ?
-                                        $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                                }
-                                ?>
-                                périanthe composé de <?php echo $perianthe;
-                            } ?>
-                            <?php endif; ?>
-                            <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
-                                androcée composé de <?php echo implode(' ou ' , $fleur_bisexuee['androcee']); ?> étamine(s)
-                                <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
-                                <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
-                            } ?>
-                            <?php endif; ?>
-                            <?php if(!empty($fleur_bisexuee['gynecee'])): { ?>
-                                gynécée composé de <?php echo implode(' ou ' , $fleur_bisexuee['gynecee']); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
-                                ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
-                            <?php } ?>
-                            <?php endif; ?>
-                                La couleur principale de la fleur est le <?php echo $fleur_bisexuee['couleur_principale']; ?>.
-                                <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
-                                    echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
-                                    <?php if (!empty($fleur_bisexuee['localisation_des_poils']) && ($fleur_bisexuee['localisation_des_poils'] != array("tous les organes floraux"))) {
-                                        echo ' sur '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
-                                    else { echo '.'; }}?>
-                                <?php echo $fleur_bisexuee['autre_caractere'];?>
-                        </p>
-                    </div>
                 <?php endif ?>
             </main>
 
@@ -690,7 +600,7 @@
                 </div>
             </header>
             <main class="pdf-container">
-
+<!--Aire répartirion-->
                 <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
@@ -711,16 +621,19 @@
                 <?php endif; ?>
 
                 <?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))): ?>
-                    <div class="characteristic">
+<!--Ecologie-->
+                    <div class="characteristic pdf-ecologie">
                         <h3 class="icon-title">
                             <div class="ecologie-icon icon"></div>écologie
                         </h3>
-                        <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Altitude : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
-                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
+                        <p>
+                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>.
+
+                            <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
                             <?php if (!empty(get_field('dispersion'))) :?> Dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
                     </div>
                 <?php endif; ?>
-
+<!--Préférence physico chimiques-->
                 <?php $description = get_field('description')?: null; ?>
                 <?php if ($description): ?>
                     <div class="characteristic">
@@ -734,7 +647,7 @@
                         <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
                     </div>
                 <?php endif; ?>
-
+<!--Ne pas confondre-->
                 <?php $description = get_field('description')?: null; ?>
                 <?php if ($description): ?>
                     <div class="characteristic">
@@ -743,7 +656,12 @@
                             <div class="picture-ref"><?php echo $index_photos+1;?></div>
                         </h3>
                         <div class="pdf-inline-image">
-                        <p><?php the_field('description'); ?>.</p>
+                        <p><span class="pdf-espece-pas-confondre"><?php
+                            $espece = get_field('nom_despece');
+                            echo $espece;
+                            echo ('</span></br>');
+                            the_field('description');
+                            ?></p>
                         <?php $photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_photo')?: null; ?>
                         <?php if (!empty($photo)): ?>
                             <?php
@@ -760,26 +678,82 @@
                         </div>
                     </div>
                 <?php endif; ?>
+<!--Interactions avec le vivant-->
+<!--                --><?php //$description = get_field('description')?: null; ?>
+<!--                --><?php //$interactions_vivant = get_field('interaction_avec_le_vivant')?: null;
+//                <?php if ($description): ?>
+<!--                    <div class="characteristic">-->
+<!--                        <h4 class="icon-title">-->
+<!--                            Interactions avec le vivant-->
+<!--                        </h4>-->
+<!--                        <p></p>-->
+<!--                    </div>-->
+<!--                --><?php //endif; ?>
 
+<!--Valeurs ecologiques histo et locale-->
                 <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
-                    <div class="characteristic">
-                        <h4 class="icon-title">
-                            Interactions avec le vivant
-                        </h4>
-                        <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> Pousse dans : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
-                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> Toxique pour : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?></p>
-                    </div>
-                <?php endif; ?>
-
-                <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
+                <?php $valeurs_ecolo = get_field('valeurs_ecologiques_historiques_et_locales') ?: null; ?>
+                <?php if ($valeurs_ecolo): ?>
                     <div class="characteristic">
                         <h4 class="icon-title">
                             Valeurs écologiques, historiques et locales
                         </h4>
-                        <p><?php if (!empty(get_field('amplitude_altitudinale'))) :?> A été ou est cultivée pour : <?php echo get_field('amplitude_altitudinale'); ?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> ; p<?php endif; ?><?php else:?> <?php if (!empty(get_field('affinites_ecologiques'))) :?> P<?php endif; ?><?php endif; ?><?php if (!empty(get_field('affinites_ecologiques'))) :?>lante <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : ""; ?> ; <?php endif; ?>
-                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> Elle est connue pour : <?php the_field('habitat_preferentiel'); ?>. <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?></p>
+                        <p>
+                            <?php
+                            if ($valeurs_ecolo['cette_plante_est-elle_connue_pour_avoir_ete_ou_etre_actuellement_cultivee_']){
+                                echo 'Cette plante a été ou est cultivée entre autres pour ';
+                                $usages = $valeurs_ecolo['cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants'];
+                                if (!empty($usages)){
+                                    $nb_usage = 0;
+                                    $usage_total = count($usages);
+                                    foreach ($usages as $usage){
+                                        if ($nb_usage <= 3){
+                                            echo ($usage);
+                                            $nb_usage++;
+                                            if ($nb_usage == $usage_total || $nb_usage == 3){
+                                                echo '.';
+                                            } else {
+                                                echo ', ';
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                echo 'Cette plante n\'est pas connue pour être ou avoir été cultivée.';
+                            }
+
+                            $autre_usages = $valeurs_ecolo['plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant'];
+                            if (!empty($autre_usages)){
+                                echo ' Elle est connue entre autres pour ';
+                                $nb_autre_usages = 0;
+                                $autres_usage_total = count($autre_usages);
+                                foreach ($autre_usages as $autre_usage){
+                                    if ($nb_autre_usages <= 3){
+                                        echo $autre_usage;
+                                        $nb_autre_usages++;
+                                        if ($nb_autre_usages == $autres_usage_total || $nb_autre_usages == 3){
+                                            echo '.';
+                                        } else {
+                                            echo ', ';
+                                        }
+                                    }
+                                }
+                            }
+
+                            $protection_statut_france = $valeurs_ecolo['quel_est_le_statut_de_protection_france_metropolitaine'];
+                            $protection_statut = $valeurs_ecolo['statut_de_protection'];
+                            if (!empty($protection_statut)){
+                                echo (' Elle ');
+                                echo $protection_statut;
+                                echo '.';
+                                if (!empty($protection_statut_france)){
+                                    echo (' Elle a le statut de protection ');
+                                    echo $protection_statut_france;
+                                    echo (' sur tout le territoire.');
+                                }
+                            }
+                            ?>
+                        </p>
                     </div>
                 <?php endif; ?>
             </main>
