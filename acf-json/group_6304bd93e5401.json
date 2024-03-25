@@ -453,10 +453,10 @@
                             "label": "Photo de tige",
                             "name": "photo_tige",
                             "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "type": "image",
+                            "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
+                            "required": 1,
+                            "conditional_logic": 0
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -3507,8 +3507,11 @@
                                 "id": ""
                             },
                             "choices": {
-                                "CC-by-SA": "CC-by-SA",
-                                "domaine publique": "domaine publique"
+                                "CC-BY-SA": "CC-BY-SA",
+                                "CC-BY": "CC-BY",
+                                "CC0": "CC0",
+                                "Domaine public": "Domaine public",
+                                "Autre licence libre": "Autre licence libre"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -6392,5 +6395,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1699889296
+    "modified": 1699880917
+
 }

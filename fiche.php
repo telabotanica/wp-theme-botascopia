@@ -13,6 +13,7 @@ get_header();
 		
 		<?php
 		$post = get_queried_object();
+        $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 		
 		if (is_user_logged_in()) :
 			$current_user = wp_get_current_user();
@@ -95,6 +96,28 @@ get_header();
 				<div class="single-collection-buttons" id="fiche-<?php echo $post_id ?>"
 					 data-user-id="<?php echo $current_user_id?>"
 					 data-fiche-id="<?php echo $post_id ?>">
+
+                    <?php if (is_user_logged_in() && isset($ficheFavorites) &&get_user_meta($current_user_id, 'favorite_collection')
+                        && ($key
+                            = array_search($post_id, $ficheFavorites[0])) !== false) :
+                        //changer le bouton favoris si collection dans favoris ou pas
+                        $icone = ['icon' => 'star', 'color' => 'blanc'];
+                        $modifiers = 'green-button';
+                    else:
+                        $icone = ['icon' => 'star-outline', 'color' => 'vert-clair'];
+                        $modifiers = 'green-button outline';
+                    endif;
+
+                    the_botascopia_module('button', [
+                        'tag' => 'a',
+                        'href' => '#',
+                        'title' => 'Favoris',
+                        'text' => 'Favoris',
+                        'modifiers' => $modifiers,
+                        'icon_after' => $icone,
+                        'extra_attributes' => ['id' => 'fav-'.$post_id]
+                    ]);
+                    ?>
 					
 					<?php the_botascopia_module('button', [
 						'tag' => 'a',
@@ -102,34 +125,16 @@ get_header();
 						'title' => 'Téléchargez',
 						'text' => 'Téléchargez',
 						'modifiers' => 'green-button',
+                        'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
+                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
 					]); ?>
-					
-					<?php if (is_user_logged_in() && isset($ficheFavorites) &&get_user_meta($current_user_id, 'favorite_collection')
-						&& ($key
-							= array_search($post_id, $ficheFavorites[0])) !== false) :
-						//changer le bouton favoris si collection dans favoris ou pas
-						$icone = ['icon' => 'star', 'color' => 'blanc'];
-						$modifiers = 'green-button';
-					else:
-						$icone = ['icon' => 'star-outline', 'color' => 'vert-clair'];
-						$modifiers = 'green-button outline';
-					endif;
-					
-					the_botascopia_module('button', [
-						'tag' => 'a',
-						'href' => '#',
-						'title' => 'Favoris',
-						'text' => 'Favoris',
-						'modifiers' => $modifiers,
-						'icon_after' => $icone,
-						'extra_attributes' => ['id' => 'fav-'.$post_id]
-					]);
-					
-					?>
+
+                    <div class="single-collection-export-format">
+                        Formats : PDF (60Mo)
+                    </div>
+
 				</div>
-				<div class="single-collection-export-format">
-					Formats : PDF (60Mo)
-				</div>
+
 				
 				<a class="return-button return-button-collection" href="#">
 					<?php the_botascopia_module('icon', [
@@ -766,10 +771,13 @@ get_header();
                                         if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
                                             $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
                                         } else {
-                                            if (getType($fleur_male['soudure_de_la_corolle']) == 'string'){
-                                                $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
-                                            } else {
-                                                $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                            $soudure_corolle = '';
+                                            if (isset($fleur_male['soudure_de_la_corolle'])){
+                                                if (getType($fleur_male['soudure_de_la_corolle']) == 'string'){
+                                                    $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
+                                                } else {
+                                                    $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                                }
                                             }
 
                                             if (getType($fleur_male['corolle']) == 'string'){

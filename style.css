@@ -34,6 +34,7 @@ body.page-template-fiche_pdf {
   width: 21cm;
   height: 59.4cm;
   font-size: 0.37cm;
+  background-color: unset;
 }
 
 .page-template-fiche_pdf .page {
@@ -49,26 +50,46 @@ body.page-template-fiche_pdf {
 }
 
 #page-1 main {
-  margin-top: -0.8cm;
+  /*margin-top: -0.8cm;*/
   padding: 0 1cm;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  row-gap: 0.4cm;
-  column-gap: 0.8cm;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+  /*align-items: baseline;*/
+  /*justify-content: flex-start;*/
+  /*row-gap: 0.4cm;*/
+  /*column-gap: 0.8cm;*/
+  /*flex-direction: column;*/
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
 #page-2 main {
   padding: 0 1cm;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
   align-items: baseline;
-  gap: 0.8cm;
+  gap: 0.3cm;
 }
 
-.page-template-fiche_pdf header .container {
+#page-1 > .pdf-container {
+  height: 550px;
+}
+
+#page-2 > .pdf-container {
+  height: 670px;
+  margin-top: 10px;
+}
+
+.page-template-fiche_pdf header .pdf-container {
   height: 6.6cm;
   width: 12.18cm;
+}
+
+#page-2 footer .pdf-container {
+  height: 5.5cm;
+  margin-top: 10px;
 }
 
 .page-template-fiche_pdf .purple {
@@ -97,6 +118,11 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf h1 em {
   font-style: italic;
 }
+
+.page-template-fiche_pdf .pdf-espece-pas-confondre {
+  font-style: italic;
+}
+
 .page-template-fiche_pdf h2 {
   font-size: 0.42cm;
   font-weight: normal;
@@ -106,6 +132,7 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf p {
   margin: 0;
+  line-height: 20px;
 }
 .page-template-fiche_pdf h3 {
   font-size: 0.53cm;
@@ -115,6 +142,7 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf h4 {
   font-size: 0.43cm;
   margin-bottom: 0.2cm;
+  /*margin: 0;*/
 }
 
 .page-template-fiche_pdf h5 {
@@ -133,11 +161,15 @@ body.page-template-fiche_pdf {
   display: inline-block;
 }
 
+.graph-agro-eco{
+  margin: -10px;
+}
+
 /* *************** */
 /* * backgrounds * */
 /* *************** */
 .page-template-fiche_pdf .page-1 header {
-  background: top / cover no-repeat url("images/recto-haut.svg");
+  background: top / cover no-repeat url("images/recto-hautv2.svg");
 }
 
 .page-template-fiche_pdf .page-2 header {
@@ -176,10 +208,24 @@ body.page-template-fiche_pdf {
   padding-left: 1cm;
 }
 
+.page-template-fiche_pdf .pdf-description-morpho {
+  margin-top: 90px;
+}
+
+.page-template-fiche_pdf .pdf-ecologie {
+  min-height: 50px;
+  max-height: 230px;
+  display: -webkit-box;
+  -webkit-line-clamp: 11;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .page-template-fiche_pdf .fleur-bisexuee {
   width: 18cm;
   vertical-align: top;
   padding-left: 1cm;
+  grid-column: span 2;
 }
 
 .page-template-fiche_pdf .fleur-monosexe + .fleur-bisexuee {
@@ -197,7 +243,7 @@ body.page-template-fiche_pdf {
   margin-left: 0.8cm;
 }*/
 
-.page-template-fiche_pdf .characteristic,
+/*.page-template-fiche_pdf .characteristic,*/
 .page-template-fiche_pdf .characteristic h4,
 .page-template-fiche_pdf .fleur-monosexe h4,
 .page-template-fiche_pdf .fleur-bisexuee h4,
@@ -236,6 +282,14 @@ body.page-template-fiche_pdf {
 /* ******************** */
 /* * image in section * */
 /* ******************** */
+.pdf-inline-image {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 340px;
+}
 
 .page-template-fiche_pdf .section-image {
   width: 100%;
@@ -256,6 +310,7 @@ body.page-template-fiche_pdf {
   width: 100%;
   height: 7cm;
   max-width: 100%;
+  margin-top: -1cm;
 }
 
 .page-template-fiche_pdf .calendar{
@@ -287,7 +342,7 @@ body.page-template-fiche_pdf {
 }
 
 .page-2 footer {
-  padding: 0.7cm 1cm 0 1cm;
+  padding: 0.7cm 0.5cm 0 0.5cm;
   font-size: 0.29cm;
   height: 6.5cm;
 }
@@ -304,7 +359,15 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf .footer-section .columns {
   flex-direction: column;
-  width: 50%;
+  width: 10cm;
+}
+
+.columns-left, columns-right {
+  line-height: 15px;
+}
+
+.columns-right {
+  padding-left: 1cm;
 }
 
 /* ************************ */
@@ -326,6 +389,10 @@ body.page-template-fiche_pdf {
   border-radius: 50%;
 }
 
+.page-template-fiche_pdf .section-image img {
+  border-radius: 0;
+}
+
 .page-template-fiche_pdf .characteristic-photos .picture-ref {
   margin-left: -0.4cm;
 }
@@ -334,24 +401,31 @@ body.page-template-fiche_pdf {
 /* * footer logos page 2 * */
 /* ************************ */
 
-.page-template-fiche_pdf .footer-section .logos {
+#page-2 .footer-section-logos{
   width: 100%;
   height: 1.5cm;
   padding-left: 0;
-  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 0 0;
 }
 
-.page-template-fiche_pdf .footer-section .logos li {
-  display: inline-block;
+.footer-logos-left, .footer-logos-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer-logo {
   padding-right: 2mm;
 }
 
-.page-template-fiche_pdf .footer-section .logos li img {
-  height: 1.5cm;
+.footer-logo img {
+  height: 1cm;
 }
 
-.page-template-fiche_pdf .footer-section .logos li img.logo-saclay {
-  height: 1.2cm;
+.logo-saclay{
+  height: 0.6cm !important;
 }
 
 /* ************************* */
@@ -364,11 +438,30 @@ body.page-template-fiche_pdf {
   grid-template-columns:  50% 50%;
   padding-left: 0;
   margin-top: 0;
+  align-items: center;
 }
 .page-template-fiche_pdf .footer-section .credits-photo li {
   display: block;
   width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.ref-liste {
+  padding-left: 0;
+  position: relative;
+  display: list-item;
+  list-style-type: disc;
+}
+
+.ref-liste-item {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 15px;
 }
 
 /* ********* */
@@ -376,8 +469,8 @@ body.page-template-fiche_pdf {
 /* ********* */
 .page-template-fiche_pdf .icon-title {
   position: relative;
+  margin: 0;
 }
-
 
 .page-template-fiche_pdf .icon {
   background-repeat: no-repeat;
@@ -387,8 +480,8 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf .icon-title .icon {
   position: absolute;
-  left: -1.2cm;
-  bottom: -15px;
+  left: -1.5cm;
+  bottom: -5px;
   width: 1cm;
   height: 1.5cm;
   background-repeat: no-repeat;
@@ -396,14 +489,19 @@ body.page-template-fiche_pdf {
   background-position: 50% 70%;
 }
 
+/*.page-template-fiche_pdf #page-2  .icon-title .icon{*/
+/*  left: -1.5cm;*/
+/*  bottom: -5px;*/
+/*}*/
+
 .page-template-fiche_pdf .page-2 header h3.icon-title {
   margin-left: 2cm;
   margin-top: 0;
-  padding-top: 1cm;
+  padding-top: 1.5cm;
 }
 
 .page-template-fiche_pdf .page-2 .characteristic {
-  margin-top: 0.5cm;
+  /*margin-top: 0.5cm;*/
 }
 
 .description-icon {

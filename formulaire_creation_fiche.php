@@ -277,14 +277,14 @@ if (isset($_GET['p'])) {
                 'modifiers' => 'green-button outline',
             ]);
             
-//            the_botascopia_module('button',[
-//                'tag' => 'button',
-//                'title' => 'Télécharger en pdf',
-//                'text' => 'Télécharger en pdf',
-//                'modifiers' => 'green-button',
-//                'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
-//                'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
-//            ]);
+            the_botascopia_module('button',[
+                'tag' => 'button',
+                'title' => 'Télécharger en pdf',
+                'text' => 'Télécharger en pdf',
+                'modifiers' => 'green-button',
+                'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
+                'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
+            ]);
 
             if ($fiche_complete){
                 the_botascopia_module('button',[
