@@ -456,22 +456,18 @@
                             "type": "image",
                             "instructions": "Photo assez grande, minimum 600x600px mais de moins de 10 Mo. <br>\r\nLa photo doit être <B>libre de droit<\/B>, sources de photos libres de droits : pictoflora, wikimedia, Société Botanique de France.<br>\r\nSélectionnez une photo où on voit bien la feuille et ses caractères particuliers (ex : si c'est la pilosité qui est remarquable alors essayez de trouver une photo où ce caractère est bien visible), centrée, seule sur la photo (isolée ou avec un fond flou).<br>\r\n<B>Protocole<\/B> : <br>\r\n - charger une image puis la modifier en cliquant sur le crayon qui apparait sur l'image,<br>\r\n - \"Modifier l'image\" puis cliquer sur \"Recadrer\" puis dans le panneau à droite \"Recadrage de l'image\", choisir une hauteur et une largeur équivalente pour que l'image soit carrée,<br>\r\n - faire glisser le cadre noir pour centrer l'organe représenté sur l'image,<br>\r\n - cliquer sur \"Recadrer\",<br>\r\n - puis \"enregistrer\",<br>\r\n - retourner sur votre fiche.<br>",
                             "required": 1,
-                            "conditional_logic": 0,
+                            "conditional_logic": 0
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "library": "uploadedTo",
-                            "min_width": 600,
-                            "min_height": 600,
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": 10,
-                            "mime_types": "",
-                            "preview_size": "medium"
+                            "0": false,
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         },
                         {
                             "key": "field_64302ab82355a",
@@ -1420,11 +1416,11 @@
                         "de la même longueur que le limbe": "de la même longueur que le limbe",
                         "plus grand que le limbe": "plus grand que le limbe"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -1453,11 +1449,11 @@
                         "engainant": "engainant",
                         "non engainant": "non engainant"
                     },
+                    "default_value": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "default_value": "",
                     "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -1508,10 +1504,10 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": 100,
                     "placeholder": "Les stipules sont épineux ; Les stipules sont frangés ; Les stipules sont verts, très développés et pointus à l’extrémité",
                     "prepend": "",
-                    "append": "",
-                    "maxlength": 100
+                    "append": ""
                 },
                 {
                     "key": "field_6304df4410a7a",
@@ -2555,10 +2551,10 @@
                         "plus grand que le limbe": "plus grand que le limbe"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "save_other_choice": 0
                 },
                 {
@@ -2588,10 +2584,10 @@
                         "non engainant": "non engainant"
                     },
                     "default_value": "",
-                    "return_format": "",
+                    "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
-                    "layout": "",
+                    "layout": "vertical",
                     "save_other_choice": 0
                 },
                 {
@@ -6400,4 +6396,5 @@
     "description": "",
     "show_in_rest": 0,
     "modified": 1699880917
+
 }
