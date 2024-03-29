@@ -59,6 +59,7 @@ add_action('after_setup_theme', 'bs_theme_supports');
 // load css (and js, later if needed)
 function bs_load_scripts() {
 	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
+	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
 	
 	// Theme script.
 	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
@@ -432,3 +433,57 @@ function revealid_id_column_content( $column, $id ) {
         echo $id;
     }
 }
+
+function modifyRoleAdmin($data) {
+	
+	$params=$data->get_params();
+	$id=$params['id'];
+
+	$user = new WP_User( $id );
+	$user->set_role( 'editor' );
+	return "L'utilisateur est bien devenu rédacteur";
+
+	
+}
+
+//Exécute la fonction précédente lors de l'appel à la route /modify/role/admin
+//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est admin
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'modify', '/role/admin', array(
+	  'methods' => 'put',
+	  'callback' => 'modifyRoleAdmin',
+	  
+	) );
+} );
+
+function modifyRoleRedacteur($data) {
+	
+	$params=$data->get_params();
+	$email=$params['email'];
+	
+	
+	if ( email_exists( $email ) ){  
+        $user = get_user_by("email", $email);
+        $userId = $user->ID;
+		$role = get_userdata($userId)->roles[0];
+		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
+			$user->set_role('editor');
+			return "L'utilisateur est bien devenu rédacteur.";
+			
+		}else{
+			return "L'utilisateur est déjà rédacteur ou ne peut le devenir.";
+		}
+    }else{
+       return "L'utilisateur n'existe pas.";
+    }
+}
+
+//Exécute la fonction précédente lors de l'appel à la route /modify/role/redac
+//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est lui-même rédacteur
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'modify', '/role/redac', array(
+	  'methods' => 'put',
+	  'callback' => 'modifyRoleRedacteur',
+	  
+	) );
+} );
