@@ -85,16 +85,7 @@ $users=get_users();
 					<table>
 						<tr><th>Nom</th><th>Adresse email</th><th>Statut</th><th><th></tr>
 					
-					<?php 
-							
-							$u = new WP_User( 13 );
-							$u->set_role( 'contributor' );
-
-							$u = new WP_User( 18 );
-							$u->set_role( 'contributor' );
-
-							$u = new WP_User( 16 );
-							$u->set_role( 'contributor' );
+					<?php
 							foreach($users as $user){
 								$id=$user->data->ID;
 								$nom=$user->data->display_name;

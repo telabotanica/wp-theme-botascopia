@@ -59,7 +59,6 @@ add_action('after_setup_theme', 'bs_theme_supports');
 // load css (and js, later if needed)
 function bs_load_scripts() {
 	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
-	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
 	
 	// Theme script.
 	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
