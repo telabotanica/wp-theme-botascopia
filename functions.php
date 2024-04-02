@@ -440,7 +440,7 @@ function modifyRoleAdmin($data) {
 
 	$user = new WP_User( $id );
 	$user->set_role( 'editor' );
-	return "L'utilisateur est bien devenu rédacteur";
+	return true;
 
 	
 }
@@ -467,13 +467,13 @@ function modifyRoleRedacteur($data) {
 		$role = get_userdata($userId)->roles[0];
 		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
 			$user->set_role('editor');
-			return "L'utilisateur est bien devenu rédacteur.";
+			return 1;
 			
 		}else{
-			return "L'utilisateur est déjà rédacteur ou ne peut le devenir.";
+			return 2;
 		}
     }else{
-       return "L'utilisateur n'existe pas.";
+       return 3;
     }
 }
 
