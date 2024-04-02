@@ -2,6 +2,7 @@
 /*
     Template Name: Fiche pdf
 */
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -192,9 +193,6 @@
 
                                     <!-- feuilles aeriennes-->
                                     <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); 
-                                    echo "<pre>";
-                                    var_dump($feuilles_aeriennes);
-                                    echo "</pre>";
                                     ?>
                                     
                                     <?php if(!empty($feuilles_aeriennes)): ?>
@@ -364,8 +362,7 @@
 
 <!--  Fleur bisexuée-->
                 <?php $fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;
-                
-                $a_fleur_male=false;
+                $a_fleur_male = false;
                 $a_fleur_femelle = false;
                 ?>
                 <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
@@ -379,10 +376,14 @@
                             echo 'fleur-monosexe';
                         }else{
                             echo 'fleur-bisexuee'; }
-                        } ?>">
+                        } 
+                        $GLOBALS['a_fleur_male'] = $a_fleur_male;
+                        $GLOBALS['a_fleur_femelle'] = $a_fleur_femelle;
+                        ?>">
                         <h4 class="icon-title">
                             <div class="fleur-bisexuee-icon icon"></div>Fleur bisexuée
                         </h4>
+                        
                         <?php if(!empty($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee'])): ?>
                             <?php
                             $id_photo = $fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']["id"]?: null;
@@ -393,6 +394,8 @@
                             ?>
                             <div class="picture-ref"><?php echo $index_photos;?></div>
                         <?php endif; ?>
+                        <input id="fm_txt" class='hidden' value='<?php echo $a_fleur_male; ?>'/></p>
+                        <input id="ff_txt" class='hidden' value='<?php echo $a_fleur_femelle; ?>'/></p>
                         <p>
                             <?php if('présent' !== $fleur_bisexuee['perianthe']){ ?>
                                 Périanthe absent ;
@@ -703,7 +706,7 @@
                             $source_photo = get_field('illustration_de_la_plante_avec_risque_de_confusion_source_de_la_photo')?: null;
                             $refs_photo[] = ['index_photo' => $index_photos, 'id'=> $id_photo, 'credit_photo' => $credit_photo, 'source_photo' => $source_photo];
                             ?>
-                            </span
+                           
                             <div class="characteristic-photos">
                                 <?php echo wp_get_attachment_image($photo['id'], [148, 148]); ?>
                             </div>
@@ -848,56 +851,5 @@
     <p>Nom de fiche invalide</p>
 <?php endif; ?>
 </body>
-
-<script>
-//Permet d'afficher les infos en 2 colonnes distinctes lors du cas fleurs_bi + fl_male/femelle    
-var fleur_male = <?php $a = $a_fleur_male ? $a_fleur_male : 0; echo $a;?>;
-var fleur_femelle = <?php $b = $a_fleur_femelle ? $a_fleur_femelle : 0; echo $b; ?>;
-
-console.log(fleur_male);
-console.log(fleur_femelle);
-
-if (fleur_male=='1' || fleur_femelle=='1'){
-	var tige = jQuery( "#stem" );
-	var feuille = jQuery("#leaf");
-	var inflo = jQuery("#inflo");
-	var fruit = jQuery("#frutty");
-	var fl_bi = jQuery("#fl_bi");
-	var fl_male = jQuery("#fl_male");
-	var fl_fem = jQuery("#fl_fem");
-	console.log(fl_fem);
-	var caracteristiques = jQuery("#caracteristiques");
-	
-	tige.remove();
-	feuille.remove();
-	inflo.remove();
-	fruit.remove();
-	fl_bi.remove();
-	fl_male.remove();
-	fl_fem.remove();
-	
-	jQuery('<div>', {
-        id: 'general',
-	}).appendTo('#caracteristiques');
-	
-	tige.appendTo('#general');
-	feuille.appendTo('#general');
-	inflo.appendTo('#general');
-	fruit.appendTo('#general');
-	
-	jQuery('<div>', {
-        id: 'flowers',
-	}).appendTo('#caracteristiques');
-	
-	fl_bi.appendTo('#flowers');
-	if (fleur_male =='1'){
-		fl_male.appendTo('#flowers');
-	}else{
-		fl_fem.appendTo('#flowers');
-	}
-	
-	
-	
-}
-</script>
+<script src='<?php echo get_template_directory_uri() . '/assets/scripts/fiche_pdf.js' ?>'></script>
 </html>

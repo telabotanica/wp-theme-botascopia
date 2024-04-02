@@ -164,7 +164,9 @@ body.page-template-fiche_pdf {
 .graph-agro-eco{
   margin: -10px;
 }
-
+.hidden{
+  display: hidden;
+}
 /* *************** */
 /* * backgrounds * */
 /* *************** */
