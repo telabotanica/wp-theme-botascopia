@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function changeDesign(){
 	var fleur_male = document.querySelector("#fm_txt").value;
+	console.log(fleur_male);
 	var fleur_femelle = document.querySelector("#ff_txt").value;
 
 	if (fleur_male=='1' || fleur_femelle=='1'){
@@ -18,7 +19,14 @@ function changeDesign(){
 		var fl_bi = document.querySelector("#fl_bi");
 		var fl_male = document.querySelector("#fl_male");
 		var fl_fem = document.querySelector("#fl_fem");
+		console.log(fl_fem);
 		var caracteristiques = document.querySelector("#caracteristiques");
+		var css = document.querySelectorAll(".page-template-fiche_pdf p");
+		for (i=0;i<css.length;i++){
+			element = css[i];
+			element.style.margin = '10px';
+		}
+		
 		
 		tige.remove();
 		feuille.remove();
@@ -49,7 +57,7 @@ function changeDesign(){
 		if (fleur_male =='1'){
 			flowers.append(fl_male);
 		}else{
-			flowers.append(fleur_femelle);
+			flowers.append(fl_fem);
 		}
 	}
 }
