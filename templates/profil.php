@@ -91,16 +91,29 @@ $users=get_users();
 				<?php if ($current_user_role==='administrator'){?>
 					<table>
 						<tr><th>Nom</th><th>Adresse email</th><th>Statut</th><th><th></tr>
-					
-					<?php
-							foreach($users as $user){
-								$id=$user->data->ID;
-								$nom=$user->data->display_name;
-								$email=$user->data->user_email;
-								$role=$user->roles[0];
-								$cpt++;
-								switch ($role) {
-									case "administrator":
+							<?php 
+
+								$number=10;// total no of author to display
+							if (count_users()<=$number){
+								$number = count_users();
+							}
+								$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+							if($paged==1){
+								$offset=0; 
+							}else {
+								$offset= ($paged-1)*$number;
+							}
+
+							$user_query = new WP_User_Query( array('number' => $number, 'offset' => $offset, 'orderby' => 'display_name' ) );
+							if ( ! empty( $user_query->results ) ) {
+								foreach ( $user_query->results as $user ) {
+									$id=$user->data->ID;
+									$nom=$user->data->display_name;
+									$email=$user->data->user_email;
+									$role=$user->roles[0];
+									$cpt++;
+									switch ($role) {
+										case "administrator":
 										$role="administrateur";
 										break;
 									case "editor":
@@ -118,17 +131,37 @@ $users=get_users();
 									default;
 										$role="";
 										break;
+									}
+									if($role ==='contributeur' OR $role === 'author' OR $role === 'subscriber'){
+										echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToEditor_$cpt' value='$id' class='button green-button'>Devenir rédacteur</button></td></tr>";
+									}else if($role==='rédacteur'){
+										echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToContrib_$cpt' value='$id' class='button green-button'>Devenir contributeur</button></td></tr>";
+									}else{
+										echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td></td></tr>";
+									}
 								}
-								if($role ==='contributeur' OR $role === 'author' OR $role === 'subscriber'){
-									echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='change_$cpt' value='$id'>Devenir rédacteur</button></td></tr>";
-								}else{
-									echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td></td></tr>";
-								}
-							
+							} else {
+								echo "Pas d'utilisateurs";
 							} 
+							?> 
+							</table>
+							<?php
+							$total_user = $user_query->total_users; 
+							$total_pages=ceil($total_user/$number);?>
+							<div>
+
+								<?php
+									echo paginate_links(array( 
+									'base' => get_pagenum_link(1) . '%_%', 
+									'format' => '?paged=%#%', 
+									'current' => $paged, 
+									'total' => $total_pages, 
+									'prev_text' => 'Précédents', 
+									'next_text' => 'Suivants',
+									'type' => 'table',
+									)); ?>
+							</div>
 						
-						?>
-					</table>
 				<?php }elseif($current_user_role==='editor'){?>
 					<h3>Donnez le statut de rédacteur à un utilisateur</h3>
 					<form>
@@ -159,24 +192,32 @@ document.addEventListener('DOMContentLoaded', function() {
 	var cpt = parseInt(cpt_str);
 	
 	for (i=0;i<=cpt;i++){
-		var element = document.querySelector("#change_"+i);
-		if (element){
-			element.addEventListener("click", function(){changeStatusAdmin(this)}); 
-				
-			   
+		var btn_to_redac = document.querySelector("#changeToEditor_"+i);
+		if (btn_to_redac){
+			btn_to_redac.addEventListener("click", function(){changeStatusAdmin(this)}); 
+		}
+		var btn_to_contrib = document.querySelector("#changeToContrib_"+i);
+		if (btn_to_contrib){
+			btn_to_contrib.addEventListener("click", function(){changeStatusAdmin(this)}); 
 		}
 		
 	}
-	document.querySelector("#getUser").addEventListener("click", function(){changeStatusRedac(this)}); 
+	document.querySelector("#getUser").addEventListener("click", function(){changeStatusRedac()}); 
 });
 
 function changeStatusAdmin(e){
 	var id = e.value;
+	var mode=0;
+	if (e.id.includes('Editor')){
+		mode=1;
+	}else if(e.id.includes('Contrib')){
+		mode=2;
+	}
 	var httpc = new XMLHttpRequest();
 	var url = '<?php echo get_rest_url(null, 'modify/role/admin') ?>';
 	httpc.open("PUT", url, true);
  	httpc.setRequestHeader("Content-type", "application/json; charset=utf-8");
-	var data = {'id':id};
+	var data = {'id':id,'mode':mode};
  	httpc.send(JSON.stringify(data));
 	httpc.onload = function() {
 		if (httpc.readyState == XMLHttpRequest.DONE) {
@@ -184,11 +225,19 @@ function changeStatusAdmin(e){
 			if (httpc.status == 200) {
 			// Access the data returned by the server
 				var msg = httpc.response;
-				if (msg){
-					msg = "L'utilisateur est bien devenu rédacteur";
-					alert(msg);
-					location.reload();
+				var message="";
+				if (msg==="1"){
+					message = "L'utilisateur est bien devenu rédacteur";
+					
+				}else if(msg==="2"){
+					message = "L'utilisateur est bien devenu contributeur";
+
+				}else{
+					message = "Une erreur est survenue";
 				}
+
+				alert(message);
+				location.reload();
 				
 			} else {
 				alert("Erreur");

@@ -437,12 +437,20 @@ function modifyRoleAdmin($data) {
 	
 	$params=$data->get_params();
 	$id=$params['id'];
+	$mode = $params['mode'];
+	if ($mode===1){
+		$user = new WP_User( $id );
+		$user->set_role( 'editor' );
+		return 1;
 
-	$user = new WP_User( $id );
-	$user->set_role( 'editor' );
-	return true;
+	}elseif($mode===2){
+		$user = new WP_User( $id );
+		$user->set_role( 'contributor' );
+		return 2;
 
-	
+	}else{
+		return 3;
+	}
 }
 
 //Exécute la fonction précédente lors de l'appel à la route /modify/role/admin
