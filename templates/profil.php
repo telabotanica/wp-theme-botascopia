@@ -172,7 +172,15 @@ $users=get_users();
 							<label id="label-change">Tapez une adresse email d'un utilisateur</label>
 							<input id="email" type="text"/>
 							<input id="routeRedac" value='<?php echo get_rest_url(null, 'modify/role/redac') ?>' class="hidden"/>
-							<input type="button" id="getUser" class='button green-button' value='Chercher'/>
+							<?php 
+								the_botascopia_module('button',[
+									
+									'title' => 'Chercher',
+									'text' => 'Chercher',
+									'modifiers' => 'green-button',
+									'extra_attributes' => ['id' => 'getUser']
+								]);
+							?>
 						</form>
 					</div>
 				<?php }	?>

@@ -1242,7 +1242,8 @@ function changeStatusAdmin(e){
 				
 }
 
-function changeStatusRedac(){
+function changeStatusRedac(event){
+   
 	var email = document.querySelector("#email").value;
 	console.log(email);
 	var httpc = new XMLHttpRequest();
@@ -1272,6 +1273,7 @@ function changeStatusRedac(){
 			}
 		}
 	};
+    event.preventDefault();
 }
 
 function prepareToProfile(){
@@ -1285,17 +1287,20 @@ function prepareToProfile(){
 	for (i=0;i<=cpt;i++){
 		var btn_to_redac = document.querySelector("#changeToEditor_"+i);
 		if (btn_to_redac){
-			btn_to_redac.addEventListener("click", function(){changeStatusAdmin(this)}); 
+			btn_to_redac.addEventListener("click", function(){changeStatusAdmin(this);}); 
 		}
 		var btn_to_contrib = document.querySelector("#changeToContrib_"+i);
 		if (btn_to_contrib){
-			btn_to_contrib.addEventListener("click", function(){changeStatusAdmin(this)}); 
+			btn_to_contrib.addEventListener("click", function(){changeStatusAdmin(this);}); 
 		}
 		
 	}
 	var element = document.querySelector("#getUser");
 	if (element){
-		element.addEventListener("click", function(){changeStatusRedac()}); 
+        
+		element.addEventListener("click", function(event){changeStatusRedac(event);}); 
+        console.log(element);
+        
 	}
 	
 }
