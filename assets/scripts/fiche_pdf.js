@@ -24,7 +24,7 @@ function changeDesign(){
 		var css = document.querySelectorAll(".page-template-fiche_pdf p");
 		for (i=0;i<css.length;i++){
 			element = css[i];
-			element.style.margin = '10px';
+			element.style.margin = '5px';
 		}
 		
 		
@@ -58,6 +58,12 @@ function changeDesign(){
 			flowers.append(fl_male);
 		}else{
 			flowers.append(fl_fem);
+		}
+		var systeme = document.querySelector("#systeme").value;
+		if(systeme==="androgynomonoïque" || systeme==="androgynodioïque"){
+			flowers.append(fl_male);
+			flowers.append(fl_fem);
+			
 		}
 	}
 }
