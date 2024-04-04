@@ -89,7 +89,8 @@ $users=get_users();
                 </div>
 					
 				<?php if ($current_user_role==='administrator'){?>
-					<table>
+					<h3>Changez le statut d'un utilisateur</h3>
+					<table id="content">
 						<tr><th>Nom</th><th>Adresse email</th><th>Statut</th><th><th></tr>
 							<?php 
 
@@ -145,6 +146,8 @@ $users=get_users();
 							} 
 							?> 
 							</table>
+							<input id="routeAdmin" value='<?php echo get_rest_url(null, 'modify/role/admin') ?>' class="hidden"/>
+							<input id="cpt" value='<?php echo $cpt; ?>' class="hidden"/>
 							<?php
 							$total_user = $user_query->total_users; 
 							$total_pages=ceil($total_user/$number);?>
@@ -163,119 +166,29 @@ $users=get_users();
 							</div>
 						
 				<?php }elseif($current_user_role==='editor'){?>
-					<h3>Donnez le statut de rédacteur à un utilisateur</h3>
-					<form>
-						<label>Tapez une adresse email d'un utilisateur</label>
-						<input id="email" type="text"/>
-						<input id="getUser" type="button" value="Chercher">
-					</form>
-
+					<div id="content">
+						<h3>Donnez le statut de rédacteur à un utilisateur</h3>
+						<form>
+							<label id="label-change">Tapez une adresse email d'un utilisateur</label>
+							<input id="email" type="text"/>
+							<input id="routeRedac" value='<?php echo get_rest_url(null, 'modify/role/redac') ?>' class="hidden"/>
+							<input type="button" id="getUser" class='button green-button' value='Chercher'/>
+						</form>
+					</div>
 				<?php }	?>
             </div>
-   <?php
-		else :
-			echo('
-        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
-        ');
-		
-		endif;
+   		<?php
+			else :
+				echo('<div><p>Vous devez être connecté pour accéder à cette page</p></div>');
+			
+			endif;
 		?>
     </main>
+	
+
+
 </div>
 
 <?php
 get_footer();
 ?>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-	var cpt_str='<?php echo $cpt; ?>';
-	var cpt = parseInt(cpt_str);
-	
-	for (i=0;i<=cpt;i++){
-		var btn_to_redac = document.querySelector("#changeToEditor_"+i);
-		if (btn_to_redac){
-			btn_to_redac.addEventListener("click", function(){changeStatusAdmin(this)}); 
-		}
-		var btn_to_contrib = document.querySelector("#changeToContrib_"+i);
-		if (btn_to_contrib){
-			btn_to_contrib.addEventListener("click", function(){changeStatusAdmin(this)}); 
-		}
-		
-	}
-	document.querySelector("#getUser").addEventListener("click", function(){changeStatusRedac()}); 
-});
-
-function changeStatusAdmin(e){
-	var id = e.value;
-	var mode=0;
-	if (e.id.includes('Editor')){
-		mode=1;
-	}else if(e.id.includes('Contrib')){
-		mode=2;
-	}
-	var httpc = new XMLHttpRequest();
-	var url = '<?php echo get_rest_url(null, 'modify/role/admin') ?>';
-	httpc.open("PUT", url, true);
- 	httpc.setRequestHeader("Content-type", "application/json; charset=utf-8");
-	var data = {'id':id,'mode':mode};
- 	httpc.send(JSON.stringify(data));
-	httpc.onload = function() {
-		if (httpc.readyState == XMLHttpRequest.DONE) {
-			// Check the status of the response
-			if (httpc.status == 200) {
-			// Access the data returned by the server
-				var msg = httpc.response;
-				var message="";
-				if (msg==="1"){
-					message = "L'utilisateur est bien devenu rédacteur";
-					
-				}else if(msg==="2"){
-					message = "L'utilisateur est bien devenu contributeur";
-
-				}else{
-					message = "Une erreur est survenue";
-				}
-
-				alert(message);
-				location.reload();
-				
-			} else {
-				alert("Erreur");
-			}
-		}
-	};
-				
-}
-
-function changeStatusRedac(){
-	var email = document.querySelector("#email").value;
-	console.log(email);
-	var httpc = new XMLHttpRequest();
-	var url = '<?php echo get_rest_url(null, 'modify/role/redac') ?>';
-	httpc.open("PUT", url, true);
- 	httpc.setRequestHeader("Content-type", "application/json; charset=utf-8");
-	var data = {'email':email};
- 	httpc.send(JSON.stringify(data));
-	httpc.onload = function() {
-		if (httpc.readyState == XMLHttpRequest.DONE) {
-			// Check the status of the response
-			if (httpc.status == 200) {
-			// Access the data returned by the server
-				var msg = httpc.response;
-				console.log(msg);
-				if (msg=="1"){
-					msg="L'utilisateur est bien devenu rédacteur.";
-				}else if(msg=='2'){
-					msg = "L'utilisateur est déjà rédacteur ou ne peut le devenir.";
-				}else if(msg=='3'){
-					msg = "L'utilisateur n'existe pas";
-				}
-				alert(msg);
-				location.reload();
-			} else {
-				alert("Erreur");
-			}
-		}
-	};
-}	
-</script>
