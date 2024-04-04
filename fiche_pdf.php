@@ -855,6 +855,7 @@
                             <div class="footer-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Logo Botascopia"></div>
                         </div>
                         <div class="footer-logos-right">
+                            <div>Fondateurs :</div>
                             <div class="footer-logo"><img class="logo-saclay" src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Logo Université Paris-Saclay"></div>
                             <div class="footer-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Logo Tela Botanica"></div>
                         </div>
