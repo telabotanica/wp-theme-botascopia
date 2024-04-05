@@ -33,7 +33,7 @@ body.page-template-fiche_pdf {
   color: #2B2E34;
   width: 21cm;
   height: 59.4cm;
-  font-size: 0.3cm;
+  font-size: 0.32cm;
   background-color: unset;
 }
 
@@ -50,15 +50,8 @@ body.page-template-fiche_pdf {
 }
 
 #page-1 main {
-  /*margin-top: -0.8cm;*/
+ 
   padding: 0 1cm;
-  /*display: flex;*/
-  /*flex-wrap: wrap;*/
-  /*align-items: baseline;*/
-  /*justify-content: flex-start;*/
-  /*row-gap: 0.4cm;*/
-  /*column-gap: 0.8cm;*/
-  /*flex-direction: column;*/
   display: grid;
   grid-template-columns: auto auto;
 }
@@ -135,12 +128,12 @@ body.page-template-fiche_pdf {
   line-height: 20px;
 }
 .page-template-fiche_pdf h3 {
-  font-size: 0.53cm;
+  font-size: 0.51cm;
   text-transform: uppercase;
   margin-bottom: 0.2cm;
 }
 .page-template-fiche_pdf h4 {
-  font-size: 0.43cm;
+  font-size: 0.41cm;
   margin-bottom: 0.2cm;
   /*margin: 0;*/
 }
@@ -241,11 +234,6 @@ body.page-template-fiche_pdf {
   vertical-align: initial;
 }
 
-/*.page-template-fiche_pdf .characteristic:nth-child(even) {
-  margin-left: 0.8cm;
-}*/
-
-/*.page-template-fiche_pdf .characteristic,*/
 .page-template-fiche_pdf .characteristic h4,
 .page-template-fiche_pdf .fleur-monosexe h4,
 .page-template-fiche_pdf .fleur-bisexuee h4,
@@ -301,8 +289,7 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf .section-image img {
   width: 75%;
   height: 75%;
-  /*width: 226px;
-  height: 226px;*/
+  
 }
 
 /* ************ */
@@ -491,11 +478,6 @@ body.page-template-fiche_pdf {
   background-position: 50% 70%;
 }
 
-/*.page-template-fiche_pdf #page-2  .icon-title .icon{*/
-/*  left: -1.5cm;*/
-/*  bottom: -5px;*/
-/*}*/
-
 .page-template-fiche_pdf .page-2 header h3.icon-title {
   margin-left: 2cm;
   margin-top: 0;
@@ -503,7 +485,7 @@ body.page-template-fiche_pdf {
 }
 
 .page-template-fiche_pdf .page-2 .characteristic {
-  /*margin-top: 0.5cm;*/
+  margin-top: 0.5cm;
 }
 
 .description-icon {
