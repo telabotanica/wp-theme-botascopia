@@ -441,16 +441,24 @@ function modifyRoleAdmin($data) {
 	if ($mode===1){
 		$user = new WP_User( $id );
 		$user->set_role( 'editor' );
-		return 1;
+		getResponse(1,$user->data);
 
 	}elseif($mode===2){
 		$user = new WP_User( $id );
 		$user->set_role( 'contributor' );
-		return 2;
+		getResponse($mode,$user->data);
 
 	}else{
-		return 3;
+		getResponse(3,null);
 	}
+}
+
+function getResponse($mode,$user){
+	
+	$resp=['id'=>$user->ID,'nom'=>$user->display_name,'email'=>$user->user_email,'mode'=>$mode];
+	header('Content-Type: application/json; charset=utf-8');
+	echo json_encode($resp);
+	
 }
 
 //Exécute la fonction précédente lors de l'appel à la route /modify/role/admin
@@ -475,13 +483,13 @@ function modifyRoleRedacteur($data) {
 		$role = get_userdata($userId)->roles[0];
 		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
 			$user->set_role('editor');
-			return 1;
+			getResponse(1,$user);
 			
 		}else{
-			return 2;
+			getResponse(2,$user);
 		}
     }else{
-       return 3;
+		getResponse(3,null);
     }
 }
 
@@ -491,6 +499,54 @@ add_action( 'rest_api_init', function () {
 	register_rest_route( 'modify', '/role/redac', array(
 	  'methods' => 'put',
 	  'callback' => 'modifyRoleRedacteur',
+	  
+	) );
+} );
+
+function checkUser($data) {
+	
+	$email="";
+	$params=$data->get_params();
+	$id=$params['id'];
+	$mode=$params['mode'];
+	
+	if ($id!==0){
+		$user = new WP_User( $id );
+		$email = $user->data->user_email;
+	}else{
+		$email=$params['email'];
+	}
+	if ( email_exists( $email ) ){  
+        $user = get_user_by("email", $email);
+        $userId = $user->ID;
+		$role = get_userdata($userId)->roles[0];
+		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
+			if ($mode===2){
+				getResponse(4,$user);
+				return;
+			}
+			getResponse(1,$user);
+
+		}else if($role==='editor'){
+			if ($mode===1 || $mode===0){
+				getResponse(4,$user);
+				return;
+			}
+			getResponse(2,$user);
+		}else{
+			getResponse(4,$user);
+		}
+    }else{
+		getResponse(3,null);
+    }
+}
+
+//Exécute la fonction précédente lors de l'appel à la route /modify/check/user
+//Permet de modifier le statut d'un utilisateur avant modification
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'modify', '/check/user', array(
+	  'methods' => 'put',
+	  'callback' => 'checkUser',
 	  
 	) );
 } );
