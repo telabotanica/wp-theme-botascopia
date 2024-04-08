@@ -1355,11 +1355,14 @@ function checkUser(e,event){
     }
     var id = 0;
 	var modeIn=0;
-    if (id){
+    if (e.id){
+        
         if (e.id.includes('Editor')){
             modeIn=1;
+            id=e.value;
         }else if(e.id.includes('Contrib')){
             modeIn=2;
+            id=e.value;
         }
     }
 	
