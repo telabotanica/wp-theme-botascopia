@@ -74,7 +74,7 @@ $users=get_users();
 							<tr><th>Nom</th><th>Adresse email</th><th>Statut</th><th><th></tr>
 								<?php 
 
-									$number=10;// total no of author to display
+									$number=10;
 								if (count_users()<=$number){
 									$number = count_users();
 								}
@@ -136,15 +136,14 @@ $users=get_users();
 							<div>
 
 								<?php
-									echo paginate_links(array( 
-									'base' => get_pagenum_link(1) . '%_%', 
-									'format' => '?paged=%#%', 
-									'current' => $paged, 
-									'total' => $total_pages, 
-									'prev_text' => 'Précédents', 
-									'next_text' => 'Suivants',
-									'type' => 'table',
-									)); ?>
+									the_botascopia_module('pagination', [
+										'page'      => $paged,
+										'totalPage' => $total_pages,
+										'id'        => 'pagination',
+										'href'      => get_the_permalink(),
+										'schema'	=> 'paged'
+									]);
+								?>
 							</div>
 						
 				<?php }elseif($current_user_role==='editor'){?>
