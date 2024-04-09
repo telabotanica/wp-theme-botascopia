@@ -71,10 +71,17 @@
     }
 }
 
-#label-change{
-    display:block;
+#contenu{
+    width:100%;
 }
-
-#ok_a{
-    margin-left:300px;
+#boutons{
+    width: 100%;
+}
+#boutons div {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 30px;
+    justify-content: space-between;
+    align-items: stretch;
+    width:100%;
 }

@@ -1411,10 +1411,11 @@ function popupMessageConfirmation(user){
     console.log(user);
     // Créer un élément de div pour afficher le contenu du popup
     var popupContenu = document.createElement(`div`);
+    popupContenu.setAttribute('id','contenu');
     popupContenu.innerHTML = 
         "<p>"+user.message+"</p>" +
-        "<div class='popup-display-buttons'>" +
-        "<div><a class='button purple-button' ><span" +
+        "<div id='boutons' class='popup-display-buttons'>" +
+        "<div><a id='cancel_a' class='button purple-button' ><span" +
         " class='button-text' id='cancel'>Annuler" +
         " </span></a><a id='ok_a' class='button green-button' ><span" +
         " class='button-text' id='ok'>Continuer" +
