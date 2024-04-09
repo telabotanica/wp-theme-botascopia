@@ -462,12 +462,16 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "0": false,
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
+                            "return_format": "array",
+                            "library": "uploadedTo",
+                            "min_width": 600,
+                            "min_height": 600,
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": 10,
+                            "mime_types": "",
+                            "preview_size": "medium"
                         },
                         {
                             "key": "field_64302ab82355a",
