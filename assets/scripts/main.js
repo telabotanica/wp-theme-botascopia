@@ -1414,7 +1414,7 @@ function popupMessageConfirmation(user){
     popupContenu.innerHTML = 
         "<p>"+user.message+"</p>" +
         "<div class='popup-display-buttons'>" +
-        "<div><a class='button green-button' ><span" +
+        "<div><a class='button purple-button' ><span" +
         " class='button-text' id='cancel'>Annuler" +
         " </span></a><a id='ok_a' class='button green-button' ><span" +
         " class='button-text' id='ok'>Continuer" +
