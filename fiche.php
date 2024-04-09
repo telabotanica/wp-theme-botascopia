@@ -300,26 +300,7 @@ get_header();
 							</ul>
 						</div>
 					</div>
-				</div>
-				
-				<!--<div id="taxonomie">
-					<?php
-/*					the_botascopia_module('title', [
-						'title' => __('Taxonomie', 'botascopia'),
-						'level' => 2,
-					]);
-					*/?>
-					
-					<p>Nom scientifique: <?php /*the_field('nom_scientifique'); */?></p>
-					<p>Nom vernaculaire: <?php /*the_field('nom_vernaculaire'); */?></p>
-					<p>Famille: <?php /*the_field('famille'); */?></p>
-					<p>Numéro nomenclatural: <?php /*the_field('num_nom'); */?></p>
-					<p>Référentiel: <?php /*the_field('referentiel'); */?></p>
-					<?php /*if (!empty(get_field('lien_eflore'))): */?>
-					<p>Lien vers e-flore : <a href="<?php /*the_field('lien_eflore'); */?>" title="Lien vers eflore"
-											  target="_blank"><?php /*the_field('lien_eflore'); */?></a></p>
-					<?php /*endif; */?>
-				</div>-->
+                </div>
 				
 				<div id="description-morphologique">
 					
@@ -424,7 +405,9 @@ get_header();
 							<p><?php echo $presence_feuilles; ?></p>
 						<?php else : ?>
 							
-							<?php $heteromorphisme_foliaire = get_field('heteromorphisme_foliaire'); ?>
+							<?php $heteromorphisme_foliaire = get_field('heteromorphisme_foliaire'); 
+                                    
+                            ?>
 							<?php if (('feuilles toutes semblables' === $heteromorphisme_foliaire) || ('gradient de forme entre la base et le haut de la tige' === $heteromorphisme_foliaire)): ?>
 								
 								<?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
@@ -462,6 +445,12 @@ get_header();
 										<?php endif; ?>
 									<?php endif; ?>
 								</p>
+                                <?php
+                                    // Si une image est enregistrée on l'affiche
+                                    if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
+                                        affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']);
+                                    }
+                                ?>
 							
 							<?php elseif ('deux formes distinctes de feuilles'=== $heteromorphisme_foliaire): ?>
 								
@@ -470,53 +459,53 @@ get_header();
 									
 									<?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
 									<?php if(!empty($feuilles_aeriennes)): ?>
-                                    <div class="display-fiche-container">
-                                        <div class="fiche-title-container">
-                                            <h4 class="icon-title">
-                                                <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles aériennes
-                                            </h4>
-                                            <p>
-                                                Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
-                                                <?php
-                                                $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
-                                                $limbe = 'Le limbe %s est %s';
-                                                $type_limbe = [];
+                                        <div class="display-fiche-container">
+                                            <div class="fiche-title-container">
+                                                <h4 class="icon-title">
+                                                    <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles aériennes
+                                                </h4>
+                                                <p>
+                                                    Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
+                                                    <?php
+                                                    $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
+                                                    $limbe = 'Le limbe %s est %s';
+                                                    $type_limbe = [];
 
-                                                foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
-                                                    if ('simples' === $type_feuille) {
-                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
-                                                    } else {
-                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                                    foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
+                                                        if ('simples' === $type_feuille) {
+                                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                                        } else {
+                                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                                        }
                                                     }
-                                                }
-                                                ?>
+                                                    ?>
 
-                                                <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
+                                                    <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
 
-                                                <?php
-                                                $presence_petiole = $feuilles_aeriennes['petiole'];
-                                                $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
-                                                ?>
+                                                    <?php
+                                                    $presence_petiole = $feuilles_aeriennes['petiole'];
+                                                    $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
+                                                    ?>
 
-                                                Le pétiole est <?php echo $petiole; ?>.<br>
+                                                    Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                                <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
+                                                    <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
 
-                                                <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
-                                                <?php if (!empty($port_de_la_plante)): ?>
-                                                    <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
-                                                        <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                    <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                    <?php if (!empty($port_de_la_plante)): ?>
+                                                        <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                            <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
-                                                <?php endif; ?>
-                                            </p>
+                                                </p>
+                                            </div>
+                                            <?php
+                                            // Si une image est enregistrée on l'affiche
+                                            if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
+                                                affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']);
+                                            }
+                                            ?>
                                         </div>
-                                        <?php
-                                        // Si une image est enregistrée on l'affiche
-                                        if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
-                                            affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']);
-                                        }
-                                        ?>
-                                    </div>
 									<?php endif; ?>
 
                                     <?php $feuilles_immergees = get_field('feuilles_immergees'); ?>
@@ -760,7 +749,9 @@ get_header();
                             ?>
                         </div>
                         <div>
-                            <?php $fleur_male =  get_field('fleur_male') ?: null;?>
+                            <?php $fleur_male =  get_field('fleur_male') ?: null;
+                            
+                            ?>
                             <?php if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque" ) || (get_field('systeme_sexuel') == "dioïque" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" )): ?>
                                 <p>
                                     Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>.
@@ -785,8 +776,15 @@ get_header();
                                             } else {
                                                 $corolle = implode(' ou ', $fleur_male['corolle']);
                                             }
-                                            $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' . $fleur_male['soudure_du_calice'] . ' et ' . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
+                                            
+                                            if (isset($fleur_male['calice']) AND !empty($fleur_male['calice'])){
+                                                $sepales = ' sépale(s) '. $fleur_male['soudure_du_calice'] . ' et ';
+                                            }else{
+                                                $sepales = " ";
+                                            }
+                                            $perianthe = implode(' ou ', $fleur_male['calice']) . $sepales  . $corolle . ' pétale(s) ' . $soudure_corolle . ' ; ' .
                                                 ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
+                                              
                                         }
                                         ?>
                                         Le périanthe est composé de <?php echo $perianthe;
@@ -1127,6 +1125,15 @@ get_header();
                                 ?>
                             </div>
                             <div>
+                                <?php
+                                    $espece = get_post_meta(get_the_ID(), 'nom_despece', TRUE);
+                                    
+                                    the_botascopia_module('title', [
+                                        'title' => $espece,
+                                        'level' => 3,
+                                    ]);
+                                ?>
+                                
                                 <p><?php the_field('description'); ?></p>
                             </div>
                         </div>
@@ -1164,109 +1171,396 @@ get_header();
                         </div>
                         <div>
                             <p class="agro_ecologie">
-                                <?php if (!empty(get_field('preferences_physico-chimiques_temperature_minimale_supportee'))):?>
-                                    Cette plante <?php if (get_field('preferences_physico-chimiques_tolerance_au_gel')){echo('tolère');} else {echo('ne tolère pas');}?> le gel et supporte une température minimale de <?php echo get_field('preferences_physico-chimiques_temperature_minimale_supportee');?> °C.
+
+                                <?php
+                                    $preferences="La plante préfère ces expositions : <br>"; 
+                                    $champ=get_field('preferences_physico-chimiques_lumiere');
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $preferences_expo = implode(', ',$champ); echo $preferences.$preferences_expo;?></p>
+                                <?php endif; ?>  
+                                
+                                <?php
+                                    $preferences="Elle supporte ces taux d'humidité : <br>"; 
+                                    $champ=get_field('preferences_physico-chimiques_humidite_atmospherique');
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $preferences_humidite = implode(', ',$champ); echo $preferences.$preferences_humidite;?></p>
                                 <?php endif; ?>
+
+                                <?php
+                                    $preferences="Sa continentalité est : <br>"; 
+                                    $champ=get_field('preferences_physico-chimiques_continentalite');
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $preferences_continentalite = implode(', ',$champ); echo $preferences.$preferences_continentalite;?></p>
+                                <?php endif; ?>
+
+                                <?php
+                                    $preferences="Elle est adaptée aux sols : <br>"; 
+                                    $champ_ph=get_field('preferences_physico-chimiques_reaction_ph');
+                                    if (!empty($champ_ph)):
+                                ?>
+                                    <?php $preferences_ph = implode(', ',$champ_ph); $preferences.= $preferences_ph; ?>
+                                <?php endif; ?>
+                                
+                                <?php
+                                    $champ_hum=get_field('preferences_physico-chimiques_humidite_du_sol');
+                                    if (!empty($champ_hum)):
+                                ?>
+                                    <?php $preferences_humidite_sol = "<br>" .mb_chr(2022)." dont l'humidité est : <br>".implode(', ',$champ_hum); $preferences.= $preferences_humidite_sol; ?>
+                                <?php endif; ?>
+                                
+                                <?php
+                                    $champ_texture=get_field('preferences_physico-chimiques_texture_du_sol');
+                                    if (!empty($champ_texture)):
+                                ?>
+                                    <?php $preferences_texture_sol = "<br>" .mb_chr(2022)." dont la texture est composée de : <br>".implode(', ',$champ_texture); $preferences.= $preferences_texture_sol; ?>
+                                <?php endif; ?>
+                                
+                                <?php
+                                    $champ_azote=get_field('preferences_physico-chimiques_richesse_en_azote_n');
+                                    if (!empty($champ_azote)):
+                                ?>
+                                    <?php $preferences_azote_sol = "<br>" .mb_chr(2022)." dont la richesse en azote est : <br>".implode(', ',$champ_azote); $preferences.= $preferences_azote_sol; ?>
+                                <?php endif; ?>
+                               
+                                <?php
+                                    $champ_sal=get_field('preferences_physico-chimiques_salinite');
+                                    if (!empty($champ_sal)):
+                                ?>
+                                    <?php $preferences_salinite_sol = "<br>" .mb_chr(2022)." dont la salinité est : <br>".implode(', ',$champ_sal); $preferences.= $preferences_salinite_sol; ?>
+                                <?php endif; ?>
+
+                                <?php if ($champ_ph OR $champ_hum OR $champ_texture OR $champ_azote OR $champ_sal): ?>
+                                    <p><?php echo $preferences; ?></p>
+                                <?php endif; ?>
+
+                                <?php
+                                    $preferences="Elle tolère la température minimale de "; 
+                                    $champ=get_field('preferences_physico-chimiques_temperature_minimale_supportee');
+                                    
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $preferences_temperature = $champ; echo $preferences.$preferences_temperature ." °C.";?></p>
+                                <?php endif; ?>
+
+                                <?php
+                                    $champ=get_field('preferences_physico-chimiques_tolerance_au_gel');
+                                    if ($champ){
+                                ?>
+                                    <p><?php echo "Elle supporte le gel.";?></p>
+                                <?php }else{ ?>
+                                    <p><?php echo "Elle ne supporte pas le gel.";?></p>
+                                <?php }?>
+
                                 <?php if (get_field('interaction_avec_le_vivant_des_symbioses_avec_des_organismes_fixateurs_dazote')): ?>
-                                    <br>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.
+                                    <p>Cette plante peut développer des symbioses avec des bactéries fixatrices d’azote.</p>
                                 <?php endif; ?>
                                 <?php if (get_field('interaction_avec_le_vivant_plantes_connues_pour_attirer_des_auxiliaires_de_culture')): ?>
                                     <?php if (get_field('interaction_avec_le_vivant_type_dauxiliaires') == 'pollinisateurs' || get_field('interaction_avec_le_vivant_type_dauxiliaires') == 'parasitoïdes' && !empty(get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_'))): ?>
-                                        <br>Cette plante attire des <?php echo implode(get_field('interaction_avec_le_vivant_type_dauxiliaires'));?> grâce à <?php echo get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.
+                                        <p>Cette plante attire des <?php echo implode(get_field('interaction_avec_le_vivant_type_dauxiliaires'));?> grâce à <?php echo get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_');?>.</p>
                                     <?php endif; ?>
                                     <?php if (get_field('interaction_avec_le_vivant_type_dauxiliaires') == 'prédateurs' && !empty(get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_')) && !empty(get_field('interaction_avec_le_vivant_les_predateurs'))): ?>
-                                        <br>Cette plante attire des <?php echo implode(get_field('interaction_avec_le_vivant_les_predateurs'));?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à <?php echo implode(', ', get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_'));?>.
+                                        <p>Cette plante attire des <?php echo implode(get_field('interaction_avec_le_vivant_les_predateurs'));?>, prédateurs ayant un rôle d'auxiliaires de culture grâce à <?php echo implode(', ', get_field('interaction_avec_le_vivant_quelles_sont_les_structures_connues_pour_attirer_les_auxiliaires_de_culture_'));?>.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (get_field('interaction_avec_le_vivant_plantes_connues_pour_repousser_les_ravageurs')): ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_plantes_connues_pour_repousser_les_ravageurs'))):
                                         $les_ravageurs = implode(', ', get_field('interaction_avec_le_vivant_les_ravageurs'));?>
-                                        <br>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                        <p>Cette plante repousse des <?php echo $les_ravageurs;?>, ravageurs de culture.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (get_field('interaction_avec_le_vivant_plantes_connues_pour_attirer_les_ravageurs')): ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_plantes_connues_pour_attirer_les_ravageurs'))):
                                         $les_ravageurs = implode('-', get_field('interaction_avec_le_vivant_les_ravageurs'));?>
-                                        <br>Cette plante attire des <?php echo $les_ravageurs;?>, ravageurs de culture.
+                                        <p>Cette plante attire des <?php echo $les_ravageurs;?>, ravageurs de culture.<p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_communautes_vegetales_dans_lesquelles_la_plante_est_observee'))): ?>
-                                    <br>Elle pousse <?php echo implode(get_field('interaction_avec_le_vivant_communautes_vegetales_dans_lesquelles_la_plante_est_observee'));?>.
+                                    <p>Elle pousse <?php echo implode(', ',get_field('interaction_avec_le_vivant_communautes_vegetales_dans_lesquelles_la_plante_est_observee'));?>.</p>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_plante_presentant_une_multiplication_vegetative')) && get_field('interaction_avec_le_vivant_plante_presentant_une_multiplication_vegetative') == 'oui'): ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_structures_liees_a_la_multiplication_vegetative'))): ?>
-                                        <br>Cette plante présente une multiplication végétative grâce à <?php echo implode(', ', get_field('interaction_avec_le_vivant_structures_liees_a_la_multiplication_vegetative'));?>.
+                                        <p>Cette plante présente une multiplication végétative grâce à <?php echo implode(', ', get_field('interaction_avec_le_vivant_structures_liees_a_la_multiplication_vegetative'));?>.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_')) && get_field('interaction_avec_le_vivant_la_plante_est-elle_connue_pour_emettre_des_substances_allelopathiques_') == 'oui'): ?>
-                                    <br>Elle est connue pour émetttre des substances allélopathiques.
+                                    <p>Elle est connue pour émetttre des substances allélopathiques.</p>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_cette_plante_est-elle_utilisee_comme_plante_compagne_'))): ?>
-                                    <br>Cette plante est utilisée comme plante compagne des <?php echo implode(get_field('interaction_avec_le_vivant_cette_plante_est-elle_utilisee_comme_plante_compagne_'));?>.
+                                    <p>Cette plante est utilisée comme plante compagne des <?php echo implode(", ",get_field('interaction_avec_le_vivant_cette_plante_est-elle_utilisee_comme_plante_compagne_'));?>.</p>
                                 <?php endif; ?>
                                 <?php if (!empty(get_field('interaction_avec_le_vivant_toxicite_pour_les_animaux_non_humains'))):
                                     $animaux_affectes = implode(', ', get_field('interaction_avec_le_vivant_toxicite_pour_les_animaux_non_humains'));?>
-                                    <br>Elle est toxique pour <?php echo $animaux_affectes;?>
+                                    <p>Elle est toxique pour <?php echo $animaux_affectes;?>
                                     <?php if (get_field('interaction_avec_le_vivant_toxicite_pour_lhumain') == 'oui'): ?>
                                         et l'humain
                                     <?php endif; ?>
                                     <?php if (!empty(get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'))): ?>
-                                        au niveau <?php echo implode(get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'));?>
+                                        au niveau <?php echo implode(", ", get_field('interaction_avec_le_vivant_la_plante_est_toxique_au_niveau_'));?>.</p>
+                                    <?php endif; ?>
                                 <?php endif; ?>
-                                    .
+                                <?php
+                                    $champ=get_field('interaction_avec_le_vivant_plante_servant_explicitement_dabri_a_un_organisme');
+                                    if ($champ):
+                                ?>
+                                    <p><?php echo $champ;?></p>
                                 <?php endif; ?>
+                    
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee')) && get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'): ?>
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'))): ?>
                                         <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel'))): ?>
-                                            <br>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ echo implode(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); }?> <?php echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.
+                                            <p>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); }?> <?php echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.</p>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
-                                <?php /*if (!empty(get_field('adaptations_aux_pratiques_de_culture_periode_de_levee'))): */?><!--
-                                    <br>Cette plante est utilisée comme plante compagne des <?php /*echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_periode_de_levee'));*/?>.
-                                --><?php /*endif; */?>
+
+                                <?php
+                                    $levee="Sa levée a lieu en : <br>"; 
+                                    $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee');
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $mois = implode(', ',$champ); echo $levee.$mois;?>.</p>
+                                <?php endif; ?>  
 
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_plante_est_favorisee_dans_les_systemes_de_culture')) && get_field('adaptations_aux_pratiques_de_culture_cette_plante_est_favorisee_dans_les_systemes_de_culture') != 'sans travail du sol'): ?>
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_profondeur_du_travail_du_sol'))): ?>
-                                        <br>Cette plante est favorisée dans les systèmes de culture <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_plante_est_favorisee_dans_les_systemes_de_culture');?> <?php echo get_field('adaptations_aux_pratiques_de_culture_profondeur_du_travail_du_sol');?>.
+                                        <p>Cette plante est favorisée dans les systèmes de culture <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_plante_est_favorisee_dans_les_systemes_de_culture');?> <?php echo get_field('adaptations_aux_pratiques_de_culture_profondeur_du_travail_du_sol');?>.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
 
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_'))): ?>
-                                    <br>La moitié du stock semencier a perdu son pouvoir germinatif au bout de <?php echo get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_');?> années.
+                                    <p>La moitié du stock semencier a perdu son pouvoir germinatif au bout de <?php echo get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_');?> années.</p>
                                 <?php endif; ?>
 
                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_')) && get_field('adaptations_aux_pratiques_de_culture_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_') == 'oui'): ?>
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_a_quelles_molecules_'))): ?>
-                                        <br>La plante est résistante à <?php echo get_field('adaptations_aux_pratiques_de_culture_a_quelles_molecules_');?>.
+                                        <p>La plante est résistante à ces molécules : <?php echo get_field('adaptations_aux_pratiques_de_culture_a_quelles_molecules_');?>.</p>
                                     <?php endif; ?>
                                 <?php endif; ?>
-                                <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_est-cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants'))): ?>
-                                    <br>Cette plante a été ou est cultivée pour <?php echo implode(', ', get_field('valeurs_ecologiques_historiques_et_locales_cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants'));?>.
-                                <?php endif; ?>
-                                <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_est-plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant'))): ?>
-                                    <br>Cette plante est connue pour <?php echo implode(', ', get_field('valeurs_ecologiques_historiques_et_locales_plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant'));?>.
+                                
+                                <?php
+                                    $intro="Cette plante est connue pour être ou avoir été cultivée pour les usages suivants : <br>"; 
+                                    $champ=get_field('valeurs_ecologiques_historiques_et_locales_cette_plante_est-elle_connue_pour_avoir_ete_ou_etre_actuellement_cultivee_');
+                                    
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $usages = implode(", ",get_field('valeurs_ecologiques_historiques_et_locales_cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants')); echo $intro.$usages;?>.</p>
+                                    <?php
+                                        $sources = get_field('valeurs_ecologiques_historiques_et_locales_reference_pour_les_informations_sur_les_usages');
+                                        if(!empty($sources)):
+                                    ?>
+                                        <p><?php echo "Sources : $sources"?></p>
+                                    <?php endif; ?>
                                 <?php endif; ?>
 
-                                <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection')) && get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection') != 'a un statut de protection au niveau national et/ou régional'): ?>
-                                    <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection_france_metropolitaine'))): ?>
-                                        <?php if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection_a_l_echelle_locale_regions_concernees'))): ?>
-                                            <!--                                            --><?php //if (!empty(get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes'))): ?>
-                                            <br>Elle a le statut de protection <?php echo get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection');?> dans la région <?php echo implode(get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection_a_l_echelle_locale_regions_concernees'));?>.
-                                            <!--                                            --><?php //endif; ?>
-                                        <?php endif; ?>
-                                    <?php endif; ?>
+                                <?php
+                                    $intro="Cette plante est connue pour ces propriétés, autres que la toxicité : <br>"; 
+                                    $champ=get_field('valeurs_ecologiques_historiques_et_locales_plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant');
+                                    if (!empty($champ)):
+                                ?>
+                                    <p><?php $proprietes = implode(', ',$champ); echo $intro.$proprietes;?>.</p>
                                 <?php endif; ?>
+
+                                <?php
+                                    $champ=get_field('valeurs_ecologiques_historiques_et_locales_particularites_de_cette_espece_en_lien_avec_le_terroir_ou_le_territoire');
+                                    if ($champ):
+                                ?>
+                                    <p><?php echo $champ;?></p>
+                                <?php endif; ?>
+
+                                <?php
+                                    $champ=get_field('valeurs_ecologiques_historiques_et_locales_statut_de_protection');
+                                    if ($champ):
+                                ?>
+                                    <p>La plante <?php echo $champ;?>.</p>
+                                    <?php if($champ==='a un statut de protection au niveau national et/ou régional'): ?>
+                                        <?php $statut_nat = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection_france_metropolitaine'); 
+                                        if (isset($statut_nat)): ?>
+                                            <p><?php echo "La plante est protégée au niveau national avec ce statut : $statut_nat"; ?></p>
+                                        <?php endif; ?>
+                                        <?php $statut_reg = get_field("valeurs_ecologiques_historiques_et_locales_statut_de_protection_a_l_echelle_locale_regions_concernees");
+                                            if ($statut_reg):                        
+                                        ?>
+                                                <p>La plante est protégée dans ces régions : <?php $regions = implode(", ",$statut_reg); echo $regions; ?>.</p>
+                                                <?php $auv_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__auvergne_rhone_alpes');
+                                                    if ($auv_st):
+                                                ?>
+                                                    <p>Son statut de protection en Auvergne - Rhône Alpes est <?php echo $auv_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $bour_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__bourgogne_franche_comte');
+                                                    if ($bour_st):
+                                                ?>
+                                                    <p>Son statut de protection en Bourgogne - Franche-Comté est <?php echo $bour_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bourgogne_franhce_comte');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $bret_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__bretagne');
+                                                    if ($bret_st):
+                                                ?>
+                                                    <p>Son statut de protection en Bretagne est <?php echo $bret_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bretagne');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $centre_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__centre_val_de_loire');
+                                                    if ($centre_st):
+                                                ?>
+                                                    <p>Son statut de protection en Centre - Val de Loire est <?php echo $centre_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_centre_val_de_loire');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $corse_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__corse');
+                                                    if ($corse_st):
+                                                ?>
+                                                    <p>Son statut de protection en Corse est <?php echo $corse_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_corse');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $est_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__grand_est');
+                                                    if ($est_st):
+                                                ?>
+                                                    <p>Son statut de protection dans le Grand Est est <?php echo $est_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_grand_est');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $guade_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__guadeloupe');
+                                                    if ($guade_st):
+                                                ?>
+                                                    <p>Son statut de protection en Guadeloupe est <?php echo $guade_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_guadeloupe');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $hdf_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__hauts_de_france');
+                                                    if ($hdf_st):
+                                                ?>
+                                                    <p>Son statut de protection dans les Hauts de France est <?php echo $hdf_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_hauts_de_france');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $idf_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__ile_de_france');
+                                                    if ($idf_st):
+                                                ?>
+                                                    <p>Son statut de protection en Île de France est <?php echo $idf_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_ile_de_france');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $reu_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__la_reunion');
+                                                    if ($reu_st):
+                                                ?>
+                                                    <p>Son statut de protection à La Réunion est <?php echo $reu_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_la_reunion');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $mar_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__martinique');
+                                                    if ($mar_st):
+                                                ?>
+                                                    <p>Son statut de protection en Martinique est <?php echo $mar_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_martinique');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $may_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__mayotte');
+                                                    if ($may_st):
+                                                ?>
+                                                    <p>Son statut de protection à Mayotte est <?php echo $may_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_mayotte');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $norm_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__normandie');
+                                                    if ($norm_st):
+                                                ?>
+                                                    <p>Son statut de protection en Normandie est <?php echo $norm_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_normandie');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $aqui_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__nouvelle_aquitaine');
+                                                    if ($aqui_st):
+                                                ?>
+                                                    <p>Son statut de protection en Nouvelle Aquitaine est <?php echo $aqui_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_nouvelle_aquitaine');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $occ_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__occitanie');
+                                                    if ($occ_st):
+                                                ?>
+                                                    <p>Son statut de protection en Occitanie est <?php echo $occ_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_occitanie');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $loire_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__pays_de_la_loire');
+                                                    if ($loire_st):
+                                                ?>
+                                                    <p>Son statut de protection dans les Pays de la Loire est <?php echo $loire_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_pays_de_la_loire');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+
+                                                <?php $paca_st = get_field('valeurs_ecologiques_historiques_et_locales_quel_est_le_statut_de_protection__provence_alpes_cote_d_azur');
+                                                    if ($paca_st):
+                                                ?>
+                                                    <p>Son statut de protection en Provence Alpes Côte d'Azur est <?php echo $paca_st ?>.</p>
+                                                    <?php $precisions = get_field('valeurs_ecologiques_historiques_et_locales_precisions_sur_la_zone_de_la_region_concernee_departement_environnement_provence_alpes_cote_d_azur');
+                                                        if (!empty($precisions)):?>
+                                                            <p>Précisions : <?php echo $precisions; ?>.</p>
+                                                        <?php endif; ?>
+                                                <?php endif; ?>
+                                        <?php endif; ?>
+
+                                    <?php endif; ?> 
+                                <?php endif; ?>
+
                             </p>
                         </div>
                     </div>
-
-                    <?php
-                    // Si une image est enregistrée on l'affiche
-                    if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
-                        affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
-                    }
-                    ?>
                 </div>
 
 				<?php if (!empty(get_field('reference_1'))) : ?>
