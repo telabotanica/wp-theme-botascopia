@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setFavoris('.single-collection-buttons', 'fiche');
     setFavoris('.card-fiche-icon', 'fiche');
     popupReserverFiche();
+    refreshPage();
     envoyerFicheEnValidation();
     publierFiche();
     popupAjouterFiche();
@@ -188,9 +189,11 @@ function popupReserverFiche(){
                     var reserver = document.getElementById('reserver-fiche');
                     var annuler = document.getElementById('annuler');
                     if (event.target == reserver) {
-                        popup.parentNode.removeChild(popup);
+                        if (popup.parentNode){
+                            popup.parentNode.removeChild(popup);
+                        }
+                        
                         document.querySelector('#content').classList.remove('blur-background');
-
                         // Renvoie vers le formulaire et changement de propriétaire
                         window.location.href = '/formulaire/?p=' + ficheTitle + '&a=1';
                     }
@@ -1195,4 +1198,20 @@ function filtrerGlossaire(){
             });
         });
     }
+}
+
+function refreshPage(){
+    var path = window.location.href;
+    var pieces = path.split("/");
+    var newpath = '/'+ pieces[3]+"/"+pieces[4];
+    var beg_path="/formulaire/?p=bdtfx-nn-";
+    var end_path="&a=1";
+    
+    if (newpath.startsWith(beg_path) && newpath.endsWith(end_path)){
+        pieces = newpath.split("&");
+        console.log(pieces);
+        newpath = pieces[0];
+        window.location.href=newpath;
+    }
+    
 }
