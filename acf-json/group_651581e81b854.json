@@ -1206,7 +1206,7 @@
                     "name": "cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants",
                     "aria-label": "",
                     "type": "checkbox",
-                    "instructions": "Si vous connaissez un usage qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.",
+                    "instructions": "Si vous connaissez un usage qui ne figure pas dans la liste, cochez autre puis remplissez le champ qui s'ouvre en respectant la même typographie : pas de majuscule ni point.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1291,7 +1291,7 @@
                     "name": "plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant",
                     "aria-label": "",
                     "type": "checkbox",
-                    "instructions": "Si vous connaissez une propriété qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.\r\n\r\nLa toxicité est abordée plus haut dans le formulaire.",
+                    "instructions": "Si vous connaissez une propriété qui ne figure pas dans la liste, cochez autre puis remplissez le champ qui s'ouvre en respectant la même typographie : pas de majuscules ni point.\r\n\r\nLa toxicité est abordée plus haut dans le formulaire.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1321,7 +1321,7 @@
                     "name": "particularites_de_cette_espece_en_lien_avec_le_terroir_ou_le_territoire",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Décrivez sous forme de phrase (avec majuscule au début et point à la fin) une particularité de l'espèce en lien avec un terroir ou un territoire précis. N'oubliez pas de préciser quel territoire est concerné !",
+                    "instructions": "Décrivez sous forme de phrase (avec une majuscule au début et un point à la fin) une particularité de l'espèce en lien avec un terroir ou un territoire précis. N'oubliez pas de préciser quel territoire est concerné !",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {

@@ -70,3 +70,18 @@
         text-align: center;
     }
 }
+
+#contenu{
+    width:100%;
+}
+#boutons{
+    width: 100%;
+}
+#boutons div {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 30px;
+    justify-content: space-between;
+    align-items: stretch;
+    width:100%;
+}
