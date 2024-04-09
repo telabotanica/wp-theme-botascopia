@@ -74,7 +74,7 @@ $current_user = wp_get_current_user();
 
 if (isset($_GET['p'])) {
     $titre_du_post = $_GET['p'];
-
+   
     if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
 
         query_posts(array(
@@ -92,7 +92,7 @@ if (isset($_GET['p'])) {
             'showposts' => 1
         ));
     }
-
+  
     while (have_posts()) : the_post(); ?>
     
     <?php
@@ -255,7 +255,7 @@ if (isset($_GET['p'])) {
                 'tag' => 'a',
                 'href' => '/collections',
                 'title' => 'Retour aux collections',
-                'text' => 'retour aux collection',
+                'text' => 'retour aux collections',
                 'modifiers' => 'purple-button'
             ]);
             
@@ -414,7 +414,7 @@ if (isset($_GET['p'])) {
                     'tag' => 'a',
                     'href' => '/collections',
                     'title' => 'Retour aux collections',
-                    'text' => 'retour aux collection',
+                    'text' => 'retour aux collections',
                     'modifiers' => 'purple-button'
                 ]);
                 

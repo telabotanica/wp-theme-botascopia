@@ -75,14 +75,17 @@
 		}
 	}
 	
-	foreach ($group_fields as $field) {
+	if (is_array($fields)){
+		foreach ($group_fields as $field) {
 			if ($non_required && !$required) {
 				if (( !array_key_exists($field['name'], $fields) && $field['required'] == 0) || (empty($fields[$field['name']]['value']) && $field['required'] == 0)) {
 					$champs_complet = false;
 					break;
 				}
+			}
 		}
-	}
+	} 
+		
 	
 	$button = 'purple-button';
 	$text = 'Incomplet';
