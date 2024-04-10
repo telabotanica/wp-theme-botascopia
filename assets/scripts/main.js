@@ -960,13 +960,14 @@ function popupAjouterParticipant() {
             popupAjoutContenu.innerHTML = '';
             popupAjoutContenu.innerHTML = "<h2>AJOUTER DES PARTICIPANTS</h2>" +
                 "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
-                "<input type='email' id='email-a-ajouter' class='ajout-participants-search-bar search-box-input'" + " placeholder='etudiant@botascopia.com'>" +
+                "<input type='text' id='email-a-ajouter' class='ajout-participants-search-bar search-box-input'" + " placeholder='etudiant@botascopia.com'>" +
                 "</div>" +
                 "<div id='ajouter-participant' class='popup-button-ajout-participant'>" +
                 "<a  class='button green-button' ><span" +
                 " class='button-text' >Inviter par email</span></a>" +
                 "</div>" +
                 "</div>" +
+                "<div><p>Vous pouvez taper plusieurs adresses séparées par un ';' pour les ajouter en une seule fois.</p></div>" +
                 "<div class='popup-ajoutParticipants-display-buttons'>" +
                 "<a class='button purple-button outline'><span class='button-text'" +
                 " id='annuler-ajout-participants'>Annuler</span></a>" +
@@ -985,18 +986,13 @@ function popupAjouterParticipant() {
             let emailInput = document.querySelector('#email-a-ajouter');
 
             emailInputButton.addEventListener('click', function (event) {
-                const email = emailInput.value.trim();
-                emailInput.value = '';
-                participantsEmails.push(email);
-                displaySelectedEmails(participantsEmails);
+                
+                displayEmails(emailInput,participantsEmails);
             })
 
             emailInput.addEventListener('keydown', (event) => {
                 if (event.key === "Enter") {
-                    const email = emailInput.value.trim();
-                    emailInput.value = '';
-                    participantsEmails.push(email);
-                    displaySelectedEmails(participantsEmails);
+                    displayEmails(emailInput,participantsEmails);
                 }
             })
 
@@ -1038,6 +1034,21 @@ function popupAjouterParticipant() {
 
         });
     }
+}
+
+function displayEmails(emailInput,participantsEmails){
+    const email = emailInput.value.trim();
+    emailInput.value = '';
+    
+    if (email.includes(';')){
+        var emails = email.split(";");
+        emails.forEach((element) => 
+            participantsEmails.push(element)
+        );
+    }else{
+        participantsEmails.push(email);
+    }
+    displaySelectedEmails(participantsEmails);
 }
 
 function displaySelectedEmails(participantsEmails){
