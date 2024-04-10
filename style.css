@@ -555,3 +555,22 @@ body.page-template-fiche_pdf {
 .fructification-mauve-icon {
   background-image: url("images/fructification-mauve.svg");
 }
+
+/* ******************************** */
+/* * cartes des plantes > preview * */
+/* **********************************/
+#voir_plus{
+  display: block;
+  width:100%;
+}
+#titre{
+  width:100%;
+  display:block;
+}
+#voir_plus h2{
+  width:100%;
+}
+#grille{
+  display:grid;
+  grid-template-columns:30% 30% 30%;
+}

@@ -1564,55 +1564,130 @@ get_header();
                 </div>
 
 				<?php if (!empty(get_field('reference_1'))) : ?>
-				<div id="references">
-					<?php
-					the_botascopia_module('title', [
-						'title' => __('Références', 'botascopia'),
-						'level' => 2,
-					]);
-					?>
-					<ul>
-						<li><?php the_field('reference_1'); ?></li>
-						<?php if (!empty(get_field('reference_2'))) : ?>
-							<li><?php the_field('reference_2'); ?></li>
-						<?php endif; ?>
-						
-						<?php if (!empty(get_field('reference_3'))) : ?>
-							<li><?php the_field('reference_3'); ?></li>
-						<?php endif; ?>
-						
-						<?php if (!empty(get_field('reference_4'))) : ?>
-							<li><?php the_field('reference_4'); ?></li>
-						<?php endif; ?>
-						
-						<?php if (!empty(get_field('reference_5'))) : ?>
-							<li><?php the_field('reference_5'); ?></li>
-						<?php endif; ?>
-					</ul>
-				</div>
-				<?php endif; ?>
+                    <div id="references">
+                        <?php
+                        the_botascopia_module('title', [
+                            'title' => __('Références', 'botascopia'),
+                            'level' => 2,
+                        ]);
+                        ?>
+                        <ul>
+                            <li><?php the_field('reference_1'); ?></li>
+                            <?php if (!empty(get_field('reference_2'))) : ?>
+                                <li><?php the_field('reference_2'); ?></li>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty(get_field('reference_3'))) : ?>
+                                <li><?php the_field('reference_3'); ?></li>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty(get_field('reference_4'))) : ?>
+                                <li><?php the_field('reference_4'); ?></li>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty(get_field('reference_5'))) : ?>
+                                <li><?php the_field('reference_5'); ?></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
+                <div id="voir_plus">
+                   
+                    <div>
+                        <div id="titre">    
+                            <?php
+                                the_botascopia_module('title', [
+                                    'title' => __('Voir plus de fiches', 'botascopia'),
+                                    'level' => 2,
+                                ]);
+                            ?>
+                        </div>
+                        <div id="grille">
+                            <?php    
+                                $search_term='bdtfx-nn-%';
+
+                                function title_filter($where, &$wp_query){
+                                    global $wpdb;
+                                
+                                    if($search_term = $wp_query->get( 'search_prod_title' )){
+                                        /*using the esc_like() in here instead of other esc_sql()*/
+                                        $search_term = $wpdb->esc_like($search_term);
+                                        $search_term = ' \'%' . $search_term . '%\'';
+                                        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE '.$search_term;
+                                    }
+                                
+                                    return $where;
+                                }
+
+                                $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','s' => $search_term ) );
+                                
+                                if (have_posts()) : while ( $query->have_posts() ) : $query->the_post();
+                                    $name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
+                                    $species = get_post_meta(get_the_ID(), 'famille', true);
+                                    $id = get_the_ID();
+                                    $ficheTitle = get_the_title();
+                                    $status = get_post_status();
+                                    $image = getFicheImage($id);
+                                    
+                                    $fiche_author_id = get_post_field('post_author', $id);
+                                    $fiche_author_info = get_userdata($fiche_author_id);
+                                    $fiche_author_roles = $fiche_author_info->roles[0];
+                                    
+                                    if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_fiche') && ($key = array_search($id, $ficheFavorites[0]))!==false):
+                                        $icone = ['icon' => 'star', 'color' => 'blanc'];
+                                    else:
+                                        $icone = ['icon' => 'star-outline', 'color' => 'blanc'];
+                                    endif;
+                                    
+                                    
+                                    $href = get_the_permalink();
+                                    
+                                    the_botascopia_module('card-fiche', [
+                                        'href' => $href,
+                                        'image' => $image,
+                                        'name' => $name,
+                                        'species' => $species,
+                                        'icon' => $icone,
+                                        'id' => 'fiche-'.$id,
+                                        'extra_attributes' => ['data-user-id' => $current_user_id, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle]
+                                    ]);
+                                    
+                            ?>
+
+                            <?php endwhile; ?>
+
+                            <?php else : ?>
+
+                                <p>Aucune autre fiche trouvée.</p>
+
+                            <?php endif; ?> 
+                        </div>
+                    </div>	
+                    
+                </div>
 
                 <div class="formulaire-boutons-bas">
                     <?php
                     $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
-					if (is_user_logged_in()){
+                    if (is_user_logged_in()){
                         if ($current_user_role == 'administrator' ||
-							($current_user_role == 'contributor' && $status == 'draft' &&
-								$current_user_id == $post_id) ||
-							($current_user_role == 'editor' && $status == 'pending')){
-							the_botascopia_module('button',[
-								'tag' => 'a',
-								'title' => 'Retour au formulaire',
-								'text' => 'retour au formulaire',
-								'modifiers' => 'purple-button',
-								'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."'"]
-							]);
+                            ($current_user_role == 'contributor' && $status == 'draft' &&
+                                $current_user_id == $post_id) ||
+                            ($current_user_role == 'editor' && $status == 'pending')){
+                            the_botascopia_module('button',[
+                                'tag' => 'a',
+                                'title' => 'Retour au formulaire',
+                                'text' => 'retour au formulaire',
+                                'modifiers' => 'purple-button',
+                                'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".get_the_title()."'"]
+                            ]);
                         }
                     }
                     ?>
                 </div>
-				
-			</div>
+            
+            </div>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
 
