@@ -574,3 +574,19 @@ body.page-template-fiche_pdf {
   display:grid;
   grid-template-columns:30% 30% 30%;
 }
+#tige,#feuilles,#fleur-bisexuee,#fleur-male,#fleur-femelle,#fruits,#ne-pas-confondre{
+  display:flex;
+}
+
+#titre_feuilles{
+  display:block;
+}
+
+#feuille-texte{
+  margin-right: 3em;
+  flex: 70%;
+}
+
+#feuilles{
+  width: 100%;
+}
