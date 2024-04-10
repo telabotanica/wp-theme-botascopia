@@ -1129,7 +1129,7 @@ get_header();
                                     $espece = get_post_meta(get_the_ID(), 'nom_despece', TRUE);
                                     
                                     the_botascopia_module('title', [
-                                        'title' => $espece,
+                                        'title' => "<i>$espece</i>",
                                         'level' => 3,
                                     ]);
                                 ?>
