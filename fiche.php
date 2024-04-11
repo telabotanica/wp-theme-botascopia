@@ -245,6 +245,11 @@ get_header();
 										'href' => '#references',
 										'active' => false,
 									],
+                                    [
+										'text' => 'Voir plus de fiches',
+										'href' => '#voir_plus',
+										'active' => false,
+									],
 								]
 							],
 						]
