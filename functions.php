@@ -2,6 +2,9 @@
 // adding "bs_" (botascopia) prefix to avoid overriding native wp functions
 
 // Chargement des dépendances installées avec Composer
+
+use JsPhpize\Nodes\Constant;
+
 require get_template_directory() . '/vendor/autoload.php';
 
 // ajout de la recherche sur les champs acf
@@ -155,26 +158,6 @@ function add_fav_fiche_meta() {
 	update_user_meta($user_id, 'favorite_fiche', $favorites);
 }
 add_action( 'wp_ajax_set_fav_fiche', 'add_fav_fiche_meta' );
-
-/*
-// Permet de lier le nom d'une collection (post) avec une catégorie du même nom
-function create_category_from_post_name($post_id) {
-	if (isset($_POST['meta-type']) && $_POST['meta-type'] === 'collection') {
-		$post = get_post($post_id);
-		$category_name = $post->post_title;
-		$parent_term = term_exists('collections', 'category');
-		$parent_term_id = $parent_term['term_id'];
-		$category = wp_insert_term($category_name, 'category', array('parent' => $parent_term_id));
-		if ( !is_wp_error($category)) {
-			wp_set_object_terms($post_id, $category_name, 'category', true);
-			$category_link = get_term_link($category['term_id']);
-			wp_redirect($category_link);
-			exit;
-		}
-	}
-}
-add_action('wp_insert_post', 'create_category_from_post_name');
-*/
 
 // Ajoutez la variable de requête personnalisée
 function custom_query_vars($query_vars) {
@@ -431,4 +414,32 @@ function revealid_id_column_content( $column, $id ) {
     if( 'revealid_id' == $column ) {
         echo $id;
     }
+}
+
+class Constantes{
+	const VERIFICATEUR = "vérificateur";
+	const CONTRIBUTEUR = "contributeur";
+	const ADMINISTRATEUR = "administrateur";
+}
+function getRole($role){
+	switch ($role) {
+		case "administrator":
+		return $role=Constantes::ADMINISTRATEUR;
+		break;
+	case "editor":
+		return $role= Constantes::VERIFICATEUR;
+		break;
+	case "author":
+		return $role="auteur";
+		break;
+	case "contributor":
+		return $role=Constantes::CONTRIBUTEUR;
+		break;
+	case "subscriber";
+		return $role="abonné";
+		break;
+	default;
+		return $role="";
+		break;
+	}
 }

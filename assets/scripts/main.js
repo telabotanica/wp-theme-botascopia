@@ -1241,7 +1241,7 @@ function createFloatingButton(){
 
 function createHomeSwitchHome(){
     var box= document.getElementsByClassName("search-box large");
-    if (box){
+    if (box[0]){
         var label = document.createElement('label');
         label.setAttribute('class','switch');
         var input = document.createElement('input');
