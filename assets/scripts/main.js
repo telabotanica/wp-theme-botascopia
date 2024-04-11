@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     popupAjouterParticipant();
     filtrerGlossaire();
     createFloatingButton();
+    createHomeSwitchHome();
 });
 
 function setFavoris(selector, type){
@@ -1230,13 +1231,57 @@ function refreshPage(){
 
 function createFloatingButton(){
     var floatingButtonContainer = document.querySelector('.floating-button-div');
-    var scrollY = window.scrollY;
     if (floatingButtonContainer){
         floatingButtonContainer.addEventListener('click',function(){
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         });
     }
-    
+}
+
+function createHomeSwitchHome(){
+    var box= document.getElementsByClassName("search-box large");
+    if (box){
+        var label = document.createElement('label');
+        label.setAttribute('class','switch');
+        var input = document.createElement('input');
+        input.setAttribute("type","checkbox");
+        var div = document.createElement('div');
+        div.setAttribute("class","slider round");
+        var spanOn= document.createElement('span');
+        spanOn.setAttribute("class","on");
+        spanOn.innerHTML="FICHES";
+        var spanOff = document.createElement("span");
+        spanOff.setAttribute("class","off");
+        spanOff.innerHTML="COLLECTIONS";
+        div.appendChild(spanOn);
+        div.appendChild(spanOff);
+        label.appendChild(input);
+        label.appendChild(div);
+        box[0].appendChild(label);
+
+        var path = window.location.href;
+        if (path.includes("fiche") || path.includes("collection")){
+            label.setAttribute("class","hidden");
+        }
+        
+        label.addEventListener("change",function(){
+            var form = document.getElementById("search-home");
+            var action =form.getAttribute("action");
+            var formInput = document.getElementsByClassName("search-box-input");
+            var placeholder = "";
+            if(input.checked){
+                action = action.replace("collection","fiches");
+                console.log(action);
+                placeholder = "Rechercher une fiche...";
+            }else{
+                action =action.replace("fiches","collection");
+                console.log(action);
+                placeholder = "Rechercher une collection...";
+            }
+            form.setAttribute("action",action);
+            formInput[0].setAttribute("placeholder",placeholder);
+        })
+    }
     
 }
