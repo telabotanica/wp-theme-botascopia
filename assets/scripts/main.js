@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onResizeFooter();
     popupAjouterParticipant();
     filtrerGlossaire();
+    createFloatingButton();
 });
 
 function setFavoris(selector, type){
@@ -1224,5 +1225,15 @@ function refreshPage(){
         newpath = pieces[0];
         window.location.href=newpath;
     }
+    
+}
+
+function createFloatingButton(){
+    var floatingButtonContainer = document.querySelector('.floating-button-div');
+    var scrollY = window.scrollY;
+    floatingButtonContainer.addEventListener('click',function(){
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
     
 }

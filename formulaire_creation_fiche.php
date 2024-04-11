@@ -157,6 +157,9 @@ if (isset($_GET['p'])) {
         ?>
         
         <div class="formulaire-top-page">
+            <div class="floating-button-div">
+                <button class="fb"></button>
+            </div>    
             <div class="formulaire-details">
                 <?php
                 the_botascopia_module('title',[
@@ -448,6 +451,7 @@ if (isset($_GET['p'])) {
 
                     ]);
                 ?>
+                 
             </div>
             <?php
         }

@@ -590,3 +590,26 @@ body.page-template-fiche_pdf {
 #feuilles{
   width: 100%;
 }
+
+.floating-button-div {
+  position: fixed;
+  bottom: 200px;
+  right: 100px;
+  z-index: 10;
+}
+
+
+.fb {
+  background-image: url( 'images/arrow-up.svg' );
+  background-repeat: no-repeat;
+  background-position: center; 
+  color: white;
+  border: none;
+  border-radius: 70%;
+  height: 80px;
+  width: 80px;
+  padding: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}      
