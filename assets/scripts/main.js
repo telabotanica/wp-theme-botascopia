@@ -1044,14 +1044,26 @@ function displayEmails(emailInput,participantsEmails){
     
     if (email.includes(';')){
         var emails = email.split(";");
-        emails.forEach((element) => 
-            participantsEmails.push(element)
-        );
+        emails.forEach(function(element){
+            if (validateEmail(element)){
+                participantsEmails.push(element)
+            } 
+        });
     }else{
-        participantsEmails.push(email);
+        if (validateEmail(element)){
+            participantsEmails.push(email);
+        }
     }
     displaySelectedEmails(participantsEmails);
 }
+
+const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
 function displaySelectedEmails(participantsEmails){
     let existingContent = document.querySelector('.popup-content-email');
@@ -1241,47 +1253,50 @@ function createFloatingButton(){
 
 function createHomeSwitchHome(){
     var box= document.getElementsByClassName("search-box large");
-    if (box[0]){
-        var label = document.createElement('label');
-        label.setAttribute('class','switch');
-        var input = document.createElement('input');
-        input.setAttribute("type","checkbox");
-        var div = document.createElement('div');
-        div.setAttribute("class","slider round");
-        var spanOn= document.createElement('span');
-        spanOn.setAttribute("class","on");
-        spanOn.innerHTML="FICHES";
-        var spanOff = document.createElement("span");
-        spanOff.setAttribute("class","off");
-        spanOff.innerHTML="COLLECTIONS";
-        div.appendChild(spanOn);
-        div.appendChild(spanOff);
-        label.appendChild(input);
-        label.appendChild(div);
-        box[0].appendChild(label);
+    var path = document.getElementById("path-home");
 
-        var path = window.location.href;
-        if (path.includes("fiche") || path.includes("collection")){
-            label.setAttribute("class","hidden");
+    if (path){
+        var pathHome = path.value+"/";
+       
+        if (window.location.href === pathHome){
+
+            
+            var label = document.createElement('label');
+            label.setAttribute('class','switch');
+            var input = document.createElement('input');
+            input.setAttribute("type","checkbox");
+            var div = document.createElement('div');
+            div.setAttribute("class","slider round");
+            var spanOn= document.createElement('span');
+            spanOn.setAttribute("class","on");
+            spanOn.innerHTML="FICHES";
+            var spanOff = document.createElement("span");
+            spanOff.setAttribute("class","off");
+            spanOff.innerHTML="COLLECTIONS";
+            div.appendChild(spanOn);
+            div.appendChild(spanOff);
+            label.appendChild(input);
+            label.appendChild(div);
+            box[0].appendChild(label);
+            label.addEventListener("change",function(){
+                var form = document.getElementById("search-home");
+                var action =form.getAttribute("action");
+                var formInput = document.getElementsByClassName("search-box-input");
+                var placeholder = "";
+                if(input.checked){
+                    action = action.replace("collection","fiches");
+                    console.log(action);
+                    placeholder = "Rechercher une fiche...";
+                }else{
+                    action =action.replace("fiches","collection");
+                    console.log(action);
+                    placeholder = "Rechercher une collection...";
+                }
+                form.setAttribute("action",action);
+                formInput[0].setAttribute("placeholder",placeholder);
+            })
         }
-        
-        label.addEventListener("change",function(){
-            var form = document.getElementById("search-home");
-            var action =form.getAttribute("action");
-            var formInput = document.getElementsByClassName("search-box-input");
-            var placeholder = "";
-            if(input.checked){
-                action = action.replace("collection","fiches");
-                console.log(action);
-                placeholder = "Rechercher une fiche...";
-            }else{
-                action =action.replace("fiches","collection");
-                console.log(action);
-                placeholder = "Rechercher une collection...";
-            }
-            form.setAttribute("action",action);
-            formInput[0].setAttribute("placeholder",placeholder);
-        })
     }
+    
     
 }

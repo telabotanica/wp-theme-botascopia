@@ -32,6 +32,7 @@
 				'licence' => $licence
 			]);
 			?>
+        
         <?php if ( have_posts() ) :
             // Start the loop.
             while ( have_posts() ) : the_post();
@@ -63,7 +64,7 @@
 	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 
         ?>
-
+        <input id="path-home" class="hidden" value='<?php echo get_site_url(); ?>'/>
         </main><!-- .site-main -->
     </div><!-- .content-area -->
 
