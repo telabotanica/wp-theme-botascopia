@@ -609,8 +609,8 @@ body.page-template-fiche_pdf {
   color: white;
   border: none;
   border-radius: 70%;
-  height: 80px;
-  width: 80px;
+  height: 30px;
+  width: 30px;
   padding: 20px;
   font-size: 16px;
   cursor: pointer;
