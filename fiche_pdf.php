@@ -40,7 +40,7 @@
 
             <header>
                 <div class="pdf-container">
-                    <h1><?php the_field('nom_scientifique');?></h1>
+                    <h1><i><?php the_field('nom_scientifique');?></i></h1>
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
                     <div class="characteristic pdf-description-morpho">
                         <h3 class="icon-title">
