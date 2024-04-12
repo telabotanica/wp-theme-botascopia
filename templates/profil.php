@@ -39,7 +39,7 @@ $users=get_users();
 				$licence = $legende .', licence CC-BY-SA';
 			}
 		the_botascopia_module('cover', [
-			'subtitle' => $current_user->roles[0],
+			'subtitle' => getRole($current_user->roles[0]),
 			'title' => $nameToShow,
 			'image' => $imageFull,
 			'licence' => $licence
