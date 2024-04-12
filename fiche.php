@@ -1256,28 +1256,28 @@ get_header();
                                     $champ_hum=get_field('preferences_physico-chimiques_humidite_du_sol');
                                     if (!empty($champ_hum)):
                                 ?>
-                                    <?php $preferences_humidite_sol = "<br>" .mb_chr(2022)." dont l'humidité est : <br>".implode(', ',$champ_hum); $preferences.= $preferences_humidite_sol; ?>
+                                    <?php $preferences_humidite_sol = "<br>dont l'humidité est : <br>".implode(', ',$champ_hum); $preferences.= $preferences_humidite_sol; ?>
                                 <?php endif; ?>
                                 
                                 <?php
                                     $champ_texture=get_field('preferences_physico-chimiques_texture_du_sol');
                                     if (!empty($champ_texture)):
                                 ?>
-                                    <?php $preferences_texture_sol = "<br>" .mb_chr(2022)." dont la texture est composée de : <br>".implode(', ',$champ_texture); $preferences.= $preferences_texture_sol; ?>
+                                    <?php $preferences_texture_sol = "<br>dont la texture est composée de : <br>".implode(', ',$champ_texture); $preferences.= $preferences_texture_sol; ?>
                                 <?php endif; ?>
                                 
                                 <?php
                                     $champ_azote=get_field('preferences_physico-chimiques_richesse_en_azote_n');
                                     if (!empty($champ_azote)):
                                 ?>
-                                    <?php $preferences_azote_sol = "<br>" .mb_chr(2022)." dont la richesse en azote est : <br>".implode(', ',$champ_azote); $preferences.= $preferences_azote_sol; ?>
+                                    <?php $preferences_azote_sol = "<br>dont la richesse en azote est : <br>".implode(', ',$champ_azote); $preferences.= $preferences_azote_sol; ?>
                                 <?php endif; ?>
                                
                                 <?php
                                     $champ_sal=get_field('preferences_physico-chimiques_salinite');
                                     if (!empty($champ_sal)):
                                 ?>
-                                    <?php $preferences_salinite_sol = "<br>" .mb_chr(2022)." dont la salinité est : <br>".implode(', ',$champ_sal); $preferences.= $preferences_salinite_sol; ?>
+                                    <?php $preferences_salinite_sol = "<br>dont la salinité est : <br>".implode(', ',$champ_sal); $preferences.= $preferences_salinite_sol; ?>
                                 <?php endif; ?>
 
                                 <?php if ($champ_ph OR $champ_hum OR $champ_texture OR $champ_azote OR $champ_sal): ?>
