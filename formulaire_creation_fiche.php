@@ -102,6 +102,23 @@ if (isset($_GET['p'])) {
         'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
         'modifiers' =>['class' => 'fiche-cover']
     ]);
+
+    if (get_field("field_643027826f24d")){
+        $fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+    }
+
+    if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+        $fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+        
+        $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
+    } else {
+        $image = getPostImage(get_the_ID())[0];
+    }
+
+    echo ('
+			<img src= '.$image .' class="fiche-image">
+		');
+
     ?>
     <?php endwhile;
     $auteur_autorise = false;
