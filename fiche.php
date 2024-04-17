@@ -1093,11 +1093,11 @@ get_header();
 					</div>
 					
 					<?php if (!empty(get_field('amplitude_altitudinale'))) :?> <p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?> .</p> <?php endif; ?>
-						<?php if (!empty(get_field('affinites_ecologiques'))) :?><p>Affinité écologique: <?php echo
+						<?php if (!empty(get_field('affinites_ecologiques'))) :?><p>Affinités écologiques : <?php echo
 						get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";
 						?> .</p><?php endif; ?>
 						
-						<?php if (!empty(get_field('habitat_preferentiel'))) :?> <p>Habitat : <?php the_field('habitat_preferentiel'); ?>.</p> <?php endif; ?>
+						<?php if (!empty(get_field('habitat_preferentiel'))) :?> <p>Habitat(s) : <?php the_field('habitat_preferentiel'); ?>.</p> <?php endif; ?>
 						
 						<?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field
 						('pollinisation')))) :?> <p>Plante :<br><?php endif; ?>
@@ -1109,9 +1109,9 @@ get_header();
 						
 						<?php if (!empty(get_field('dispersion'))) :?> dispersion des graines et des fruits <?php
 						echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p><?php endif;?>
-				</div>
-					<?php endif ?>
 				
+					<?php endif ?>
+                </div>
 				<?php $proprietes = get_field('proprietes')?: null;
 				if ($proprietes):
 				?>
