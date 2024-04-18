@@ -67,9 +67,24 @@ function bs_load_scripts() {
 	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
 	wp_localize_script( 'bs-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	
-//  wp_enqueue_style( 'style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'bs_load_scripts' );
+
+function my_scripts() {
+	if( is_page( array( 'profil' ) ) ){
+		wp_enqueue_script( 'profil', get_template_directory_uri() . '/assets/scripts/profil.js', array(), '1.0.0', true );
+	}
+	if( is_page( array( 'formulaire' ) ) ){
+		wp_enqueue_script( 'formulaire', get_template_directory_uri() . '/assets/scripts/formulaire.js', array(), '1.0.0', true );
+	}
+	if( is_page( array( 'mes-fiches' ) ) ){
+		wp_enqueue_script( 'mes-fiches', get_template_directory_uri() . '/assets/scripts/mes-fiches.js', array(), '1.0.0', true );
+	}
+	if( is_page( '') ){
+		wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/scripts/home.js', array(), '1.0.0', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
 // auto export acf fields after each saved change
 function bs_acf_export_json( $path ) {
@@ -415,6 +430,124 @@ function revealid_id_column_content( $column, $id ) {
         echo $id;
     }
 }
+
+function modifyRoleAdmin($data) {
+	
+	$params=$data->get_params();
+	$id=$params['id'];
+	$mode = $params['mode'];
+	if ($mode===1){
+		$user = new WP_User( $id );
+		$user->set_role( 'editor' );
+		getResponse(1,$user->data);
+
+	}elseif($mode===2){
+		$user = new WP_User( $id );
+		$user->set_role( 'contributor' );
+		getResponse($mode,$user->data);
+
+	}else{
+		getResponse(3,null);
+	}
+}
+
+function getResponse($mode,$user){
+	
+	$resp=['id'=>$user->ID,'nom'=>$user->display_name,'email'=>$user->user_email,'mode'=>$mode];
+	header('Content-Type: application/json; charset=utf-8');
+	echo json_encode($resp);
+	
+}
+
+//Exécute la fonction précédente lors de l'appel à la route /modify/role/admin
+//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est admin
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'modify', '/role/admin', array(
+	  'methods' => 'put',
+	  'callback' => 'modifyRoleAdmin',
+	  
+	) );
+} );
+
+function modifyRoleRedacteur($data) {
+	
+	$params=$data->get_params();
+	$email=$params['email'];
+	
+	
+	if ( email_exists( $email ) ){  
+        $user = get_user_by("email", $email);
+        $userId = $user->ID;
+		$role = get_userdata($userId)->roles[0];
+		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
+			$user->set_role('editor');
+			getResponse(1,$user);
+			
+		}else{
+			getResponse(2,$user);
+		}
+    }else{
+		getResponse(3,null);
+    }
+}
+
+//Exécute la fonction précédente lors de l'appel à la route /modify/role/redac
+//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est lui-même rédacteur
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'modify', '/role/redac', array(
+	  'methods' => 'put',
+	  'callback' => 'modifyRoleRedacteur',
+	  
+	) );
+} );
+
+function checkUser($data) {
+	
+	$email="";
+	$params=$data->get_params();
+	$id=$params['id'];
+	$mode=$params['mode'];
+	
+	if ($id!==0){
+		$user = new WP_User( $id );
+		$email = $user->data->user_email;
+	}else{
+		$email=$params['email'];
+	}
+	if ( email_exists( $email ) ){  
+        $user = get_user_by("email", $email);
+        $userId = $user->ID;
+		$role = get_userdata($userId)->roles[0];
+		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
+			if ($mode===2){
+				getResponse(4,$user);
+				return;
+			}
+			getResponse(1,$user);
+
+		}else if($role==='editor'){
+			if ($mode===1 || $mode===0){
+				getResponse(4,$user);
+				return;
+			}
+			getResponse(2,$user);
+		}else{
+			getResponse(4,$user);
+		}
+    }else{
+		getResponse(3,null);
+    }
+}
+
+//Exécute la fonction précédente lors de l'appel à la route /modify/check/user
+//Permet de modifier le statut d'un utilisateur avant modification
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'modify', '/check/user', array(
+	  'methods' => 'put',
+	  'callback' => 'checkUser',
+	  
+	) );
+} );
 
 class Constantes{
 	const VERIFICATEUR = "vérificateur";
