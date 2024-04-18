@@ -113,7 +113,7 @@ function botascopia_module_header($data) {
 							<?php echo $current_user->display_name ?>
                         </div>
                         <div class="header-login-role">
-							(<?php echo $current_user->roles[0] ?>)
+							(<?php echo getRole($current_user->roles[0]) ?>)
                         </div>
                     </div>
                       <div>

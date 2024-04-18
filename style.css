@@ -357,6 +357,7 @@ body.page-template-fiche_pdf {
 
 .columns-right {
   padding-left: 1cm;
+  line-height: 10px;
 }
 
 /* ************************ */
@@ -396,7 +397,7 @@ body.page-template-fiche_pdf {
   padding-left: 0;
   display: flex;
   justify-content: space-between;
-  margin: 5px 0 0 0;
+  margin: 2px 0 0 0;
 }
 
 .footer-logos-left, .footer-logos-right {
@@ -554,4 +555,156 @@ body.page-template-fiche_pdf {
 
 .fructification-mauve-icon {
   background-image: url("images/fructification-mauve.svg");
+}
+
+/* ******************************** */
+/* * cartes des plantes > preview * */
+/* **********************************/
+#voir_plus{
+  display: block;
+  width:100%;
+}
+#titre{
+  width:100%;
+  display:block;
+}
+#voir_plus h2{
+  width:100%;
+}
+#grille{
+  display:grid;
+  grid-template-columns:30% 30% 30%;
+}
+#tige,#feuilles,#fleur-bisexuee,#fleur-male,#fleur-femelle,#fruits,#ne-pas-confondre{
+  display:flex;
+}
+
+#titre_feuilles{
+  display:block;
+}
+
+#feuille-texte{
+  margin-right: 3em;
+  flex: 70%;
+}
+
+#feuilles{
+  width: 100%;
+}
+
+/* ********************************/
+/* * bouton flottant formulaire * */
+/* ********************************/
+.floating-button-div {
+  position: fixed;
+  bottom: 200px;
+  right: 100px;
+  z-index: 10;
+}
+
+
+.fb {
+  background-image: url( 'images/arrow-up.svg' );
+  background-repeat: no-repeat;
+  background-position: center; 
+  color: white;
+  border: none;
+  border-radius: 70%;
+  height: 30px;
+  width: 30px;
+  padding: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+/* ***********************/
+/* * home switch home * */
+/* **********************/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 34px;
+  margin-top: 5%;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #8E9F31;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: black;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(115px);
+  -ms-transform: translateX(115px);
+  transform: translateX(115px);
+}
+
+/*------ ADDED CSS ---------*/
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}
+
+.selector{
+  width:100%;
+}
+.selector select{
+  border-radius: 15px;
 }

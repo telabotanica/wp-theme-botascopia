@@ -678,30 +678,37 @@
                         <h3 class="icon-title">
                             <div class="ecologie-icon icon"></div>écologie
                         </h3>
-                        <p>
-                            <?php if (!empty(get_field('habitat_preferentiel'))) :?> habitat : <?php the_field('habitat_preferentiel'); ?>.
-
-                            <?php endif; ?> <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> Plante <?php endif; ?> <?php if (!empty(get_field('systeme_de_reproduction'))) :?> <?php the_field('systeme_de_reproduction'); ?>, <?php endif; ?> <?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
-                            <?php if (!empty(get_field('dispersion'))) :?> Dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.<?php endif; ?></p>
+                        <?php if (!empty(get_field('amplitude_altitudinale'))) :?> <p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?> .</p> <?php endif; ?>
+						<?php if (!empty(get_field('affinites_ecologiques'))) :?><p>Affinités écologiques : <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";
+						?> .</p><?php endif; ?>
+						
+						<?php if (!empty(get_field('habitat_preferentiel'))) :?> <p>Habitat(s) : <?php the_field('habitat_preferentiel'); ?>.</p> <?php endif; ?>
+						
+						<?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> <p>Plante : <br><?php endif; ?>
+						
+						<?php if (!empty(get_field('systeme_de_reproduction'))) :?> Système de reproduction <?php
+							the_field('systeme_de_reproduction'); ?>, <?php endif; ?>
+						
+						<?php if (!empty(get_field('pollinisation'))) :?> à pollinisation <?php the_field('pollinisation'); ?>, <?php endif; ?>
+						
+						<?php if (!empty(get_field('dispersion'))) :?> dispersion des graines et des fruits <?php
+						echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p><?php endif;?>
                     </div>
                 <?php endif; ?>
-<!--Préférence physico chimiques-->
-                <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
-                    <div class="characteristic">
-                        <h4 class="icon-title">
-                            Préférences physico-chimiques
-                        </h4>
-                        <?php
+<!--Préférence physico chimiques-->     
+                <div class="characteristic">
+                    <h4 class="icon-title">
+                        Préférences physico-chimiques
+                    </h4>
+                    <?php
                         $champs_agros_eco = getChampsAgroEcoPourSvg();
                         genererSVG(get_the_title(), $champs_agros_eco);
-                        ?>
-                        <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
-                    </div>
-                <?php endif; ?>
+                    ?>
+                    <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+                </div>
+            
 <!--Ne pas confondre-->
-                <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
+                
                     <div class="characteristic">
                         <h3 class="icon-title">
                             <div class="ne-pas-confondre-icon icon"></div>ne pas confondre avec
@@ -730,18 +737,7 @@
                         <?php endif; ?>
                         </div>
                     </div>
-                <?php endif; ?>
-<!--Interactions avec le vivant-->
-<!--                --><?php //$description = get_field('description')?: null; ?>
-<!--                --><?php //$interactions_vivant = get_field('interaction_avec_le_vivant')?: null;
-//                <?php if ($description): ?>
-<!--                    <div class="characteristic">-->
-<!--                        <h4 class="icon-title">-->
-<!--                            Interactions avec le vivant-->
-<!--                        </h4>-->
-<!--                        <p></p>-->
-<!--                    </div>-->
-<!--                --><?php //endif; ?>
+                
 
 <!--Valeurs ecologiques histo et locale-->
                 <?php $description = get_field('description')?: null; ?>
@@ -855,7 +851,7 @@
                             <div class="footer-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo-botascopia.png" alt="Logo Botascopia"></div>
                         </div>
                         <div class="footer-logos-right">
-                            <div>Fondateurs :</div>
+                            <div>Fondateurs :  </div>
                             <div class="footer-logo"><img class="logo-saclay" src="<?php echo get_template_directory_uri(); ?>/images/logo-saclay.png" alt="Logo Université Paris-Saclay"></div>
                             <div class="footer-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/logo-tela.png" alt="Logo Tela Botanica"></div>
                         </div>

@@ -2,6 +2,9 @@
 // adding "bs_" (botascopia) prefix to avoid overriding native wp functions
 
 // Chargement des dépendances installées avec Composer
+
+use JsPhpize\Nodes\Constant;
+
 require get_template_directory() . '/vendor/autoload.php';
 
 // ajout de la recherche sur les champs acf
@@ -64,9 +67,24 @@ function bs_load_scripts() {
 	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
 	wp_localize_script( 'bs-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	
-//  wp_enqueue_style( 'style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'bs_load_scripts' );
+
+function my_scripts() {
+	if( is_page( array( 'profil' ) ) ){
+		wp_enqueue_script( 'profil', get_template_directory_uri() . '/assets/scripts/profil.js', array(), '1.0.0', true );
+	}
+	if( is_page( array( 'formulaire' ) ) ){
+		wp_enqueue_script( 'formulaire', get_template_directory_uri() . '/assets/scripts/formulaire.js', array(), '1.0.0', true );
+	}
+	if( is_page( array( 'mes-fiches' ) ) ){
+		wp_enqueue_script( 'mes-fiches', get_template_directory_uri() . '/assets/scripts/mes-fiches.js', array(), '1.0.0', true );
+	}
+	if( is_page( '') ){
+		wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/scripts/home.js', array(), '1.0.0', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
 // auto export acf fields after each saved change
 function bs_acf_export_json( $path ) {
@@ -155,26 +173,6 @@ function add_fav_fiche_meta() {
 	update_user_meta($user_id, 'favorite_fiche', $favorites);
 }
 add_action( 'wp_ajax_set_fav_fiche', 'add_fav_fiche_meta' );
-
-/*
-// Permet de lier le nom d'une collection (post) avec une catégorie du même nom
-function create_category_from_post_name($post_id) {
-	if (isset($_POST['meta-type']) && $_POST['meta-type'] === 'collection') {
-		$post = get_post($post_id);
-		$category_name = $post->post_title;
-		$parent_term = term_exists('collections', 'category');
-		$parent_term_id = $parent_term['term_id'];
-		$category = wp_insert_term($category_name, 'category', array('parent' => $parent_term_id));
-		if ( !is_wp_error($category)) {
-			wp_set_object_terms($post_id, $category_name, 'category', true);
-			$category_link = get_term_link($category['term_id']);
-			wp_redirect($category_link);
-			exit;
-		}
-	}
-}
-add_action('wp_insert_post', 'create_category_from_post_name');
-*/
 
 // Ajoutez la variable de requête personnalisée
 function custom_query_vars($query_vars) {
@@ -327,11 +325,11 @@ function reserver_fiche() {
 }
 add_action( 'wp_ajax_reserver_fiche', 'reserver_fiche' );
 
-function affichageImageFiche($photo){
+function affichageImageFiche($photo,$id=null){
 	if (!empty($photo)){
 		$photoId = $photo['ID'];
 		$image = wp_get_attachment_image_src( $photoId, 'image-tige' )[0];
-		echo ('<div class="image-fiche"><img src="'.esc_url( $image ).'" class="image-tige"></div>');
+		echo ("<div $id class='image-fiche'><img src='".esc_url( $image )."' class='image-tige'></div>");
 	}
 }
 
@@ -550,3 +548,31 @@ add_action( 'rest_api_init', function () {
 	  
 	) );
 } );
+
+class Constantes{
+	const VERIFICATEUR = "vérificateur";
+	const CONTRIBUTEUR = "contributeur";
+	const ADMINISTRATEUR = "administrateur";
+}
+function getRole($role){
+	switch ($role) {
+		case "administrator":
+		return $role=Constantes::ADMINISTRATEUR;
+		break;
+	case "editor":
+		return $role= Constantes::VERIFICATEUR;
+		break;
+	case "author":
+		return $role="auteur";
+		break;
+	case "contributor":
+		return $role=Constantes::CONTRIBUTEUR;
+		break;
+	case "subscriber";
+		return $role="abonné";
+		break;
+	default;
+		return $role="";
+		break;
+	}
+}

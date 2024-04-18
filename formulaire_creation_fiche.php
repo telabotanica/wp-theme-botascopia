@@ -98,10 +98,27 @@ if (isset($_GET['p'])) {
     <?php
     the_botascopia_module('cover',[
         'subtitle' => get_post_meta(get_the_ID(), 'nom_vernaculaire', true).' - '.get_post_meta(get_the_ID(), 'famille',true),
-        'title' => get_post_meta(get_the_ID(), 'nom_scientifique', true),
+        'title' => "<i>".get_post_meta(get_the_ID(), 'nom_scientifique', true)."</i>",
         'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
         'modifiers' =>['class' => 'fiche-cover']
     ]);
+
+    if (get_field("field_643027826f24d")){
+        $fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+    }
+
+    if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+        $fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+        
+        $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
+    } else {
+        $image = getPostImage(get_the_ID())[0];
+    }
+
+    echo ('
+			<img src= '.$image .' class="fiche-image">
+		');
+
     ?>
     <?php endwhile;
     $auteur_autorise = false;
@@ -157,6 +174,9 @@ if (isset($_GET['p'])) {
         ?>
         
         <div class="formulaire-top-page">
+            <div class="floating-button-div">
+                <button class="fb"></button>
+            </div>    
             <div class="formulaire-details">
                 <?php
                 the_botascopia_module('title',[
@@ -203,22 +223,6 @@ if (isset($_GET['p'])) {
                 'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title(),
             );
             $formsId[] = $id;
-
-            /*if ($titre == "Description morphologique") {
-
-                the_botascopia_component('inner_accordion',
-                    [
-                        'title_level' => 2,
-                        'items' => [
-                            [
-                                'content' => $args,
-                                'title' => $titre,
-                            ],
-                        ],
-                        'modifiers' => ['id' => 'inner_accordion' . $id]
-                    ]
-                );
-            }*/
             
             the_botascopia_component('accordion',
                  [
@@ -464,21 +468,11 @@ if (isset($_GET['p'])) {
 
                     ]);
                 ?>
+                 
             </div>
             <?php
         }
-    } else {
-        /*
-        the_botascopia_module('button',[
-            'tag' => 'button',
-            'title' => 'Devenir auteur',
-            'text' => 'Devenir auteur',
-            'modifiers' => 'green-button',
-            'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1'"]
-        ]);
-        */
-//        echo "Vous n'êtes pas l'auteur de cette fiche";
-    }
+    } 
 } else {
     echo "URL inexistante, vérifier celui de la fiche recherchée";
 }

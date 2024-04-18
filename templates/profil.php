@@ -39,7 +39,7 @@ $users=get_users();
 				$licence = $legende .', licence CC-BY-SA';
 			}
 		the_botascopia_module('cover', [
-			'subtitle' => $current_user->roles[0],
+			'subtitle' => getRole($current_user->roles[0]),
 			'title' => $nameToShow,
 			'image' => $imageFull,
 			'licence' => $licence
@@ -84,8 +84,7 @@ $users=get_users();
 								}else {
 									$offset= ($paged-1)*$number;
 								}
-								$_VERIFICATEUR = "vérificateur";
-								$_CONTRIBUTEUR = "contributeur";
+
 								$user_query = new WP_User_Query( array('number' => $number, 'offset' => $offset, 'orderby' => 'display_name' ) );
 								if ( ! empty( $user_query->results ) ) {
 									foreach ( $user_query->results as $user ) {
@@ -94,30 +93,14 @@ $users=get_users();
 										$email=$user->data->user_email;
 										$role=$user->roles[0];
 										$cpt++;
-										switch ($role) {
-											case "administrator":
-											$role="administrateur";
-											break;
-										case "editor":
-											$role= $_VERIFICATEUR;
-											break;
-										case "author":
-											$role="auteur";
-											break;
-										case "contributor":
-											$role=$_CONTRIBUTEUR;
-											break;
-										case "subscriber";
-											$role="abonné";
-											break;
-										default;
-											$role="";
-											break;
-										}
-										if($role ===$_CONTRIBUTEUR OR $role === 'auteur' OR $role === 'abonné'){
-											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToEditor_$cpt' value='$id' class='button green-button'>Devenir $_VERIFICATEUR</button></td></tr>";
-										}else if($role===$_VERIFICATEUR){
-											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToContrib_$cpt' value='$id' class='button green-button'>Devenir $_CONTRIBUTEUR</button></td></tr>";
+
+										$role = getRole($role);
+										
+										if($role ===Constantes::CONTRIBUTEUR OR $role === 'auteur' OR $role === 'abonné'){
+											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToEditor_$cpt' value='$id' class='button green-button'>Devenir ".Constantes::VERIFICATEUR."</button></td></tr>";
+										}else if($role===Constantes::VERIFICATEUR){
+											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToContrib_$cpt' value='$id' class='button green-button'>Devenir ".Constantes::CONTRIBUTEUR."</button></td></tr>";
+
 										}else{
 											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td></td></tr>";
 										}
@@ -148,9 +131,11 @@ $users=get_users();
 						
 				<?php }elseif($current_user_role==='editor'){?>
 					<div id="content">
-						<h3>Donnez le statut de rédacteur à un utilisateur</h3>
+
+						<h3>Attribuer le statut vérificateur (éditeur) à un contributeur</h3>
 						<form>
-							<label id="label-change">Tapez une adresse email d'un utilisateur</label>
+							<label id="label-change">Renseignez l'adresse email exacte de la personne et cliquez sur "Rechercher" : </label>
+
 							
 							<?php 
 								the_botascopia_module('search-box',[
