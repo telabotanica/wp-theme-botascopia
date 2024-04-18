@@ -701,3 +701,7 @@ input:checked + .slider .off
 
 .slider.round:before {
   border-radius: 50%;}
+
+.selector{
+  width:100%;
+}
