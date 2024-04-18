@@ -357,6 +357,7 @@ body.page-template-fiche_pdf {
 
 .columns-right {
   padding-left: 1cm;
+  line-height: 10px;
 }
 
 /* ************************ */
@@ -396,7 +397,7 @@ body.page-template-fiche_pdf {
   padding-left: 0;
   display: flex;
   justify-content: space-between;
-  margin: 5px 0 0 0;
+  margin: 2px 0 0 0;
 }
 
 .footer-logos-left, .footer-logos-right {
