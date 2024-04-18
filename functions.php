@@ -70,7 +70,7 @@ function bs_load_scripts() {
 }
 add_action('wp_enqueue_scripts', 'bs_load_scripts' );
 
-function my_scripts() {
+/* function my_scripts() {
 	if( is_page( array( 'profil' ) ) ){
 		wp_enqueue_script( 'profil', get_template_directory_uri() . '/assets/scripts/profil.js', array(), '1.0.0', true );
 	}
@@ -84,7 +84,7 @@ function my_scripts() {
 		wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/scripts/home.js', array(), '1.0.0', true );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'my_scripts' );
+add_action( 'wp_enqueue_scripts', 'my_scripts' ); */
 
 // auto export acf fields after each saved change
 function bs_acf_export_json( $path ) {

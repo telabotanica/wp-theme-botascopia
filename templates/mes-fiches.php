@@ -448,4 +448,5 @@ function createOptions($nb){
 <?php
 get_footer();
 ?>
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/mes-fiches.js'); ?>" ></script>
 

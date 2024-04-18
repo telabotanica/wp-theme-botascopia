@@ -10,7 +10,6 @@ get_header();
 <?php
 $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 $form = 12;
-
 $groups = acf_get_field_groups();
 $formulaires = [];
 
@@ -485,3 +484,4 @@ acf_enqueue_uploader();
 <?php
 get_footer();
 ?>
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/formulaire.js'); ?>" ></script>

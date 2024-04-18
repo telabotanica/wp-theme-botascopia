@@ -178,3 +178,4 @@ $users=get_users();
 <?php
 get_footer();
 ?>
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/profil.js'); ?>" ></script>

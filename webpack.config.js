@@ -13,6 +13,7 @@ const entryPoints = {
   // 'app' is the output name, people commonly use 'bundle'
   // you can have more than 1 entry point
   'app': jsPath + '/main.js',
+
 };
 
 const PATHS = {
