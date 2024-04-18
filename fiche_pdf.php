@@ -695,23 +695,20 @@
 						echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p><?php endif;?>
                     </div>
                 <?php endif; ?>
-<!--Préférence physico chimiques-->
-                <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
-                    <div class="characteristic">
-                        <h4 class="icon-title">
-                            Préférences physico-chimiques
-                        </h4>
-                        <?php
+<!--Préférence physico chimiques-->     
+                <div class="characteristic">
+                    <h4 class="icon-title">
+                        Préférences physico-chimiques
+                    </h4>
+                    <?php
                         $champs_agros_eco = getChampsAgroEcoPourSvg();
                         genererSVG(get_the_title(), $champs_agros_eco);
-                        ?>
-                        <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
-                    </div>
-                <?php endif; ?>
+                    ?>
+                    <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+                </div>
+            
 <!--Ne pas confondre-->
-                <?php $description = get_field('description')?: null; ?>
-                <?php if ($description): ?>
+                
                     <div class="characteristic">
                         <h3 class="icon-title">
                             <div class="ne-pas-confondre-icon icon"></div>ne pas confondre avec
@@ -740,18 +737,7 @@
                         <?php endif; ?>
                         </div>
                     </div>
-                <?php endif; ?>
-<!--Interactions avec le vivant-->
-<!--                --><?php //$description = get_field('description')?: null; ?>
-<!--                --><?php //$interactions_vivant = get_field('interaction_avec_le_vivant')?: null;
-//                <?php if ($description): ?>
-<!--                    <div class="characteristic">-->
-<!--                        <h4 class="icon-title">-->
-<!--                            Interactions avec le vivant-->
-<!--                        </h4>-->
-<!--                        <p></p>-->
-<!--                    </div>-->
-<!--                --><?php //endif; ?>
+                
 
 <!--Valeurs ecologiques histo et locale-->
                 <?php $description = get_field('description')?: null; ?>
