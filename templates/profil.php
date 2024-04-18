@@ -84,7 +84,7 @@ $users=get_users();
 								}else {
 									$offset= ($paged-1)*$number;
 								}
-								
+
 								$user_query = new WP_User_Query( array('number' => $number, 'offset' => $offset, 'orderby' => 'display_name' ) );
 								if ( ! empty( $user_query->results ) ) {
 									foreach ( $user_query->results as $user ) {
@@ -93,12 +93,14 @@ $users=get_users();
 										$email=$user->data->user_email;
 										$role=$user->roles[0];
 										$cpt++;
+
 										$role = getRole($role);
 										
 										if($role ===Constantes::CONTRIBUTEUR OR $role === 'auteur' OR $role === 'abonné'){
 											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToEditor_$cpt' value='$id' class='button green-button'>Devenir ".Constantes::VERIFICATEUR."</button></td></tr>";
 										}else if($role===Constantes::VERIFICATEUR){
 											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td><button id='changeToContrib_$cpt' value='$id' class='button green-button'>Devenir ".Constantes::CONTRIBUTEUR."</button></td></tr>";
+
 										}else{
 											echo "<tr><td>$nom</td><td>$email</td><td>$role</td><td></td></tr>";
 										}
@@ -129,9 +131,11 @@ $users=get_users();
 						
 				<?php }elseif($current_user_role==='editor'){?>
 					<div id="content">
+
 						<h3>Attribuer le statut vérificateur (éditeur) à un contributeur</h3>
 						<form>
 							<label id="label-change">Renseignez l'adresse email exacte de la personne et cliquez sur "Rechercher" : </label>
+
 							
 							<?php 
 								the_botascopia_module('search-box',[

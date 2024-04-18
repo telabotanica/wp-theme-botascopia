@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onResizeFooter();
     popupAjouterParticipant();
     filtrerGlossaire();
-    
+
 });
 
 function setFavoris(selector, type){
@@ -1209,4 +1209,6 @@ function filtrerGlossaire(){
             });
         });
     }
+
 }
+
