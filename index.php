@@ -64,7 +64,7 @@
 	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 
         ?>
-        <input id="path-home" class="hidden" value='<?php echo get_site_url(); ?>'/>
+        <input id="path-home" class="hidden" value='<?php echo home_url(); ?>'/>
         </main><!-- .site-main -->
     </div><!-- .content-area -->
 
