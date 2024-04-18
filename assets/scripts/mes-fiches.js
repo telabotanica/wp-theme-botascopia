@@ -106,7 +106,6 @@ class Parametres {
 function createCards(parametres,pageNb){
     var max = parseInt(parametres.max_div.value);
     var container_id = parametres.container_id;
-    console.log(container_id);
     removeElementsByClass("#"+container_id+" .card");
     var container = document.getElementById(container_id);
     var tableau = parametres.tableau;
@@ -157,7 +156,7 @@ function createCards(parametres,pageNb){
         card.appendChild(div2);
         container.appendChild(card);
     }
-    console.log(pageNbr);
+
     createPagination(parametres,pageNbr);
 }
 
@@ -187,7 +186,6 @@ function createPagination(parametres,pageNb){
     var nb_pages = Math.ceil(size/max);
     var pageNbr = pageNb;
     var div_pagination = document.getElementById(parametres.pagination_id);
-    console.log(parametres.pagination_id);
     if (div_pagination){
         div_pagination.remove();
     }

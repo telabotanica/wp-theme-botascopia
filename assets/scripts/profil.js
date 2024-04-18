@@ -68,7 +68,6 @@ function changeStatusRedac(user,event){
 			if (httpc.status == 200) {
 			// Access the data returned by the server
 				var msg = httpc.response;
-                console.log(msg);
 				var user = JSON.parse(msg);
                 var nom =user.nom;
                 var email = user.email;
@@ -116,7 +115,6 @@ function prepareToProfile(){
 	if (element){
         
 		element.addEventListener("click", function(event){checkUser(this,event);}); 
-        console.log(element);
         
 	}
 	
@@ -179,7 +177,6 @@ function checkUser(e,event){
 	httpc.open("PUT", url, true);
  	httpc.setRequestHeader("Content-type", "application/json; charset=utf-8");
 	var data = {'id':id,'email':email.trim(),'mode':modeIn};
-    console.log(data);
  	httpc.send(JSON.stringify(data));
 	httpc.onload = function() {
 		if (httpc.readyState == XMLHttpRequest.DONE) {
@@ -216,7 +213,7 @@ function checkUser(e,event){
 }
 
 function popupMessageConfirmation(user){
-    console.log(user);
+
     // Créer un élément de div pour afficher le contenu du popup
     var popupContenu = document.createElement(`div`);
     popupContenu.setAttribute('id','contenu');
@@ -277,7 +274,6 @@ function refreshPage(){
     
     if (newpath.startsWith(beg_path) && newpath.endsWith(end_path)){
         pieces = newpath.split("&");
-        console.log(pieces);
         newpath = pieces[0];
         window.location.href=newpath;
     }

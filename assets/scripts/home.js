@@ -37,11 +37,9 @@ function createHomeSwitchHome(){
                 var placeholder = "";
                 if(input.checked){
                     action = action.replace("collection","fiches");
-                    console.log(action);
                     placeholder = "Rechercher une fiche...";
                 }else{
                     action =action.replace("fiches","collection");
-                    console.log(action);
                     placeholder = "Rechercher une collection...";
                 }
                 form.setAttribute("action",action);
