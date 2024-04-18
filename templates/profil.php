@@ -129,9 +129,9 @@ $users=get_users();
 						
 				<?php }elseif($current_user_role==='editor'){?>
 					<div id="content">
-						<h3>Donnez le statut de rédacteur à un utilisateur</h3>
+						<h3>Attribuer le statut vérificateur (éditeur) à un contributeur</h3>
 						<form>
-							<label id="label-change">Tapez une adresse email d'un utilisateur</label>
+							<label id="label-change">Renseignez l'adresse email exacte de la personne et cliquez sur "Rechercher" : </label>
 							
 							<?php 
 								the_botascopia_module('search-box',[
