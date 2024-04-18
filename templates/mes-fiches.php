@@ -5,7 +5,6 @@
 ?>
 <?php
 get_header();
-
 function createOptions($nb){
 	for ($i=1;$i<=$nb;$i++){
 		$is_div=false;
@@ -185,7 +184,7 @@ function createOptions($nb){
 				<div id="favoris" class="display-fiches-cards-items">
 					<?php if($nb_fiches>0): ?>
 						<div class="selector">Nombre de fiches par page
-							<select id="nb_fiches_fav" >
+							<select id="nb_fiches_fav" class="button purple-button">
 								<?php 
 									createOptions($nb_fiches);
 								?>
@@ -239,7 +238,7 @@ function createOptions($nb){
 				<div id='div_comp' class="display-fiches-cards-items">
 					<?php if($nb_fiches_comp>0): ?>
 						<div class="selector">Nombre de fiches par page
-							<select id="nb_fiches_comp" >
+							<select id="nb_fiches_comp" class="button purple-button">
 								<?php 
 									createOptions($nb_fiches_comp);
 								?>
@@ -286,7 +285,7 @@ function createOptions($nb){
                     <div id="div_fiches_inval" class="display-fiches-cards-items">
 						<?php if($nb_fiches_inv>0): ?>
 							<div class="selector">Nombre de fiches par page
-								<select id="nb_fiches_inval" >
+								<select id="nb_fiches_inval" class="button purple-button">
 									<?php 
 										createOptions($nb_fiches_comp);
 									?>
@@ -340,7 +339,7 @@ function createOptions($nb){
 						if($nb_fiches_val>0): 
 					?>
 							<div class="selector">Nombre de fiches par page
-								<select id="nb_fiches_term" >
+								<select id="nb_fiches_term" class="button purple-button">
 									<?php 
 										createOptions($nb_fiches_val);
 									?>
@@ -392,7 +391,7 @@ function createOptions($nb){
 						if($nb_fiches_validees>0): 
 					?>
 							<div class="selector">Nombre de fiches par page
-								<select id="nb_fiches_val" >
+								<select id="nb_fiches_val" class="button purple-button">
 									<?php 
 										createOptions($nb_fiches_validees);
 									?>
