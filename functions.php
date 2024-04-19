@@ -553,6 +553,15 @@ class Constantes{
 	const VERIFICATEUR = "vérificateur";
 	const CONTRIBUTEUR = "contributeur";
 	const ADMINISTRATEUR = "administrateur";
+	const HERMAPHRODITE = "hermaphrodite";
+	const MONOIQUE = "monoïque";
+	const DIOIQUE = "dioïque";
+	const ANDROMONOIQUE = "andromonoïque";
+	const GYNOMONOIQUE = "gynomonoïque";
+	const ANDRODIOIQUE = "androdioïque";
+	const GYNODIOIQUE = "gynodioïque";
+	const ANDROGYNOMONIQUE = "androgynomonoïque";
+	const ANDROGYNODIOIQUE = "androgynodioïque";
 }
 function getRole($role){
 	switch ($role) {
