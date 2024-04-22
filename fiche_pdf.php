@@ -701,8 +701,31 @@
                         Préférences physico-chimiques
                     </h4>
                     <?php
-                        $champs_agros_eco = getChampsAgroEcoPourSvg();
-                        genererSVG(get_the_title(), $champs_agros_eco);
+                        $champs = [];
+                        array_push($champs,"lumiere");
+                        array_push($champs,"humidite_atmospherique");
+                        array_push($champs,"continentalite");
+                        array_push($champs,"reaction_ph");
+                        array_push($champs,"humidite_du_sol");
+                        array_push($champs,"texture_du_sol");
+                        array_push($champs,"richesse_en_azote_n");
+                        array_push($champs,"salinite");
+                        $has_field=false;
+                        foreach($champs as $value){
+                            
+                            if (!empty(get_field("preferences_physico-chimiques_$value"))){
+                                
+                                $has_field = true;
+                                break;
+                            }
+                        }
+                       
+                        if ($has_field){
+                            $champs_agros_eco = getChampsAgroEcoPourSvg();
+                            genererSVG(get_the_title(), $champs_agros_eco);
+
+                        }
+                      
                     ?>
                     <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
                 </div>
