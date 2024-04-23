@@ -184,6 +184,13 @@
                                             <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                         <?php endif; ?>
                                     <?php endif; ?>
+                                    <?php 
+                                        $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
+                                        
+                                        if (!empty($champ)){
+                                            echo " $champ";
+                                        }
+                                    ?>
                                 </p>
 
                             <?php elseif ('deux formes distinctes de feuilles'=== $heteromorphisme_foliaire): ?>
@@ -197,10 +204,11 @@
                                     
                                     <?php if(!empty($feuilles_aeriennes)): ?>
                                         <h4 class="icon-title">
-                                            <div class="feuilles-icon icon"></div>Feuilles aériennes
+                                            <div class="feuilles-icon icon">Feuilles aériennes</div>
                                         </h4>
                                         <?php if(!empty($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])): ?>
                                             <?php
+                                            
                                             $id_photo = $feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes']["id"]?: null;
                                             $index_photos++;
                                             $credit_photo = get_field('feuilles_aeriennes_illustration_de_la_feuille_aerienne_auteur_de_la_photo')?: null;
@@ -232,8 +240,8 @@
                                             $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
                                             ?>
 
-                                            Le pétiole est <?php echo $petiole; ?>.<br>
-
+                                            Le pétiole est <?php echo $petiole; dump($petiole);?>.<br>
+                                            
                                             <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
 
                                             <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
@@ -242,12 +250,13 @@
                                                     <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                                 <?php endif; ?>
                                             <?php endif; ?>
+                                            
                                         </p>
                                     <?php endif; ?>
 
                                     <!--Feuilles à rameau stérile                                -->
                                 <?php elseif ($deux_formes_distinctes === 'plante à rameaux stériles et à rameaux fleuris distincts'): ?>
-
+                                    
                                     <?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
                                     <?php if(!empty($feuilles_des_rameaux_steriles)): ?>
                                         <h4 class="icon-title">

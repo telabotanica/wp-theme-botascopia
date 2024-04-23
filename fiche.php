@@ -463,6 +463,11 @@ get_header();
                                                         <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
+                                                <?php $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
+                                                    if (!empty($champ)){
+                                                        echo " $champ";
+                                                    }
+                                                ?>
                                             </p>
                                         </div>    
                                     

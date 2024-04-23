@@ -1137,6 +1137,7 @@
                             "save_other_choice": 0,
                             "layout": "vertical"
                         }
+                        
                     ]
                 },
                 {
@@ -1590,6 +1591,26 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_64302d84112l6",
+                    "label": "Autres caractéristiques de la partie végétative de la plante",
+                    "name": "appareil_vegetatif",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Décrivez les caractéristiques avec des phrases simples.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 35,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         },
@@ -3417,6 +3438,7 @@
                 }
             ]
         },
+        
         {
             "key": "field_6304e4f591a4b",
             "label": "Inflorescence",
@@ -5497,15 +5519,7 @@
                     "type": "text",
                     "instructions": "Si votre fleur mâle comporte d'autres caractères intéressants notez les ici",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_6304f0d3be18b",
-                                "operator": "==",
-                                "value": "présent"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
