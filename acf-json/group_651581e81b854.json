@@ -744,7 +744,7 @@
                 },
                 {
                     "key": "field_6514355a296f8",
-                    "label": "Toxicité pour les animaux non humains",
+                    "label": "Toxicité pour les non humains",
                     "name": "toxicite_pour_les_animaux_non_humains",
                     "aria-label": "",
                     "type": "checkbox",
@@ -906,7 +906,7 @@
                 },
                 {
                     "key": "field_65143af2be162",
-                    "label": "Cette espèce est observée préférentiellement",
+                    "label": "Cette espèce est observée préférentiellement dans ",
                     "name": "cette_espece_est_observee_preferentiellement",
                     "aria-label": "",
                     "type": "checkbox",
@@ -919,15 +919,15 @@
                         "id": ""
                     },
                     "choices": {
-                        "de grandes cultures, type open field": "de grandes cultures, type open field",
-                        "de prairies temporaires pâturées": "de prairies temporaires pâturées",
-                        "de prairies temporaires fauchées": "de prairies temporaires fauchées",
-                        "de prairies permanentes pâturées": "de prairies permanentes pâturées",
-                        "de prairies permanentes fauchées": "de prairies permanentes fauchées",
-                        "d'espaces de maraîchage": "d'espaces de maraîchage",
-                        "de vignes": "de vignes",
-                        "de vergers": "de vergers",
-                        "de sylvicultures": "de sylvicultures"
+                        "les grandes cultures, type open field": "les grandes cultures, type open field",
+                        "les prairies temporaires pâturées": "les prairies temporaires pâturées",
+                        "les prairies temporaires fauchées": "les prairies temporaires fauchées",
+                        "les prairies permanentes pâturées": "les prairies permanentes pâturées",
+                        "les prairies permanentes fauchées": "les prairies permanentes fauchées",
+                        "les espaces de maraîchage": "les espaces de maraîchage",
+                        "les vignes": "les vignes",
+                        "les vergers": "les vergers",
+                        "les sylvicultures": "les sylvicultures"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1006,18 +1006,10 @@
                         "id": ""
                     },
                     "choices": {
-                        "Janvier": "Janvier",
-                        "Février": "Février",
-                        "Mars": "Mars",
-                        "Avril": "Avril",
-                        "Mai": "Mai",
-                        "Juin": "Juin",
-                        "Juillet": "Juillet",
-                        "Août": "Août",
-                        "Septembre": "Septembre",
-                        "Octobre": "Octobre",
-                        "Novembre": "Novembre",
-                        "Décembre": "Décembre"
+                        "printemps": "printemps",
+                        "été": "été",
+                        "automne": "automne",
+                        "hiver":"hiver"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2604,6 +2596,44 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
+                }
+            ]
+        },
+        {
+            "key": "field_65143d6743563",
+            "label": "Sources générales",
+            "name": "sources_generales",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_65143ee643569",
+                    "label": "Référence pour les informations de cette rubrique",
+                    "name": "reference_informations_de_la_rubrique_agroecologie",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Respectez la typographie habituelle des références.\r\n\r\nLivre : NOM, Prénom. Titre. Édition. Lieu de publication : éditeur, année. Pagination\r\nChapitre : NOM, Prénom. Titre du chapitre In NOM, Prénom. Titre de l’ouvrage collectif. Lieu de publication : éditeur, année. Pagination.\r\nArticles en ligne : Noms auteurs, premère lettre du prénom. Titre. Nom du journal [en ligne]. Mois année, volume, n°, pages, DOI. [consulté le jour mois année]\r\nSite web : AUTEUR. Titre [en ligne]. Nom de l'éditeur, date de publication, date de mise à jour [date de consultation]. Disponibilité et accès",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "Source(s) :",
+                    "append": ""
                 }
             ]
         }

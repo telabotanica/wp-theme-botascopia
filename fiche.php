@@ -1228,7 +1228,13 @@ get_header();
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee')) && get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'){ ?>
                                         <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'))){ ?>
                                             <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel'))){ ?>
-                                                <p>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); }?> <?php echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.</p>
+                                                <p>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> 
+                                                <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ 
+                                                    echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); 
+                                                }?>
+                                                <?php echo ", dans ".implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> 
+                                                <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.
+                                                </p>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } ?>
@@ -1474,7 +1480,12 @@ get_header();
 
                                         <?php } ?> 
                                     <?php } ?>
-
+                                    <?php
+                                        $champ=get_field('sources_generales_reference_informations_de_la_rubrique_agroecologie');
+                                        if ($champ){
+                                    ?>
+                                        <p>Sources générales : <?php echo $champ;?></p>
+                                    <?php } ?>
                                 </p>
                             </div>
                         </div>
