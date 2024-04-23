@@ -188,6 +188,7 @@ if (isset($_GET['p'])) {
                 <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
             </div>
             <?php
+            echo "<p>Cases à cocher : choix multiples ; boutons ronds : un seul choix</p>";
             the_botascopia_module('button',[
                 'tag' => 'button',
                 'title' => 'Tout déplier',

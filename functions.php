@@ -585,3 +585,29 @@ function getRole($role){
 		break;
 	}
 }
+
+function getValueOrganesFloraux($organes){
+	$organes_tab = []; 
+	if (is_array($organes)){
+		foreach($organes as $value){
+			array_push($organes_tab,intval($value));
+		}
+		$min = min($organes_tab);
+		$max = max($organes_tab);
+		if ($min !== $max){
+			return ($min."-".$max);	
+		}else{
+			return $min;
+		}
+		
+	}else{
+		return $organes;
+	}
+}
+
+function getPhylloFieldOther($phyllo,$feuille){
+	if (str_contains($phyllo, "autre")){
+		$phyllo = str_replace("autre",$feuille['description'],$phyllo);
+	}
+	return $phyllo;
+}
