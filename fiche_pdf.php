@@ -240,7 +240,7 @@
                                             $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
                                             ?>
 
-                                            Le pétiole est <?php echo $petiole; dump($petiole);?>.<br>
+                                            Le pétiole est <?php echo $petiole; ?>.<br>
                                             
                                             <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
 
