@@ -6535,8 +6535,10 @@
                         "un fruit composé": "un fruit composé",
                         "une silique": "une silique",
                         "un caryopse": "un caryopse",
-                        "une cypsèle": "une cypsèle",
-                        "une samare": "une samare"
+                        "une crypsèle": "une cypsèle",
+                        "une samare": "une samare",
+                        "un schizocarpe":"un schizocarpe",
+                        "un cynorrhodon":"un cynorrhodon"
                     },
                     "default_value": "",
                     "return_format": "value",
