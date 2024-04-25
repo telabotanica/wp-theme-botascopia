@@ -204,7 +204,7 @@
                                     
                                     <?php if(!empty($feuilles_aeriennes)): ?>
                                         <h4 class="icon-title">
-                                            <div class="feuilles-icon icon">Feuilles aériennes</div>
+                                            <div class="feuilles-icon icon"></div>Feuilles aériennes
                                         </h4>
                                         <?php if(!empty($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])): ?>
                                             <?php
