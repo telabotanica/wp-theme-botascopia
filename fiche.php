@@ -53,10 +53,6 @@ get_header();
             $image = getPostImage($post_id)[0];
         }
 
-
-        /* <div class="round-picture" style="background-image: url('<?php echo wp_get_attachment_image_url($refs_photo[0], 'large'); ?>'); background-size: cover;"> */
-
-		
 		$index_photos = 0;
 		$fruit_photo=null;
 		$refs_photo = array();
@@ -150,11 +146,7 @@ get_header();
 						'items' => [
 							[
 								'items' => [
-									/*[
-										'text' => 'Taxonomie',
-										'href' => '#taxonomie',
-										'active' => true,
-									],*/
+									
 									[
 										'text' => 'Description morphologique',
 										'href' => '#description-morphologique',
@@ -285,7 +277,6 @@ get_header();
 							the_botascopia_module('title', [
 								'title' => __('Apparait dans les collections suivantes :', 'botascopia'),
 								'level' => 4,
-//								'modifiers' => ['class' => 'fiche-title-infos']
 							]);
 							?>
 							<ul>
@@ -431,7 +422,7 @@ get_header();
                                         <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
                                         <div class="display-fiche-container">
                                             <p>
-                                                Les feuilles sont disposées de façon <?php echo implode(' et ', $feuilles_aeriennes['phyllotaxie']);?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
+                                                Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_aeriennes['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_aeriennes); ?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
                                                 <?php
                                                 $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
                                                 $limbe = 'Le limbe %s est %s';
@@ -463,6 +454,11 @@ get_header();
                                                         <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
+                                                <?php $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
+                                                    if (!empty($champ)){
+                                                        echo " $champ";
+                                                    }
+                                                ?>
                                             </p>
                                         </div>    
                                     
@@ -470,6 +466,193 @@ get_header();
                                     <?php }elseif ('deux formes distinctes de feuilles'=== $heteromorphisme_foliaire){?>
                                         
                                         <?php $deux_formes_distinctes = get_field('deux_formes_distinctes'); ?>
+                                        <?php if ($deux_formes_distinctes === 'plante à feuilles immergées et aériennes'): ?>
+                                            
+                                            <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
+                                            <?php if(!empty($feuilles_aeriennes)): ?>
+                                                <div class="display-fiche-container">
+                                                    
+                                                        <h4 class="icon-title">
+                                                            <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles aériennes
+                                                        </h4>
+                                                        <p>
+                                                            Les feuilles sont disposées de façon <?php $phyllo = implode(' et ', $feuilles_aeriennes['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_aeriennes);?>, et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
+                                                            <?php
+                                                            $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
+                                                            $limbe = 'Le limbe %s est %s';
+                                                            $type_limbe = [];
+
+                                                            foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
+                                                                if ('simples' === $type_feuille) {
+                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                                                } else {
+                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                                                }
+                                                            }
+                                                            ?>
+
+                                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
+
+                                                            <?php
+                                                            $presence_petiole = $feuilles_aeriennes['petiole'];
+                                                            $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
+                                                            ?>
+
+                                                            Le pétiole est <?php echo $petiole; ?>.<br>
+
+                                                            <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
+
+                                                            <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                            <?php if (!empty($port_de_la_plante)): ?>
+                                                                <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                                    <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                        </p>
+                                                    
+                                                    
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php $feuilles_immergees = get_field('feuilles_immergees'); ?>
+                                            <?php if(!empty($feuilles_immergees)): ?>
+                                            <div class="display-fiche-container">
+                                                
+                                                    <h4 class="icon-title">
+                                                        <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles immergées
+                                                    </h4>
+                                                    <p>
+                                                        Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_immergees['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_immergees); ?>, et elles sont <?php echo implode(' et ', $feuilles_immergees['type_de_feuille']);?>.<br>
+                                                        <?php
+                                                        $type_feuille_multiple = 1 < count($feuilles_immergees['type_de_feuille']);
+                                                        $limbe = 'Le limbe %s est %s';
+                                                        $type_limbe = [];
+
+                                                        foreach ($feuilles_immergees['type_de_feuille'] as $type_feuille) {
+                                                            if ('simples' === $type_feuille) {
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_immergees['limbe_des_feuilles_simples']));
+                                                            } else {
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_immergees['limbe_des_folioles']));
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_immergees['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_immergees['nervation']);?>.<br>
+
+                                                        <?php
+                                                        $presence_petiole = $feuilles_immergees['petiole'];
+                                                        $petiole = 'présent' === $presence_petiole ? $feuilles_immergees['longueur_du_petiole'] . ('engainant' === $feuilles_immergees['engainant'] ? ', ' . $feuilles_immergees['engainant'] :'') : $presence_petiole;
+                                                        ?>
+
+                                                        Le pétiole est <?php echo $petiole; ?>.<br>
+
+                                                        <?php echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';?>
+
+                                                        <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                        <?php if (!empty($port_de_la_plante)): ?>
+                                                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                                <?php echo  $feuilles_immergees['feuillage'] ? 'Le feuillage est ' . $feuilles_immergees['feuillage'].'.' : '';?>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </p>
+                                                
+                                                
+                                            </div>
+                                            <?php endif; ?>
+                                        
+                                        <?php elseif ($deux_formes_distinctes === 'plante à rameaux stériles et à rameaux fleuris distincts'): ?>
+                                            
+                                            <?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
+                                            <?php if(!empty($feuilles_des_rameaux_steriles)): ?>
+                                            <div class="display-fiche-container">
+                                                
+                                                    <h4 class="icon-title">
+                                                        <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles des rameaux stériles
+                                                    </h4>
+                                                    <p>
+                                                        Les feuilles sont disposées de façon <?php $phyllo=  implode(' et ', $feuilles_des_rameaux_steriles['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_des_rameaux_steriles);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles['type_de_feuille']);?>.<br>
+                                                        <?php
+                                                        $type_feuille_multiple = 1 < count($feuilles_des_rameaux_steriles['type_de_feuille']);
+                                                        $limbe = 'Le limbe %s est %s';
+                                                        $type_limbe = [];
+
+                                                        foreach ($feuilles_des_rameaux_steriles['type_de_feuille'] as $type_feuille) {
+                                                            if ('simples' === $type_feuille) {
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples']));
+                                                            } else {
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles']));
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles['nervation']);?>.<br>
+
+                                                        <?php
+                                                        $presence_petiole = $feuilles_des_rameaux_steriles['petiole'];
+                                                        $petiole = 'présent' === $presence_petiole ? $feuilles_des_rameaux_steriles['longueur_du_petiole'] . ('engainant' === $feuilles_des_rameaux_steriles['engainant'] ? ', ' . $feuilles_des_rameaux_steriles['engainant'] :'') : $presence_petiole;
+                                                        ?>
+
+                                                        Le pétiole est <?php echo $petiole; ?>.<br>
+
+                                                        <?php echo  'présents' === $feuilles_des_rameaux_steriles['stipules'] ? $feuilles_des_rameaux_steriles['forme_et_couleur_des_stipules'] : '';?>
+
+                                                        <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                        <?php if (!empty($port_de_la_plante)): ?>
+                                                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                                <?php echo  $feuilles_des_rameaux_steriles['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_steriles['feuillage'].'.' : '';?>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </p>
+                                                
+                                            </div>
+                                            <?php endif; ?>
+
+                                            <?php $feuilles_des_rameaux_fleuris = get_field('feuilles_des_rameaux_fleuris'); ?>
+                                            <?php if(!empty($feuilles_des_rameaux_fleuris)): ?>
+                                            <div class="display-fiche-container">
+                                                
+                                                    <h4 class="icon-title">
+                                                        <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles des rameaux fleuris
+                                                    </h4>
+                                                    <p>
+                                                        Les feuilles sont disposées de façon <?php $phyllo = implode(' et ', $feuilles_des_rameaux_fleuris['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_des_rameaux_fleuris);?>, et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['type_de_feuille']);?>.<br>
+                                                        <?php
+                                                        $type_feuille_multiple = 1 < count($feuilles_des_rameaux_fleuris['type_de_feuille']);
+                                                        $limbe = 'Le limbe %s est %s';
+                                                        $type_limbe = [];
+
+                                                        foreach ($feuilles_des_rameaux_fleuris['type_de_feuille'] as $type_feuille) {
+                                                            if ('simples' === $type_feuille) {
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_feuilles_simples']));
+                                                            } else {
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_folioles']));
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['nervation']);?>.<br>
+
+                                                        <?php
+                                                        $presence_petiole = $feuilles_des_rameaux_fleuris['petiole'];
+                                                        $petiole = 'présent' === $presence_petiole ? $feuilles_des_rameaux_fleuris['longueur_du_petiole'] . ('engainant' === $feuilles_des_rameaux_fleuris['engainant'] ? ', ' . $feuilles_des_rameaux_fleuris['engainant'] :'') : $presence_petiole;
+                                                        ?>
+
+                                                        Le pétiole est <?php echo $petiole; ?>.<br>
+
+                                                        <?php echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';?>
+
+                                                        <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                        <?php if (!empty($port_de_la_plante)): ?>
+                                                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
+                                                                <?php echo  $feuilles_des_rameaux_fleuris['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris['feuillage'].'.' : '';?>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </p>
+                                            </div>
+                                            <?php endif; ?>
+
+                                        <?php endif; ?>
+
                                     
                                     <?php } ?>
                                 
@@ -609,27 +792,28 @@ get_header();
                                             </div>
                                             <div>
                                                 <p>
-                                                    Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>.
+                                                    
                                                     <?php if('présent' !== $fleur_male['perianthe']) { ?>
-                                                        Le périanthe est absent.
+                                                        Le périanthe est absent ; 
                                                     <?php }else{ ?>
                                                         <?php
+                                                        $perianthe="";
+                                                        echo "Fleur ".implode(' et ', $fleur_male['symetrie']).".";
                                                         if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
-                                                            $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
+                                                            $tepales = $fleur_male['perigone'];
+                                                            $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
                                                         } else if('sépales' === $fleur_male['differenciation_du_perianthe']){
                                                             
-                                                            
-                                                            $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) '.$fleur_male['soudure_du_calice'].", ";
+                                                            $sepales = $fleur_male['calice'];
+                                                            $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_male['soudure_du_calice'].", ";
                                                         
                                                         
                                                         } else if('pétales' === $fleur_male['differenciation_du_perianthe']){
                                                         
-                                                            if (getType($fleur_male['corolle']) == 'string'){
-                                                                $corolle = $fleur_male['corolle'];
-                                                            } else {
-                                                                $corolle = implode(' ou ', $fleur_male['corolle']);
-                                                            }
-                                                            $perianthe = $corolle . ' pétale(s), ';
+                                                            
+                                                            $corolle = $fleur_male['corolle'];
+                                                                
+                                                            $perianthe = getValueOrganesFloraux($corolle) . ' pétale(s), ';
                                                             
                                                         }else{
                                                             $soudure_corolle = '';
@@ -640,24 +824,21 @@ get_header();
                                                                     $soudure_corolle = implode(' ou ', $fleur_male['soudure_du_calice_et_de_la_corolle']);
                                                                 }
                                                             }
-
-                                                            if (getType($fleur_male['corolle']) == 'string'){
-                                                                $corolle = $fleur_male['corolle'];
-                                                            } else {
-                                                                $corolle = implode(' ou ', $fleur_male['corolle']);
-                                                            }
-                                                            $perianthe = implode(' ou ', $fleur_male['calice']) . ' sépale(s) ' .
+  
+                                                            $corolle = $fleur_male['corolle'];
+                                                            $calice = $fleur_male['calice'];
+                                                            $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
                                                             $fleur_male['soudure_du_calice'] . ' et ' .
-                                                            $corolle . ' pétale(s) ' . $soudure_corolle
-                                                            . ' ; ';
+                                                            getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle . ' ; ';
+                                                        
                                                         }
                                                         ?>
                                                         Le périanthe est composé de <?php echo $perianthe;
                                                     } ?>
                                                     
                                                     <?php if(!empty($fleur_male['androcee'])){ ?>
-                                                        androcée composé de <?php echo implode(' ou ' , $fleur_male['androcee']); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ;
-                                                        <?php echo ('androcée soudé à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
+                                                        androcée composée de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee'];?> ;
+                                                        <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
                                                             ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                         <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                                                         La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
@@ -704,27 +885,25 @@ get_header();
                                         </div>
                                         <div>
                                             <p>
-                                                Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?>.
+                                                
                                                 <?php if('présent' !== $fleur_femelle['perianthe']) { ?>
-                                                    Le périanthe est absent.
+                                                    Le périanthe est absent ; 
                                                 <?php } else { ?>
+                                                    Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); $perianthe=""?>.
                                                     <?php
+                                                   
                                                     if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
-                                                        $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
+                                                        $tepales = $fleur_femelle['perigone'];
+                                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
                                                     } else if('sépales' === $fleur_femelle['differenciation_du_perianthe']){
                                                         
-                                                        
-                                                        $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) '.$fleur_femelle['soudure_du_calice'].", ";
-                                                    
+                                                        $calice = $fleur_femelle['calice'];
+                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) '.$fleur_femelle['soudure_du_calice'].", ";
                                                     
                                                     } else if('pétales' === $fleur_femelle['differenciation_du_perianthe']){
                                                     
-                                                        if (getType($fleur_femelle['corolle']) == 'string'){
-                                                            $corolle = $fleur_femelle['corolle'];
-                                                        } else {
-                                                            $corolle = implode(' ou ', $fleur_femelle['corolle']);
-                                                        }
-                                                        $perianthe = $corolle . ' pétale(s), ';
+                                                        $corolle = $fleur_femelle['corolle'];
+                                                        $perianthe = getValueOrganesFloraux($corolle) . ' pétale(s), ';
                                                         
                                                     }else{
                                                         $soudure_corolle = '';
@@ -736,14 +915,11 @@ get_header();
                                                             }
                                                         }
 
-                                                        if (getType($fleur_femelle['corolle']) == 'string'){
-                                                            $corolle = $fleur_femelle['corolle'];
-                                                        } else {
-                                                            $corolle = implode(' ou ', $fleur_femelle['corolle']);
-                                                        }
-                                                        $perianthe = implode(' ou ', $fleur_femelle['calice']) . ' sépale(s) ' .
+                                                        $corolle = $fleur_femelle['corolle'];
+                                                        $calice = $fleur_femelle['calice'];
+                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
                                                         $fleur_femelle['soudure_du_calice'] . ' et ' .
-                                                        $corolle . ' pétale(s) ' . $soudure_corolle
+                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle
                                                         . ' ; ';
                                                     }
                                                     ?>
@@ -751,7 +927,7 @@ get_header();
                                                 } ?>
                                                 
                                                 <?php if(!empty($fleur_femelle['gynecee'])): { ?>
-                                                    gynécée composé de <?php echo implode(' ou ' , $fleur_femelle['gynecee']); ?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
+                                                    gynécée composée de <?php $carpelles = $fleur_femelle['gynecee']; echo getValueOrganesFloraux($carpelles);?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
                                                     ovaire <?php echo $fleur_femelle['ovaire']; ?>.
                                                     La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
                                                     <?php if ('pubescente' === $fleur_femelle['pubescence']) {
@@ -797,26 +973,25 @@ get_header();
                                         <div>
                                             
                                             <p>
-                                                Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); $perianthe="";?>.
+                                                <?php  $perianthe="";?>
                                                 <?php if('présent' !== $fleur_bisexuee['perianthe']){ ?>
-                                                    Le périanthe est absent.
-                                                <?php } else if('sépales' === $fleur_bisexuee['composition_du_perianthe']){
+                                                    Le périanthe est absent ; 
+                                                <?php } else {
+                                                    $perianthe="";
+                                                    echo "Fleur ".implode(' et ', $fleur_bisexuee['symetrie']).".";
+                                                    if('sépales' === $fleur_bisexuee['composition_du_perianthe']){
+                                                        $sepales = $fleur_bisexuee['calice'];
+                                                        echo $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_bisexuee['soudure_du_calice'].", ";
                                                         
-                                                        
-                                                        $perianthe = implode(' ou ', $fleur_bisexuee['calice']) . ' sépale(s) '.$fleur_bisexuee['soudure_du_calice'].", ";
-                                                    
-                                                    
                                                     } else if('pétales' === $fleur_bisexuee['composition_du_perianthe']){
-                                                    
-                                                        if (getType($fleur_bisexuee['corolle']) == 'string'){
-                                                            $corolle = $fleur_bisexuee['corolle'];
-                                                        } else {
-                                                            $corolle = implode(' ou ', $fleur_bisexuee['corolle']);
-                                                        }
-                                                        $perianthe = $corolle . ' pétale(s), ';
+                                
+                                                        $corolle = $fleur_bisexuee['corolle'];
+                                                        
+                                                        $perianthe = getValueOrganesFloraux($corolle) . ' pétale(s), ';
                                                         
                                                     }else if("tépales"=== $fleur_bisexuee['composition_du_perianthe']){
-                                                        $perianthe = implode(' ou ', $fleur_bisexuee['perigone']) . ' tépales ' .
+                                                        $tepales = $fleur_bisexuee['perigone'];
+                                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' .
                                                         $fleur_bisexuee['soudure_du_perigone'] . ' ; ';
 
                                                     }else{
@@ -829,25 +1004,25 @@ get_header();
                                                             }
                                                         }
 
-                                                        if (getType($fleur_bisexuee['corolle']) == 'string'){
-                                                            $corolle = $fleur_bisexuee['corolle'];
-                                                        } else {
-                                                            $corolle = implode(' ou ', $fleur_bisexuee['corolle']);
-                                                        }
-                                                        $perianthe = implode(' ou ', $fleur_bisexuee['calice']) . ' sépale(s) ' .
+                                                        $corolle = $fleur_bisexuee['corolle'];
+                                                        $calice = $fleur_bisexuee['calice'];
+                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
                                                         $fleur_bisexuee['soudure_du_calice'] . ' et ' .
-                                                        $corolle . ' pétale(s) ' . $soudure_corolle
+                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle
                                                         . ' ; ';
-                                                    }?>
-                                                Le périanthe est composé de <?php echo $perianthe;?>
+                                                    }
+                                                   
+                                                    echo "Le périanthe est composé de $perianthe.";
+                                                }    ?>
+                                               
                                                 <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
-                                                    androcée composé de <?php echo implode(' ou ' , $fleur_bisexuee['androcee']); ?> étamine(s)
-                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                                    androcée composée de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines);?> étamine(s)
+                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                     <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
                                                 } ?>
                                                 <?php endif; ?>
                                                 <?php if(!empty($fleur_bisexuee['gynecee'])): { ?>
-                                                    gynécée composé de <?php echo implode(' ou ' , $fleur_bisexuee['gynecee']); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
+                                                    gynécée composée de <?php $carpelles =  $fleur_bisexuee['gynecee']; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
                                                     ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
                                                 <?php } ?>
                                                 <?php endif; ?>
@@ -977,7 +1152,7 @@ get_header();
                         <?php } ?>
                         
                         <?php if (!empty(get_field('dispersion'))){?>
-                            dispersion des graines et des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p>
+                            dispersion des graines ou des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p>
                         <?php }?>
                     
                     <?php } ?>
@@ -1018,7 +1193,7 @@ get_header();
                                     <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
-                                            <p><?php echo $repartition_mondiale; ?></p>
+                                            <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>
                                         <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
@@ -1236,7 +1411,13 @@ get_header();
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee')) && get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'){ ?>
                                         <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'))){ ?>
                                             <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel'))){ ?>
-                                                <p>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); }?> <?php echo implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.</p>
+                                                <p>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> 
+                                                <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ 
+                                                    echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); 
+                                                }?>
+                                                <?php echo ", dans ".implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> 
+                                                <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.
+                                                </p>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } ?>
@@ -1482,7 +1663,12 @@ get_header();
 
                                         <?php } ?> 
                                     <?php } ?>
-
+                                    <?php
+                                        $champ=get_field('sources_generales_reference_informations_de_la_rubrique_agroecologie');
+                                        if ($champ){
+                                    ?>
+                                        <p>Sources générales : <?php echo $champ;?></p>
+                                    <?php } ?>
                                 </p>
                             </div>
                         </div>

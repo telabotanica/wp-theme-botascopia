@@ -708,3 +708,24 @@ input:checked + .slider .off
 .selector select{
   border-radius: 15px;
 }
+/* ******************************/
+/* * responsive fiche preview * */
+/* ******************************/
+
+@media screen and (max-width: 700px) {
+  #grille {
+    grid-template-columns:95%;
+  }
+  #feuilles{
+    display:block;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+  #grille {
+    grid-template-columns:47% 47%;
+  }
+  #feuilles{
+    display:block;
+  }
+}
