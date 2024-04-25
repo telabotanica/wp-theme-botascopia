@@ -702,9 +702,7 @@
                 <?php endif; ?>
 <!--Préférence physico chimiques-->     
                 <div class="characteristic">
-                    <h4 class="icon-title">
-                        Préférences physico-chimiques
-                    </h4>
+                    
                     <?php
                         $champs = [];
                         array_push($champs,"lumiere");
@@ -728,6 +726,9 @@
                         if ($has_field){
                             $champs_agros_eco = getChampsAgroEcoPourSvg();
                             genererSVG(get_the_title(), $champs_agros_eco); ?>
+                            <h4 class="icon-title">
+                                Préférences physico-chimiques
+                            </h4>
                             <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
                             <?php
                         }
