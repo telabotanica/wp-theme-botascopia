@@ -217,4 +217,5 @@ get_header();
 <?php
 get_footer();
 ?>
+<script src='<?php echo (get_template_directory_uri() . '/assets/scripts/collection.js'); ?>'></script>
 

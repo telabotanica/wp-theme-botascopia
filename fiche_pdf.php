@@ -724,15 +724,16 @@
                                 break;
                             }
                         }
-                       
+                        
                         if ($has_field){
                             $champs_agros_eco = getChampsAgroEcoPourSvg();
-                            genererSVG(get_the_title(), $champs_agros_eco);
-
+                            genererSVG(get_the_title(), $champs_agros_eco); ?>
+                            <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+                            <?php
                         }
                       
                     ?>
-                    <img class="graph-agro-eco" width="300" height="250" src="<?php echo (wp_upload_dir()['baseurl']. "/graphs_agro_eco/".get_the_title().".svg")?>">
+                    
                 </div>
             
 <!--Ne pas confondre-->

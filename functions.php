@@ -592,13 +592,18 @@ function getValueOrganesFloraux($organes){
 		foreach($organes as $value){
 			array_push($organes_tab,intval($value));
 		}
-		$min = min($organes_tab);
-		$max = max($organes_tab);
-		if ($min !== $max){
-			return ($min."-".$max);	
+		if (!empty($organes_tab)){
+			$min = min($organes_tab);
+			$max = max($organes_tab);
+			if ($min !== $max){
+				return ($min."-".$max);	
+			}else{
+				return $min;
+			}
 		}else{
-			return $min;
+			return "";
 		}
+		
 		
 	}else{
 		return $organes;

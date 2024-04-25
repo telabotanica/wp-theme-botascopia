@@ -267,7 +267,7 @@ get_header();
 					
 					<div class="fiche-infos">
 						<div class="single-fiche-details">
-							<div class="single-fiche-detail">Statut: <?php echo $status ?></div>
+							<div class="single-fiche-detail">Statut : <?php echo $status ?></div>
 							<div class="single-fiche-detail">Publié le <?php echo $post_date ?></div>
 							<div class="single-fiche-detail">Par <?php echo $post_author ?></div>
 							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur ?></div>
@@ -332,7 +332,7 @@ get_header();
                                 'level' => 2,
                             ]);
                             ?>
-                            <p><?php the_field('description_vulgarisee'); ?>.</p>
+                            <p><?php the_field('description_vulgarisee'); ?></p>
                         </div>
                     <?php } ?>
                 </div>
@@ -368,9 +368,9 @@ get_header();
                                             }
                                         }
                                         ?>
-                                        La tige aérienne est <?php echo $tige['tige_aerienne'];?>
+                                        La tige aérienne est <?php echo trim($tige['tige_aerienne']).",";?>
                                         <?php if ($tige['tige_aerienne'] != 'non visible'){?> 
-                                            ,<?php echo $type_tige;?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
+                                            <?php echo" $type_tige";?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
                                             <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
                                             <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))){ ?>
                                                 <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
@@ -841,7 +841,7 @@ get_header();
                                                         <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
                                                             ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                         <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
-                                                        La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
+                                                        la couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
                                                         <?php if ('pubescente' === $fleur_male['pubescence']) {
                                                             echo "La fleur est ".$fleur_male['pubescence'];?>
                                                             <?php if (!empty($fleur_male['localisation_des_poils'])) {
@@ -1132,7 +1132,7 @@ get_header();
                             <p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?> .</p> 
                         <?php } ?>
                         <?php if (!empty(get_field('affinites_ecologiques'))){?>
-                            <p>Affinités écologiques : <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";?> .</p>
+                            <p>Affinités écologiques : <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";?>.</p>
                         <?php } ?>
                             
                         <?php if (!empty(get_field('habitat_preferentiel'))){?> 
@@ -1188,9 +1188,9 @@ get_header();
                                 </div>
                                 <?php if (!empty(get_field('cultivee_en_france'))) { ?>
                                     <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                                    <p>En France la plante est présente <?php echo $cultivee_en_france; ?>,<?php echo ("à l'état sauvage" === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                    <p>En France, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
-                                    <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
+                                    <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>
@@ -1411,11 +1411,11 @@ get_header();
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee')) && get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee') != 'rarement ou jamais dans les cultures et leurs abords'){ ?>
                                         <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'))){ ?>
                                             <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel'))){ ?>
-                                                <p>Cette espèce est observée <?php echo get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee');?> 
+                                                <p>Cette espèce est observée <?php echo(get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee').", ");?> 
                                                 <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement'))){ 
-                                                    echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')); 
+                                                    echo implode(", ",get_field('adaptations_aux_pratiques_de_culture_precision_-_cette_espece_est_observee_preferentiellement')).", "; 
                                                 }?>
-                                                <?php echo ", dans ".implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> 
+                                                <?php echo "dans ".implode(', ', get_field('adaptations_aux_pratiques_de_culture_cette_espece_est_observee_preferentiellement'));?> 
                                                 <?php echo get_field('adaptations_aux_pratiques_de_culture_type_de_culture_preferentiel');?>.
                                                 </p>
                                             <?php } ?>
@@ -1423,7 +1423,7 @@ get_header();
                                     <?php } ?>
 
                                     <?php
-                                        $levee="Sa levée a lieu en : <br>"; 
+                                        $levee="Sa levée a lieu ces saisons-là : <br>"; 
                                         $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee');
                                         if (!empty($champ)){
                                     ?>
