@@ -1718,23 +1718,9 @@ get_header();
                             </div>
                             <div id="grille">
                                 <?php    
-                                    $search_term='bdtfx-nn-%';
-
-                                    function title_filter($search_term, &$wp_query){
-                                        global $wpdb;
-                                        $where = "";
-                                       
-                                        if($search_term = $wp_query->get( 'search_prod_title' )){
-                                            /*using the esc_like() in here instead of other esc_sql()*/
-                                            $search_term = $wpdb->esc_like($search_term);
-                                            $search_term = $search_term . '%\'';
-                                            $where = ' AND ' . $wpdb->posts . '.post_title LIKE '.$search_term ;
-                                        }
+                                    $search_term="bdtfx-nn-";
                                     
-                                        return $where;
-                                    }
-                                    $where = title_filter($search_term,$wp_query);
-                                    $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','s' => $search_term, 'post_status' =>'publish' ) );
+                                    $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','wpse18703_title' => $search_term, 'post_status' =>'publish' ) );
                                     
                                     if (have_posts()) : while ( $query->have_posts() ) : $query->the_post();
                                         $name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
