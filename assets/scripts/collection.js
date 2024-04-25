@@ -3,7 +3,8 @@ function displayPopup(elem,ok_id){
     if (attribute !== "fiche-non-reserve"){
         var author= elem.getAttribute("data-author");
         var role = elem.getAttribute("data-role");
-        if (role === "contributor"){
+        var statut = elem.getAttribute("data-statut");
+        if (role === "contributor" && statut !== "complet"){
             popupMessage("Cette fiche est en train d'être rédigée par "+author+". Elle sera accessible bientôt.",ok_id);
         }
         

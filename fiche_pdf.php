@@ -683,13 +683,13 @@
                         <h3 class="icon-title">
                             <div class="ecologie-icon icon"></div>écologie
                         </h3>
-                        <?php if (!empty(get_field('amplitude_altitudinale'))) :?> <p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?> .</p> <?php endif; ?>
-						<?php if (!empty(get_field('affinites_ecologiques'))) :?><p>Affinités écologiques : <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";
-						?> .</p><?php endif; ?>
+                        <?php if (!empty(get_field('amplitude_altitudinale'))) :?><p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?>.<?php endif; ?>
+						<?php if (!empty(get_field('affinites_ecologiques'))) :?>Affinités écologiques : <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";
+						?>.<?php endif; ?>
 						
-						<?php if (!empty(get_field('habitat_preferentiel'))) :?> <p>Habitat(s) : <?php the_field('habitat_preferentiel'); ?>.</p> <?php endif; ?>
+						<?php if (!empty(get_field('habitat_preferentiel'))) :?>Habitat(s) : <?php the_field('habitat_preferentiel'); ?>.<?php endif; ?>
 						
-						<?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?> <p>Plante : <br><?php endif; ?>
+						<?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) :?>Plante : <?php endif; ?>
 						
 						<?php if (!empty(get_field('systeme_de_reproduction'))) :?> Système de reproduction <?php
 							the_field('systeme_de_reproduction'); ?>, <?php endif; ?>
