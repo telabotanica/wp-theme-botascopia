@@ -10,7 +10,6 @@ get_header();
 <?php
 $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 $form = 12;
-
 $groups = acf_get_field_groups();
 $formulaires = [];
 
@@ -74,7 +73,7 @@ $current_user = wp_get_current_user();
 
 if (isset($_GET['p'])) {
     $titre_du_post = $_GET['p'];
-
+   
     if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
 
         query_posts(array(
@@ -92,16 +91,33 @@ if (isset($_GET['p'])) {
             'showposts' => 1
         ));
     }
-
+  
     while (have_posts()) : the_post(); ?>
     
     <?php
     the_botascopia_module('cover',[
         'subtitle' => get_post_meta(get_the_ID(), 'nom_vernaculaire', true).' - '.get_post_meta(get_the_ID(), 'famille',true),
-        'title' => get_post_meta(get_the_ID(), 'nom_scientifique', true),
+        'title' => "<i>".get_post_meta(get_the_ID(), 'nom_scientifique', true)."</i>",
         'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
         'modifiers' =>['class' => 'fiche-cover']
     ]);
+
+    if (get_field("field_643027826f24d")){
+        $fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+    }
+
+    if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+        $fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+        
+        $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
+    } else {
+        $image = getPostImage(get_the_ID())[0];
+    }
+
+    echo ('
+			<img src= '.$image .' class="fiche-image">
+		');
+
     ?>
     <?php endwhile;
     $auteur_autorise = false;
@@ -157,6 +173,9 @@ if (isset($_GET['p'])) {
         ?>
         
         <div class="formulaire-top-page">
+            <div class="floating-button-div">
+                <button class="fb"></button>
+            </div>    
             <div class="formulaire-details">
                 <?php
                 the_botascopia_module('title',[
@@ -169,6 +188,7 @@ if (isset($_GET['p'])) {
                 <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
             </div>
             <?php
+            echo "<p>Cases à cocher : choix multiples ; boutons ronds : un seul choix</p>";
             the_botascopia_module('button',[
                 'tag' => 'button',
                 'title' => 'Tout déplier',
@@ -203,22 +223,6 @@ if (isset($_GET['p'])) {
                 'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title(),
             );
             $formsId[] = $id;
-
-            /*if ($titre == "Description morphologique") {
-
-                the_botascopia_component('inner_accordion',
-                    [
-                        'title_level' => 2,
-                        'items' => [
-                            [
-                                'content' => $args,
-                                'title' => $titre,
-                            ],
-                        ],
-                        'modifiers' => ['id' => 'inner_accordion' . $id]
-                    ]
-                );
-            }*/
             
             the_botascopia_component('accordion',
                  [
@@ -255,7 +259,7 @@ if (isset($_GET['p'])) {
                 'tag' => 'a',
                 'href' => '/collections',
                 'title' => 'Retour aux collections',
-                'text' => 'retour aux collection',
+                'text' => 'retour aux collections',
                 'modifiers' => 'purple-button'
             ]);
             
@@ -277,14 +281,14 @@ if (isset($_GET['p'])) {
                 'modifiers' => 'green-button outline',
             ]);
             
-//            the_botascopia_module('button',[
-//                'tag' => 'button',
-//                'title' => 'Télécharger en pdf',
-//                'text' => 'Télécharger en pdf',
-//                'modifiers' => 'green-button',
-//                'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
-//                'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
-//            ]);
+            the_botascopia_module('button',[
+                'tag' => 'button',
+                'title' => 'Télécharger en pdf',
+                'text' => 'Télécharger en pdf',
+                'modifiers' => 'green-button',
+                'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
+                'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
+            ]);
 
             if ($fiche_complete){
                 the_botascopia_module('button',[
@@ -414,7 +418,7 @@ if (isset($_GET['p'])) {
                     'tag' => 'a',
                     'href' => '/collections',
                     'title' => 'Retour aux collections',
-                    'text' => 'retour aux collection',
+                    'text' => 'retour aux collections',
                     'modifiers' => 'purple-button'
                 ]);
                 
@@ -464,21 +468,11 @@ if (isset($_GET['p'])) {
 
                     ]);
                 ?>
+                 
             </div>
             <?php
         }
-    } else {
-        /*
-        the_botascopia_module('button',[
-            'tag' => 'button',
-            'title' => 'Devenir auteur',
-            'text' => 'Devenir auteur',
-            'modifiers' => 'green-button',
-            'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=1'"]
-        ]);
-        */
-//        echo "Vous n'êtes pas l'auteur de cette fiche";
-    }
+    } 
 } else {
     echo "URL inexistante, vérifier celui de la fiche recherchée";
 }
@@ -491,3 +485,4 @@ acf_enqueue_uploader();
 <?php
 get_footer();
 ?>
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/formulaire.js'); ?>" ></script>

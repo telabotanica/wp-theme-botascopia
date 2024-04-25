@@ -27,18 +27,6 @@ req.keys().forEach(req);
 
 //Enregistre les collections favorites
 document.addEventListener('DOMContentLoaded', function() {
-// to find overflow
-//     var docWidth = document.documentElement.offsetWidth;
-//
-//     [].forEach.call(
-//         document.querySelectorAll('*'),
-//         function(el) {
-//             if (el.offsetWidth > docWidth) {
-//                 console.log(el);
-//             }
-//         }
-//     );
-
     // Bouton retour renvoyant à la page précédente
     if (document.querySelector('.return-button')){
         document.querySelector('.return-button').addEventListener('click', function(e) {
@@ -63,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onResizeFooter();
     popupAjouterParticipant();
     filtrerGlossaire();
+
 });
 
 function setFavoris(selector, type){
@@ -188,9 +177,11 @@ function popupReserverFiche(){
                     var reserver = document.getElementById('reserver-fiche');
                     var annuler = document.getElementById('annuler');
                     if (event.target == reserver) {
-                        popup.parentNode.removeChild(popup);
+                        if (popup.parentNode){
+                            popup.parentNode.removeChild(popup);
+                        }
+                        
                         document.querySelector('#content').classList.remove('blur-background');
-
                         // Renvoie vers le formulaire et changement de propriétaire
                         window.location.href = '/formulaire/?p=' + ficheTitle + '&a=1';
                     }
@@ -331,7 +322,8 @@ function popupAjouterFiche() {
             var popupAjoutContenu = document.createElement(`div`);
             popupAjoutContenu.innerHTML = '';
             popupAjoutContenu.innerHTML = "<h2>AJOUTER DES FICHES</h2><p" +
-                "><i>Les fiches avec une photos sont celles qui sont déjà au moins en partie remplie, voire validée et publiée.</i></p><div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
+                "><i>Les fiches avec une photo sont déjà au moins en partie complétées, voire validées et" +
+                " publiées.</i></p><div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
                 "<input type='text' class='ajout-fiches-search-bar search-box-input'" + " placeholder='Rechercher" +
                 " une fiche'>" +
                 // "<span class='search-box-button'><svg aria-hidden=\"true\" role=\"img\" class=\"icon icon-search \">" +
@@ -957,13 +949,14 @@ function popupAjouterParticipant() {
             popupAjoutContenu.innerHTML = '';
             popupAjoutContenu.innerHTML = "<h2>AJOUTER DES PARTICIPANTS</h2>" +
                 "<div class='popup-ajout-fiches-header'><div class='search-box-wrapper search-box-ajout-fiche'>" +
-                "<input type='email' id='email-a-ajouter' class='ajout-participants-search-bar search-box-input'" + " placeholder='etudiant@botascopia.com'>" +
+                "<input type='text' id='email-a-ajouter' class='ajout-participants-search-bar search-box-input'" + " placeholder='etudiant@botascopia.com'>" +
                 "</div>" +
                 "<div id='ajouter-participant' class='popup-button-ajout-participant'>" +
                 "<a  class='button green-button' ><span" +
                 " class='button-text' >Inviter par email</span></a>" +
                 "</div>" +
                 "</div>" +
+                "<div><p>Vous pouvez taper plusieurs adresses séparées par un ';' pour les ajouter en une seule fois.</p></div>" +
                 "<div class='popup-ajoutParticipants-display-buttons'>" +
                 "<a class='button purple-button outline'><span class='button-text'" +
                 " id='annuler-ajout-participants'>Annuler</span></a>" +
@@ -982,18 +975,13 @@ function popupAjouterParticipant() {
             let emailInput = document.querySelector('#email-a-ajouter');
 
             emailInputButton.addEventListener('click', function (event) {
-                const email = emailInput.value.trim();
-                emailInput.value = '';
-                participantsEmails.push(email);
-                displaySelectedEmails(participantsEmails);
+                
+                displayEmails(emailInput,participantsEmails);
             })
 
             emailInput.addEventListener('keydown', (event) => {
                 if (event.key === "Enter") {
-                    const email = emailInput.value.trim();
-                    emailInput.value = '';
-                    participantsEmails.push(email);
-                    displaySelectedEmails(participantsEmails);
+                    displayEmails(emailInput,participantsEmails);
                 }
             })
 
@@ -1036,6 +1024,33 @@ function popupAjouterParticipant() {
         });
     }
 }
+
+function displayEmails(emailInput,participantsEmails){
+    const email = emailInput.value.trim();
+    emailInput.value = '';
+    
+    if (email.includes(';')){
+        var emails = email.split(";");
+        emails.forEach(function(element){
+            if (validateEmail(element)){
+                participantsEmails.push(element)
+            } 
+        });
+    }else{
+        if (validateEmail(element)){
+            participantsEmails.push(email);
+        }
+    }
+    displaySelectedEmails(participantsEmails);
+}
+
+const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
 function displaySelectedEmails(participantsEmails){
     let existingContent = document.querySelector('.popup-content-email');
@@ -1195,4 +1210,6 @@ function filtrerGlossaire(){
             });
         });
     }
+
 }
+

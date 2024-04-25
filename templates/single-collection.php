@@ -14,6 +14,7 @@ get_header();
 		
 		<?php
 		$post = get_queried_object();
+        $securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 		if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection')) :
 			$collectionFavorites = get_user_meta(wp_get_current_user()->ID, 'favorite_collection');
 		endif;
@@ -94,38 +95,40 @@ get_header();
 				<div class="single-collection-buttons" id="collection-<?php echo $post_id ?>"
 					 data-user-id="<?php echo $userId ?>"
 					 data-category-id="<?php echo $post_id ?>">
+
+                    <?php if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search($post_id, $collectionFavorites[0])) !== false) :
+                        //changer le bouton favoris si collection dans favoris ou pas
+                        $icone = ['icon' => 'star', 'color' => 'blanc'];
+                        $modifiers = 'green-button';
+                    else:
+                        $icone = ['icon' => 'star-outline', 'color' => 'vert-clair'];
+                        $modifiers = 'green-button outline';
+                    endif;
+
+                    the_botascopia_module('button', [
+                        'tag' => 'a',
+                        'href' => '#',
+                        'title' => 'Favoris',
+                        'text' => 'Favoris',
+                        'modifiers' => $modifiers,
+                        'icon_after' => $icone,
+                        'extra_attributes' => ['id' => 'fav-'.$post_id]
+                    ]);
+                    ?>
 					
 					<?php the_botascopia_module('button', [
 						'tag' => 'a',
 						'href' => '#',
 						'title' => 'Téléchargez',
 						'text' => 'Téléchargez',
-						'modifiers' => 'green-button',
+						'modifiers' => 'green-button hidden',
+                        'icon_after' => ['icon' => 'pdf', 'color'=>'blanc']
 					]); ?>
-					
-					<?php if (is_user_logged_in() && get_user_meta(wp_get_current_user()->ID, 'favorite_collection') && ($key = array_search($post_id, $collectionFavorites[0])) !== false) :
-						//changer le bouton favoris si collection dans favoris ou pas
-						$icone = ['icon' => 'star', 'color' => 'blanc'];
-						$modifiers = 'green-button';
-					else:
-						$icone = ['icon' => 'star-outline', 'color' => 'vert-clair'];
-						$modifiers = 'green-button outline';
-					endif;
-					
-					the_botascopia_module('button', [
-						'tag' => 'a',
-						'href' => '#',
-						'title' => 'Favoris',
-						'text' => 'Favoris',
-						'modifiers' => $modifiers,
-						'icon_after' => $icone,
-						'extra_attributes' => ['id' => 'fav-'.$post_id]
-					]);
-					
-					?>
-				</div>
-				<div class="single-collection-export-format">
-					Formats : PDF (60Mo)
+
+                    <div class="single-collection-export-format hidden">
+                        Formats : PDF (60Mo)
+                    </div>
+
 				</div>
 				
 				<a class="return-button return-button-collection" href="#">
@@ -214,4 +217,5 @@ get_header();
 <?php
 get_footer();
 ?>
+<script src='<?php echo (get_template_directory_uri() . '/assets/scripts/collection.js'); ?>'></script>
 

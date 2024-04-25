@@ -18,7 +18,7 @@
 			if ($legende){
 				$licence = $legende .', licence CC-BY-SA';
 			}
-			
+
 			the_botascopia_module('cover', [
 				'title'    => 'Bienvenue sur Botascopia',
 				'subtitle' => $description_page ?? esc_html($description_page),
@@ -32,6 +32,7 @@
 				'licence' => $licence
 			]);
 			?>
+        
         <?php if ( have_posts() ) :
             // Start the loop.
             while ( have_posts() ) : the_post();
@@ -63,8 +64,9 @@
 	$securise = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 
         ?>
-
+        <input id="path-home" class="hidden" value='<?php echo home_url(); ?>'/>
         </main><!-- .site-main -->
     </div><!-- .content-area -->
 
 <?php get_footer(); ?>
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/home.js'); ?>" ></script>

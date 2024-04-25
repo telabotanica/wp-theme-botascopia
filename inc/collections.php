@@ -634,7 +634,7 @@ function loadFiches($post_id, $paged){
 			'orderby'        => 'meta_value',
 			'meta_key'       => 'nom_scientifique',
 		));
-
+	
 	if ($connected_posts->have_posts()) :
 		while ($connected_posts->have_posts()) : $connected_posts->the_post();
 			// Afficher ici les informations sur chaque article de type "post" connecté
@@ -646,6 +646,7 @@ function loadFiches($post_id, $paged){
 			$image = getFicheImage($id);
 			
 			$fiche_author_id = get_post_field('post_author', $id);
+			$author_name=get_the_author_meta('display_name', $fiche_author_id);
 			$fiche_author_info = get_userdata($fiche_author_id);
 			$fiche_author_roles = $fiche_author_info->roles[0];
 			
@@ -705,7 +706,7 @@ function loadFiches($post_id, $paged){
 				'icon' => $icone,
 				'popup' => $popupClass,
 				'id' => 'fiche-'.$id,
-				'extra_attributes' => ['data-user-id' => $current_user_id, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle]
+				'extra_attributes' => ['data-user-id' => $current_user_id, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle, 'data-author'=> $author_name, 'data-role'=>$current_user_role, 'data-statut'=>$ficheStatusText]
 			]);
 			echo '</div>';
 		endwhile;

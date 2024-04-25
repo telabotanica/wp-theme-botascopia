@@ -1,6 +1,7 @@
 <?php
 
 function getPublishedFiches($search_term){
+	
     $ficheFavorites = [];
 	$current_user = "";
 	$current_user_id = "";
@@ -29,6 +30,11 @@ function getPublishedFiches($search_term){
 			'relation' => 'OR',
 			array(
 				'key'   => 'nom_scientifique',
+				'value' => $search_term,
+				'compare' => 'LIKE',
+			),
+			array(
+				'key'   => 'nom_vernaculaire',
 				'value' => $search_term,
 				'compare' => 'LIKE',
 			),
@@ -101,7 +107,7 @@ function getMesFiches($status, $role, $userId, $userFavorite, $editorId){
 	);
 	
 	if ($userId){
-		if ($role == 'contributor' || $role == 'administrator'){
+		if ($role == 'contributor' || $role == 'administrator' || ($role == 'editor' && !$editorId && $status == 'draft')){
 			$args['author'] =  $userId;
 		}
 	} else {

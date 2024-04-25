@@ -17,7 +17,7 @@
 			 
               <div class="footer-nav-plan" role="navigation" aria-label="<?php esc_attr_e('Plan du site', 'botascopia'); ?>">
                   <div class="footer-column footer-liens">
-                      <h4 class="footer-nav-title">Liens rapide</h4>
+                      <h4 class="footer-nav-title">Liens rapides</h4>
 					  <?php
 					  if (has_nav_menu('footer-liens')) :
 					  wp_nav_menu([

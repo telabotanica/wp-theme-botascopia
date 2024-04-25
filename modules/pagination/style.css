@@ -18,6 +18,8 @@
     padding: 0 1rem;
     text-decoration: none;
     transition: all 0.2s ease;
+    cursor:pointer;
+
 }
 
 .pagination .page-numbers:hover, .pagination .page-numbers:focus {

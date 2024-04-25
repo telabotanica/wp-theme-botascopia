@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_63073315d174c",
-            "label": "Cultivée en France",
+            "label": "Cultivée en France métropolitaine",
             "name": "cultivee_en_france",
             "aria-label": "",
             "type": "radio",
@@ -17,7 +17,7 @@
                 "id": ""
             },
             "choices": {
-                "seulement à l'état cultivée": "seulement à l'état cultivée",
+                "seulement à l'état cultivé": "seulement à l'état cultivé",
                 "à l'état sauvage": "à l'état sauvage"
             },
             "allow_null": 0,
@@ -126,7 +126,7 @@
             "name": "repartition_mondiale",
             "aria-label": "",
             "type": "url",
-            "instructions": "(1) cherchez votre espèce sur le GBIF (https:\/\/www.gbif.org\/fr\/)\r\n(2) cliquez sur \"Espèce\"\r\n(3) cliquez sur la fiche de l'espèce (en général le premier lien)\r\n(4) copier le lien vers la page et coller le dans le champs",
+            "instructions": "(1) cherchez votre espèce sur le GBIF (https:\/\/www.gbif.org\/fr\/)\r\n(2) cliquez sur \"Espèce\"\r\n(3) cliquez sur la fiche de l'espèce (en général le premier lien)\r\n(4) copiez le lien vers la page et collez-le dans le champ.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -139,7 +139,7 @@
         },
         {
             "key": "field_63073560d174f",
-            "label": "Indigénat",
+            "label": "Indigénat en France métropolitaine",
             "name": "indigenat",
             "aria-label": "",
             "type": "checkbox",
@@ -166,7 +166,7 @@
                 "subspontanée": "subspontanée",
                 "exotique": "exotique",
                 "adventice": "adventice",
-                "envahissante": "envahissante"
+                "exotique envahissante": "exotique envahissante"
             },
             "allow_custom": 0,
             "default_value": [],
@@ -177,7 +177,7 @@
         },
         {
             "key": "field_630735aad1750",
-            "label": "Statut UICN",
+            "label": "Statut UICN en France métropolitaine",
             "name": "statut_uicn",
             "aria-label": "",
             "type": "radio",
