@@ -706,7 +706,7 @@ function loadFiches($post_id, $paged){
 				'icon' => $icone,
 				'popup' => $popupClass,
 				'id' => 'fiche-'.$id,
-				'extra_attributes' => ['data-user-id' => $current_user_id, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle, 'data-author'=> $author_name, 'data-role'=>$current_user_role]
+				'extra_attributes' => ['data-user-id' => $current_user_id, 'data-fiche-id' => $id, 'data-fiche-name' => $name, 'data-fiche-url' => get_permalink(), 'data-fiche-title' => $ficheTitle, 'data-author'=> $author_name, 'data-role'=>$current_user_role, 'data-statut'=>$ficheStatusText]
 			]);
 			echo '</div>';
 		endwhile;
