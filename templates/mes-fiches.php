@@ -167,7 +167,11 @@ function createOptions($nb){
 			the_botascopia_module('breadcrumbs');
 			?>
 			<?php $fichesFavorites = getMesFiches(['draft', 'pending', 'publish', 'private'], $role, null, $userId, null); 
-				$nb_fiches = count($fichesFavorites);
+				$nb_fiches = 0;
+				if (isset($fichesFavorites)&&!empty($fichesFavorites)){
+					$nb_fiches = count($fichesFavorites);
+				}
+				
 			?>
 			<div class="display-collection-cards">
 				<!--                Mes fiches favoris-->
@@ -227,7 +231,11 @@ function createOptions($nb){
 				<div id="fiches-a-completer">
 					<?php
 					$fichesACompleter = getMesFiches('draft', $role, $userId, $userId, null);
-					$nb_fiches_comp = count($fichesACompleter);
+					$nb_fiches_comp = 0;
+					if (isset($fichesACompleter)&&!empty($fichesACompleter)){
+						$nb_fiches_comp = count($fichesACompleter);
+					}
+				
 					the_botascopia_module('title', [
 						'title' => __("Fiches en cours de complétion ($nb_fiches_comp)", 'botascopia'),
 						'level' => 2,
