@@ -7,13 +7,17 @@
 get_header();
 function createOptions($nb){
 	for ($i=1;$i<=$nb;$i++){
-		$is_div=false;
+		
+		$multiple=0;
+		if ($i===1){
+			echo "<option selected>$i</option>";
+		}
 		if($i % 5 === 0){
 			
-			echo "<option>$i</option>";
-			$is_div = true;
+			echo "<option selected>$i</option>";
+			$multiple=$i;
 		}
-		if(($i===$nb AND !$is_div) OR $i===1){
+		if($i===$nb AND $i !== $multiple AND $i!==1){
 			echo "<option selected>$i</option>";
 		}
 	}
