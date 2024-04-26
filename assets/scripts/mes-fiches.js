@@ -7,8 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
 function prepareToMesFiches(){
     var fiches_comp_div = document.getElementById("fiches_compl");
     var pageNbr =1;
-    var svg_full = document.querySelectorAll("#favoris .card .card-fiche-icon .icon-star")[0];
-    var svg_empty = document.querySelectorAll("#div_comp .card .card-fiche-icon .icon-star-outline")[0];
+    var svg_full = null;
+    if (document.querySelectorAll("#favoris .card .card-fiche-icon .icon-star")){
+        svg_full = document.querySelectorAll("#favoris .card .card-fiche-icon .icon-star")[0];
+    }else{
+        svg_full = document.createElement("svg");
+    }
+    var svg_empty = null
+    if(document.querySelectorAll("#div_comp .card .card-fiche-icon .icon-star-outline")){
+        svg_empty = document.querySelectorAll("#div_comp .card .card-fiche-icon .icon-star-outline")[0];
+    }else{
+        svg_empty = document.createElement("svg");
+    }
+    
     var parametres = new Parametres();
     var params_fav = new Parametres();
     var fiches_fav_div = document.getElementById("fiches_fav");

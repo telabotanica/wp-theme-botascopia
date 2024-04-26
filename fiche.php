@@ -454,10 +454,10 @@ get_header();
                                                         <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
-                                                <?php $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
+                                                <?php /* $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
                                                     if (!empty($champ)){
                                                         echo " $champ";
-                                                    }
+                                                    } */
                                                 ?>
                                             </p>
                                         </div>    
@@ -838,7 +838,7 @@ get_header();
                                                     
                                                     <?php if(!empty($fleur_male['androcee'])){ ?>
                                                         androcée composée de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee'];?> ;
-                                                        <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
+                                                        <?php echo ('androcée soudé à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
                                                             ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                         <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                                                         la couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
@@ -1017,7 +1017,7 @@ get_header();
                                                
                                                 <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
                                                     androcée composée de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines);?> étamine(s)
-                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                     <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
                                                 } ?>
                                                 <?php endif; ?>
@@ -1190,7 +1190,7 @@ get_header();
                                     <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
                                     <p>En France, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
-                                    <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
+                                    <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>

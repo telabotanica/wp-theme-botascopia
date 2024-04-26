@@ -595,9 +595,9 @@ function getValueOrganesFloraux($organes){
 }
 
 function getPhylloFieldOther($phyllo,$feuille){
-	if (str_contains($phyllo, "autre")){
+	/* if (str_contains($phyllo, "autre")){
 		$phyllo = str_replace("autre",$feuille['description'],$phyllo);
-	}
+	} */
 	return $phyllo;
 }
 
