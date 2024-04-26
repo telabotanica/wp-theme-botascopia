@@ -55,7 +55,7 @@ function createOptions($nb){
 			$licence = $legende .', licence CC-BY-SA';
 		}
 		the_botascopia_module('cover', [
-			'subtitle' => $role,
+			'subtitle' => getRole($role),
 			'title' => $displayName,
 			'image' => $imageFull,
 			'licence' => $licence

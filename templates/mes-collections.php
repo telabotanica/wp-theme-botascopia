@@ -42,7 +42,7 @@ get_header();
 		}
   
 		the_botascopia_module('cover', [
-			'subtitle' => $role,
+			'subtitle' => getRole($role),
 			'title' => $displayName,
 			'image' => $imageFull,
 			'licence' => $licence
