@@ -454,10 +454,10 @@ get_header();
                                                         <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
-                                                <?php $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
+                                                <?php /* $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
                                                     if (!empty($champ)){
                                                         echo " $champ";
-                                                    }
+                                                    } */
                                                 ?>
                                             </p>
                                         </div>    
@@ -838,7 +838,7 @@ get_header();
                                                     
                                                     <?php if(!empty($fleur_male['androcee'])){ ?>
                                                         androcée composée de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee'];?> ;
-                                                        <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
+                                                        <?php echo ('androcée soudé à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
                                                             ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                         <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
                                                         la couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
@@ -1017,7 +1017,7 @@ get_header();
                                                
                                                 <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
                                                     androcée composée de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines);?> étamine(s)
-                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
                                                     <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
                                                 } ?>
                                                 <?php endif; ?>
@@ -1190,7 +1190,7 @@ get_header();
                                     <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
                                     <p>En France, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
-                                    <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
+                                    <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>
@@ -1718,23 +1718,9 @@ get_header();
                             </div>
                             <div id="grille">
                                 <?php    
-                                    $search_term='bdtfx-nn-%';
-
-                                    function title_filter($search_term, &$wp_query){
-                                        global $wpdb;
-                                        $where = "";
-                                       
-                                        if($search_term = $wp_query->get( 'search_prod_title' )){
-                                            /*using the esc_like() in here instead of other esc_sql()*/
-                                            $search_term = $wpdb->esc_like($search_term);
-                                            $search_term = $search_term . '%\'';
-                                            $where = ' AND ' . $wpdb->posts . '.post_title LIKE '.$search_term ;
-                                        }
+                                    $search_term="bdtfx-nn-";
                                     
-                                        return $where;
-                                    }
-                                    $where = title_filter($search_term,$wp_query);
-                                    $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','s' => $search_term, 'post_status' =>'publish' ) );
+                                    $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','wpse18703_title' => $search_term, 'post_status' =>'publish' ) );
                                     
                                     if (have_posts()) : while ( $query->have_posts() ) : $query->the_post();
                                         $name = get_post_meta(get_the_ID(), 'nom_scientifique', true);

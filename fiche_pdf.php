@@ -185,11 +185,11 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php 
-                                        $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
+                                        /* $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
                                         
                                         if (!empty($champ)){
                                             echo " $champ";
-                                        }
+                                        } */
                                     ?>
                                 </p>
 
@@ -447,7 +447,7 @@
                             
                             <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
                                 androcée composée de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines); ?> étamine(s)
-                                <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudée à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
                                 <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminode(s) ; ' : '');
                             } ?>
                             <?php endif; ?>
@@ -574,7 +574,7 @@
                         <?php endif; ?>
                         <?php if(!empty($fleur_male['androcee'])): { ?>
                             androcée composée de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee']; ?> ;
-                        <?php echo ('androcée soudée à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
+                        <?php echo ('androcée soudé à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
                                 ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                             <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminode(s) ; ' : ''); ?>
                             La couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.

@@ -70,22 +70,6 @@ function bs_load_scripts() {
 }
 add_action('wp_enqueue_scripts', 'bs_load_scripts' );
 
-/* function my_scripts() {
-	if( is_page( array( 'profil' ) ) ){
-		wp_enqueue_script( 'profil', get_template_directory_uri() . '/assets/scripts/profil.js', array(), '1.0.0', true );
-	}
-	if( is_page( array( 'formulaire' ) ) ){
-		wp_enqueue_script( 'formulaire', get_template_directory_uri() . '/assets/scripts/formulaire.js', array(), '1.0.0', true );
-	}
-	if( is_page( array( 'mes-fiches' ) ) ){
-		wp_enqueue_script( 'mes-fiches', get_template_directory_uri() . '/assets/scripts/mes-fiches.js', array(), '1.0.0', true );
-	}
-	if( is_page( '') ){
-		wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/scripts/home.js', array(), '1.0.0', true );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'my_scripts' ); */
-
 // auto export acf fields after each saved change
 function bs_acf_export_json( $path ) {
   $path = get_stylesheet_directory() . '/acf-json';
@@ -611,8 +595,19 @@ function getValueOrganesFloraux($organes){
 }
 
 function getPhylloFieldOther($phyllo,$feuille){
-	if (str_contains($phyllo, "autre")){
+	/* if (str_contains($phyllo, "autre")){
 		$phyllo = str_replace("autre",$feuille['description'],$phyllo);
-	}
+	} */
 	return $phyllo;
+}
+
+add_filter( 'posts_where', 'wpse18703_posts_where', 10, 2 );
+function wpse18703_posts_where( $where, $wp_query )
+{
+    global $wpdb;
+    if ( $wpse18703_title = $wp_query->get( 'wpse18703_title' ) ) {
+        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'' . esc_sql( $wpdb->esc_like( $wpse18703_title ) ) . '%\'';
+		
+    }
+    return $where;
 }
