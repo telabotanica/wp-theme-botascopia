@@ -34,6 +34,9 @@ require get_template_directory() . '/inc/manage-delete-account.php';
 // Génération du svg pour champs agro eco du pdf
 require get_template_directory() . '/inc/graphiques.php';
 
+// Fichier des constantes
+require get_template_directory() . '/inc/Constantes.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
@@ -533,20 +536,6 @@ add_action( 'rest_api_init', function () {
 	) );
 } );
 
-class Constantes{
-	const VERIFICATEUR = "vérificateur";
-	const CONTRIBUTEUR = "contributeur";
-	const ADMINISTRATEUR = "administrateur";
-	const HERMAPHRODITE = "hermaphrodite";
-	const MONOIQUE = "monoïque";
-	const DIOIQUE = "dioïque";
-	const ANDROMONOIQUE = "andromonoïque";
-	const GYNOMONOIQUE = "gynomonoïque";
-	const ANDRODIOIQUE = "androdioïque";
-	const GYNODIOIQUE = "gynodioïque";
-	const ANDROGYNOMONIQUE = "androgynomonoïque";
-	const ANDROGYNODIOIQUE = "androgynodioïque";
-}
 function getRole($role){
 	switch ($role) {
 		case "administrator":
