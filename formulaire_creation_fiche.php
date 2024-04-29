@@ -2,6 +2,9 @@
 /*
     Template Name: Formulaire en front création de fiche
 */
+
+use JsPhpize\Nodes\Constant;
+
 acf_form_head();
 get_header();
 ?>
@@ -14,28 +17,26 @@ $groups = acf_get_field_groups();
 $formulaires = [];
 
 $group_titles = [
-    "Description morphologique",
-    "Période de floraison et de fructification",
-    "Aire de répartition et statut",
-    "Écologie",
-    "Propriétés",
-    "Complément d'anecdote",
-    "Ne pas confondre avec",
-    "Description vulgarisée",
-    "Agroécologie",
-    "Références"
-//    "Logos",
-//    "Taxonomie"
+    Constantes::DESCRIPTION,
+    Constantes::PERIOD,
+    Constantes::AIRE,
+    Constantes::ECOLOGIE,
+    Constantes::PROPERTIES,
+    Constantes::ANECDOTE,
+    Constantes::CONFUS,
+    Constantes::VULG,
+    Constantes::AGRO,
+    Constantes::REFERENCES
 ];
 
 $button_titles = [
-    "Tige",
-    "Feuille",
-    "Inflorescence",
-    "Fleur mâle",
-    "Fleur femelle",
-    "Fleur bisexuée",
-    "Fruit",
+    Constantes::TIGE,
+    Constantes::FEUILLE,
+    Constantes::INFLO,
+    Constantes::FL_MALE,
+    Constantes::FL_FEM,
+    Constantes::FL_BI,
+    Constantes::FRUIT,
 ];
 
 $field_titles = [
@@ -74,7 +75,7 @@ $current_user = wp_get_current_user();
 if (isset($_GET['p'])) {
     $titre_du_post = $_GET['p'];
    
-    if ( $current_user->wp_user_level === '7') { //$current_user->roles[0] === 'editor'
+    if ( $current_user->roles[0] === 'editor') { //$current_user->roles[0] === 'editor'
 
         query_posts(array(
             'post_type' => 'post',
@@ -83,7 +84,13 @@ if (isset($_GET['p'])) {
             'showposts' => 1
         ));
 
-    } else {
+    } else if($current_user->roles[0] === 'administrator'){
+        query_posts(array(
+            'post_type' => 'post',
+            'title' => $titre_du_post,
+            'showposts' => 1
+        ));
+    }else{
         query_posts(array(
             'post_type' => 'post',
             'post_status' => 'draft',
@@ -131,25 +138,25 @@ if (isset($_GET['p'])) {
     $modified_date = get_the_modified_date();
     
     switch (get_post_status()){
-        case 'draft':
-            $status = 'En cours...';
+        case Constantes::DRAFT:
+            $status = Constantes::DRAFT_FR;
             $acf_value = 1;
-            $acf_submit_text = 'Enregistrer';
+            $acf_submit_text = Constantes::ENREGISTRER;
             break;
-        case 'pending':
-            $status = 'En cours de vérification';
+        case Constantes::PEND:
+            $status = Constantes::PEND_FR;
             $acf_value = 2;
-            $acf_submit_text = 'Corriger';
+            $acf_submit_text = Constantes::CORRIGER;
             break;
-        case 'publish':
-            $status = 'Validée';
+        case Constantes::PUBLISH:
+            $status = Constantes::PUBLISH_FR;
             $acf_value = 3;
-            $acf_submit_text = 'Corriger';
+            $acf_submit_text = Constantes::CORRIGER;
             break;
         default:
             $status = '';
             $acf_value = 1;
-            $acf_submit_text = 'Valider';
+            $acf_submit_text = Constantes::VALIDER;
     }
     
     if ($utilisateur !== 0) {
@@ -179,7 +186,7 @@ if (isset($_GET['p'])) {
             <div class="formulaire-details">
                 <?php
                 the_botascopia_module('title',[
-                    'title' => __('Infos', 'botascopia'),
+                    'title' => __(Constantes::INFOS, 'botascopia'),
                     'level' => 4,
                 ]);
                 ?>
@@ -191,8 +198,8 @@ if (isset($_GET['p'])) {
             echo "<p>Cases à cocher : choix multiples ; boutons ronds : un seul choix</p>";
             the_botascopia_module('button',[
                 'tag' => 'button',
-                'title' => 'Tout déplier',
-                'text' => 'Tout déplier',
+                'title' => Constantes::TT_DEPLIER,
+                'text' => Constantes::TT_DEPLIER,
                 'modifiers' => 'green-button outline',
                 'extra_attributes' => ['id' => 'bouton-toutdeplier', 'accordion-status' => '0']
             ]);
@@ -215,7 +222,7 @@ if (isset($_GET['p'])) {
                 'field_key' => $key,
                 'submit_value' => $acf_submit_text, // Intitulé du bouton
                 'html_submit_button' => '<button type="submit" class="acf-button button green-button">%s</button>',
-                'updated_message' => "Votre demande a bien été prise en compte.",
+                'updated_message' => Constantes::YOUR_DEMAND,
                 'uploader' => 'wp',
                 'id' => 'form_draft'.$id,
                 'html_after_fields' => '<input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="'.$acf_value
@@ -258,16 +265,16 @@ if (isset($_GET['p'])) {
             the_botascopia_module('button',[
                 'tag' => 'a',
                 'href' => '/collections',
-                'title' => 'Retour aux collections',
-                'text' => 'retour aux collections',
+                'title' => Constantes::BACK_TO_COLLEC,
+                'text' => Constantes::BACK_TO_COLLEC,
                 'modifiers' => 'purple-button'
             ]);
             
             if ($auteur_id == $utilisateur || (isset($_GET['a']) && $_GET['a'] == "1")) {
                 the_botascopia_module('button', [
                     'tag' => 'button',
-                    'title' => 'Ne plus participer à cette fiche',
-                    'text' => 'Ne plus participer à la fiche',
+                    'title' => Constantes::DONT_PARTICIPATE,
+                    'text' => Constantes::DONT_PARTICIPATE,
                     'modifiers' => 'purple-button outline desinscription-fiche',
                     'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=2'"]
                 ]);
@@ -276,15 +283,15 @@ if (isset($_GET['p'])) {
             the_botascopia_module('button',[
                 'tag' => 'a',
                 'href' => get_permalink(),
-                'title' => 'Prévisualiser',
-                'text' => 'Prévisualiser',
+                'title' => Constantes::PREVISUALISER,
+                'text' => Constantes::PREVISUALISER,
                 'modifiers' => 'green-button outline',
             ]);
             
             the_botascopia_module('button',[
                 'tag' => 'button',
-                'title' => 'Télécharger en pdf',
-                'text' => 'Télécharger en pdf',
+                'title' => Constantes::TELECHARGER,
+                'text' => Constantes::TELECHARGER,
                 'modifiers' => 'green-button',
                 'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
                 'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
@@ -293,14 +300,14 @@ if (isset($_GET['p'])) {
             if ($fiche_complete){
                 the_botascopia_module('button',[
                     'tag' => 'button',
-                    'title' => 'Envoyer la fiche pour vérification',
-                    'text' => 'Envoyer la fiche pour vérification',
+                    'title' => Constantes::SEND,
+                    'text' => Constantes::SEND,
                     'modifiers' => 'green-button acf-button2',
                     'extra_attributes' => [
                             'type' => "submit",
                             'id' => "pending_btn",
                             'name'=> "pending_btn",
-                            'value' => "Envoyer la fiche pour vérification",
+                            'value' => Constantes::SEND,
                             'data-post-id' => get_the_ID()
                     ]
                 ]);
@@ -343,8 +350,8 @@ if (isset($_GET['p'])) {
             } else {
                 the_botascopia_module('button',[
                     'tag' => 'button',
-                    'title' => 'Devenir vérificateur de cette fiche',
-                    'text' => 'Devenir vérificateur de cette fiche',
+                    'title' => Constantes::BEC_EDIT,
+                    'text' => Constantes::BEC_EDIT,
                     'modifiers' => 'green-button',
                     'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=4'"]
                 ]);
@@ -371,8 +378,8 @@ if (isset($_GET['p'])) {
             <?php
             the_botascopia_module('button',[
                 'tag' => 'button',
-                'title' => 'Tout déplier',
-                'text' => 'Tout déplier',
+                'title' => Constantes::TT_DEPLIER,
+                'text' => Constantes::TT_DEPLIER,
                 'modifiers' => 'green-button outline',
                 'extra_attributes' => ['id' => 'bouton-toutdeplier', 'accordion-status' => '0']
             ]);
@@ -390,7 +397,7 @@ if (isset($_GET['p'])) {
                    'field_key' => $key,
                    'submit_value' => 'Corriger', // Intitulé du bouton
                    'html_submit_button' => '<button type="submit" class="acf-button button green-button">%s</button>',
-                   'updated_message' => "Votre demande a bien été prise en compte.",
+                   'updated_message' => Constantes::YOUR_DEMAND,
                    'uploader' => 'wp',
                    'id' => 'form_draft'.$id,
                    'html_after_fields' => '<input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="2"/>',
@@ -417,16 +424,16 @@ if (isset($_GET['p'])) {
                 the_botascopia_module('button',[
                     'tag' => 'a',
                     'href' => '/collections',
-                    'title' => 'Retour aux collections',
-                    'text' => 'retour aux collections',
+                    'title' => Constantes::BACK_TO_COLLEC,
+                    'text' => Constantes::BACK_TO_COLLEC,
                     'modifiers' => 'purple-button'
                 ]);
                 
                 if ((intval($editor) == $utilisateur) || (isset($_GET['a']) && $_GET['a'] == "4")) {
                     the_botascopia_module('button', [
                         'tag' => 'button',
-                        'title' => 'Ne plus être vérificateur de cette fiche',
-                        'text' => 'Ne plus être vérificateur de cette fiche',
+                        'title' => Constantes::DONT_PARTICIPATE,
+                        'text' => Constantes::DONT_PARTICIPATE,
                         'modifiers' => 'purple-button outline',
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
                             .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=5'"]
@@ -434,8 +441,8 @@ if (isset($_GET['p'])) {
 
                     the_botascopia_module('button', [
                         'tag' => 'button',
-                        'title' => 'Renvoyer pour correction',
-                        'text' => 'Renvoyer pour correction',
+                        'title' => Constantes::RESEND,
+                        'text' => Constantes::RESEND,
                         'modifiers' => 'purple-button outline',
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise
                             .$_SERVER['HTTP_HOST']."/formulaire/?p=".$titre_du_post."&a=3&h=".$auteur_id."'"]
@@ -445,15 +452,15 @@ if (isset($_GET['p'])) {
                 the_botascopia_module('button',[
                     'tag' => 'a',
                     'href' => get_permalink(),
-                    'title' => 'Prévisualiser',
-                    'text' => 'Prévisualiser',
+                    'title' => Constantes::PREVISUALISER,
+                    'text' => Constantes::PREVISUALISER,
                     'modifiers' => 'green-button outline',
                 ]);
                 
                 the_botascopia_module('button',[
                     'tag' => 'button',
-                    'title' => 'Télécharger en pdf',
-                    'text' => 'Télécharger en pdf',
+                    'title' => Constantes::TELECHARGER,
+                    'text' => Constantes::TELECHARGER,
                     'modifiers' => 'green-button',
                     'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
                     'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
@@ -461,8 +468,8 @@ if (isset($_GET['p'])) {
                 
                     the_botascopia_module('button',[
                         'tag' => 'button',
-                        'title' => 'Publier',
-                        'text' => 'Publier',
+                        'title' => Constantes::PUBLISH,
+                        'text' => Constantes::PUBLISH,
                         'modifiers' => 'green-button acf-button2',
                         'extra_attributes' => ['type' => "submit", 'id' => "publish_btn", 'name'=> "publish_btn", 'value' => "Envoyer la fiche à validation", 'data-post-id' => get_the_ID(), 'data-post-title' => get_the_title()]
 
