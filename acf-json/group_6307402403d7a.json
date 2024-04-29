@@ -120,11 +120,11 @@
         },
         {
             "key": "field_644141ea8ba81",
-            "label": "Nom scientifique de l'espèce suivi du nom de l'auteur",
+            "label": "Nom scientifique de l'espèce suivi de l'auteur",
             "name": "nom_despece",
             "aria-label": "",
             "type": "text",
-            "instructions": "Pensez à vérifier son orthographe.",
+            "instructions": "Vérifiez bien l'orthographe",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -144,7 +144,7 @@
             "name": "description",
             "aria-label": "",
             "type": "text",
-            "instructions": "Décrivez les différences morphologiques et écologiques et risques potentiels (ex : toxicité).",
+            "instructions": "Décrivez les différences morphologiques et écologiques et les risques potentiels (ex : toxicité).",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
