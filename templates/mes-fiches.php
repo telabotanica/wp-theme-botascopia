@@ -61,109 +61,18 @@ function createOptions($nb){
 			'licence' => $licence
 		]);
 		?>
+	<?php
+	if (is_user_logged_in()){
+		if (get_user_meta($userId, 'favorite_fiche')):
+			$existingFavorites = get_user_meta($userId, 'favorite_fiche');
+		endif;
+	?>
 		<div class="collection-main" id="mes-fiches">
-            <?php
-			if (is_user_logged_in()) :
-                if (get_user_meta($userId, 'favorite_fiche')):
-                    $existingFavorites = get_user_meta($userId, 'favorite_fiche');
-                endif;
-            ?>
+           
 			<div class="left-div">
-				<div class="first-toc">
-					<?php
-					// Actions collections
-                    $collectionHref = home_url().'/profil/mes-collections/';
-
-					the_botascopia_module('toc', [
-						'title' => 'PROFIL',
-						'items' => [
-							[
-								'text' => 'MES COLLECTIONS',
-								'href' => $collectionHref,
-								'active' => true,
-								'items' => [
-									[
-										'text' => 'Mes collections favorites',
-										'href' => $collectionHref . '/#collections-favoris',
-										'active' => false,
-									],
-									[
-										'text' => 'Compléter une collection',
-										'href' => $collectionHref . '#collection-a-completer',
-										'active' => false,
-									],
-									[
-										'text' => 'Mes collections complètes',
-										'href' => $collectionHref . '#mes-collections-completes',
-										'active' => false,
-									],
-								]
-							],
-						]
-					]);
-
-					if ($role != 'contributor'):
-					echo '<div class="toc-button">';
-					the_botascopia_module('button', [
-						'tag' => 'a',
-						'href' => home_url() . '/profil/mes-collections/creer-une-collection/',
-						'title' => 'Créer une collection',
-						'text' => 'Créer une collection',
-						'modifiers' => 'green-button',
-					]);
-					echo '</div>';
-					endif;
-					//                    Actions fiches
-					echo '<div class="second-toc">';
-                    
-                    $fichesHref = home_url().'/'.get_page_uri();
-					$textACompleter = 'Compléter une fiche';
-					$lienACompleter = '#fiches-a-completer';
-                    
-                    if ($role == 'editor'){
-						$textACompleter = 'Fiches dont je suis le vérificateur';
-						$lienACompleter = '#fiches-en-verification';
-                    }
-                    
-					the_botascopia_module('toc', [
-						'title' => '',
-						'items' => [
-							[
-								'text' => 'MES FICHES',
-								'href' => $fichesHref,
-								'active' => false,
-								'items' => [
-									[
-										'text' => 'Mes fiches favorites',
-										'href' => '#fiches-favoris',
-										'active' => true,
-									],
-									[
-										'text' => $textACompleter,
-										'href' => $lienACompleter,
-										'active' => false,
-									],
-									[
-										'text' => 'Mes fiches à valider',
-										'href' => '#fiches-a-valider',
-										'active' => false,
-									],
-         
-									[
-										'text' => 'Mes fiches validées',
-										'href' => '#mes-fiches-validees',
-										'active' => false,
-									],
-								]
-							],
-						]
-					]);
-					echo '<div class="toc-button">';
-
-					echo '</div>';
-					?>
-				</div>
-	
+				<?php
+					get_template_part("/templates/menu-gauche");
+				?>
 			</div>
 		</div>
 		<div class="right-div">
@@ -182,7 +91,7 @@ function createOptions($nb){
 				<div id="fiches-favoris">
 					<?php
 					the_botascopia_module('title', [
-						'title' => __("Mes fiches favorites ($nb_fiches)", 'botascopia'),
+						'title' => __(Constantes::FICHES_FAV." ($nb_fiches)", 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -241,7 +150,7 @@ function createOptions($nb){
 					}
 				
 					the_botascopia_module('title', [
-						'title' => __("Fiches en cours de complétion ($nb_fiches_comp)", 'botascopia'),
+						'title' => __(Constantes::FICHES_TO_COMP." ($nb_fiches_comp)", 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -288,7 +197,7 @@ function createOptions($nb){
 						}
 						
 						the_botascopia_module('title', [
-							'title' => __("Fiches dont je suis le vérificateur ($nb_fiches_inv)", 'botascopia'),
+							'title' => __(Constantes::FICHES_TO_CHK." ($nb_fiches_inv)", 'botascopia'),
 							'level' => 2,
 						]);
 						?>
@@ -340,7 +249,7 @@ function createOptions($nb){
 						$nb_fiches_val = 0;
 					}
 					the_botascopia_module('title', [
-						'title' => __("Fiches terminées et en attente de vérification ($nb_fiches_val)", 'botascopia'),
+						'title' => __(Constantes::FICHES_TO_VAL." ($nb_fiches_val)", 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -392,7 +301,7 @@ function createOptions($nb){
 					}
 				
 					the_botascopia_module('title', [
-						'title' => __("Mes fiches publiées ($nb_fiches_validees)", 'botascopia'),
+						'title' => __(Constantes::FICHES_VAL." ($nb_fiches_validees)", 'botascopia'),
 						'level' => 2,
 					]);
 					?>
@@ -437,8 +346,8 @@ function createOptions($nb){
 						the_botascopia_module('button', [
 							'tag' => 'a',
 							'href' => home_url() . '/collection',
-							'title' => 'Voir les collections',
-							'text' => 'Voir les collections',
+							'title' => Constantes::FICHES_TO_SEE,
+							'text' => Constantes::FICHES_TO_SEE,
 							'modifiers' => 'green-button',
 						]);
 					}
@@ -448,11 +357,9 @@ function createOptions($nb){
 			<input id="fiches_val" class='hidden' value='<?php echo json_encode($fichesValidees); ?>' />
 		</div>
 	<?php
-	else :
-		echo ('
-        <div><p>Vous devez être connecté pour accéder à cette page</p></div>
-        ');
-	endif;
+	}else{
+		echo ("<div><p>".Constantes::MESSAGE_CONNEXION."</p></div>");
+	}
 	?>
 	</main><!-- .site-main -->
 </div><!-- .content-area -->
