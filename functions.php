@@ -600,3 +600,14 @@ function wpse18703_posts_where( $where, $wp_query )
     }
     return $where;
 }
+
+function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'post' ){
+    global $wpdb;
+    $page = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type= %s", $post_title, $post_type ) );
+
+    if ( $page ) return get_post( $page, $output );
+
+    return null;
+}
+
+ add_action('init','get_page_by_post_title');

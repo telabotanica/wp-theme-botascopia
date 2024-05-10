@@ -114,11 +114,7 @@
                         "field": "field_63073ee9541b7",
                         "operator": "==",
                         "value": "allogame"
-                    },
-                    {
-                        "field": "field_63073ee9541b7",
-                        "operator": "==",
-                        "value": "à régime mixte"
+
                     }
                 ]
             ],
