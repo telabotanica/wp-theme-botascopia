@@ -109,18 +109,21 @@ if (isset($_GET['p'])) {
                 'modifiers' =>['class' => 'fiche-cover']
             ]);
 
-            if (get_field("field_643027826f24d")){
-                $fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
+            if (get_field("field_643027826f24d",$post_id)){
+                $fichePicture = get_field("field_643027826f24d",$post_id)[Constantes::PHOTO_PLANTE_ENTIERE];
+                
             }
     
-            if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-                $fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
+            if (!empty(get_field("field_643027826f24d",$post_id)) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+                $fichePicture = get_field("field_643027826f24d",$post_id)[Constantes::PHOTO_PLANTE_ENTIERE];
                 
                 $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
+                
             } else {
                 $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
                 $img = get_post($id_image);
                 $image = $img->guid;
+                
             }
 
             if (!isset($image)){
@@ -132,9 +135,6 @@ if (isset($_GET['p'])) {
                     <img src= '.$image .' class="fiche-image">
                 ');
             }
-            
-
-            
         
             $auteur_autorise = false;
             // $current_user = wp_get_current_user();
