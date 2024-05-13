@@ -59,6 +59,7 @@ foreach ( $group_titles as $title ) {
                 'key' => $group['key']
                 ]
             ;
+            
             $formulaires[] = $groupInfo;
         }
     }
@@ -78,7 +79,6 @@ if (isset($_GET['p'])) {
     if ( $current_user->roles[0] === 'editor') { //$current_user->roles[0] === 'editor'
 
         $page= get_page_by_post_title($titre_du_post,OBJECT,'post');
-        
         $post_id=$page->ID;
        
         if ($page->post_status=='publish'){
@@ -88,16 +88,14 @@ if (isset($_GET['p'])) {
     } else if($current_user->roles[0] === 'administrator'){
         
         $page= get_page_by_post_title($titre_du_post,OBJECT,'post');
-        
         $post_id=$page->ID;
-        
+      
         
     }else{
         $page= get_page_by_post_title($titre_du_post,OBJECT,'post');
-        
         $post_id=$page->ID;
       
-        if ($page->post_status=='draft'){
+        if ($page->post_status != 'draft'){
             $not_available=true;
         }
     }
@@ -114,10 +112,12 @@ if (isset($_GET['p'])) {
             $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
             
             $image = get_post($id_image);
-            
-            echo ('
+            if (isset($image)){
+                echo ('
                     <img src= '.$image->guid .' class="fiche-image">
                 ');
+            }
+            
 
             
         
@@ -203,7 +203,17 @@ if (isset($_GET['p'])) {
                 <?php
                 $fiche_complete = true;
                 // récupérer tous les champs du post
-                $fields = get_field_objects($post_id);
+                /* $fields=[];
+                foreach($page as $value){
+                    $meta_key = $value->meta_key;
+                    
+                    $obj = get_field_object($meta_key,$post_id);
+                   
+                    if ($obj){
+                        array_push($fields,$obj);
+                    }
+                    
+                } */
                 
                 foreach ($formulaires as $formulaire){
                     $id = $formulaire['ID'];
