@@ -179,7 +179,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 						$sub_field=get_field($name."_".$key,$post_id);
 						
 						if(in_array($key,$tige_tab) AND empty($sub_field)){
-							$tige = get_field($name."_tige_aerienne");
+							$tige = get_field($name."_tige_aerienne",$post_id);
 							if( $tige !== 'non visible' ){
 								return $bool = true;
 							}
@@ -192,34 +192,35 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 							}
 						}else if ($key =="limbe_des_folioles" OR $key =="nombre_de_folioles"){
 						
-							$type = get_field($name."_type_de_feuille");
+							$type = get_field($name."_type_de_feuille",$post_id);
+							/* dump($type); */
 							if (empty($sub_field) AND in_array("composées",$type)){
 								
 									return $bool=true;
 									break;
 							}
 						}else if ($key =="forme_et_couleur_des_stipules"){
-							$val = get_field($name."_stipules");
+							$val = get_field($name."_stipules",$post_id);
 							if (empty($sub_field) AND $val ==="présents"){
 								
 									return $bool=true;
 									break;
 							}
 						}else if ($key =="localisation_des_poils"){
-							$val = get_field($name."_pubescence");
+							$val = get_field($name."_pubescence",$post_id);
 							if (empty($sub_field) AND $val ==="pubescente"){
 								
 									return $bool=true;
 									break;
 							}
 						}else if (in_array($key,$perianthe_tab)){
-							$val = get_field($name."_perianthe");
+							$val = get_field($name."_perianthe",$post_id);
 							if (empty($sub_field) AND $val ==="présent"){
 								
 									return $bool=true;
 									break;
 							}else{
-								$val = get_field($name."_composition_du_perianthe");
+								$val = get_field($name."_composition_du_perianthe",$post_id);
 								if (in_array($key,$cor_tab)){
 									
 									if (empty($sub_field) AND ($val ==="pétales" OR $val === "sépales et pétales")){
@@ -245,7 +246,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 									}
 								}
 							}
-						}else if ($key =="autre_caractere" /* OR $key =="nombre_de_folioles" */){
+						}else if ($key === "autre_caractere"){
 							continue;
 						}else if ($name === "inflorescence" AND $key =="description"){
 							if (empty($sub_field)){
@@ -453,11 +454,11 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 			}
 			if ( empty($fd)){
 				if($name==='heteromorphisme_foliaire'){
-					if (empty(get_field("feuille_presence_de_feuilles"))){
+					if (empty(get_field("feuille_presence_de_feuilles",$post_id))){
 						return $bool = true;
 					}
 				}else if ($name==="pilosite_de_la_plante_entiere"){
-					$port = get_field("port_de_la_plante");
+					$port = get_field("port_de_la_plante",$post_id);
 					if ($port==='arbre' || $port === 'arbrisseau'){
 						return $bool=true;
 					}
@@ -471,13 +472,13 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 					$valeur=null;
 
 				
-					$valeur = get_field($champ);
+					$valeur = get_field($champ,$post_id);
 					
 					if ($operator == "=="){
 						if ($value==$valeur){
-							
+						
 							return $bool=true;
-							break;
+						
 						}
 					}
 					
@@ -485,7 +486,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 					
 					
 					return $bool=true;
-					break;
+				
 				}
 				
 			}
