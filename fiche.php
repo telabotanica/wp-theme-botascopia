@@ -1648,7 +1648,7 @@ get_header();
                                         <?php } ?> 
                                     <?php } ?>
                                     <?php
-                                        $champ=get_field('sources_generales_reference_informations_de_la_rubrique_agroecologie');
+                                        $champ=get_field('sources_generales');
                                         if ($champ){
                                     ?>
                                         <p>Sources générales : <?php echo $champ;?></p>
