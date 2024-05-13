@@ -288,7 +288,7 @@ if (isset($_GET['p'])) {
 
                     the_botascopia_module('button',[
                         'tag' => 'a',
-                        'href' => get_site_url()."/?p=$post_id",
+                        'href' => home_url()."/?p=$post_id",
                         'title' => Constantes::PREVISUALISER,
                         'text' => Constantes::PREVISUALISER,
                         'modifiers' => 'green-button outline',
@@ -457,7 +457,7 @@ if (isset($_GET['p'])) {
                         
                         the_botascopia_module('button',[
                             'tag' => 'a',
-                            'href' => get_site_url()."/?p=$post_id",
+                            'href' => home_url()."/?p=$post_id",
                             'title' => Constantes::PREVISUALISER,
                             'text' => Constantes::PREVISUALISER,
                             'modifiers' => 'green-button outline',
