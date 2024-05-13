@@ -109,12 +109,27 @@ if (isset($_GET['p'])) {
                 'modifiers' =>['class' => 'fiche-cover']
             ]);
 
-            $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
-            
-            $image = get_post($id_image);
+            if (get_field("field_643027826f24d")){
+                $fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
+            }
+    
+            if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+                $fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
+                
+                $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
+            } else {
+                $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
+                $img = get_post($id_image);
+                $image = $img->guid;
+            }
+
+            if (!isset($image)){
+                $image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+            }
+
             if (isset($image)){
                 echo ('
-                    <img src= '.$image->guid .' class="fiche-image">
+                    <img src= '.$image .' class="fiche-image">
                 ');
             }
             
