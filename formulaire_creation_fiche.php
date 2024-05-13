@@ -121,8 +121,18 @@ if (isset($_GET['p'])) {
                 
             } else {
                 $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
-                $img = get_post($id_image);
-                $image = $img->guid;
+            
+                if (intval($id_image) !== 0){
+                    dump($id_image);
+                    $img = get_post($id_image);
+                    $image = $img->guid;
+                }else{
+                    //Pour les vieilles images, le nom du champ est différent
+                    $id_image=get_post_meta($post_id, 'photo_de_la_plante_entiere', true);
+                    $img = get_post($id_image);
+                    $image = $img->guid;
+                }
+                
                 
             }
 
