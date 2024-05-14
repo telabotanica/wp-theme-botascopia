@@ -123,7 +123,6 @@ if (isset($_GET['p'])) {
                 $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
             
                 if (intval($id_image) !== 0){
-                    dump($id_image);
                     $img = get_post($id_image);
                     $image = $img->guid;
                 }else{
@@ -227,18 +226,6 @@ if (isset($_GET['p'])) {
                 
                 <?php
                 $fiche_complete = true;
-                // récupérer tous les champs du post
-                /* $fields=[];
-                foreach($page as $value){
-                    $meta_key = $value->meta_key;
-                    
-                    $obj = get_field_object($meta_key,$post_id);
-                   
-                    if ($obj){
-                        array_push($fields,$obj);
-                    }
-                    
-                } */
                 
                 foreach ($formulaires as $formulaire){
                     $id = $formulaire['ID'];
@@ -281,7 +268,7 @@ if (isset($_GET['p'])) {
                         
                         if ($field['required'] == 1 && $field['name'] != '_validate_email'){
                         
-                        $field_group = acf_get_field_group($field['parent'])['title'];
+                            $field_group = acf_get_field_group($field['parent'])['title'];
                             if (!get_post_meta($post_id,$field_group)){
                                 $fiche_complete = false;
                                 break;
@@ -432,7 +419,7 @@ if (isset($_GET['p'])) {
                         'uploader' => 'wp',
                         'id' => 'form_draft'.$id,
                         'html_after_fields' => '<input type="hidden" id="hidden'.$id .'" name="acf[current_step]" value="2"/>',
-                        'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.get_the_title(),
+                        'return' => $securise.$_SERVER['HTTP_HOST'].'/formulaire/?p='.$titre_du_post,
                     );
                     
                     the_botascopia_component('accordion',

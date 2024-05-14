@@ -188,6 +188,7 @@ class Constantes{
 	const TEPALES = 'tépales';
 	const SEPALES = 'sépales';
 	const PETALES = 'pétales';
+	const PETALES_SEPALES = "pétales et sépales";
 	const ANDROCEE_SOUDEE_COROLLE = 'androcée soudé à la corolle';
 	const SOUDEES_PERIGONE = 'soudées au perigone';
 	const PUBESCENTE = 'pubescente';
@@ -196,6 +197,10 @@ class Constantes{
 	const ORGANISEES_EN_INFLORESCENCES = 'organisées en inflorescences';
 	const TOUS_LES_ORGANES_FLORAUX = "tous les organes floraux";
 	const ETAT_SAUVAGE = "à l'état sauvage";
+	const COMPOSEES = "composées";
+	const PREDATEURS = "prédateurs";
+	const OUI = "oui";
+	const STATUT_PROTECTION = 'a un statut de protection au niveau national et/ou régional';
 
 	const APPARITION = 'Apparait dans les collections suivantes :';
 	const FAVORIS = 'Favoris';
