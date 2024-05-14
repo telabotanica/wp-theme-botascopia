@@ -132,38 +132,38 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 					continue;
 				}
 				
-				if ($name==="feuilles_aeriennes" AND get_field("heteromorphisme_foliaire",$post_id)==="deux formes distinctes de feuilles" AND get_field("deux_formes_distinctes",$post_id)==="plante à rameaux stériles et à rameaux fleuris distincts"){
+				if ($name==="feuilles_aeriennes" AND get_field("heteromorphisme_foliaire",$post_id)===Constantes::DEUX_FORMES AND get_field("deux_formes_distinctes",$post_id)===Constantes::RAMEAUX_STERILES_FLEURIS){
 				
 					continue;
 				}
-				if ($name==="feuilles_immergees" AND get_field("heteromorphisme_foliaire",$post_id)==="deux formes distinctes de feuilles" AND get_field("deux_formes_distinctes",$post_id)==="plante à rameaux stériles et à rameaux fleuris distincts"){
+				if ($name==="feuilles_immergees" AND get_field("heteromorphisme_foliaire",$post_id)===Constantes::DEUX_FORMES AND get_field("deux_formes_distinctes",$post_id)===Constantes::RAMEAUX_STERILES_FLEURIS){
 					continue;
 				}
-				if ($name==="feuilles_immergees" AND get_field("heteromorphisme_foliaire",$post_id)!=="deux formes distinctes de feuilles"){
+				if ($name==="feuilles_immergees" AND get_field("heteromorphisme_foliaire",$post_id)!==Constantes::DEUX_FORMES){
 					continue;
 				}
-				if ($name==="feuilles_des_rameaux_fleuris" AND get_field("heteromorphisme_foliaire",$post_id)!=="deux formes distinctes de feuilles"){
+				if ($name==="feuilles_des_rameaux_fleuris" AND get_field("heteromorphisme_foliaire",$post_id)!==Constantes::DEUX_FORMES){
 					continue;
 				}
-				if ($name==="feuilles_des_rameaux_fleuris" AND get_field("heteromorphisme_foliaire",$post_id)==="deux formes distinctes de feuilles" AND get_field("deux_formes_distinctes",$post_id)==="plante à feuilles immergées et aériennes"){
+				if ($name==="feuilles_des_rameaux_fleuris" AND get_field("heteromorphisme_foliaire",$post_id)===Constantes::DEUX_FORMES AND get_field("deux_formes_distinctes",$post_id)===Constantes::FEUILLES_IMMERGEES_AERIENNES){
 					continue;
 				}
-				if ($name==="feuilles_des_rameaux_steriles" AND get_field("heteromorphisme_foliaire",$post_id)!=="deux formes distinctes de feuilles"){
+				if ($name==="feuilles_des_rameaux_steriles" AND get_field("heteromorphisme_foliaire",$post_id)!==Constantes::DEUX_FORMES){
 					continue;
 				}
-				if ($name==="feuilles_des_rameaux_seriles" AND get_field("heteromorphisme_foliaire",$post_id)==="deux formes distinctes de feuilles" AND get_field("deux_formes_distinctes",$post_id)==="plante à feuilles immergées et aériennes"){
+				if ($name==="feuilles_des_rameaux_seriles" AND get_field("heteromorphisme_foliaire",$post_id)===Constantes::DEUX_FORMES AND get_field("deux_formes_distinctes",$post_id)===Constantes::FEUILLES_IMMERGEES_AERIENNES){
 					continue;
 				}
-				$sys_bi=["hermaphrodite","andromonoïque","androdioïque","gynomonoïque","gynodioïque","androgynomonoïque","androgynodioïque"];
+				$sys_bi=[Constantes::HERMAPHRODITE,Constantes::ANDROMONOIQUE,Constantes::ANDRODIOIQUE,Constantes::GYNOMONOIQUE,Constantes::GYNODIOIQUE,Constantes::ANDROGYNOMONIQUE,Constantes::ANDROGYNODIOIQUE];
 				$systeme_sexuel=get_field("systeme_sexuel",$post_id);
 				if ($name==="fleur_bisexuee" AND !in_array($systeme_sexuel,$sys_bi)){
 					continue;
 				}
-				$sys_fem = ["monoïque","dioïque","gynomonoïque","gynodioïque","androgynomonoïque","androgynodioïque"];
+				$sys_fem = [Constantes::MONOIQUE,Constantes::DIOIQUE,Constantes::GYNOMONOIQUE,Constantes::GYNODIOIQUE,Constantes::ANDROGYNOMONIQUE,Constantes::ANDROGYNODIOIQUE];
 				if ($name==="fleur_femelle" AND !in_array($systeme_sexuel,$sys_fem)){
 					continue;
 				}
-				$sys_male = ["monoïque","dioïque","andromonoïque","androdioïque","androgynomonoïque","androgynodioïque"];
+				$sys_male = [Constantes::MONOIQUE,Constantes::DIOIQUE,Constantes::ANDROMONOIQUE,Constantes::ANDRODIOIQUE,Constantes::ANDROGYNOMONIQUE,Constantes::ANDROGYNODIOIQUE];
 				if ($name==="fleur_male" AND !in_array($systeme_sexuel,$sys_male)){
 					continue;
 				}
@@ -180,12 +180,12 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 						
 						if(in_array($key,$tige_tab) AND empty($sub_field)){
 							$tige = get_field($name."_tige_aerienne",$post_id);
-							if( $tige !== 'non visible' ){
+							if( $tige !== Constantes::NON_VISIBLE ){
 								return $bool = true;
 							}
 						}else if ($key =="limbe_des_feuilles_simples"){
 							$type = get_field($name."_type_de_feuille");
-							if (empty($sub_field) AND in_array("simples",$type)){
+							if (empty($sub_field) AND in_array(Constantes::SIMPLES,$type)){
 								
 									return $bool=true;
 									break;
@@ -193,29 +193,29 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 						}else if ($key =="limbe_des_folioles" OR $key =="nombre_de_folioles"){
 						
 							$type = get_field($name."_type_de_feuille",$post_id);
-							/* dump($type); */
-							if (empty($sub_field) AND in_array("composées",$type)){
+							
+							if (empty($sub_field) AND in_array(Constantes::COMPOSEES,$type)){
 								
 									return $bool=true;
 									break;
 							}
 						}else if ($key =="forme_et_couleur_des_stipules"){
 							$val = get_field($name."_stipules",$post_id);
-							if (empty($sub_field) AND $val ==="présents"){
+							if (empty($sub_field) AND $val ===Constantes::PRESENTS){
 								
 									return $bool=true;
 									break;
 							}
 						}else if ($key =="localisation_des_poils"){
 							$val = get_field($name."_pubescence",$post_id);
-							if (empty($sub_field) AND $val ==="pubescente"){
+							if (empty($sub_field) AND $val ===Constantes::PUBESCENCE){
 								
 									return $bool=true;
 									break;
 							}
 						}else if (in_array($key,$perianthe_tab)){
 							$val = get_field($name."_perianthe",$post_id);
-							if (empty($sub_field) AND $val ==="présent"){
+							if (empty($sub_field) AND $val ===Constantes::PRESENT){
 								
 									return $bool=true;
 									break;
@@ -223,7 +223,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 								$val = get_field($name."_composition_du_perianthe",$post_id);
 								if (in_array($key,$cor_tab)){
 									
-									if (empty($sub_field) AND ($val ==="pétales" OR $val === "sépales et pétales")){
+									if (empty($sub_field) AND ($val ===Constantes::PETALES OR $val === Constantes::PETALES_SEPALES)){
 										
 											return $bool=true;
 											break;
@@ -231,7 +231,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 								}
 								if (in_array($key,$cal_tab)){
 									
-									if (empty($sub_field) AND ($val ==="sépales" OR $val === "sépales et pétales")){
+									if (empty($sub_field) AND ($val ===Constantes::SEPALES OR $val === Constantes::PETALES_SEPALES)){
 										
 											return $bool=true;
 											break;
@@ -239,7 +239,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 								}
 								if (in_array($key,$per_tab)){
 									
-									if (empty($sub_field) AND ($val ==="tépales")){
+									if (empty($sub_field) AND ($val ===Constantes::TEPALES)){
 										
 											return $bool=true;
 											break;
@@ -252,7 +252,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 							if (empty($sub_field)){
 								$val =get_field($name."_categorie",$post_id);
 								
-								if ($val === "autre"){
+								if ($val === Constantes::AUTRE){
 									return $bool=true;
 									break;
 								}
@@ -262,7 +262,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 							if (empty($sub_field)){
 								$val =get_field($name."_cette_plante_a_t_elle_ete_ou_est_elle_cultivee_pour_les_usages_suivants",$post_id);
 								
-								if (in_array("autre",$val)){
+								if (in_array(Constantes::AUTRE,$val)){
 									return $bool=true;
 									break;
 								}
@@ -271,7 +271,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 						}else if($key==="surface_de_lecorce"){
 							$val = get_field("port_de_la_plante",$post_id);
 							
-							if(($val==='arbre' || $val === 'arbrisseau') AND empty($sub_field)){
+							if(($val===Constantes::ARBRE || $val === Constantes::ARBRISSEAU) AND empty($sub_field)){
 								return $bool=true;
 								break;
 							}
@@ -290,19 +290,19 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 							}
 						}else if($key==="les_predateurs"){
 							$val = get_field($name."_type_dauxiliaires",$post_id);
-							if(in_array('prédateurs',$val) AND empty($sub_field)){
+							if(in_array(Constantes::PREDATEURS,$val) AND empty($sub_field)){
 								return $bool=true;
 								break;
 							}
 						}else if($key==="a_quelles_molecules_"){
 							$val = get_field($name."_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_",$post_id);
-							if($val==='oui' AND empty($sub_field)){
+							if($val===Constantes::OUI AND empty($sub_field)){
 								return $bool=true;
 								break;
 							}
 						}else if($key==="statut_de_protection_a_l_echelle_locale_regions_concernees"){
 							$val = get_field($name."_statut_de_protection",$post_id);
-							if($val==='a un statut de protection au niveau national et/ou régional' AND empty($sub_field)){
+							if($val===Constantes::STATUT_PROTECTION AND empty($sub_field)){
 								return $bool=true;
 								break;
 							}
@@ -459,7 +459,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 					}
 				}else if ($name==="pilosite_de_la_plante_entiere"){
 					$port = get_field("port_de_la_plante",$post_id);
-					if ($port==='arbre' || $port === 'arbrisseau'){
+					if ($port===Constantes::ARBRE || $port === Constantes::ARBRISSEAU){
 						return $bool=true;
 					}
 					
