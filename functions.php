@@ -609,7 +609,13 @@ function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'pos
 
     return null;
 }
-
  add_action('init','get_page_by_post_title');
 
- 
+function exclude_fields( $field ) {
+	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France"];
+    if( in_array($field['label'],$array_labels) ) {
+        return false; 
+    }
+    return $field;
+}
+add_filter('acf/prepare_field', 'exclude_fields'); 

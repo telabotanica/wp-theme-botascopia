@@ -821,7 +821,7 @@ get_header();
                                                     } ?>
                                                     
                                                     <?php if(!empty($fleur_male[Constantes::ANDROCEE])){ ?>
-                                                        androcée composée de <?php $etamines = $fleur_male[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male[Constantes::SOUDURE_ANDROCEE];?> ;
+                                                        androcée composé de <?php $etamines = $fleur_male[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male[Constantes::SOUDURE_ANDROCEE];?> ;
                                                         <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_male[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_male[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : '').
                                                             (Constantes::SOUDEES_PERIGONE === $fleur_male[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_male[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
                                                         <?php echo (Constantes::PRESENTS === $fleur_male[Constantes::STAMINODES] ? $fleur_male[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : ''); ?>
@@ -911,7 +911,7 @@ get_header();
                                                 } ?>
                                                 
                                                 <?php if(!empty($fleur_femelle[Constantes::GYNECEE])): { ?>
-                                                    gynécée composée de <?php $carpelles = $fleur_femelle[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles);?>  carpelle(s) <?php echo $fleur_femelle[Constantes::SOUDURE_CARPELLES]; ?> ;
+                                                    gynécée composé de <?php $carpelles = $fleur_femelle[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles);?>  carpelle(s) <?php echo $fleur_femelle[Constantes::SOUDURE_CARPELLES]; ?> ;
                                                     ovaire <?php echo $fleur_femelle[Constantes::OVAIRE]; ?>.
                                                     La couleur principale de la fleur est <?php echo $fleur_femelle[Constantes::COULEUR_PRINCIPALE]; ?>.
                                                     <?php if (Constantes::PUBESCENTE === $fleur_femelle[Constantes::PUBESCENCE]) {
@@ -1000,13 +1000,13 @@ get_header();
                                                 }    ?>
                                                
                                                 <?php if(!empty($fleur_bisexuee[Constantes::ANDROCEE])): { ?>
-                                                    androcée composée de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines);?> étamine(s)
+                                                    androcée composé de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines);?> étamine(s)
                                                     <?php echo $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE]; ?> ; <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : ''). (Constantes::SOUDEES_PERIGONE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
                                                     <?php echo (Constantes::PRESENTS === $fleur_bisexuee[Constantes::STAMINODES] ? $fleur_bisexuee[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : '');
                                                 } ?>
                                                 <?php endif; ?>
                                                 <?php if(!empty($fleur_bisexuee[Constantes::GYNECEE])): { ?>
-                                                    gynécée composée de <?php $carpelles =  $fleur_bisexuee[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo $fleur_bisexuee[Constantes::SOUDURE_CARPELLES]; ?> ;
+                                                    gynécée composé de <?php $carpelles =  $fleur_bisexuee[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo $fleur_bisexuee[Constantes::SOUDURE_CARPELLES]; ?> ;
                                                     ovaire <?php echo $fleur_bisexuee[Constantes::OVAIRE]; ?>.
                                                 <?php } ?>
                                                 <?php endif; ?>
@@ -1170,11 +1170,11 @@ get_header();
                                     ]);
                                     ?>
                                 </div>
-                                <?php if (!empty(get_field('cultivee_en_france'))) { ?>
-                                    <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                                    <p>En France, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
+                                    <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
+                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
-                                    <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
+                                    <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>

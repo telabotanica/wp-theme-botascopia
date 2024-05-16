@@ -83,7 +83,7 @@ class Constantes{
 	const FAVORITE_COLLECTION = 'favorite_collection';
 	const PORT_DE_LA_PLANTE = 'port_de_la_plante';
 	const SYS_SEXUEL = 'systeme_sexuel';
-	const MODE_DE_VIE = 'mode_de_vie';
+	const MODE_DE_VIE = 'mode_de_vie_';
 	const TYPE_DE_DVPT = 'type_de_developpement';
 	const FORME_BIOLOGIQUE = 'forme_biologique';
 	const HAUTEUR_MAXIMALE = 'hauteur_maximale';
@@ -94,7 +94,7 @@ class Constantes{
 	const SECTION_TIGE = 'section_de_la_tige';
 	const SURFACE_TIGE = 'surface_de_la_tige_jeune';
 	const SURFACE_ECORCE = 'surface_de_lecorce';
-	const TIGE_AERIENNE = 'tige_aerienne';
+	const TIGE_AERIENNE = 'tige_aerienne_';
 	const RAMIFICATION = 'ramification';
 	const COULEUR_TRONC = 'couleur_du_tronc';
 	const ILLUSTRATION_TIGE = "illustration_de_la_tige";
@@ -105,7 +105,7 @@ class Constantes{
 	const FEUILLES_AERIENNES = 'feuilles_aeriennes';
 	const PHYLLOTAXIE = 'phyllotaxie';
 	const TYPE_DE_FEUILLE = 'type_de_feuille';
-	const LIMBE_FEUILLES_SIMPLES = 'limbe_des_feuilles_simples';
+	const LIMBE_FEUILLES_SIMPLES = 'limbe_des_feuilles_simples_';
 	const LIMBE_FOLIOLES = 'limbe_des_folioles';
 	const MARGE_FOLIAIRE = 'marge_foliaire';
 	const NERVATION = 'nervation';
@@ -129,11 +129,11 @@ class Constantes{
 	const PHOTO_FEUILLES_RAMEAUX_FLEURIS = 'photo_de_feuilles_des_rameaux_fleuris';
 	const INFLO_CHP = 'inflorescence';
 	const ORGANISATION_FLEURS = 'organisation_des_fleurs';
-	const CATEGORIE = 'categorie';
+	const CATEGORIE = 'categorie_';
 	const DESCRIPTION_CHP = 'description';
 	const FRUIT_CHP = 'fruit';
 	const PHOTO = 'photo';
-	const TYPE = 'type';
+	const TYPE = 'type_de_fruit';
 	const ILLUSTRATION_FRUIT = "illustration_du_fruit";
 	const FL_MALE_CHP = 'fleur_male';
 	const FL_FEM_CHP = 'fleur_femelle';
@@ -145,20 +145,20 @@ class Constantes{
 	const SOUDURE_CALICE_COROLLE = 'soudure_du_calice_et_de_la_corolle';
 	const COROLLE = 'corolle';
 	const CALICE = 'calice';
-	const SOUDURE_CALICE = 'soudure_du_calice';
+	const SOUDURE_CALICE = 'soudure_du_calice_';
 	const ANDROCEE = 'androcee';
 	const SOUDURE_ANDROCEE_COROLLE ='soudure_androcee-corolle';
-	const SOUDURE_ANDROCEE ='soudure_de_landrocee';
+	const SOUDURE_ANDROCEE ='soudure_de_landrocee_';
 	const SOUDURE_ANDROCEE_PERIGONE = 'soudure_androcee-perigone';
 	const STAMINODES = "staminodes";
 	const NOMBRE_STAMINODES = 'nombre_de_staminodes';
 	const COULEUR_PRINCIPALE = 'couleur_principale';
 	const PUBESCENCE = 'pubescence';
-	const LOCALISATION_POILS = 'localisation_des_poils';
+	const LOCALISATION_POILS = 'localisation_des_poils_';
 	const AUTRE_CARACTERE = 'autre_caractere';
 	const ILLUSTRATION_FLEUR_MALE = "illustration_de_la_fleur_male_ou_de_linflorescence";
 	const PHOTO_FLEUR_MALE = "photo_de_fleur_male";
-	const SOUDURE_PERIGONE = 'soudure_du_perigone';
+	const SOUDURE_PERIGONE = 'soudure_du_perigone_';
 	const GYNECEE = 'gynecee';
 	const SOUDURE_CARPELLES = 'soudure_des_carpelles';
 	const OVAIRE = 'ovaire';
@@ -188,6 +188,7 @@ class Constantes{
 	const TEPALES = 'tépales';
 	const SEPALES = 'sépales';
 	const PETALES = 'pétales';
+	const PETALES_SEPALES = "pétales et sépales";
 	const ANDROCEE_SOUDEE_COROLLE = 'androcée soudé à la corolle';
 	const SOUDEES_PERIGONE = 'soudées au perigone';
 	const PUBESCENTE = 'pubescente';
@@ -196,6 +197,10 @@ class Constantes{
 	const ORGANISEES_EN_INFLORESCENCES = 'organisées en inflorescences';
 	const TOUS_LES_ORGANES_FLORAUX = "tous les organes floraux";
 	const ETAT_SAUVAGE = "à l'état sauvage";
+	const COMPOSEES = "composées";
+	const PREDATEURS = "prédateurs";
+	const OUI = "oui";
+	const STATUT_PROTECTION = 'a un statut de protection au niveau national et/ou régional';
 
 	const APPARITION = 'Apparait dans les collections suivantes :';
 	const FAVORIS = 'Favoris';
