@@ -1338,7 +1338,7 @@
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
                         "oblong": "oblong",
-                        "pubescent sur la marge": "pubescent sur la marge"
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -1948,7 +1948,7 @@
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
                         "oblong": "oblong",
-                        "pubescent sur la marge": "pubescent sur la marge"
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -2558,7 +2558,7 @@
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
                         "oblong": "oblong",
-                        "pubescent sur la marge": "pubescent sur la marge"
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -3168,7 +3168,7 @@
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
                         "oblong": "oblong",
-                        "pubescent sur la marge": "pubescent sur la marge"
+                        "pubescent": "pubescent"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -6887,6 +6887,41 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
+                },
+                {
+                    "key": "field_63076023ecd7c",
+                    "label": "Soudure des carpelles",
+                    "name": "soudure_des_carpelles",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075fcfecd7b",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "soudés sur toute la longueur": "soudés sur toute la longueur",
+                        "soudés au niveau de l'ovaire et du style": "soudés au niveau de l'ovaire et du style",
+                        "soudés uniquement au niveau de l'ovaire": "soudés uniquement au niveau de l'ovaire",
+                        "non soudés": "non soudés"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
                 },
                 {
                     "key": "field_63076023ecd7c1",

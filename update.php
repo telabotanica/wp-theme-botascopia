@@ -114,15 +114,13 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
 
 /* modifyData("fleur_femelle_localisation_des_poils","fleur_femelle_localisation_des_poils_","field_6307632eecd801",["l\'androcée","le gynécée"],["les étamines","les carpelles"]); */
 
-/* modifyData("feuilles_aeriennes_limbe_des_feuilles_simples","feuilles_aeriennes_limbe_des_feuilles_simples_","field_6304dac552e051",["pubescent","oblongue"],["pubescent sur la marge","oblong"]);*/
+//modifyData("feuilles_aeriennes_limbe_des_feuilles_simples","feuilles_aeriennes_limbe_des_feuilles_simples_","field_6304dac552e051",["oblongue"],["oblong"]);
 
-/* modifyData("feuilles_des_rameaux_steriles_limbe_des_feuilles_simples","feuilles_des_rameaux_steriles_limbe_des_feuilles_simples_","field_634e49d1480131",["pubescent","oblongue"],["pubescent sur la marge","oblong"]); */
+//modifyData("feuilles_des_rameaux_steriles_limbe_des_feuilles_simples","feuilles_des_rameaux_steriles_limbe_des_feuilles_simples_","field_634e49d1480131",["oblongue"],["oblong"]); 
 
-/* modifyData("feuilles_des_rameaux_fleuris_limbe_des_feuilles_simples","feuilles_des_rameaux_fleuris_limbe_des_feuilles_simples_","field_634e49eb480211",["pubescent","oblongue"],["pubescent sur la marge","oblong"]); */
+//modifyData("feuilles_des_rameaux_fleuris_limbe_des_feuilles_simples","feuilles_des_rameaux_fleuris_limbe_des_feuilles_simples_","field_634e49eb480211",["oblongue"],["oblong"]); 
 
-/* modifyData("feuilles_immergees_limbe_des_feuilles_simples","feuilles_immergees_limbe_des_feuilles_simples_","field_634e48ca9fff01",["pubescent","oblongue"],["pubescent sur la marge","oblong"]); */
-
-/* modifyData("feuilles_immergees_limbe_des_feuilles_simples","feuilles_immergees_limbe_des_feuilles_simples_","field_634e48ca9fff01",["pubescent","oblongue"],["pubescent sur la marge","oblong"]); */
+//modifyData("feuilles_immergees_limbe_des_feuilles_simples","feuilles_immergees_limbe_des_feuilles_simples_","field_634e48ca9fff01",["oblongue"],["oblong"]); 
 
 /* modifyData("tige_tige_aerienne","tige_tige_aerienne_","field_6304c66b239191",["visible toute l'année une partie de l'année"],["visible une partie de l'année"]); */
 
