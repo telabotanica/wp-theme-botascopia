@@ -1,14 +1,24 @@
 <?php
+define ('ABSPATH','./'); 
+require_once "../../../wp-config.php";
 function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,$mots_corriges = null){
-  //Changer les paramètres selon serveur
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $local = "mysql:unix_socket=/home/thomas/.config/Local/run/-jIQgK0o7/mysql/mysqld.sock;dbname=local";
+    //Changer les paramètres selon serveur
+    $dbname = DB_NAME;
+    $username = DB_USER;
+    $password = DB_PASSWORD;
+    $host = DB_HOST;
+    var_dump($password);
+    // Construire le DSN pour la connexion PDO
+    if ($host==='localhost'){
+      //Si test en local, remplacer le socket par celui dans l'onglet Database de localWP car la connection par serveur ne fonctionne pas
+      $socket = '';
+      $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
+    }else{
+      $dsn = "mysql:host=$host;dbname=$dbname";
+    }
 
-  try {
-      $conn = new PDO($local, $username, $password);
-      
+    try {
+      $conn = new PDO($dsn, $username, $password);
       
       $req = "SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key='$ancien_champ'";
     
@@ -16,8 +26,6 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
 
       $stmt = $conn->query($req);
       $res = $stmt->fetchAll();
-      /* var_dump($res);
-      die(); */
      
       $data=[];
       $data2=[];
@@ -103,16 +111,17 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
     echo "Connection failed: " . $e->getMessage();
   }
 }
+//Fruit : type
+modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
 
-/* modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]); */
 
 /* modifyData("inflorescence_categorie","inflorescence_categorie_","field_6304ec28c13d61",["un panicule"],["une panicule"]); */
 
-//modifyData("fleur_bisexuee_localisation_des_poils","fleur_bisexuee_localisation_des_poils_","field_6310aa953ed5c1",["l\'androcée","le gynécée"],["les étamines","les carpelles"]);
+//modifyData("fleur_bisexuee_localisation_des_poils","fleur_bisexuee_localisation_des_poils_","field_6310aa953ed5c1",["l'androcée","le gynécée"],["les étamines","les carpelles"]);
 
-/* modifyData("fleur_male_localisation_des_poils","fleur_male_localisation_des_poils_","field_6304fcbc829d01",["l\'androcée","le gynécée"],["les étamines","les carpelles"]); */
+/* modifyData("fleur_male_localisation_des_poils","fleur_male_localisation_des_poils_","field_6304fcbc829d01",["l'androcée","le gynécée"],["les étamines","les carpelles"]); */
 
-/* modifyData("fleur_femelle_localisation_des_poils","fleur_femelle_localisation_des_poils_","field_6307632eecd801",["l\'androcée","le gynécée"],["les étamines","les carpelles"]); */
+/* modifyData("fleur_femelle_localisation_des_poils","fleur_femelle_localisation_des_poils_","field_6307632eecd801",["l'androcée","le gynécée"],["les étamines","les carpelles"]); */
 
 //modifyData("feuilles_aeriennes_limbe_des_feuilles_simples","feuilles_aeriennes_limbe_des_feuilles_simples_","field_6304dac552e051",["oblongue"],["oblong"]);
 
@@ -122,7 +131,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
 
 //modifyData("feuilles_immergees_limbe_des_feuilles_simples","feuilles_immergees_limbe_des_feuilles_simples_","field_634e48ca9fff01",["oblongue"],["oblong"]); 
 
-/* modifyData("tige_tige_aerienne","tige_tige_aerienne_","field_6304c66b239191",["visible toute l'année une partie de l'année"],["visible une partie de l'année"]); */
+/* modifyData("tige_tige_aerienne","tige_tige_aerienne_","field_6304c66b239191",["visible"],["visible toute l'année"]); */
 
 /* modifyData("mode_de_vie","mode_de_vie_","field_6304c10075bda1",["parasite"],["holoparasite"]); */
 
@@ -148,7 +157,7 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 
 /* modifyData("fleur_bisexuee_soudure_des_carpelles","fleur_bisexuee_soudure_des_carpelles_","field_6310a8be3ed581",["soudés sur toute la longueur"],["soudés sur toute la longueur (ovaire, styles, stigmates)"]); */
 
-/* modifyData("fleur_femelle_soudure_des_carpelles","fleur_femelle_soudure_des_carpelles_","field_63076023ecd7c1",["soudés sur toute la longueur","soudés sur toute la longueur (ovaire, styles, stigmates) (ovaire, styles, stigmates)"],["soudés sur toute la longueur (ovaire, styles, stigmates)","soudés sur toute la longueur (ovaire, styles, stigmates)"]); */
+/* modifyData("fleur_femelle_soudure_des_carpelles","fleur_femelle_soudure_des_carpelles_","field_63076023ecd7c1",["soudés sur toute la longueur"],["soudés sur toute la longueur (ovaire, styles, stigmates)"]); */
 
 /* modifyData("fleur_bisexuee_ovaire","fleur_bisexuee_ovaire_","field_6310a9e23ed591",["semi-infère"],["intermédiaire"]); */
 
