@@ -77,7 +77,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
                   for ($j=0;$j<count($value_parts);$j++){
                     $part = $value_parts[$j];
                     
-                      if(str_contains($part,$mot_a_corr) AND preg_match("(l'année|hémiparasite|holoparasite|libres|soudés sur toute la longueur (ovaire, styles, stigmates))", $part) !== 1){
+                      if(str_contains($part,$mot_a_corr) AND preg_match("(l'année|hémiparasite|holoparasite|libres|soudés sur toute la longueur (ovaire, styles, stigmates)|exotique envahissante)", $part) !== 1){
                        
                         $part = preg_replace("([0-9]+)",strlen($mot_corr),$part);
                         $part = str_replace($mot_a_corr,$mot_corr,$part);
@@ -240,6 +240,8 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 /* modifyData("fleur_femelle_ovaire","fleur_femelle_ovaire_","field_630761dbecd7d1",["semi-infère"],["intermédiaire"]); */
 
 /* modifyData("cultivee_en_france","cultivee_en_france_","field_63073315d174c1",["seulement à l'état cultivée"],["seulement à l'état cultivé"]); */
+
+//modifyData("indigenat","indigenat_","field_63073560d174f1",["envahissante"],["exotique envahissante"]);
 
 /* modifyDataPhoto("feuilles_aeriennes_photo_de_feuilles_aeriennes","feuilles_aeriennes_illustration_de_la_feuille_aerienne_photo_de_feuilles_aeriennes","field_6304d939b94a3"); */
 
