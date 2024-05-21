@@ -5174,7 +5174,15 @@
                     "type": "text",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_631085d0cce37",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -7324,7 +7332,15 @@
                     "type": "text",
                     "instructions": "Si votre fleur femelle comporte d'autres caractères intéressants notez les ici",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075a90ecd70",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",

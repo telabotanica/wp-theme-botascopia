@@ -1158,7 +1158,7 @@ get_header();
                     <?php } ?>
                 </div>
                 <div>
-                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))){ ?>
+                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat_')) || !empty(get_field('statut_uicn'))){ ?>
                         <div id="aire-repartition" class="display-fiche-container">
                             <div class="fiche-title-container">
                                 <div class="fiche-title-icon">
@@ -1172,7 +1172,7 @@ get_header();
                                 </div>
                                 <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
                                     <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
-                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat_')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
                                     <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>

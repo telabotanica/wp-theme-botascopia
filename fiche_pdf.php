@@ -40,7 +40,7 @@
 
             <header>
                 <div class="pdf-container">
-                    <h1><i><?php the_field('nom_scientifique');?></i></h1>
+                    <h1><?php echo get_post_meta(get_the_ID(), Constantes::NOM_SCIENTIFIQUE, true); ?></h1>
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
                     <div class="characteristic pdf-description-morpho">
                         <h3 class="icon-title">
@@ -160,7 +160,7 @@
 
                                     foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
                                         if (Constantes::SIMPLES === $type_feuille) {
-                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples_']));
                                         } else {
                                             $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles_']));
                                         }
@@ -226,7 +226,7 @@
 
                                             foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
                                                 if (Constantes::SIMPLES === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples_']));
                                                 } else {
                                                     $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles_']));
                                                 }
@@ -281,7 +281,7 @@
 
                                             foreach ($feuilles_des_rameaux_steriles['type_de_feuille'] as $type_feuille) {
                                                 if (Constantes::SIMPLES === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples_']));
                                                 } else {
                                                     $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles_']));
                                                 }
@@ -658,7 +658,7 @@
             </header>
             <main class="pdf-container">
 <!--Aire répartition-->
-                <?php if (!empty(get_field('cultivee_en_france_')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))): ?>
+                <?php if (!empty(get_field('cultivee_en_france_')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat_')) || !empty(get_field('statut_uicn'))): ?>
                 <div class="characteristic">
                     <h3 class="icon-title">
                         <div class="location-icon icon"></div>aire de répartition et statut
@@ -666,7 +666,7 @@
                     <div class="pdf-inline-image">
                     <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
                         <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
-                        <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo (Constantes::ETAT_SAUVAGE === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat')) . '.' : '.'); ?> Statut de protection : <br><?php the_field('statut_uicn'); ?>.</p>
+                        <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo (Constantes::ETAT_SAUVAGE === $cultivee_en_france ? ' où elle est ' . implode (', ', get_field('indigenat_')) . '.' : '.'); ?> Statut de protection : <br><?php the_field('statut_uicn'); ?>.</p>
                     <?php } ?>
                     <?php if (!empty(get_field('carte_de_metropole'))) :?>
                             <div class="characteristic-photos section-image">

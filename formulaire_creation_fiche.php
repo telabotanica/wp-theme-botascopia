@@ -99,12 +99,9 @@ if (isset($_GET['p'])) {
             $not_available=true;
         }
     }
-        
-
-        
             the_botascopia_module('cover',[
                 'subtitle' => get_post_meta($post_id, 'nom_vernaculaire', true).' - '.get_post_meta($id, 'famille',true),
-                'title' => "<i>".get_post_meta($post_id, 'nom_scientifique', true)."</i>",
+                'title' => get_post_meta($post_id, 'nom_scientifique', true),
                 'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
                 'modifiers' =>['class' => 'fiche-cover']
             ]);
@@ -312,7 +309,7 @@ if (isset($_GET['p'])) {
                         'text' => Constantes::TELECHARGER,
                         'modifiers' => 'green-button',
                         'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
-                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
+                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".$titre_du_post."'"]
                     ]);
 
                     if ($fiche_complete){
