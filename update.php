@@ -7,11 +7,11 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
     $username = DB_USER;
     $password = DB_PASSWORD;
     $host = DB_HOST;
-    var_dump($password);
+
     // Construire le DSN pour la connexion PDO
     if ($host==='localhost'){
       //Si test en local, remplacer le socket par celui dans l'onglet Database de localWP car la connection par serveur ne fonctionne pas
-      $socket = '';
+      $socket = '/home/thomas/.config/Local/run/-jIQgK0o7/mysql/mysqld.sock';
       $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
     }else{
       $dsn = "mysql:host=$host;dbname=$dbname";
@@ -56,8 +56,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
 
           $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='_$ancien_champ'");
           $stmt->execute();
-        /*   $conn->commit();
-          die(); */
+    
           if(isset($mots_a_corriger) AND isset($mots_corriges)){
             
             for ($i=0;$i<count($mots_a_corriger);$i++){
@@ -68,10 +67,6 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
               $stmt = $conn->prepare("SELECT meta_id,meta_value FROM wp_postmeta WHERE meta_key=? AND meta_value LIKE ?");
               $stmt->execute($data);
               $res = $stmt->fetchAll();
-              /* if ($i==1){
-                var_dump($res);
-                die();
-              } */
               
               if (!empty($res)){
                 foreach($res as $item){
@@ -111,9 +106,82 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
     echo "Connection failed: " . $e->getMessage();
   }
 }
-//Fruit : type
-modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
 
+function modifyDataPhoto($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,$mots_corriges = null){
+  //Changer les paramètres selon serveur
+  $dbname = DB_NAME;
+  $username = DB_USER;
+  $password = DB_PASSWORD;
+  $host = DB_HOST;
+
+  // Construire le DSN pour la connexion PDO
+  if ($host==='localhost'){
+    //Si test en local, remplacer le socket par celui dans l'onglet Database de localWP car la connection par serveur ne fonctionne pas
+    $socket = '/home/thomas/.config/Local/run/-jIQgK0o7/mysql/mysqld.sock';
+    $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
+  }else{
+    $dsn = "mysql:host=$host;dbname=$dbname";
+  }
+
+  try {
+    $conn = new PDO($dsn, $username, $password);
+    
+    $req = "SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key='$ancien_champ'";
+  
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $conn->query($req);
+    $res = $stmt->fetchAll();
+   
+    $data=[];
+    $data2=[];
+    foreach($res as $item){
+      $id = $item['post_id'];
+      $value = $item['meta_value'];
+      $req = "SELECT meta_id FROM wp_postmeta WHERE meta_key='$nouveau_champ' AND post_id=$id";
+      $stmt = $conn->query($req);
+      $res = $stmt->fetch();
+     
+      if (empty($res)){
+        array_push($data,[$id, $nouveau_champ, $value]);
+        array_push($data2,[$id,"_$nouveau_champ",$field]);
+      }
+    }
+    
+    $stmt = $conn->prepare("INSERT INTO wp_postmeta (post_id,meta_key,meta_value) VALUES (?, ?, ?)");
+    try {
+        $conn->beginTransaction();
+        foreach ($data as $row)
+        {
+            $stmt->execute($row);
+        }
+        
+        foreach ($data2 as $row)
+        {
+            $stmt->execute($row);
+        }
+          
+        $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='$ancien_champ'");
+        $stmt->execute();
+
+        $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='_$ancien_champ'");
+        $stmt->execute();
+  
+        $conn->commit();
+
+  
+    }catch (Exception $e){
+        $conn->rollback();
+        throw $e;
+    }
+    
+    
+  } catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+  }
+}
+//Fruit : type
+//modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
 
 /* modifyData("inflorescence_categorie","inflorescence_categorie_","field_6304ec28c13d61",["un panicule"],["une panicule"]); */
 
@@ -130,6 +198,14 @@ modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une cryps
 //modifyData("feuilles_des_rameaux_fleuris_limbe_des_feuilles_simples","feuilles_des_rameaux_fleuris_limbe_des_feuilles_simples_","field_634e49eb480211",["oblongue"],["oblong"]); 
 
 //modifyData("feuilles_immergees_limbe_des_feuilles_simples","feuilles_immergees_limbe_des_feuilles_simples_","field_634e48ca9fff01",["oblongue"],["oblong"]); 
+
+//modifyData("feuilles_aeriennes_limbe_des_folioles","feuilles_aeriennes_limbe_des_folioles_","field_6304db62937371",["oblongue"],["oblong"]);
+
+//modifyData("feuilles_des_rameaux_steriles_limbe_des_folioles","feuilles_des_rameaux_steriles_limbe_des_folioles_","field_634e49d1480141",["oblongue"],["oblong"]); 
+
+//modifyData("feuilles_des_rameaux_fleuris_limbe_des_folioles","feuilles_des_rameaux_fleuris_limbe_des_folioles_","field_634e49eb480221",["oblongue"],["oblong"]); 
+
+//modifyData("feuilles_immergees_limbe_des_folioles","feuilles_immergees_limbe_des_folioles_","field_634e48ca9fff11",["oblongue"],["oblong"]); 
 
 /* modifyData("tige_tige_aerienne","tige_tige_aerienne_","field_6304c66b239191",["visible"],["visible toute l'année"]); */
 
@@ -165,3 +241,22 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 
 /* modifyData("cultivee_en_france","cultivee_en_france_","field_63073315d174c1",["seulement à l'état cultivée"],["seulement à l'état cultivé"]); */
 
+/* modifyDataPhoto("feuilles_aeriennes_photo_de_feuilles_aeriennes","feuilles_aeriennes_illustration_de_la_feuille_aerienne_photo_de_feuilles_aeriennes","field_6304d939b94a3"); */
+
+/* modifyDataPhoto("feuilles_des_rameaux_fleuris_photo_de_feuilles_des_rameaux_fleuris","feuilles_des_rameaux_fleuris_illustration_de_la_feuille_des_rameaux_fleuris_photo_de_feuilles_des_rameaux_fleuris","field_634e49eb4801e"); */
+
+/* modifyDataPhoto("feuilles_des_rameaux_steriles_photo_de_feuilles_des_rameaux_steriles","feuilles_des_rameaux_steriles_illustration_de_la_feuille_des_rameaux_steriles_photo_de_feuilles_des_rameaux_steriles","field_634e49d148010"); */
+
+/* modifyDataPhoto("feuilles_immergees_photo_de_feuilles_immergees","feuilles_immergees_illustration_de_la_feuille_immergee_photo_de_feuilles_immergees","field_634e48ca9ffed"); */
+
+/* modifyDataPhoto("fleur_bisexuee_photo_de_fleur_bisexuee","fleur_bisexuee_illustration_de_la_fleur_bisexuee_photo_de_fleur_bisexuee","field_63108532cce34"); */
+
+/* modifyDataPhoto("fleur_femelle_photo_de_fleur_femelle","fleur_femelle_illustration_de_la_fleur_femelle_ou_de_linflorescence_photo_de_fleur_femelle","field_630640cbdb1e4"); */
+
+/* modifyDataPhoto("fleur_male_photo_de_fleur_male","fleur_male_illustration_de_la_fleur_male_ou_de_linflorescence_photo_de_fleur_male","field_6304ef9dbe188"); */
+
+/* modifyDataPhoto("fruit_photo","fruit_illustration_du_fruit_photo","field_63076618ecd83"); */
+
+/* modifyDataPhoto("tige_photo_tige","tige_illustration_de_la_tige_photo_tige","field_6304c61a23918"); */
+
+//modifyDataPhoto("photo_de_la_plante_entiere","illustration_de_la_plante_entiere_photo_de_la_plante_entiere","field_6304bda381ab9");

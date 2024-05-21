@@ -106,7 +106,7 @@ class Constantes{
 	const PHYLLOTAXIE = 'phyllotaxie';
 	const TYPE_DE_FEUILLE = 'type_de_feuille';
 	const LIMBE_FEUILLES_SIMPLES = 'limbe_des_feuilles_simples_';
-	const LIMBE_FOLIOLES = 'limbe_des_folioles';
+	const LIMBE_FOLIOLES = 'limbe_des_folioles_';
 	const MARGE_FOLIAIRE = 'marge_foliaire';
 	const NERVATION = 'nervation';
 	const PETIOLE = 'petiole';
@@ -160,8 +160,8 @@ class Constantes{
 	const PHOTO_FLEUR_MALE = "photo_de_fleur_male";
 	const SOUDURE_PERIGONE = 'soudure_du_perigone_';
 	const GYNECEE = 'gynecee';
-	const SOUDURE_CARPELLES = 'soudure_des_carpelles';
-	const OVAIRE = 'ovaire';
+	const SOUDURE_CARPELLES = 'soudure_des_carpelles_';
+	const OVAIRE = 'ovaire_';
 	const ILLUSTRATION_FLEUR_FEMELLE = "illustration_de_la_fleur_femelle_ou_de_linflorescence";
 	const PHOTO_FLEUR_FEMELLE = 'photo_de_fleur_femelle';
 	const COMPOSITION_PERIANTHE = 'composition_du_perianthe';

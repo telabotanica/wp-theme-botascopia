@@ -1422,6 +1422,49 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_6304db62937371",
+                    "label": "Limbe des folioles ",
+                    "name": "limbe_des_folioles_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304da7252e04",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "ovale": "ovale",
+                        "lancéolé": "lancéolé",
+                        "linéaire": "linéaire",
+                        "triangulaire": "triangulaire",
+                        "cordé": "cordé",
+                        "pennatiséqué": "pennatiséqué",
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblong": "oblong",
+                        "pubescent": "pubescent"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
                     "key": "field_6304dbec93738",
                     "label": "Marge foliaire",
                     "name": "marge_foliaire",
@@ -2021,6 +2064,49 @@
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
                         "oblongue": "oblongue",
+                        "pubescent": "pubescent"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_634e48ca9fff11",
+                    "label": "Limbe des folioles ",
+                    "name": "limbe_des_folioles_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e48ca9ffef",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "ovale": "ovale",
+                        "lancéolé": "lancéolé",
+                        "linéaire": "linéaire",
+                        "triangulaire": "triangulaire",
+                        "cordé": "cordé",
+                        "pennatiséqué": "pennatiséqué",
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblong": "oblong",
                         "pubescent": "pubescent"
                     },
                     "default_value": [],
@@ -2642,6 +2728,49 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_634e49d1480141",
+                    "label": "Limbe des folioles ",
+                    "name": "limbe_des_folioles_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e49d148012",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "ovale": "ovale",
+                        "lancéolé": "lancéolé",
+                        "linéaire": "linéaire",
+                        "triangulaire": "triangulaire",
+                        "cordé": "cordé",
+                        "pennatiséqué": "pennatiséqué",
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblong": "oblong",
+                        "pubescent": "pubescent"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
                     "key": "field_634e49d148015",
                     "label": "Marge foliaire",
                     "name": "marge_foliaire",
@@ -3241,6 +3370,49 @@
                         "palmatiséqué": "palmatiséqué",
                         "pennatipartite": "pennatipartite",
                         "oblongue": "oblongue",
+                        "pubescent": "pubescent"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_634e49eb480221",
+                    "label": "Limbe des folioles ",
+                    "name": "limbe_des_folioles_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e49eb48020",
+                                "operator": "==",
+                                "value": "composées"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "circulaire": "circulaire",
+                        "ovale": "ovale",
+                        "lancéolé": "lancéolé",
+                        "linéaire": "linéaire",
+                        "triangulaire": "triangulaire",
+                        "cordé": "cordé",
+                        "pennatiséqué": "pennatiséqué",
+                        "palmatiséqué": "palmatiséqué",
+                        "pennatipartite": "pennatipartite",
+                        "oblong": "oblong",
                         "pubescent": "pubescent"
                     },
                     "default_value": [],

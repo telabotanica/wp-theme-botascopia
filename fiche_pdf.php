@@ -162,7 +162,7 @@
                                         if (Constantes::SIMPLES === $type_feuille) {
                                             $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
                                         } else {
-                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles_']));
                                         }
                                     }
                                     ?>
@@ -228,7 +228,7 @@
                                                 if (Constantes::SIMPLES === $type_feuille) {
                                                     $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles_']));
                                                 }
                                             }
                                             ?>
@@ -254,7 +254,7 @@
                                         </p>
                                     <?php endif; ?>
 
-                                    <!--Feuilles à rameau stérile                                -->
+                                    <!--Feuilles des rameaux stériles-->
                                 <?php elseif ($deux_formes_distinctes === Constantes::RAMEAUX_STERILES_FLEURIS): ?>
                                     
                                     <?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
@@ -283,7 +283,7 @@
                                                 if (Constantes::SIMPLES === $type_feuille) {
                                                     $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples']));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles']));
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles_']));
                                                 }
                                             }
                                             ?>
