@@ -1349,6 +1349,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_7415dac552e051",
+                    "label": "Localisation de la pubescence des feuilles simples",
+                    "name": "localisation_pubescence_feuilles_simples",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304dac552e051",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_64413c967e502",
                     "label": "Nombre de folioles",
                     "name": "nombre_de_folioles",
@@ -1463,6 +1491,34 @@
                     "toggle": 0,
                     "save_custom": 0,
                     "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_7415dac552e0511",
+                    "label": "Localisation de la pubescence des folioles",
+                    "name": "localisation_pubescence_folioles",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304db62937371",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_6304dbec93738",
@@ -2002,6 +2058,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_7415dac552f162",
+                    "label": "Localisation de la pubescence des feuilles simples",
+                    "name": "localisation_pubescence_feuilles_simples",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e48ca9fff01",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_64413e9995328",
                     "label": "Nombre de folioles",
                     "name": "nombre_de_folioles",
@@ -2116,6 +2200,34 @@
                     "toggle": 0,
                     "save_custom": 0,
                     "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_7415dac552f1621",
+                    "label": "Localisation de la pubescence des folioles",
+                    "name": "localisation_pubescence_folioles",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e48ca9fff11",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_634e48ca9fff2",
@@ -2655,6 +2767,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_8526dac552f1621",
+                    "label": "Localisation de la pubescence des feuilles simples",
+                    "name": "localisation_pubescence_feuilles_simples",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e49d1480131",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_64413f147b5ba",
                     "label": "Nombre de folioles",
                     "name": "nombre_de_folioles",
@@ -2769,6 +2909,34 @@
                     "toggle": 0,
                     "save_custom": 0,
                     "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_8526ebd652f1621",
+                    "label": "Localisation de la pubescence des folioles",
+                    "name": "localisation_pubescence_folioles",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e49d1480141",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_634e49d148015",
@@ -3308,6 +3476,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_8526dac552f2732",
+                    "label": "Localisation de la pubescence des feuilles simples",
+                    "name": "localisation_pubescence_feuilles_simples",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e49eb480211",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_64413f347b5bb",
                     "label": "Nombre de folioles",
                     "name": "nombre_de_folioles",
@@ -3422,6 +3618,34 @@
                     "toggle": 0,
                     "save_custom": 0,
                     "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_9637dac552f2732",
+                    "label": "Localisation de la pubescence des folioles",
+                    "name": "localisation_pubescence_folioles",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_634e49eb480221",
+                                "operator": "==",
+                                "value": "pubescent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 180,
+                    "placeholder": "ex : sur la marge, sur le limbe, sur la marge et le limbe",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_634e49eb48023",

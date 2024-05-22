@@ -18,12 +18,7 @@
 	
 	$titre = $data->items[0]['title'];
 	$post_id = $data->items[0]['content']['post_id'];
-	echo "<pre>";
-	//print_r(get_post_meta($post_id));
-	echo "</pre>";
-	$field_title = $data->items[0]['content']['field_title'];
 	$field_group_key = $data->items[0]['content']['field_key'];
-	$field_group_id = $data->items[0]['content']['field_groups'][0];
 	
 	switch ($titre){
 		case Constantes::VULG:
@@ -403,6 +398,18 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 						}else if($key==="quel_est_le_statut_de_protection__provence_alpes_cote_d_azur"){
 							$val = get_field($name."_statut_de_protection_a_l_echelle_locale_regions_concernees",$post_id);
 							if(in_array("Provence-Alpes-Côte d'Azur",$val) AND empty($sub_field)){
+								return $bool=true;
+								
+							}
+						}else if($key===Constantes::LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES){
+							$val = get_field($name."_".Constantes::LIMBE_FEUILLES_SIMPLES,$post_id);
+							if(in_array("pubescent",$val) AND empty($sub_field)){
+								return $bool=true;
+								
+							}
+						}else if($key===Constantes::LOCALISATION_PUBESCENCE_FOLIOLES){
+							$val = get_field($name."_".Constantes::LIMBE_FOLIOLES,$post_id);
+							if(in_array("pubescent",$val) AND empty($sub_field)){
 								return $bool=true;
 								
 							}

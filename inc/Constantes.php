@@ -107,6 +107,8 @@ class Constantes{
 	const TYPE_DE_FEUILLE = 'type_de_feuille';
 	const LIMBE_FEUILLES_SIMPLES = 'limbe_des_feuilles_simples_';
 	const LIMBE_FOLIOLES = 'limbe_des_folioles_';
+	const LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES = "localisation_pubescence_feuilles_simples";
+	const LOCALISATION_PUBESCENCE_FOLIOLES = "localisation_pubescence_folioles";
 	const MARGE_FOLIAIRE = 'marge_foliaire';
 	const NERVATION = 'nervation';
 	const PETIOLE = 'petiole';

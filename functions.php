@@ -619,3 +619,14 @@ function exclude_fields( $field ) {
     return $field;
 }
 add_filter('acf/prepare_field', 'exclude_fields'); 
+
+function getPubescence($feuille,$mode,$texte){
+    if (str_contains($texte,'pubescent') AND $mode ===1){
+        $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES];
+        return $texte = str_replace("pubescent","pubescent $comp",$texte);
+    }
+    if (str_contains($texte, 'pubescent') AND $mode ===2){
+        $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FOLIOLES];
+        return $texte = str_replace("pubescent","pubescent $comp",$texte);
+    }
+}

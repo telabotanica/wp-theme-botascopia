@@ -160,14 +160,18 @@
 
                                     foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
                                         if (Constantes::SIMPLES === $type_feuille) {
-                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples_']));
+                                            $text = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                            $text = getPubescence($feuilles_aeriennes,1,$text);
+                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                         } else {
-                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles_']));
+                                            $texte = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]);
+                                            $texte = getPubescence($feuilles_aeriennes,2,$texte);
+                                            $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                         }
                                     }
                                     ?>
 
-                                    <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
+                                    <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
 
                                     <?php
                                     $presence_petiole = $feuilles_aeriennes['petiole'];
@@ -226,14 +230,18 @@
 
                                             foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
                                                 if (Constantes::SIMPLES === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples_']));
+                                                    $text = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                    $text = getPubescence($feuilles_aeriennes,1,$text);
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles_']));
+                                                    $texte = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]);
+                                                    $texte = getPubescence($feuilles_aeriennes,2,$texte);
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                 }
                                             }
                                             ?>
 
-                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
+                                            <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
 
                                             <?php
                                             $presence_petiole = $feuilles_aeriennes['petiole'];
@@ -281,14 +289,18 @@
 
                                             foreach ($feuilles_des_rameaux_steriles['type_de_feuille'] as $type_feuille) {
                                                 if (Constantes::SIMPLES === $type_feuille) {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples_']));
+                                                    $text = implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                    $text = getPubescence($feuilles_des_rameaux_steriles,1,$text);
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                 } else {
-                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles_']));
+                                                    $texte = implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FOLIOLES]);
+                                                    $texte = getPubescence($feuilles_des_rameaux_steriles,2,$texte);
+                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                 }
                                             }
                                             ?>
 
-                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles['nervation']);?>.<br>
+                                            <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles['nervation']);?>.<br>
 
                                             <?php
                                             $presence_petiole = $feuilles_des_rameaux_steriles['petiole'];
