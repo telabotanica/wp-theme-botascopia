@@ -1,24 +1,67 @@
 <?php
 define ('ABSPATH','./'); 
 require_once "../../../wp-config.php";
+
+function returnParams(){
+  
+  //Changer les paramètres selon serveur
+  $dbname = DB_NAME;
+  $username = DB_USER;
+  $password = DB_PASSWORD;
+  $host = DB_HOST;
+
+  // Construire le DSN pour la connexion PDO
+  if ($host==='localhost'){
+    //Si test en local, remplacer le socket par celui dans l'onglet Database de localWP car la connection par serveur ne fonctionne pas
+    $socket = '';
+    $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
+    return new Params($username,$password,$dsn);
+  }else{
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    return new Params($username,$password,$dsn);
+  }
+  
+}
+
+class Params{
+  private $username="";
+  private $password="";
+  private $dsn="";
+
+  public function __construct($username,$password,$dsn) {
+    $this->username = $username;
+    $this->password = $password;
+    $this->dsn = $dsn;
+  }
+
+  function set_username($username) {
+    $this->username = $username;
+  }
+  function get_username() {
+    return $this->username;
+  }
+
+  function set_password($password) {
+    $this->password = $password;
+  }
+  function get_password() {
+    return $this->password;
+  }
+
+  function set_dsn($dsn) {
+    $this->dsn = $dsn;
+  }
+  function get_dsn() {
+    return $this->dsn;
+  }
+
+}
 function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,$mots_corriges = null){
     //Changer les paramètres selon serveur
-    $dbname = DB_NAME;
-    $username = DB_USER;
-    $password = DB_PASSWORD;
-    $host = DB_HOST;
-
-    // Construire le DSN pour la connexion PDO
-    if ($host==='localhost'){
-      //Si test en local, remplacer le socket par celui dans l'onglet Database de localWP car la connection par serveur ne fonctionne pas
-      $socket = '/home/thomas/.config/Local/run/-jIQgK0o7/mysql/mysqld.sock';
-      $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
-    }else{
-      $dsn = "mysql:host=$host;dbname=$dbname";
-    }
-
+    $params = returnParams();
+    
     try {
-      $conn = new PDO($dsn, $username, $password);
+      $conn = new PDO($params->get_dsn(), $params->get_username(), $params->get_password());
       
       $req = "SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key='$ancien_champ'";
     
@@ -107,24 +150,149 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
   }
 }
 
-function modifyDataPhoto($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,$mots_corriges = null){
-  //Changer les paramètres selon serveur
-  $dbname = DB_NAME;
-  $username = DB_USER;
-  $password = DB_PASSWORD;
-  $host = DB_HOST;
+function modifyDataSeasons($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null){
+  
 
-  // Construire le DSN pour la connexion PDO
-  if ($host==='localhost'){
-    //Si test en local, remplacer le socket par celui dans l'onglet Database de localWP car la connection par serveur ne fonctionne pas
-    $socket = '/home/thomas/.config/Local/run/-jIQgK0o7/mysql/mysqld.sock';
-    $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
-  }else{
-    $dsn = "mysql:host=$host;dbname=$dbname";
-  }
-
+  $params = returnParams();
+    
   try {
-    $conn = new PDO($dsn, $username, $password);
+    $conn = new PDO($params->get_dsn(), $params->get_username(), $params->get_password());
+    
+    $req = "SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key='$ancien_champ'";
+    
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $conn->query($req);
+    $res = $stmt->fetchAll();
+    
+    $data=[];
+    $data2=[];
+    foreach($res as $item){
+      $id = $item['post_id'];
+      $value = $item['meta_value'];
+    
+      array_push($data,[$id, $nouveau_champ, $value]);
+      array_push($data2,[$id,"_$nouveau_champ",$field]);
+      
+    }
+    
+    $stmt = $conn->prepare("INSERT INTO wp_postmeta (post_id,meta_key,meta_value) VALUES (?, ?, ?)");
+    try {
+        $conn->beginTransaction();
+        foreach ($data as $row)
+        {
+            $stmt->execute($row);
+        }
+        
+        foreach ($data2 as $row)
+        {
+            $stmt->execute($row);
+        }
+          
+        $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='$ancien_champ'");
+        $stmt->execute();
+
+        $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='_$ancien_champ'");
+        $stmt->execute();
+  
+        if(isset($mots_a_corriger)){
+          
+          for ($i=0;$i<count($mots_a_corriger);$i++){
+            
+            $mot_a_corr = $mots_a_corriger[$i];
+            
+            $data=[$nouveau_champ,"%$mot_a_corr%"];
+            $stmt = $conn->prepare("SELECT meta_id,meta_value FROM wp_postmeta WHERE meta_key=? AND meta_value LIKE ?");
+            $stmt->execute($data);
+            $res = $stmt->fetchAll();
+          
+            if (!empty($res)){
+              foreach($res as $item){
+                $value = $item['meta_value'];
+                $id = $item['meta_id'];
+                $value_parts = explode(";",$value);
+                
+                for ($j=0;$j<count($value_parts);$j++){
+                  $part = $value_parts[$j];
+                  
+                    $hiver = ["Janvier","Février","Mars"];
+                    $printemps = ["Avril","Mai","Juin"];
+                    $ete = ["Juillet","Août","Septembre"];
+                    $automne = ["Octobre","Novembre","Décembre"];
+                    for ($k=0;$k<count($hiver);$k++){
+                      if(str_contains($part,$hiver[$k])){
+                      
+                        $part = preg_replace("([0-9]+)",strlen('hiver'),$part);
+                        $part = str_replace($mot_a_corr,'hiver',$part);
+                        $value_parts[$j]=$part;
+                      }else if(str_contains($part,$printemps[$k])){
+                      
+                        $part = preg_replace("([0-9]+)",strlen('printemps'),$part);
+                        $part = str_replace($mot_a_corr,'printemps',$part);
+                        $value_parts[$j]=$part;
+                      }else if(str_contains($part,$ete[$k])){
+                      
+                        $part = preg_replace("([0-9]+)",strlen('été'),$part);
+                        $part = str_replace($mot_a_corr,'été',$part);
+                        $value_parts[$j]=$part;
+                      }else if(str_contains($part,$automne[$k])){
+                      
+                        $part = preg_replace("([0-9]+)",strlen('automne'),$part);
+                        $part = str_replace($mot_a_corr,'automne',$part);
+                        $value_parts[$j]=$part;
+                      }
+                    }
+                   
+                    
+                  
+                }
+                $tableau = array_unique($value_parts);
+                $array_values=[];
+                array_push($array_values,$tableau[0]);
+                $cpt = 0;
+                foreach ($tableau as $val){
+                  if (preg_match("(i:[0-9]+)",$val)){
+                    continue;
+                  }else if ($val==="}"){
+                    array_push($array_values,$val);
+                  }else{
+                   
+                    if($cpt > 0){
+                      array_push($array_values,"i:$cpt");
+                    }
+                    array_push($array_values,$val);
+                    $cpt++;
+                  }
+                }
+               
+                $array_values[0]=preg_replace("(a:[0-9]+)","a:$cpt",$array_values[0]);
+                $value = implode(";",$array_values);
+                $data=[$value,$id];
+                $stmt = $conn->prepare("UPDATE wp_postmeta set meta_value=? WHERE meta_id=?");
+                $stmt->execute($data);
+              }
+            }
+          }
+        }
+        $conn->commit();
+
+  
+    }catch (Exception $e){
+        $conn->rollback();
+        throw $e;
+    }
+    
+    
+  } catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+  }
+}
+
+function modifyDataPhoto($ancien_champ,$nouveau_champ,$field){
+  $params = returnParams();
+    
+  try {
+    $conn = new PDO($params->get_dsn(), $params->get_username(), $params->get_password());
     
     $req = "SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key='$ancien_champ'";
   
@@ -132,7 +300,7 @@ function modifyDataPhoto($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = 
 
     $stmt = $conn->query($req);
     $res = $stmt->fetchAll();
-   
+    
     $data=[];
     $data2=[];
     foreach($res as $item){
@@ -180,8 +348,10 @@ function modifyDataPhoto($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = 
     echo "Connection failed: " . $e->getMessage();
   }
 }
+
+
 //Fruit : type
-//modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
+modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
 
 /* modifyData("inflorescence_categorie","inflorescence_categorie_","field_6304ec28c13d61",["un panicule"],["une panicule"]); */
 
@@ -240,6 +410,8 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 /* modifyData("fleur_femelle_ovaire","fleur_femelle_ovaire_","field_630761dbecd7d1",["semi-infère"],["intermédiaire"]); */
 
 /* modifyData("cultivee_en_france","cultivee_en_france_","field_63073315d174c1",["seulement à l'état cultivée"],["seulement à l'état cultivé"]); */
+
+modifyDataSeasons("adaptations_aux_pratiques_de_culture_periode_de_levee","adaptations_aux_pratiques_de_culture_periode_de_levee_","field_65143be5c09dd1",["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]); 
 
 //modifyData("indigenat","indigenat_","field_63073560d174f1",["envahissante"],["exotique envahissante"]);
 

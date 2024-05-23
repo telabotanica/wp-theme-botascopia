@@ -1028,6 +1028,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_65143be5c09dd1",
+                    "label": "Période de levée ",
+                    "name": "periode_de_levee_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Sélectionnez tous les mois qui correspondent à la période de levée de la plante.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "hiver": "hiver",
+                        "printemps": "printemps",
+                        "été": "été",
+                        "automne": "automne"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
                     "key": "field_65143bfec09de",
                     "label": "Cette plante est favorisée dans les systèmes de culture",
                     "name": "cette_plante_est_favorisee_dans_les_systemes_de_culture",

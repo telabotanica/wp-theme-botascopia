@@ -1430,7 +1430,7 @@ get_header();
 
                                     <?php
                                         $levee="Sa levée a lieu ces saisons-là : <br>"; 
-                                        $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee');
+                                        $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee_');
                                         if (!empty($champ)){
                                     ?>
                                         <p><?php $mois = implode(', ',$champ); echo $levee.$mois;?>.</p>
