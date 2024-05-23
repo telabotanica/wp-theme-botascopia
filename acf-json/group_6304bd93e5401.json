@@ -985,7 +985,28 @@
                     "prepend": "",
                     "append": ""
                 }
+                
             ]
+        },
+        {
+            "key": "field_65143ee6446677",
+            "label": "Appareil végétatif",
+            "name": "appareil_vegetatif",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Décrivez l'appareil végétatif en quelques mots.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_634e45f4d4d68",

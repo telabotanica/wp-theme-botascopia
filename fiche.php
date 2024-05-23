@@ -413,7 +413,11 @@ get_header();
                                 <?php if (Constantes::JAMAIS_VISIBLES === $presence_feuilles){ ?>
                                     <p><?php echo $presence_feuilles; ?></p>
                                 <?php }else{ ?>
-                                    
+                                    <?php $champ = get_field('appareil_vegetatif');
+                                        if (!empty($champ)){
+                                            echo "Description de l'appareil végétatif : $champ";
+                                        }
+                                    ?>
                                     <?php $heteromorphisme_foliaire = get_field(Constantes::HETEROMORPHISME); 
                                             
                                     ?>
@@ -459,11 +463,7 @@ get_header();
                                                         <?php echo  $feuilles_aeriennes[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_aeriennes[Constantes::FEUILLAGE].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
-                                                <?php /* $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
-                                                    if (!empty($champ)){
-                                                        echo " $champ";
-                                                    } */
-                                                ?>
+                                                
                                             </p>
                                         </div>    
                                     

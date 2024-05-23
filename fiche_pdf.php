@@ -115,6 +115,11 @@
                                     <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
                                 <?php endif; ?>
                             <?php endif; ?>
+                            <?php $champ = get_field('appareil_vegetatif');
+                                if (!empty($champ)){
+                                    echo "Description de l'appareil végétatif : $champ";
+                                }
+                            ?>
                         </p>
                     <?php } ?>
                 </div>
@@ -132,7 +137,7 @@
                             </h4>
                             <p><?php echo $presence_feuilles; ?></p>
                         <?php }else{?>
-
+                            
                             <?php $heteromorphisme_foliaire = get_field('heteromorphisme_foliaire'); ?>
                            
                             <?php if ((Constantes::FEUILLES_SEMBLABLES === $heteromorphisme_foliaire) || (Constantes::GRADIENT === $heteromorphisme_foliaire)): ?>
