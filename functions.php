@@ -213,10 +213,15 @@ function getPostImage($id){
 }
 
 function getFicheImage($id){
-	if (get_field("field_643027826f24d")){
-		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+	$champ = get_field("illustration_de_la_plante_entiere_photo_de_la_plante_entiere");
+	if (!empty($champ)){
+		$id_image = $champ;
+		if (intval($id_image) !== 0){
+			$img = get_post($id_image);
+			$image = $img->guid;
+		}
 	}
-	if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+	/* if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
 		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
 		
 		$image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
@@ -225,7 +230,7 @@ function getFicheImage($id){
         $image = wp_get_attachment_image_src($imageId, 'full')[0];
     } else  {
 		$image = getPostImage($id)[0];
-	}
+	} */
     
     return $image;
 }
