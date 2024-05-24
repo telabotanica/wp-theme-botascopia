@@ -213,7 +213,7 @@ function getPostImage($id){
 }
 
 function getFicheImage($id){
-	$champ = get_field("illustration_de_la_plante_entiere_photo_de_la_plante_entiere",$id);
+	$champ = get_field("illustration_plante_entiere_photo_de_la_plante_entiere",$id);
 	$image = null;
 	if (!empty($champ)){
 		$id_image = $champ;

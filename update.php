@@ -1,6 +1,6 @@
 <?php
 define ('ABSPATH','./'); 
-require_once "../../../wp-config.php";
+require_once "../../wp-config.php";
 
 function returnParams(){
   
@@ -17,7 +17,7 @@ function returnParams(){
     $dsn = "mysql:unix_socket=$socket;dbname=$dbname;charset=utf8mb4";
     return new Params($username,$password,$dsn);
   }else{
-    $dsn = "mysql:host=$host;dbname=$dbname";
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
     return new Params($username,$password,$dsn);
   }
   
@@ -110,7 +110,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
               $stmt = $conn->prepare("SELECT meta_id,meta_value FROM wp_postmeta WHERE meta_key=? AND meta_value LIKE ?");
               $stmt->execute($data);
               $res = $stmt->fetchAll();
-              
+              var_dump($res);
               if (!empty($res)){
                 foreach($res as $item){
                   $value = $item['meta_value'];
@@ -124,6 +124,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
                        
                         $part = preg_replace("([0-9]+)",strlen($mot_corr),$part);
                         $part = str_replace($mot_a_corr,$mot_corr,$part);
+                        var_dump($part);
                         $value_parts[$j]=$part;
                       }
                     
@@ -350,6 +351,8 @@ function modifyDataPhoto($ancien_champ,$nouveau_champ,$field){
 }
 
 
+
+
 //Fruit : type
 modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
 
@@ -411,7 +414,7 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 
 /* modifyData("cultivee_en_france","cultivee_en_france_","field_63073315d174c1",["seulement à l'état cultivée"],["seulement à l'état cultivé"]); */
 
-modifyDataSeasons("adaptations_aux_pratiques_de_culture_periode_de_levee","adaptations_aux_pratiques_de_culture_periode_de_levee_","field_65143be5c09dd1",["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]); 
+//modifyDataSeasons("adaptations_aux_pratiques_de_culture_periode_de_levee","adaptations_aux_pratiques_de_culture_periode_de_levee_","field_65143be5c09dd1",["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]); 
 
 //modifyData("indigenat","indigenat_","field_63073560d174f1",["envahissante"],["exotique envahissante"]);
 
@@ -433,4 +436,4 @@ modifyDataSeasons("adaptations_aux_pratiques_de_culture_periode_de_levee","adapt
 
 /* modifyDataPhoto("tige_photo_tige","tige_illustration_de_la_tige_photo_tige","field_6304c61a23918"); */
 
-//modifyDataPhoto("photo_de_la_plante_entiere","illustration_de_la_plante_entiere_photo_de_la_plante_entiere","field_6304bda381ab9");
+modifyDataPhoto("illustration_de_la_plante_entiere_photo_de_la_plante_entiere","illustration_plante_entiere_photo_de_la_plante_entiere","field_6304bda381ab9");
