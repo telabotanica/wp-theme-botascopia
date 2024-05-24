@@ -4,6 +4,7 @@
 ?>
 <?php
 get_header();
+
 ?>
 <div id="primary" class="content-area">
     <!-- Ne pas enlever car sinon, ça pète le css ! -->
@@ -41,17 +42,7 @@ get_header();
 		setlocale(LC_TIME, 'fr_FR.utf8');
 		$post_date = strftime('%e %B %Y', strtotime($date));
         
-        if (get_field("field_643027826f24d")){
-			$fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
-        }
-
-        if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-			$fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
-            
-            $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-        } else {
-            $image = getPostImage($post_id)[0];
-        }
+        
 
 		$index_photos = 0;
 		$fruit_photo=null;
@@ -78,9 +69,7 @@ get_header();
 			'modifiers' =>['class' => 'fiche-cover']
 		]);
 
-		if (!isset($image)){
-			$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-		}
+        $image = getFicheImage($post_id);
   
 		echo ('
 			<img src= '.$image .' class="fiche-image">
@@ -412,7 +401,11 @@ get_header();
                                 <?php if (Constantes::JAMAIS_VISIBLES === $presence_feuilles){ ?>
                                     <p><?php echo $presence_feuilles; ?></p>
                                 <?php }else{ ?>
-                                    
+                                    <?php $champ = get_field('appareil_vegetatif');
+                                        if (!empty($champ)){
+                                            echo "Description de l'appareil végétatif : $champ";
+                                        }
+                                    ?>
                                     <?php $heteromorphisme_foliaire = get_field(Constantes::HETEROMORPHISME); 
                                             
                                     ?>
@@ -429,14 +422,19 @@ get_header();
                                                 
                                                 foreach ($feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
                                                     if (Constantes::SIMPLES === $type_feuille) {
-                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]));
+                                                        $text = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                        $text = getPubescence($feuilles_aeriennes,1,$text);
+                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                     } else {
-                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]));
+                                                        $texte = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]);
+                                                        $texte = getPubescence($feuilles_aeriennes,2,$texte);
+                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                     }
                                                 }
+                                                
                                                 ?>
                                                 
-                                                <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes[Constantes::NERVATION]);?>.<br>
+                                                <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes[Constantes::NERVATION]);?>.<br>
                                                 
                                                 <?php
                                                 $presence_petiole = $feuilles_aeriennes[Constantes::PETIOLE];
@@ -453,11 +451,7 @@ get_header();
                                                         <?php echo  $feuilles_aeriennes[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_aeriennes[Constantes::FEUILLAGE].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
-                                                <?php /* $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
-                                                    if (!empty($champ)){
-                                                        echo " $champ";
-                                                    } */
-                                                ?>
+                                                
                                             </p>
                                         </div>    
                                     
@@ -483,14 +477,18 @@ get_header();
 
                                                             foreach ($feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
                                                                 if (Constantes::SIMPLES === $type_feuille) {
-                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]));
+                                                                    $text = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                    $text = getPubescence($feuilles_aeriennes,1,$text);
+                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                                 } else {
-                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]));
+                                                                    $texte = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]);
+                                                                    $texte = getPubescence($feuilles_aeriennes,2,$texte);
+                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                                 }
                                                             }
                                                             ?>
 
-                                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes[Constantes::NERVATION]);?>.<br>
+                                                            <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes[Constantes::NERVATION]);?>.<br>
 
                                                             <?php
                                                             $presence_petiole = $feuilles_aeriennes[Constantes::PETIOLE];
@@ -529,14 +527,18 @@ get_header();
 
                                                         foreach ($feuilles_immergees[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
                                                             if (Constantes::SIMPLES === $type_feuille) {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_immergees[Constantes::LIMBE_FEUILLES_SIMPLES]));
+                                                                $text = implode('-', $feuilles_immergees[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                $text = getPubescence($feuilles_immergees,1,$text);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_immergees[Constantes::LIMBE_FOLIOLES]));
+                                                                $texte = implode('-', $feuilles_immergees[Constantes::LIMBE_FOLIOLES]);
+                                                                $texte = getPubescence($feuilles_immergees,2,$texte);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
                                                         ?>
 
-                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_immergees[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_immergees[Constantes::NERVATION]);?>.<br>
+                                                        <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_immergees[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_immergees[Constantes::NERVATION]);?>.<br>
 
                                                         <?php
                                                         $presence_petiole = $feuilles_immergees[Constantes::PETIOLE];
@@ -577,14 +579,18 @@ get_header();
 
                                                         foreach ($feuilles_des_rameaux_steriles[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
                                                             if (Constantes::SIMPLES === $type_feuille) {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FEUILLES_SIMPLES]));
+                                                                $text = implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                $text = getPubescence($feuilles_des_rameaux_steriles,1,$text);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FOLIOLES]));
+                                                                $texte = implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FOLIOLES]);
+                                                                $texte = getPubescence($feuilles_des_rameaux_steriles,2,$texte);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
                                                         ?>
 
-                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::NERVATION]);?>.<br>
+                                                        <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::NERVATION]);?>.<br>
 
                                                         <?php
                                                         $presence_petiole = $feuilles_des_rameaux_steriles[Constantes::PETIOLE];
@@ -622,14 +628,18 @@ get_header();
 
                                                         foreach ($feuilles_des_rameaux_fleuris[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
                                                             if (Constantes::SIMPLES === $type_feuille) {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FEUILLES_SIMPLES]));
+                                                                $text = implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                $text = getPubescence($feuilles_des_rameaux_fleuris,1,$text);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FOLIOLES]));
+                                                                $texte = implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FOLIOLES]);
+                                                                $texte = getPubescence($feuilles_des_rameaux_steriles,2,$texte);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
                                                         ?>
 
-                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::NERVATION]);?>.<br>
+                                                        <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::NERVATION]);?>.<br>
 
                                                         <?php
                                                         $presence_petiole = $feuilles_des_rameaux_fleuris[Constantes::PETIOLE];
@@ -821,7 +831,7 @@ get_header();
                                                     } ?>
                                                     
                                                     <?php if(!empty($fleur_male[Constantes::ANDROCEE])){ ?>
-                                                        androcée composée de <?php $etamines = $fleur_male[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male[Constantes::SOUDURE_ANDROCEE];?> ;
+                                                        androcée composé de <?php $etamines = $fleur_male[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male[Constantes::SOUDURE_ANDROCEE];?> ;
                                                         <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_male[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_male[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : '').
                                                             (Constantes::SOUDEES_PERIGONE === $fleur_male[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_male[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
                                                         <?php echo (Constantes::PRESENTS === $fleur_male[Constantes::STAMINODES] ? $fleur_male[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : ''); ?>
@@ -911,7 +921,7 @@ get_header();
                                                 } ?>
                                                 
                                                 <?php if(!empty($fleur_femelle[Constantes::GYNECEE])): { ?>
-                                                    gynécée composée de <?php $carpelles = $fleur_femelle[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles);?>  carpelle(s) <?php echo $fleur_femelle[Constantes::SOUDURE_CARPELLES]; ?> ;
+                                                    gynécée composé de <?php $carpelles = $fleur_femelle[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles);?>  carpelle(s) <?php echo $fleur_femelle[Constantes::SOUDURE_CARPELLES]; ?> ;
                                                     ovaire <?php echo $fleur_femelle[Constantes::OVAIRE]; ?>.
                                                     La couleur principale de la fleur est <?php echo $fleur_femelle[Constantes::COULEUR_PRINCIPALE]; ?>.
                                                     <?php if (Constantes::PUBESCENTE === $fleur_femelle[Constantes::PUBESCENCE]) {
@@ -1000,13 +1010,13 @@ get_header();
                                                 }    ?>
                                                
                                                 <?php if(!empty($fleur_bisexuee[Constantes::ANDROCEE])): { ?>
-                                                    androcée composée de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines);?> étamine(s)
+                                                    androcée composé de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines);?> étamine(s)
                                                     <?php echo $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE]; ?> ; <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : ''). (Constantes::SOUDEES_PERIGONE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
                                                     <?php echo (Constantes::PRESENTS === $fleur_bisexuee[Constantes::STAMINODES] ? $fleur_bisexuee[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : '');
                                                 } ?>
                                                 <?php endif; ?>
                                                 <?php if(!empty($fleur_bisexuee[Constantes::GYNECEE])): { ?>
-                                                    gynécée composée de <?php $carpelles =  $fleur_bisexuee[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo $fleur_bisexuee[Constantes::SOUDURE_CARPELLES]; ?> ;
+                                                    gynécée composé de <?php $carpelles =  $fleur_bisexuee[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo $fleur_bisexuee[Constantes::SOUDURE_CARPELLES]; ?> ;
                                                     ovaire <?php echo $fleur_bisexuee[Constantes::OVAIRE]; ?>.
                                                 <?php } ?>
                                                 <?php endif; ?>
@@ -1158,7 +1168,7 @@ get_header();
                     <?php } ?>
                 </div>
                 <div>
-                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))){ ?>
+                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat_')) || !empty(get_field('statut_uicn'))){ ?>
                         <div id="aire-repartition" class="display-fiche-container">
                             <div class="fiche-title-container">
                                 <div class="fiche-title-icon">
@@ -1170,11 +1180,11 @@ get_header();
                                     ]);
                                     ?>
                                 </div>
-                                <?php if (!empty(get_field('cultivee_en_france'))) { ?>
-                                    <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                                    <p>En France, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
+                                    <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
+                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat_')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
-                                    <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
+                                    <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>
@@ -1408,7 +1418,7 @@ get_header();
 
                                     <?php
                                         $levee="Sa levée a lieu ces saisons-là : <br>"; 
-                                        $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee');
+                                        $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee_');
                                         if (!empty($champ)){
                                     ?>
                                         <p><?php $mois = implode(', ',$champ); echo $levee.$mois;?>.</p>
@@ -1648,7 +1658,7 @@ get_header();
                                         <?php } ?> 
                                     <?php } ?>
                                     <?php
-                                        $champ=get_field('sources_generales_reference_informations_de_la_rubrique_agroecologie');
+                                        $champ=get_field('sources_generales');
                                         if ($champ){
                                     ?>
                                         <p>Sources générales : <?php echo $champ;?></p>

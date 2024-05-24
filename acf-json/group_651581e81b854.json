@@ -1028,6 +1028,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_65143be5c09dd1",
+                    "label": "Période de levée ",
+                    "name": "periode_de_levee_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Sélectionnez tous les mois qui correspondent à la période de levée de la plante.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "hiver": "hiver",
+                        "printemps": "printemps",
+                        "été": "été",
+                        "automne": "automne"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
                     "key": "field_65143bfec09de",
                     "label": "Cette plante est favorisée dans les systèmes de culture",
                     "name": "cette_plante_est_favorisee_dans_les_systemes_de_culture",
@@ -2604,6 +2632,26 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143ee6435566",
+                    "label": "Sources générales",
+                    "name": "sources_generales",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Respectez la typographie habituelle des références.<br><br>Livre : NOM, Prénom. Titre. Édition. Lieu de publication : éditeur, année. Pagination<br>Chapitre : NOM, Prénom. Titre du chapitre In NOM, Prénom. Titre de l’ouvrage collectif. Lieu de publication : éditeur, année. Pagination.<br>Articles en ligne : Noms auteurs, premère lettre du prénom. Titre. Nom du journal [en ligne]. Mois année, volume, n°, pages, DOI. [consulté le jour mois année]<br>Site web : AUTEUR. Titre [en ligne]. Nom de l'éditeur, date de publication, date de mise à jour [date de consultation]. Disponibilité et accès",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "Source(s) :",
+                    "append": ""
                 }
             ]
         }

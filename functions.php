@@ -213,10 +213,20 @@ function getPostImage($id){
 }
 
 function getFicheImage($id){
-	if (get_field("field_643027826f24d")){
-		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
+	$champ = get_field("illustration_plante_entiere_photo_de_la_plante_entiere",$id);
+	$image = null;
+	if (!empty($champ)){
+		$id_image = $champ;
+		if (intval($id_image) !== 0){
+			$img = get_post($id_image);
+			$image = $img->guid;
+		}else{
+			$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+		}
+	}else{
+		$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
-	if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
+	/* if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
 		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
 		
 		$image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
@@ -225,7 +235,7 @@ function getFicheImage($id){
         $image = wp_get_attachment_image_src($imageId, 'full')[0];
     } else  {
 		$image = getPostImage($id)[0];
-	}
+	} */
     
     return $image;
 }
@@ -609,7 +619,24 @@ function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'pos
 
     return null;
 }
-
  add_action('init','get_page_by_post_title');
 
- 
+function exclude_fields( $field ) {
+	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée"];
+    if( in_array($field['label'],$array_labels) ) {
+        return false; 
+    }
+    return $field;
+}
+add_filter('acf/prepare_field', 'exclude_fields'); 
+
+function getPubescence($feuille,$mode,$texte){
+    if (str_contains($texte,'pubescent') AND $mode ===1){
+        $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES];
+        return $texte = str_replace("pubescent","pubescent $comp",$texte);
+    }
+    if (str_contains($texte, 'pubescent') AND $mode ===2){
+        $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FOLIOLES];
+        return $texte = str_replace("pubescent","pubescent $comp",$texte);
+    }
+}

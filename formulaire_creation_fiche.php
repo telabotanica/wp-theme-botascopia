@@ -99,45 +99,15 @@ if (isset($_GET['p'])) {
             $not_available=true;
         }
     }
-        
-
-        
             the_botascopia_module('cover',[
                 'subtitle' => get_post_meta($post_id, 'nom_vernaculaire', true).' - '.get_post_meta($id, 'famille',true),
-                'title' => "<i>".get_post_meta($post_id, 'nom_scientifique', true)."</i>",
+                'title' => get_post_meta($post_id, 'nom_scientifique', true),
                 'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
                 'modifiers' =>['class' => 'fiche-cover']
             ]);
 
-            if (get_field("field_643027826f24d",$post_id)){
-                $fichePicture = get_field("field_643027826f24d",$post_id)[Constantes::PHOTO_PLANTE_ENTIERE];
-                
-            }
-    
-            if (!empty(get_field("field_643027826f24d",$post_id)) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-                $fichePicture = get_field("field_643027826f24d",$post_id)[Constantes::PHOTO_PLANTE_ENTIERE];
-                
-                $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-                
-            } else {
-                $id_image=get_post_meta($post_id, '_photo_de_la_plante_entiere', true);
-            
-                if (intval($id_image) !== 0){
-                    $img = get_post($id_image);
-                    $image = $img->guid;
-                }else{
-                    //Pour les vieilles images, le nom du champ est différent
-                    $id_image=get_post_meta($post_id, 'photo_de_la_plante_entiere', true);
-                    $img = get_post($id_image);
-                    $image = $img->guid;
-                }
-                
-                
-            }
+            $image = getFicheImage($post_id);
 
-            if (!isset($image)){
-                $image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-            }
 
             if (isset($image)){
                 echo ('
@@ -312,7 +282,7 @@ if (isset($_GET['p'])) {
                         'text' => Constantes::TELECHARGER,
                         'modifiers' => 'green-button',
                         'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
-                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
+                        'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".$titre_du_post."'"]
                     ]);
 
                     if ($fiche_complete){
