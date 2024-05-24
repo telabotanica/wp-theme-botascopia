@@ -63,13 +63,10 @@
                 $refs_photo = array();
                 
                     $refs_photo[] = getFicheImage(get_the_ID());
+                    $image = $refs_photo[0];
                 
                 ?>
-                <div class="round-picture" style="background-image: url('<?php
-                if (isset($refs_photo[0])){
-                    $refs_photo[0];
-                }
-                ?>'); background-size: cover;"></div>
+                <div class="round-picture" style="background-image: url('<?php echo $image;?>'); background-size: cover;"></div>
             </header>
 
             <main id="caracteristiques" class="pdf-container">
