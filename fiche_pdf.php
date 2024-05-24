@@ -61,13 +61,13 @@
                 $index_photos = 0;
                 $fruit_photo=null;
                 $refs_photo = array();
-                if (!empty(get_field('field_643027826f24d')['photo_de_la_plante_entiere'])) {
-                    $refs_photo[] = get_field('field_643027826f24d')['photo_de_la_plante_entiere'];
-                }
+                
+                    $refs_photo[] = getFicheImage(get_the_ID());
+                
                 ?>
                 <div class="round-picture" style="background-image: url('<?php
                 if (isset($refs_photo[0])){
-                    echo wp_get_attachment_image_url($refs_photo[0], 'large');
+                    $refs_photo[0];
                 }
                 ?>'); background-size: cover;"></div>
             </header>

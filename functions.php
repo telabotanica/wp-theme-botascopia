@@ -213,13 +213,18 @@ function getPostImage($id){
 }
 
 function getFicheImage($id){
-	$champ = get_field("illustration_de_la_plante_entiere_photo_de_la_plante_entiere");
+	$champ = get_field("illustration_de_la_plante_entiere_photo_de_la_plante_entiere",$id);
+
 	if (!empty($champ)){
 		$id_image = $champ;
 		if (intval($id_image) !== 0){
 			$img = get_post($id_image);
 			$image = $img->guid;
+		}else{
+			$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 		}
+	}else{
+		$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
 	/* if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
 		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];

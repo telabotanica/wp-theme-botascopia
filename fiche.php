@@ -42,17 +42,7 @@ get_header();
 		setlocale(LC_TIME, 'fr_FR.utf8');
 		$post_date = strftime('%e %B %Y', strtotime($date));
         
-        if (get_field("field_643027826f24d")){
-			$fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
-        }
-
-        if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-			$fichePicture = get_field("field_643027826f24d")[Constantes::PHOTO_PLANTE_ENTIERE];
-            
-            $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-        } else {
-            $image = getPostImage($post_id)[0];
-        }
+        
 
 		$index_photos = 0;
 		$fruit_photo=null;
@@ -79,9 +69,7 @@ get_header();
 			'modifiers' =>['class' => 'fiche-cover']
 		]);
 
-		if (!isset($image)){
-			$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-		}
+        $image = getFicheImage($post_id);
   
 		echo ('
 			<img src= '.$image .' class="fiche-image">
