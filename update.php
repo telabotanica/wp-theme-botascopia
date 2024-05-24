@@ -1,7 +1,9 @@
 <?php
-define ('ABSPATH','./'); 
+define ('ABSPATH','./');
+//sur beta 
 require_once "../../wp-config.php";
-
+//sur local
+//require_once "../../../wp-config.php";
 function returnParams(){
   
   //Changer les paramètres selon serveur
@@ -354,7 +356,7 @@ function modifyDataPhoto($ancien_champ,$nouveau_champ,$field){
 
 
 //Fruit : type
-modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
+//modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
 
 /* modifyData("inflorescence_categorie","inflorescence_categorie_","field_6304ec28c13d61",["un panicule"],["une panicule"]); */
 
@@ -436,4 +438,4 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 
 /* modifyDataPhoto("tige_photo_tige","tige_illustration_de_la_tige_photo_tige","field_6304c61a23918"); */
 
-modifyDataPhoto("illustration_de_la_plante_entiere_photo_de_la_plante_entiere","illustration_plante_entiere_photo_de_la_plante_entiere","field_6304bda381ab9");
+//modifyDataPhoto("photo_de_la_plante_entiere","illustration_plante_entiere_photo_de_la_plante_entiere","field_6304bda381ab9");
