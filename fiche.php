@@ -901,9 +901,9 @@ get_header();
                                                         
                                                     }else{
                                                         $soudure_corolle = '';
-                                                        if (isset($fleur_femelle[Constantes::SOUDURE_CALICE_COROLLE])){
-                                                            if (getType($fleur_femelle[Constantes::SOUDURE_CALICE_COROLLE]) == 'string'){
-                                                                $soudure_corolle = $fleur_femelle[Constantes::SOUDURE_CALICE_COROLLE];
+                                                        if (isset($fleur_femelle[Constantes::SOUDURE_COROLLE])){
+                                                            if (getType($fleur_femelle[Constantes::SOUDURE_COROLLE]) == 'string'){
+                                                                $soudure_corolle = $fleur_femelle[Constantes::SOUDURE_COROLLE];
                                                             } else {
                                                                 $soudure_corolle = implode(' ou ', $fleur_femelle[Constantes::SOUDURE_CALICE_COROLLE]);
                                                             }
