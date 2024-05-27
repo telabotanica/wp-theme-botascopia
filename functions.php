@@ -641,3 +641,12 @@ function getPubescence($feuille,$mode,$texte){
 		return $texte;
 	}
 }
+
+function getSoudureCarpelles($fleur){
+	$soudure = $fleur[Constantes::SOUDURE_CARPELLES];
+	if ($soudure === "soudés sur toute la longueur (ovaire, styles, stigmates)"){
+		echo "soudés sur toute la longueur";
+	}else{
+		echo $soudure;
+	}
+}
