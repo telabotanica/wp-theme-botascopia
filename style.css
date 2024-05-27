@@ -35,6 +35,7 @@ body.page-template-fiche_pdf {
   height: 59.4cm;
   font-size: 0.32cm;
   background-color: unset;
+  
 }
 
 .page-template-fiche_pdf .page {
@@ -125,7 +126,7 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf p {
   margin: 0;
-  line-height: 20px;
+  line-height: 19px;
 }
 .page-template-fiche_pdf h3 {
   font-size: 0.51cm;
