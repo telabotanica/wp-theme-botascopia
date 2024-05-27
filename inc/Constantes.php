@@ -167,7 +167,7 @@ class Constantes{
 	const ILLUSTRATION_FLEUR_FEMELLE = "illustration_de_la_fleur_femelle_ou_de_linflorescence";
 	const PHOTO_FLEUR_FEMELLE = 'photo_de_fleur_femelle';
 	const COMPOSITION_PERIANTHE = 'composition_du_perianthe';
-	const SOUDURE_COROLLE = 'soudure_de_la_corolle';
+	const SOUDURE_COROLLE = 'soudure_de_la_corolle_';
 	const ILLUSTRATION_FLEUR_BISEXUEE = 'illustration_de_la_fleur_bisexuee';
 	const PHOTO_FLEUR_BISEXUEE = 'photo_de_fleur_bisexuee';
 
