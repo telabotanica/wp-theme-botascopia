@@ -448,7 +448,7 @@
                                         $perianthe .= !empty($fleur_bisexuee['soudure_du_calice_']) ? $fleur_bisexuee['soudure_du_calice_'] : "" ;
                                         $petales = $fleur_bisexuee['corolle'];
                                         $perianthe .= ' et ' . getValueOrganesFloraux($petales) . ' pétale(s) ' ;
-                                        $perianthe .= !empty($fleur_bisexuee['soudure_de_la_corolle']) ? $fleur_bisexuee['soudure_de_la_corolle'] . ' ; ' : "" ;
+                                        $perianthe .= !empty($fleur_bisexuee['soudure_de_la_corolle_']) ? $fleur_bisexuee['soudure_de_la_corolle_'] . ' ; ' : "" ;
                                         $perianthe .= ('corolle soudée au calice' === $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] ?
                                         $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
                                     }
@@ -510,10 +510,10 @@
                                     if (Constantes::TEPALES === $fleur_femelle['differenciation_du_perianthe']) {
                                         $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone_'] . ' ; ';
                                     } else {
-                                        if (getType($fleur_femelle['soudure_de_la_corolle']) == 'string'){
-                                            $soudure_corolle = $fleur_femelle['soudure_de_la_corolle'];
+                                        if (getType($fleur_femelle['soudure_de_la_corolle_']) == 'string'){
+                                            $soudure_corolle = $fleur_femelle['soudure_de_la_corolle_'];
                                         } else {
-                                            $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle']);
+                                            $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle_']);
                                         }
 
                                         $corolle = $fleur_femelle['corolle'];
@@ -569,11 +569,11 @@
                                 $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone_'] . ' ; ';
                             } else {
                                 $soudure_corolle = '';
-                                if (isset($fleur_male['soudure_de_la_corolle'])) {
-                                    if (getType($fleur_male['soudure_de_la_corolle']) == 'string') {
-                                        $soudure_corolle = $fleur_male['soudure_de_la_corolle'];
+                                if (isset($fleur_male['soudure_de_la_corolle_'])) {
+                                    if (getType($fleur_male['soudure_de_la_corolle_']) == 'string') {
+                                        $soudure_corolle = $fleur_male['soudure_de_la_corolle_'];
                                     } else {
-                                        $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle']);
+                                        $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle_']);
                                     }
                                 }
 

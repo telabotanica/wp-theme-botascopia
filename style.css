@@ -8,7 +8,7 @@ Version: 1.0
 @import "components/_all.css";
 @import "modules/_all.css";
 @import "assets/styles/_all.css";
-/*@import "blocks/_all.css";*/
+
 
 @font-face {
   font-family: 'grand-hotel';
@@ -126,7 +126,7 @@ body.page-template-fiche_pdf {
 
 .page-template-fiche_pdf p {
   margin: 0;
-  line-height: 19px;
+  line-height: 18px;
 }
 .page-template-fiche_pdf h3 {
   font-size: 0.51cm;
@@ -136,7 +136,7 @@ body.page-template-fiche_pdf {
 .page-template-fiche_pdf h4 {
   font-size: 0.41cm;
   margin-bottom: 0.2cm;
-  /*margin: 0;*/
+
 }
 
 .page-template-fiche_pdf h5 {
