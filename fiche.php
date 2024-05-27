@@ -801,11 +801,11 @@ get_header();
                                                         }
                                                         if (Constantes::TEPALES === $fleur_male[Constantes::DIFFERENCIATION_PERIANTHE]) {
                                                             $tepales = $fleur_male[Constantes::PERIGONE];
-                                                            $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_male[Constantes::SOUDURE_PERIGONE] . ' ; ';
+                                                            $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_male[Constantes::SOUDURE_PERIGONE];
                                                         } else if(Constantes::SEPALES === $fleur_male[Constantes::DIFFERENCIATION_PERIANTHE]){
                                                             
                                                             $sepales = $fleur_male[Constantes::CALICE];
-                                                            $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_male[Constantes::SOUDURE_CALICE].", ";
+                                                            $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_male[Constantes::SOUDURE_CALICE];
                                                         
                                                         
                                                         } else if(Constantes::PETALES === $fleur_male[Constantes::DIFFERENCIATION_PERIANTHE]){
@@ -822,7 +822,7 @@ get_header();
                                                             $calice = $fleur_male[Constantes::CALICE];
                                                             $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
                                                             $fleur_male[Constantes::SOUDURE_CALICE] . ' et ' .
-                                                            getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle . ' ; ';
+                                                            getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle;
                                                         
                                                         }
                                                         ?>
@@ -894,11 +894,11 @@ get_header();
                                                    
                                                     if (Constantes::TEPALES === $fleur_femelle[Constantes::DIFFERENCIATION_PERIANTHE]) {
                                                         $tepales = $fleur_femelle[Constantes::PERIGONE];
-                                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_femelle[Constantes::SOUDURE_PERIGONE] . ' ; ';
+                                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_femelle[Constantes::SOUDURE_PERIGONE];
                                                     } else if(Constantes::SEPALES === $fleur_femelle[Constantes::DIFFERENCIATION_PERIANTHE]){
                                                         
                                                         $calice = $fleur_femelle[Constantes::CALICE];
-                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) '.$fleur_femelle[Constantes::SOUDURE_CALICE].", ";
+                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) '.$fleur_femelle[Constantes::SOUDURE_CALICE];
                                                     
                                                     } else if(Constantes::PETALES === $fleur_femelle[Constantes::DIFFERENCIATION_PERIANTHE]){
                                                     
@@ -912,8 +912,7 @@ get_header();
                                                         $calice = $fleur_femelle[Constantes::CALICE];
                                                         $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
                                                         $fleur_femelle[Constantes::SOUDURE_CALICE] . ' et ' .
-                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle
-                                                        . ' ; ';
+                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle;
                                                     }
                                                     ?>
                                                     Le périanthe est composé de <?php echo $perianthe.". ";

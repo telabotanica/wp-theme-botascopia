@@ -356,7 +356,7 @@ function modifyDataPhoto($ancien_champ,$nouveau_champ,$field){
 
 
 //Fruit : type
-//modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle"],["une cypsèle"]);
+//modifyData("fruit_type","fruit_type_de_fruit","field_6307665aecd841",["une crypsèle","une caryopse"],["une cypsèle","un caryopse"]);
 
 /* modifyData("inflorescence_categorie","inflorescence_categorie_","field_6304ec28c13d61",["un panicule"],["une panicule"]); */
 
