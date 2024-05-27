@@ -4260,6 +4260,31 @@
                     ]
                 },
                 {
+                    "key": "field_631085d0cce37",
+                    "label": "Périanthe",
+                    "name": "perianthe",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "présent": "présent",
+                        "absent": "absent"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
                     "key": "field_63108562cce35",
                     "label": "Symétrie",
                     "name": "symetrie",
@@ -4267,7 +4292,15 @@
                     "type": "checkbox",
                     "instructions": "",
                     "required": 1,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_631085d0cce37",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -4291,7 +4324,7 @@
                     "name": "hypanthium",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -4308,31 +4341,6 @@
                     "allow_null": 1,
                     "other_choice": 0,
                     "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_631085d0cce37",
-                    "label": "Périanthe",
-                    "name": "perianthe",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "présent": "présent",
-                        "absent": "absent"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {
@@ -5600,7 +5608,7 @@
                     "name": "hypanthium",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -6642,7 +6650,9 @@
                             "type": "radio",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -6662,57 +6672,6 @@
                             "layout": "vertical"
                         }
                     ]
-                },
-                {
-                    "key": "field_630642a5a99d9",
-                    "label": "Symétrie",
-                    "name": "symetrie",
-                    "aria-label": "",
-                    "type": "checkbox",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "actinomorphe": "actinomorphe",
-                        "zygomorphe": "zygomorphe"
-                    },
-                    "allow_custom": 0,
-                    "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
-                    "return_format": "value",
-                    "save_custom": 0,
-                    "custom_choice_button_text": "Ajouter un nouveau choix"
-                },
-                {
-                    "key": "field_63075a6becd6f",
-                    "label": "Hypanthium",
-                    "name": "hypanthium",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "absent": "absent",
-                        "présent": "présent"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 },
                 {
                     "key": "field_63075a90ecd70",
@@ -6737,6 +6696,65 @@
                     "default_value": "",
                     "layout": "vertical",
                     "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_630642a5a99d9",
+                    "label": "Symétrie",
+                    "name": "symetrie",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_63075a90ecd70",
+                                "operator": "==",
+                                "value": "présent"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "actinomorphe": "actinomorphe",
+                        "zygomorphe": "zygomorphe"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
+                    "key": "field_63075a6becd6f",
+                    "label": "Hypanthium",
+                    "name": "hypanthium",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "absent": "absent",
+                        "présent": "présent"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
                     "save_other_choice": 0
                 },
                 {
@@ -7795,7 +7813,7 @@
                         "un pseudo-fruit": "un pseudo-fruit",
                         "un fruit composé": "un fruit composé",
                         "une silique": "une silique",
-                        "une caryopse": "une caryopse",
+                        "un caryopse": "un caryopse",
                         "une cypsèle": "une cypsèle",
                         "une samare": "une samare",
                         "un schizocarpe": "un schizocarpe",
