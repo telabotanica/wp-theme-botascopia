@@ -792,7 +792,7 @@ get_header();
                                                     <?php }else{ ?>
                                                         <?php
                                                         $perianthe="";
-                                                        echo "Fleur ".implode(' et ', $fleur_male[Constantes::SYMETRIE]).".";
+                                                        echo "Fleur ".implode(' et ', $fleur_male[Constantes::SYMETRIE]).". ";
                                                         if (Constantes::TEPALES === $fleur_male[Constantes::DIFFERENCIATION_PERIANTHE]) {
                                                             $tepales = $fleur_male[Constantes::PERIGONE];
                                                             $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_male[Constantes::SOUDURE_PERIGONE] . ' ; ';
@@ -972,10 +972,11 @@ get_header();
                                                     Le périanthe est absent ; 
                                                 <?php } else {
                                                     $perianthe="";
-                                                    echo "Fleur ".implode(' et ', $fleur_bisexuee[Constantes::SYMETRIE]).".";
+                                                    echo "Fleur ".implode(' et ', $fleur_bisexuee[Constantes::SYMETRIE]).". ";
                                                     if(Constantes::SEPALES === $fleur_bisexuee[Constantes::COMPOSITION_PERIANTHE]){
                                                         $sepales = $fleur_bisexuee[Constantes::CALICE];
-                                                        echo $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_bisexuee[Constantes::SOUDURE_CALICE].", ";
+                                                        $point=true;
+                                                        $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_bisexuee[Constantes::SOUDURE_CALICE];
                                                         
                                                     } else if(Constantes::PETALES === $fleur_bisexuee[Constantes::COMPOSITION_PERIANTHE]){
                                 
@@ -986,7 +987,7 @@ get_header();
                                                     }else if(Constantes::TEPALES === $fleur_bisexuee[Constantes::COMPOSITION_PERIANTHE]){
                                                         $tepales = $fleur_bisexuee[Constantes::PERIGONE];
                                                         $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' .
-                                                        $fleur_bisexuee[Constantes::SOUDURE_PERIGONE] . ' ; ';
+                                                        $fleur_bisexuee[Constantes::SOUDURE_PERIGONE];
 
                                                     }else{
                                                         $soudure_corolle = '';
@@ -1002,15 +1003,14 @@ get_header();
                                                         $calice = $fleur_bisexuee[Constantes::CALICE];
                                                         $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
                                                         $fleur_bisexuee[Constantes::SOUDURE_CALICE] . ' et ' .
-                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle
-                                                        . ' ; ';
+                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle;
                                                     }
                                                    
                                                     echo "Le périanthe est composé de $perianthe.";
                                                 }    ?>
                                                
                                                 <?php if(!empty($fleur_bisexuee[Constantes::ANDROCEE])): { ?>
-                                                    androcée composé de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines);?> étamine(s)
+                                                    Androcée composé de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines);?> étamine(s)
                                                     <?php echo $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE]; ?> ; <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : ''). (Constantes::SOUDEES_PERIGONE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
                                                     <?php echo (Constantes::PRESENTS === $fleur_bisexuee[Constantes::STAMINODES] ? $fleur_bisexuee[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : '');
                                                 } ?>
