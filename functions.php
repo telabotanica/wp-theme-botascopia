@@ -634,9 +634,10 @@ function getPubescence($feuille,$mode,$texte){
     if (str_contains($texte,'pubescent') AND $mode ===1){
         $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES];
         return $texte = str_replace("pubescent","pubescent $comp",$texte);
-    }
-    if (str_contains($texte, 'pubescent') AND $mode ===2){
+    }else if (str_contains($texte, 'pubescent') AND $mode ===2){
         $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FOLIOLES];
         return $texte = str_replace("pubescent","pubescent $comp",$texte);
-    }
+    }else{
+		return $texte;
+	}
 }
