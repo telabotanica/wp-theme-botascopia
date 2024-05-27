@@ -108,6 +108,7 @@ if (isset($_GET['p'])) {
 
             $image = getFicheImage($post_id);
 
+
             if (isset($image)){
                 echo ('
                     <img src= '.$image .' class="fiche-image">

@@ -183,7 +183,10 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 							continue;
 						}
 						if(in_array($key,$tige_tab) AND empty($sub_field)){
+
 							$tige = get_field($name."_tige_aerienne_",$post_id);
+
+
 							if( $tige !== Constantes::NON_VISIBLE ){
 								return $bool = true;
 							}
