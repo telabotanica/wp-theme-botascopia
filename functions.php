@@ -650,3 +650,44 @@ function getSoudureCarpelles($fleur){
 		echo $soudure;
 	}
 }
+
+function getDateInFrench($date){
+	switch ($date){
+		case str_contains($date, Constantes::JANUARY):
+			$date = str_replace(Constantes::JANUARY,"janvier",$date);
+			return $date;
+		case str_contains($date, Constantes::FEBRUARY):
+			$date = str_replace(Constantes::FEBRUARY,"février",$date);
+			return $date;
+		case str_contains($date, Constantes::MARCH):
+			$date = str_replace(Constantes::MARCH,"mars",$date);
+			return $date;
+		case str_contains($date, Constantes::APRIL):
+			$date = str_replace(Constantes::APRIL,"avril",$date);
+			return $date;
+		case str_contains($date, Constantes::MAY):
+			$date = str_replace(Constantes::MAY,"mai",$date);
+			return $date;
+		case str_contains($date, Constantes::JUNE):
+			$date = str_replace(Constantes::JUNE,"juin",$date);
+			return $date;
+		case str_contains($date, Constantes::JULY):
+			$date = str_replace(Constantes::JULY,"juillet",$date);
+			return $date;
+		case str_contains($date, Constantes::AUGUST):
+			$date = str_replace(Constantes::AUGUST,"août",$date);
+			return $date;
+		case str_contains($date, Constantes::SEPTEMBER):
+			$date = str_replace(Constantes::SEPTEMBER,"septembre",$date);
+			return $date;
+		case str_contains($date, Constantes::OCTOBER):
+			$date = str_replace(Constantes::OCTOBER,"octobre",$date);
+			return $date;
+		case str_contains($date, Constantes::NOVEMBER):
+			$date = str_replace(Constantes::NOVEMBER,"novembre",$date);
+			return $date;
+		case str_contains($date, Constantes::DECEMBER):
+			$date = str_replace(Constantes::DECEMBER,"décembre",$date);
+			return $date;
+	}
+}

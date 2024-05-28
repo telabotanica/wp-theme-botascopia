@@ -41,8 +41,8 @@ get_header();
 		$date = new DateTime($post->post_modified);
         $date_crea = new DateTime($post->post_date);
         setlocale(LC_TIME, 'fr_FR.utf8');
-        $post_date = $date->format('d m Y');
-        $post_date_crea = $date_crea->format('d m Y');
+        $post_date = getDateInFrench($date->format('d F Y'));
+        $post_date_crea = getDateInFrench($date_crea->format('d F Y'));
         
 
 		$index_photos = 0;
