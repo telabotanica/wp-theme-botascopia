@@ -53,6 +53,9 @@ class Constantes{
 	const YOUR_DEMAND = "Votre demande a bien été prise en compte.";
 	const RESEND = 'Renvoyer pour correction';
 	const BACK_TO_FORM = 'Retour au formulaire';
+	const MODIFIEE_LE = "Modifiée le ";
+	const PUBLIEE_LE = "Publiée le ";
+	const CREEE_LE = "Créée le";
 
 	const DESCRIPTION = "Description morphologique";
 	const PERIOD = "Période de floraison et de fructification";
