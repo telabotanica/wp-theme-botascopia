@@ -38,25 +38,33 @@ get_header();
 			$verificateur = $verificateur_data->display_name;
 		}
 		$title=get_the_title();
-		$date = $post->post_date;
-		setlocale(LC_TIME, 'fr_FR.utf8');
-		$post_date = strftime('%e %B %Y', strtotime($date));
-        
+		$date = new DateTime($post->post_modified);
+        $date_crea = new DateTime($post->post_date);
+        setlocale(LC_TIME, 'fr_FR.utf8');
+        $post_date = $date->format('d m Y');
+        $post_date_crea = $date_crea->format('d m Y');
         
 
 		$index_photos = 0;
 		$fruit_photo=null;
 		$refs_photo = array();
-		
+		$texte = "";
 		switch ($post->post_status){
 			case Constantes::DRAFT:
 				$status = Constantes::DRAFT_COMP;
+                if ($date > $date_crea){
+                    $texte = Constantes::MODIFIEE_LE;
+                }else{
+                    $texte = Constantes::CREEE_LE;
+                }
 				break;
 			case Constantes::PEND:
 				$status = Constantes::PEND_FR;
+                $texte = Constantes::MODIFIEE_LE;
 				break;
 			case Constantes::PUBLISH:
 				$status = Constantes::PUBLISH_FR;
+                $texte = Constantes::PUBLIEE_LE;
 				break;
 			default:
 				$status = '';
@@ -255,10 +263,10 @@ get_header();
 					
 					<div class="fiche-infos">
 						<div class="single-fiche-details">
-							<div class="single-fiche-detail">Statut : <?php echo $status ?></div>
-							<div class="single-fiche-detail">Publié le <?php echo $post_date ?></div>
-							<div class="single-fiche-detail">Par <?php echo $post_author ?></div>
-							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur ?></div>
+							<div class="single-fiche-detail">Statut : <?php echo $status; ?></div>
+							<div class="single-fiche-detail"> <?php echo ($texte.$post_date); ?></div>
+							<div class="single-fiche-detail">Par <?php echo $post_author; ?></div>
+							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur; ?></div>
 						</div>
 						<div id="fiche-infos-right">
 							<?php

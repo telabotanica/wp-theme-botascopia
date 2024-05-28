@@ -122,24 +122,36 @@ if (isset($_GET['p'])) {
             $auteur = get_userdata($auteur_id);
             $auteur_role = $auteur->roles;
             $auteur_name = get_the_author_meta('display_name', $auteur_id);
-            $date = explode(" ",$page->post_date)[0];
-            $modified_date = explode(" ",$page->post_modified)[0];
+            $date = new DateTime($post->post_modified);
+            $date_crea = new DateTime($post->post_date);
+            setlocale(LC_TIME, 'fr_FR.utf8');
+            $post_date = $date->format('d m Y');
+            $post_date_crea = $date_crea->format('d m Y');
             
+            $texte = "";
+		
             switch ($page->post_status){
                 case Constantes::DRAFT:
                     $status = Constantes::DRAFT_FR;
                     $acf_value = 1;
                     $acf_submit_text = Constantes::ENREGISTRER;
+                    if ($date > $date_crea){
+                        $texte = Constantes::MODIFIEE_LE;
+                    }else{
+                        $texte = Constantes::CREEE_LE;
+                    }
                     break;
                 case Constantes::PEND:
                     $status = Constantes::PEND_FR;
                     $acf_value = 2;
                     $acf_submit_text = Constantes::CORRIGER;
+                    $texte = Constantes::MODIFIEE_LE;
                     break;
                 case Constantes::PUBLISH:
                     $status = Constantes::PUBLISH_FR;
                     $acf_value = 3;
                     $acf_submit_text = Constantes::CORRIGER;
+                    $texte = Constantes::PUBLIEE_LE;
                     break;
                 default:
                     $status = '';
@@ -178,9 +190,9 @@ if (isset($_GET['p'])) {
                             'level' => 4,
                         ]);
                         ?>
-                        <div class="formulaire-detail">Statut: <?php echo $status ?></div>
-                        <div class="formulaire-detail">Modifiée le <?php echo $modified_date ?></div>
-                        <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
+                        <div class="formulaire-detail">Statut: <?php echo $status; ?></div>
+                        <div class="formulaire-detail"><?php echo ($texte.$post_date); ?></div>
+                        <div class="formulaire-detail">Par <?php echo $auteur_name; ?></div>
                     </div>
                     <?php
                     echo "<p>Cases à cocher : choix multiples ; boutons ronds : un seul choix</p>";
