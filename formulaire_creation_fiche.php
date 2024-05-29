@@ -124,7 +124,7 @@ if (isset($_GET['p'])) {
             $auteur_name = get_the_author_meta('display_name', $auteur_id);
             $date = new DateTime($post->post_modified);
             $date_crea = new DateTime($post->post_date);
-            setlocale(LC_TIME, 'fr_FR.utf8');
+            
             $post_date = getDateInFrench($date->format('d m Y'));
             $post_date_crea = getDateInFrench($date_crea->format('d m Y'));
             

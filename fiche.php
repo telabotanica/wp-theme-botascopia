@@ -40,7 +40,6 @@ get_header();
 		$title=get_the_title();
 		$date = new DateTime($post->post_modified);
         $date_crea = new DateTime($post->post_date);
-        setlocale(LC_TIME, 'fr_FR.utf8');
         $post_date = getDateInFrench($date->format('d F Y'));
         $post_date_crea = getDateInFrench($date_crea->format('d F Y'));
         
