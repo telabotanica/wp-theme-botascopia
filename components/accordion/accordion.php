@@ -182,6 +182,12 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 						if (in_array($key,$ignore_arr)){
 							continue;
 						}
+						if($key==='pollinisation'){
+							$val = get_field($name."_systeme_de_reproduction",$post_id);
+							if (($val === Constantes::ALLOGAME OR $val === Constantes::A_REGIME_MIXTE) AND empty($sub_field)){
+								return $bool = true;
+							}
+						}
 						if(in_array($key,$tige_tab) AND empty($sub_field)){
 
 							$tige = get_field($name."_tige_aerienne_",$post_id);
