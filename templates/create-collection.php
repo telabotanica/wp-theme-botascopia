@@ -159,7 +159,7 @@ endif;
 									$post_species = get_post_meta(get_the_ID(), 'famille', true);
 									$post_name = get_post_meta($post_id, 'nom_scientifique', true);
 									$post_imageFull = getFicheImage($post_id);
-									$selectedIds[] = $post_id;
+                                    $selectedIds[] = $post_id;
 									
 									$fiches[] = [
 										'id'      => $post_id,
@@ -172,20 +172,21 @@ endif;
 							
 							foreach ($fiches as $fiche){?>
                             
-                            <div class="card card-fiche card-selected" data-fiche-id="<?php echo $fiche['id']; ?>">
-                                <a data-fiche-id="<?php echo $fiche['id']; ?>">
-                                <img src="<?php echo $fiche['image']; ?>" alt="photo de <?php echo $fiche['name']; ?>" class="card-fiche-image" title="<?php echo $fiche['name']; ?>">
-                                </a>
-                                <div class="card-fiche-body">
-                                    <a><span class="card-fiche-title"><?php echo $fiche['name']; ?></span>
-                                        <span class="card-fiche-espece"><?php echo $fiche['species']; ?></span>
+                                <div class="card card-fiche card-selected" data-fiche-id="<?php echo $fiche['id']; ?>">
+                                    <img id="<?php echo $fiche['id'];?>"  class="cross" src="<?php echo get_template_directory_uri().'/images/cross.svg';?>" />
+                                    <a data-fiche-id="<?php echo $fiche['id']; ?>">
+                                        <img src="<?php echo $fiche['image']; ?>" alt="photo de <?php echo $fiche['name']; ?>" class="card-fiche-image" title="<?php echo $fiche['name']; ?>">
                                     </a>
+                                    <div class="card-fiche-body">
+                                        <a><span class="card-fiche-title"><?php echo $fiche['name']; ?></span>
+                                            <span class="card-fiche-espece"><?php echo $fiche['species']; ?></span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            
-							<?php
-                                $selectedIds[] = $fiche['id'];
-							}
+                                
+                                <?php
+                                    $selectedIds[] = $fiche['id'];
+                            }
                         }
                         ?>
                         
@@ -230,13 +231,16 @@ endif;
                     </div>
                     
                     <div>
+                       
                         <input type="submit" value="VALIDER" title="Créer la collection" class="button green-button new-collection-submit-button">
                         
 						<?php wp_nonce_field('new-post-collection'); ?>
                         
                         <?php if($edit) : ?>
                             <input type="hidden" name="edit" value="<?php echo 'true' ?>">
-                            <input type="hidden" name="collection_id" value="<?php echo esc_attr($collection_id); ?>">
+                            <input id="routeDelete" value='<?php echo get_rest_url(null, 'delete/collection/fiche') ?>' class="hidden"/>
+                            <input id="cross_src" type = "hidden" value="<?php echo get_template_directory_uri().'/images/cross.svg';?>" />
+                            <input type="hidden" id ="collection_id" name="collection_id" value="<?php echo $collection_id; ?>">
                         <?php endif; ?>
                     </div>
                 </div>
@@ -258,3 +262,4 @@ endif;
 <?php
 get_footer();
 ?>
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/mes-collections.js'); ?>" ></script>

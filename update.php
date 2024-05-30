@@ -112,7 +112,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
               $stmt = $conn->prepare("SELECT meta_id,meta_value FROM wp_postmeta WHERE meta_key=? AND meta_value LIKE ?");
               $stmt->execute($data);
               $res = $stmt->fetchAll();
-              var_dump($res);
+         
               if (!empty($res)){
                 foreach($res as $item){
                   $value = $item['meta_value'];
@@ -126,7 +126,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
                        
                         $part = preg_replace("([0-9]+)",strlen($mot_corr),$part);
                         $part = str_replace($mot_a_corr,$mot_corr,$part);
-                        var_dump($part);
+               
                         $value_parts[$j]=$part;
                       }
                     
