@@ -19,32 +19,32 @@
 	$titre = $data->items[0]['title'];
 	$post_id = $data->items[0]['content']['post_id'];
 	$field_group_key = $data->items[0]['content']['field_key'];
-	
+	$image="";
 	switch ($titre){
 		case Constantes::VULG:
 		case Constantes::DESCRIPTION:
 			$image = 'description';
-			
+			break;
 		case Constantes::PERIOD:
 			$image = 'periode';
-			
+			break;
 		case Constantes::ECOLOGIE:
 			$image = 'ecologie';
-			
+			break;
 		case Constantes::PROPERTIES:
 			$image = 'feuilles';
-			
+			break;
 		case Constantes::AIRE:
 			$image = 'location';
-			
+			break;
 		case Constantes::CONFUS:
 			$image = 'ne-pas-confondre';
-			
+			break;
 		default:
 			$image = '';
 	}
-
-	if ($image){
+	
+	if (!empty($image)){
 		echo '<img class="accordion-icon" src="'.get_template_directory_uri().'/images/'.$image.'.svg" />' ;
 	}
 	
