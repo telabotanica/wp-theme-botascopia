@@ -21,19 +21,12 @@
 		$attributes .= sprintf('%s="%s" ', $name, $value);
 	}
 	
-	// Définir une image au hasard si aucune n'est présente
-	if (empty($data->image)) :
-		$data->image =
-		get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-	endif;
-	
 	echo '<div class="card-fiche ' . implode(' ', $data->modifiers) . '" >';
 	
 	echo sprintf('<a href="%s" class="%s" '.$attributes.'>',
 				 $data->href,
 				 $data->popup
-	)
-	;
+	);
 	
 	echo sprintf(
 		'<img src="%s" class="card-fiche-image" alt="image-plante" title="%s"/>',
@@ -45,13 +38,11 @@
 	echo sprintf('
 		<span class="card-fiche-title">%s</span>
 		<span class="card-fiche-espece">%s</span>',
-				 $data->name,
-	$data->species
+			$data->name,
+			$data->species
 	);
 	
 	echo '</a></div>';
-	
-	$current_user = wp_get_current_user();
 	
 	echo sprintf('
 		<div class="card-fiche-icon" %s id="%s">%s</div>',
@@ -60,6 +51,5 @@
 				 get_botascopia_module('icon', $data->icon)
 	);
 	
-//	echo '</div>';
 	echo '</div>';
 }

@@ -37,6 +37,9 @@ require get_template_directory() . '/inc/graphiques.php';
 // Fichier des constantes
 require get_template_directory() . '/inc/Constantes.php';
 
+// Fichier des routes
+require get_template_directory() . '/inc/routes.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
@@ -226,16 +229,6 @@ function getFicheImage($id){
 	}else{
 		$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
-	/* if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
-		
-		$image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-	} elseif (!empty(get_post_meta($id, 'photo_de_la_plante_entiere', true))){
-        $imageId = get_post_meta($id, 'photo_de_la_plante_entiere', true);
-        $image = wp_get_attachment_image_src($imageId, 'full')[0];
-    } else  {
-		$image = getPostImage($id)[0];
-	} */
     
     return $image;
 }
@@ -333,6 +326,7 @@ function affichageImageFiche($photo,$id=null){
 // Envoyer une fiche à validation ou en publication
 add_action( 'wp_ajax_set_fiche_status', 'set_fiche_status' );
 add_action( 'wp_ajax_nopriv_set_fiche_status', 'set_fiche_status' );
+
 function set_fiche_status() {
 	$post_id = intval( $_POST['post_id'] );
 	$date = date('Y-m-d H:i:s');
@@ -427,124 +421,6 @@ function revealid_id_column_content( $column, $id ) {
         echo $id;
     }
 }
-
-function modifyRoleAdmin($data) {
-	
-	$params=$data->get_params();
-	$id=$params['id'];
-	$mode = $params['mode'];
-	if ($mode===1){
-		$user = new WP_User( $id );
-		$user->set_role( 'editor' );
-		getResponse(1,$user->data);
-
-	}elseif($mode===2){
-		$user = new WP_User( $id );
-		$user->set_role( 'contributor' );
-		getResponse($mode,$user->data);
-
-	}else{
-		getResponse(3,null);
-	}
-}
-
-function getResponse($mode,$user){
-	
-	$resp=['id'=>$user->ID,'nom'=>$user->display_name,'email'=>$user->user_email,'mode'=>$mode];
-	header('Content-Type: application/json; charset=utf-8');
-	echo json_encode($resp);
-	
-}
-
-//Exécute la fonction précédente lors de l'appel à la route /modify/role/admin
-//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est admin
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'modify', '/role/admin', array(
-	  'methods' => 'put',
-	  'callback' => 'modifyRoleAdmin',
-	  
-	) );
-} );
-
-function modifyRoleRedacteur($data) {
-	
-	$params=$data->get_params();
-	$email=$params['email'];
-	
-	
-	if ( email_exists( $email ) ){  
-        $user = get_user_by("email", $email);
-        $userId = $user->ID;
-		$role = get_userdata($userId)->roles[0];
-		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
-			$user->set_role('editor');
-			getResponse(1,$user);
-			
-		}else{
-			getResponse(2,$user);
-		}
-    }else{
-		getResponse(3,null);
-    }
-}
-
-//Exécute la fonction précédente lors de l'appel à la route /modify/role/redac
-//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est lui-même rédacteur
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'modify', '/role/redac', array(
-	  'methods' => 'put',
-	  'callback' => 'modifyRoleRedacteur',
-	  
-	) );
-} );
-
-function checkUser($data) {
-	
-	$email="";
-	$params=$data->get_params();
-	$id=$params['id'];
-	$mode=$params['mode'];
-	
-	if ($id!==0){
-		$user = new WP_User( $id );
-		$email = $user->data->user_email;
-	}else{
-		$email=$params['email'];
-	}
-	if ( email_exists( $email ) ){  
-        $user = get_user_by("email", $email);
-        $userId = $user->ID;
-		$role = get_userdata($userId)->roles[0];
-		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
-			if ($mode===2){
-				getResponse(4,$user);
-				return;
-			}
-			getResponse(1,$user);
-
-		}else if($role==='editor'){
-			if ($mode===1 || $mode===0){
-				getResponse(4,$user);
-				return;
-			}
-			getResponse(2,$user);
-		}else{
-			getResponse(4,$user);
-		}
-    }else{
-		getResponse(3,null);
-    }
-}
-
-//Exécute la fonction précédente lors de l'appel à la route /modify/check/user
-//Permet de modifier le statut d'un utilisateur avant modification
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'modify', '/check/user', array(
-	  'methods' => 'put',
-	  'callback' => 'checkUser',
-	  
-	) );
-} );
 
 function getRole($role){
 	switch ($role) {
@@ -691,3 +567,4 @@ function getDateInFrench($date){
 			return $date;
 	}
 }
+
