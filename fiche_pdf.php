@@ -40,7 +40,7 @@
 
             <header>
                 <div class="pdf-container">
-                    <h1><?php echo get_post_meta(get_the_ID(), Constantes::NOM_SCIENTIFIQUE, true); ?></h1>
+                    <h1><?php echo getFilteredTitle(get_post_meta(get_the_ID(), Constantes::NOM_SCIENTIFIQUE, true)); ?></h1>
                     <h2><?php the_field('nom_vernaculaire');?> — <?php the_field('famille');?></h2>
                     <div class="characteristic pdf-description-morpho">
                         <h3 class="icon-title">
