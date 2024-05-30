@@ -134,7 +134,7 @@ endif;
                 <h2 class="new-collection-title">
                     Ajouter des fiches
                 </h2>
-                
+                <p>Les fiches avec une photo sont déjà au moins en partie complétées, voire validées et publiées.</p>
                 <!-- Section Ajout de fiches -->
                 <div id="section-ajout-fiches" class="display-fiches-cards-items">
                     <div class="existing-fiches">
