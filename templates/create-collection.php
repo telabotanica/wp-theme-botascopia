@@ -157,7 +157,7 @@ endif;
 								while ($connected_posts->have_posts()) : $connected_posts->the_post();
 									$post_id = get_the_ID();
 									$post_species = get_post_meta(get_the_ID(), 'famille', true);
-									$post_name = get_post_meta($post_id, 'nom_scientifique', true);
+									$post_name = getFilteredTitle(get_post_meta($post_id, 'nom_scientifique', true));
 									$post_imageFull = getFicheImage($post_id);
                                     $selectedIds[] = $post_id;
 									

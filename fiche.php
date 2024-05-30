@@ -71,7 +71,7 @@ get_header();
 
 		the_botascopia_module('cover', [
 			'subtitle' => get_post_meta($post_id, Constantes::NOM_VERNACULAIRE, true).' - '.get_post_meta($post_id, Constantes::FAMILLE,true),
-			'title' => get_post_meta($post_id, Constantes::NOM_SCIENTIFIQUE, true),
+			'title' => getFilteredTitle(get_post_meta($post_id, Constantes::NOM_SCIENTIFIQUE, true)),
 			'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
 			'modifiers' =>['class' => 'fiche-cover']
 		]);
@@ -1721,7 +1721,7 @@ get_header();
                                     $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','wpse18703_title' => $search_term, 'post_status' =>'publish' ) );
                                     
                                     if (have_posts()) : while ( $query->have_posts() ) : $query->the_post();
-                                        $name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
+                                        $name = getFilteredTitle(get_post_meta(get_the_ID(), 'nom_scientifique', true));
                                         $species = get_post_meta(get_the_ID(), 'famille', true);
                                         $id = get_the_ID();
                                         $ficheTitle = get_the_title();

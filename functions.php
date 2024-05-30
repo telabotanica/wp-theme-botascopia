@@ -568,3 +568,8 @@ function getDateInFrench($date){
 	}
 }
 
+function getFilteredTitle($nom){
+	$nom = str_replace("+","",$nom);
+	return $nom;
+}
+

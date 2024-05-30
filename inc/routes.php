@@ -136,8 +136,8 @@ function deleteFicheFromCollection($data) {
     }
 }
 
-//Exécute la fonction précédente lors de l'appel à la route /modify/check/user
-//Permet de modifier le statut d'un utilisateur avant modification
+//Exécute la fonction précédente lors de l'appel à la route /delete/collection/fiche
+//Permet de supprimer une fiche d'une collection
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'delete', '/collection/fiche', array(
 	  'methods' => 'delete',

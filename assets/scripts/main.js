@@ -403,7 +403,8 @@ function displaySelectedFiches(selectedIds){
                     postElement.classList.add('card-fiche');
                     postElement.classList.add('card-selected');
                     postElement.setAttribute("data-fiche-id", post.id);
-
+                    post.name = getFilteredTitle(post.name);
+                    
                     postElement.innerHTML = `
                     <a data-fiche-id="${post.id}">
                         <img src="${post.image}" alt="photo de ${post.name}" class="card-fiche-image" title="${post.name}">
@@ -450,7 +451,7 @@ function loadContent(selectedCardIds, ajaxFunction){
                     var card = document.createElement('div');
                     card.classList.add('card');
                     card.classList.add('card-fiche');
-
+                    item.name=getFilteredTitle(item.name);
                     // Vérifier si l'ID de l'élément est déjà dans le tableau selectedCardIds
                     var isChecked = selectedCardIds.includes(String(item.id));
 
@@ -1211,5 +1212,11 @@ function filtrerGlossaire(){
         });
     }
 
+}
+
+function getFilteredTitle(nom){
+    nom = nom.replace("+","");
+    console.log(nom);
+    return nom;
 }
 

@@ -638,7 +638,7 @@ function loadFiches($post_id, $paged){
 	if ($connected_posts->have_posts()) :
 		while ($connected_posts->have_posts()) : $connected_posts->the_post();
 			// Afficher ici les informations sur chaque article de type "post" connecté
-			$name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
+			$name = getFilteredTitle(get_post_meta(get_the_ID(), 'nom_scientifique', true));
 			$species = get_post_meta(get_the_ID(), 'famille', true);
 			$id = get_the_ID();
 			$ficheTitle = get_the_title();
