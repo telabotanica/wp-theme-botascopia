@@ -163,6 +163,7 @@ if (isset($_GET['p'])) {
                 // si l'auteur du post n'est pas l'admin des fiches
                 if ($auteur_id != $utilisateur && isset($_GET['a']) && $_GET['a'] == "1" && $page->post_status == 'draft') {
                         wp_update_post(array('ID' => $post_id, 'post_author' => $utilisateur));
+                        $auteur_name = wp_get_current_user()->data->display_name;
                         $auteur_autorise = true;
                 } else if ($auteur_id == $utilisateur) {
                     if (isset($_GET['a']) and $_GET['a'] == "2" ) {
