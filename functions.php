@@ -573,3 +573,14 @@ function getFilteredTitle($nom){
 	return $nom;
 }
 
+function custom_title($title) {
+	$url = get_the_permalink(get_the_ID());
+    if (str_contains($url,'?p=') OR str_contains($url,'bdtfx')) {
+		$nom = str_replace("<i>",'',get_field('nom_scientifique',get_the_ID()));
+		$nom = str_replace("</i>","",$nom);
+        $title['title'] = getFilteredTitle($nom) ."(".$title['title'].")";
+    }
+    return $title;
+}
+add_filter('document_title_parts', 'custom_title');
+

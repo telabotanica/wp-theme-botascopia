@@ -1216,7 +1216,6 @@ function filtrerGlossaire(){
 
 function getFilteredTitle(nom){
     nom = nom.replace("+","");
-    console.log(nom);
     return nom;
 }
 
