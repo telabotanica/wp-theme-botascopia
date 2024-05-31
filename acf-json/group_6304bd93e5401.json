@@ -4050,7 +4050,7 @@
                     "name": "description",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si l'inflorescence ne correspond à aucune des proposition du champs précédent, décrivez-la ici sans faire de phrase.",
+                    "instructions": "Si l'inflorescence ne correspond à aucune des propositions du champ précédent, décrivez-la ici sans faire de phrases.",
                     "required": 0,
                     "conditional_logic": [
                         [
