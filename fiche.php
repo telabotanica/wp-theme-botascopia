@@ -705,14 +705,16 @@ get_header();
                         
                         <?php  if (!empty(get_field(Constantes::INFLO_CHP))) { ?>
                             <?php $inflorescence = get_field(Constantes::INFLO_CHP);?>
-                            <p>Les fleurs sont <?php echo $inflorescence[Constantes::ORGANISATION_FLEURS];
-                            if($inflorescence[Constantes::CATEGORIE] != Constantes::AUTRE) {
-                                ?>. L’inflorescence est <?php echo $inflorescence[Constantes::CATEGORIE]; ?>.</p>
-                            <?php } else {
-                                ?>. L’inflorescence est <?php echo $inflorescence[Constantes::DESCRIPTION_CHP]; ?>.</p>
+                            <p>Les fleurs sont <?php $organisation = $inflorescence[Constantes::ORGANISATION_FLEURS]; echo $organisation.". ";
+                            $categorie = $inflorescence[Constantes::CATEGORIE];
+                            if ($organisation === Constantes::ORGANISEES_EN_INFLORESCENCES){
+                                if( $categorie != Constantes::AUTRE) {
+                                    ?>L’inflorescence est <?php echo $inflorescence[Constantes::CATEGORIE]; ?>.</p>
+                                <?php } else {
+                                    ?>L’inflorescence est <?php echo $inflorescence[Constantes::DESCRIPTION_CHP]; ?>.</p>
+                                <?php } ?>
                             <?php } ?>
                         <?php } ?>
-                        
                     </div>
 				</div>
                 <div>
