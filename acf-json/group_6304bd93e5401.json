@@ -603,7 +603,7 @@
                     "name": "tige_aerienne",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "Attention à ne pas confondre la tige aérienne et la hampe florale.",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
