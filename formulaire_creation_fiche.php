@@ -124,9 +124,8 @@ if (isset($_GET['p'])) {
             $auteur_name = get_the_author_meta('display_name', $auteur_id);
             $date = new DateTime($post->post_modified);
             $date_crea = new DateTime($post->post_date);
-            
-            $post_date = getDateInFrench($date->format('d m Y'));
-            $post_date_crea = getDateInFrench($date_crea->format('d m Y'));
+            $post_date = getDateInFrench($date->format('d F Y'));
+            $post_date_crea = getDateInFrench($date_crea->format('d F Y'));
             
             $texte = "";
 		
@@ -372,9 +371,9 @@ if (isset($_GET['p'])) {
                             'level' => 4,
                         ]);
                         ?>
-                        <div class="formulaire-detail">Statut: <?php echo $status ?></div>
-                        <div class="formulaire-detail">Modifiée le <?php echo $modified_date ?></div>
-                        <div class="formulaire-detail">Par <?php echo $auteur_name ?></div>
+                        <div class="formulaire-detail">Statut: <?php echo $status; ?></div>
+                        <div class="formulaire-detail">Modifiée le <?php echo $post_date; ?></div>
+                        <div class="formulaire-detail">Par <?php echo $auteur_name; ?></div>
                     </div>
                     <?php
                     the_botascopia_module('button',[

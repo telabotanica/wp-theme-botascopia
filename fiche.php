@@ -265,7 +265,7 @@ get_header();
 							<div class="single-fiche-detail">Statut : <?php echo $status; ?></div>
 							<div class="single-fiche-detail"> <?php echo ($texte.$post_date); ?></div>
 							<div class="single-fiche-detail">Par <?php echo $post_author; ?></div>
-							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur; ?></div>
+							<div class="single-fiche-detail">Vérifiée par <?php echo $verificateur; ?></div>
 						</div>
 						<div id="fiche-infos-right">
 							<?php
