@@ -337,8 +337,8 @@
                             <div class="inflorescence-icon icon"></div>Inflorescence
                         </h4>
                         <?php $inflorescence = get_field('inflorescence');?>
-                        <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs'];?>.
-                        <?php if($inflorescence['organisation_des_fleurs'] === Constantes::ORGANISEES_EN_INFLORESCENCES) {
+                        <p>Les fleurs sont <?php echo $organisation = $inflorescence['organisation_des_fleurs'];?>.
+                        <?php if($organisation === Constantes::ORGANISEES_EN_INFLORESCENCES) {
                             if($inflorescence['categorie_'] != 'autre') {
                                 ?> L’inflorescence est <?php echo $inflorescence['categorie_']; ?>.</p>
                             <?php } else {
