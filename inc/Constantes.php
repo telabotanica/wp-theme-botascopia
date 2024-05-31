@@ -208,6 +208,7 @@ class Constantes{
 	const STATUT_PROTECTION = 'a un statut de protection au niveau national et/ou régional';
 	const ALLOGAME = 'allogame';
 	const A_REGIME_MIXTE = 'à régime mixte';
+	const SOLITAIRES = "solitaires";
 
 	const APPARITION = 'Apparait dans les collections suivantes :';
 	const FAVORIS = 'Favoris';

@@ -71,6 +71,7 @@
     margin-left: 20%;
     display: flex;
     flex-wrap: wrap;
+    min-width: 50%;
 }
 
 .cover-create-collection::before{
