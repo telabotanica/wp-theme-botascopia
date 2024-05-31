@@ -93,8 +93,6 @@
     .cover {
         min-height: 16rem;
         text-align: center;
-        /*width: calc(100% + 30px);*/
-        /*width: unset;*/
         left: -30px;
         overflow: hidden;
     }
@@ -125,7 +123,7 @@
     .cover {
         width: calc(100% + 40px);
         left: -20px;
-        /*min-height: 150px;*/
+       
     }
 }
 
@@ -169,13 +167,10 @@
 @media (width <= 580px) {
     .cover {
         width: calc(100% + 20px);
-        /*width: unset;*/
         left: -20px;
     }
 
     .cover-layout-wrapper{
-        /*margin-left: 10%;*/
-        /*width: 150px;*/
         width: 100%;
     }
 }
