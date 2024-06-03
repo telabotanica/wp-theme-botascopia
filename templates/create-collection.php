@@ -175,7 +175,7 @@ endif;
                                 <div class="card card-fiche card-selected" data-fiche-id="<?php echo $fiche['id']; ?>">
                                     <img id="<?php echo $fiche['id'];?>"  class="cross" src="<?php echo get_template_directory_uri().'/images/cross.svg';?>" />
                                     <a data-fiche-id="<?php echo $fiche['id']; ?>">
-                                        <img src="<?php echo $fiche['image']; ?>" alt="photo de <?php echo $fiche['name']; ?>" class="card-fiche-image" title="<?php echo $fiche['name']; ?>">
+                                        <img <?php $src = $fiche['image']; if ($src === get_template_directory_uri() . '/images/logo-botascopia@2x.png'){$css="contain"; }else{$css="cover";} ?> src="<?php echo $src;?>" alt="photo de <?php echo $fiche['name']; ?>" class="card-fiche-image" data-object-fit='<?php echo $css;?>' title="<?php echo $fiche['name']; ?>">
                                     </a>
                                     <div class="card-fiche-body">
                                         <a><span class="card-fiche-title"><?php echo $fiche['name']; ?></span>

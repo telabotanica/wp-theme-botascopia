@@ -2,7 +2,7 @@
 	
 	$defaults = [
 		'href' => '#',
-		'image' => get_template_directory_uri() . '/images/logo-botascopia@2x.png',
+		'image' => $src = get_template_directory_uri() . '/images/logo-botascopia@2x.png',
 		'name' => 'nom de la plante',
 		'species' => 'espèce de la plante',
 		'icon' => ['icon' => 'star-outline', 'color' => 'blanc'],
@@ -27,11 +27,17 @@
 				 $data->href,
 				 $data->popup
 	);
-	
+	if ($data->image === $src){
+		$css = 'contain';
+	}else{
+		$css = 'cover';
+	}
+
 	echo sprintf(
-		'<img src="%s" class="card-fiche-image" alt="image-plante" title="%s"/>',
+		'<img src="%s" data-object-fit="%s" class="card-fiche-image" alt="image-plante" title="%s"/>',
 		$data->image,
-		$data->name,
+		$css,
+		$data->name
 	);
 	echo '<div class="card-fiche-body">';
 
