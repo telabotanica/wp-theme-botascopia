@@ -155,9 +155,7 @@ function popupReserverFiche(){
                     " tant que vous n'aurez pas envoyé le formulaire à vérification ou renoncé à la compléter.</p>" +
                     "<div class='popup-display-buttons'>" +
                     "<div><a class='button purple-button outline'><span class='button-text' id='annuler'>Annuler</span></a></div>" +
-                    // "<a class='button green-button' href='"+ ficheUrl + "'><span class='button-text'>Réserver" +
                     "<div><a  class='button green-button' ><span" +
-                    // " class='button-text' id='reserver-fiche' onclick='reserverFiche("+ ficheId +","+ user_id +")'>Réserver" +
                     " class='button-text' id='reserver-fiche'>Réserver" +
                     " la fiche</span></a></div>" +
                     "</div>";
@@ -226,7 +224,7 @@ function setStatus(postId, status) {
     var ajaxurl = ajax_object.ajax_url;
 
     var xhr = new XMLHttpRequest();
-    // console.log('action=reserver_fiche&user_id=' + userId + '&fiche=' + ficheId);
+   
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
@@ -454,14 +452,18 @@ function loadContent(selectedCardIds, ajaxFunction){
                     item.name=getFilteredTitle(item.name);
                     // Vérifier si l'ID de l'élément est déjà dans le tableau selectedCardIds
                     var isChecked = selectedCardIds.includes(String(item.id));
-
+                    if (item.image.includes('/images/logo-botascopia@2x.png')){
+                        var css = 'contain';
+                    }else{
+                        var css = 'cover';
+                    }
                     card.innerHTML = `
                         <div class="checkbox-area">
                         <input id="checkbox-${item.id}" type="checkbox" class="card-checkbox" data-fiche-id="${item.id}" ${isChecked ? 'checked' : ''}>
                         <label for="checkbox-${item.id}" class="checkbox-container"></label>
                         </div>
                         <a data-fiche-id="${item.id}">
-                            <img src="${item.image}" alt="photo de ${item.name}" class="card-fiche-image" title="${item.name}">
+                            <img src="${item.image}" alt="photo de ${item.name}" class="card-fiche-image" data-object-fit = "${css}" title="${item.name}">
                         </a>
                         <div class="card-fiche-body">
                             <a><span class="card-fiche-title">${item.name}</span>
