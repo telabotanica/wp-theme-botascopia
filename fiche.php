@@ -640,7 +640,7 @@ get_header();
                                                                 $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
                                                                 $texte = implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FOLIOLES]);
-                                                                $texte = getPubescence($feuilles_des_rameaux_steriles,2,$texte);
+                                                                $texte = getPubescence($feuilles_des_rameaux_fleuris,2,$texte);
                                                                 $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
