@@ -4260,6 +4260,31 @@
                     ]
                 },
                 {
+                    "key": "field_631085accce36",
+                    "label": "Hypanthium",
+                    "name": "hypanthium",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "absent": "absent",
+                        "présent": "présent"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
                     "key": "field_631085d0cce37",
                     "label": "Périanthe",
                     "name": "perianthe",
@@ -4317,31 +4342,6 @@
                     "return_format": "value",
                     "save_custom": 0,
                     "custom_choice_button_text": "Ajouter un nouveau choix"
-                },
-                {
-                    "key": "field_631085accce36",
-                    "label": "Hypanthium",
-                    "name": "hypanthium",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "absent": "absent",
-                        "présent": "présent"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 },
                 {
                     "key": "field_63108612cce38",
@@ -6674,6 +6674,31 @@
                     ]
                 },
                 {
+                    "key": "field_63075a6becd6f",
+                    "label": "Hypanthium",
+                    "name": "hypanthium",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "absent": "absent",
+                        "présent": "présent"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
                     "key": "field_63075a90ecd70",
                     "label": "Périanthe",
                     "name": "perianthe",
@@ -6731,31 +6756,6 @@
                     "return_format": "value",
                     "save_custom": 0,
                     "custom_choice_button_text": "Ajouter un nouveau choix"
-                },
-                {
-                    "key": "field_63075a6becd6f",
-                    "label": "Hypanthium",
-                    "name": "hypanthium",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "S'il n'en est pas fait mention dans la description, choisir 'absent'",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "absent": "absent",
-                        "présent": "présent"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
                 },
                 {
                     "key": "field_63075ab5ecd71",
