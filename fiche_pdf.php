@@ -832,7 +832,7 @@
                                     }
                                 }
                             }
-
+                            
                             $protection_statut_france = $valeurs_ecolo['quel_est_le_statut_de_protection_france_metropolitaine'];
                             $protection_statut = $valeurs_ecolo['statut_de_protection'];
                             if (!empty($protection_statut)){
@@ -859,8 +859,16 @@
                                 <p class="inline"><?php echo get_the_author(); ?></p>
                             </div>
                             <div>
-                                <h5 class="inline">date de création :</h5>
-                                <p class="inline"><?php echo get_the_date('m/Y', get_the_ID()); ?></p>
+                                <h5 class="inline">date de mise à jour :</h5>
+                                <p class="inline">
+                                    <?php $post = get_post();
+                                        $date = new DateTime($post->post_modified);
+                                        $date_crea = new DateTime($post->post_date);
+                                        $post_date = getDateInFrench($date->format('d F Y'));
+                                        $post_date_crea = getDateInFrench($date_crea->format('d F Y')); 
+                                        echo $post_date;
+                                    ?>
+                                </p>
                             </div>
 
                             <h5>crédits photos :</h5>
