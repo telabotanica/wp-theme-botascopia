@@ -263,7 +263,7 @@ get_header();
 					<div class="fiche-infos">
 						<div class="single-fiche-details">
 							<div class="single-fiche-detail">Statut : <?php echo $status; ?></div>
-							<div class="single-fiche-detail"> <?php echo ($texte.$post_date); ?></div>
+							<div class="single-fiche-detail"> <?php echo ($texte." ".$post_date); ?></div>
 							<div class="single-fiche-detail">Par <?php echo $post_author; ?></div>
 							<div class="single-fiche-detail">Vérifiée par <?php echo $verificateur; ?></div>
 						</div>
@@ -1188,7 +1188,7 @@ get_header();
                                 </div>
                                 <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
                                     <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
-                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat_')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php $texte = ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat_')) . '.' : ''); if(substr($texte, -1)!=="."){$texte.=".";} echo $texte;?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
                                     <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
