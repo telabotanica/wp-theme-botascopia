@@ -4707,39 +4707,6 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_631087cbcce3f",
-                    "label": "Soudure du calice et de la corolle",
-                    "name": "soudure_du_calice_et_de_la_corolle",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_63108612cce38",
-                                "operator": "==",
-                                "value": "sépales et pétales"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "corolle soudée au calice": "corolle soudée au calice",
-                        "corolle non soudée au calice": "corolle non soudée au calice"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 1,
-                    "other_choice": 0,
-                    "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
                     "key": "field_63108805cce40",
                     "label": "Nombre de tépales",
                     "name": "perigone",
@@ -5887,7 +5854,7 @@
                 },
                 {
                     "key": "field_6304f5bb2d9f2",
-                    "label": "Corolle",
+                    "label": "Nombre de pétales",
                     "name": "corolle",
                     "aria-label": "",
                     "type": "select",
@@ -5946,9 +5913,9 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_6304f698c677e",
-                    "label": "Soudure du calice et de la corolle",
-                    "name": "soudure_du_calice_et_de_la_corolle",
+                    "key": "field_74219755cce3d1",
+                    "label": "Les pétales sont",
+                    "name": "soudure_de_la_corolle_",
                     "aria-label": "",
                     "type": "radio",
                     "instructions": "",
@@ -5959,6 +5926,23 @@
                                 "field": "field_6304f10bbe18c",
                                 "operator": "==",
                                 "value": "sépales et pétales"
+                            },
+                            {
+                                "field": "field_6304f5bb2d9f2",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304f10bbe18c",
+                                "operator": "==",
+                                "value": "pétales"
+                            },
+                            {
+                                "field": "field_6304f5bb2d9f2",
+                                "operator": "!=",
+                                "value": "1"
                             }
                         ]
                     ],
@@ -5968,14 +5952,16 @@
                         "id": ""
                     },
                     "choices": {
-                        "soudés au calice": "soudés au calice",
-                        "non soudés au calice": "non soudés au calice"
+                        "soudés sur plus de la moitié de la longueur": "soudés sur plus de la moitié de la longueur",
+                        "soudés sur moins de la moitié de la longueur": "soudés sur moins de la moitié de la longueur",
+                        "libres": "libres",
+                        "soudés pour une partie d'entre eux": "soudés pour une partie d'entre eux"
                     },
-                    "allow_null": 0,
-                    "other_choice": 0,
                     "default_value": "",
-                    "layout": "vertical",
                     "return_format": "value",
+                    "allow_null": 1,
+                    "other_choice": 0,
+                    "layout": "vertical",
                     "save_other_choice": 0
                 },
                 {
@@ -7010,7 +6996,7 @@
                     },
                     "default_value": false,
                     "return_format": "value",
-                    "multiple": 0,
+                    "multiple": 1,
                     "allow_null": 0,
                     "ui": 0,
                     "ajax": 0,
@@ -7118,39 +7104,6 @@
                     "allow_null": 0,
                     "other_choice": 0,
                     "layout": "vertical",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_63075dcbecd78",
-                    "label": "Soudure du calice et de la corolle",
-                    "name": "soudure_du_calice_et_de_la_corolle",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_63075ab5ecd71",
-                                "operator": "==",
-                                "value": "sépales et pétales"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "soudés au calice": "soudés au calice",
-                        "non soudés au calice": "non soudés au calice"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
                     "save_other_choice": 0
                 },
                 {

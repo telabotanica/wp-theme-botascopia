@@ -422,6 +422,7 @@ function revealid_id_column_content( $column, $id ) {
     }
 }
 
+//Traduit le rôle en français
 function getRole($role){
 	switch ($role) {
 		case "administrator":
@@ -445,8 +446,10 @@ function getRole($role){
 	}
 }
 
-function getValueOrganesFloraux($organes){
-	$organes_tab = []; 
+//Permet d'afficher les valeurs min - max
+function getValueOrganesFloraux($organes,$mot,$soudure){
+	$organes_tab = [];
+	
 	if (is_array($organes)){
 		foreach($organes as $value){
 			array_push($organes_tab,intval($value));
@@ -455,9 +458,15 @@ function getValueOrganesFloraux($organes){
 			$min = min($organes_tab);
 			$max = max($organes_tab);
 			if ($min !== $max){
-				return ($min."-".$max);	
+				
+				return ("$min-$max $mot $soudure");	
 			}else{
-				return $min;
+				
+				if ($min ===1){
+					$mot = substr($mot, 0, -3);
+					return "$min $mot ";
+				}
+				return "$min $mot $soudure";
 			}
 		}else{
 			return "";
@@ -469,14 +478,7 @@ function getValueOrganesFloraux($organes){
 	}
 }
 
-function getPhylloFieldOther($phyllo,$feuille){
-	/* if (str_contains($phyllo, "autre")){
-		$phyllo = str_replace("autre",$feuille['description'],$phyllo);
-	} */
-	return $phyllo;
-}
-
-add_filter( 'posts_where', 'wpse18703_posts_where', 10, 2 );
+//Requête personnalisée
 function wpse18703_posts_where( $where, $wp_query )
 {
     global $wpdb;
@@ -486,7 +488,9 @@ function wpse18703_posts_where( $where, $wp_query )
     }
     return $where;
 }
+add_filter( 'posts_where', 'wpse18703_posts_where', 10, 2 );
 
+//Récupère l'id du post en fonction du titre
 function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'post' ){
     global $wpdb;
     $page = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type= %s" , $post_title, $post_type ));
@@ -497,6 +501,7 @@ function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'pos
 }
  add_action('init','get_page_by_post_title');
 
+ //Permet d'exclure des champs dans l'affichage du formulaire
 function exclude_fields( $field ) {
 	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée"];
     if( in_array($field['label'],$array_labels) ) {
@@ -506,6 +511,7 @@ function exclude_fields( $field ) {
 }
 add_filter('acf/prepare_field', 'exclude_fields'); 
 
+//Affiche le complément sur la pubescence
 function getPubescence($feuille,$mode,$texte){
     if (str_contains($texte,'pubescent') AND $mode ===1){
         $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES];
@@ -518,15 +524,17 @@ function getPubescence($feuille,$mode,$texte){
 	}
 }
 
+//Réduit la donnée "soudés sur toute la longueur (ovaire, styles, stigmates)" dans le pdf car trop longue
 function getSoudureCarpelles($fleur){
 	$soudure = $fleur[Constantes::SOUDURE_CARPELLES];
 	if ($soudure === "soudés sur toute la longueur (ovaire, styles, stigmates)"){
-		echo "soudés sur toute la longueur";
+		return "soudés sur toute la longueur";
 	}else{
-		echo $soudure;
+		return $soudure;
 	}
 }
 
+//Convertit les mois en français
 function getDateInFrench($date){
 	switch ($date){
 		case str_contains($date, Constantes::JANUARY):
@@ -568,11 +576,13 @@ function getDateInFrench($date){
 	}
 }
 
+//Enlève les + dans le nom scientifique
 function getFilteredTitle($nom){
 	$nom = str_replace("+","",$nom);
 	return $nom;
 }
 
+//Affiche le title dans la preview
 function custom_title($title) {
 	$url = get_the_permalink(get_the_ID());
     if (str_contains($url,'?p=') OR str_contains($url,'bdtfx')) {
@@ -584,3 +594,34 @@ function custom_title($title) {
 }
 add_filter('document_title_parts', 'custom_title');
 
+//Affiche le texte du périanthe dans la preview et le pdf
+function displayPerianthe($composition,$fleur){
+	
+    $perianthe="";
+    if ($composition === Constantes::TEPALES) {
+        $tepales = $fleur['perigone'];
+		$soudure = !empty($fleur['soudure_du_perigone_']) ? $fleur['soudure_du_perigone_'] : "";
+        $perianthe = getValueOrganesFloraux($tepales,'tépale(s)',$soudure);
+        
+    } else if($composition === Constantes::PETALES_SEPALES){
+        $sepales = $fleur['calice'];
+		$soudure = $fleur['soudure_du_calice_'];
+		
+        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        $petales = $fleur['corolle'];
+		$soudure = $fleur['soudure_de_la_corolle_'];
+        $perianthe .= ' et ' . getValueOrganesFloraux($petales,"pétale(s)",$soudure);
+       
+    }else if($composition === Constantes::SEPALES){
+        $sepales = $fleur['calice'];
+		$soudure = $fleur['soudure_du_calice_'];
+        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        
+    }else if($composition === Constantes::PETALES){
+        $petales = $fleur['corolle'];
+		$soudure = $fleur['soudure_de_la_corolle_'];
+        $perianthe .= getValueOrganesFloraux($petales,"pétale(s)",$soudure);
+    
+    }
+    return $perianthe;
+}

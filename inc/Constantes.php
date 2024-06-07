@@ -193,7 +193,7 @@ class Constantes{
 	const TEPALES = 'tépales';
 	const SEPALES = 'sépales';
 	const PETALES = 'pétales';
-	const PETALES_SEPALES = "pétales et sépales";
+	const PETALES_SEPALES = "sépales et pétales";
 	const ANDROCEE_SOUDEE_COROLLE = 'androcée soudé à la corolle';
 	const SOUDEES_PERIGONE = 'soudées au perigone';
 	const PUBESCENTE = 'pubescente';
