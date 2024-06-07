@@ -154,7 +154,7 @@
                                     <div class="picture-ref"><?php echo $index_photos;?></div>
                                 <?php endif; ?>
                                 <p>
-                                    Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_aeriennes['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_aeriennes);?>, et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
+                                    Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_aeriennes['phyllotaxie']); echo $phyllo;?>, et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
                                     <?php
                                     $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
                                     $limbe = 'Le limbe %s est %s';
@@ -438,35 +438,23 @@
                                 Fleur <?php echo implode(' et ', $fleur_bisexuee['symetrie']); ?> ;
                                 <?php
                                 if (isset($fleur_bisexuee['composition_du_perianthe'])){
-                                    if (Constantes::TEPALES === $fleur_bisexuee['composition_du_perianthe']) {
-                                        $tepales = $fleur_bisexuee['perigone'];
-                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ';
-                                        $perianthe .= !empty($fleur_bisexuee['soudure_du_perigone_']) ? $fleur_bisexuee['soudure_du_perigone_'] . ' ; ' : " ;";
-                                    } else {
-                                        $sepales = $fleur_bisexuee['calice'];
-                                        $perianthe = getValueOrganesFloraux($sepales). ' sépale(s) ';
-                                        $perianthe .= !empty($fleur_bisexuee['soudure_du_calice_']) ? $fleur_bisexuee['soudure_du_calice_'] : "" ;
-                                        $petales = $fleur_bisexuee['corolle'];
-                                        $perianthe .= ' et ' . getValueOrganesFloraux($petales) . ' pétale(s) ' ;
-                                        $perianthe .= !empty($fleur_bisexuee['soudure_de_la_corolle_']) ? $fleur_bisexuee['soudure_de_la_corolle_'] . ' ; ' : "" ;
-                                        $perianthe .= ('corolle soudée au calice' === $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] ?
-                                        $fleur_bisexuee['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                                    }
+                                    $composition = $fleur_bisexuee['composition_du_perianthe'];
+                                    $perianthe = displayPerianthe($composition,$fleur_bisexuee);
                                 }
                                 ?>
                                 <?php if(isset($perianthe)): ?>
-                                    périanthe composé de <?php echo $perianthe; ?>
+                                    périanthe composé de <?php echo $perianthe.". "; ?>
                                 <?php endif; ?>
                             <?php } ?>
                             
                             <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
-                                androcée composé de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines); ?> étamine(s)
-                                <?php echo $fleur_bisexuee['soudure_de_landrocee_']; ?> ; <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). (Constantes::SOUDEES_PERIGONE === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
+                                Androcée composé de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines,"étamine(s)",$fleur_bisexuee['soudure_de_landrocee_']); ?>
+                                 ; <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). (Constantes::SOUDEES_PERIGONE === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
                                 <?php echo (Constantes::PRESENTS === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminode(s) ; ' : '');
                             } ?>
                             <?php endif; ?>
                             <?php if(!empty($fleur_bisexuee['gynecee'])): { ?>
-                                gynécée composé de <?php $carpelles = $fleur_bisexuee['gynecee']; echo getValueOrganesFloraux($carpelles)?>  carpelle(s) <?php echo getSoudureCarpelles($fleur_bisexuee); ?> ;
+                                gynécée composé de <?php $carpelles = $fleur_bisexuee['gynecee']; echo getValueOrganesFloraux($carpelles,"carpelle(s)",getSoudureCarpelles($fleur_bisexuee))?> ;
                                 ovaire <?php echo $fleur_bisexuee['ovaire_']; ?>.
                             <?php } ?>
                             <?php endif; ?>
@@ -502,31 +490,19 @@
                                 <div class="picture-ref"><?php echo $index_photos;?></div>
                             <?php endif; ?>
                             <p>
-                                <?php if(Constantes::PRESENT !== $fleur_femelle['perianthe']): { ?>
+                                <?php if(Constantes::PRESENT !== $fleur_femelle['perianthe']){ ?>
                                     Périanthe absent ; 
-                                <?php } else: { ?>
+                                <?php } else { ?>
                                     Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); ?> ;
                                     <?php
-                                    if (Constantes::TEPALES === $fleur_femelle['differenciation_du_perianthe']) {
-                                        $perianthe = implode(' ou ', $fleur_femelle['perigone']) . ' tépales ' . $fleur_femelle['soudure_du_perigone_'] . ' ; ';
-                                    } else {
-                                        if (getType($fleur_femelle['soudure_de_la_corolle_']) == 'string'){
-                                            $soudure_corolle = $fleur_femelle['soudure_de_la_corolle_'];
-                                        } else {
-                                            $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_de_la_corolle_']);
-                                        }
-
-                                        $corolle = $fleur_femelle['corolle'];
-                                        $calice = $fleur_femelle['calice'];
-                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' . $fleur_femelle['soudure_du_calice_'] . ' et ' . getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle . ' ; ' .
-                                            ('corolle soudée au calice' === $fleur_femelle['soudure_du_calice_et_de_la_corolle'] ? $fleur_femelle['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                                    }
+                                    $perianthe = displayPerianthe($fleur_femelle['differenciation_du_perianthe'],$fleur_femelle)
                                     ?>
-                                    périanthe composé de <?php echo $perianthe;
+
+                                    périanthe composé de <?php echo $perianthe.". ";
                                 } ?>
-                                <?php endif; ?>
+                                
                                 <?php if(!empty($fleur_femelle['gynecee'])): { ?>
-                                    gynécée composé de <?php $carpelles = $fleur_femelle['gynecee']; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo getSoudureCarpelles($fleur_femelle); ?> ;
+                                    Gynécée composé de <?php $carpelles = $fleur_femelle['gynecee']; echo getValueOrganesFloraux($carpelles,"carpelle(s)",getSoudureCarpelles($fleur_femelle)); ?> ;
                                     ovaire <?php echo $fleur_femelle['ovaire_']; ?>.
                                     La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
                                     <?php if (Constantes::PUBESCENTE === $fleur_femelle['pubescence']) {
@@ -565,29 +541,14 @@
                         <?php } else: { ?>
                             Fleur <?php echo implode(' et ', $fleur_male['symetrie']); ?>;
                             <?php
-                            if (Constantes::TEPALES === $fleur_male['differenciation_du_perianthe']) {
-                                $perianthe = implode(' ou ', $fleur_male['perigone']) . ' tépales ' . $fleur_male['soudure_du_perigone_'] . ' ; ';
-                            } else {
-                                $soudure_corolle = '';
-                                if (isset($fleur_male['soudure_de_la_corolle_'])) {
-                                    if (getType($fleur_male['soudure_de_la_corolle_']) == 'string') {
-                                        $soudure_corolle = $fleur_male['soudure_de_la_corolle_'];
-                                    } else {
-                                        $soudure_corolle = implode(' ou ', $fleur_male['soudure_de_la_corolle_']);
-                                    }
-                                }
-
-                                $corolle = $fleur_male['corolle'];
-                                $calice = getValueOrganesFloraux($fleur_male['calice']);
-                                $perianthe = $calice . ' sépale(s) ' . $fleur_male['soudure_du_calice_'] . ' et ' . getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle . ' ; ' .
-                                    ('corolle soudée au calice' === $fleur_male['soudure_du_calice_et_de_la_corolle'] ? $fleur_male['soudure_du_calice_et_de_la_corolle'] . ' ; ' : '');
-                            }
+                            $composition = $fleur_male['differenciation_du_perianthe'];
+                            $perianthe = displayPerianthe($composition,$fleur_male)
                             ?>
-                            périanthe composé de <?php echo $perianthe;
+                            périanthe composé de <?php echo $perianthe.". ";
                         } ?>
                         <?php endif; ?>
                         <?php if(!empty($fleur_male['androcee'])): { ?>
-                            androcée composé de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines); ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee_']; ?> ;
+                            Androcée composé de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines,'étamine(s)',$fleur_male['soudure_de_landrocee_']); ?> ;
                         <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
                                 (Constantes::SOUDEES_PERIGONE === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
                             <?php echo (Constantes::PRESENTS === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminode(s) ; ' : ''); ?>
