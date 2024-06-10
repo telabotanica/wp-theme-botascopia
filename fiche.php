@@ -1191,7 +1191,7 @@ get_header();
                                 ?>
                             </div>
                         </div>
-                            <div>
+                            
                                 <div class="agro_ecologie">
 
                                     <?php
@@ -1592,7 +1592,7 @@ get_header();
                                         <p>Sources générales : <?php echo $champ;?></p>
                                     <?php } ?>
                                 </div>
-                            </div>
+                           
                        
                     </div>
                 </div>
