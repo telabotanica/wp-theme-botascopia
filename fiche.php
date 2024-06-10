@@ -1190,6 +1190,7 @@ get_header();
                                 ]);
                                 ?>
                             </div>
+                        </div>
                             <div>
                                 <p class="agro_ecologie">
 
@@ -1592,7 +1593,7 @@ get_header();
                                     <?php } ?>
                                 </p>
                             </div>
-                        </div>
+                       
                     </div>
                 </div>
                 <div>
