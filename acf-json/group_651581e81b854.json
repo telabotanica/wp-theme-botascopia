@@ -1033,7 +1033,7 @@
                     "name": "periode_de_levee_",
                     "aria-label": "",
                     "type": "checkbox",
-                    "instructions": "Sélectionnez tous les mois qui correspondent à la période de levée de la plante.",
+                    "instructions": "Sélectionnez toutes les saisons qui correspondent à la période de levée de la plante.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {

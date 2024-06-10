@@ -1788,6 +1788,47 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_6304df4410a7a1",
+                    "label": "Feuillage ",
+                    "name": "feuillage_",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "caduc": "caduc",
+                        "marcescent": "marcescent",
+                        "persistant": "persistant"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
                 }
             ]
         },
@@ -2489,6 +2530,47 @@
                     "choices": {
                         "caduc": "caduc",
                         "marescent": "marescent",
+                        "persistant": "persistant"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_634e48ca9fff91",
+                    "label": "Feuillage ",
+                    "name": "feuillage_",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "caduc": "caduc",
+                        "marcescent": "marcescent",
                         "persistant": "persistant"
                     },
                     "default_value": "",
@@ -3206,6 +3288,47 @@
                     "other_choice": 0,
                     "layout": "",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_634e49d14801c1",
+                    "label": "Feuillage ",
+                    "name": "feuillage_",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "caduc": "caduc",
+                        "marcescent": "marcescent",
+                        "persistant": "persistant"
+                    },
+                    "default_value": "",
+                    "return_format": "",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "",
+                    "save_other_choice": 0
                 }
             ]
         },
@@ -3907,6 +4030,47 @@
                     "choices": {
                         "caduc": "caduc",
                         "marescent": "marescent",
+                        "persistant": "persistant"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_634e49eb4802a1",
+                    "label": "Feuillage ",
+                    "name": "feuillage_",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbrisseau"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6304bdf681abb",
+                                "operator": "==",
+                                "value": "arbre"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "caduc": "caduc",
+                        "marcescent": "marcescent",
                         "persistant": "persistant"
                     },
                     "default_value": "",

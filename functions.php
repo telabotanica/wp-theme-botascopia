@@ -503,7 +503,7 @@ function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'pos
 
  //Permet d'exclure des champs dans l'affichage du formulaire
 function exclude_fields( $field ) {
-	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée"];
+	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée","Feuillage"];
     if( in_array($field['label'],$array_labels) ) {
         return false; 
     }

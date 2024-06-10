@@ -112,7 +112,7 @@ function modifyData($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,
               $stmt = $conn->prepare("SELECT meta_id,meta_value FROM wp_postmeta WHERE meta_key=? AND meta_value LIKE ?");
               $stmt->execute($data);
               $res = $stmt->fetchAll();
-         
+              
               if (!empty($res)){
                 foreach($res as $item){
                   $value = $item['meta_value'];
@@ -419,6 +419,14 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 //modifyDataSeasons("adaptations_aux_pratiques_de_culture_periode_de_levee","adaptations_aux_pratiques_de_culture_periode_de_levee_","field_65143be5c09dd1",["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]); 
 
 //modifyData("indigenat","indigenat_","field_63073560d174f1",["envahissante"],["exotique envahissante"]);
+
+modifyData("feuilles_aeriennes_feuillage","feuilles_aeriennes_feuillage_","field_6304df4410a7a1",["marescent"],["marcescent"]);
+
+modifyData("feuilles_immergees_feuillage","feuilles_immergees_feuillage_","field_634e48ca9fff91",["marescent"],["marcescent"]);
+
+modifyData("feuilles_des_rameaux_steriles_feuillage","feuilles_des_rameaux_steriles_feuillage_","field_634e49d14801c1",["marescent"],["marcescent"]);
+
+modifyData("feuilles_des_rameaux_fleuris_feuillage","feuilles_des_rameaux_fleuris_feuillage_","field_634e49eb4802a1",["marescent"],["marcescent"]);
 
 /* modifyDataPhoto("feuilles_aeriennes_photo_de_feuilles_aeriennes","feuilles_aeriennes_illustration_de_la_feuille_aerienne_photo_de_feuilles_aeriennes","field_6304d939b94a3"); */
 

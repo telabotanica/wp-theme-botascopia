@@ -119,7 +119,7 @@ class Constantes{
 	const ENGAINANT = 'engainant';
 	const STIPULES = 'stipules';
 	const FORME_COULEUR_STIPULES = 'forme_et_couleur_des_stipules';
-	const FEUILLAGE = 'feuillage';
+	const FEUILLAGE = 'feuillage_';
 	const DEUX_FORMES_CHP = 'deux_formes_distinctes';
 	const FEUILLES_IMMERGEES = 'feuilles_immergees';
 	const FEUILLES_RAMEAUX_STERILES = 'feuilles_des_rameaux_steriles';
