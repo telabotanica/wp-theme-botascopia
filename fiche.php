@@ -363,8 +363,8 @@ get_header();
                                             }
                                         }
                                         ?>
-                                        La tige aérienne est <?php echo trim($tige[Constantes::TIGE_AERIENNE]).",";?>
-                                        <?php if ($tige[Constantes::TIGE_AERIENNE] != Constantes::NON_VISIBLE){?> 
+                                        La tige aérienne est <?php $tige_type = $tige[Constantes::TIGE_AERIENNE]; if ($tige_type !== Constantes::VISIBLE){echo trim($tige_type).",";}?>
+                                        <?php if ($tige_type != Constantes::NON_VISIBLE){?> 
                                             <?php echo" $type_tige";?>, <?php echo $tige[Constantes::RAMIFICATION];?>, à section <?php echo $section_tige;?>.
                                             <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
                                             <?php if ((($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)) && (!empty($surface_ecorce))){ ?>

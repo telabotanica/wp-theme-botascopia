@@ -197,7 +197,7 @@ class Constantes{
 	const ANDROCEE_SOUDEE_COROLLE = 'androcée soudé à la corolle';
 	const SOUDEES_PERIGONE = 'soudées au perigone';
 	const PUBESCENTE = 'pubescente';
-	const VISIBLE = 'visible';
+	const VISIBLE = "visible toute l'année";
 	const PLEINE = 'pleine';
 	const ORGANISEES_EN_INFLORESCENCES = 'organisées en inflorescences';
 	const TOUS_LES_ORGANES_FLORAUX = "tous les organes floraux";
