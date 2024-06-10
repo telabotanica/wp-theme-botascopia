@@ -1138,6 +1138,33 @@
                     "append": "année(s)"
                 },
                 {
+                    "key": "field_65143c5e979a31",
+                    "label": "Persistance du stock semencier dans le sol",
+                    "name": "au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Faible (moins de 5 ans), moyenne (entre 5 et 10 ans), forte (plus de 10 ans)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "faible": "faible",
+                        "moyenne": "moyenne",
+                        "forte": "forte"
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 0,
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_65143c92979a4",
                     "label": "Est-ce qu'une résistance aux herbicides a été identifiée chez cette espèce ?",
                     "name": "est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_",

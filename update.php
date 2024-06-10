@@ -352,7 +352,85 @@ function modifyDataPhoto($ancien_champ,$nouveau_champ,$field){
   }
 }
 
+function modifyDataPersistance($ancien_champ,$nouveau_champ,$field,$mots_a_corriger = null,$mots_corriges = null){
+  //Changer les paramètres selon serveur
+  $params = returnParams();
+  
+  try {
+    $conn = new PDO($params->get_dsn(), $params->get_username(), $params->get_password());
+    
+    $req = "SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key='$ancien_champ'";
+  
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $stmt = $conn->query($req);
+    $res = $stmt->fetchAll();
+   
+    $data=[];
+    $data2=[];
+    foreach($res as $item){
+      $id = $item['post_id'];
+      $value = $item['meta_value'];
+    
+      array_push($data,[$id, $nouveau_champ, $value]);
+      array_push($data2,[$id,"_$nouveau_champ",$field]);
+      
+    }
+    
+    $stmt = $conn->prepare("INSERT INTO wp_postmeta (post_id,meta_key,meta_value) VALUES (?, ?, ?)");
+    try {
+        $conn->beginTransaction();
+        foreach ($data as $row)
+        {
+            $stmt->execute($row);
+        }
+        
+        foreach ($data2 as $row)
+        {
+            $stmt->execute($row);
+        }
+          
+        $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='$ancien_champ'");
+        $stmt->execute();
+
+        $stmt = $conn->prepare("DELETE FROM wp_postmeta WHERE meta_key='_$ancien_champ'");
+        $stmt->execute();
+  
+        $data = [$nouveau_champ];
+        $stmt = $conn->prepare("SELECT meta_id,meta_value FROM wp_postmeta WHERE meta_key=?");
+        $stmt->execute($data);
+        $res = $stmt->fetchAll();
+        
+        if (!empty($res)){
+          foreach($res as $item){
+            $val = $item['meta_value'];
+            $id = $item['meta_id'];
+            $value = "";
+            if ($val < 5){
+              $value = "faible";
+            }else if($val >= 5 AND $val < 10){
+              $value = "moyenne";
+            }else if($val >= 10){
+              $value = "forte";
+            }
+            $data=[$value,$id];
+            $stmt = $conn->prepare("UPDATE wp_postmeta set meta_value=? WHERE meta_id=?");
+            $stmt->execute($data);
+          }
+        }
+        $conn->commit();
+
+  
+    }catch (Exception $e){
+        $conn->rollback();
+        throw $e;
+    }
+    
+    
+} catch(PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+}
 
 
 //Fruit : type
@@ -420,13 +498,13 @@ modifyData("fleur_male_soudure_du_perigone","fleur_male_soudure_du_perigone_","f
 
 //modifyData("indigenat","indigenat_","field_63073560d174f1",["envahissante"],["exotique envahissante"]);
 
-modifyData("feuilles_aeriennes_feuillage","feuilles_aeriennes_feuillage_","field_6304df4410a7a1",["marescent"],["marcescent"]);
+//modifyData("feuilles_aeriennes_feuillage","feuilles_aeriennes_feuillage_","field_6304df4410a7a1",["marescent"],["marcescent"]);
 
-modifyData("feuilles_immergees_feuillage","feuilles_immergees_feuillage_","field_634e48ca9fff91",["marescent"],["marcescent"]);
+//modifyData("feuilles_immergees_feuillage","feuilles_immergees_feuillage_","field_634e48ca9fff91",["marescent"],["marcescent"]);
 
-modifyData("feuilles_des_rameaux_steriles_feuillage","feuilles_des_rameaux_steriles_feuillage_","field_634e49d14801c1",["marescent"],["marcescent"]);
+//modifyData("feuilles_des_rameaux_steriles_feuillage","feuilles_des_rameaux_steriles_feuillage_","field_634e49d14801c1",["marescent"],["marcescent"]);
 
-modifyData("feuilles_des_rameaux_fleuris_feuillage","feuilles_des_rameaux_fleuris_feuillage_","field_634e49eb4802a1",["marescent"],["marcescent"]);
+//modifyData("feuilles_des_rameaux_fleuris_feuillage","feuilles_des_rameaux_fleuris_feuillage_","field_634e49eb4802a1",["marescent"],["marcescent"]);
 
 /* modifyDataPhoto("feuilles_aeriennes_photo_de_feuilles_aeriennes","feuilles_aeriennes_illustration_de_la_feuille_aerienne_photo_de_feuilles_aeriennes","field_6304d939b94a3"); */
 
@@ -447,3 +525,5 @@ modifyData("feuilles_des_rameaux_fleuris_feuillage","feuilles_des_rameaux_fleuri
 /* modifyDataPhoto("tige_photo_tige","tige_illustration_de_la_tige_photo_tige","field_6304c61a23918"); */
 
 //modifyDataPhoto("photo_de_la_plante_entiere","illustration_plante_entiere_photo_de_la_plante_entiere","field_6304bda381ab9");
+
+modifyDataPersistance("adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_","adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__","field_65143c5e979a31");

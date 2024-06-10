@@ -1358,8 +1358,8 @@ get_header();
                                         <?php } ?>
                                     <?php } ?>
 
-                                    <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_'))){ ?>
-                                        <p>La moitié du stock semencier a perdu son pouvoir germinatif au bout de <?php echo get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_');?> années.</p>
+                                    <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__'))){ ?>
+                                        <p>La persistance de son stock semencier est <?php echo get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__');?>.</p>
                                     <?php } ?>
 
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_')) && get_field('adaptations_aux_pratiques_de_culture_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_') == 'oui'){ ?>
