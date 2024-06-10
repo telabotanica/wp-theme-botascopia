@@ -187,7 +187,7 @@
                                     <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
                                     <?php if (!empty($port_de_la_plante)): ?>
                                         <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
-                                            <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                            <?php echo  $feuilles_aeriennes['feuillage_'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage_'].'.' : '';?>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php 
@@ -257,7 +257,7 @@
                                             <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
                                             <?php if (!empty($port_de_la_plante)): ?>
                                                 <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
-                                                    <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                    <?php echo  $feuilles_aeriennes['feuillage_'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage_'].'.' : '';?>
                                                 <?php endif; ?>
                                             <?php endif; ?>
                                             
@@ -316,7 +316,7 @@
                                             <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
                                             <?php if (!empty($port_de_la_plante)): ?>
                                                 <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
-                                                    <?php echo  $feuilles_des_rameaux_steriles['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_steriles['feuillage'].'.' : '';?>
+                                                    <?php echo  $feuilles_des_rameaux_steriles['feuillage_'] ? 'Le feuillage est ' . $feuilles_des_rameaux_steriles['feuillage_'].'.' : '';?>
                                                 <?php endif; ?>
                                             <?php endif; ?>
                                         </p>

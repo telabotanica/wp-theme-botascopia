@@ -175,7 +175,7 @@ function getBoolean($group_fields,$bool,$nb,$post_id){
 
 					foreach ($fd as $key => $sub_field){
 						
-						$ignore_arr = ['type','categorie','localisation_des_poils','limbe_des_feuilles_simples','tige_aerienne','soudure_du_perigone','soudure_du_calice','soudure_de_landrocee','soudure_de_la_corolle','soudure_des_carpelles','ovaire','limbe_des_folioles','periode_de_levee'];
+						$ignore_arr = ['type','categorie','localisation_des_poils','limbe_des_feuilles_simples','tige_aerienne','soudure_du_perigone','soudure_du_calice','soudure_de_landrocee','soudure_de_la_corolle','soudure_des_carpelles','ovaire','limbe_des_folioles','periode_de_levee','feuillage'];
 
 						$sub_field=get_field($name."_".$key,$post_id);
 						
