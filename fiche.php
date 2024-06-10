@@ -1179,7 +1179,7 @@ get_header();
                     <?php } ?>
                 </div>
                 <div>
-                    <div id="agroecologie" class="display-fiche-container">
+                    <div id="agroecologie">
                         <div class="fiche-title-container">
                             <div class="fiche-title-icon">
                                 <img src=" <?php echo get_template_directory_uri() ?>/images/ecologie.svg" />
