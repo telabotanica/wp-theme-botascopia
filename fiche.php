@@ -1192,7 +1192,7 @@ get_header();
                             </div>
                         </div>
                             <div>
-                                <p class="agro_ecologie">
+                                <div class="agro_ecologie">
 
                                     <?php
                                         $preferences="La plante préfère ces expositions : <br>"; 
@@ -1591,7 +1591,7 @@ get_header();
                                     ?>
                                         <p>Sources générales : <?php echo $champ;?></p>
                                     <?php } ?>
-                                </p>
+                                </div>
                             </div>
                        
                     </div>
