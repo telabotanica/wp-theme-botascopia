@@ -6913,7 +6913,7 @@
                     "name": "differenciation_du_perianthe",
                     "aria-label": "",
                     "type": "radio",
-                    "instructions": "",
+                    "instructions": "Si la fleur comporte une seule catégorie d'organes dans le périanthe et que vous ne savez pas de quoi il s'agit, choisissez 'tépales'.",
                     "required": 1,
                     "conditional_logic": [
                         [
