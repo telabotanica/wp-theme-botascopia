@@ -8,7 +8,7 @@
             "name": "reference_1",
             "aria-label": "",
             "type": "text",
-            "instructions": "Classez vos références par ordre d'importance, de la plus importante à la moins importante. Seules les 3 premières apparaitront sur votre fiche pdf !\r\n\r\nPrésentation pour une source web : \r\nNom du site [en ligne]. [Consulté le jour\/moi\/année]. Disponible à l’adresse : https:\/\/adresse de la page consultée\r\n\r\nPrésentation pour un livre : \r\nAuteurs au format Nom P.. Titre (Éditeur, année de l'édition).\r\n\r\nArticle scientifique : \r\nAuteurs au format Nom P.. Année. Titre. Journal, numéro et numéro des pages. DOI si possible.",
+            "instructions": "Classez vos références par ordre d'importance, de la plus importante à la moins importante. Seules les 3 premières apparaitront sur votre fiche pdf !<br>Présentation pour une source web : <br>Nom du site [en ligne]. [Consulté le jour\/mois\/année]. Disponible à l’adresse : https:\/\/adresse de la page consultée<br>Présentation pour un livre : <br>Auteurs au format Nom P.. Titre (Éditeur, année de l'édition).<br>Article scientifique : <br>Auteurs au format Nom P.. Année. Titre. Journal, numéro et numéro des pages. DOI si possible.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {

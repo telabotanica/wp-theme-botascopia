@@ -4,6 +4,7 @@
 ?>
 <?php
 get_header();
+
 ?>
 <div id="primary" class="content-area">
     <!-- Ne pas enlever car sinon, ça pète le css ! -->
@@ -29,7 +30,7 @@ get_header();
         }
 		
 		$post_id = $post->ID;
-		$post_author = get_the_author_meta('display_name', $post->post_author);
+		$post_author = get_the_author_meta(Constantes::DISPLAY_NAME, $post->post_author);
 		$verificateur = '';
 		$verificateur_id = get_post_meta(get_the_ID(), 'Editor', true);
 		$verificateur_data = get_userdata($verificateur_id);
@@ -37,51 +38,45 @@ get_header();
 			$verificateur = $verificateur_data->display_name;
 		}
 		$title=get_the_title();
-		$date = $post->post_date;
-		setlocale(LC_TIME, 'fr_FR.utf8');
-		$post_date = strftime('%e %B %Y', strtotime($date));
+		$date = new DateTime($post->post_modified);
+        $date_crea = new DateTime($post->post_date);
+        $post_date = getDateInFrench($date->format('d F Y'));
+        $post_date_crea = getDateInFrench($date_crea->format('d F Y'));
         
-        if (get_field("field_643027826f24d")){
-			$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
-        }
-
-        if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-			$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
-            
-            $image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-        } else {
-            $image = getPostImage($post_id)[0];
-        }
 
 		$index_photos = 0;
 		$fruit_photo=null;
 		$refs_photo = array();
-		
+		$texte = "";
 		switch ($post->post_status){
-			case 'draft':
-				$status = 'À compléter';
+			case Constantes::DRAFT:
+				$status = Constantes::DRAFT_COMP;
+                if ($date > $date_crea){
+                    $texte = Constantes::MODIFIEE_LE;
+                }else{
+                    $texte = Constantes::CREEE_LE;
+                }
 				break;
-			case 'pending':
-				$status = 'En cours de validation';
+			case Constantes::PEND:
+				$status = Constantes::PEND_FR;
+                $texte = Constantes::MODIFIEE_LE;
 				break;
-			case 'publish':
-				$status = 'Validée';
+			case Constantes::PUBLISH:
+				$status = Constantes::PUBLISH_FR;
+                $texte = Constantes::PUBLIEE_LE;
 				break;
 			default:
 				$status = '';
 		}
 
 		the_botascopia_module('cover', [
-			'subtitle' => get_post_meta($post_id, 'nom_vernaculaire', true).' - '.get_post_meta($post_id, 'famille',
-																								true),
-			'title' => get_post_meta($post_id, 'nom_scientifique', true),
+			'subtitle' => get_post_meta($post_id, Constantes::NOM_VERNACULAIRE, true).' - '.get_post_meta($post_id, Constantes::FAMILLE,true),
+			'title' => getFilteredTitle(get_post_meta($post_id, Constantes::NOM_SCIENTIFIQUE, true)),
 			'image' => [get_template_directory_uri() .'/images/recto-haut.svg'],
 			'modifiers' =>['class' => 'fiche-cover']
 		]);
 
-		if (!isset($image)){
-			$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
-		}
+        $image = getFicheImage($post_id);
   
 		echo ('
 			<img src= '.$image .' class="fiche-image">
@@ -94,7 +89,7 @@ get_header();
 					 data-user-id="<?php echo $current_user_id?>"
 					 data-fiche-id="<?php echo $post_id ?>">
 
-                    <?php if (is_user_logged_in() && isset($ficheFavorites) &&get_user_meta($current_user_id, 'favorite_collection')
+                    <?php if (is_user_logged_in() && isset($ficheFavorites) &&get_user_meta($current_user_id, Constantes::FAVORITE_COLLECTION)
                         && ($key = array_search($post_id, $ficheFavorites[0])) !== false){
                         //changer le bouton favoris si collection dans favoris ou pas
                         $icone = ['icon' => 'star', 'color' => 'blanc'];
@@ -107,8 +102,8 @@ get_header();
                     the_botascopia_module('button', [
                         'tag' => 'a',
                         'href' => '#',
-                        'title' => 'Favoris',
-                        'text' => 'Favoris',
+                        'title' => Constantes::FAVORIS,
+                        'text' => Constantes::FAVORIS,
                         'modifiers' => $modifiers,
                         'icon_after' => $icone,
                         'extra_attributes' => ['id' => 'fav-'.$post_id]
@@ -118,8 +113,8 @@ get_header();
 					<?php the_botascopia_module('button', [
 						'tag' => 'a',
 						'href' => '#',
-						'title' => 'Téléchargez',
-						'text' => 'Téléchargez',
+						'title' => Constantes::TELECHARGER,
+						'text' => Constantes::TELECHARGER,
 						'modifiers' => 'green-button',
                         'icon_after' => ['icon' => 'pdf', 'color'=>'blanc'],
                         'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/export/?p=".get_the_title()."'"]
@@ -148,97 +143,97 @@ get_header();
 								'items' => [
 									
 									[
-										'text' => 'Description morphologique',
+										'text' => Constantes::DESCRIPTION,
 										'href' => '#description-morphologique',
 										'active' => false,
 									],
 									[
-										'text' => 'Description vulgarisée',
+										'text' => Constantes::VULG,
 										'href' => '#description-vulgarisee',
 										'active' => false,
 									],
 									[
-										'text' => 'Tige',
+										'text' => Constantes::TIGE,
 										'href' => '#tige',
 										'active' => false,
 									],
 									[
-										'text' => 'Feuilles',
+										'text' => Constantes::FEUILLE,
 										'href' => '#feuilles',
 										'active' => false,
 									],
 									[
-										'text' => 'Inflorescence',
+										'text' => Constantes::INFLO,
 										'href' => '#inflorescence',
 										'active' => false,
 									],
 									[
-										'text' => 'Fruits',
+										'text' => Constantes::FRUIT,
 										'href' => '#fruits',
 										'active' => false,
 									],
 									[
-										'text' => 'Fleur mâle',
+										'text' => Constantes::FL_MALE,
 										'href' => '#fleur-male',
 										'active' => false,
 									],
 									[
-										'text' => 'Fleur femelle',
+										'text' => Constantes::FL_FEM,
 										'href' => '#fleur-femelle',
 										'active' => false,
 									],
 									[
-										'text' => 'Fleur bisexuée',
+										'text' => Constantes::FL_BI,
 										'href' => '#fleur-bisexuee',
 										'active' => false,
 									],
 									[
-										'text' => 'Le saviez vous?',
+										'text' => Constantes::LE_SAVIEZ_VOUS,
 										'href' => '#le-saviez-vous',
 										'active' => false,
 									],
 									[
-										'text' => 'Periode de floraison et de fructification',
+										'text' => Constantes::PERIOD,
 										'href' => '#periode-floraison',
 										'active' => false,
 									],
 									[
-										'text' => 'Écologie',
+										'text' => Constantes::ECOLOGIE,
 										'href' => '#ecologie',
 										'active' => false,
 									],
 									[
-										'text' => 'Propriétés',
+										'text' => Constantes::PROPERTIES,
 										'href' => '#proprietes',
 										'active' => false,
 									],
 									[
-										'text' => 'Aire de répartition',
+										'text' => Constantes::AIRE,
 										'href' => '#aire-repartition',
 										'active' => false,
 									],
 									[
-										'text' => 'Ne pas confondre',
+										'text' => Constantes::CONFUS,
 										'href' => '#ne-pas-confondre',
 										'active' => false,
 									],
 									[
-										'text' => 'Complément d\'anecdote',
+										'text' => Constantes::ANECDOTE,
 										'href' => '#complement-anecdote',
 										'active' => false,
 									],
                                     [
-                                        'text' => 'Agroécologie',
+                                        'text' => Constantes::AGRO,
                                         'href' => '#agroecologie',
                                         'active' => false,
                                     ],
 									[
-										'text' => 'Références',
+										'text' => Constantes::REFERENCES,
 										'href' => '#references',
 										'active' => false,
 									],
                                     [
-										'text' => 'Voir plus de fiches',
+										'text' => Constantes::VOIR,
 										'href' => '#voir_plus',
 										'active' => false,
 									],
@@ -267,15 +262,15 @@ get_header();
 					
 					<div class="fiche-infos">
 						<div class="single-fiche-details">
-							<div class="single-fiche-detail">Statut : <?php echo $status ?></div>
-							<div class="single-fiche-detail">Publié le <?php echo $post_date ?></div>
-							<div class="single-fiche-detail">Par <?php echo $post_author ?></div>
-							<div class="single-fiche-detail">Vérifié par <?php echo $verificateur ?></div>
+							<div class="single-fiche-detail">Statut : <?php echo $status; ?></div>
+							<div class="single-fiche-detail"> <?php echo ($texte." ".$post_date); ?></div>
+							<div class="single-fiche-detail">Par <?php echo $post_author; ?></div>
+							<div class="single-fiche-detail">Vérifiée par <?php echo $verificateur; ?></div>
 						</div>
 						<div id="fiche-infos-right">
 							<?php
 							the_botascopia_module('title', [
-								'title' => __('Apparait dans les collections suivantes :', 'botascopia'),
+								'title' => __(Constantes::APPARITION, 'botascopia'),
 								'level' => 4,
 							]);
 							?>
@@ -304,35 +299,35 @@ get_header();
                             <img src=" <?php echo get_template_directory_uri() ?>/images/description.svg" />
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Description morphologique', 'botascopia'),
+                                'title' => __(Constantes::DESCRIPTION, 'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
                         </div>
 
-                        <p><?php if (!empty(get_field('port_de_la_plante'))) { 
-                                echo ucfirst(get_field('port_de_la_plante'))." ";
-                                if (!empty(get_field('systeme_sexuel')) && get_field('systeme_sexuel') !== "hermaphrodite" ) { echo get_field('systeme_sexuel').", " ;}
-                                if ((get_field('port_de_la_plante') == "herbacée" || get_field('port_de_la_plante') == "liane") && !empty(get_field('mode_de_vie')) && get_field('mode_de_vie') !== array("terrestre") ) { echo implode(', ', get_field('mode_de_vie')).", " ; }
-                                if (get_field('port_de_la_plante') == "herbacée" && !empty(get_field('type_de_developpement'))) { echo implode(', ', get_field('type_de_developpement')).", " ;}
-                                if ((get_field('port_de_la_plante') == "herbacée" || get_field('port_de_la_plante') == "liane") && !empty(get_field('forme_biologique'))) { echo implode(', ', get_field('forme_biologique')).", " ;} ?>
-                                qui peut atteindre jusqu'à <?php the_field('hauteur_maximale'); ?> de haut.
-                                <?php if (!empty(get_field(' pilosite_de_la_plante_entiere'))) { echo "Cette plante est ".get_field(' pilosite_de_la_plante_entiere').".";} ?>
+                        <p><?php if (!empty(get_field(Constantes::PORT_DE_LA_PLANTE))) { 
+                                echo ucfirst(get_field(Constantes::PORT_DE_LA_PLANTE))." ";
+                                if (!empty(get_field(Constantes::SYS_SEXUEL)) && get_field(Constantes::SYS_SEXUEL) !== Constantes::HERMAPHRODITE ) { echo get_field(Constantes::SYS_SEXUEL).", " ;}
+                                if ((get_field(Constantes::PORT_DE_LA_PLANTE) ==  Constantes::HERBACEE|| get_field(Constantes::PORT_DE_LA_PLANTE) == Constantes::LIANE) && !empty(get_field(Constantes::MODE_DE_VIE)) && get_field(Constantes::MODE_DE_VIE) !== array(Constantes::TERRESTRE) ) { echo implode(', ', get_field(Constantes::MODE_DE_VIE)).", " ; }
+                                if (get_field(Constantes::PORT_DE_LA_PLANTE) == Constantes::HERBACEE && !empty(get_field(Constantes::TYPE_DE_DVPT))) { echo implode(', ', get_field(Constantes::TYPE_DE_DVPT)).", " ;}
+                                if ((get_field(Constantes::PORT_DE_LA_PLANTE) == Constantes::HERBACEE || get_field(Constantes::PORT_DE_LA_PLANTE) == Constantes::LIANE) && !empty(get_field(Constantes::FORME_BIOLOGIQUE))) { echo implode(', ', get_field(Constantes::FORME_BIOLOGIQUE)).", " ;} ?>
+                                qui peut atteindre jusqu'à <?php the_field(Constantes::HAUTEUR_MAXIMALE); ?> de haut.
+                                <?php if (!empty(get_field(Constantes::PILOSITE))) { echo "Cette plante est ".get_field(Constantes::PILOSITE).".";} ?>
                             <?php } ?>
                         </p>
                     </div>
 				</div>
-				<?php $description_vulgarisee = get_field('description_vulgarisee')?: null; ?>
+				<?php $description_vulgarisee = get_field(Constantes::VULG)?: null; ?>
                 <div>
                     <?php if ($description_vulgarisee){ ?>
                         <div id="description-vulgarisee">
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Description vulgarisée', 'botascopia'),
+                                'title' => __(Constantes::VULG, 'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
-                            <p><?php the_field('description_vulgarisee'); ?></p>
+                            <p><?php the_field(Constantes::DESC_VULG); ?></p>
                         </div>
                     <?php } ?>
                 </div>
@@ -344,36 +339,36 @@ get_header();
                                 <img src=" <?php echo get_template_directory_uri() ?>/images/tige.svg" />
                                 <?php
                                 the_botascopia_module('title', [
-                                    'title' => __('Tige', 'botascopia'),
+                                    'title' => __(Constantes::TIGE, 'botascopia'),
                                     'level' => 2,
                                 ]);
                                 ?>
                             </div>
                             <div>
-                                <?php if (!empty(get_field('tige'))){?>
+                                <?php if (!empty(get_field(Constantes::TIGE_CHP))){?>
                                     <p class="tige-description">
                                         <?php
-                                        $tige = get_field('tige');
+                                        $tige = get_field(Constantes::TIGE_CHP);
                                         if (!empty($tige)) {
-                                            $type_tige = implode(', ', $tige['type_de_tige']);
-                                            $section_tige = implode('-', $tige['section_de_la_tige']);
-                                            $surface_tige = implode(', ', $tige['surface_de_la_tige_jeune']);
-                                            $port_de_la_plante = get_field('port_de_la_plante');
+                                            $type_tige = implode(', ', $tige[Constantes::TYPE_DE_TIGE]);
+                                            $section_tige = implode('-', $tige[Constantes::SECTION_TIGE]);
+                                            $surface_tige = implode(', ', $tige[Constantes::SURFACE_TIGE]);
+                                            $port_de_la_plante = get_field(Constantes::PORT_DE_LA_PLANTE);
                                             if (!empty($port_de_la_plante)) {
-                                                if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) {
-                                                    if (!empty($tige['surface_de_lecorce'])) {
-                                                        $surface_ecorce = implode(', ', $tige['surface_de_lecorce']);
+                                                if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)) {
+                                                    if (!empty($tige[Constantes::SURFACE_ECORCE])) {
+                                                        $surface_ecorce = implode(', ', $tige[Constantes::SURFACE_ECORCE]);
                                                     }
                                                 }
                                             }
                                         }
                                         ?>
-                                        La tige aérienne est <?php echo trim($tige['tige_aerienne']).",";?>
-                                        <?php if ($tige['tige_aerienne'] != 'non visible'){?> 
-                                            <?php echo" $type_tige";?>, <?php echo $tige['ramification'];?>, à section <?php echo $section_tige;?>.
+                                        La tige aérienne est <?php $tige_type = $tige[Constantes::TIGE_AERIENNE]; if ($tige_type !== Constantes::VISIBLE){echo trim($tige_type).",";}?>
+                                        <?php if ($tige_type != Constantes::NON_VISIBLE){?> 
+                                            <?php echo" $type_tige";?>, <?php echo $tige[Constantes::RAMIFICATION];?>, à section <?php echo $section_tige;?>.
                                             <br>Sa surface est <?php echo $surface_tige;?> au moins quand elle est jeune.
-                                            <?php if ((($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')) && (!empty($surface_ecorce))){ ?>
-                                                <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige['couleur_du_tronc'])) {?> et <?php echo $tige['couleur_du_tronc'];} ?>.
+                                            <?php if ((($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)) && (!empty($surface_ecorce))){ ?>
+                                                <br>L'écorce est <?php echo $surface_ecorce;?><?php if (!empty($tige[Constantes::COULEUR_TRONC])) {?> et <?php echo $tige[Constantes::COULEUR_TRONC];} ?>.
                                             <?php } ?>
                                         <?php }?>
                                     
@@ -384,8 +379,8 @@ get_header();
                         
                         <?php
                         // Si une image est enregistrée on l'affiche
-                        if (isset($tige["illustration_de_la_tige"]['photo_tige'])){
-                            affichageImageFiche($tige["illustration_de_la_tige"]['photo_tige']);
+                        if (isset($tige[Constantes::ILLUSTRATION_TIGE][Constantes::PHOTO_TIGE])){
+                            affichageImageFiche($tige[Constantes::ILLUSTRATION_TIGE][Constantes::PHOTO_TIGE]);
                         }
                         ?>
                     </div>
@@ -401,74 +396,79 @@ get_header();
                                     <?php
                             
                                     the_botascopia_module('title', [
-                                        'title' => __('Feuilles', 'botascopia'),
+                                        'title' => __(Constantes::FEUILLE, 'botascopia'),
                                         'level' => 2,
                                     ]);
                                     ?>
                             
                             </div>
-                            <?php  if (!empty(get_field('feuille'))) { ?>
+                            <?php  if (!empty(get_field(Constantes::FEUILLE_CHP))) { ?>
                                 
-                                <?php $presence_feuilles = get_field('feuille')['presence_de_feuilles']; ?>
-                                <?php if ('jamais visibles' === $presence_feuilles){ ?>
+                                <?php $presence_feuilles = get_field(Constantes::FEUILLE_CHP)[Constantes::PRESENCE_FEUILLES]; ?>
+                                <?php if (Constantes::JAMAIS_VISIBLES === $presence_feuilles){ ?>
                                     <p><?php echo $presence_feuilles; ?></p>
                                 <?php }else{ ?>
-                                    
-                                    <?php $heteromorphisme_foliaire = get_field('heteromorphisme_foliaire'); 
+                                    <?php $champ = get_field('appareil_vegetatif');
+                                        if (!empty($champ)){
+                                            echo "Description de l'appareil végétatif : $champ";
+                                        }
+                                    ?>
+                                    <?php $heteromorphisme_foliaire = get_field(Constantes::HETEROMORPHISME); 
                                             
                                     ?>
-                                    <?php if (('feuilles toutes semblables' === $heteromorphisme_foliaire) || ('gradient de forme entre la base et le haut de la tige' === $heteromorphisme_foliaire)){ ?>
+                                    <?php if ((Constantes::FEUILLES_SEMBLABLES === $heteromorphisme_foliaire) || (Constantes::GRADIENT === $heteromorphisme_foliaire)){ ?>
                                         
-                                        <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
+                                        <?php $feuilles_aeriennes = get_field(Constantes::FEUILLES_AERIENNES); ?>
                                         <div class="display-fiche-container">
                                             <p>
-                                                Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_aeriennes['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_aeriennes); ?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
+                                                Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_aeriennes[Constantes::PHYLLOTAXIE]); echo $phyllo; ?> et elles sont <?php echo implode(' et ', $feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE]);?>.<br>
                                                 <?php
-                                                $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
+                                                $type_feuille_multiple = 1 < count($feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE]);
                                                 $limbe = 'Le limbe %s est %s';
                                                 $type_limbe = [];
                                                 
-                                                foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
-                                                    if ('simples' === $type_feuille) {
-                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                                foreach ($feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
+                                                    if (Constantes::SIMPLES === $type_feuille) {
+                                                        $text = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                        $text = getPubescence($feuilles_aeriennes,1,$text);
+                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                     } else {
-                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                                        $texte = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]);
+                                                        $texte = getPubescence($feuilles_aeriennes,2,$texte);
+                                                        $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                     }
                                                 }
+                                                
                                                 ?>
                                                 
-                                                <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
+                                                <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes[Constantes::NERVATION]);?>.<br>
                                                 
                                                 <?php
-                                                $presence_petiole = $feuilles_aeriennes['petiole'];
-                                                $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
+                                                $presence_petiole = $feuilles_aeriennes[Constantes::PETIOLE];
+                                                $petiole = Constantes::PRESENT === $presence_petiole ? $feuilles_aeriennes[Constantes::LONGUEUR_PETIOLE] . (Constantes::ENGAINANT === $feuilles_aeriennes[Constantes::ENGAINANT] ? ', ' . $feuilles_aeriennes[Constantes::ENGAINANT] :'') : $presence_petiole;
                                                 ?>
                                                 
                                                 Le pétiole est <?php echo $petiole; ?>.<br>
                                                 
-                                                <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
+                                                <?php echo Constantes::PRESENTS === $feuilles_aeriennes[Constantes::STIPULES] ? $feuilles_aeriennes[Constantes::FORME_COULEUR_STIPULES] : '';?>
                                                 
-                                                <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                <?php $port_de_la_plante = get_field(Constantes::PORT_DE_LA_PLANTE); ?>
                                                 <?php if (!empty($port_de_la_plante)){ ?>
-                                                    <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')){ ?>
-                                                        <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                    <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)){ ?>
+                                                        <?php echo  $feuilles_aeriennes[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_aeriennes[Constantes::FEUILLAGE].'.' : '';?>
                                                     <?php } ?>
                                                 <?php } ?>
-                                                <?php /* $champ = get_field('feuilles_aeriennes_appareil_vegetatif');
-                                                    if (!empty($champ)){
-                                                        echo " $champ";
-                                                    } */
-                                                ?>
+                                                
                                             </p>
                                         </div>    
                                     
                                     
-                                    <?php }elseif ('deux formes distinctes de feuilles'=== $heteromorphisme_foliaire){?>
+                                    <?php }elseif (Constantes::DEUX_FORMES=== $heteromorphisme_foliaire){?>
                                         
-                                        <?php $deux_formes_distinctes = get_field('deux_formes_distinctes'); ?>
-                                        <?php if ($deux_formes_distinctes === 'plante à feuilles immergées et aériennes'): ?>
+                                        <?php $deux_formes_distinctes = get_field(Constantes::DEUX_FORMES_CHP); ?>
+                                        <?php if ($deux_formes_distinctes === Constantes::FEUILLES_IMMERGEES_AERIENNES): ?>
                                             
-                                            <?php $feuilles_aeriennes = get_field('feuilles_aeriennes'); ?>
+                                            <?php $feuilles_aeriennes = get_field(Constantes::FEUILLES_AERIENNES); ?>
                                             <?php if(!empty($feuilles_aeriennes)): ?>
                                                 <div class="display-fiche-container">
                                                     
@@ -476,36 +476,40 @@ get_header();
                                                             <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles aériennes
                                                         </h4>
                                                         <p>
-                                                            Les feuilles sont disposées de façon <?php $phyllo = implode(' et ', $feuilles_aeriennes['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_aeriennes);?>, et elles sont <?php echo implode(' et ', $feuilles_aeriennes['type_de_feuille']);?>.<br>
+                                                            Les feuilles sont disposées de façon <?php $phyllo = implode(' et ', $feuilles_aeriennes[Constantes::PHYLLOTAXIE]); echo $phyllo;?>, et elles sont <?php echo implode(' et ', $feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE]);?>.<br>
                                                             <?php
-                                                            $type_feuille_multiple = 1 < count($feuilles_aeriennes['type_de_feuille']);
+                                                            $type_feuille_multiple = 1 < count($feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE]);
                                                             $limbe = 'Le limbe %s est %s';
                                                             $type_limbe = [];
 
-                                                            foreach ($feuilles_aeriennes['type_de_feuille'] as $type_feuille) {
-                                                                if ('simples' === $type_feuille) {
-                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_aeriennes['limbe_des_feuilles_simples']));
+                                                            foreach ($feuilles_aeriennes[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
+                                                                if (Constantes::SIMPLES === $type_feuille) {
+                                                                    $text = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                    $text = getPubescence($feuilles_aeriennes,1,$text);
+                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                                 } else {
-                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_aeriennes['limbe_des_folioles']));
+                                                                    $texte = implode('-', $feuilles_aeriennes[Constantes::LIMBE_FOLIOLES]);
+                                                                    $texte = getPubescence($feuilles_aeriennes,2,$texte);
+                                                                    $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                                 }
                                                             }
                                                             ?>
 
-                                                            <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes['nervation']);?>.<br>
+                                                            <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_aeriennes[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_aeriennes[Constantes::NERVATION]);?>.<br>
 
                                                             <?php
-                                                            $presence_petiole = $feuilles_aeriennes['petiole'];
-                                                            $petiole = 'présent' === $presence_petiole ? $feuilles_aeriennes['longueur_du_petiole'] . ('engainant' === $feuilles_aeriennes['engainant'] ? ', ' . $feuilles_aeriennes['engainant'] :'') : $presence_petiole;
+                                                            $presence_petiole = $feuilles_aeriennes[Constantes::PETIOLE];
+                                                            $petiole = Constantes::PRESENT === $presence_petiole ? $feuilles_aeriennes[Constantes::LONGUEUR_PETIOLE] . (Constantes::ENGAINANT === $feuilles_aeriennes[Constantes::ENGAINANT] ? ', ' . $feuilles_aeriennes[Constantes::ENGAINANT] :'') : $presence_petiole;
                                                             ?>
 
                                                             Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                                            <?php echo  'présents' === $feuilles_aeriennes['stipules'] ? $feuilles_aeriennes['forme_et_couleur_des_stipules'] : '';?>
+                                                            <?php echo  Constantes::PRESENTS === $feuilles_aeriennes[Constantes::STIPULES] ? $feuilles_aeriennes[Constantes::FORME_COULEUR_STIPULES] : '';?>
 
-                                                            <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                            <?php $port_de_la_plante = get_field(Constantes::PORT_DE_LA_PLANTE); ?>
                                                             <?php if (!empty($port_de_la_plante)): ?>
-                                                                <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
-                                                                    <?php echo  $feuilles_aeriennes['feuillage'] ? 'Le feuillage est ' . $feuilles_aeriennes['feuillage'].'.' : '';?>
+                                                                <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
+                                                                    <?php echo  $feuilles_aeriennes[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_aeriennes[Constantes::FEUILLAGE].'.' : '';?>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>
                                                         </p>
@@ -514,7 +518,7 @@ get_header();
                                                 </div>
                                             <?php endif; ?>
 
-                                            <?php $feuilles_immergees = get_field('feuilles_immergees'); ?>
+                                            <?php $feuilles_immergees = get_field(Constantes::FEUILLES_IMMERGEES); ?>
                                             <?php if(!empty($feuilles_immergees)): ?>
                                             <div class="display-fiche-container">
                                                 
@@ -522,36 +526,40 @@ get_header();
                                                         <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles immergées
                                                     </h4>
                                                     <p>
-                                                        Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_immergees['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_immergees); ?>, et elles sont <?php echo implode(' et ', $feuilles_immergees['type_de_feuille']);?>.<br>
+                                                        Les feuilles sont disposées de façon <?php $phyllo= implode(' et ', $feuilles_immergees[Constantes::PHYLLOTAXIE]); echo $phyllo; ?>, et elles sont <?php echo implode(' et ', $feuilles_immergees[Constantes::TYPE_DE_FEUILLE]);?>.<br>
                                                         <?php
-                                                        $type_feuille_multiple = 1 < count($feuilles_immergees['type_de_feuille']);
+                                                        $type_feuille_multiple = 1 < count($feuilles_immergees[Constantes::TYPE_DE_FEUILLE]);
                                                         $limbe = 'Le limbe %s est %s';
                                                         $type_limbe = [];
 
-                                                        foreach ($feuilles_immergees['type_de_feuille'] as $type_feuille) {
-                                                            if ('simples' === $type_feuille) {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_immergees['limbe_des_feuilles_simples']));
+                                                        foreach ($feuilles_immergees[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
+                                                            if (Constantes::SIMPLES === $type_feuille) {
+                                                                $text = implode('-', $feuilles_immergees[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                $text = getPubescence($feuilles_immergees,1,$text);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_immergees['limbe_des_folioles']));
+                                                                $texte = implode('-', $feuilles_immergees[Constantes::LIMBE_FOLIOLES]);
+                                                                $texte = getPubescence($feuilles_immergees,2,$texte);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
                                                         ?>
 
-                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_immergees['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_immergees['nervation']);?>.<br>
+                                                        <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_immergees[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_immergees[Constantes::NERVATION]);?>.<br>
 
                                                         <?php
-                                                        $presence_petiole = $feuilles_immergees['petiole'];
-                                                        $petiole = 'présent' === $presence_petiole ? $feuilles_immergees['longueur_du_petiole'] . ('engainant' === $feuilles_immergees['engainant'] ? ', ' . $feuilles_immergees['engainant'] :'') : $presence_petiole;
+                                                        $presence_petiole = $feuilles_immergees[Constantes::PETIOLE];
+                                                        $petiole = Constantes::PRESENT === $presence_petiole ? $feuilles_immergees[Constantes::LONGUEUR_PETIOLE] . (Constantes::ENGAINANT === $feuilles_immergees[Constantes::ENGAINANT] ? ', ' . $feuilles_immergees[Constantes::ENGAINANT] :'') : $presence_petiole;
                                                         ?>
 
                                                         Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                                        <?php echo  'présents' === $feuilles_immergees['stipules'] ? $feuilles_immergees['forme_et_couleur_des_stipules'] : '';?>
+                                                        <?php echo  Constantes::PRESENTS === $feuilles_immergees[Constantes::STIPULES] ? $feuilles_immergees[Constantes::FORME_COULEUR_STIPULES] : '';?>
 
-                                                        <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                        <?php $port_de_la_plante = get_field(Constantes::PORT_DE_LA_PLANTE); ?>
                                                         <?php if (!empty($port_de_la_plante)): ?>
-                                                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
-                                                                <?php echo  $feuilles_immergees['feuillage'] ? 'Le feuillage est ' . $feuilles_immergees['feuillage'].'.' : '';?>
+                                                            <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
+                                                                <?php echo  $feuilles_immergees[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_immergees[Constantes::FEUILLAGE].'.' : '';?>
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     </p>
@@ -560,9 +568,9 @@ get_header();
                                             </div>
                                             <?php endif; ?>
                                         
-                                        <?php elseif ($deux_formes_distinctes === 'plante à rameaux stériles et à rameaux fleuris distincts'): ?>
+                                        <?php elseif ($deux_formes_distinctes === Constantes::RAMEAUX_STERILES_FLEURIS): ?>
                                             
-                                            <?php $feuilles_des_rameaux_steriles = get_field('feuilles_des_rameaux_steriles'); ?>
+                                            <?php $feuilles_des_rameaux_steriles = get_field(Constantes::FEUILLES_RAMEAUX_STERILES); ?>
                                             <?php if(!empty($feuilles_des_rameaux_steriles)): ?>
                                             <div class="display-fiche-container">
                                                 
@@ -570,36 +578,40 @@ get_header();
                                                         <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles des rameaux stériles
                                                     </h4>
                                                     <p>
-                                                        Les feuilles sont disposées de façon <?php $phyllo=  implode(' et ', $feuilles_des_rameaux_steriles['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_des_rameaux_steriles);?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles['type_de_feuille']);?>.<br>
+                                                        Les feuilles sont disposées de façon <?php $phyllo=  implode(' et ', $feuilles_des_rameaux_steriles[Constantes::PHYLLOTAXIE]); echo $phyllo;?> et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::TYPE_DE_FEUILLE]);?>.<br>
                                                         <?php
-                                                        $type_feuille_multiple = 1 < count($feuilles_des_rameaux_steriles['type_de_feuille']);
+                                                        $type_feuille_multiple = 1 < count($feuilles_des_rameaux_steriles[Constantes::TYPE_DE_FEUILLE]);
                                                         $limbe = 'Le limbe %s est %s';
                                                         $type_limbe = [];
 
-                                                        foreach ($feuilles_des_rameaux_steriles['type_de_feuille'] as $type_feuille) {
-                                                            if ('simples' === $type_feuille) {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_feuilles_simples']));
+                                                        foreach ($feuilles_des_rameaux_steriles[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
+                                                            if (Constantes::SIMPLES === $type_feuille) {
+                                                                $text = implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                $text = getPubescence($feuilles_des_rameaux_steriles,1,$text);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_steriles['limbe_des_folioles']));
+                                                                $texte = implode('-', $feuilles_des_rameaux_steriles[Constantes::LIMBE_FOLIOLES]);
+                                                                $texte = getPubescence($feuilles_des_rameaux_steriles,2,$texte);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
                                                         ?>
 
-                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles['nervation']);?>.<br>
+                                                        <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_steriles[Constantes::NERVATION]);?>.<br>
 
                                                         <?php
-                                                        $presence_petiole = $feuilles_des_rameaux_steriles['petiole'];
-                                                        $petiole = 'présent' === $presence_petiole ? $feuilles_des_rameaux_steriles['longueur_du_petiole'] . ('engainant' === $feuilles_des_rameaux_steriles['engainant'] ? ', ' . $feuilles_des_rameaux_steriles['engainant'] :'') : $presence_petiole;
+                                                        $presence_petiole = $feuilles_des_rameaux_steriles[Constantes::PETIOLE];
+                                                        $petiole = Constantes::PRESENT === $presence_petiole ? $feuilles_des_rameaux_steriles[Constantes::LONGUEUR_PETIOLE] . (Constantes::ENGAINANT === $feuilles_des_rameaux_steriles[Constantes::ENGAINANT] ? ', ' . $feuilles_des_rameaux_steriles[Constantes::ENGAINANT] :'') : $presence_petiole;
                                                         ?>
 
                                                         Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                                        <?php echo  'présents' === $feuilles_des_rameaux_steriles['stipules'] ? $feuilles_des_rameaux_steriles['forme_et_couleur_des_stipules'] : '';?>
+                                                        <?php echo  Constantes::PRESENTS === $feuilles_des_rameaux_steriles[Constantes::STIPULES] ? $feuilles_des_rameaux_steriles[Constantes::FORME_COULEUR_STIPULES] : '';?>
 
-                                                        <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                        <?php $port_de_la_plante = get_field(Constantes::PORT_DE_LA_PLANTE); ?>
                                                         <?php if (!empty($port_de_la_plante)): ?>
-                                                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
-                                                                <?php echo  $feuilles_des_rameaux_steriles['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_steriles['feuillage'].'.' : '';?>
+                                                            <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
+                                                                <?php echo  $feuilles_des_rameaux_steriles[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_des_rameaux_steriles[Constantes::FEUILLAGE].'.' : '';?>
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     </p>
@@ -607,7 +619,7 @@ get_header();
                                             </div>
                                             <?php endif; ?>
 
-                                            <?php $feuilles_des_rameaux_fleuris = get_field('feuilles_des_rameaux_fleuris'); ?>
+                                            <?php $feuilles_des_rameaux_fleuris = get_field(Constantes::FEUILLES_RAMEAUX_FLEURIS); ?>
                                             <?php if(!empty($feuilles_des_rameaux_fleuris)): ?>
                                             <div class="display-fiche-container">
                                                 
@@ -615,36 +627,40 @@ get_header();
                                                         <div class="feuilles-icon icon" style="background-size: cover"></div>Feuilles des rameaux fleuris
                                                     </h4>
                                                     <p>
-                                                        Les feuilles sont disposées de façon <?php $phyllo = implode(' et ', $feuilles_des_rameaux_fleuris['phyllotaxie']); echo getPhylloFieldOther($phyllo,$feuilles_des_rameaux_fleuris);?>, et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['type_de_feuille']);?>.<br>
+                                                        Les feuilles sont disposées de façon <?php $phyllo = implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::PHYLLOTAXIE]); echo $phyllo;?>, et elles sont <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::TYPE_DE_FEUILLE]);?>.<br>
                                                         <?php
-                                                        $type_feuille_multiple = 1 < count($feuilles_des_rameaux_fleuris['type_de_feuille']);
+                                                        $type_feuille_multiple = 1 < count($feuilles_des_rameaux_fleuris[Constantes::TYPE_DE_FEUILLE]);
                                                         $limbe = 'Le limbe %s est %s';
                                                         $type_limbe = [];
 
-                                                        foreach ($feuilles_des_rameaux_fleuris['type_de_feuille'] as $type_feuille) {
-                                                            if ('simples' === $type_feuille) {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_feuilles_simples']));
+                                                        foreach ($feuilles_des_rameaux_fleuris[Constantes::TYPE_DE_FEUILLE] as $type_feuille) {
+                                                            if (Constantes::SIMPLES === $type_feuille) {
+                                                                $text = implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FEUILLES_SIMPLES]);
+                                                                $text = getPubescence($feuilles_des_rameaux_fleuris,1,$text);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des feuilles simples' : ''), trim($text));
                                                             } else {
-                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), implode('-', $feuilles_des_rameaux_fleuris['limbe_des_folioles']));
+                                                                $texte = implode('-', $feuilles_des_rameaux_fleuris[Constantes::LIMBE_FOLIOLES]);
+                                                                $texte = getPubescence($feuilles_des_rameaux_fleuris,2,$texte);
+                                                                $type_limbe[] = sprintf($limbe, ($type_feuille_multiple ? 'des folioles' : ''), trim($texte));
                                                             }
                                                         }
                                                         ?>
 
-                                                        <?php echo implode(', ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['marge_foliaire']);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_fleuris['nervation']);?>.<br>
+                                                        <?php echo implode('. ', $type_limbe);?>, à marge foliaire <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::MARGE_FOLIAIRE]);?> et à nervation <?php echo implode(' et ', $feuilles_des_rameaux_fleuris[Constantes::NERVATION]);?>.<br>
 
                                                         <?php
-                                                        $presence_petiole = $feuilles_des_rameaux_fleuris['petiole'];
-                                                        $petiole = 'présent' === $presence_petiole ? $feuilles_des_rameaux_fleuris['longueur_du_petiole'] . ('engainant' === $feuilles_des_rameaux_fleuris['engainant'] ? ', ' . $feuilles_des_rameaux_fleuris['engainant'] :'') : $presence_petiole;
+                                                        $presence_petiole = $feuilles_des_rameaux_fleuris[Constantes::PETIOLE];
+                                                        $petiole = Constantes::PRESENT === $presence_petiole ? $feuilles_des_rameaux_fleuris[Constantes::LONGUEUR_PETIOLE] . (Constantes::ENGAINANT === $feuilles_des_rameaux_fleuris[Constantes::ENGAINANT] ? ', ' . $feuilles_des_rameaux_fleuris[Constantes::ENGAINANT] :'') : $presence_petiole;
                                                         ?>
 
                                                         Le pétiole est <?php echo $petiole; ?>.<br>
 
-                                                        <?php echo  'présents' === $feuilles_des_rameaux_fleuris['stipules'] ? $feuilles_des_rameaux_fleuris['forme_et_couleur_des_stipules'] : '';?>
+                                                        <?php echo  Constantes::PRESENTS === $feuilles_des_rameaux_fleuris[Constantes::STIPULES] ? $feuilles_des_rameaux_fleuris[Constantes::FORME_COULEUR_STIPULES] : '';?>
 
-                                                        <?php $port_de_la_plante = get_field('port_de_la_plante'); ?>
+                                                        <?php $port_de_la_plante = get_field(Constantes::PORT_DE_LA_PLANTE); ?>
                                                         <?php if (!empty($port_de_la_plante)): ?>
-                                                            <?php if (($port_de_la_plante === 'arbrisseau') || ($port_de_la_plante === 'arbre')): ?>
-                                                                <?php echo  $feuilles_des_rameaux_fleuris['feuillage'] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris['feuillage'].'.' : '';?>
+                                                            <?php if (($port_de_la_plante === Constantes::ARBRISSEAU) || ($port_de_la_plante === Constantes::ARBRE)): ?>
+                                                                <?php echo  $feuilles_des_rameaux_fleuris[Constantes::FEUILLAGE] ? 'Le feuillage est ' . $feuilles_des_rameaux_fleuris[Constantes::FEUILLAGE].'.' : '';?>
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     </p>
@@ -662,14 +678,14 @@ get_header();
                             <?php } ?>
                         </div>
                         <?php 
-                            if (isset($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'])){
-                                affichageImageFiche($feuilles_aeriennes["illustration_de_la_feuille_aerienne"]['photo_de_feuilles_aeriennes'],"id = feuille-image");
-                            }else if (isset($feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees'])){
-                                affichageImageFiche($feuilles_immergees["illustration_de_la_feuille_immergee"]['photo_de_feuilles_immergees'],"id = feuille-image");
-                            }else if (isset($feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles'])){
-                                affichageImageFiche($feuilles_des_rameaux_steriles["illustration_de_la_feuille_des_rameaux_steriles"]['photo_de_feuilles_des_rameaux_steriles'],"id = feuille-image");
-                            }else if (isset($feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris'])){
-                                affichageImageFiche($feuilles_des_rameaux_fleuris["illustration_de_la_feuille_des_rameaux_fleuris"]['photo_de_feuilles_des_rameaux_fleuris'],"id = feuille-image");
+                            if (isset($feuilles_aeriennes[Constantes::ILLUSTRATION_FEUILLE_AERIENNE][Constantes::PHOTO_FEUILLES_AERIENNES])){
+                                affichageImageFiche($feuilles_aeriennes[Constantes::ILLUSTRATION_FEUILLE_AERIENNE][Constantes::PHOTO_FEUILLES_AERIENNES],"id = feuille-image");
+                            }else if (isset($feuilles_immergees[Constantes::ILLUSTRATION_FEUILLE_IMMERGEE][Constantes::PHOTO_FEUILLES_IMMERGEES])){
+                                affichageImageFiche($feuilles_immergees[Constantes::ILLUSTRATION_FEUILLE_IMMERGEE][Constantes::PHOTO_FEUILLES_IMMERGEES],"id = feuille-image");
+                            }else if (isset($feuilles_des_rameaux_steriles[Constantes::ILLUSTRATION_FEUILLE_RAMEAUX_STERILES][Constantes::PHOTO_FEUILLES_RAMEAUX_STERILES])){
+                                affichageImageFiche($feuilles_des_rameaux_steriles[Constantes::ILLUSTRATION_FEUILLE_RAMEAUX_STERILES][Constantes::PHOTO_FEUILLES_RAMEAUX_STERILES],"id = feuille-image");
+                            }else if (isset($feuilles_des_rameaux_fleuris[Constantes::ILLUSTRATION_FEUILLE_RAMEAUX_FLEURIS][Constantes::PHOTO_FEUILLES_RAMEAUX_FLEURIS])){
+                                affichageImageFiche($feuilles_des_rameaux_fleuris[Constantes::ILLUSTRATION_FEUILLE_RAMEAUX_FLEURIS][Constantes::PHOTO_FEUILLES_RAMEAUX_FLEURIS],"id = feuille-image");
                             }
                         ?>    
                     </div>
@@ -681,22 +697,24 @@ get_header();
                             <img src=" <?php echo get_template_directory_uri() ?>/images/inflorescence.svg" />
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Inflorescence', 'botascopia'),
+                                'title' => __(Constantes::INFLO, 'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
                         </div>
                         
-                        <?php  if (!empty(get_field('inflorescence'))) { ?>
-                            <?php $inflorescence = get_field('inflorescence');?>
-                            <p>Les fleurs sont <?php echo $inflorescence['organisation_des_fleurs'];
-                            if($inflorescence['categorie'] != 'autre') {
-                                ?>. L’inflorescence est <?php echo $inflorescence['categorie']; ?>.</p>
-                            <?php } else {
-                                ?>. L’inflorescence est <?php echo $inflorescence['description']; ?>.</p>
+                        <?php  if (!empty(get_field(Constantes::INFLO_CHP))) { ?>
+                            <?php $inflorescence = get_field(Constantes::INFLO_CHP);?>
+                            <p>Les fleurs sont <?php $organisation = $inflorescence[Constantes::ORGANISATION_FLEURS]; echo $organisation.". ";
+                            $categorie = $inflorescence[Constantes::CATEGORIE];
+                            if ($organisation === Constantes::ORGANISEES_EN_INFLORESCENCES){
+                                if( $categorie != Constantes::AUTRE) {
+                                    ?>L’inflorescence est <?php echo $inflorescence[Constantes::CATEGORIE]; ?>.</p>
+                                <?php } else {
+                                    ?>L’inflorescence est <?php echo $inflorescence[Constantes::DESCRIPTION_CHP]; ?>.</p>
+                                <?php } ?>
                             <?php } ?>
                         <?php } ?>
-                        
                     </div>
 				</div>
                 <div>
@@ -706,47 +724,32 @@ get_header();
                                 <img src=" <?php echo get_template_directory_uri() ?>/images/fruits.svg" />
                                 <?php
                                 the_botascopia_module('title', [
-                                    'title' => __('Fruits', 'botascopia'),
+                                    'title' => __(Constantes::FRUIT, 'botascopia'),
                                     'level' => 2,
                                 ]);
                                 ?>
                             </div>
                             <div>
-                                <?php  if (!empty(get_field('fruit'))) { ?>
-                                    <?php $fruit = get_field('fruit');?>
-                                    <?php if(!empty($fruit['photo'])): ?>
-                                        <?php
-                                        if (!empty(get_field('fleur_male')) && (!empty(get_field('fleur_male')['photo_de_fleur_male']))) {
-                                            if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
-                                            }
-                                        }
-                                        if (!empty(get_field('fleur_femelle')) && (!empty(get_field('fleur_femelle')['photo_de_fleur_femelle']))) {
-                                            if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "monoïque") || (get_field('systeme_sexuel') == "dioïque") || (get_field('systeme_sexuel') == "gynomonoïque") || (get_field('systeme_sexuel') == "gynodioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
-                                            }
-                                        }
-                                        if (!empty(get_field('fleur_bisexuee')) && (!empty(get_field('fleur_bisexuee')['photo_de_fleur_bisexuee']))) {
-                                            if (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite") || (get_field('systeme_sexuel') == "andromonoïque") || (get_field('systeme_sexuel') == "gynomonoïque") || (get_field('systeme_sexuel') == "androdioïque") || (get_field('systeme_sexuel') == "gynodioïque") || (get_field('systeme_sexuel') == "androgynomonoïque") || (get_field('systeme_sexuel') == "androgynodioïque")) {
-                                            }
-                                        }
-                                        ?>
-                                    <?php endif; ?>
-                                    <p>Le fruit est <?php echo $fruit['type'];?>.</p>
+                                <?php  if (!empty(get_field(Constantes::FRUIT_CHP))) { ?>
+                                    <?php $fruit = get_field(Constantes::FRUIT_CHP);?>
+                                    
+                                    <p>Le fruit est <?php echo $fruit[Constantes::TYPE];?>.</p>
                                 <?php } ?>
                             </div>
                         </div>
 
                         <?php
                         // Si une image est enregistrée on l'affiche
-                        if (isset($fruit["illustration_du_fruit"]['photo'])){
-                            affichageImageFiche($fruit["illustration_du_fruit"]['photo']);
+                        if (isset($fruit[Constantes::ILLUSTRATION_FRUIT][Constantes::PHOTO])){
+                            affichageImageFiche($fruit[Constantes::ILLUSTRATION_FRUIT][Constantes::PHOTO]);
                         }
                         ?>
                     </div>
                 </div>
-				<?php $fleur_male =  get_field('fleur_male') ?: null;?>
-                <?php $fleur_femelle =  get_field('fleur_femelle') ?: null;?>
-                <?php $fleur_bisexuee =  get_field('fleur_bisexuee') ?: null;?>
-                <?php $systeme = get_field('systeme_sexuel');
+				<?php $fleur_male =  get_field(Constantes::FL_MALE_CHP) ?: null;?>
+                <?php $fleur_femelle =  get_field(Constantes::FL_FEM_CHP) ?: null;?>
+                <?php $fleur_bisexuee =  get_field(Constantes::FL_BI_CHP) ?: null;?>
+                <?php $systeme = get_field(Constantes::SYS_SEXUEL);
                     
                     switch ($systeme) {
                         case Constantes::HERMAPHRODITE:
@@ -785,7 +788,7 @@ get_header();
                                                 <img src=" <?php echo get_template_directory_uri() ?>/images/fleur-male.svg"/>
                                                 <?php
                                                 the_botascopia_module('title', [
-                                                    'title' => __('Fleur mâle', 'botascopia'),
+                                                    'title' => __(Constantes::FL_MALE, 'botascopia'),
                                                     'level' => 2,
                                                 ]);
                                                 ?>
@@ -793,61 +796,30 @@ get_header();
                                             <div>
                                                 <p>
                                                     
-                                                    <?php if('présent' !== $fleur_male['perianthe']) { ?>
+                                                    <?php if(Constantes::PRESENT !== $fleur_male[Constantes::PERIANTHE]) { ?>
                                                         Le périanthe est absent ; 
                                                     <?php }else{ ?>
                                                         <?php
                                                         $perianthe="";
-                                                        echo "Fleur ".implode(' et ', $fleur_male['symetrie']).".";
-                                                        if ('tépales' === $fleur_male['differenciation_du_perianthe']) {
-                                                            $tepales = $fleur_male['perigone'];
-                                                            $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_male['soudure_du_perigone'] . ' ; ';
-                                                        } else if('sépales' === $fleur_male['differenciation_du_perianthe']){
-                                                            
-                                                            $sepales = $fleur_male['calice'];
-                                                            $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_male['soudure_du_calice'].", ";
-                                                        
-                                                        
-                                                        } else if('pétales' === $fleur_male['differenciation_du_perianthe']){
-                                                        
-                                                            
-                                                            $corolle = $fleur_male['corolle'];
-                                                                
-                                                            $perianthe = getValueOrganesFloraux($corolle) . ' pétale(s), ';
-                                                            
-                                                        }else{
-                                                            $soudure_corolle = '';
-                                                            if (isset($fleur_male['soudure_du_calice_et_de_la_corolle'])){
-                                                                if (getType($fleur_male['soudure_du_calice_et_de_la_corolle']) == 'string'){
-                                                                    $soudure_corolle = $fleur_male['soudure_du_calice_et_de_la_corolle'];
-                                                                } else {
-                                                                    $soudure_corolle = implode(' ou ', $fleur_male['soudure_du_calice_et_de_la_corolle']);
-                                                                }
-                                                            }
-  
-                                                            $corolle = $fleur_male['corolle'];
-                                                            $calice = $fleur_male['calice'];
-                                                            $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
-                                                            $fleur_male['soudure_du_calice'] . ' et ' .
-                                                            getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle . ' ; ';
-                                                        
-                                                        }
+                                                        echo "Fleur ".implode(' et ', $fleur_male[Constantes::SYMETRIE]).". ";
+                                                        $composition = $fleur_male[Constantes::DIFFERENCIATION_PERIANTHE];
+                                                        $perianthe = displayPerianthe($composition,$fleur_male);
                                                         ?>
-                                                        Le périanthe est composé de <?php echo $perianthe;
+                                                        Le périanthe est composé de <?php echo $perianthe.". ";
                                                     } ?>
                                                     
-                                                    <?php if(!empty($fleur_male['androcee'])){ ?>
-                                                        androcée composée de <?php $etamines = $fleur_male['androcee']; echo getValueOrganesFloraux($etamines) ?> étamine(s) <?php echo $fleur_male['soudure_de_landrocee'];?> ;
-                                                        <?php echo ('androcée soudé à la corolle' === $fleur_male['soudure_androcee-corolle'] ? $fleur_male['soudure_androcee-corolle'] . ', ' : '').
-                                                            ('soudées au perigone' === $fleur_male['soudure_androcee-perigone'] ? $fleur_male['soudure_androcee-perigone'] . ', ' : ''); ?>
-                                                        <?php echo ('présents' === $fleur_male['staminodes'] ? $fleur_male['nombre_de_staminodes'] . ' staminodes ; ' : ''); ?>
-                                                        la couleur principale de la fleur est <?php echo $fleur_male['couleur_principale']; ?>.
-                                                        <?php if ('pubescente' === $fleur_male['pubescence']) {
-                                                            echo "La fleur est ".$fleur_male['pubescence'];?>
-                                                            <?php if (!empty($fleur_male['localisation_des_poils'])) {
-                                                                echo ' sur '.implode(', ' , $fleur_male['localisation_des_poils']).'.'; }
+                                                    <?php if(!empty($fleur_male[Constantes::ANDROCEE])){ ?>
+                                                        Androcée composé de <?php $etamines = $fleur_male[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines,"étamine(s)",$fleur_male[Constantes::SOUDURE_ANDROCEE]) ?> ;
+                                                        <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_male[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_male[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : '').
+                                                            (Constantes::SOUDEES_PERIGONE === $fleur_male[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_male[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
+                                                        <?php echo (Constantes::PRESENTS === $fleur_male[Constantes::STAMINODES] ? $fleur_male[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : ''); ?>
+                                                        la couleur principale de la fleur est <?php echo $fleur_male[Constantes::COULEUR_PRINCIPALE]; ?>.
+                                                        <?php if (Constantes::PUBESCENTE === $fleur_male[Constantes::PUBESCENCE]) {
+                                                            echo "La fleur est ".$fleur_male[Constantes::PUBESCENCE];?>
+                                                            <?php if (!empty($fleur_male[Constantes::LOCALISATION_POILS])) {
+                                                                echo ' sur '.implode(', ' , $fleur_male[Constantes::LOCALISATION_POILS]).'.'; }
                                                             else { echo '.'; }}?>
-                                                        <?php echo $fleur_male['autre_caractere'];
+                                                        <?php echo $fleur_male[Constantes::AUTRE_CARACTERE];
                                                     } ?>
                                                 
                                                 </p>
@@ -855,8 +827,8 @@ get_header();
                                         </div>
                                         <?php
                                         // Si une image est enregistrée on l'affiche
-                                        if (isset($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"])){
-                                            affichageImageFiche($fleur_male["illustration_de_la_fleur_male_ou_de_linflorescence"]["photo_de_fleur_male"]);
+                                        if (isset($fleur_male[Constantes::ILLUSTRATION_FLEUR_MALE][Constantes::PHOTO_FLEUR_MALE])){
+                                            affichageImageFiche($fleur_male[Constantes::ILLUSTRATION_FLEUR_MALE][Constantes::PHOTO_FLEUR_MALE]);
                                         }
                                         
                                         ?>
@@ -878,64 +850,42 @@ get_header();
                                             <img src=" <?php echo get_template_directory_uri() ?>/images/fleur-femelle.svg"/>
                                             <?php
                                             the_botascopia_module('title', [
-                                                'title' => __('Fleur femelle', 'botascopia'),
+                                                'title' => __(Constantes::FL_FEM, 'botascopia'),
                                                 'level' => 2,
                                             ]);
                                             ?>
                                         </div>
                                         <div>
                                             <p>
-                                                
-                                                <?php if('présent' !== $fleur_femelle['perianthe']) { ?>
+
+                                                <?php $soudure_corolle = '';
+                                                    if (isset($fleur_femelle[Constantes::SOUDURE_COROLLE])){
+                                                        
+                                                        $soudure_corolle = $fleur_femelle[Constantes::SOUDURE_COROLLE];
+                                                        
+                                                    }
+                                            
+                                                if(Constantes::PRESENT !== $fleur_femelle[Constantes::PERIANTHE]) { ?>
                                                     Le périanthe est absent ; 
                                                 <?php } else { ?>
-                                                    Fleur <?php echo implode(' et ', $fleur_femelle['symetrie']); $perianthe=""?>.
+                                                    Fleur <?php echo implode(' et ', $fleur_femelle[Constantes::SYMETRIE]); $perianthe=""?>.
                                                     <?php
-                                                   
-                                                    if ('tépales' === $fleur_femelle['differenciation_du_perianthe']) {
-                                                        $tepales = $fleur_femelle['perigone'];
-                                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' . $fleur_femelle['soudure_du_perigone'] . ' ; ';
-                                                    } else if('sépales' === $fleur_femelle['differenciation_du_perianthe']){
-                                                        
-                                                        $calice = $fleur_femelle['calice'];
-                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) '.$fleur_femelle['soudure_du_calice'].", ";
-                                                    
-                                                    } else if('pétales' === $fleur_femelle['differenciation_du_perianthe']){
-                                                    
-                                                        $corolle = $fleur_femelle['corolle'];
-                                                        $perianthe = getValueOrganesFloraux($corolle) . ' pétale(s), ';
-                                                        
-                                                    }else{
-                                                        $soudure_corolle = '';
-                                                        if (isset($fleur_femelle['soudure_du_calice_et_de_la_corolle'])){
-                                                            if (getType($fleur_femelle['soudure_du_calice_et_de_la_corolle']) == 'string'){
-                                                                $soudure_corolle = $fleur_femelle['soudure_du_calice_et_de_la_corolle'];
-                                                            } else {
-                                                                $soudure_corolle = implode(' ou ', $fleur_femelle['soudure_du_calice_et_de_la_corolle']);
-                                                            }
-                                                        }
-
-                                                        $corolle = $fleur_femelle['corolle'];
-                                                        $calice = $fleur_femelle['calice'];
-                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
-                                                        $fleur_femelle['soudure_du_calice'] . ' et ' .
-                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle
-                                                        . ' ; ';
-                                                    }
+                                                    $composition = $fleur_femelle[Constantes::DIFFERENCIATION_PERIANTHE];
+                                                    $perianthe = displayPerianthe($composition,$fleur_femelle);
                                                     ?>
-                                                    Le périanthe est composé de <?php echo $perianthe;
+                                                    Le périanthe est composé de <?php echo $perianthe.". ";
                                                 } ?>
                                                 
-                                                <?php if(!empty($fleur_femelle['gynecee'])): { ?>
-                                                    gynécée composée de <?php $carpelles = $fleur_femelle['gynecee']; echo getValueOrganesFloraux($carpelles);?>  carpelle(s) <?php echo $fleur_femelle['soudure_des_carpelles']; ?> ;
-                                                    ovaire <?php echo $fleur_femelle['ovaire']; ?>.
-                                                    La couleur principale de la fleur est <?php echo $fleur_femelle['couleur_principale']; ?>.
-                                                    <?php if ('pubescente' === $fleur_femelle['pubescence']) {
-                                                        echo "La fleur est ".$fleur_femelle['pubescence'];?>
-                                                        <?php if (!empty($fleur_femelle['localisation_des_poils'])) {
-                                                            echo ' sur '.implode(', ' , $fleur_femelle['localisation_des_poils']).'.'; }
+                                                <?php if(!empty($fleur_femelle[Constantes::GYNECEE])): { ?>
+                                                    Gynécée composé de <?php $carpelles = $fleur_femelle[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles,"carpelle(s)",$fleur_femelle[Constantes::SOUDURE_CARPELLES]);?>; 
+                                                    ovaire <?php echo $fleur_femelle[Constantes::OVAIRE]; ?>.
+                                                    La couleur principale de la fleur est <?php echo $fleur_femelle[Constantes::COULEUR_PRINCIPALE]; ?>.
+                                                    <?php if (Constantes::PUBESCENTE === $fleur_femelle[Constantes::PUBESCENCE]) {
+                                                        echo "La fleur est ".$fleur_femelle[Constantes::PUBESCENCE];?>
+                                                        <?php if (!empty($fleur_femelle[Constantes::LOCALISATION_POILS])) {
+                                                            echo ' sur '.implode(', ' , $fleur_femelle[Constantes::LOCALISATION_POILS]).'.'; }
                                                         else { echo '.'; }}?>
-                                                    <?php echo $fleur_femelle['autre_caractere'];
+                                                    <?php echo $fleur_femelle[Constantes::AUTRE_CARACTERE];
                                                 }?>
                                                 <?php endif; ?>
                                             </p>
@@ -943,8 +893,8 @@ get_header();
                                     </div>
                                     <?php
                                     // Si une image est enregistrée on l'affiche
-                                    if (isset($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']) && $fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']){
-                                        affichageImageFiche($fleur_femelle["illustration_de_la_fleur_femelle_ou_de_linflorescence"]['photo_de_fleur_femelle']);
+                                    if (isset($fleur_femelle[Constantes::ILLUSTRATION_FLEUR_FEMELLE][Constantes::PHOTO_FLEUR_FEMELLE]) && $fleur_femelle[Constantes::ILLUSTRATION_FLEUR_FEMELLE][Constantes::PHOTO_FLEUR_FEMELLE]){
+                                        affichageImageFiche($fleur_femelle[Constantes::ILLUSTRATION_FLEUR_FEMELLE][Constantes::PHOTO_FLEUR_FEMELLE]);
                                     }
                                     ?>
                                 </div>
@@ -965,7 +915,7 @@ get_header();
                                             <img src=" <?php echo get_template_directory_uri() ?>/images/inflorescence.svg" />
                                             <?php
                                             the_botascopia_module('title', [
-                                                'title' => __('Fleur bisexuée', 'botascopia'),
+                                                'title' => __(Constantes::FL_BI, 'botascopia'),
                                                 'level' => 2,
                                             ]);
                                             ?>
@@ -974,65 +924,36 @@ get_header();
                                             
                                             <p>
                                                 <?php  $perianthe="";?>
-                                                <?php if('présent' !== $fleur_bisexuee['perianthe']){ ?>
+                                                <?php if(Constantes::PRESENT !== $fleur_bisexuee[Constantes::PERIANTHE]){ ?>
                                                     Le périanthe est absent ; 
                                                 <?php } else {
                                                     $perianthe="";
-                                                    echo "Fleur ".implode(' et ', $fleur_bisexuee['symetrie']).".";
-                                                    if('sépales' === $fleur_bisexuee['composition_du_perianthe']){
-                                                        $sepales = $fleur_bisexuee['calice'];
-                                                        echo $perianthe = getValueOrganesFloraux($sepales) . ' sépale(s) '.$fleur_bisexuee['soudure_du_calice'].", ";
-                                                        
-                                                    } else if('pétales' === $fleur_bisexuee['composition_du_perianthe']){
-                                
-                                                        $corolle = $fleur_bisexuee['corolle'];
-                                                        
-                                                        $perianthe = getValueOrganesFloraux($corolle) . ' pétale(s), ';
-                                                        
-                                                    }else if("tépales"=== $fleur_bisexuee['composition_du_perianthe']){
-                                                        $tepales = $fleur_bisexuee['perigone'];
-                                                        $perianthe = getValueOrganesFloraux($tepales) . ' tépales ' .
-                                                        $fleur_bisexuee['soudure_du_perigone'] . ' ; ';
-
-                                                    }else{
-                                                        $soudure_corolle = '';
-                                                        if (isset($fleur_bisexuee['soudure_de_la_corolle'])){
-                                                            if (getType($fleur_bisexuee['soudure_de_la_corolle']) == 'string'){
-                                                                $soudure_corolle = $fleur_bisexuee['soudure_de_la_corolle'];
-                                                            } else {
-                                                                $soudure_corolle = implode(' ou ', $fleur_bisexuee['soudure_de_la_corolle']);
-                                                            }
-                                                        }
-
-                                                        $corolle = $fleur_bisexuee['corolle'];
-                                                        $calice = $fleur_bisexuee['calice'];
-                                                        $perianthe = getValueOrganesFloraux($calice) . ' sépale(s) ' .
-                                                        $fleur_bisexuee['soudure_du_calice'] . ' et ' .
-                                                        getValueOrganesFloraux($corolle) . ' pétale(s) ' . $soudure_corolle
-                                                        . ' ; ';
-                                                    }
+                                                    echo "Fleur ".implode(' et ', $fleur_bisexuee[Constantes::SYMETRIE]).". ";
+                                                    $composition = $fleur_bisexuee[Constantes::COMPOSITION_PERIANTHE];
+                                                    $perianthe = displayPerianthe($composition,$fleur_bisexuee);
                                                    
-                                                    echo "Le périanthe est composé de $perianthe.";
-                                                }    ?>
+                                                    echo "Le périanthe est composé de $perianthe. ";
+                                                }   
+                                                ?>
                                                
-                                                <?php if(!empty($fleur_bisexuee['androcee'])): { ?>
-                                                    androcée composée de <?php $etamines = $fleur_bisexuee['androcee']; echo getValueOrganesFloraux($etamines);?> étamine(s)
-                                                    <?php echo $fleur_bisexuee['soudure_de_landrocee']; ?> ; <?php echo ('androcée soudé à la corolle' === $fleur_bisexuee['soudure_androcee-corolle'] ? $fleur_bisexuee['soudure_androcee-corolle'] . ', ' : ''). ('soudées au perigone' === $fleur_bisexuee['soudure_androcee-perigone'] ? $fleur_bisexuee['soudure_androcee-perigone'] . ', ' : ''); ?>
-                                                    <?php echo ('présents' === $fleur_bisexuee['staminodes'] ? $fleur_bisexuee['nombre_de_staminodes'] . ' staminodes ; ' : '');
+                                                <?php if(!empty($fleur_bisexuee[Constantes::ANDROCEE])): { ?>
+                                                    Androcée composé de <?php $etamines = $fleur_bisexuee[Constantes::ANDROCEE]; echo getValueOrganesFloraux($etamines,"étamine(s)",$fleur_bisexuee[Constantes::SOUDURE_ANDROCEE]);?>
+                                                     ; <?php echo (Constantes::ANDROCEE_SOUDEE_COROLLE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_COROLLE] . ', ' : ''). (Constantes::SOUDEES_PERIGONE === $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] ? $fleur_bisexuee[Constantes::SOUDURE_ANDROCEE_PERIGONE] . ', ' : ''); ?>
+                                                    <?php echo (Constantes::PRESENTS === $fleur_bisexuee[Constantes::STAMINODES] ? $fleur_bisexuee[Constantes::NOMBRE_STAMINODES] . ' staminodes ; ' : '');
                                                 } ?>
                                                 <?php endif; ?>
-                                                <?php if(!empty($fleur_bisexuee['gynecee'])): { ?>
-                                                    gynécée composée de <?php $carpelles =  $fleur_bisexuee['gynecee']; echo getValueOrganesFloraux($carpelles); ?>  carpelle(s) <?php echo $fleur_bisexuee['soudure_des_carpelles']; ?> ;
-                                                    ovaire <?php echo $fleur_bisexuee['ovaire']; ?>.
+                                                <?php if(!empty($fleur_bisexuee[Constantes::GYNECEE])): { ?>
+                                                    gynécée composé de <?php $carpelles =  $fleur_bisexuee[Constantes::GYNECEE]; echo getValueOrganesFloraux($carpelles,"carpelle(s)",$fleur_bisexuee[Constantes::SOUDURE_CARPELLES]); ?> ;
+                                                    ovaire <?php echo $fleur_bisexuee[Constantes::OVAIRE]; ?>.
                                                 <?php } ?>
                                                 <?php endif; ?>
-                                                La couleur principale de la fleur est le <?php echo $fleur_bisexuee['couleur_principale']; ?>.
-                                                <?php if ('pubescente' === $fleur_bisexuee['pubescence']) {
-                                                    echo "La fleur est ".$fleur_bisexuee['pubescence'];?>
-                                                    <?php if (!empty($fleur_bisexuee['localisation_des_poils'])) {
-                                                        echo ' sur '.implode(', ' , $fleur_bisexuee['localisation_des_poils']).'.'; }
+                                                La couleur principale de la fleur est le <?php echo $fleur_bisexuee[Constantes::COULEUR_PRINCIPALE]; ?>.
+                                                <?php if (Constantes::PUBESCENTE === $fleur_bisexuee[Constantes::PUBESCENCE]) {
+                                                    echo "La fleur est ".$fleur_bisexuee[Constantes::PUBESCENCE];?>
+                                                    <?php if (!empty($fleur_bisexuee[Constantes::LOCALISATION_POILS])) {
+                                                        echo ' sur '.implode(', ' , $fleur_bisexuee[Constantes::LOCALISATION_POILS]).'.'; }
                                                     else { echo '.'; }}?>
-                                                <?php echo $fleur_bisexuee['autre_caractere'];?>
+                                                <?php echo $fleur_bisexuee[Constantes::AUTRE_CARACTERE];?>
                                             </p>
                                             
 
@@ -1040,8 +961,8 @@ get_header();
                                     </div>
                                     <?php
                                     // Si une image est enregistrée on l'affiche
-                                    if (isset($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']) && (!empty(get_field('systeme_sexuel')) && (get_field('systeme_sexuel') == "hermaphrodite" ) || (get_field('systeme_sexuel') == "andromonoïque" ) || (get_field('systeme_sexuel') == "gynomonoïque" ) || (get_field('systeme_sexuel') == "androdioïque" ) || (get_field('systeme_sexuel') == "gynodioïque" ) || (get_field('systeme_sexuel') == "androgynomonoïque" ) || (get_field('systeme_sexuel') == "androgynodioïque" ))) {
-                                        affichageImageFiche($fleur_bisexuee['illustration_de_la_fleur_bisexuee']['photo_de_fleur_bisexuee']);
+                                    if (isset($fleur_bisexuee[Constantes::ILLUSTRATION_FLEUR_BISEXUEE][Constantes::PHOTO_FLEUR_BISEXUEE]) && (!empty(get_field(Constantes::SYS_SEXUEL)) && (get_field(Constantes::SYS_SEXUEL) == Constantes::HERMAPHRODITE ) || (get_field(Constantes::SYS_SEXUEL) == Constantes::ANDROMONOIQUE ) || (get_field(Constantes::SYS_SEXUEL) == Constantes::GYNOMONOIQUE ) || (get_field(Constantes::SYS_SEXUEL) == Constantes::ANDRODIOIQUE ) || (get_field(Constantes::SYS_SEXUEL) == Constantes::GYNODIOIQUE ) || (get_field(Constantes::SYS_SEXUEL) == Constantes::ANDROGYNODIOIQUE ) || (get_field(Constantes::SYS_SEXUEL) == Constantes::ANDROGYNOMONIQUE ))) {
+                                        affichageImageFiche($fleur_bisexuee[Constantes::ILLUSTRATION_FLEUR_BISEXUEE][Constantes::PHOTO_FLEUR_BISEXUEE]);
                                     }
                                     ?>
                                 </div>
@@ -1057,7 +978,7 @@ get_header();
                     <div id="le-saviez-vous">
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Le saviez-vous ?', 'botascopia'),
+                                'title' => __(Constantes::LE_SAVIEZ_VOUS, 'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
@@ -1122,7 +1043,7 @@ get_header();
                             <img src=" <?php echo get_template_directory_uri() ?>/images/ecologie.svg"/>
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Écologie','botascopia'),
+                                'title' => __(Constantes::ECOLOGIE,'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
@@ -1165,7 +1086,7 @@ get_header();
                         <div id="proprietes">
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Propriétés','botascopia'),
+                                'title' => __(Constantes::PROPERTIES,'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
@@ -1174,23 +1095,23 @@ get_header();
                     <?php } ?>
                 </div>
                 <div>
-                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat')) || !empty(get_field('statut_uicn'))){ ?>
+                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat_')) || !empty(get_field('statut_uicn'))){ ?>
                         <div id="aire-repartition" class="display-fiche-container">
                             <div class="fiche-title-container">
                                 <div class="fiche-title-icon">
                                     <img src=" <?php echo get_template_directory_uri() ?>/images/location.svg"/>
                                     <?php
                                     the_botascopia_module('title', [
-                                        'title' => __('Aire de répartition et statut', 'botascopia'),
+                                        'title' => __(Constantes::AIRE, 'botascopia'),
                                         'level' => 2,
                                     ]);
                                     ?>
                                 </div>
-                                <?php if (!empty(get_field('cultivee_en_france'))) { ?>
-                                    <?php $cultivee_en_france = get_field('cultivee_en_france'); ?>
-                                    <p>En France, la plante est présente <?php echo $cultivee_en_france; ?><?php echo ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat')) . '.' : ''); ?>. Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
+                                    <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
+                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php $texte = ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat_')) . '.' : ''); if(substr($texte, -1)!=="."){$texte.=".";} echo $texte;?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
-                                    <?php if ($cultivee_en_france === "seulement à l'état cultivée") { ?>
+                                    <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
                                         <?php if (!empty(get_field('repartition_mondiale'))) { ?>
                                             <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>
@@ -1216,7 +1137,7 @@ get_header();
                                     <img src=" <?php echo get_template_directory_uri() ?>/images/ne-pas-confondre.svg"/>
                                     <?php
                                     the_botascopia_module('title', [
-                                        'title' => __('Ne pas confondre avec', 'botascopia'),
+                                        'title' => __(Constantes::CONFUS, 'botascopia'),
                                         'level' => 2,
                                     ]);
                                     ?>
@@ -1231,7 +1152,7 @@ get_header();
                                         ]);
                                     ?>
                                     
-                                    <p><?php the_field('description'); ?></p>
+                                    <p><?php the_field(Constantes::DESCRIPTION_CHP); ?></p>
                                 </div>
                             </div>
 
@@ -1249,7 +1170,7 @@ get_header();
                     <div id="complement-anecdote">
                         <?php
                         the_botascopia_module('title', [
-                            'title' => __('Complément d\'anecdote', 'botascopia'),
+                            'title' => __(Constantes::ANECDOTE, 'botascopia'),
                             'level' => 2,
                         ]);
                         ?>
@@ -1258,19 +1179,20 @@ get_header();
                     <?php } ?>
                 </div>
                 <div>
-                    <div id="agroecologie" class="display-fiche-container">
+                    <div id="agroecologie">
                         <div class="fiche-title-container">
                             <div class="fiche-title-icon">
                                 <img src=" <?php echo get_template_directory_uri() ?>/images/ecologie.svg" />
                                 <?php
                                 the_botascopia_module('title', [
-                                    'title' => __('Agroécologie', 'botascopia'),
+                                    'title' => __(Constantes::AGRO, 'botascopia'),
                                     'level' => 2,
                                 ]);
                                 ?>
                             </div>
-                            <div>
-                                <p class="agro_ecologie">
+                        </div>
+                            
+                                <div class="agro_ecologie">
 
                                     <?php
                                         $preferences="La plante préfère ces expositions : <br>"; 
@@ -1424,7 +1346,7 @@ get_header();
 
                                     <?php
                                         $levee="Sa levée a lieu ces saisons-là : <br>"; 
-                                        $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee');
+                                        $champ=get_field('adaptations_aux_pratiques_de_culture_periode_de_levee_');
                                         if (!empty($champ)){
                                     ?>
                                         <p><?php $mois = implode(', ',$champ); echo $levee.$mois;?>.</p>
@@ -1436,8 +1358,8 @@ get_header();
                                         <?php } ?>
                                     <?php } ?>
 
-                                    <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_'))){ ?>
-                                        <p>La moitié du stock semencier a perdu son pouvoir germinatif au bout de <?php echo get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_');?> années.</p>
+                                    <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__'))){ ?>
+                                        <p>La persistance de son stock semencier est <?php echo get_field('adaptations_aux_pratiques_de_culture_au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__');?>.</p>
                                     <?php } ?>
 
                                     <?php if (!empty(get_field('adaptations_aux_pratiques_de_culture_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_')) && get_field('adaptations_aux_pratiques_de_culture_est-ce_quune_resistance_aux_herbicides_a_ete_identifiee_chez_cette_espece_') == 'oui'){ ?>
@@ -1664,14 +1586,14 @@ get_header();
                                         <?php } ?> 
                                     <?php } ?>
                                     <?php
-                                        $champ=get_field('sources_generales_reference_informations_de_la_rubrique_agroecologie');
+                                        $champ=get_field('sources_generales');
                                         if ($champ){
                                     ?>
                                         <p>Sources générales : <?php echo $champ;?></p>
                                     <?php } ?>
-                                </p>
-                            </div>
-                        </div>
+                                </div>
+                           
+                       
                     </div>
                 </div>
                 <div>
@@ -1679,7 +1601,7 @@ get_header();
                         <div id="references">
                             <?php
                             the_botascopia_module('title', [
-                                'title' => __('Références', 'botascopia'),
+                                'title' => __(Constantes::REFERENCES, 'botascopia'),
                                 'level' => 2,
                             ]);
                             ?>
@@ -1711,7 +1633,7 @@ get_header();
                             <div id="titre">    
                                 <?php
                                     the_botascopia_module('title', [
-                                        'title' => __('Voir plus de fiches', 'botascopia'),
+                                        'title' => __(Constantes::VOIR, 'botascopia'),
                                         'level' => 2,
                                     ]);
                                 ?>
@@ -1723,7 +1645,7 @@ get_header();
                                     $query = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '6','wpse18703_title' => $search_term, 'post_status' =>'publish' ) );
                                     
                                     if (have_posts()) : while ( $query->have_posts() ) : $query->the_post();
-                                        $name = get_post_meta(get_the_ID(), 'nom_scientifique', true);
+                                        $name = getFilteredTitle(get_post_meta(get_the_ID(), 'nom_scientifique', true));
                                         $species = get_post_meta(get_the_ID(), 'famille', true);
                                         $id = get_the_ID();
                                         $ficheTitle = get_the_title();
@@ -1779,8 +1701,8 @@ get_header();
                             ($current_user_role == 'editor' && $status == 'pending')){
                             the_botascopia_module('button',[
                                 'tag' => 'a',
-                                'title' => 'Retour au formulaire',
-                                'text' => 'retour au formulaire',
+                                'title' => Constantes::BACK_TO_FORM,
+                                'text' => Constantes::BACK_TO_FORM,
                                 'modifiers' => 'purple-button',
                                 'extra_attributes' => ['onclick' => "window.location.href = '".$securise.$_SERVER['HTTP_HOST']."/formulaire/?p=".$title."'"]
                             ]);

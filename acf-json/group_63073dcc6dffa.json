@@ -44,7 +44,9 @@
                 "acidiphile": "acidiphile",
                 "basiphile": "basiphile",
                 "calcicole": "calcicole",
-                "neutrophile": "neutrophile"
+                "neutrophile": "neutrophile",
+                "nitrophile":"nitrophile",
+                "hygrophile":"hygrophile"
             },
             "allow_custom": 0,
             "default_value": [],
@@ -114,14 +116,19 @@
                         "field": "field_63073ee9541b7",
                         "operator": "==",
                         "value": "allogame"
-                    },
+
+                    }
+                ],
+                [
                     {
                         "field": "field_63073ee9541b7",
                         "operator": "==",
                         "value": "à régime mixte"
+
                     }
                 ]
             ],
+            
             "wrapper": {
                 "width": "",
                 "class": "",

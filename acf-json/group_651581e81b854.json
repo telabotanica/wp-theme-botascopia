@@ -1028,6 +1028,34 @@
                     "custom_choice_button_text": "Ajouter un nouveau choix"
                 },
                 {
+                    "key": "field_65143be5c09dd1",
+                    "label": "Période de levée ",
+                    "name": "periode_de_levee_",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Sélectionnez toutes les saisons qui correspondent à la période de levée de la plante.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "hiver": "hiver",
+                        "printemps": "printemps",
+                        "été": "été",
+                        "automne": "automne"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Ajouter un nouveau choix"
+                },
+                {
                     "key": "field_65143bfec09de",
                     "label": "Cette plante est favorisée dans les systèmes de culture",
                     "name": "cette_plante_est_favorisee_dans_les_systemes_de_culture",
@@ -1108,6 +1136,33 @@
                     "step": 0,
                     "prepend": "",
                     "append": "année(s)"
+                },
+                {
+                    "key": "field_65143c5e979a31",
+                    "label": "Persistance du stock semencier dans le sol",
+                    "name": "au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif__",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "Faible (moins de 5 ans), moyenne (entre 5 et 10 ans), forte (plus de 10 ans)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "faible": "faible",
+                        "moyenne": "moyenne",
+                        "forte": "forte"
+                    },
+                    "default_value": "",
+                    "min": 0,
+                    "max": "",
+                    "placeholder": "",
+                    "step": 0,
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_65143c92979a4",
@@ -1271,7 +1326,7 @@
                     "name": "reference_pour_les_informations_sur_les_usages",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Respectez la typographie habituelle des références.\r\n\r\nLivre : NOM, Prénom. Titre. Édition. Lieu de publication : éditeur, année. Pagination\r\nChapitre : NOM, Prénom. Titre du chapitre In NOM, Prénom. Titre de l’ouvrage collectif. Lieu de publication : éditeur, année. Pagination.\r\nArticles en ligne : Noms auteurs, premère lettre du prénom. Titre. Nom du journal [en ligne]. Mois année, volume, n°, pages, DOI. [consulté le jour mois année]\r\nSite web : AUTEUR. Titre [en ligne]. Nom de l'éditeur, date de publication, date de mise à jour [date de consultation]. Disponibilité et accès",
+                    "instructions": "Respectez la typographie habituelle des références.<br><br>Livre : NOM, Prénom. Titre. Édition. Lieu de publication : éditeur, année. Pagination<br>Chapitre : NOM, Prénom. Titre du chapitre In NOM, Prénom. Titre de l’ouvrage collectif. Lieu de publication : éditeur, année. Pagination.<br>Articles en ligne : Noms auteurs, premère lettre du prénom. Titre. Nom du journal [en ligne]. Mois année, volume, n°, pages, DOI. [consulté le jour mois année]<br>Site web : AUTEUR. Titre [en ligne]. Nom de l'éditeur, date de publication, date de mise à jour [date de consultation]. Disponibilité et accès",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1291,7 +1346,7 @@
                     "name": "plante_connue_pour_des_proprietes_autres_que_la_toxicite_cf_categorie_interaction_avec_le_vivant",
                     "aria-label": "",
                     "type": "checkbox",
-                    "instructions": "Si vous connaissez une propriété qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.\r\n\r\nLa toxicité est abordée plus haut dans le formulaire.",
+                    "instructions": "Si vous connaissez une propriété qui ne figure pas dans la liste, cochez autre puis remplissez le champs qui s'ouvre en respectant la même typographie : pas de majuscule ni point.<br><br>La toxicité est abordée plus haut dans le formulaire.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -1406,7 +1461,7 @@
                     "name": "statut_de_protection_a_l_echelle_locale_regions_concernees",
                     "aria-label": "",
                     "type": "checkbox",
-                    "instructions": "Cochez toutes les régions bénéficiant d'un statut de protection spécifique. Vous pourrez ensuite préciser le statut de protection de la plante. \r\n\r\nSi le statut est le même sur toute la France métropolitaine, ne cochez aucune région !",
+                    "instructions": "Cochez toutes les régions bénéficiant d'un statut de protection spécifique. Vous pourrez ensuite préciser le statut de protection de la plante. <br><br>Si le statut est le même sur toute la France métropolitaine, ne cochez aucune région !",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1455,7 +1510,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_auvergne_rhone_alpes",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1483,7 +1538,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bourgogne_franhce_comte",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1511,7 +1566,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_bretagne",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1539,7 +1594,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_centre_val_de_loire",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1567,7 +1622,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_corse",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1595,7 +1650,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_grand_est",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1623,7 +1678,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_guadeloupe",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1651,7 +1706,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_hauts_de_france",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1679,7 +1734,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_ile_de_france",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1707,7 +1762,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_la_reunion",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1735,7 +1790,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_martinique",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1763,7 +1818,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_mayotte",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1791,7 +1846,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_normandie",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1819,7 +1874,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_nouvelle_aquitaine",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1847,7 +1902,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_occitanie",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1875,7 +1930,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_pays_de_la_loire",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -1903,7 +1958,7 @@
                     "name": "precisions_sur_la_zone_de_la_region_concernee_departement_environnement_provence_alpes_cote_d_azur",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.\r\nNe pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
+                    "instructions": "Si besoin, précisez la zone géographique concernée par le statut de protection dans la région sélectionnée.<br>Ne pas faire de phrase mais compléter celle-ci : \"et plus précisément ...\" sans mettre de point à la fin.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -2604,6 +2659,26 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_65143ee6435566",
+                    "label": "Sources générales",
+                    "name": "sources_generales",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Respectez la typographie habituelle des références.<br><br>Livre : NOM, Prénom. Titre. Édition. Lieu de publication : éditeur, année. Pagination<br>Chapitre : NOM, Prénom. Titre du chapitre In NOM, Prénom. Titre de l’ouvrage collectif. Lieu de publication : éditeur, année. Pagination.<br>Articles en ligne : Noms auteurs, premère lettre du prénom. Titre. Nom du journal [en ligne]. Mois année, volume, n°, pages, DOI. [consulté le jour mois année]<br>Site web : AUTEUR. Titre [en ligne]. Nom de l'éditeur, date de publication, date de mise à jour [date de consultation]. Disponibilité et accès",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "Source(s) :",
+                    "append": ""
                 }
             ]
         }

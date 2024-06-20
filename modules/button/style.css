@@ -67,6 +67,26 @@
     background-color: #EAD6E1;
 }
 
+/******************** RED BUTTONS **********************/
+.red-button {
+    background-color: var(--rouge);
+    color: var(--blanc);
+}
+
+.red-button:hover, .red-button:focus {
+    background-color: var(--rouge);
+}
+
+.red-button.outline {
+    background-color: transparent;
+    border: 1px solid var(--rouge);
+    color: var(--vert-clair);
+}
+
+.red-button.outline:hover, .red-button.outline:focus {
+    background-color: #EBEFDB;
+}
+
 @include small {
   padding: 1rem 1.5rem;
 }

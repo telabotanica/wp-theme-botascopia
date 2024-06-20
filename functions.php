@@ -37,6 +37,9 @@ require get_template_directory() . '/inc/graphiques.php';
 // Fichier des constantes
 require get_template_directory() . '/inc/Constantes.php';
 
+// Fichier des routes
+require get_template_directory() . '/inc/routes.php';
+
 // add theme supports
 function bs_theme_supports() {
   add_theme_support('title-tag');
@@ -213,18 +216,18 @@ function getPostImage($id){
 }
 
 function getFicheImage($id){
-	if (get_field("field_643027826f24d")){
-		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
-	}
-	if (!empty(get_field("field_643027826f24d")) && $fichePicture && wp_get_attachment_image_src($fichePicture, 'image-tige' )[0]) {
-		$fichePicture = get_field("field_643027826f24d")["photo_de_la_plante_entiere"];
-		
-		$image = wp_get_attachment_image_src($fichePicture, 'image-tige' )[0];
-	} elseif (!empty(get_post_meta($id, 'photo_de_la_plante_entiere', true))){
-        $imageId = get_post_meta($id, 'photo_de_la_plante_entiere', true);
-        $image = wp_get_attachment_image_src($imageId, 'full')[0];
-    } else  {
-		$image = getPostImage($id)[0];
+	$champ = get_field("illustration_plante_entiere_photo_de_la_plante_entiere",$id);
+	$image = null;
+	if (!empty($champ)){
+		$id_image = $champ;
+		if (intval($id_image) !== 0){
+			$img = get_post($id_image);
+			$image = $img->guid;
+		}else{
+			$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
+		}
+	}else{
+		$image = get_template_directory_uri() . '/images/logo-botascopia@2x.png';
 	}
     
     return $image;
@@ -323,6 +326,7 @@ function affichageImageFiche($photo,$id=null){
 // Envoyer une fiche à validation ou en publication
 add_action( 'wp_ajax_set_fiche_status', 'set_fiche_status' );
 add_action( 'wp_ajax_nopriv_set_fiche_status', 'set_fiche_status' );
+
 function set_fiche_status() {
 	$post_id = intval( $_POST['post_id'] );
 	$date = date('Y-m-d H:i:s');
@@ -418,124 +422,7 @@ function revealid_id_column_content( $column, $id ) {
     }
 }
 
-function modifyRoleAdmin($data) {
-	
-	$params=$data->get_params();
-	$id=$params['id'];
-	$mode = $params['mode'];
-	if ($mode===1){
-		$user = new WP_User( $id );
-		$user->set_role( 'editor' );
-		getResponse(1,$user->data);
-
-	}elseif($mode===2){
-		$user = new WP_User( $id );
-		$user->set_role( 'contributor' );
-		getResponse($mode,$user->data);
-
-	}else{
-		getResponse(3,null);
-	}
-}
-
-function getResponse($mode,$user){
-	
-	$resp=['id'=>$user->ID,'nom'=>$user->display_name,'email'=>$user->user_email,'mode'=>$mode];
-	header('Content-Type: application/json; charset=utf-8');
-	echo json_encode($resp);
-	
-}
-
-//Exécute la fonction précédente lors de l'appel à la route /modify/role/admin
-//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est admin
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'modify', '/role/admin', array(
-	  'methods' => 'put',
-	  'callback' => 'modifyRoleAdmin',
-	  
-	) );
-} );
-
-function modifyRoleRedacteur($data) {
-	
-	$params=$data->get_params();
-	$email=$params['email'];
-	
-	
-	if ( email_exists( $email ) ){  
-        $user = get_user_by("email", $email);
-        $userId = $user->ID;
-		$role = get_userdata($userId)->roles[0];
-		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
-			$user->set_role('editor');
-			getResponse(1,$user);
-			
-		}else{
-			getResponse(2,$user);
-		}
-    }else{
-		getResponse(3,null);
-    }
-}
-
-//Exécute la fonction précédente lors de l'appel à la route /modify/role/redac
-//Permet de modifier le statut d'un utilisateur en rédacteur lorsque l'utlisateur connecté est lui-même rédacteur
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'modify', '/role/redac', array(
-	  'methods' => 'put',
-	  'callback' => 'modifyRoleRedacteur',
-	  
-	) );
-} );
-
-function checkUser($data) {
-	
-	$email="";
-	$params=$data->get_params();
-	$id=$params['id'];
-	$mode=$params['mode'];
-	
-	if ($id!==0){
-		$user = new WP_User( $id );
-		$email = $user->data->user_email;
-	}else{
-		$email=$params['email'];
-	}
-	if ( email_exists( $email ) ){  
-        $user = get_user_by("email", $email);
-        $userId = $user->ID;
-		$role = get_userdata($userId)->roles[0];
-		if ($role === 'contributor' OR $role === 'author' OR $role === 'subscriber'){
-			if ($mode===2){
-				getResponse(4,$user);
-				return;
-			}
-			getResponse(1,$user);
-
-		}else if($role==='editor'){
-			if ($mode===1 || $mode===0){
-				getResponse(4,$user);
-				return;
-			}
-			getResponse(2,$user);
-		}else{
-			getResponse(4,$user);
-		}
-    }else{
-		getResponse(3,null);
-    }
-}
-
-//Exécute la fonction précédente lors de l'appel à la route /modify/check/user
-//Permet de modifier le statut d'un utilisateur avant modification
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'modify', '/check/user', array(
-	  'methods' => 'put',
-	  'callback' => 'checkUser',
-	  
-	) );
-} );
-
+//Traduit le rôle en français
 function getRole($role){
 	switch ($role) {
 		case "administrator":
@@ -559,8 +446,10 @@ function getRole($role){
 	}
 }
 
-function getValueOrganesFloraux($organes){
-	$organes_tab = []; 
+//Permet d'afficher les valeurs min - max
+function getValueOrganesFloraux($organes,$mot,$soudure){
+	$organes_tab = [];
+	
 	if (is_array($organes)){
 		foreach($organes as $value){
 			array_push($organes_tab,intval($value));
@@ -569,9 +458,15 @@ function getValueOrganesFloraux($organes){
 			$min = min($organes_tab);
 			$max = max($organes_tab);
 			if ($min !== $max){
-				return ($min."-".$max);	
+				
+				return ("$min-$max $mot $soudure");	
 			}else{
-				return $min;
+				
+				if ($min ===1){
+					$mot = substr($mot, 0, -3);
+					return "$min $mot ";
+				}
+				return "$min $mot $soudure";
 			}
 		}else{
 			return "";
@@ -583,14 +478,7 @@ function getValueOrganesFloraux($organes){
 	}
 }
 
-function getPhylloFieldOther($phyllo,$feuille){
-	/* if (str_contains($phyllo, "autre")){
-		$phyllo = str_replace("autre",$feuille['description'],$phyllo);
-	} */
-	return $phyllo;
-}
-
-add_filter( 'posts_where', 'wpse18703_posts_where', 10, 2 );
+//Requête personnalisée
 function wpse18703_posts_where( $where, $wp_query )
 {
     global $wpdb;
@@ -599,4 +487,141 @@ function wpse18703_posts_where( $where, $wp_query )
 		
     }
     return $where;
+}
+add_filter( 'posts_where', 'wpse18703_posts_where', 10, 2 );
+
+//Récupère l'id du post en fonction du titre
+function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'post' ){
+    global $wpdb;
+    $page = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type= %s" , $post_title, $post_type ));
+
+    if ( $page ) return get_post($page,$output);
+
+    return null;
+}
+ add_action('init','get_page_by_post_title');
+
+ //Permet d'exclure des champs dans l'affichage du formulaire
+function exclude_fields( $field ) {
+	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée","Feuillage","Au bout de combien de temps la moitié du stock semencier a perdu son pouvoir germinatif ?"];
+    if( in_array($field['label'],$array_labels) ) {
+        return false; 
+    }
+    return $field;
+}
+add_filter('acf/prepare_field', 'exclude_fields'); 
+
+//Affiche le complément sur la pubescence
+function getPubescence($feuille,$mode,$texte){
+    if (str_contains($texte,'pubescent') AND $mode ===1){
+        $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FEUILLES_SIMPLES];
+        return $texte = str_replace("pubescent","pubescent $comp",$texte);
+    }else if (str_contains($texte, 'pubescent') AND $mode ===2){
+        $comp= $feuille[Constantes::LOCALISATION_PUBESCENCE_FOLIOLES];
+        return $texte = str_replace("pubescent","pubescent $comp",$texte);
+    }else{
+		return $texte;
+	}
+}
+
+//Réduit la donnée "soudés sur toute la longueur (ovaire, styles, stigmates)" dans le pdf car trop longue
+function getSoudureCarpelles($fleur){
+	$soudure = $fleur[Constantes::SOUDURE_CARPELLES];
+	if ($soudure === "soudés sur toute la longueur (ovaire, styles, stigmates)"){
+		return "soudés sur toute la longueur";
+	}else{
+		return $soudure;
+	}
+}
+
+//Convertit les mois en français
+function getDateInFrench($date){
+	switch ($date){
+		case str_contains($date, Constantes::JANUARY):
+			$date = str_replace(Constantes::JANUARY,"janvier",$date);
+			return $date;
+		case str_contains($date, Constantes::FEBRUARY):
+			$date = str_replace(Constantes::FEBRUARY,"février",$date);
+			return $date;
+		case str_contains($date, Constantes::MARCH):
+			$date = str_replace(Constantes::MARCH,"mars",$date);
+			return $date;
+		case str_contains($date, Constantes::APRIL):
+			$date = str_replace(Constantes::APRIL,"avril",$date);
+			return $date;
+		case str_contains($date, Constantes::MAY):
+			$date = str_replace(Constantes::MAY,"mai",$date);
+			return $date;
+		case str_contains($date, Constantes::JUNE):
+			$date = str_replace(Constantes::JUNE,"juin",$date);
+			return $date;
+		case str_contains($date, Constantes::JULY):
+			$date = str_replace(Constantes::JULY,"juillet",$date);
+			return $date;
+		case str_contains($date, Constantes::AUGUST):
+			$date = str_replace(Constantes::AUGUST,"août",$date);
+			return $date;
+		case str_contains($date, Constantes::SEPTEMBER):
+			$date = str_replace(Constantes::SEPTEMBER,"septembre",$date);
+			return $date;
+		case str_contains($date, Constantes::OCTOBER):
+			$date = str_replace(Constantes::OCTOBER,"octobre",$date);
+			return $date;
+		case str_contains($date, Constantes::NOVEMBER):
+			$date = str_replace(Constantes::NOVEMBER,"novembre",$date);
+			return $date;
+		case str_contains($date, Constantes::DECEMBER):
+			$date = str_replace(Constantes::DECEMBER,"décembre",$date);
+			return $date;
+	}
+}
+
+//Enlève les + dans le nom scientifique
+function getFilteredTitle($nom){
+	$nom = str_replace("+","",$nom);
+	return $nom;
+}
+
+//Affiche le title dans la preview
+function custom_title($title) {
+	$url = get_the_permalink(get_the_ID());
+    if (str_contains($url,'?p=') OR str_contains($url,'bdtfx')) {
+		$nom = str_replace("<i>",'',get_field('nom_scientifique',get_the_ID()));
+		$nom = str_replace("</i>","",$nom);
+        $title['title'] = getFilteredTitle($nom) ."(".$title['title'].")";
+    }
+    return $title;
+}
+add_filter('document_title_parts', 'custom_title');
+
+//Affiche le texte du périanthe dans la preview et le pdf
+function displayPerianthe($composition,$fleur){
+	
+    $perianthe="";
+    if ($composition === Constantes::TEPALES) {
+        $tepales = $fleur['perigone'];
+		$soudure = !empty($fleur['soudure_du_perigone_']) ? $fleur['soudure_du_perigone_'] : "";
+        $perianthe = getValueOrganesFloraux($tepales,'tépale(s)',$soudure);
+        
+    } else if($composition === Constantes::PETALES_SEPALES){
+        $sepales = $fleur['calice'];
+		$soudure = $fleur['soudure_du_calice_'];
+		
+        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        $petales = $fleur['corolle'];
+		$soudure = $fleur['soudure_de_la_corolle_'];
+        $perianthe .= ' et ' . getValueOrganesFloraux($petales,"pétale(s)",$soudure);
+       
+    }else if($composition === Constantes::SEPALES){
+        $sepales = $fleur['calice'];
+		$soudure = $fleur['soudure_du_calice_'];
+        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        
+    }else if($composition === Constantes::PETALES){
+        $petales = $fleur['corolle'];
+		$soudure = $fleur['soudure_de_la_corolle_'];
+        $perianthe .= getValueOrganesFloraux($petales,"pétale(s)",$soudure);
+    
+    }
+    return $perianthe;
 }

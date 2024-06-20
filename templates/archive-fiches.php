@@ -68,7 +68,7 @@ get_header();
                                 the_botascopia_module('card-fiche', [
                                     'href' => $fiche['href'],
                                     'image' => $fiche['image'],
-                                    'name' => $fiche['name'],
+                                    'name' => getFilteredTitle($fiche['name']),
                                     'species' => $fiche['species'],
                                     'icon' => $fiche['icon'],
                                     'id' => 'fiche-' . $fiche['id'],
