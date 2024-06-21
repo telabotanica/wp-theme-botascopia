@@ -4995,7 +4995,7 @@
                         "soudés sur plus de la moitié de la longueur": "soudés sur plus de la moitié de la longueur",
                         "soudés sur moins de la moitié de la longueur": "soudés sur moins de la moitié de la longueur",
                         "libres": "libres",
-                        "partiellement soudés entre eux": "soudés pour une partie d'entre eux"
+                        "soudés pour une partie d'entre eux": "soudés pour une partie d'entre eux"
                     },
                     "default_value": "",
                     "return_format": "value",
