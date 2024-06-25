@@ -1,18 +1,19 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
     getScroll();
+
 });
+    
 
 window.addEventListener('scroll', function(e) {
     getScroll();
+    
 });
 
 function getScroll(){
     var titres = [];
-    var items = document.querySelectorAll(".first-toc .toc-subitem a");
+    var items = document.querySelectorAll(".toc-subitem a");
     
-    for (var i = 0;i<10;i++){
+    for (var i = 0;i<25;i++){
         var elem = document.querySelector(".rubrique"+i);
         if (elem){
             titres.push(elem);
@@ -58,7 +59,7 @@ function getScroll(){
 
         
         if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 2){
-        
+            
             var item = document.querySelector(".rub"+max);
             if (item){
                 treatment(items,item);
