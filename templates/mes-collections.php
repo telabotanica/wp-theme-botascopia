@@ -4,6 +4,7 @@
 */
 ?>
 <?php
+
 get_header();
 ?>
 
@@ -80,7 +81,7 @@ get_header();
 					
 				</div>
 				
-				<div class="display-collection-cards-items">
+				<div class="display-collection-cards-items rubrique1">
 					<?php
                     $hasFavorite = false;
 					foreach ($posts as $post) {
@@ -125,7 +126,7 @@ get_header();
 					?>
 				</div>
 				
-				<div class="display-collection-cards-items">
+				<div class="display-collection-cards-items rubrique2">
 					<?php
 					
 					foreach ($posts as $post) {
@@ -177,7 +178,7 @@ get_header();
 					?>
 				</div>
 				
-				<div class="display-collection-cards-items">
+				<div class="display-collection-cards-items rubrique3">
 					<?php
 					$completedCollection = false;
 					foreach ($posts as $post) {
@@ -248,4 +249,4 @@ get_header();
 <?php
 get_footer();
 ?>
-
+<script src="<?php echo (get_template_directory_uri() . '/assets/scripts/mes-collections.js'); ?>" ></script>

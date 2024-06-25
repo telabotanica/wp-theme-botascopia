@@ -68,7 +68,7 @@ class TocWalker extends Walker_Page {
     $args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
     $args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
     $args['single_page'] = array_key_exists( 'single_page', $args ) ? $args['single_page'] : false;
-
+    
     // Quand single_page is true, on n'affiche pas le nom de la page
     if ( $args['single_page'] === true ) {
       $output .= $indent . sprintf(
@@ -76,6 +76,7 @@ class TocWalker extends Walker_Page {
         $css_classes
       );
     } else {
+      
       $output .= $indent . sprintf(
         '<li class="%s"><a href="%s" class="toc-item-link">%s%s%s</a>',
         $css_classes,
@@ -112,12 +113,12 @@ class TocWalker extends Walker_Page {
 
           // On garde seulement les intertitres de niveau 2
           if (get_sub_field('level') !== '2') continue;
-
+          $url = get_template_directory_uri().'/assets/icons/';
           $current_toc .= sprintf(
             '<li class="%s"><a href="%s" class="toc-subitem-link">%s%s</a></li>',
             'toc-subitem' . ( $first ? ' is-active' : '' ),
             '#' . get_sub_field('anchor'),
-            get_telabotanica_module('icon', ['icon' => 'tela-leaf']),
+            get_botascopia_module('icon', ['icon' => 'tela-leaf']),
             get_sub_field('title')
           );
 

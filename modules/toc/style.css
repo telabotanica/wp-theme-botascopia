@@ -4,7 +4,6 @@
 .toc {
     font-family: ubuntu;
     position: sticky;
-    /*top: var(--header-height-fixed);*/
     width: 25rem;
 }
 
@@ -25,10 +24,6 @@
         padding-left: 1rem;
     }
 }
-
-/*body.admin-bar .toc {*/
-/*    top: calc(var(--header-height-fixed) + var(header-admin-bar-height));*/
-/*}*/
 
 .toc-items, .toc-subitems {
     list-style: none;
@@ -67,7 +62,6 @@
 .toc-item-link {
     text-decoration: none;
     font-family: Ubuntu, sans-serif;
-    /*font-weight: bold;*/
     font-size: 15px;
     color: var(--noir-d34);
     margin-left: 10px;
@@ -81,6 +75,7 @@
     font-size: 1.5rem;
     margin-top: 0.5rem;
     position: relative;
+    
 }
 
 .toc-subitems::before {
@@ -106,53 +101,16 @@
     margin-bottom: 0.5rem;
 }
 
-.toc-subitem.is-active .toc-subitem-link {
-    color: var(--noir);
-    font-weight: normal;
-}
-
-.toc-subitem.is-active > .toc-subitem-link {
-    color: var(--noir-d34);
-    font-weight: bold;
-}
-
-.toc-subitem.is-active .toc-subitem-link > .icon {
-    display: inline-block;
-    fill: var(--vert-clair);
-    height: 2.2rem;
-    left: -15px;
-    position: absolute;
-    transform: translate(-0.3rem, -0.3rem);
-    width: 2.2rem;
-}
-
-.toc-subitem.is-active .toc-subitem-link::before {
-    visibility: hidden;
-}
-
 .toc-subitem-link {
     display: inline-block;
     font-weight: normal;
     line-height: 1.8rem;
-    padding-left: 3rem;
     text-decoration: none;
     transition: all 0.2s ease;
     font-family: Ubuntu, sans-serif;
     font-size: 15px;
     color: var(--noir-d34);
-}
-
-.toc-subitem-link > .icon {
-    display: none;
-}
-
-.toc-subitem-link::before {
-    color: var(--vert-clair);
-    content: "●";
-    display: inline-block;
-    left: 0;
-    margin-right: 2rem;
-    position: absolute;
+    
 }
 
 .toc-subitem:not(:last-child)::after{
@@ -178,6 +136,27 @@
     list-style: none;
     margin-top: 1rem;
     padding-left: 2.5rem;
+}
+
+.is-unactive{
+    margin: 0;
+	padding-left: 30px;
+	list-style: none;
+	background-image: url("../../images/point.png");
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 10px;
+    -webkit-text-stroke-width: 0px;
+}
+
+.is-active{
+    margin: 0;
+	padding-left: 30px;
+    background-image: url("../../images/feuilles.svg");
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 20px;
+    -webkit-text-stroke-width: 1px;
 }
 
 @media ( 480px < width <= 780px) {
