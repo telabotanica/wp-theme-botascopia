@@ -625,3 +625,17 @@ function displayPerianthe($composition,$fleur){
     }
     return $perianthe;
 }
+
+function getPersistance($persistance){
+	switch($persistance){
+		case "faible" :
+			$persistance .= " (moins de 5 ans)";
+			return $persistance;
+		case "moyenne" :
+			$persistance .= " (entre 5 et 10 ans)";
+			return $persistance;
+		case "forte" :
+			$persistance .= " (plus de 10 ans)";
+			return $persistance;
+	}
+}
