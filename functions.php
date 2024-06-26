@@ -459,22 +459,31 @@ function getValueOrganesFloraux($organes,$mot,$soudure){
 			$max = max($organes_tab);
 			if ($min !== $max){
 				
-				return ("$min-$max $mot $soudure");	
+				$texte = "$min-$max $mot $soudure";
+				$texte = trim($texte);
+				$texte .=" ; ";
+				return $texte;	
 			}else{
 				
 				if ($min ===1){
-					$mot = substr($mot, 0, -3);
-					return "$min $mot ";
+					$mot = substr($mot, 0, -1);
+					return "$min $mot ; ";
 				}
-				return "$min $mot $soudure";
+				$texte = "$min $mot $soudure";
+				$texte = trim($texte);
+				$texte .=" ; ";
+				return $texte;
 			}
 		}else{
-			return "";
+			return " ; ";
 		}
 		
 		
 	}else{
-		return $organes;
+		$texte = "$organes $mot $soudure";
+		$texte = trim($texte);
+		$texte .=" ; ";
+		return $texte;	
 	}
 }
 
@@ -601,29 +610,30 @@ function displayPerianthe($composition,$fleur){
     if ($composition === Constantes::TEPALES) {
         $tepales = $fleur['perigone'];
 		$soudure = !empty($fleur['soudure_du_perigone_']) ? $fleur['soudure_du_perigone_'] : "";
-        $perianthe = getValueOrganesFloraux($tepales,'tépale(s)',$soudure);
+        $perianthe = getValueOrganesFloraux($tepales,'tépales',$soudure);
         
     } else if($composition === Constantes::PETALES_SEPALES){
         $sepales = $fleur['calice'];
 		$soudure = $fleur['soudure_du_calice_'];
 		
-        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        $perianthe = getValueOrganesFloraux($sepales, 'sépales',$soudure);
+		$perianthe = substr($perianthe, 0, -2);
         $petales = $fleur['corolle'];
 		$soudure = $fleur['soudure_de_la_corolle_'];
-        $perianthe .= ' et ' . getValueOrganesFloraux($petales,"pétale(s)",$soudure);
+        $perianthe .= ' et ' . getValueOrganesFloraux($petales,"pétales",$soudure);
        
     }else if($composition === Constantes::SEPALES){
         $sepales = $fleur['calice'];
 		$soudure = $fleur['soudure_du_calice_'];
-        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        $perianthe = getValueOrganesFloraux($sepales, 'sépales',$soudure);
         
     }else if($composition === Constantes::PETALES){
         $petales = $fleur['corolle'];
 		$soudure = $fleur['soudure_de_la_corolle_'];
-        $perianthe .= getValueOrganesFloraux($petales,"pétale(s)",$soudure);
-    
+        $perianthe .= getValueOrganesFloraux($petales,"pétales",$soudure);
+		
     }
-    return $perianthe;
+    return trim($perianthe);
 }
 
 function getPersistance($persistance){
