@@ -70,7 +70,7 @@ function bs_load_scripts() {
 	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
 	
 	// Theme script.
-	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
+	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true);
 	wp_localize_script( 'bs-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	
 }
@@ -503,7 +503,7 @@ function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'pos
 
  //Permet d'exclure des champs dans l'affichage du formulaire
 function exclude_fields( $field ) {
-	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée","Feuillage","Au bout de combien de temps la moitié du stock semencier a perdu son pouvoir germinatif ?"];
+	$array_labels = [];
     if( in_array($field['label'],$array_labels) ) {
         return false; 
     }

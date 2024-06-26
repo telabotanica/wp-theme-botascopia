@@ -72,11 +72,11 @@ foreach ($formulaires as $formulaire){
 }
 
 $current_user = wp_get_current_user();
-
+$role = $current_user->roles[0];
 if (isset($_GET['p'])) {
     $titre_du_post = $_GET['p'];
     $not_available = false;
-    if ( $current_user->roles[0] === 'editor') { //$current_user->roles[0] === 'editor'
+    if (  $role === 'editor') { //$current_user->roles[0] === 'editor'
 
         $page= get_page_by_post_title($titre_du_post,OBJECT,'post');
         $post_id=$page->ID;
@@ -85,7 +85,7 @@ if (isset($_GET['p'])) {
             $not_available=true;
         }
 
-    } else if($current_user->roles[0] === 'administrator'){
+    } else if($role === 'administrator'){
         
         $page= get_page_by_post_title($titre_du_post,OBJECT,'post');
         $post_id=$page->ID;
@@ -172,7 +172,7 @@ if (isset($_GET['p'])) {
                     } elseif($page->post_status == 'draft') {
                         $auteur_autorise = true;
                     }
-                } else if ($current_user->wp_user_level == '10'){
+                } else if ($role == 'administrator'){
                     $auteur_autorise = true;
                 }
             }
@@ -316,7 +316,7 @@ if (isset($_GET['p'])) {
                 </div>
 
                 <?php
-            } else if ( $current_user->wp_user_level == '7' && $status != 'Validée') { //$current_user->roles[0] === 'editor'
+            } else if ( $role == 'editor' && $status != 'Validée') { //$current_user->roles[0] === 'editor'
                 // (pour les validateurs)
                 // TODO remplacer par action/filter
                 
