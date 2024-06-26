@@ -378,7 +378,7 @@
                             ?>
                             <div class="picture-ref"><?php echo $index_fruit_photo;?></div>
                         <?php endif; ?>
-                        <p>Le fruit est <?php echo $fruit['type_de_fruit'];?>.</p>
+                        <p>Le fruit est <?php echo $fruit['type_de_fruit'];?>. <?php $complement = $fruit['precisions_sur_la_description_des_fruits']; if (!empty($complement)){ echo $complement;}?></p>
                     <?php } ?>
                 </div>
 

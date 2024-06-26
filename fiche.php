@@ -783,7 +783,7 @@ get_header();
                                 <?php  if (!empty(get_field(Constantes::FRUIT_CHP))) { ?>
                                     <?php $fruit = get_field(Constantes::FRUIT_CHP);?>
                                     
-                                    <p>Le fruit est <?php echo $fruit[Constantes::TYPE];?>.</p>
+                                    <p>Le fruit est <?php echo $fruit[Constantes::TYPE];?>. <?php $complement = $fruit['precisions_sur_la_description_des_fruits']; if (!empty($complement)){ echo $complement;}?></p>
                                 <?php } ?>
                             </div>
                         </div>
