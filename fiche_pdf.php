@@ -117,6 +117,7 @@
                                     echo "Description de l'appareil végétatif : $champ";
                                 }
                             ?>
+                            <?php $signes = get_field("signe_particulier"); if (!empty($signes)){echo $signes;} ?>
                         </p>
                     <?php } ?>
                 </div>
