@@ -363,6 +363,7 @@ get_header();
                                 if ((get_field(Constantes::PORT_DE_LA_PLANTE) == Constantes::HERBACEE || get_field(Constantes::PORT_DE_LA_PLANTE) == Constantes::LIANE) && !empty(get_field(Constantes::FORME_BIOLOGIQUE))) { echo implode(', ', get_field(Constantes::FORME_BIOLOGIQUE)).", " ;} ?>
                                 qui peut atteindre jusqu'à <?php the_field(Constantes::HAUTEUR_MAXIMALE); ?> de haut.
                                 <?php if (!empty(get_field(Constantes::PILOSITE))) { echo "Cette plante est ".get_field(Constantes::PILOSITE).".";} ?>
+                                <?php $signes = get_field("signe_particulier"); if (!empty($signes)){echo $signes;} ?>
                             <?php } ?>
                         </p>
                     </div>
