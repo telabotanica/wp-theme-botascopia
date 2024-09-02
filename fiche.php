@@ -144,6 +144,7 @@ get_header();
                 $saviez = get_field('le_saviez-vous_');
                 $espece = get_post_meta(get_the_ID(), 'nom_despece', TRUE);
                 $anecdote = get_field('complement_danecdote')?: null;
+                $proprietes = get_field('proprietes')?: null;
                 switch ($systeme) {
                     case Constantes::HERMAPHRODITE:
                         $fleur_male = null;
@@ -210,21 +211,21 @@ get_header();
                         'active' => false,
                     ]);
                 }
-                if (isset($fleur_femelle)){
+                if (!empty($fleur_femelle)){
                     array_push($items,[
                         'text' => Constantes::FL_FEM,
                         'href' => '#fleur-femelle',
                         'active' => false,
                     ]);
                 } 
-                if (isset($fleur_bisexuee)){
+                if (!empty($fleur_bisexuee)){
                     array_push($items,[
                         'text' => Constantes::FL_BI,
                         'href' => '#fleur-bisexuee',
                         'active' => false,
                     ]);
                 }
-                if (isset($saviez)){
+                if (!empty($saviez)){
                     array_push($items,[
                         'text' => Constantes::LE_SAVIEZ_VOUS,
                         'href' => '#le-saviez-vous',
@@ -235,23 +236,27 @@ get_header();
                     'text' => Constantes::PERIOD,
                     'href' => '#periode-floraison',
                     'active' => false,
-                ]);   
-                array_push($items,[
-                    'text' => Constantes::ECOLOGIE,
-                    'href' => '#ecologie',
-                    'active' => false,
                 ]);
-                array_push($items,[
-                    'text' => Constantes::PROPERTIES,
-                    'href' => '#proprietes',
-                    'active' => false,
-                ]); 
+                if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))){ 
+                    array_push($items,[
+                        'text' => Constantes::ECOLOGIE,
+                        'href' => '#ecologie',
+                        'active' => false,
+                    ]);
+                }
+                if(isset($proprietes)){        
+                    array_push($items,[
+                        'text' => Constantes::PROPERTIES,
+                        'href' => '#proprietes',
+                        'active' => false,
+                    ]);
+                } 
                 array_push($items,[
                     'text' => Constantes::AIRE,
                     'href' => '#aire-repartition',
                     'active' => false,
                 ]);
-                if (isset($espece)){
+                if (!empty($espece)){
                     array_push($items,[
                         'text' => Constantes::CONFUS,
                         'href' => '#ne-pas-confondre',
@@ -1100,8 +1105,8 @@ get_header();
                     
                 </div>
                 <div>    
-                    <?php $proprietes = get_field('proprietes')?: null;
-                    if ($proprietes){
+                            
+                    <?php if ($proprietes){
                         ?>
                         <div id="proprietes" class="rubrique13">
                             <?php
