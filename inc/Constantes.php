@@ -67,7 +67,7 @@ class Constantes{
 	const VULG = "Description vulgarisée";
 	const AGRO = "Agroécologie";
 	const REFERENCES = "Références";
-	const LE_SAVIEZ_VOUS = 'Le saviez vous?';
+	const LE_SAVIEZ_VOUS = 'Le saviez vous ?';
 	const VOIR = 'Voir plus de fiches';
 
 	const TIGE = "Tige";

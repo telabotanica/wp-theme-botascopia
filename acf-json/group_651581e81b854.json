@@ -992,42 +992,6 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_65143be5c09dd",
-                    "label": "Période de levée",
-                    "name": "periode_de_levee",
-                    "aria-label": "",
-                    "type": "checkbox",
-                    "instructions": "Sélectionnez tous les mois qui correspondent à la période de levée de la plante.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "Janvier": "Janvier",
-                        "Février": "Février",
-                        "Mars": "Mars",
-                        "Avril": "Avril",
-                        "Mai": "Mai",
-                        "Juin": "Juin",
-                        "Juillet": "Juillet",
-                        "Août": "Août",
-                        "Septembre": "Septembre",
-                        "Octobre": "Octobre",
-                        "Novembre": "Novembre",
-                        "Décembre": "Décembre"
-                    },
-                    "default_value": [],
-                    "return_format": "value",
-                    "allow_custom": 0,
-                    "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0,
-                    "custom_choice_button_text": "Ajouter un nouveau choix"
-                },
-                {
                     "key": "field_65143be5c09dd1",
                     "label": "Période de levée ",
                     "name": "periode_de_levee_",
@@ -1114,28 +1078,6 @@
                     "other_choice": 0,
                     "layout": "vertical",
                     "save_other_choice": 0
-                },
-                {
-                    "key": "field_65143c5e979a3",
-                    "label": "Au bout de combien de temps la moitié du stock semencier a perdu son pouvoir germinatif ?",
-                    "name": "au_bout_de_combien_de_temps_la_moitie_du_stock_semencier_a_perdu_son_pouvoir_germinatif_",
-                    "aria-label": "",
-                    "type": "number",
-                    "instructions": "Temps en année(s)",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "min": 0,
-                    "max": "",
-                    "placeholder": "",
-                    "step": 0,
-                    "prepend": "",
-                    "append": "année(s)"
                 },
                 {
                     "key": "field_65143c5e979a31",

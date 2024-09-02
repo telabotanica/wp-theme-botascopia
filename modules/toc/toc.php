@@ -3,62 +3,6 @@ require_once 'inc/walker.php';
 
 function botascopia_module_toc($data) {
 
-  // Fonction permettant d'afficher le sommaire de la page en cours,
-  // en se basant sur l'arborescence des pages dans Wordpress et les
-  // composants `title` utilisés
-	/*
-  if ( !function_exists( 'botascopia_module_toc_current_page' ) ) :
-    function botascopia_module_toc_current_page() {
-      $children = get_children([
-        'post_parent' => get_the_ID(),
-        'post_type' => 'page'
-      ] );
-      $has_children = count($children) !== 0;
-
-      // Page de premier niveau
-      if ( get_current_page_depth() === 0 ) {
-        // Affichage du sommaire de la page actuelle
-        wp_list_pages( [
-          'include' => get_the_ID(),
-          'title_li' => null,
-          'single_page' => !$has_children,
-          'walker' => new TocWalker()
-        ] );
-
-        // Si la page a des enfants
-        if ( $has_children ) {
-          // Affichage des enfants de la page actuelle
-          wp_list_pages( [
-            'child_of' => get_the_ID(),
-            'title_li' => null,
-            'sort_column' => 'menu_order',
-            'walker' => new TocWalker()
-          ] );
-        }
-      } else {
-        $parent_id = wp_get_post_parent_id( get_the_ID() );
-
-        // Affichage de la page parente de la page actuelle
-        if ( get_post( $parent_id )->post_name !== 'flore' ) : // sauf pour Flore
-          wp_list_pages( [
-            'include' => $parent_id,
-            'title_li' => null,
-            'walker' => new TocWalker()
-          ] );
-        endif;
-
-        // Affichage des pages soeurs de la page actuelle
-        wp_list_pages( [
-          'child_of' => $parent_id,
-          'title_li' => null,
-          'sort_column' => 'menu_order',
-          'walker' => new TocWalker()
-        ] );
-      }
-    }
-  endif;
-*/
-
   echo '<div class="toc">';
 
   if (isset($data->title)){
@@ -77,13 +21,13 @@ function botascopia_module_toc($data) {
     foreach ($data->items as $item) :
       $item = (object) $item;
 
-      echo '<li class="toc-item' . ( isset($item->active) && $item->active ? ' is-active' : '' ) . '">';
+      echo '<li class="toc-item">';
 
         if ( isset($item->text) ) {
           printf(
             '<a href="%s" class="toc-item-link">%s</a>',
             esc_url( $item->href ),
-//            get_botascopia_module('icon', ['icon' => 'feuilles']),
+//            
             $item->text
           );
         }
@@ -104,12 +48,12 @@ function botascopia_module_toc($data) {
               $subitem = (object) $subitem;
 
             endif;
-
-            echo '<li class="toc-subitem' . ( isset($subitem->active) && $subitem->active ? ' is-active' : '' ) . '">';
+            
+            echo '<li class="toc-subitem">';
               printf(
                 '<a href="%s" class="toc-subitem-link">%s%s</a>',
                 esc_url( $subitem->href ),
-                get_botascopia_module('icon', ['icon' => 'feuilles']),
+                null,
                 $subitem->text
               );
             echo '</li>';
@@ -122,10 +66,6 @@ function botascopia_module_toc($data) {
 
       echo '</li>';
     endforeach;
-
-  else :
-
-//    botascopia_module_toc_current_page();
 
   endif;
 

@@ -70,7 +70,7 @@ function bs_load_scripts() {
 	wp_enqueue_style( 'bs-style', get_template_directory_uri() . '/dist/bundle.css' );
 	
 	// Theme script.
-	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true );
+	wp_enqueue_script( 'bs-script', get_template_directory_uri() . '/dist/bundle.js', [ 'jquery', 'wp-util' ], null, true);
 	wp_localize_script( 'bs-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	
 }
@@ -459,22 +459,31 @@ function getValueOrganesFloraux($organes,$mot,$soudure){
 			$max = max($organes_tab);
 			if ($min !== $max){
 				
-				return ("$min-$max $mot $soudure");	
+				$texte = "$min-$max $mot $soudure";
+				$texte = trim($texte);
+				$texte .=" ; ";
+				return $texte;	
 			}else{
 				
 				if ($min ===1){
-					$mot = substr($mot, 0, -3);
-					return "$min $mot ";
+					$mot = substr($mot, 0, -1);
+					return "$min $mot ; ";
 				}
-				return "$min $mot $soudure";
+				$texte = "$min $mot $soudure";
+				$texte = trim($texte);
+				$texte .=" ; ";
+				return $texte;
 			}
 		}else{
-			return "";
+			return " ; ";
 		}
 		
 		
 	}else{
-		return $organes;
+		$texte = "$organes $mot $soudure";
+		$texte = trim($texte);
+		$texte .=" ; ";
+		return $texte;	
 	}
 }
 
@@ -503,7 +512,7 @@ function get_page_by_post_title($post_title, $output = OBJECT, $post_type = 'pos
 
  //Permet d'exclure des champs dans l'affichage du formulaire
 function exclude_fields( $field ) {
-	$array_labels = ['Type','Catégorie','Localisation des poils','Limbe des feuilles simples',"Tige aérienne","Mode de vie","Soudure du périgone","Soudure du calice", "Soudure de la corolle","Soudure de l'androcée","Soudure des carpelles","Ovaire","Cultivée en France","Limbe des folioles","Indigénat","Période de levée","Feuillage","Au bout de combien de temps la moitié du stock semencier a perdu son pouvoir germinatif ?"];
+	$array_labels = [];
     if( in_array($field['label'],$array_labels) ) {
         return false; 
     }
@@ -601,27 +610,42 @@ function displayPerianthe($composition,$fleur){
     if ($composition === Constantes::TEPALES) {
         $tepales = $fleur['perigone'];
 		$soudure = !empty($fleur['soudure_du_perigone_']) ? $fleur['soudure_du_perigone_'] : "";
-        $perianthe = getValueOrganesFloraux($tepales,'tépale(s)',$soudure);
+        $perianthe = getValueOrganesFloraux($tepales,'tépales',$soudure);
         
     } else if($composition === Constantes::PETALES_SEPALES){
         $sepales = $fleur['calice'];
 		$soudure = $fleur['soudure_du_calice_'];
 		
-        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        $perianthe = getValueOrganesFloraux($sepales, 'sépales',$soudure);
+		$perianthe = substr($perianthe, 0, -2);
         $petales = $fleur['corolle'];
 		$soudure = $fleur['soudure_de_la_corolle_'];
-        $perianthe .= ' et ' . getValueOrganesFloraux($petales,"pétale(s)",$soudure);
+        $perianthe .= ' et ' . getValueOrganesFloraux($petales,"pétales",$soudure);
        
     }else if($composition === Constantes::SEPALES){
         $sepales = $fleur['calice'];
 		$soudure = $fleur['soudure_du_calice_'];
-        $perianthe = getValueOrganesFloraux($sepales, 'sépale(s)',$soudure);
+        $perianthe = getValueOrganesFloraux($sepales, 'sépales',$soudure);
         
     }else if($composition === Constantes::PETALES){
         $petales = $fleur['corolle'];
 		$soudure = $fleur['soudure_de_la_corolle_'];
-        $perianthe .= getValueOrganesFloraux($petales,"pétale(s)",$soudure);
-    
+        $perianthe .= getValueOrganesFloraux($petales,"pétales",$soudure);
+		
     }
-    return $perianthe;
+    return trim($perianthe);
+}
+
+function getPersistance($persistance){
+	switch($persistance){
+		case "faible" :
+			$persistance .= " (moins de 5 ans)";
+			return $persistance;
+		case "moyenne" :
+			$persistance .= " (entre 5 et 10 ans)";
+			return $persistance;
+		case "forte" :
+			$persistance .= " (plus de 10 ans)";
+			return $persistance;
+	}
 }
