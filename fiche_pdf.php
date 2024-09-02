@@ -53,7 +53,7 @@
                              if ((get_field('port_de_la_plante') == Constantes::HERBACEE || get_field('port_de_la_plante') == Constantes::LIANE) && !empty(get_field('forme_biologique'))) { echo implode(', ', get_field('forme_biologique')).", " ;} ?>
                             qui peut atteindre jusqu'à <?php the_field('hauteur_maximale'); ?> de haut. 
                             <?php if (!empty(get_field(' pilosite_de_la_plante_entiere'))) { echo "Cette plante est ".get_field(' pilosite_de_la_plante_entiere').".";} ?>
-                            
+                            <?php $signes = get_field("signe_particulier"); if (!empty($signes)){echo $signes;} ?>
                         </p>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                                     echo "Description de l'appareil végétatif : $champ";
                                 }
                             ?>
-                            <?php $signes = get_field("signe_particulier"); if (!empty($signes)){echo $signes;} ?>
+                            
                         </p>
                     <?php } ?>
                 </div>

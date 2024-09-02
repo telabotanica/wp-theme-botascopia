@@ -136,15 +136,28 @@ get_header();
 					]); ?>
 					<span>RETOUR</span>
 				</a>
-                <?php $fleur_male =  get_field(Constantes::FL_MALE_CHP) ?: null;?>
-                <?php $fleur_femelle =  get_field(Constantes::FL_FEM_CHP) ?: null;?>
-                <?php $fleur_bisexuee =  get_field(Constantes::FL_BI_CHP) ?: null;?>
-                <?php $description_vulgarisee = get_field(Constantes::VULG)?: null; ?>
-                <?php $systeme = get_field(Constantes::SYS_SEXUEL);
+                <?php $fleur_male =  get_field(Constantes::FL_MALE_CHP) ?: null;
+                $fleur_femelle =  get_field(Constantes::FL_FEM_CHP) ?: null;
+                $fleur_bisexuee =  get_field(Constantes::FL_BI_CHP) ?: null;
+                $description_vulgarisee = get_field(Constantes::VULG)?: null; 
+                $systeme = get_field(Constantes::SYS_SEXUEL);
                 $saviez = get_field('le_saviez-vous_');
                 $espece = get_post_meta(get_the_ID(), 'nom_despece', TRUE);
                 $anecdote = get_field('complement_danecdote')?: null;
                 $proprietes = get_field('proprietes')?: null;
+                $amplitude = get_field('amplitude_altitudinale');
+                $affinites = get_field('affinites_ecologiques');
+                $hab_preferentiel = get_field('habitat_preferentiel');
+                $sys_repro = get_field('systeme_de_reproduction');
+                $pollinisation = get_field('pollinisation');
+                $indigenat = get_field('indigenat_');
+                $dispersion = get_field('dispersion');
+                $cultivee_en_france = get_field('cultivee_en_france');
+                $carte = get_field('carte_de_metropole');
+                $repartition = get_field('repartition_mondiale');
+                $statut_uicn = get_field('statut_uicn');
+                $reference_1 = get_field('reference_1');
+
                 switch ($systeme) {
                     case Constantes::HERMAPHRODITE:
                         $fleur_male = null;
@@ -237,7 +250,7 @@ get_header();
                     'href' => '#periode-floraison',
                     'active' => false,
                 ]);
-                if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))){ 
+                if (!empty($amplitude) || !empty($affinites) || !empty($hab_preferentiel) || !empty($sys_repro) || !empty($pollinisation) || !empty($dispersion)){ 
                     array_push($items,[
                         'text' => Constantes::ECOLOGIE,
                         'href' => '#ecologie',
@@ -250,12 +263,14 @@ get_header();
                         'href' => '#proprietes',
                         'active' => false,
                     ]);
-                } 
-                array_push($items,[
-                    'text' => Constantes::AIRE,
-                    'href' => '#aire-repartition',
-                    'active' => false,
-                ]);
+                }
+                if (!empty($cultivee_en_france) || !empty($carte) || !empty($repartition) || !empty($indigenat) || !empty($statut_uicn)){ 
+                    array_push($items,[
+                        'text' => Constantes::AIRE,
+                        'href' => '#aire-repartition',
+                        'active' => false,
+                    ]);
+                }
                 if (!empty($espece)){
                     array_push($items,[
                         'text' => Constantes::CONFUS,
@@ -1061,7 +1076,7 @@ get_header();
                     
                     </div>
                     
-                    <?php if (!empty(get_field('amplitude_altitudinale')) || !empty(get_field('affinites_ecologiques')) || !empty(get_field('habitat_preferentiel')) || !empty(get_field('systeme_de_reproduction')) || !empty(get_field('pollinisation')) || !empty(get_field('dispersion'))){ ?>
+                    <?php if (!empty($amplitude) || !empty($affinites) || !empty($hab_preferentiel) || !empty($sys_repro) || !empty($pollinisation) || !empty($dispersion)){ ?>
                     <div id="ecologie" class="rubrique12">
                         
                         <div class="fiche-title-icon">
@@ -1074,31 +1089,31 @@ get_header();
                             ?>
                         </div>
                         
-                        <?php if (!empty(get_field('amplitude_altitudinale'))) {?> 
-                            <p>Altitude : <?php echo get_field('amplitude_altitudinale'); ?> .</p> 
+                        <?php if (!empty($amplitude)) {?> 
+                            <p>Altitude : <?php echo $amplitude; ?> .</p> 
                         <?php } ?>
-                        <?php if (!empty(get_field('affinites_ecologiques'))){?>
-                            <p>Affinités écologiques : <?php echo get_field('affinites_ecologiques') ? implode(', ', get_field('affinites_ecologiques')) : "";?>.</p>
+                        <?php if (!empty($affinites)){?>
+                            <p>Affinités écologiques : <?php echo $affinites ? implode(', ', $affinites) : "";?>.</p>
                         <?php } ?>
                             
-                        <?php if (!empty(get_field('habitat_preferentiel'))){?> 
+                        <?php if (!empty($hab_preferentiel)){?> 
                             <p>Habitat(s) : <?php the_field('habitat_preferentiel'); ?>.</p> 
                         <?php }?>
                             
-                        <?php if ((!empty(get_field('systeme_de_reproduction'))) || (!empty(get_field('pollinisation')))) {?> 
+                        <?php if ((!empty($sys_repro)) || (!empty($pollinisation))) {?> 
                             <p>Plante :<br>
                         <?php }?>
                         
-                        <?php if (!empty(get_field('systeme_de_reproduction'))) {?>
+                        <?php if (!empty($sys_repro)) {?>
                             Système de reproduction <?php the_field('systeme_de_reproduction'); ?>, 
                         <?php } ?>
                         
-                        <?php if (!empty(get_field('pollinisation'))) {?>
+                        <?php if (!empty($pollinisation)) {?>
                             à pollinisation <?php the_field('pollinisation'); ?>, 
                         <?php } ?>
                         
-                        <?php if (!empty(get_field('dispersion'))){?>
-                            dispersion des graines ou des fruits <?php echo get_field('dispersion') ? implode(', ', get_field('dispersion')) : ""; ?>.</p>
+                        <?php if (!empty($dispersion)){?>
+                            dispersion des graines ou des fruits <?php echo $dispersion ? implode(', ', $dispersion) : ""; ?>.</p>
                         <?php }?>
                     
                     <?php } ?>
@@ -1120,7 +1135,7 @@ get_header();
                     <?php } ?>
                 </div>
                 <div>
-                    <?php if (!empty(get_field('cultivee_en_france')) || !empty(get_field('carte_de_metropole')) || !empty(get_field('repartition_mondiale')) || !empty(get_field('indigenat_')) || !empty(get_field('statut_uicn'))){ ?>
+                    <?php if (!empty($cultivee_en_france) || !empty($carte) || !empty($repartition) || !empty($indigenat) || !empty($statut_uicn)){ ?>
                         <div id="aire-repartition" class="display-fiche-container rubrique14">
                             <div class="fiche-title-container" class="rubrique15">
                                 <div class="fiche-title-icon">
@@ -1134,20 +1149,20 @@ get_header();
                                 </div>
                                 <?php if (!empty(get_field('cultivee_en_france_'))) { ?>
                                     <?php $cultivee_en_france = get_field('cultivee_en_france_'); ?>
-                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php $texte = ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', get_field('indigenat_')) . '.' : ''); if(substr($texte, -1)!=="."){$texte.=".";} echo $texte;?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
+                                    <p>En France métropolitaine, la plante est présente <?php echo $cultivee_en_france; ?><?php $texte = ("à l'état sauvage" === $cultivee_en_france ? ', où elle est ' . implode (', ', $indigenat) . '.' : ''); if(substr($texte, -1)!=="."){$texte.=".";} echo $texte;?> Statut UICN : <?php the_field('statut_uicn'); ?>.</p>
 
                                     <?php if ($cultivee_en_france === "seulement à l'état cultivé") { ?>
-                                        <?php if (!empty(get_field('repartition_mondiale'))) { ?>
-                                            <?php $repartition_mondiale = get_field('repartition_mondiale'); ?>
+                                        <?php if (!empty($repartition)) { ?>
+                                            <?php $repartition_mondiale = $repartition; ?>
                                             <p><?php echo "<a href='$repartition_mondiale'>$repartition_mondiale</a>"; ?></p>
                                         <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
                             </div>
 
-                            <?php if (!empty(get_field('carte_de_metropole'))) :?>
+                            <?php if (!empty($carte)) :?>
                                 <div class="image-fiche">
-                                    <?php affichageImageFiche(get_field('carte_de_metropole'))?>
+                                    <?php affichageImageFiche($carte)?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -1622,7 +1637,7 @@ get_header();
                     </div>
                 </div>
                 <div>
-                    <?php if (!empty(get_field('reference_1'))){ ?>
+                    <?php if (!empty($reference_1)){ ?>
                         <div id="references" class="rubrique19">
                             <?php
                             the_botascopia_module('title', [
