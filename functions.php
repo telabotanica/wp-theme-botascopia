@@ -448,30 +448,44 @@ function getRole($role){
 
 //Permet d'afficher les valeurs min - max
 function getValueOrganesFloraux($organes,$mot,$soudure){
+
 	$organes_tab = [];
 	
 	if (is_array($organes)){
 		foreach($organes as $value){
-			array_push($organes_tab,intval($value));
+			if($value!=='n&gt;20'){
+				array_push($organes_tab,intval($value));
+			}else{
+				array_push($organes_tab,$value);
+			}
+			
 		}
 		if (!empty($organes_tab)){
-			$min = min($organes_tab);
-			$max = max($organes_tab);
-			if ($min !== $max){
+			
+			if (!in_array('n&gt;20',$organes_tab)){
 				
-				$texte = "$min-$max $mot $soudure";
-				$texte = trim($texte);
-				$texte .=" ; ";
-				return $texte;	
-			}else{
-				
-				if ($min ===1){
-					$mot = substr($mot, 0, -1);
-					return "$min $mot ; ";
+				$min = min($organes_tab);
+				$max = max($organes_tab);
+				if ($min !== $max){
+					
+					$texte = "$min-$max $mot $soudure";
+					$texte = trim($texte);
+					$texte .=" ; ";
+					return $texte;	
+				}else{
+					
+					if ($min ===1){
+						$mot = substr($mot, 0, -1);
+						return "$min $mot ; ";
+					}
+					$texte = "$min $mot $soudure";
+					$texte = trim($texte);
+					$texte .=" ; ";
+					return $texte;
 				}
-				$texte = "$min $mot $soudure";
-				$texte = trim($texte);
-				$texte .=" ; ";
+			}else{
+				$texte = "plus de 20 $mot $soudure";
+				$texte=trim($texte);
 				return $texte;
 			}
 		}else{
@@ -480,7 +494,9 @@ function getValueOrganesFloraux($organes,$mot,$soudure){
 		
 		
 	}else{
+		
 		$texte = "$organes $mot $soudure";
+		
 		$texte = trim($texte);
 		$texte .=" ; ";
 		return $texte;	
