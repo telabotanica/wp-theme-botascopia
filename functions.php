@@ -486,6 +486,7 @@ function getValueOrganesFloraux($organes,$mot,$soudure){
 			}else{
 				$texte = "plus de 20 $mot $soudure";
 				$texte=trim($texte);
+				$texte .=" ; ";
 				return $texte;
 			}
 		}else{
