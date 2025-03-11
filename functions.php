@@ -39,6 +39,7 @@ require get_template_directory() . '/inc/Constantes.php';
 
 // Fichier des routes
 require get_template_directory() . '/inc/routes.php';
+//require get_template_directory() . '/maintenance.php';
 
 // add theme supports
 function bs_theme_supports() {
@@ -666,3 +667,10 @@ function getPersistance($persistance){
 			return $persistance;
 	}
 }
+
+function wp_maintenance_mode() {
+    if ( !current_user_can( 'edit_themes' ) || !is_user_logged_in() ) {
+        wp_die('<h1>Site en maintenance</h1><p>Notre site est actuellement en maintenance. Veuillez revenir plus tard.</p>');
+    }
+}
+add_action('get_header', 'wp_maintenance_mode');
